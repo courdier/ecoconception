@@ -1,0 +1,306 @@
+/* Variables CSS */
+:root {
+    --primary-color: #2fdfad;
+    --background-color: #1c1c1e;
+    --text-color: #e8e8e8;
+    --highlight-color: #2fdfad;
+    --strong-color: #2fdfad;
+    --light-color: #7dd4bc;
+    --font-main: Arial, sans-serif;
+    --font-title: 'Major Mono Display', monospace;
+    --nav-height: 60px;
+    --footer-height: 20px;
+    --max-width: 80%;
+}
+
+/* Global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Layout styling */
+body {
+    font-family: var(--font-main);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: var(--nav-height);
+    padding-bottom: var(--footer-height);
+    text-align: center;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background-color: var(--background-color);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+li {
+    margin-left: 30px;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+}
+
+nav a:hover, nav a.active {
+    color: var(--highlight-color);
+    text-decoration: underline;
+}
+
+h1 {
+    font-family: var(--font-title);
+    font-size: 2.5rem;
+    color: var(--strong-color);
+    text-align: right;  
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    max-width: 80%; 
+}
+
+p, ul {
+    font-size: 1rem;
+    text-align: left;
+}
+
+strong,
+a {
+    color: var(--strong-color);
+    font-weight: bold;
+}
+
+.button-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.button, .button-secondary {
+    padding: 0.3rem 1rem;
+    border-radius: 25px;
+    text-decoration: none;
+    box-shadow: 7px 2px 8px rgba(244, 244, 244, 0.2);
+    transition: background-color 0.3s ease;
+    margin-top: 50px;
+    font-weight: bold;
+}
+
+.button {
+    background-color: var(--highlight-color);
+    color: var(--background-color);
+}
+
+.button:hover {
+    background-color: transparent;
+    color: var(--highlight-color);
+}
+
+.button-secondary {
+    background-color: transparent;
+    color: var(--highlight-color);
+    border: 1px solid var(--highlight-color);
+}
+
+.button-secondary:hover {
+    background-color: var(--highlight-color);
+    color: var(--background-color);
+}
+
+#quiz-container {
+    text-align: left;
+}
+
+#progress-bar {
+    height: 10px;
+    background-color: var(--highlight-color);
+    width: 0%;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+
+#question-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+#question-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#question-container li {
+    margin-bottom: 10px;
+}
+
+#info {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+
+#info-icon {
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--highlight-color);
+    margin-right: 10px;
+}
+
+#info-text {
+    background-color: var(--background-color);
+    padding: 10px;
+    border: 1px solid var(--highlight-color);
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#next-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--highlight-color);
+    color: var(--background-color);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#next-btn:hover {
+    background-color: var(--strong-color);
+}
+
+.bibliography-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.bibliography-list li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+    font-family: Arial, sans-serif;
+    color: #e8e8e8;
+}
+
+.bibliography-list li a {
+    color: #2fdfad;
+    text-decoration: none;
+}
+
+.bibliography-list li a:hover {
+    text-decoration: underline;
+}
+
+.bibliography-list em {
+    font-style: italic;
+}
+
+.result-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.result-block {
+    text-align: center;
+    width: 80%;
+}
+
+.progress-container {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 20px;
+}
+
+.progress-bar {
+    height: 20px;
+    background-color: var(--light-color);
+    transition: width 2s ease;
+}
+
+.equivalences {
+    margin-top: 30px;
+}
+
+.equivalence-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.equivalence-item i {
+    font-size: 2rem;
+    color: var(--highlight-color);
+    margin-right: 20px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--footer-height);
+    background-color: var(--background-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+    font-size: 0.6rem;
+    color: #aaa;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.5rem;
+    }
+
+    .button-container {
+        flex-direction: column;
+    }
+}
