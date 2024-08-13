@@ -244,3 +244,4 @@ updateProgressBar();
 
 showQuestion(currentQuestionIndex);
 updateProgressBar();
+

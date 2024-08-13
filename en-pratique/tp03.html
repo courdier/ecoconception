@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Détection et Réduction des Scripts Inutilisés">
+    <meta name="keywords" content="Optimisation, Scripts Inutilisés, TP, écoconception, développement durable">
+    <meta name="author" content="Rochat Lise">
+    <meta http-equiv="cache-control" content="max-age=31536000, must-revalidate">
+    <meta http-equiv="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
+    <title>TP 03 - Détection et Réduction des Scripts Inutilisés</title>
+    <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/styles/styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../ressources.html">Ressources</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main">
+        <h1>TP 03 : Détection et Réduction des Scripts Inutilisés</h1>
+        <section>
+            <section class="collapsible">
+                <h2>Objectif <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <p>Dans ce TP, vous allez identifier et éliminer les scripts JavaScript inutilisés ou redondants sur le site web du Bureau des Étudiants (BDE) de l'ESIROI. L'objectif est de réduire la taille des fichiers JavaScript, d'améliorer les performances du site, et de minimiser son empreinte écologique.</p>
+                    <p><strong>Temps imparti</strong> : 1 heure</p>
+                    <p><strong>Date et lieux de dépôt</strong> : À déterminer</p>
+                </div>
+            </section>
+
+            <section class="collapsible">
+                <h2>Informations <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <p>Les scripts JavaScript non utilisés ou redondants peuvent entraîner des temps de chargement plus longs, consommer des ressources inutiles, et augmenter l'empreinte écologique d'un site web. Ce TP vous apprendra à identifier ces scripts et à les supprimer ou les optimiser pour rendre le site plus performant et éco-responsable.</p>
+                </div>
+            </section>
+
+            <section class="collapsible">
+                <h2>Prérequis nécessaires <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <ul>
+                        <li>Connaissances de base en HTML, CSS, et JavaScript</li>
+                        <li>Docker et Docker Compose installés sur votre machine</li>
+                        <li>Accès à une machine avec Ubuntu, Windows, ou macOS</li>
+                        <li>Installation de SonarQube et SonarScanner (voir TP 01)</li>
+                        <li>Analyse initiale du site réalisée dans le TP 02</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="collapsible">
+                <h2>Ressources utiles <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <ul>
+                        <li><a href="https://developer.chrome.com/docs/devtools" target="_blank">Chrome DevTools</a></li>
+                        <li><a href="https://firefox-source-docs.mozilla.org/devtools-user/" target="_blank">Firefox Developer Tools</a></li>
+                        <li><a href="https://docs.sonarsource.com/sonarqube/latest/" target="_blank">SonarQube</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="collapsible">
+                <h2>Livrable <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <p>À la fin de ce TP, vous devrez compléter une section de votre rapport individuel décrivant les optimisations effectuées, les résultats avant et après optimisation, et une évaluation de l'impact des optimisations sur les performances et l'empreinte écologique du site. Chaque TP constituera une partie distincte de ce rapport, qui sera complété au fur et à mesure des travaux pratiques.</p>
+                    <p>Rappel des critères du rapport :</p>
+                    <ul>
+                        <li>Longueur : 10 pages maximum</li>
+                        <li>Organisation du rapport :
+                            <ul>
+                                <li><strong>Introduction</strong> : Présentation générale du projet et de ses objectifs.</li>
+                                <li><strong>Section 1</strong> : Installation et Configuration de SonarQube et Eco Code</li>
+                                <li><strong>Section 2</strong> : Optimisation des Ressources Web</li>
+                                <li><strong>Section 3</strong> : Détection et Réduction des Scripts Inutilisés</li>
+                                <li><strong>Section 4</strong> : Optimisation de l'Utilisation des Polices Web</li>
+                                <li><strong>Conclusion</strong> : Résumez les apprentissages et les recommandations principales</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="collapsible">
+                <h2>Étapes du TP <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <ol>
+                        <li class="step">
+                            <h3>Étape 1 : Analyse initiale des scripts</h3>
+                            <ol>
+                                <li>Clonage du dépôt GitHub: Si ce n'est pas déjà fait, clonez le dépôt contenant le site vitrine du BDE.</li>
+                                <pre><code class="bash">git clone https://github.com/username/bde-esiroi.git</code></pre>
+
+                                <li>Déplacez-vous dans le répertoire du projet :</li>
+                                <pre><code class="bash">cd bde-esiroi</code></pre>
+
+                                <li>Audit des scripts avec Chrome DevTools :</li>
+                                <ul>
+                                    <li>Ouvrez le site dans Google Chrome.</li>
+                                    <li>Accédez à Chrome DevTools en appuyant sur <strong>F12</strong> ou <strong>Ctrl + Shift + I</strong>.</li>
+                                    <li>Allez dans l'onglet <strong>Sources</strong> puis dans <strong>Coverage</strong>.</li>
+                                    <li>Cliquez sur <strong>Start Instrumenting Coverage</strong> pour démarrer l'analyse des scripts.</li>
+                                    <li>Naviguez sur les différentes pages du site pour capturer l'utilisation des scripts.</li>
+                                    <li>Analysez le rapport généré pour identifier les pourcentages de code JavaScript réellement utilisé.</li>
+                                    <li>Prenez des captures d'écran des résultats pour les inclure dans votre rapport.</li>
+                                </ul>
+                            </ol>
+                        </li>
+
+                        <li class="step">
+                            <h3>Étape 2 : Suppression ou optimisation des scripts inutilisés</h3>
+                            <ol>
+                                <li>Suppression des scripts inutilisés :</li>
+                                <ul>
+                                    <li>Supprimez les fichiers JavaScript qui ne sont pas utilisés du projet.</li>
+                                    <li>Si des portions de code non utilisées sont trouvées dans des fichiers JS encore nécessaires, supprimez uniquement ces portions tout en testant pour éviter les régressions.</li>
+                                </ul>
+
+                                <li>Optimisation des scripts :</li>
+                                <ul>
+                                    <li>Refactorisez les scripts qui sont partiellement utilisés pour les rendre plus efficaces.</li>
+                                    <li>Si des bibliothèques ou des frameworks JavaScript sont utilisés, envisagez de les remplacer par des alternatives plus légères si elles sont surdimensionnées pour le projet.</li>
+                                </ul>
+
+                                <li>Test du site :</li>
+                                <ul>
+                                    <li>Testez le site après chaque modification pour vous assurer que la suppression ou l'optimisation des scripts n'a pas causé de dysfonctionnements.</li>
+                                    <li>Utilisez les outils de développement pour vérifier que les scripts restants sont effectivement nécessaires.</li>
+                                </ul>
+                            </ol>
+                        </li>
+
+                        <li class="step step-btm">
+                            <h3>Étape 3 : Analyse post-optimisation</h3>
+                            <ol>
+                                <li>Réalisation d'une nouvelle analyse avec Chrome DevTools :</li>
+                                <ul>
+                                    <li>Refaites l'analyse de couverture des scripts avec Chrome DevTools après optimisation.</li>
+                                    <li>Comparez les nouveaux résultats avec ceux obtenus avant optimisation.</li>
+                                </ul>
+
+                                <li>Analyse avec SonarQube:</li>
+                                <ul>
+                                    <li>Effectuez une nouvelle analyse du site avec SonarQube pour détecter d'éventuels autres problèmes liés aux scripts.</li>
+                                    <li>Documentez les recommandations supplémentaires fournies par SonarQube.</li>
+                                </ul>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+            <section class="collapsible">
+                <h2>Conclusion: Rédaction du rapport <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <p>Documentez les résultats de l'analyse et proposez des recommandations spécifiques pour améliorer le site. Estimez l'impact de ces améliorations sur les performances du site et sur son empreinte écologique.</p>
+                </div>
+            </section>
+        </section>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 ROCHAT Lise - COURDIER Remy</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.collapsible h2').forEach(h2 => {
+            h2.addEventListener('click', () => {
+                const content = h2.nextElementSibling;
+                const icon = h2.querySelector('.toggle-icon');
+                content.style.display = content.style.display === 'none' ? 'block' : 'none';
+                icon.textContent = icon.textContent === '+' ? '−' : '+';
+            });
+        });
+
+        // Initialize all sections as collapsed
+        document.querySelectorAll('.collapsible .content').forEach(content => {
+            content.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>

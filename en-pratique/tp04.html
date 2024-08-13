@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Optimisation de l'Utilisation des Polices Web">
+    <meta name="keywords" content="Optimisation, Polices Web, TP, écoconception, développement durable">
+    <meta name="author" content="Rochat Lise">
+    <meta http-equiv="cache-control" content="max-age=31536000, must-revalidate">
+    <meta http-equiv="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
+    <title>TP 04 - Optimisation de l'Utilisation des Polices Web</title>
+    <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/styles/styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../ressources.html">Ressources</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main">
+        <h1>TP 04 : Optimisation de l'Utilisation des Polices Web</h1>
+        <section>
+            <section class="collapsible">
+                <h2>Objectif <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <p>Dans ce TP, vous allez optimiser l'utilisation des polices web sur le site du Bureau des Étudiants (BDE) de l'ESIROI. L'objectif est de réduire la charge des ressources liées aux polices, d'améliorer les performances du site, et de minimiser son empreinte écologique.</p>
+                    <p><strong>Temps imparti</strong> : 2 heures</p>
+                    <p><strong>Date et lieux de dépôt</strong> : À déterminer</p>
+                </div>
+            </section>
+
+            <section class="collapsible">
+                <h2>Informations <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <p>L'utilisation inefficace des polices web peut ralentir le chargement des pages et augmenter la consommation de ressources, ce qui impacte à la fois la performance et l'empreinte écologique du site. Ce TP vous apprendra à choisir et à intégrer des polices web de manière optimisée, en utilisant des techniques telles que le sous-ensemble de polices, la mise en cache et l'utilisation de formats de polices optimisés.</p>
+                </div>
+            </section>
+
+            <section class="collapsible">
+                <h2>Prérequis nécessaires <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <ul>
+                        <li>Connaissances de base en HTML, CSS, et JavaScript</li>
+                        <li>Docker et Docker Compose installés sur votre machine</li>
+                        <li>Accès à une machine avec Ubuntu, Windows, ou macOS</li>
+                        <li>Installation de SonarQube et SonarScanner (voir TP 01)</li>
+                        <li>Analyse initiale du site réalisée dans les TP précédents</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="collapsible">
+                <h2>Ressources utiles <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <ul>
+                        <li><a href="https://fonts.google.com/" target="_blank">Google Fonts</a></li>
+                        <li><a href="https://docs.fileformat.com/font/woff2/#:~:text=WOFF2%20Header-,What%20is%20a%20WOFF2%20file%3F,faster%20and%20use%20less%20bandwidth." target="_blank">WOFF2 Format</a></li>
+                        <li><a href="https://developers.google.com/fonts/docs/webfont_loader" target="_blank">Webfont Loader</a></li>
+                        <li><a href="https://fonts.google.com/knowledge/glossary/subsetting" target="_blank">Google Fonts Subsetter</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="collapsible">
+                <h2>Livrable <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <p>À la fin de ce TP, vous devrez compléter une section de votre rapport individuel décrivant les optimisations effectuées, les résultats avant et après optimisation, et une évaluation de l'impact des optimisations sur les performances et l'empreinte écologique du site. Chaque TP constituera une partie distincte de ce rapport, qui sera complété au fur et à mesure des travaux pratiques.</p>
+                    <p>Rappel des critères du rapport :</p>
+                    <ul>
+                        <li>Longueur : 10 pages maximum</li>
+                        <li>Organisation du rapport :
+                            <ul>
+                                <li><strong>Introduction</strong> : Présentation générale du projet et de ses objectifs.</li>
+                                <li><strong>Section 1</strong> : Installation et Configuration de SonarQube et Eco Code</li>
+                                <li><strong>Section 2</strong> : Optimisation des Ressources Web</li>
+                                <li><strong>Section 3</strong> : Détection et Réduction des Scripts Inutilisés</li>
+                                <li><strong>Section 4</strong> : Optimisation de l'Utilisation des Polices Web</li>
+                                <li><strong>Conclusion</strong> : Résumez les apprentissages et les recommandations principales</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="collapsible">
+                <h2>Étapes du TP <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <ol>
+                        <li class="step">
+                            <h3>Étape 1 : Analyse initiale de l'utilisation des polices web</h3>
+                            <ol>
+                                <li>Clonage du dépôt GitHub : Si ce n'est pas déjà fait, clonez le dépôt contenant le site vitrine du BDE.</li>
+                                <pre><code class="bash">git clone https://github.com/username/bde-esiroi.git</code></pre>
+
+                                <li>Déplacez-vous dans le répertoire du projet :</li>
+                                <pre><code class="bash">cd bde-esiroi</code></pre>
+
+                                <li>Identification des polices utilisées : Inspectez les fichiers CSS et HTML pour identifier les polices web utilisées sur le site. Notez les polices importées via des services externes (ex : Google Fonts) et celles chargées localement.</li>
+
+                                <li>Analyse de l'impact des polices sur la performance : Utilisez Google Lighthouse ou WebPageTest pour évaluer l'impact des polices sur les performances du site (ex : temps de chargement, poids des fichiers). Prenez des captures d'écran des résultats pour les inclure dans votre rapport.</li>
+                            </ol>
+                        </li>
+
+                        <li class="step">
+                            <h3>Étape 2 : Optimisation des polices web</h3>
+                            <ol>
+                                <li>Sélection des polices nécessaires : Analysez les polices utilisées pour déterminer si toutes sont nécessaires. Supprimez les polices superflues ou redondantes. Si plusieurs styles ou graisses (font-weight) d'une même police sont chargés, évaluez s'il est possible de réduire le nombre de variations.</li>
+
+                                <li>Sous-ensemble de polices (Font Subsetting) : Créez un sous-ensemble (subset) des polices pour inclure uniquement les caractères nécessaires au site. Utilisez des outils comme Google Fonts Subsetter pour générer un sous-ensemble de la police.</li>
+
+                                <li>Utilisation de formats de polices optimisés : Convertissez les polices au format WOFF2 si ce n'est pas déjà fait, car ce format est plus léger et performant. Assurez-vous que les polices WOFF2 sont bien servies en priorité par rapport aux autres formats (ex : TTF, OTF).</li>
+
+                                <li>Mise en cache des polices : Configurez le serveur pour mettre en cache les fichiers de polices pour une période prolongée. Si vous utilisez un CDN, vérifiez que la mise en cache est correctement configurée pour les polices.</li>
+                            </ol>
+                        </li>
+
+                        <li class="step step-btm">
+                            <h3>Étape 3 : Analyse post-optimisation</h3>
+                            <ol>
+                                <li>Réalisation d'une nouvelle analyse avec Google Lighthouse : Refaites l'analyse des performances du site après avoir appliqué les optimisations des polices. Comparez les nouveaux résultats avec ceux obtenus avant optimisation.</li>
+
+                                <li>Analyse avec SonarQube : Effectuez une nouvelle analyse du site avec SonarQube pour vérifier que les modifications n'ont pas introduit de nouvelles problématiques en termes de performance ou d'éco-conception. Documentez les recommandations supplémentaires fournies par SonarQube.</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+            <section class="collapsible">
+                <h2>Conclusion: Rédaction du rapport <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <p>Documentez les résultats de l'analyse et proposez des recommandations spécifiques pour améliorer le site. Estimez l'impact de ces améliorations sur les performances du site et sur son empreinte écologique.</p>
+                </div>
+            </section>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 ROCHAT Lise - COURDIER Remy</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.collapsible h2').forEach(h2 => {
+            h2.addEventListener('click', () => {
+                const content = h2.nextElementSibling;
+                const icon = h2.querySelector('.toggle-icon');
+                content.style.display = content.style.display === 'none' ? 'block' : 'none';
+                icon.textContent = icon.textContent === '+' ? '−' : '+';
+            });
+        });
+
+        // Initialize all sections as collapsed
+        document.querySelectorAll('.collapsible .content').forEach(content => {
+            content.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
