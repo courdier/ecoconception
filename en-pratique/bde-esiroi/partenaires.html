@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BDE ESIROI - Partenaires</title>
+    <link rel="icon" href="./assets/img/logo_bde-removebg-preview.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles/old-style.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/extra-theme.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&family=Comic+Sans+MS&family=Courier+Prime&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+    <!-- Google Analytics -->
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-XXXXXXXXX-X');
+        console.log("Google Analytics loaded.");
+    </script>
+
+    <!-- Facebook Pixel -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !1;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'XXXXXXXXXXXXXXXX');
+        fbq('track', 'PageView');
+        console.log("Facebook Pixel loaded.");
+    </script>
+
+    <!-- Hotjar Tracking Code -->
+    <script>
+        (function (h, o, t, j, a, r) {
+            h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+            h._hjSettings = { hjid: YOUR_HOTJAR_ID, hjsv: 6 };
+            a = o.getElementsByTagName('head')[0];
+            r = o.createElement('script');
+            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+            a.appendChild(r);
+            console.log("Hotjar loaded.");
+        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #FFEEEE 50%, #FFFFFF 50%);
+            color: #000000;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive !important;
+            overflow-x: hidden;
+            animation: changeBackgroundColor 15s infinite;
+        }
+
+        @keyframes changeBackgroundColor {
+
+            0%,
+            100% {
+                background-color: #FFFFFF !important;
+            }
+
+            50% {
+                background-color: #FFDDDD !important;
+            }
+        }
+
+        .nav-section {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #FF0000 !important;
+            animation: slideNavBar 10s infinite;
+        }
+
+        @keyframes slideNavBar {
+
+            0%,
+            100% {
+                margin-left: 0;
+            }
+
+            50% {
+                margin-left: 100px;
+            }
+        }
+
+        .nav-link {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-family: 'Courier Prime', monospace;
+            animation: bounceLink 3s infinite;
+        }
+
+        .nav-link.active {
+            background-color: #FF0000 !important;
+            font-weight: bold;
+            transform: scale(1.2);
+        }
+
+        .nav-link:hover {
+            background-color: #B22222 !important;
+            transform: scale(1.5);
+        }
+
+        @keyframes bounceLink {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+            animation: fadeInHero 3s ease-in-out;
+        }
+
+        @keyframes fadeInHero {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .hero-section h1 {
+            font-size: 7rem;
+            margin-bottom: 20px;
+            font-family: 'Lobster', cursive;
+            color: #FFFFFF !important;
+            text-shadow: 2px 2px 4px #FF0000 !important;
+            animation: pulseTitle 2s infinite;
+            border-bottom: 5px solid #FF0000 !important;
+            padding-bottom: 10px;
+        }
+
+        .hero-section p {
+            font-size: 2rem;
+            color: #FF0000 !important;
+            font-family: 'Courier Prime', monospace;
+            margin: 20px 0;
+            animation: slideInText 2s ease-out;
+        }
+
+        .hero-section a {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #FF0000 !important;
+            color: white !important;
+            text-decoration: none;
+            font-size: 2rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+            animation: bounceButton 2s infinite;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-section a:hover {
+            background-color: #B22222;
+            transform: translateY(-5px);
+        }
+
+        @keyframes pulseTitle {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes slideInText {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounceButton {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .scrolling-text {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #000000 !important;
+            color: white !important;
+            font-size: 2rem;
+            font-family: 'Courier Prime', monospace;
+            text-align: center;
+            padding: 10px 0;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .scrolling-text span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scrollLeft 20s linear infinite;
+        }
+
+        @keyframes scrollLeft {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .content-section {
+            text-align: center;
+            padding: 50px 20px;
+            color: #000000;
+            font-size: 1.5rem;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .content-section h2 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #FF0000 !important;
+            font-family: 'Roboto', sans-serif;
+            animation: fadeInText 5s infinite;
+        }
+
+        @keyframes fadeInText {
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .partner-item {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #333 !important;
+            color: white !important;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            animation: wigglePartner 5s infinite;
+        }
+
+        @keyframes wigglePartner {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(2deg);
+            }
+
+            75% {
+                transform: rotate(-2deg);
+            }
+        }
+
+        .partner-item h2 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #FFD700;
+        }
+
+        .partner-item img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            transition: transform 1s;
+        }
+
+        .partner-item img:hover {
+            transform: scale(1.2);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #FF0000 !important;
+            color: white !important;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 2rem;
+            text-decoration: none;
+            font-family: 'Lobster', cursive;
+            animation: spinBackToTop 5s infinite;
+        }
+
+        @keyframes spinBackToTop {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-section {
+                width: 100%;
+            }
+
+            .partner-item {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-section">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="partenaires.html" class="nav-link active">Partenaires</a>
+        <a href="evenements.html" class="nav-link">Événements</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="equipe.html" class="nav-link">Équipe</a>
+    </div>
+
+    <div class="hero-section">
+        <h1>Nos Partenaires</h1>
+        <br><br>
+        <p>Vous souhaitez soutenir nos actions et rejoindre notre réseau de partenaires ?</p>
+        <br><br><br><br>
+        <a href="contact.html">Contactez-nous</a>
+    </div>
+
+    <div class="content-section">
+        <div class="partner-item">
+            <h2>Brasserie Bourbon</h2>
+            <img src="./assets/img/logo-bourbon.jpeg" alt="Brasserie Bourbon">
+            <p>Un partenaire essentiel pour notre succès.</p>
+        </div>
+        <div class="partner-item">
+            <h2>Chez Mouss</h2>
+            <img src="./assets/img/logo-mouss.png" alt="Chez Mouss">
+            <p>Ensemble, nous innovons pour l'avenir.</p>
+        </div>
+        <div class="partner-item">
+            <h2>Rhum Charette</h2>
+            <img src="./assets/img/logo-rhum.jpeg" alt="Rhum Charette">
+            <p>Un partenariat de longue date.</p>
+        </div>
+    </div>
+
+    <div class="scrolling-text">
+        <span>BDE ESIROI - Nos partenaires nous soutiennent depuis 2019</span>
+    </div>
+
+    <a href="#" class="back-to-top">↑</a>
+</body>
+
+</html>
