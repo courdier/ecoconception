@@ -11,6 +11,7 @@
     --nav-height: 60px;
     --footer-height: 20px;
     --max-width: 80%;
+    --max-content-width: 1600px;
 }
 
 /* Global reset */
@@ -54,6 +55,7 @@ nav ul {
     list-style: none;
     display: flex;
     gap: 1rem;
+    margin-bottom: 0;
 }
 
 li {
@@ -72,32 +74,59 @@ nav a:hover, nav a.active {
     text-decoration: underline;
 }
 
+/* Headings */
 h1 {
     font-family: var(--font-title);
     font-size: 2.5rem;
     color: var(--strong-color);
-    text-align: right;  
+    text-align: right;
+    margin-bottom: 20px;
 }
 
+h2 {
+    font-family: var(--font-main);
+    font-size: 1.8rem;
+    color: var(--strong-color);
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--highlight-color);
+    padding-bottom: 5px;
+}
+
+/* Main content container */
 .main {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    max-width: 1400px; 
+    max-width: var(--max-content-width);
+    padding: 20px;
+    margin: 40px 0;
 }
 
+/* Text and list styling */
 p, ul {
     font-size: 1rem;
     text-align: left;
+    line-height: 1.6;
+    margin-bottom: 15px;
 }
 
+ul {
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+/* Strong and anchor styling */
 strong,
 a {
     color: var(--strong-color);
     font-weight: bold;
 }
 
+/* Button styling */
 .button-container {
     margin-top: 2rem;
     display: flex;
@@ -136,6 +165,7 @@ a {
     color: var(--background-color);
 }
 
+/* Quiz container styling */
 #quiz-container {
     text-align: left;
 }
@@ -149,7 +179,7 @@ a {
 }
 
 #question-container h2 {
-    font-size: 1.5rem;
+    font-size: 1.8rem; /* Harmonized size with general h2 */
     margin-bottom: 15px;
 }
 
@@ -162,6 +192,7 @@ a {
     margin-bottom: 10px;
 }
 
+/* Info box styling */
 #info {
     margin-top: 30px;
     display: flex;
@@ -183,6 +214,7 @@ a {
     margin-bottom: 20px;
 }
 
+/* Button container in quiz */
 #buttons {
     margin-top: 30px;
     display: flex;
@@ -204,20 +236,21 @@ a {
     background-color: var(--strong-color);
 }
 
+/* Bibliography styling */
 .bibliography-list {
     list-style-type: none;
     padding: 0;
+    font-size: 0.9rem;
 }
 
 .bibliography-list li {
     margin-bottom: 10px;
     line-height: 1.5;
-    font-family: Arial, sans-serif;
-    color: #e8e8e8;
+    color: var(--text-color);
 }
 
 .bibliography-list li a {
-    color: #2fdfad;
+    color: var(--highlight-color);
     text-decoration: none;
 }
 
@@ -229,6 +262,7 @@ a {
     font-style: italic;
 }
 
+/* Result summary */
 .result-summary {
     display: flex;
     flex-direction: column;
@@ -274,6 +308,7 @@ a {
     margin-right: 20px;
 }
 
+/* Footer styling */
 footer {
     position: fixed;
     bottom: 0;
@@ -333,13 +368,246 @@ footer p {
     color: #b3b3b3;
 }
 
+/* Stats and Tips */
+.stats-icons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.stat-item {
+    text-align: center;
+    color: var(--text-color);
+}
+
+.stat-item i {
+    font-size: 3rem;
+    color: var(--highlight-color);
+    margin-bottom: 10px;
+}
+
+.stat-item h2 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.tips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.tip-item {
+    width: 30%;
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: var(--light-color);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.tip-item i {
+    font-size: 2rem;
+    color: var(--background-color);
+    margin-bottom: 10px;
+}
+
+/* Button Containers */
+.back-button, .print-button {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.back-button button, .print-button button {
+    background-color: var(--highlight-color);
+    color: var(--background-color);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-button button:hover, .print-button button:hover {
+    background-color: var(--strong-color);
+}
+
+/* En Pratique - Écoconception Numérique */
+#objectifs, #prerequis {
+    margin-bottom: 30px;
+}
+
+.info-block {
+    background-color: #2d2d2d;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.info-block h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    color: var(--light-color);
+}
+
+.info-block i {
+    margin-right: 10px;
+    color: var(--highlight-color);
+}
+
+.collapsible ol {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.collapsible ol li {
+    text-align: left;
+}
+
+.collapsible ol li h3 {
+    text-align: left;
+}
+
+.collapsible code {
+    background-color: #333;
+    color: white;
+    padding: 2px 10px;
+    border-radius: 5px;
+}
+
+.collapsible h2 {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    border-bottom: 2px solid var(--text-color);
+    padding-bottom: 5px;
+}
+
+.toggle-icon {
+    font-size: 1.5rem;
+    margin-left: 10px;
+    color: var(--highlight-color);
+}
+
+.collapsible .content {
+    display: none;
+    margin-top: 10px;
+}
+
+.content h3 {
+    text-align: left;
+}
+
+.step {
+    margin-top: 50px;
+}
+
+.step-btm {
+    margin-bottom: 50px;
+}
+
+/* Inline code */
+.inline-code {
+    background-color: #f5f5f5;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: monospace;
+    color: #333;
+}
+
+/* Code blocks */
+pre {
+    color: #f8f8f2;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+    text-align: left;
+}
+
+pre code {
+    display: block;
+    line-height: 1.4em;
+}
+
+
 /* Responsive Design */
-@media screen and (max-width: 600px) {
-    #cards {
-        flex-direction: column;
-        align-items: center;
+
+/* Tablettes (Portrait et Paysage) */
+@media screen and (max-width: 1024px) {
+    .main {
+        max-width: 90%;
+        padding: 15px;
     }
 
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .stats-icons {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .tip-item {
+        width: 45%; 
+        margin-bottom: 20px;
+    }
+}
+
+/* Petites Tablettes et Smartphones (Paysage) */
+@media screen and (max-width: 768px) {
+    .main {
+        max-width: 95%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    .stats-icons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .tip-item {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .stat-item h2 {
+        font-size: 1.3rem;
+    }
+
+    .stat-item i {
+        font-size: 2.5rem;
+    }
+
+    .info-block h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Smartphones (Portrait) */
+@media screen and (max-width: 600px) {
     nav ul {
         flex-direction: column;
         align-items: flex-end;
@@ -348,5 +616,47 @@ footer p {
 
     .button-container {
         flex-direction: column;
+    }
+
+    .main {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        text-align: center; 
+    }
+
+    h2 {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .stats-icons, .tips {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tip-item {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .stat-item h2 {
+        font-size: 1.2rem;
+    }
+
+    .stat-item i {
+        font-size: 2rem;
+    }
+
+    .back-button button, .print-button button {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .info-block h3 {
+        font-size: 1rem;
     }
 }

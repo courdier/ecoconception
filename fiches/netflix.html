@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Impact environnemental de Netflix">
+    <meta name="keywords" content="écoconception, Netflix, empreinte carbone, streaming, environnement">
+    <meta name="author" content="Rochat Lise">
+    <meta http-equiv="cache-control" content="max-age=31536000, must-revalidate">
+    <meta http-equiv="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
+    <title>Netfix - Écoconception Numérique</title>
+    <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/styles/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../ressources.html">Ressources</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main">
+        <h1>Impact Environnemental de Netflix</h1>
+        <section class="intro-text">
+            <p>Netflix est l'un des services de streaming les plus populaires au monde, mais il a un impact
+                environnemental significatif. Chaque heure de streaming vidéo génère une empreinte carbone due à la
+                consommation d'énergie des serveurs, des centres de données, et des appareils de diffusion.</p>
+        </section>
+
+        <section class="stats-icons">
+            <div class="stat-item">
+                <i class="fas fa-users"></i>
+                <h2>200+ Millions</h2>
+                <p>Nombre d'abonnés à Netflix en 2022</p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-globe"></i>
+                <h2>190+ Pays</h2>
+                <p>Présence mondiale de Netflix</p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-video"></i>
+                <h2>36g CO2</h2>
+                <p>Émission de CO2 par heure de streaming</p>
+            </div>
+        </section>
+
+        <section class="impact-details">
+            <h2>Consommation d'énergie et émissions de CO2</h2>
+            <canvas id="co2Chart" width="400" height="200"></canvas>
+            <p>La diffusion de vidéos en continu sur Netflix consomme une quantité considérable d'énergie. En moyenne,
+                une heure de streaming sur Netflix génère environ 36 g de CO2.</p>
+        </section>
+
+        <section class="tips">
+            <h2>Conseils pour réduire l'empreinte carbone</h2>
+            <div class="tip-item">
+                <i class="fas fa-compress"></i>
+                <p>Réduisez la qualité de streaming lorsque possible (passer de 4K à HD).</p>
+            </div>
+            <div class="tip-item">
+                <i class="fas fa-download"></i>
+                <p>Téléchargez les vidéos pour une visualisation hors ligne au lieu de les diffuser en continu.</p>
+            </div>
+            <div class="tip-item">
+                <i class="fas fa-users"></i>
+                <p>Partagez un compte familial pour réduire la duplication des flux.</p>
+            </div>
+        </section>
+
+        <div class="print-button">
+            <button onclick="window.print()">Imprimer cette fiche</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 ROCHAT Lise - COURDIER Remy</p>
+    </footer>
+
+    <script>
+        var ctx = document.getElementById('co2Chart').getContext('2d');
+        var co2Chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Netflix', 'YouTube', 'Amazon Prime', 'Autres'],
+                datasets: [{
+                    label: 'Émissions de CO2 par heure de streaming (g)',
+                    data: [36, 20, 30, 25],
+                    backgroundColor: [
+                        'rgba(47, 223, 173, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(47, 223, 173, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

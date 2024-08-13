@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Introduction à SonarQube et Eco Code">
+    <meta name="keywords" content="SonarQube, Eco Code, TP, écoconception, développement durable">
+    <meta name="author" content="Rochat Lise">
+    <meta http-equiv="cache-control" content="max-age=31536000, must-revalidate">
+    <meta http-equiv="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
+    <title>TP 01 - Introduction à SonarQube et Eco Code</title>
+    <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/styles/styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../ressources.html">Ressources</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main">
+        <h1>TP 01 : Introduction à SonarQube et Eco Code</h1>
+        <section>
+            <section class="collapsible">
+                <h2>Objectif <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <p>Installer et configurer SonarQube avec les plugins Eco Code pour analyser un projet de base, et interpréter les résultats pour identifier les points d'amélioration en termes de performance et d'éco-conception.</p>
+                    <p><strong>Temps imparti</strong> : 1 heure</p>
+                    <p><strong>Date et lieu de dépôt</strong> : À déterminer</p>
+                </div>
+            </section>
+
+            <section class="collapsible">
+                <h2>Informations <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <div class="info-block">
+                        <h3><i class="fas fa-cogs"></i> SonarQube</h3>
+                        <p>SonarQube est une plateforme open-source utilisée pour l'inspection continue de la qualité du code. Elle permet de détecter des bugs, des vulnérabilités et des mauvaises pratiques de code en analysant automatiquement les projets.</p>
+                    </div>
+                    <div class="info-block">
+                        <h3><i class="fas fa-leaf"></i> Eco Code</h3>
+                        <p>Eco Code est un ensemble de règles pour SonarQube visant à réduire l'empreinte écologique du développement logiciel. Il fournit des recommandations spécifiques pour optimiser l'utilisation des ressources et minimiser la consommation d'énergie.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="collapsible">
+                <h2>Prérequis nécessaires <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <ul>
+                        <li>Connaissances de base en HTML, CSS, et JavaScript</li>
+                        <li>Docker et Docker Compose installés sur votre machine</li>
+                        <li>Accès à une machine avec Ubuntu, Windows, ou macOS</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="collapsible">
+                <h2>Livrable <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <p>À la fin de ce TP, vous devrez compléter une section de votre rapport individuel décrivant les optimisations effectuées, les résultats avant et après optimisation, et une évaluation de l'impact des optimisations sur les performances et l'empreinte écologique du site.</p>
+                    <p>Rappel critère du rapport</p>
+                    <ul>
+                        <li>Longueur : 10 pages maximum</li>
+                        <li>Organisation du rapport :
+                            <ul>
+                                <li><strong>Introduction</strong> : Présentation générale du projet et de ses objectifs.</li>
+                                <li><strong>Section 1</strong> : Installation et Configuration de SonarQube et Eco Code</li>
+                                <li><strong>Section 2</strong> : Optimisation des Ressources Web</li>
+                                <li><strong>Section 3</strong> : Détection et Réduction des Scripts Inutilisés</li>
+                                <li><strong>Section 4</strong> : Optimisation de l'Utilisation des Polices Web</li>
+                                <li><strong>Conclusion</strong> : Résumez les apprentissages et les recommandations principales</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="collapsible">
+                <h2>Mise en place de l'environnement de travail <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <ol>
+                        <li class="step">
+                            <h3>Étape 1 : Installation de SonarQube avec Docker Compose</h3>
+                            <p>Créer un dossier <code class="inline-code">tp-sonarqube</code> :</p>
+                            <pre><code class="bash">mkdir tp-sonarqube</code></pre>
+
+                            <p>Déplacez-vous dans votre dossier <code class="inline-code">tp-sonarqube</code> et créez un fichier <code class="inline-code">docker-compose.yml</code> :</p>
+                            <pre><code class="bash">cd tp-sonarqube <br>touch docker-compose.yml</code></pre>
+
+                            <p>Éditez et enregistrez votre fichier <code class="inline-code">docker-compose.yml</code> :</p>
+                            <pre><code class="yaml">version: "3"
+services:
+  sonarqube:
+    image: sonarqube:latest
+    container_name: sonarqube
+    ports:
+      - "9000:9000"
+    volumes:
+      - sonarqube_conf:/opt/sonarqube/conf
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_logs:/opt/sonarqube/logs
+      - sonarqube_extensions:/opt/sonarqube/extensions
+volumes:
+  sonarqube_conf:
+  sonarqube_data:
+  sonarqube_logs:
+  sonarqube_extensions:</code></pre>
+
+                            <p>Lancez SonarQube avec Docker Compose :</p>
+                            <pre><code class="bash">docker-compose up -d</code></pre>
+
+                            <p>Accédez à SonarQube à l'adresse suivante : <a href="http://localhost:9000">http://localhost:9000</a></p>
+                            <p>Connectez-vous avec les identifiants par défaut (<strong>admin</strong>/<strong>admin</strong>) et modifiez le mot de passe lors de la première connexion.</p>
+                        </li>
+
+                        <li class="step">
+                            <h3>Étape 2 : Installation de Plugin Eco Code</h3>
+                            <p>Téléchargez le plugin <a href="https://www.sonarplugins.com/ecocodejavascript">ecoCode Javascript</a> :</p>
+                            <p>Copiez le fichier du plugin dans le répertoire des extensions de SonarQube, puis redémarrez SonarQube pour appliquer les changements :</p>
+                            <pre><code class="bash">docker-compose restart sonarqube</code></pre>
+                        </li>
+
+                        <li class="step">
+                            <h3>Étape 3 : Configuration du profil qualité sur SonarQube</h3>
+                            <ol>
+                                <li>Accédez à l'interface SonarQube à <a href="http://localhost:9000">http://localhost:9000</a>.</li>
+                                <li>Allez dans Administration > Quality Profiles.</li>
+                                <li>Cliquez sur "Create" pour créer un nouveau profil de qualité.</li>
+                                <li>Ajoutez des règles du plugin Eco Code à ce profil en recherchant les règles et en les activant.</li>
+                                <li>Assurez-vous d'associer ce profil à votre projet.</li>
+                            </ol>
+                        </li>
+
+                        <li class="step step-btm">
+                            <h3>Étape 4 : Installation de SonarScanner</h3>
+                            <p><strong>Ubuntu :</strong></p>
+                            <pre><code class="bash">sudo apt-get update
+sudo apt-get install sonar-scanner</code></pre>
+
+                            <p><strong>macOS :</strong> Installez avec Homebrew :</p>
+                            <pre><code class="bash">brew install sonar-scanner</code></pre>
+
+                            <p><strong>Windows :</strong></p>
+                            <ol>
+                                <li>Téléchargez <a href="https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/sonarscanner/">SonarScanner</a></li>
+                                <li>Décompressez le fichier téléchargé.</li>
+                                <li>Ajoutez le chemin de SonarScanner au PATH de votre système.</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="collapsible">
+                <h2>Etude de cas : Site vitrine du bureau des etudiants de l'esiroi <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <p>Pour cette étude de cas, vous allez analyser un projet réel représentant le site vitrine du bureau des étudiants de l'ESIROI. Ce site contient plusieurs pages simples en HTML, CSS, et JavaScript. Votre objectif est de l'analyser avec SonarQube et le plugin Eco Code pour identifier des pistes d'amélioration en termes de performance et d'éco-conception.</p>
+                    <ol>
+                        <li class="step">
+                            <h4>Étape 1: Clonage du dépôt GitHub</h4>
+                            <p>Clonez le dépôt contenant le site vitrine :</p>
+                            <pre><code class="bash">git clone https://github.com/username/bde-esiroi.git</code></pre>
+
+                            <p>Déplacez-vous dans le répertoire du projet :</p>
+                            <pre><code class="bash">cd bde-esiroi</code></pre>
+                        </li>
+                        <li class="step">
+                            <h4>Étape 2: Configuration du projet dans SonarQube</h4>
+                            <p>Créez un fichier <code class="inline-code">sonar-project.properties</code> dans le répertoire racine du projet avec le contenu suivant :</p>
+                            <pre><code class="yaml">sonar.projectKey=bde_esiroi <br>sonar.sources=. <br>sonar.host.url=http://localhost:9000 <br>sonar.login=your_sonarqube_token</code></pre>
+                        </li>
+                        <li class="step">
+                            <h4>Étape 3: Analyse du projet avec SonarScanner</h4>
+                            <p>Lancez l'analyse du projet avec SonarScanner :</p>
+                            <pre><code class="bash">sonar-scanner</code></pre>
+                        </li>
+                        <li class="step step-btm">
+                            <h4>Étape 4: Interprétation des résultats</h4>
+                            <p>Une fois l'analyse terminée, consultez les résultats sur l'interface SonarQube. Identifiez les points faibles en termes de performance et d'éco-conception.</p>
+                            <p>Recherchez les recommandations faites par Eco Code pour améliorer l'efficacité du code et réduire son empreinte écologique.</p>
+
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="collapsible">
+                <h2>Conclusion: Rédaction du rapport <span class="toggle-icon">+</span></h2>
+                <div class="content">
+                    <p>Documentez les résultats de l'analyse et proposez des recommandations spécifiques pour améliorer le site. Estimez l'impact de ces améliorations sur les performances du site et sur son empreinte écologique.</p>
+                </div>
+            </section>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 ROCHAT Lise - COURDIER Remy</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.collapsible h2').forEach(h2 => {
+            h2.addEventListener('click', () => {
+                const content = h2.nextElementSibling;
+                const icon = h2.querySelector('.toggle-icon');
+                content.style.display = content.style.display === 'none' ? 'block' : 'none';
+                icon.textContent = icon.textContent === '+' ? '−' : '+';
+            });
+        });
+
+        // Initialize all sections as collapsed
+        document.querySelectorAll('.collapsible .content').forEach(content => {
+            content.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
