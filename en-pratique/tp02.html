@@ -11,6 +11,9 @@
     <meta http-equiv="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
     <title>TP 02 - Optimisation des Ressources Web</title>
     <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles/styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
@@ -21,6 +24,7 @@
             <ul>
                 <li class="mg-0"><a href="../index.html">Home</a></li>
                 <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="./outils.html">Outils</a></li>
             </ul>
         </nav>
     </header>
@@ -31,7 +35,11 @@
             <section class="collapsible">
                 <h2>Objectif <span class="toggle-icon">+</span></h2>
                 <div class="content">
-                    <p>Dans ce TP, vous allez optimiser les ressources du site web du Bureau des Étudiants (BDE) de l'ESIROI afin de réduire son empreinte écologique et d'améliorer ses performances. L'objectif est de mettre en œuvre différentes techniques d'optimisation, notamment la compression d'images, la minification et la concaténation des fichiers CSS et JavaScript, ainsi que l'utilisation de la mise en cache.</p>
+                    <p>Dans ce TP, vous allez optimiser les ressources du site web du Bureau des Étudiants (BDE) de
+                        l'ESIROI afin de réduire son empreinte écologique et d'améliorer ses performances. L'objectif
+                        est de mettre en œuvre différentes techniques d'optimisation, notamment la compression d'images,
+                        la minification et la concaténation des fichiers CSS et JavaScript, ainsi que l'utilisation de
+                        la mise en cache.</p>
                     <p><strong>Temps imparti</strong> : 2 heures</p>
                     <p><strong>Date et lieux de dépôt</strong> : À déterminer</p>
                 </div>
@@ -40,7 +48,10 @@
             <section class="collapsible">
                 <h2>Informations <span class="toggle-icon">+</span></h2>
                 <div class="content">
-                    <p>L'optimisation des ressources web est essentielle pour améliorer les performances d'un site tout en réduisant la consommation de bande passante et l'empreinte écologique. Dans ce TP, vous allez apprendre à appliquer ces techniques sur le site web du BDE, ce qui permettra de réduire le temps de chargement des pages et de minimiser l'impact environnemental du site.</p>
+                    <p>L'optimisation des ressources web est essentielle pour améliorer les performances d'un site tout
+                        en réduisant la consommation de bande passante et l'empreinte écologique. Dans ce TP, vous allez
+                        apprendre à appliquer ces techniques sur le site web du BDE, ce qui permettra de réduire le
+                        temps de chargement des pages et de minimiser l'impact environnemental du site.</p>
                 </div>
             </section>
 
@@ -60,7 +71,8 @@
                 <h2>Ressources utiles <span class="toggle-icon">+</span></h2>
                 <div class="content">
                     <ul>
-                        <li><a href="https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=fr" target="_blank">Google Lighthouse</a></li>
+                        <li><a href="https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=fr"
+                                target="_blank">Google Lighthouse</a></li>
                         <li><a href="https://tinypng.com/" target="_blank">TinyPNG</a></li>
                         <li><a href="https://imageoptim.com/fr" target="_blank">ImageOptim</a></li>
                         <li><a href="https://www.npmjs.com/package/uglify-js" target="_blank">UglifyJS</a></li>
@@ -72,18 +84,25 @@
             <section class="collapsible">
                 <h2>Livrable <span class="toggle-icon">+</span></h2>
                 <div class="content">
-                    <p>À la fin de ce TP, vous devrez compléter une section de votre rapport individuel décrivant les optimisations effectuées, les résultats avant et après optimisation, et une évaluation de l'impact des optimisations sur les performances et l'empreinte écologique du site. Chaque TP constituera une partie distincte de ce rapport, qui sera complété au fur et à mesure des travaux pratiques.</p>
+                    <p>À la fin de ce TP, vous devrez compléter une section de votre rapport individuel décrivant les
+                        optimisations effectuées, les résultats avant et après optimisation, et une évaluation de
+                        l'impact des optimisations sur les performances et l'empreinte écologique du site. Chaque TP
+                        constituera une partie distincte de ce rapport, qui sera complété au fur et à mesure des travaux
+                        pratiques.</p>
                     <p>Rappel des critères du rapport :</p>
                     <ul>
                         <li>Longueur : 10 pages maximum</li>
                         <li>Organisation du rapport :
                             <ul>
-                                <li><strong>Introduction</strong> : Présentation générale du projet et de ses objectifs.</li>
-                                <li><strong>Section 1</strong> : Installation et Configuration de SonarQube et Eco Code</li>
+                                <li><strong>Introduction</strong> : Présentation générale du projet et de ses objectifs.
+                                </li>
+                                <li><strong>Section 1</strong> : Installation et Configuration de SonarQube et Eco Code
+                                </li>
                                 <li><strong>Section 2</strong> : Optimisation des Ressources Web</li>
                                 <li><strong>Section 3</strong> : Détection et Réduction des Scripts Inutilisés</li>
                                 <li><strong>Section 4</strong> : Optimisation de l'Utilisation des Polices Web</li>
-                                <li><strong>Conclusion</strong> : Résumez les apprentissages et les recommandations principales</li>
+                                <li><strong>Conclusion</strong> : Résumez les apprentissages et les recommandations
+                                    principales</li>
                             </ul>
                         </li>
                     </ul>
@@ -97,15 +116,19 @@
                         <li class="step">
                             <h3>Étape 1 : Analyse initiale des performances</h3>
                             <ol>
-                                <li>Clonage du dépôt GitHub :Si ce n'est pas déjà fait, clonez le dépôt contenant le site vitrine du BDE.</li>
+                                <li>Clonage du dépôt GitHub :Si ce n'est pas déjà fait, clonez le dépôt contenant le
+                                    site vitrine du BDE.</li>
                                 <pre><code class="bash">git clone https://github.com/username/bde-esiroi.git</code></pre>
 
                                 <li>Déplacez-vous dans le répertoire du projet :</li>
                                 <pre><code class="bash">cd bde-esiroi</code></pre>
 
-                                <li>Analyse avec Google Lighthouse : Ouvrez le projet dans un navigateur et utilisez Google Lighthouse pour analyser les performances du site.</li>
+                                <li>Analyse avec Google Lighthouse : Ouvrez le projet dans un navigateur et utilisez
+                                    Google Lighthouse pour analyser les performances du site.</li>
                                 <ul>
-                                    <li>Notez les scores pour les catégories suivantes : Performance, Accessibilité, Bonnes pratiques, SEO, Éco-conception (si disponible via des plugins supplémentaires).</li>
+                                    <li>Notez les scores pour les catégories suivantes : Performance, Accessibilité,
+                                        Bonnes pratiques, SEO, Éco-conception (si disponible via des plugins
+                                        supplémentaires).</li>
                                     <li>Capturez les résultats pour les comparer après optimisation.</li>
                                 </ul>
                             </ol>
@@ -114,26 +137,42 @@
                         <li class="step">
                             <h3>Étape 2 : Optimisation des images</h3>
                             <ol>
-                                <li>Analyse des images existantes : Identifiez les images les plus volumineuses du site et analysez leur taille, format, et impact sur le temps de chargement.</li>
-                                <li>Compression des images : Utilisez des outils comme TinyPNG ou ImageOptim pour compresser les images sans perte de qualité visible. Remplacez les images originales par les versions compressées dans le projet.</li>
-                                <li>Vérification de la qualité : Assurez-vous que la qualité des images reste acceptable après compression. Testez le site pour vérifier que les images optimisées s'affichent correctement.</li>
+                                <li>Analyse des images existantes : Identifiez les images les plus volumineuses du site
+                                    et analysez leur taille, format, et impact sur le temps de chargement.</li>
+                                <li>Compression des images : Utilisez des outils comme TinyPNG ou ImageOptim pour
+                                    compresser les images sans perte de qualité visible. Remplacez les images originales
+                                    par les versions compressées dans le projet.</li>
+                                <li>Vérification de la qualité : Assurez-vous que la qualité des images reste acceptable
+                                    après compression. Testez le site pour vérifier que les images optimisées
+                                    s'affichent correctement.</li>
                             </ol>
                         </li>
 
                         <li class="step">
                             <h3>Étape 3 : Minification et Concatenation des fichiers CSS et JS</h3>
                             <ol>
-                                <li>Minification des fichiers CSS : Utilisez un outil comme cssnano pour minifier les fichiers CSS du projet. Remplacez les fichiers CSS originaux par les versions minifiées.</li>
-                                <li>Minification des fichiers JavaScript : Utilisez UglifyJS pour minifier les fichiers JavaScript du projet. Remplacez les fichiers JS originaux par les versions minifiées.</li>
-                                <li>Concatenation des fichiers : Combinez les fichiers CSS et JavaScript pour réduire le nombre de requêtes HTTP. Modifiez les références dans le code HTML pour pointer vers les fichiers concaténés.</li>
+                                <li>Minification des fichiers CSS : Utilisez un outil comme cssnano pour minifier les
+                                    fichiers CSS du projet. Remplacez les fichiers CSS originaux par les versions
+                                    minifiées.</li>
+                                <li>Minification des fichiers JavaScript : Utilisez UglifyJS pour minifier les fichiers
+                                    JavaScript du projet. Remplacez les fichiers JS originaux par les versions
+                                    minifiées.</li>
+                                <li>Concatenation des fichiers : Combinez les fichiers CSS et JavaScript pour réduire le
+                                    nombre de requêtes HTTP. Modifiez les références dans le code HTML pour pointer vers
+                                    les fichiers concaténés.</li>
                             </ol>
                         </li>
 
                         <li class="step step-btm">
                             <h3>Étape 4 : Mise en cache</h3>
                             <ol>
-                                <li>Configuration du cache : Configurez la mise en cache des ressources statiques (images, CSS, JS) pour que le navigateur les conserve plus longtemps. Si vous utilisez un serveur web local, modifiez les paramètres de configuration pour activer la mise en cache.</li>
-                                <li>Test des paramètres de cache : Testez le site web avec Google Lighthouse pour vérifier si la mise en cache fonctionne correctement. Notez les améliorations apportées par cette optimisation.</li>
+                                <li>Configuration du cache : Configurez la mise en cache des ressources statiques
+                                    (images, CSS, JS) pour que le navigateur les conserve plus longtemps. Si vous
+                                    utilisez un serveur web local, modifiez les paramètres de configuration pour activer
+                                    la mise en cache.</li>
+                                <li>Test des paramètres de cache : Testez le site web avec Google Lighthouse pour
+                                    vérifier si la mise en cache fonctionne correctement. Notez les améliorations
+                                    apportées par cette optimisation.</li>
                             </ol>
                         </li>
                     </ol>
@@ -142,14 +181,16 @@
             <section class="collapsible">
                 <h2>Conclusion: Rédaction du rapport <span class="toggle-icon">+</span></h2>
                 <div class="content">
-                    <p>Documentez les résultats de l'analyse et proposez des recommandations spécifiques pour améliorer le site. Estimez l'impact de ces améliorations sur les performances du site et sur son empreinte écologique.</p>
+                    <p>Documentez les résultats de l'analyse et proposez des recommandations spécifiques pour améliorer
+                        le site. Estimez l'impact de ces améliorations sur les performances du site et sur son empreinte
+                        écologique.</p>
                 </div>
             </section>
         </section>
     </div>
 
     <footer>
-        <p class="mg-0">&copy; 2024 ROCHAT Lise - COURDIER Remy</p>
+        <p class="mg-0">&copy; 2024 - ROCHAT Lise & COURDIER Remy - <a href="../a-propos.html">A propos</a> </p>
     </footer>
 
     <script>

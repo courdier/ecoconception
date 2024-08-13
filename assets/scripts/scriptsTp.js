@@ -560,7 +560,7 @@ function showResults() {
                 <h3>${icon} ${question.question}</h3>
                 <p>Votre réponse :${question.answers[userAnswer]}</p>
                 ${!isCorrect ? `<p><strong>Réponse correcte :</strong> ${question.answers[question.correctAnswer]}</p>` : ''}
-                ${!isCorrect ? `<p class="explanation">Pensez à revoir ce concept pour mieux comprendre l'importance de ${question.answers[question.correctAnswer].toLowerCase()}.</p>` : ''}
+                ${!isCorrect ? `<p class="explanation">Pensez à revoir ce concept pour mieux comprendre l'importance de ${question.answers[question.correctAnswer].toLowerCase()}.</p><br><br>` : ''}
             </div>
         `;
     });

@@ -1,4 +1,10 @@
 /* Variables CSS */
+.major-mono-display-regular {
+    font-family: "Major Mono Display", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
 :root {
     --primary-color: #2fdfad;
     --background-color: #1c1c1e;
@@ -67,9 +73,12 @@ nav a {
     text-decoration: none;
     padding: 0.5rem 1rem;
     transition: color 0.3s ease;
+    font-size: 1.5rem;
+    font-weight: 500;
 }
 
-nav a:hover, nav a.active {
+nav a:hover,
+nav a.active {
     color: var(--highlight-color);
     text-decoration: underline;
 }
@@ -90,6 +99,7 @@ h2 {
     margin-bottom: 15px;
     border-bottom: 1px solid var(--text-color);
     padding-bottom: 5px;
+    text-align: left;
 }
 
 /* Main content container */
@@ -101,10 +111,12 @@ h2 {
     max-width: var(--max-content-width);
     padding: 20px;
     margin: 40px 0;
+    width: 80%;
 }
 
 /* Text and list styling */
-p, ul {
+p,
+ul {
     font-size: 1rem;
     text-align: left;
     line-height: 1.6;
@@ -138,14 +150,16 @@ a {
     gap: 1rem;
 }
 
-.button, .button-secondary {
-    padding: 0.3rem 1rem;
+.button,
+.button-secondary {
+    padding: 0.5rem 1.3rem;
     border-radius: 25px;
     text-decoration: none;
-    box-shadow: -1px 4px 50px rgba(244, 244, 244, 0.2);
+    box-shadow: 0px 1px 80px 3px rgb(244 244 244 / 20%);
     transition: background-color 0.3s ease;
     margin: 10px;
     font-weight: bold;
+    font-size: 1.1rem;
 }
 
 .button {
@@ -183,7 +197,8 @@ a {
 }
 
 #question-container h2 {
-    font-size: 1.8rem; /* Harmonized size with general h2 */
+    font-size: 1.8rem;
+    /* Harmonized size with general h2 */
     margin-bottom: 15px;
 }
 
@@ -200,6 +215,7 @@ a {
 #info {
     margin-top: 30px;
     display: flex;
+    flex-direction: row;
     align-items: center;
 }
 
@@ -218,6 +234,16 @@ a {
     margin-bottom: 20px;
 }
 
+.strong-yellow {
+    color: yellow;
+}
+
+#extra-info-text {
+    border: 1px solid yellow; 
+    padding: 10px; 
+    border-radius: 5px;
+}
+
 /* Button container in quiz */
 #buttons {
     margin-top: 30px;
@@ -225,30 +251,14 @@ a {
     justify-content: flex-end;
 }
 
-#next-btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--highlight-color);
-    color: var(--background-color);
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#next-btn:hover {
-    background-color: var(--strong-color);
-}
-
 /* Bibliography styling */
 .bibliography-list {
     list-style-type: none;
     padding: 0;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .bibliography-list li {
-    margin-bottom: 10px;
     line-height: 1.5;
     color: var(--text-color);
 }
@@ -349,7 +359,7 @@ footer p {
     background-color: var(--background-color);
     border: 1px solid var(--highlight-color);
     border-radius: 10px;
-    width: 250px;
+    width: 350px;
     padding: 20px;
     text-align: center;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -422,12 +432,14 @@ footer p {
 }
 
 /* Button Containers */
-.back-button, .print-button {
+.back-button,
+.print-button {
     text-align: center;
     margin-top: 30px;
 }
 
-.back-button button, .print-button button {
+.back-button button,
+.print-button button {
     background-color: var(--highlight-color);
     color: var(--background-color);
     border: none;
@@ -438,12 +450,14 @@ footer p {
     transition: background-color 0.3s ease;
 }
 
-.back-button button:hover, .print-button button:hover {
+.back-button button:hover,
+.print-button button:hover {
     background-color: var(--strong-color);
 }
 
 /* En Pratique - Écoconception Numérique */
-#objectifs, #prerequis {
+#objectifs,
+#prerequis {
     margin-bottom: 30px;
 }
 
@@ -570,15 +584,19 @@ pre code {
     }
 
     .tip-item {
-        width: 45%; 
+        width: 45%;
         margin-bottom: 20px;
+    }
+
+    li {
+        margin-left: 5px;
     }
 }
 
 /* Petites Tablettes et Smartphones (Paysage) */
 @media screen and (max-width: 768px) {
     .main {
-        max-width: 95%;
+        max-width: 98%;
         padding: 10px;
     }
 
@@ -587,6 +605,10 @@ pre code {
     }
 
     h2 {
+        font-size: 1.3rem;
+    }
+
+    .collapsible h2 {
         font-size: 1.3rem;
     }
 
@@ -612,13 +634,16 @@ pre code {
     .info-block h3 {
         font-size: 1.2rem;
     }
+    
+    li {
+        margin-left: 3px;
+    }
 }
 
 /* Smartphones (Portrait) */
 @media screen and (max-width: 600px) {
     nav ul {
-        flex-direction: column;
-        align-items: flex-end;
+        align-items: center;
         gap: 0.5rem;
     }
 
@@ -633,7 +658,7 @@ pre code {
 
     h1 {
         font-size: 1.5rem;
-        text-align: center; 
+        text-align: center;
     }
 
     h2 {
@@ -641,7 +666,8 @@ pre code {
         text-align: center;
     }
 
-    .stats-icons, .tips {
+    .stats-icons,
+    .tips {
         flex-direction: column;
         align-items: center;
     }
@@ -659,12 +685,17 @@ pre code {
         font-size: 2rem;
     }
 
-    .back-button button, .print-button button {
+    .back-button button,
+    .print-button button {
         width: 100%;
         padding: 15px;
     }
 
     .info-block h3 {
         font-size: 1rem;
+    }
+
+    li {
+        margin-left: 2px;
     }
 }
