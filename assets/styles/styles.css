@@ -312,6 +312,10 @@ a {
     margin-right: 20px;
 }
 
+.card a {
+    text-decoration: none;
+}
+
 /* Footer styling */
 footer {
     position: fixed;
