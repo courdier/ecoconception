@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BDE ESIROI - Équipe</title>
+    <link rel="icon" href="./assets/img/logo_bde-removebg-preview.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles/old-style.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/extra-theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&family=Comic+Sans+MS&family=Courier+Prime&display=swap"
+        rel="stylesheet">
+    <!-- Google Analytics -->
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-XXXXXXXXX-X');
+        console.log("Google Analytics loaded.");
+    </script>
+
+    <!-- Facebook Pixel -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !1;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'XXXXXXXXXXXXXXXX');
+        fbq('track', 'PageView');
+        console.log("Facebook Pixel loaded.");
+    </script>
+
+    <!-- Hotjar Tracking Code -->
+    <script>
+        (function (h, o, t, j, a, r) {
+            h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+            h._hjSettings = { hjid: YOUR_HOTJAR_ID, hjsv: 6 };
+            a = o.getElementsByTagName('head')[0];
+            r = o.createElement('script');
+            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+            a.appendChild(r);
+            console.log("Hotjar loaded.");
+        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #FFEEEE 50%, #FFFFFF 50%);
+            color: #000000;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive;
+            overflow-x: hidden;
+            animation: changeBackgroundColor 10s infinite;
+        }
+
+        @keyframes changeBackgroundColor {
+
+            0%,
+            100% {
+                background-color: #FFFFFF;
+            }
+
+            50% {
+                background-color: #FFDDDD;
+            }
+        }
+
+        .nav-section {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #FF0000;
+            animation: slideNavBar 10s infinite;
+        }
+
+        @keyframes slideNavBar {
+
+            0%,
+            100% {
+                margin-left: 0;
+            }
+
+            50% {
+                margin-left: 100px;
+            }
+        }
+
+        .nav-link {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-family: 'Courier Prime', monospace;
+            animation: bounceLink 3s infinite;
+        }
+
+        .nav-link.active {
+            background-color: #FF0000;
+            font-weight: bold;
+            transform: scale(1.2);
+        }
+
+        .nav-link:hover {
+            background-color: #B22222;
+            transform: scale(1.5);
+        }
+
+        @keyframes bounceLink {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+            animation: fadeInHero 3s ease-in-out;
+        }
+
+        @keyframes fadeInHero {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .hero-section h1 {
+            font-size: 7rem;
+            margin-bottom: 20px;
+            font-family: 'Lobster', cursive;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 4px #FF0000;
+            animation: pulseTitle 2s infinite, rainbowText 5s infinite;
+            border-bottom: 5px solid #FF0000;
+            padding-bottom: 10px;
+        }
+
+        @keyframes pulseTitle {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .hero-section p {
+            font-size: 2rem;
+            color: #FF0000;
+            font-family: 'Courier Prime', monospace;
+            margin: 20px 0;
+            animation: slideInText 2s ease-out;
+        }
+
+        .hero-section a {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #FF0000;
+            color: white;
+            text-decoration: none;
+            font-size: 2rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+            animation: bounceButton 2s infinite;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-section a:hover {
+            background-color: #B22222;
+            transform: translateY(-5px);
+        }
+
+        @keyframes slideInText {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounceButton {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .team-section {
+            text-align: center;
+            padding: 50px 20px;
+            color: #000000;
+            font-size: 1.5rem;
+            font-family: 'Roboto', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .team-member {
+            width: 400px;
+            height: 400px;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s;
+            border: 10px solid;
+            margin: 50px;
+        }
+
+        .team-member:nth-child(1) {
+            border-color: #FF5733;
+        }
+
+        .team-member:nth-child(2) {
+            border-color: #33FF57;
+        }
+
+        .team-member:nth-child(3) {
+            border-color: #3357FF;
+        }
+
+        .team-member:nth-child(4) {
+            border-color: #FFD700;
+        }
+
+        .team-member:nth-child(5) {
+            border-color: #C733FF;
+        }
+
+        .team-member img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: filter 0.3s;
+        }
+
+        .role {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.2rem;
+            font-family: 'Courier Prime', monospace;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .game-section {
+            text-align: center;
+            padding: 50px 20px;
+            color: #000000;
+            font-size: 1.5rem;
+            font-family: 'Roboto', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .mole {
+            width: 50px;
+            height: 50px;
+            background: url('assets/img/logo_bde-removebg-preview.png') no-repeat center center;
+            background-size: cover;
+            position: absolute;
+            display: none;
+            cursor: pointer;
+        }
+
+        .score {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #FF0000;
+        }
+
+        .team-section h2 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #FF0000;
+            font-family: 'Roboto', sans-serif;
+            animation: fadeInText 5s infinite;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #FF0000;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 2rem;
+            text-decoration: none;
+            font-family: 'Lobster', cursive;
+            animation: spinBackToTop 5s infinite;
+        }
+
+        @keyframes spinBackToTop {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .scrolling-text {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #000000;
+            color: white;
+            font-size: 2rem;
+            font-family: 'Courier Prime', monospace;
+            text-align: center;
+            padding: 10px 0;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .scrolling-text span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scrollLeft 20s linear infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-section">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="partenaires.html" class="nav-link">Partenaires</a>
+        <a href="evenements.html" class="nav-link">Événements</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="equipe.html" class="nav-link active">Équipe</a>
+    </div>
+
+    <div class="hero-section">
+        <h1>Notre Équipe</h1>
+        <br><br>
+        <p>Découvrez les membres de notre équipe dynamique.</p>
+    </div>
+
+    <div class="team-section game-section">
+        <h2>Joue avec nous</h2>
+        <p>Click sur le logo du BDE</p>
+        <br><br>
+        <div class="team-grid">
+            <div class="team-member" id="member1">
+                <img src="assets/img/menbre1.jpg" alt="Membre 1">
+                <div class="role">Président</div>
+            </div>
+            <div class="team-member" id="member2">
+                <img src="assets/img/menbre2.jpg" alt="Membre 2">
+                <div class="role">Vice-président</div>
+            </div>
+            <div class="team-member" id="member3">
+                <img src="assets/img/menbre3.jpg" alt="Membre 3">
+                <div class="role">Trésorier</div>
+            </div>
+            <div class="team-member" id="member4">
+                <img src="assets/img/menbre4.jpg" alt="Membre 4">
+                <div class="role">Secrétaire</div>
+            </div>
+            <div class="team-member" id="member5">
+                <img src="assets/img/menbre5.jpg" alt="Membre 5">
+                <div class="role">Responsable événementiel</div>
+            </div>
+        </div>
+        <br><br>
+        <div class="score">Ton score : <span id="score">0</span></div>
+        <div class="mole" id="mole"></div>
+    </div>
+
+    <div class="scrolling-text">
+        <span>Ti ash i koup gro bwa - A force de patience, on peut arriver à tout</span>
+    </div>
+    <a href="#" class="back-to-top">↑</a>
+
+    <script src="scripts/legacy-code.js"></script>
+    <script src="scripts/unused-plugin.js"></script>
+    <script src="scripts/extra-functionality.js"></script>
+
+    <script>
+        let score = 0;
+        const mole = document.getElementById('mole');
+        const scoreDisplay = document.getElementById('score');
+        const members = document.querySelectorAll('.team-member');
+
+        function randomMemberPosition() {
+            const randomMember = members[Math.floor(Math.random() * members.length)];
+            const memberRect = randomMember.getBoundingClientRect();
+
+            const randomX = Math.floor(Math.random() * (memberRect.width - mole.offsetWidth));
+            const randomY = Math.floor(Math.random() * (memberRect.height - mole.offsetHeight));
+
+            mole.style.left = memberRect.left + randomX + 'px';
+            mole.style.top = memberRect.top + randomY + 'px';
+            console.log(randomX)
+            console.log(randomY)
+        }
+
+        function showMole() {
+            randomMemberPosition();
+            mole.style.display = 'block';
+
+            setTimeout(() => {
+                if (mole.style.display === 'block') {
+                    addRandomMemberScore();
+                }
+                mole.style.display = 'none';
+                setTimeout(showMole, 2000);
+            }, 1000);
+        }
+
+        function addRandomMemberScore() {
+            const randomMember = members[Math.floor(Math.random() * members.length)];
+            let currentScore = parseInt(randomMember.getAttribute('data-score')) || 0;
+            console.log(currentScore)
+            randomMember.setAttribute('data-score', ++currentScore);
+            randomMember.querySelector('.role').textContent += ` (Score: ${currentScore})`;
+        }
+
+        mole.addEventListener('click', () => {
+            console.log(score)
+            score++;
+            scoreDisplay.textContent = score;
+            mole.style.display = 'none';
+            console.log(score)
+        });
+
+        showMole();
+    </script>
+</body>
+
+</html>
