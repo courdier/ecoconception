@@ -86,9 +86,9 @@ h1 {
 h2 {
     font-family: var(--font-main);
     font-size: 1.8rem;
-    color: var(--strong-color);
+    color: var(--text-color);
     margin-bottom: 15px;
-    border-bottom: 1px solid var(--highlight-color);
+    border-bottom: 1px solid var(--text-color);
     padding-bottom: 5px;
 }
 
@@ -138,9 +138,9 @@ a {
     padding: 0.3rem 1rem;
     border-radius: 25px;
     text-decoration: none;
-    box-shadow: 7px 2px 8px rgba(244, 244, 244, 0.2);
+    box-shadow: -1px 4px 50px rgba(244, 244, 244, 0.2);
     transition: background-color 0.3s ease;
-    margin-top: 50px;
+    margin: 10px;
     font-weight: bold;
 }
 
@@ -536,7 +536,6 @@ pre code {
     display: block;
     line-height: 1.4em;
 }
-
 
 /* Responsive Design */
 
