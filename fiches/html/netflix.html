@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Impact environnemental de Netflix">
+    <meta name="keywords" content="écoconception, Netflix, empreinte carbone, streaming, environnement">
+    <meta name="author" content="Rochat Lise">
+    <meta name="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
+    <title>Netflix - Écoconception Numérique</title>
+    <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/styles/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="mg-0"><a href="../index.html">Home</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../outils.html">Outils</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main">
+        <h1>Impact Environnemental de Netflix</h1>
+
+        <section class="services-container">
+            <section class="intro-text">
+                <p>Netflix est l'un des services de streaming vidéo les plus populaires au monde, mais il a un impact environnemental significatif. Chaque heure de streaming vidéo génère une empreinte carbone due à la consommation d'énergie des serveurs, des centres de données, et des appareils de diffusion.</p>
+            </section>
+
+            <section class="stats-icons">
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <h2>200+ Millions</h2>
+                    <p>Nombre d'abonnés à Netflix en 2022 <sup><a href="#source1">[1]</a></p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-globe"></i>
+                    <h2>190+ Pays</h2>
+                    <p>Présence mondiale de Netflix <sup><a href="#source2">[2]</a></p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-video"></i>
+                    <h2>36g CO2</h2>
+                    <p>Émission de CO2 par heure de streaming <sup><a href="#source3">[3]</a></p>
+                </div>
+            </section>
+
+            <section class="impact-details">
+                <h2>Répartition des consommations par type de service <sup><a href="#source4">[4]</a></h2> <strong></strong>
+                    <p>La vidéo en ligne représente <strong>60 %</strong> du flux mondial de données et est responsable de <strong>306 millions de tonnes de CO2 en 2018</strong>, soit 20 % des émissions totales de gaz à effet de serre dues au numérique. Ce pourcentage inclut divers types de contenus : <strong>la VoD (34 %)</strong>, les vidéos pornographiques (27 %), les "Tubes" (21 %), et les autres vidéos en ligne (18 %). Cette domination de la vidéo dans le trafic global de données est une source majeure de la consommation d'énergie et des émissions de GES.</p>
+                <div class="chart-container" style="display: flex; justify-content: center; align-items: center;">
+                    <canvas id="serviceChart" width="400" height="400"></canvas>
+                </div>
+            </section>
+
+            <section class="future-impact">
+                <h2>Ouverture sur l'impact de la 4K/8K <sup><a href="#source4">[4]</a></h2> 
+                <p>La quête de toujours plus de qualité vidéo pousse l’industrie vers la généralisation de la 4K, puis de la 8K. Cela entraîne <strong>une hausse</strong> de la consommation d'énergie et des ressources, avec une augmentation de <strong>30%</strong> de la consommation électrique pour les téléviseurs 4K par rapport aux modèles HD, ainsi qu'une demande accrue de métaux rares.</p>
+                <p>Netflix, qui représente déjà 30% de la bande passante mondiale en HD et 4K, verra son impact environnemental croître avec l'adoption de la 8K, augmentant aussi le problème des <strong>déchets électroniques</strong>.</p>
+                <section class="additional-impact-content">
+                    <div class="impact-card impact-card-1">
+                        <p class="impact-value">30% de plus</p>
+                        <p class="impact-label">Consommation d'énergie des TV 4K</p>
+                    </div>
+                    <div class="impact-card impact-card-2">
+                        <p class="impact-value">50% d'indium</p>
+                        <p class="impact-label">Des extractions mondiales pour les téléviseurs</p>
+                    </div>
+                    <div class="impact-card impact-card-3">
+                        <p class="impact-value">30% de la bande passante</p>
+                        <p class="impact-label">Utilisée par Netflix pour le streaming HD et 4K</p>
+                    </div>
+                </section>
+            </section>
+
+            <section class="tips">
+                <h2>Conseils pour réduire l'empreinte carbone</h2>
+                <section class="additional-impact-content">
+                    <div class="tip-item">
+                        <p>Réduisez la qualité de streaming lorsque possible (passer de HD à SD).</p>
+                    </div>
+                    <div class="tip-item">
+                        <p>Téléchargez les vidéos pour une visualisation hors ligne au lieu de les diffuser en continu.</p>
+                    </div>
+                    <div class="tip-item">
+                        <p>Utilisez le Wi-Fi plutôt que les données mobiles pour réduire la consommation énergétique.</p>
+                    </div>
+                </section>
+
+            </section>
+        </section>
+
+
+        <section class="bibliography">
+            <h2>Sources</h2>
+            <ul class="bibliography-list">
+                <li id="source1">[1] "Netflix compte près de 270 millions d'abonnés dans le monde," <em>CB News</em>, Disponible en ligne : <a href="https://www.cbnews.fr/medias/image-netflix-compte-pres-270-millions-abonnes-monde-84005#:~:text=DANS%20LE%20MONDE-,Netflix%20compte%20pr%C3%A8s%20de%20270%20millions%20d'abonn%C3%A9s%20dans%20le,croissance%20pour%20rester%20au%20sommet" target="_blank">https://www.cbnews.fr/medias/image-netflix-compte-pres-270-millions-abonnes-monde-84005</a></li>
+                <li id="source2">[2] "Netflix est disponible en streaming dans plus de 190 pays," <em>Netflix Help Center</em>, Disponible en ligne : <a href="https://help.netflix.com/fr/node/14164#:~:text=Netflix%20est%20disponible%20en%20streaming%20dans%20plus%20de%20190%20pays" target="_blank">https://help.netflix.com/fr/node/14164</a></li>
+                <li id="source3">[3] "Le vrai coût écologique du streaming vidéo," <em>Les Numériques</em>, Disponible en ligne : <a href="https://www.lesnumeriques.com/vie-du-net/le-vrai-cout-ecologique-du-streaming-video-a197241.html" target="_blank">https://www.lesnumeriques.com/vie-du-net/le-vrai-cout-ecologique-du-streaming-video-a197241.html</a></li>
+                <li id="source4">[4] "Netflix : l'impact carbone de votre addiction," <em>La Conscience des Étudiants</em>, 10 mai 2020. Disponible en ligne : <a href="https://laconsciencedesetudiants.fr/2020/05/10/netflix-limpact-carbone-de-votre-addiction/" target="_blank">https://laconsciencedesetudiants.fr/2020/05/10/netflix-limpact-carbone-de-votre-addiction/</a></li>
+            </ul>          
+        </section>
+
+        <div class="button-container">
+            <button class="button" onclick="window.open('../../assets/pdf/netflix_impact.pdf', '_blank')">Imprimer cette fiche</button>
+            <button class="button-secondary" onclick="window.open('../../fiches.html', '')">Découvrir les autres services</button>
+        </div>
+
+    </div>
+
+    <footer>
+        <p class="mg-0">&copy; 2024 ROCHAT Lise & COURDIER Remy - <a href="../../a-propos.html">À propos</a></p>
+    </footer>
+
+    <script>
+        var ctx = document.getElementById('serviceChart').getContext('2d');
+        var serviceChart = new Chart(ctx, {
+            type: 'doughnut',  // Camembert en forme de donut
+            data: {
+                labels: ['VOD (34%)', 'Tubes (21%)', 'Pornographie (27%)', 'Autres (18%)'],
+                datasets: [{
+                    data: [34, 21, 27, 18],
+                    backgroundColor: [
+                        '#3498db',    // VOD
+                        '#9b59b6',    // Tubes
+                        '#e74c3c',    // Pornographie
+                        '#e67e22'     // Autres
+                    ],
+                    borderColor: [
+                        '#3498db',
+                        '#9b59b6',
+                        '#e74c3c',
+                        '#e67e22'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right', 
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
