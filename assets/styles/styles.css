@@ -170,6 +170,7 @@ a {
 .button:hover {
     background-color: transparent;
     color: var(--highlight-color);
+    cursor: pointer;
 }
 
 .button-secondary {
@@ -181,6 +182,7 @@ a {
 .button-secondary:hover {
     background-color: var(--highlight-color);
     color: var(--background-color);
+    cursor: pointer;
 }
 
 /* Quiz container styling */
@@ -249,6 +251,10 @@ a {
     margin-top: 30px;
     display: flex;
     justify-content: flex-end;
+}
+
+input, label {
+    cursor: pointer;
 }
 
 /* Bibliography styling */

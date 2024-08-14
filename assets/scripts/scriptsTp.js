@@ -541,6 +541,7 @@ document.getElementById('next-btn').addEventListener('click', () => {
 });
 
 function showResults() {
+    document.getElementById("next-btn").style.display = "none";
     const quizContainer = document.getElementById('quiz-container');
     const totalQuestions = questions.length;
 
@@ -559,8 +560,9 @@ function showResults() {
             <div class="question ${answerClass}">
                 <h3>${icon} ${question.question}</h3>
                 <p>Votre réponse :${question.answers[userAnswer]}</p>
-                ${!isCorrect ? `<p><strong>Réponse correcte :</strong> ${question.answers[question.correctAnswer]}</p>` : ''}
+                ${!isCorrect ? `<p><strong>Réponse correcte : </strong> ${question.answers[question.correctAnswer]}</p>` : ''}
                 ${!isCorrect ? `<p class="explanation">Pensez à revoir ce concept pour mieux comprendre l'importance de ${question.answers[question.correctAnswer].toLowerCase()}.</p><br><br>` : ''}
+                <br>
             </div>
         `;
     });
