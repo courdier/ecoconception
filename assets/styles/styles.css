@@ -414,6 +414,11 @@ footer p {
     margin-bottom: 10px;
 }
 
+.term h3 {
+    text-align: start;
+    color: var(--highlight-color);
+}
+
 /* Quelques Chiffres - Écoconception Numérique */
 
 .services-container,

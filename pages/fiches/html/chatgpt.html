@@ -9,7 +9,7 @@
     <meta name="author" content="Rochat Lise">
     <meta name="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
     <title>ChatGPT - Écoconception Numérique</title>
-    <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../../assets/img/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="../../../assets/styles/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
     <header>
         <nav>
@@ -25,18 +24,17 @@
                 <li class="mg-0"><a href="../../../index.html">Home</a></li>
                 <li class="mg-0"><a href="../../en-pratique.html">Ressources</a></li>
                 <li class="mg-0"><a href="../../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../../terminologie.html">Terminologie</a></li>
+
             </ul>
         </nav>
     </header>
-
     <div class="main">
         <h1>Impact Environnemental de ChatGPT</h1>
-
         <section class="services-container">
             <section class="intro-text">
                 <p>ChatGPT est un modèle de langage basé sur l'intelligence artificielle qui, comme tous les services numériques, a un impact environnemental. Cette fiche explore l'empreinte carbone d'une requête sur ChatGPT en comparaison avec d'autres actions quotidiennes.</p>
             </section>
-    
             <section class="stats-icons">
                 <div class="stat-item">
                     <i class="fas fa-users"></i>
@@ -54,7 +52,6 @@
                     <p>Émissions de CO2 par requête <sup><a href="#source3">[3]</a></sup></p>
                 </div>
             </section>
-    
             <section class="impact-details">
                 <h2>Comparaison de l'empreinte carbone <sup><a href="#source3">[3]</a></sup></h2>
                 <p>Une requête sur ChatGPT génère 1.54 g de CO2, ce qui est significativement moins que d'autres actions individuelles telles que la consommation de viande de boeuf ou un trajet en voiture thermique. <br> L'intelligence artificielle, bien qu'exigeant des ressources importantes, reste une alternative moins polluante en comparaison à d'autres activités humaines.</p>
@@ -62,8 +59,7 @@
                 <div class="chart-container" style="display: flex; justify-content: center;">
                     <canvas id="co2Chart" width="600" height="400"></canvas>
                 </div>
-            </section>
-            
+            </section>   
             <section class="additional-impact">
                 <h2>Impact supplémentaire <sup><a href="#source3">[3]</a></sup></h2>
                 <section class="additional-impact-content">
@@ -81,8 +77,6 @@
                     <p>En comparaison, une requête sur ChatGPT demande <strong>4 à 5 fois</strong> plus de ressources de calcul qu'une recherche sur un moteur de recherche standard. C'est pourquoi il est essentiel de considérer ces impacts dans le contexte de notre consommation numérique globale.</p>
                 </section>
             </section>
-
-    
             <section class="tips">
                 <h2>Conseils pour réduire l'empreinte carbone</h2>
                 <section class="additional-impact-content">
@@ -98,7 +92,6 @@
                 </section>
             </section>
         </section>
-        
         <section class="bibliography">
             <h2>Sources</h2>
             <ul class="bibliography-list">
@@ -107,17 +100,14 @@
                 <li id="source3">[3] S. Merciani, C. Bartolacelli, A. Ahmetovic, and A. Neyret, "Environnement : le numérique aussi a un impact," Médiamorphoses, no. 5112, Juin 2023. Disponible en ligne : <a href="https://www.greenit.fr/empreinte-environnementale-du-numerique-mondial/" target="_blank">https://www.greenit.fr/empreinte-environnementale-du-numerique-mondial/</a></li>
             </ul>
         </section>
-        
         <div class="button-container">
-            <button class="button" onclick="window.open('../../assets/pdf/chatgpt_impact.pdf', '_blank')">Imprimer cette fiche</button>
-            <button class="button-secondary" onclick="window.open('../../fiches.html', '')">Découvrir les autres services</button>
+            <button class="button" onclick="window.open('../../assets/pdf/chatgpt_impact.pdf')">Imprimer cette fiche</button>
+            <button class="button-secondary" onclick="window.open('../../fiches.html')">Découvrir les autres services</button>
         </div>
     </div>
-
     <footer>
         <p class="mg-0">&copy; 2024 ROCHAT Lise & COURDIER Remy - <a href="../../a-propos.html">À propos</a></p>
     </footer>
-
     <script>
         var ctx = document.getElementById('co2Chart').getContext('2d');
         var co2Chart = new Chart(ctx, {
@@ -162,7 +152,5 @@
             }
         });
     </script>
-
 </body>
-
 </html>

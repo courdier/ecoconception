@@ -9,7 +9,7 @@
     <meta name="author" content="Rochat Lise">
     <meta name="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
     <title>TikTok - Écoconception Numérique</title>
-    <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../../assets/img/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
@@ -18,7 +18,6 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
     <header>
         <nav>
@@ -26,18 +25,16 @@
                 <li class="mg-0"><a href="../../../index.html">Home</a></li>
                 <li class="mg-0"><a href="../../ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="../../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../../terminologie.html">Terminologie</a></li>
             </ul>
         </nav>
     </header>
-
     <div class="main">
         <h1>Impact Environnemental de TikTok</h1>
-
         <section class="services-container">
             <section class="intro-text">
                 <p>TikTok est l'une des plateformes de réseaux sociaux les plus populaires au monde, avec des vidéos courtes qui attirent des millions d'utilisateurs chaque jour. Cependant, l'impact environnemental de TikTok est loin d'être négligeable. Chaque minute passée sur la plateforme génère une empreinte carbone significative.</p>
             </section>
-    
             <section class="stats-icons">
                 <div class="stat-item">
                     <i class="fas fa-users"></i>
@@ -55,7 +52,6 @@
                     <p>Émissions de CO2 par minute d'utilisation <sup><a href="#source3">[2]</a></sup></p>
                 </div>
             </section>
-    
             <section class="impact-details">
                 <h2>Répartition des émissions de CO2 <sup><a href="#source4">[3]</a></sup></h2>
                 <p>Les émissions de CO2 générées par TikTok proviennent principalement des centres de données, des réseaux de distribution, et des appareils des utilisateurs.</p>
@@ -63,7 +59,6 @@
                     <canvas id="co2Chart" width="600" height="600"></canvas>
                 </div>
             </section>
-            
             <section class="additional-impact">
                 <h2>Autres impacts environnementaux <sup><a href="#source4">[4]</a></sup></h2>
                 <section class="additional-impact-content">
@@ -81,8 +76,6 @@
                     </div>
                 </section>
             </section>
-
-    
             <section class="tips">
                 <h2>Conseils pour réduire l'empreinte carbone <sup><a href="#source5">[5]</a></sup></h2>
                 <section class="additional-impact-content">
@@ -109,15 +102,13 @@
             </ul>            
         </section>
         <div class="button-container">
-            <button class="button" onclick="window.open('../../assets/pdf/tiktok_impact.pdf', '_blank')">Imprimer cette fiche</button>
-            <button class="button-secondary" onclick="window.open('../../fiches.html', '')">Découvrir les autres services</button>
+            <button class="button" onclick="window.open('../../assets/pdf/tiktok_impact.pdf')">Imprimer cette fiche</button>
+            <button class="button-secondary" onclick="window.open('../../fiches.html')">Découvrir les autres services</button>
         </div>
     </div>
-
     <footer>
         <p class="mg-0">&copy; 2024 ROCHAT Lise & COURDIER Remy - <a href="../../a-propos.html">À propos</a></p>
     </footer>
-
     <script>
         var ctx = document.getElementById('co2Chart').getContext('2d');
         var co2Chart = new Chart(ctx, {
@@ -156,7 +147,5 @@
             }
         });
     </script>
-
 </body>
-
 </html>
