@@ -1,0 +1,52 @@
+@media print {
+    body {
+        width: 29.7cm;  /* A3 width */
+        height: 42cm;   /* A3 height */
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    .main {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .stats-icons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .stat-item {
+        flex: 1;
+        text-align: center;
+        margin: 0 10px;
+    }
+    .impact-details, .additional-impact, .tips {
+        margin-bottom: 30px;
+    }
+    .chart-container {
+        margin: 20px 0;
+        display: flex;
+        justify-content: center;
+    }
+    .tips {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .tips .tip-item {
+        margin-bottom: 5px;
+    }
+    .button-container {
+        display: none;
+    }
+    .bibliography {
+        display: none;
+    }
+    footer {
+        display: none;
+    }
+}
