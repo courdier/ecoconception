@@ -559,24 +559,22 @@ function showResults() {
         resultsHTML += `
             <div class="question ${answerClass}">
                 <h3>${icon} ${question.question}</h3>
-                <p>Votre réponse :${question.answers[userAnswer]}</p>
+                <p>Votre réponse : ${question.answers[userAnswer]}</p>
                 ${!isCorrect ? `<p><strong>Réponse correcte : </strong> ${question.answers[question.correctAnswer]}</p>` : ''}
                 ${!isCorrect ? `<p class="explanation">Pensez à revoir ce concept pour mieux comprendre l'importance de ${question.answers[question.correctAnswer].toLowerCase()}.</p><br><br>` : ''}
                 <br>
-            </div>
-            <br>
-            <div class="button-container">
-                <button onclick="location.href='../pages/fiche.html'" class="button">Quelques Chiffres</button>
-                <button onclick="location.href='../pages/en-pratique.html'" class="button-secondary">En Pratique</button>
             </div>
         `;
     });
 
     resultsHTML += `
         </div>
+        <div class="button-container">
+            <button onclick="location.href='../../pages/quelques-chiffres.html'" class="button">Quelques Chiffres</button>
+            <button onclick="location.href='../../pages/en-pratique.html'" class="button-secondary">En Pratique</button>
+        </div>
     `;
 
     quizContainer.innerHTML = resultsHTML;
 }
-
 showQuestion(currentQuestionIndex);
