@@ -262,20 +262,20 @@ function showResults() {
         <h2>Résultats du Quiz : <strong>${totalCO2.toFixed(2)} kg</strong></h2>
         <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-around; margin: 50px 0;">
             <div style="border: 2px solid #FF5733; padding: 10px; border-radius: 5px; flex: 1 1 45%; margin-bottom: 10px;">
-                <p style="font-size: 2em; font-weight: bold;">${smartphonesUsed.toFixed(2)}</p>
-                <p>smartphones utilisés pendant un an</p>
+                <p style="font-size: 2em; font-weight: bold; text-align:center;">${smartphonesUsed.toFixed(2)}</p>
+                <p style="text-align:center;">smartphones utilisés pendant un an</p>
             </div>
             <div style="border: 2px solid #33FF57; padding: 10px; border-radius: 5px; flex: 1 1 45%; margin-bottom: 10px;">
-                <p style="font-size: 2em; font-weight: bold;">${tripsSaintPierreSaintDenis.toFixed(2)}</p>
-                <p>trajets Saint-Pierre à Saint-Denis en voiture</p>
+                <p style="font-size: 2em; font-weight: bold; text-align:center;">${tripsSaintPierreSaintDenis.toFixed(2)}</p>
+                <p style="text-align:center;">trajets Saint-Pierre à Saint-Denis en voiture</p>
             </div>
             <div style="border: 2px solid #3357FF; padding: 10px; border-radius: 5px; flex: 1 1 45%; margin-bottom: 10px;">
-                <p style="font-size: 2em; font-weight: bold;">${tripsReunionParis.toFixed(2)}</p>
-                <p>aller-retour Réunion-Paris en avion</p>
+                <p style="font-size: 2em; font-weight: bold; text-align:center;">${tripsReunionParis.toFixed(2)}</p>
+                <p style="text-align:center;">aller-retour Réunion-Paris en avion</p>
             </div>
             <div style="border: 2px solid #FF33A1; padding: 10px; border-radius: 5px; flex: 1 1 45%; margin-bottom: 10px;">
-                <p style="font-size: 2em; font-weight: bold;">${computersManufactured.toFixed(2)}</p>
-                <p>ordinateurs fabriqués sur un an</p>
+                <p style="font-size: 2em; font-weight: bold; text-align:center;">${computersManufactured.toFixed(2)}</p>
+                <p style="text-align:center;">ordinateurs fabriqués sur un an</p>
             </div>
         </div>
         <p>Merci d'avoir participé !</p>
