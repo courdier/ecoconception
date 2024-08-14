@@ -13,7 +13,7 @@ const questions = [
         ],
         info: "En France, la moyenne est de 35 minutes par jour.",
         extra: "Un ordinateur moyen émet tout au long de sa vie (fabrication, transport, utilisation, recyclage, déchet) environ 510 Kg CO2. L’équivalent d’environ 212 cuissons de carry ou rougail de 4 heures.",
-        source: "[1] L. Dupont, 'The Carbon Impact of Video Streaming,' Carbon Trust, 2019. [Online]. Available: <a href='https://www.carbontrust.com/resources/white-papers/2019/the-carbon-impact-of-video-streaming/' target='_blank'>https://www.carbontrust.com/resources/white-papers/2019/the-carbon-impact-of-video-streaming/</a>"
+        source: "[1] F.Bordage, '24 fois plus de CO2 lors de la fabrication d’un ordinateur que lors de son utilisation,' Green IT, 2010. [Online]. Available: <a href='https://www.greenit.fr/2010/02/26/24-fois-plus-de-co2-lors-de-la-fabrication-d-un-ordinateur-que-lors-de-son-utilisation/' target='_blank'>https://www.greenit.fr/2010/02/26/24-fois-plus-de-co2-lors-de-la-fabrication-d-un-ordinateur-que-lors-de-son-utilisation/</a>"
     },
     {
         question: "Combien de temps passez-vous en moyenne par jour sur Internet sur un téléphone (navigation web, réseaux sociaux, etc.) ?",
@@ -118,7 +118,7 @@ const questions = [
             { text: "Non, jamais ", co2Impact: 0.1 }
         ],
         info: "Réduire la qualité de streaming ou limiter les emails inutiles sont des pratiques efficaces pour diminuer son empreinte carbone.",
-        extra: "Chaque petite action pour réduire l'empreinte numérique compte, particulièrement sur une île comme La Réunion où les ressources sont limitées.",
+        extra: "Éteindre sa webcam pendant sa visioconférence, c'est bon pour la planète.",
         source: "[10] 'Éteindre sa webcam pendant sa visioconférence, c'est bon pour la planète,' Huffington Post, 2023. [Online]. Available: <a href='https://www.huffingtonpost.fr/vie-de-bureau/video/eteindre-sa-webcam-pendant-sa-visioconference-c-est-bon-pour-la-planete_176254.html' target='_blank'>https://www.huffingtonpost.fr/vie-de-bureau/video/eteindre-sa-webcam-pendant-sa-visioconference-c-est-bon-pour-la-planete_176254.html</a>"
     },
     {
@@ -289,6 +289,11 @@ function showResults() {
             <li>1500 kg est l'émission moyenne de CO2 pour un vol aller-retour Réunion-Paris.<strong> Source</strong> : "Calculateur de l'impact environnemental d'un trajet en avion," Bioaddict, 2023. Disponible en ligne : <a href="https://www.bioaddict.fr/calculez-l-impact-environnemental-de-votre-trajet-en-avion/#:~:text=Et%20si%20vous%20effectuez%20un,soit%20265%20litres%20de%20k%C3%A9ros%C3%A8ne." target="_blank">https://www.bioaddict.fr</a></li>
             <li>L'émission moyenne de CO2 associée à la fabrication d'un ordinateur est 120kg. <strong> Source</strong> : ADEME, "Calculateur d'empreinte carbone," 2023. Disponible en ligne : <a href="https://www.ademe.fr/" target="_blank">https://www.ademe.fr/</a></li>
         </ul>
+        <br>
+        <div class="button-container">
+            <button onclick="location.href='../../pages/fiche.html'" class="button">Quelques Chiffres</button>
+            <button onclick="location.href='../../pages/en-pratique.html'" class="button-secondary">En Pratique</button>
+        </div>
     `;
 }
 

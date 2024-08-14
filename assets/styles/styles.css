@@ -14,8 +14,9 @@
     --strong-color: #2fdfad;
     --light-color: #7dd4bc;
     --success-color:  #69f06d;
-    --warning-color: rgb(247, 191, 88);
-    --emergency-color: rgb(253, 99, 99);
+    --warning-color: #f7bf58;
+    --emergency-color: #fd6363;
+    --info-color: #638ffd;
     --becoming-color: rgb(250, 237, 89);
     --box-shadow: rgba(0, 0, 0, 0.2);
     --font-main: Arial, sans-serif;
@@ -172,6 +173,7 @@ a {
 .button {
     background-color: var(--highlight-color);
     color: var(--background-color);
+    border: 1px solid var(--highlight-color);
 }
 
 .button:hover {
@@ -436,6 +438,7 @@ footer p {
     margin: 20px;
     gap: 20px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 section .stats-icons h2 {

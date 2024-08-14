@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Optimisation des Ressources Web">
-    <meta name="keywords" content="Optimisation, Ressources Web, TP, écoconception, développement durable">
+    <meta name="description" content="Détection et Réduction des Scripts Inutilisés">
+    <meta name="keywords" content="Optimisation, Scripts Inutilisés, TP, écoconception, développement durable">
     <meta name="author" content="Rochat Lise">
     <meta http-equiv="cache-control" content="max-age=31536000, must-revalidate">
     <meta http-equiv="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
-    <title>TP 02 - Optimisation des Ressources Web</title>
+    <title>TP 03 - Détection et Réduction des Scripts Inutilisés</title>
     <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,25 +22,24 @@
     <header>
         <nav>
             <ul>
-                <li class="mg-0"><a href="../index.html">Home</a></li>
+                <li class="mg-0"><a href="../../index.html">Home</a></li>
                 <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
-                <li class="mg-0"><a href="./outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../outils.html">Outils</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="main">
-        <h1>TP 02 : Optimisation des Ressources Web</h1>
+        <h1>TP 03 : Détection et Réduction des Scripts Inutilisés</h1>
         <section>
             <section class="collapsible">
                 <h2>Objectif <span class="toggle-icon">+</span></h2>
                 <div class="content">
-                    <p>Dans ce TP, vous allez optimiser les ressources du site web du Bureau des Étudiants (BDE) de
-                        l'ESIROI afin de réduire son empreinte écologique et d'améliorer ses performances. L'objectif
-                        est de mettre en œuvre différentes techniques d'optimisation, notamment la compression d'images,
-                        la minification et la concaténation des fichiers CSS et JavaScript, ainsi que l'utilisation de
-                        la mise en cache.</p>
-                    <p><strong>Temps imparti</strong> : 2 heures</p>
+                    <p>Dans ce TP, vous allez identifier et éliminer les scripts JavaScript inutilisés ou redondants sur
+                        le site web du Bureau des Étudiants (BDE) de l'ESIROI. L'objectif est de réduire la taille des
+                        fichiers JavaScript, d'améliorer les performances du site, et de minimiser son empreinte
+                        écologique.</p>
+                    <p><strong>Temps imparti</strong> : 1 heure</p>
                     <p><strong>Date et lieux de dépôt</strong> : À déterminer</p>
                 </div>
             </section>
@@ -48,10 +47,10 @@
             <section class="collapsible">
                 <h2>Informations <span class="toggle-icon">+</span></h2>
                 <div class="content">
-                    <p>L'optimisation des ressources web est essentielle pour améliorer les performances d'un site tout
-                        en réduisant la consommation de bande passante et l'empreinte écologique. Dans ce TP, vous allez
-                        apprendre à appliquer ces techniques sur le site web du BDE, ce qui permettra de réduire le
-                        temps de chargement des pages et de minimiser l'impact environnemental du site.</p>
+                    <p>Les scripts JavaScript non utilisés ou redondants peuvent entraîner des temps de chargement plus
+                        longs, consommer des ressources inutiles, et augmenter l'empreinte écologique d'un site web. Ce
+                        TP vous apprendra à identifier ces scripts et à les supprimer ou les optimiser pour rendre le
+                        site plus performant et éco-responsable.</p>
                 </div>
             </section>
 
@@ -63,6 +62,7 @@
                         <li>Docker et Docker Compose installés sur votre machine</li>
                         <li>Accès à une machine avec Ubuntu, Windows, ou macOS</li>
                         <li>Installation de SonarQube et SonarScanner (voir TP 01)</li>
+                        <li>Analyse initiale du site réalisée dans le TP 02</li>
                     </ul>
                 </div>
             </section>
@@ -71,12 +71,11 @@
                 <h2>Ressources utiles <span class="toggle-icon">+</span></h2>
                 <div class="content">
                     <ul>
-                        <li><a href="https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=fr"
-                                target="_blank">Google Lighthouse</a></li>
-                        <li><a href="https://tinypng.com/" target="_blank">TinyPNG</a></li>
-                        <li><a href="https://imageoptim.com/fr" target="_blank">ImageOptim</a></li>
-                        <li><a href="https://www.npmjs.com/package/uglify-js" target="_blank">UglifyJS</a></li>
-                        <li><a href="https://github.com/cssnano/cssnano" target="_blank">cssnano</a></li>
+                        <li><a href="https://developer.chrome.com/docs/devtools" target="_blank">Chrome DevTools</a>
+                        </li>
+                        <li><a href="https://firefox-source-docs.mozilla.org/devtools-user/" target="_blank">Firefox
+                                Developer Tools</a></li>
+                        <li><a href="https://docs.sonarsource.com/sonarqube/latest/" target="_blank">SonarQube</a></li>
                     </ul>
                 </div>
             </section>
@@ -114,65 +113,80 @@
                 <div class="content">
                     <ol>
                         <li class="step">
-                            <h3>Étape 1 : Analyse initiale des performances</h3>
+                            <h3>Étape 1 : Analyse initiale des scripts</h3>
                             <ol>
-                                <li>Clonage du dépôt GitHub :Si ce n'est pas déjà fait, clonez le dépôt contenant le
+                                <li>Clonage du dépôt GitHub: Si ce n'est pas déjà fait, clonez le dépôt contenant le
                                     site vitrine du BDE.</li>
                                 <pre><code class="bash">git clone https://github.com/username/bde-esiroi.git</code></pre>
 
                                 <li>Déplacez-vous dans le répertoire du projet :</li>
                                 <pre><code class="bash">cd bde-esiroi</code></pre>
 
-                                <li>Analyse avec Google Lighthouse : Ouvrez le projet dans un navigateur et utilisez
-                                    Google Lighthouse pour analyser les performances du site.</li>
+                                <li>Audit des scripts avec Chrome DevTools :</li>
                                 <ul>
-                                    <li>Notez les scores pour les catégories suivantes : Performance, Accessibilité,
-                                        Bonnes pratiques, SEO, Éco-conception (si disponible via des plugins
-                                        supplémentaires).</li>
-                                    <li>Capturez les résultats pour les comparer après optimisation.</li>
+                                    <li>Ouvrez le site dans Google Chrome.</li>
+                                    <li>Accédez à Chrome DevTools en appuyant sur <strong>F12</strong> ou <strong>Ctrl +
+                                            Shift + I</strong>.</li>
+                                    <li>Allez dans l'onglet <strong>Sources</strong> puis dans
+                                        <strong>Coverage</strong>.</li>
+                                    <li>Cliquez sur <strong>Start Instrumenting Coverage</strong> pour démarrer
+                                        l'analyse des scripts.</li>
+                                    <li>Naviguez sur les différentes pages du site pour capturer l'utilisation des
+                                        scripts.</li>
+                                    <li>Analysez le rapport généré pour identifier les pourcentages de code JavaScript
+                                        réellement utilisé.</li>
+                                    <li>Prenez des captures d'écran des résultats pour les inclure dans votre rapport.
+                                    </li>
                                 </ul>
                             </ol>
                         </li>
 
                         <li class="step">
-                            <h3>Étape 2 : Optimisation des images</h3>
+                            <h3>Étape 2 : Suppression ou optimisation des scripts inutilisés</h3>
                             <ol>
-                                <li>Analyse des images existantes : Identifiez les images les plus volumineuses du site
-                                    et analysez leur taille, format, et impact sur le temps de chargement.</li>
-                                <li>Compression des images : Utilisez des outils comme TinyPNG ou ImageOptim pour
-                                    compresser les images sans perte de qualité visible. Remplacez les images originales
-                                    par les versions compressées dans le projet.</li>
-                                <li>Vérification de la qualité : Assurez-vous que la qualité des images reste acceptable
-                                    après compression. Testez le site pour vérifier que les images optimisées
-                                    s'affichent correctement.</li>
-                            </ol>
-                        </li>
+                                <li>Suppression des scripts inutilisés :</li>
+                                <ul>
+                                    <li>Supprimez les fichiers JavaScript qui ne sont pas utilisés du projet.</li>
+                                    <li>Si des portions de code non utilisées sont trouvées dans des fichiers JS encore
+                                        nécessaires, supprimez uniquement ces portions tout en testant pour éviter les
+                                        régressions.</li>
+                                </ul>
 
-                        <li class="step">
-                            <h3>Étape 3 : Minification et Concatenation des fichiers CSS et JS</h3>
-                            <ol>
-                                <li>Minification des fichiers CSS : Utilisez un outil comme cssnano pour minifier les
-                                    fichiers CSS du projet. Remplacez les fichiers CSS originaux par les versions
-                                    minifiées.</li>
-                                <li>Minification des fichiers JavaScript : Utilisez UglifyJS pour minifier les fichiers
-                                    JavaScript du projet. Remplacez les fichiers JS originaux par les versions
-                                    minifiées.</li>
-                                <li>Concatenation des fichiers : Combinez les fichiers CSS et JavaScript pour réduire le
-                                    nombre de requêtes HTTP. Modifiez les références dans le code HTML pour pointer vers
-                                    les fichiers concaténés.</li>
+                                <li>Optimisation des scripts :</li>
+                                <ul>
+                                    <li>Refactorisez les scripts qui sont partiellement utilisés pour les rendre plus
+                                        efficaces.</li>
+                                    <li>Si des bibliothèques ou des frameworks JavaScript sont utilisés, envisagez de
+                                        les remplacer par des alternatives plus légères si elles sont surdimensionnées
+                                        pour le projet.</li>
+                                </ul>
+
+                                <li>Test du site :</li>
+                                <ul>
+                                    <li>Testez le site après chaque modification pour vous assurer que la suppression ou
+                                        l'optimisation des scripts n'a pas causé de dysfonctionnements.</li>
+                                    <li>Utilisez les outils de développement pour vérifier que les scripts restants sont
+                                        effectivement nécessaires.</li>
+                                </ul>
                             </ol>
                         </li>
 
                         <li class="step step-btm">
-                            <h3>Étape 4 : Mise en cache</h3>
+                            <h3>Étape 3 : Analyse post-optimisation</h3>
                             <ol>
-                                <li>Configuration du cache : Configurez la mise en cache des ressources statiques
-                                    (images, CSS, JS) pour que le navigateur les conserve plus longtemps. Si vous
-                                    utilisez un serveur web local, modifiez les paramètres de configuration pour activer
-                                    la mise en cache.</li>
-                                <li>Test des paramètres de cache : Testez le site web avec Google Lighthouse pour
-                                    vérifier si la mise en cache fonctionne correctement. Notez les améliorations
-                                    apportées par cette optimisation.</li>
+                                <li>Réalisation d'une nouvelle analyse avec Chrome DevTools :</li>
+                                <ul>
+                                    <li>Refaites l'analyse de couverture des scripts avec Chrome DevTools après
+                                        optimisation.</li>
+                                    <li>Comparez les nouveaux résultats avec ceux obtenus avant optimisation.</li>
+                                </ul>
+
+                                <li>Analyse avec SonarQube:</li>
+                                <ul>
+                                    <li>Effectuez une nouvelle analyse du site avec SonarQube pour détecter d'éventuels
+                                        autres problèmes liés aux scripts.</li>
+                                    <li>Documentez les recommandations supplémentaires fournies par SonarQube.</li>
+                                </ul>
                             </ol>
                         </li>
                     </ol>
@@ -187,6 +201,10 @@
                 </div>
             </section>
         </section>
+        </section>
+        <div class="button-container ">
+            <button class="button-secondary" onclick="window.open('../en-pratique.html')">Découvrir les autres sujets</button>
+        </div>
     </div>
 
     <footer>
