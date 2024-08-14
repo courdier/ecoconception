@@ -9,7 +9,7 @@
     <meta name="author" content="Rochat Lise">
     <meta name="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
     <title>Netflix - Écoconception Numérique</title>
-    <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../../assets/img/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="../../../assets/styles/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
     <header>
         <nav>
@@ -25,18 +24,17 @@
                 <li class="mg-0"><a href="../../../index.html">Home</a></li>
                 <li class="mg-0"><a href="../../ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="../../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../../terminologie.html">Terminologie</a></li>
+
             </ul>
         </nav>
     </header>
-
     <div class="main">
         <h1>Impact Environnemental de Netflix</h1>
-
         <section class="services-container">
             <section class="intro-text">
                 <p>Netflix est l'un des services de streaming vidéo les plus populaires au monde, mais il a un impact environnemental significatif. Chaque heure de streaming vidéo génère une empreinte carbone due à la consommation d'énergie des serveurs, des centres de données, et des appareils de diffusion.</p>
             </section>
-
             <section class="stats-icons">
                 <div class="stat-item">
                     <i class="fas fa-users"></i>
@@ -54,7 +52,6 @@
                     <p>Émission de CO2 par heure de streaming <sup><a href="#source3">[3]</a></sup></p>
                 </div>
             </section>
-
             <section class="impact-details">
                 <h2>Répartition des consommations par type de service <sup><a href="#source4">[4]</a></sup></h2> 
                     <p>La vidéo en ligne représente <strong>60 %</strong> du flux mondial de données et est responsable de <strong>306 millions de tonnes de CO2 en 2018</strong>, soit 20 % des émissions totales de gaz à effet de serre dues au numérique. Ce pourcentage inclut divers types de contenus : <strong>la VoD (34 %)</strong>, les vidéos pornographiques (27 %), les "Tubes" (21 %), et les autres vidéos en ligne (18 %). Cette domination de la vidéo dans le trafic global de données est une source majeure de la consommation d'énergie et des émissions de GES.</p>
@@ -62,7 +59,6 @@
                     <canvas id="serviceChart" width="400" height="400"></canvas>
                 </div>
             </section>
-
             <section class="future-impact">
                 <h2>Ouverture sur l'impact de la 4K/8K <sup><a href="#source4">[4]</a></sup></h2> 
                 <p>La quête de toujours plus de qualité vidéo pousse l’industrie vers la généralisation de la 4K, puis de la 8K. Cela entraîne <strong>une hausse</strong> de la consommation d'énergie et des ressources, avec une augmentation de <strong>30%</strong> de la consommation électrique pour les téléviseurs 4K par rapport aux modèles HD, ainsi qu'une demande accrue de métaux rares.</p>
@@ -82,7 +78,6 @@
                     </div>
                 </section>
             </section>
-
             <section class="tips">
                 <h2>Conseils pour réduire l'empreinte carbone</h2>
                 <section class="additional-impact-content">
@@ -99,8 +94,6 @@
 
             </section>
         </section>
-
-
         <section class="bibliography">
             <h2>Sources</h2>
             <ul class="bibliography-list">
@@ -110,18 +103,14 @@
                 <li id="source4">[4] "Netflix : l'impact carbone de votre addiction," <em>La Conscience des Étudiants</em>, 10 mai 2020. Disponible en ligne : <a href="https://laconsciencedesetudiants.fr/2020/05/10/netflix-limpact-carbone-de-votre-addiction/" target="_blank">https://laconsciencedesetudiants.fr/2020/05/10/netflix-limpact-carbone-de-votre-addiction/</a></li>
             </ul>          
         </section>
-
         <div class="button-container">
-            <button class="button" onclick="window.open('../../assets/pdf/netflix_impact.pdf', '_blank')">Imprimer cette fiche</button>
-            <button class="button-secondary" onclick="window.open('../../fiches.html', '')">Découvrir les autres services</button>
+            <button class="button" onclick="window.open('../../assets/pdf/netflix_impact.pdf')">Imprimer cette fiche</button>
+            <button class="button-secondary" onclick="window.open('../../fiches.html')">Découvrir les autres services</button>
         </div>
-
     </div>
-
     <footer>
         <p class="mg-0">&copy; 2024 ROCHAT Lise & COURDIER Remy - <a href="../../a-propos.html">À propos</a></p>
     </footer>
-
     <script>
         var ctx = document.getElementById('serviceChart').getContext('2d');
         var serviceChart = new Chart(ctx, {
@@ -162,7 +151,5 @@
             }
         });
     </script>
-
 </body>
-
 </html>

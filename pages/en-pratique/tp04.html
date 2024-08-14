@@ -10,14 +10,13 @@
     <meta http-equiv="cache-control" content="max-age=31536000, must-revalidate">
     <meta http-equiv="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
     <title>TP 04 - Optimisation de l'Utilisation des Polices Web</title>
-    <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/styles/styles.css">
+    <link rel="stylesheet" href="../../assets/styles/styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
-
 <body>
     <header>
         <nav>
@@ -25,10 +24,11 @@
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
                 <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
+
             </ul>
         </nav>
     </header>
-
     <div class="main">
         <h1>TP 04 : Optimisation de l'Utilisation des Polices Web</h1>
         <section>
@@ -42,7 +42,6 @@
                     <p><strong>Date et lieux de dépôt</strong> : À déterminer</p>
                 </div>
             </section>
-
             <section class="collapsible">
                 <h2>Informations <span class="toggle-icon">+</span></h2>
                 <div class="content">
@@ -53,7 +52,6 @@
                         l'utilisation de formats de polices optimisés.</p>
                 </div>
             </section>
-
             <section class="collapsible">
                 <h2>Prérequis nécessaires <span class="toggle-icon">+</span></h2>
                 <div class="content">
@@ -66,7 +64,6 @@
                     </ul>
                 </div>
             </section>
-
             <section class="collapsible">
                 <h2>Ressources utiles <span class="toggle-icon">+</span></h2>
                 <div class="content">
@@ -81,7 +78,6 @@
                     </ul>
                 </div>
             </section>
-
             <section class="collapsible">
                 <h2>Livrable <span class="toggle-icon">+</span></h2>
                 <div class="content">
@@ -109,7 +105,6 @@
                     </ul>
                 </div>
             </section>
-
             <section class="collapsible">
                 <h2>Étapes du TP <span class="toggle-icon">+</span></h2>
                 <div class="content">
@@ -134,7 +129,6 @@
                                     pour les inclure dans votre rapport.</li>
                             </ol>
                         </li>
-
                         <li class="step">
                             <h3>Étape 2 : Optimisation des polices web</h3>
                             <ol>
@@ -157,7 +151,6 @@
                                     en cache est correctement configurée pour les polices.</li>
                             </ol>
                         </li>
-
                         <li class="step step-btm">
                             <h3>Étape 3 : Analyse post-optimisation</h3>
                             <ol>
@@ -187,11 +180,9 @@
             <button class="button-secondary" onclick="window.open('../en-pratique.html')">Découvrir les autres sujets</button>
         </div>
     </div>
-
     <footer>
         <p class="mg-0">&copy; 2024 - ROCHAT Lise & COURDIER Remy - <a href="../a-propos.html">A propos</a> </p>
     </footer>
-
     <script>
         document.querySelectorAll('.collapsible h2').forEach(h2 => {
             h2.addEventListener('click', () => {
@@ -201,12 +192,9 @@
                 icon.textContent = icon.textContent === '+' ? '−' : '+';
             });
         });
-
-        // Initialize all sections as collapsed
         document.querySelectorAll('.collapsible .content').forEach(content => {
             content.style.display = 'none';
         });
     </script>
 </body>
-
 </html>
