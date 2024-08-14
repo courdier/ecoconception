@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../../assets/styles/styles.css">
+    <link rel="stylesheet" href="../../../assets/styles/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -22,9 +22,9 @@
     <header>
         <nav>
             <ul>
-                <li class="mg-0"><a href="../index.html">Home</a></li>
-                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
-                <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../../../index.html">Home</a></li>
+                <li class="mg-0"><a href="../../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../../outils.html">Outils</a></li>
             </ul>
         </nav>
     </header>
@@ -41,22 +41,22 @@
                 <div class="stat-item">
                     <i class="fas fa-users"></i>
                     <h2>200+ Millions</h2>
-                    <p>Nombre d'abonnés à Netflix en 2022 <sup><a href="#source1">[1]</a></p>
+                    <p>Nombre d'abonnés à Netflix en 2022 <sup><a href="#source1">[1]</a></sup></p>
                 </div>
                 <div class="stat-item">
                     <i class="fas fa-globe"></i>
                     <h2>190+ Pays</h2>
-                    <p>Présence mondiale de Netflix <sup><a href="#source2">[2]</a></p>
+                    <p>Présence mondiale de Netflix <sup><a href="#source2">[2]</a></sup></p>
                 </div>
                 <div class="stat-item">
                     <i class="fas fa-video"></i>
                     <h2>36g CO2</h2>
-                    <p>Émission de CO2 par heure de streaming <sup><a href="#source3">[3]</a></p>
+                    <p>Émission de CO2 par heure de streaming <sup><a href="#source3">[3]</a></sup></p>
                 </div>
             </section>
 
             <section class="impact-details">
-                <h2>Répartition des consommations par type de service <sup><a href="#source4">[4]</a></h2> <strong></strong>
+                <h2>Répartition des consommations par type de service <sup><a href="#source4">[4]</a></sup></h2> 
                     <p>La vidéo en ligne représente <strong>60 %</strong> du flux mondial de données et est responsable de <strong>306 millions de tonnes de CO2 en 2018</strong>, soit 20 % des émissions totales de gaz à effet de serre dues au numérique. Ce pourcentage inclut divers types de contenus : <strong>la VoD (34 %)</strong>, les vidéos pornographiques (27 %), les "Tubes" (21 %), et les autres vidéos en ligne (18 %). Cette domination de la vidéo dans le trafic global de données est une source majeure de la consommation d'énergie et des émissions de GES.</p>
                 <div class="chart-container" style="display: flex; justify-content: center; align-items: center;">
                     <canvas id="serviceChart" width="400" height="400"></canvas>
@@ -64,7 +64,7 @@
             </section>
 
             <section class="future-impact">
-                <h2>Ouverture sur l'impact de la 4K/8K <sup><a href="#source4">[4]</a></h2> 
+                <h2>Ouverture sur l'impact de la 4K/8K <sup><a href="#source4">[4]</a></sup></h2> 
                 <p>La quête de toujours plus de qualité vidéo pousse l’industrie vers la généralisation de la 4K, puis de la 8K. Cela entraîne <strong>une hausse</strong> de la consommation d'énergie et des ressources, avec une augmentation de <strong>30%</strong> de la consommation électrique pour les téléviseurs 4K par rapport aux modèles HD, ainsi qu'une demande accrue de métaux rares.</p>
                 <p>Netflix, qui représente déjà 30% de la bande passante mondiale en HD et 4K, verra son impact environnemental croître avec l'adoption de la 8K, augmentant aussi le problème des <strong>déchets électroniques</strong>.</p>
                 <section class="additional-impact-content">
@@ -131,16 +131,16 @@
                 datasets: [{
                     data: [34, 21, 27, 18],
                     backgroundColor: [
-                        '#3498db',    // VOD
-                        '#9b59b6',    // Tubes
-                        '#e74c3c',    // Pornographie
-                        '#e67e22'     // Autres
+                        '#f7bf58',    // VOD
+                        '#fd6363',    // Tubes
+                        '#7dd4bc',    // Pornographie
+                        '#638ffd'     // Autres
                     ],
                     borderColor: [
-                        '#3498db',
-                        '#9b59b6',
-                        '#e74c3c',
-                        '#e67e22'
+                        '#f7bf58',
+                        '#fd6363',
+                        '#7dd4bc',
+                        '#638ffd'
                     ],
                     borderWidth: 1
                 }]

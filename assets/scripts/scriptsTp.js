@@ -564,6 +564,11 @@ function showResults() {
                 ${!isCorrect ? `<p class="explanation">Pensez à revoir ce concept pour mieux comprendre l'importance de ${question.answers[question.correctAnswer].toLowerCase()}.</p><br><br>` : ''}
                 <br>
             </div>
+            <br>
+            <div class="button-container">
+                <button onclick="location.href='../../pages/fiche.html'" class="button">Quelques Chiffres</button>
+                <button onclick="location.href='../../pages/en-pratique.html'" class="button-secondary">En Pratique</button>
+            </div>
         `;
     });
 
