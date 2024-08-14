@@ -9,9 +9,15 @@
     --primary-color: #2fdfad;
     --background-color: #1c1c1e;
     --text-color: #e8e8e8;
+    --text-color-light: #c2c2c2dc;
     --highlight-color: #2fdfad;
     --strong-color: #2fdfad;
     --light-color: #7dd4bc;
+    --success-color:  #69f06d;
+    --warning-color: rgb(247, 191, 88);
+    --emergency-color: rgb(253, 99, 99);
+    --becoming-color: rgb(250, 237, 89);
+    --box-shadow: rgba(0, 0, 0, 0.2);
     --font-main: Arial, sans-serif;
     --font-title: 'Major Mono Display', monospace;
     --nav-height: 60px;
@@ -54,7 +60,7 @@ header {
     align-items: center;
     justify-content: flex-end;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px var(--box-shadow);
 }
 
 nav ul {
@@ -112,6 +118,7 @@ h2 {
     padding: 20px;
     margin: 40px 0;
     width: 80%;
+    gap: 100px;
 }
 
 /* Text and list styling */
@@ -200,7 +207,6 @@ a {
 
 #question-container h2 {
     font-size: 1.8rem;
-    /* Harmonized size with general h2 */
     margin-bottom: 15px;
 }
 
@@ -237,12 +243,12 @@ a {
 }
 
 .strong-yellow {
-    color: yellow;
+    color: var(--becoming-color);
 }
 
 #extra-info-text {
-    border: 1px solid yellow; 
-    padding: 10px; 
+    border: 1px solid var(--becoming-color);
+    padding: 10px;
     border-radius: 5px;
 }
 
@@ -253,7 +259,8 @@ a {
     justify-content: flex-end;
 }
 
-input, label {
+input,
+label {
     cursor: pointer;
 }
 
@@ -295,22 +302,6 @@ input, label {
     width: 80%;
 }
 
-.progress-container {
-    width: 100%;
-    background-color: #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    height: 20px;
-}
-
-.progress-bar {
-    height: 20px;
-    background-color: var(--light-color);
-    transition: width 2s ease;
-}
-
 .equivalences {
     margin-top: 30px;
 }
@@ -328,10 +319,6 @@ input, label {
     margin-right: 20px;
 }
 
-.card a {
-    text-decoration: none;
-}
-
 /* Footer styling */
 footer {
     position: fixed;
@@ -343,13 +330,13 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 -2px 4px var(--box-shadow);
     padding: 20px 0;
 }
 
 footer p {
     font-size: 0.8rem;
-    color: #aaa;
+    color: var(--text-color-light);
 }
 
 /* Cards Section */
@@ -374,32 +361,26 @@ footer p {
 
 .card:hover {
     transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
-
-.card-icon {
-    font-size: 50px;
-    margin-bottom: 15px;
-    color: var(--highlight-color);
+    box-shadow: 0 10px 20px var(--box-shadow);
 }
 
 .card h2 {
     font-size: 1.5rem;
     color: var(--text-color);
     margin-bottom: 10px;
+    text-align: center;
+}
+
+.card a {
+    text-decoration: none;
 }
 
 .card p {
-    color: #b3b3b3;
+    color: var(--text-color-light);
+    text-align: center;
 }
 
 /* Stats and Tips */
-.stats-icons {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 30px;
-}
-
 .stat-item {
     text-align: center;
     color: var(--text-color);
@@ -414,12 +395,6 @@ footer p {
 .stat-item h2 {
     font-size: 1.5rem;
     margin-bottom: 5px;
-}
-
-.tips {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .tip-item {
@@ -437,28 +412,146 @@ footer p {
     margin-bottom: 10px;
 }
 
-/* Button Containers */
-.back-button,
-.print-button {
+/* Quelques Chiffres - Écoconception Numérique */
+
+.services-container,
+.impact-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.services-container {
+    gap: 80px;
+}
+
+.impact-details h2,
+.additional-impact h2,
+.tips h2 {
+    margin-bottom: 50px;
+}
+.additional-impact-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+section .stats-icons h2 {
+	text-align: center;
+}
+
+section .stats-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: rgb(38, 37, 37);
+    border-radius: 25px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.progress-bar-inner {
+    height: 24px;
+    border-radius: 25px;
     text-align: center;
-    margin-top: 30px;
+    line-height: 24px;
+    color: var(--text-color);
+    font-weight: bold;
 }
 
-.back-button button,
-.print-button button {
-    background-color: var(--highlight-color);
+.progress-bar-smartphone {
+    width: 27%;
+    background-color: var(--success-color);
     color: var(--background-color);
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.back-button button:hover,
-.print-button button:hover {
-    background-color: var(--strong-color);
+.progress-bar-laptop {
+    width: 50%;
+    background-color: var(--becoming-color);
+    color: var(--background-color);
+}
+
+
+.progress-bar-tablette {
+    width: 50%;
+    background-color: var(--warning-color);
+    color: var(--background-color);
+}
+
+.progress-bar-tv {
+    width: 100%;
+    background-color: var(--emergency-color);
+    color: var(--background-color);
+}
+.impact-card {
+    display: inline-block;
+    width: 180px;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.impact-value {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.impact-label {
+    font-size: 1em;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.impact-card-1 {
+    border: 2px solid var(--emergency-color);
+    border-radius: 25px;
+    color: var(--text-color);
+    text-align: center;
+    width: 200px;
+}
+
+.impact-card-2 {
+    border: 2px solid var(--becoming-color);
+    border-radius: 25px;
+    color: var(--text-color);
+    text-align: center;
+    width: 200px;
+
+}
+
+.impact-card-3 {
+    border: 2px solid var(--success-color);
+    border-radius: 25px;
+    color: var(--text-color);
+    text-align: center;
+    width: 200px;
+
+}
+
+.tip-item {
+    color: var(--background-color);
+}
+
+h2 sup {
+    font-weight: 500;
+    font-size: 0.5em;
+}
+
+sup a {
+    text-decoration: none;
 }
 
 /* En Pratique - Écoconception Numérique */
@@ -472,7 +565,7 @@ footer p {
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px var(--box-shadow);
 }
 
 .info-block h3 {
@@ -597,6 +690,10 @@ pre code {
     li {
         margin-left: 5px;
     }
+
+    .additional-impact-content {
+        justify-content: center;
+    }
 }
 
 /* Petites Tablettes et Smartphones (Paysage) */
@@ -604,6 +701,7 @@ pre code {
     .main {
         max-width: 98%;
         padding: 10px;
+        gap: 70px;
     }
 
     h1 {
@@ -640,9 +738,13 @@ pre code {
     .info-block h3 {
         font-size: 1.2rem;
     }
-    
+
     li {
         margin-left: 3px;
+    }
+
+    .additional-impact-content {
+        justify-content: center;
     }
 }
 
@@ -660,6 +762,7 @@ pre code {
     .main {
         max-width: 100%;
         padding: 10px;
+        gap: 50px;
     }
 
     h1 {
@@ -672,8 +775,7 @@ pre code {
         text-align: center;
     }
 
-    .stats-icons,
-    .tips {
+    .stats-icons{
         flex-direction: column;
         align-items: center;
     }
@@ -691,17 +793,15 @@ pre code {
         font-size: 2rem;
     }
 
-    .back-button button,
-    .print-button button {
-        width: 100%;
-        padding: 15px;
-    }
-
     .info-block h3 {
         font-size: 1rem;
     }
 
     li {
         margin-left: 2px;
+    }
+
+    .additional-impact-content {
+        justify-content: center;
     }
 }
