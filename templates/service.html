@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Impact environnemental de [NOM_DU_SERVICE]">
+    <meta name="keywords" content="écoconception, [NOM_DU_SERVICE], empreinte carbone, environnement">
+    <meta name="author" content="Votre Nom">
+    <meta name="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
+    <title>[NOM_DU_SERVICE] - Écoconception Numérique</title>
+    <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/styles/styles.css">
+    <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="mg-0"><a href="../../index.html">Home</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main">
+        <h1>Impact Environnemental de [NOM_DU_SERVICE]</h1>
+        <section class="services-container">
+            <section class="intro-text">
+                <p>[BRÈVE INTRODUCTION] Présentez brièvement le service ou produit, son utilisation principale et l'importance de son impact environnemental.</p>
+            </section>
+            <section class="stats-icons">
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <h2>[STAT_1]</h2>
+                    <p>[Description de la statistique 1] <sup><a href="#source1">[1]</a></sup></p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-globe"></i>
+                    <h2>[STAT_2]</h2>
+                    <p>[Description de la statistique 2] <sup><a href="#source2">[2]</a></sup></p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-broadcast-tower"></i>
+                    <h2>[STAT_3]</h2>
+                    <p>[Description de la statistique 3] <sup><a href="#source3">[3]</a></sup></p>
+                </div>
+            </section>
+            <section class="impact-details">
+                <h2>Répartition des émissions de CO2 <sup><a href="#source4">[4]</a></sup></h2>
+                <p>Diagramme pertienent pour le service et visuellement attrayant pour l'utilisateur.</p>
+                <div class="chart-container">
+                    <canvas id="co2Chart" width="600" height="600"></canvas>
+                </div>
+            </section>
+            <section class="additional-impact">
+                <h2>Autres impacts environnementaux <sup><a href="#source5">[5]</a></sup></h2>
+                <section class="additional-impact-content">
+                    <div class="impact-card impact-card-1">
+                        <p class="impact-value">[VALEUR 1]</p>
+                        <p class="impact-label">[Description de l'impact 1]</p>
+                    </div>
+                    <div class="impact-card impact-card-2">
+                        <p class="impact-value">[VALEUR 2]</p>
+                        <p class="impact-label">[Description de l'impact 2]</p>
+                    </div>
+                    <div class="impact-card impact-card-3">
+                        <p class="impact-value">[VALEUR 3]</p>
+                        <p class="impact-label">[Description de l'impact 3]</p>
+                    </div>
+                </section>
+            </section>
+            <section class="tips">
+                <h2>Conseils pour réduire l'empreinte carbone <sup><a href="#source6">[6]</a></sup></h2>
+                <section class="additional-impact-content">
+                    <div class="tip-item">
+                        <p>[Conseil 1]</p>
+                    </div>
+                    <div class="tip-item">
+                        <p>[Conseil 2]</p>
+                    </div>
+                    <div class="tip-item">
+                        <p>[Conseil 3]</p>
+                    </div>
+                </section>
+            </section>
+        </section>
+        <section class="bibliography">
+            <h2>Sources</h2>
+            <ul class="bibliography-list">
+                <li id="source1">[1] "[Titre de la source 1]" Disponible en ligne : <a href="[Lien vers la source 1]" target="_blank">[Lien vers la source 1]</a></li>
+                <li id="source2">[2] "[Titre de la source 2]" Disponible en ligne : <a href="[Lien vers la source 2]" target="_blank">[Lien vers la source 2]</a></li>
+                <li id="source3">[3] "[Titre de la source 3]" Disponible en ligne : <a href="[Lien vers la source 3]" target="_blank">[Lien vers la source 3]</a></li>
+                <li id="source4">[4] "[Titre de la source 4]" Disponible en ligne : <a href="[Lien vers la source 4]" target="_blank">[Lien vers la source 4]</a></li>
+                <li id="source5">[5] "[Titre de la source 5]" Disponible en ligne : <a href="[Lien vers la source 5]" target="_blank">[Lien vers la source 5]</a></li>
+            </ul>            
+        </section>
+        <div class="button-container">
+            <button class="button" onclick="window.print()" title="Imprimez uniquement si nécessaire pour l'enseignement ou lorsque le numérique n'est pas adapté.">Imprimer cette fiche</button>
+            <button class="button-secondary" onclick="window.open('../quelques-chiffres.html')">Découvrir les autres services</button>
+        </div>
+    </div>
+    <footer>
+        <p class="mg-0">&copy; 2024 - Votre Nom - <a href="../a-propos.html">À propos</a></p>
+    </footer>
+    <script>
+
+    </script>
+</body>
+</html>
