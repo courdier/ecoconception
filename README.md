@@ -42,7 +42,7 @@ Ce site est conçu à des fins pédagogiques pour soutenir l'enseignement de l'�
 
 ## Contributions
 
-Référez vous a la documentation, pour contribuer de manière efficiente. [Contribution porjet : Eco-conception](./CONTRIBUTION.MD)
+Référez vous a la documentation, pour contribuer de manière efficiente. [Contribution projet : Eco-conception](./CONTRIBUTION.MD)
 
 Les contributions sont les bienvenues pour améliorer ce projet et enrichir son contenu. Si vous souhaitez contribuer :
 
