@@ -33,3 +33,105 @@ const questions = [
         ]
     }
 ];
+
+
+let currentStep = 0;
+let userAnswers; 
+
+function updateQuestion() {
+    const question = questions[currentStep];
+    document.querySelector('.question-title').textContent = question.question;
+    document.querySelector('.progress-bar').style.width = `${((currentStep + 1) / questions.length) * 100}%`;
+    document.querySelector('.question-count').textContent = `Question ${currentStep + 1} sur ${questions.length}`;
+
+    const optionsContainer = document.querySelector('.options');
+    optionsContainer.innerHTML = '';
+    
+    question.options.forEach(option => {
+        const button = document.createElement('button');
+        button.className = 'option-button';
+        button.innerHTML = `
+            <span class="option-icon">${question.icon}</span>
+            <span>${option.label}</span>
+        `;
+        button.onclick = () => handleAnswer(option, button);
+        optionsContainer.appendChild(button);
+    });
+
+    // Reset info box and next button
+    document.querySelector('.info-box').classList.remove('visible');
+    document.querySelector('.next-button').style.display = 'none';
+}
+
+function handleAnswer(option, selectedButton) {
+    userAnswers[questions[currentStep].id] = option.value;
+
+    // Update selected state
+    document.querySelectorAll('.option-button').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+    selectedButton.classList.add('selected');
+
+    // Show info and recommendation
+    const infoBox = document.querySelector('.info-box');
+    document.querySelector('.info-text').textContent = option.info;
+    document.querySelector('.recommendation-text').textContent = option.recommendation;
+    infoBox.classList.add('visible');
+
+    // Show next button
+    const nextButton = document.querySelector('.next-button');
+    nextButton.style.display = 'block';
+    nextButton.onclick = () => {
+        if (currentStep < questions.length - 1) {
+            currentStep++;
+            updateQuestion();
+        } else {
+            showResults();
+        }
+    };
+}
+
+function calculateTotalImpact() {
+    return Object.entries(userAnswers).reduce((total, [questionId, answerValue]) => {
+        const question = questions.find(q => q.id === questionId);
+        const option = question.options.find(opt => opt.value === answerValue);
+        return total + option.impact;
+    }, 0);
+}
+
+function showResults() {
+    const impact = calculateTotalImpact();
+    const co2Impact = impact * 10; // Conversion en kg CO2
+    const FRENCH_AVERAGE = 9900; // 9.9 tonnes en kg
+
+    document.querySelector('.quiz-container').style.display = 'none';
+    document.querySelector('.results').classList.add('visible');
+
+    // Mettre à jour les valeurs d'impact
+    document.getElementById('co2-impact').textContent = co2Impact.toFixed(1);
+    document.getElementById('french-average').textContent = `${((co2Impact / FRENCH_AVERAGE) * 100).toFixed(1)}%`;
+
+    // Afficher les recommandations
+    const recommendationsList = document.getElementById('recommendations-list');
+    recommendationsList.innerHTML = '';
+    
+    Object.entries(userAnswers).forEach(([questionId, answerValue]) => {
+        const question = questions.find(q => q.id === questionId);
+        const option = question.options.find(opt => opt.value === answerValue);
+        const li = document.createElement('li');
+        li.textContent = option.recommendation;
+        recommendationsList.appendChild(li);
+    });
+}
+
+function restartQuiz() {
+    currentStep = 0;
+    userAnswers = {};
+    document.querySelector('.quiz-container').style.display = 'block';
+    document.querySelector('.results').classList.remove('visible');
+    updateQuestion();
+}
+
+
+// Démarrer le quiz
+updateQuestion();
