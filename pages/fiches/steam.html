@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Impact environnemental de Steam">
+    <meta name="keywords" content="écoconception, Steam, empreinte carbone, jeux vidéo, environnement">
+    <meta name="author" content="Rochat Lise">
+    <meta name="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
+    <title>Steam - Écoconception Numérique</title>
+    <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/styles/styles.css">
+    <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="mg-0"><a href="../../index.html">Home</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main">
+        <h1>Impact Environnemental de Steam</h1>
+        <section class="services-container">
+            <section class="intro-text">
+                <p>Steam est l'une des plateformes de distribution de jeux vidéo les plus populaires, comptant des millions d'utilisateurs actifs. Toutefois, l'impact environnemental de Steam est conséquent, notamment à travers le téléchargement et l'exécution des jeux, qui consomment d'importantes quantités d'énergie.</p>
+            </section>
+			<section class="stats-icons">
+				<div class="stat-item">
+					<i class="fas fa-users"></i>
+					<h2>34.5 Millions+</h2>
+					<p>Joueurs connectés simultanément (pic en 2024) <sup><a href="#source1">[1]</a></sup></p>
+				</div>
+				<div class="stat-item">
+					<i class="fas fa-download"></i>
+					<h2>25.8 Tbps</h2>
+					<p>Bande passante moyenne utilisée (sur 48h) <sup><a href="#source2">[2]</a></sup></p>
+				</div>
+				<div class="stat-item">
+					<i class="fas fa-leaf"></i>
+					<h2>4.1 g CO₂/Go</h2>
+					<p>Émissions moyennes de CO₂ par Go de données téléchargées <sup><a href="#source3">[3]</a></sup></p>
+				</div>
+			</section>
+			
+			
+			
+            <section class="impact-details">
+                <h2>Répartition des émissions de CO2 <sup><a href="#source4">[4]</a></sup></h2>
+                <p>Les émissions de CO2 liées à Steam proviennent principalement des centres de données, des réseaux de distribution et des appareils des utilisateurs.</p>
+                <div class="chart-container">
+                    <canvas id="co2Chart" width="600" height="600"></canvas>
+                </div>
+            </section>
+            <section class="additional-impact">
+                <h2>Autres impacts environnementaux <sup><a href="#source4">[4]</a></sup></h2>
+                <section class="additional-impact-content">
+                    <div class="impact-card impact-card-1">
+                        <p class="impact-value">0,32 Litres /Go</p>
+                        <p class="impact-label">Ressource en Eau</p>
+                    </div>
+                    <div class="impact-card impact-card-2">
+                        <p class="impact-value">2,5 m² /Go</p>
+                        <p class="impact-label">Occupation des sols</p>
+                    </div>
+                    <div class="impact-card impact-card-3">
+                        <p class="impact-value">20 mAh /min</p>
+                        <p class="impact-label">Consommation d'énergie</p>
+                    </div>
+					<div class="impact-card impact-card-1">
+                        <p class="impact-value">2 à 3 Go /10 min</p>
+                        <p class="impact-label">Consommation bande passante</p>
+                    </div>
+                </section>
+            </section>
+			
+            <section class="tips">
+                <h2>Conseils pour réduire l'empreinte carbone <sup><a href="#source5">[5]</a></sup></h2>
+                <section class="additional-impact-content">
+                    <div class="tip-item">
+                        <p>Privilégiez les jeux légers et moins gourmands en ressources.</p>
+                    </div>
+                    <div class="tip-item">
+                        <p>Téléchargez les jeux pendant les heures creuses pour une meilleure efficacité énergétique.</p>
+                    </div>
+                    <div class="tip-item">
+                        <p>Limitez les mises à jour automatiques pour économiser de la bande passante.</p>
+                    </div>
+                </section>
+            </section>
+        </section>
+        <section class="bibliography">
+            <h2>Sources</h2>
+			<ul class="bibliography-list">
+				<li id="source1">
+					[1] <strong>Statistiques de téléchargement Steam</strong>. Disponible en ligne : 
+					<a href="https://store.steampowered.com/stats/content/?l=french" target="_blank">
+						store.steampowered.com/stats/content
+					</a>
+				</li>
+				<li id="source2">
+					[2] <strong>Nombre de joueurs en ligne sur Steam</strong>. Disponible en ligne : 
+					<a href="https://store.steampowered.com/charts/?l=french" target="_blank">
+						store.steampowered.com/charts
+					</a>
+				</li>
+				<li id="source3">
+					[3] <strong>Comprendre l'empreinte environnementale des réseaux télécoms</strong>, Fédération Française des Télécoms. Disponible en ligne : 
+					<a href="https://www.fftelecoms.org/nos-travaux-et-champs-dactions/telecoms-responsables/comprendre-lempreinte-environnementale-qui-figure-desormais-sur-vos-factures/" target="_blank">
+						fftelecoms.org
+					</a>
+				</li>
+				<li id="source4">
+					[4] <strong>Quelle empreinte carbone pour l’industrie des jeux vidéo</strong>. Disponible en ligne : 
+					<a href="https://www.hellocarbo.com/blog/calculer/empreinte-carbone-jeux-video/" target="_blank">
+						hellocarbo.com
+					</a>
+				</li>
+				<li id="source5">
+					[5] <strong>How to Reduce Gaming’s Carbon Footprint</strong>. Disponible en ligne : 
+					<a href="https://gamertop.fr/baissez-la-consommation-de-son-pc-tuto/" target="_blank">
+						gamertop.fr
+					</a>
+				</li>
+			</ul>
+					 
+        </section>
+        <div class="button-container">
+            <button class="button" onclick="window.print()" title="Imprimez uniquement si nécessaire pour l'enseignement ou lorsque le numérique n'est pas adapté.">Imprimer cette fiche</button>
+            <button class="button-secondary" onclick="window.open('../quelques-chiffres.html')">Découvrir les autres services</button>
+        </div>
+    </div>
+    <footer>
+        <p class="mg-0">&copy; 2024 ROCHAT Lise & COURDIER Remy - <a href="../a-propos.html">À propos</a></p>
+    </footer>
+    <script>
+        var ctx = document.getElementById('co2Chart').getContext('2d');
+        var co2Chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Appareils des utilisateurs (70-85%)', 'Centres de données (5-15%)', 'Réseaux (10-20%)'],
+                datasets: [{
+                    data: [75, 10, 15],
+                    backgroundColor: [
+                        'rgba(253, 99, 99, 0.6)',   
+                        'rgba(69, 240, 109, 0.6)',  
+                        'rgba(247, 191, 88, 0.6)'  
+                    ],
+                    borderColor: [
+                        'rgba(253, 99, 99, 1)',     
+                        'rgba(69, 240, 109, 1)',    
+                        'rgba(247, 191, 88, 1)'     
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right', 
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

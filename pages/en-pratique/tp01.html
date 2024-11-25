@@ -139,8 +139,9 @@
                             <h3>Étape 2 : Installation de Plugin Eco Code</h3>
                             <p>Téléchargez le plugin <a href="https://www.sonarplugins.com/ecocodejavascript">ecoCode
                                     Javascript</a> :</p>
-                            <p>Copiez le fichier du plugin dans le répertoire des extensions de SonarQube, puis
-                                redémarrez SonarQube pour appliquer les changements :</p>
+                            <p>Copiez le fichier du plugin dans le répertoire des extensions de SonarQube :</p>
+                            <pre><code class="bash">docker cp ecocode-javascript-plugin-1.4.0.jar container_sonarqube:/opt/sonarqube/extensions/plugins</code></pre>
+                            <p>redémarrez SonarQube pour appliquer les changements :</p>
                             <pre><code class="bash">docker-compose restart sonarqube</code></pre>
                         </li>
                         <li class="step">
