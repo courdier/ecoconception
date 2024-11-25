@@ -24,7 +24,6 @@ class Chatbot {
                 ]
             }
         ];
-
         this.responses = {
             accueil: 'Bonjour ! Je suis là pour vous aider à comprendre l\'éco-conception numérique.',
             default: 'Je ne suis pas sûr de comprendre votre demande. Voici les sujets sur lesquels je peux vous aider.',
@@ -53,7 +52,6 @@ class Chatbot {
 
 document.addEventListener('DOMContentLoaded', () => {
     const chatbot = new Chatbot();
-
     const container = document.createElement('div');
     container.innerHTML = `
         <div class="chatbot-toggle">
@@ -131,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
             userDiv.className = 'message user-message';
             userDiv.textContent = message;
             messagesContainer.appendChild(userDiv);
-
             const response = chatbot.processInput(message);
             addBotMessage(response);
 
@@ -147,3 +144,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
