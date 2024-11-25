@@ -225,6 +225,10 @@
         let userAnswers = {};
         let selectedOption = null;
 
+        const startQuizButton = document.querySelector('.start-quiz-button');
+        const welcomeContainer = document.querySelector('.welcome-container');
+        const quizContainer = document.querySelector('.quiz-container');
+        
         // Met à jour la question actuelle
         function updateQuestion() {
             const question = questions[currentStep];
@@ -345,18 +349,27 @@
             });
         }
 
+        // Fonction pour démarrer le quiz
+        function startQuiz() {
+            // Masquer l'accueil et afficher le quiz
+            welcomeContainer.style.display = 'none';
+            quizContainer.style.display = 'block';
+
+            // Charger la première question
+            updateQuestion();
+        }
+
+
         // Redémarre le quiz
         function restartQuiz() {
             currentStep = 0;
             userAnswers = {};
-            document.querySelector('.quiz-container').style.display = 'block';
+            quizContainer.style.display = 'block';
             document.querySelector('.results').classList.remove('visible');
             updateQuestion();
         }
 
         // Gestionnaires de boutons
+        startQuizButton.addEventListener('click', startQuiz);
         document.querySelector('.validate-button').addEventListener('click', validateAnswer);
         document.querySelector('.next-button').addEventListener('click', goToNextQuestion);
-
-        // Démarre le quiz
-        updateQuestion();
