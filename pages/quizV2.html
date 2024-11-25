@@ -28,13 +28,20 @@
       <div class="card_">
         <div class="card-header">
           <h1 class="card-title">Quiz Green IT</h1>
-          <p class="card-subtitle">
+          <!-- <p class="card-subtitle">
             Évaluez votre impact numérique sur l'environnement
-          </p>
+          </p> -->
         </div>
 
         <div class="card-content">
-          <div class="quiz-container">
+
+          <div class="welcome-container">
+            <h1 class="quiz-title">Bienvenue sur le Quiz Écologique</h1>
+            <p class="test">Testez vos connaissances et découvrez l'impact écologique de vos habitudes numériques.</p>
+            <button class="button start-quiz-button">Commencer le quiz</button>
+          </div>
+
+          <div class="quiz-container" style="display: none;">
             <h2 class="question-title"></h2>
             <!-- Barre de progression -->
             <div class="progress-container">
@@ -49,11 +56,11 @@
               <p class="info-text"></p>
               <p
                 class="recommendation-text"
-                style="margin-top: 8px; color: #166534"
+                style="margin-top: 8px; color: #F9F909"
               ></p>
             </div>
             <!-- Bouton pour valider la réponse -->
-            <button class="button validate-button">
+            <button class="button validate-button" style="display: none;">
               Valider
             </button>
             <!-- Bouton pour passer à la question suivante -->
