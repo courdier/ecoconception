@@ -232,6 +232,7 @@
         // Met à jour la question actuelle
         function updateQuestion() {
             const question = questions[currentStep];
+            selectedOption = null;
 
             // Mise à jour du titre, de la barre de progression et du compteur
             document.querySelector('.question-title').textContent = question.question;
