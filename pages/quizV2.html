@@ -18,7 +18,7 @@
           <li class="mg-0"><a href="../index.html">Home</a></li>
           <li class="mg-0"><a href="./ressources.html">Ressources</a></li>
           <li class="mg-0"><a href="./outils.html">Outils</a></li>
-          <li class="mg-0"><a href="./Quiz.html">Quiz</a></li>
+          <li class="mg-0"><a href="./quizV2.html">Quiz</a></li>
           <li class="mg-0"><a href="./terminologie.html">Terminologie</a></li>
         </ul>
       </nav>
@@ -27,27 +27,43 @@
     <main>
       <div class="card_">
         <div class="card-header">
-          <h1 class="card-title">Quiz Green IT</h1>
-          <p class="card-subtitle">
+          <h1 class="card-title">Quiz Green IT 🌿</h1>
+          <!-- <p class="card-subtitle">
             Évaluez votre impact numérique sur l'environnement
-          </p>
+          </p> -->
         </div>
 
         <div class="card-content">
-          <div class="quiz-container">
+
+          <div class="welcome-container">
+            <h1 class="quiz-title">Bienvenue sur le Quiz Écologique "</h1>
+            <p class="text">Testez vos connaissances et découvrez l'impact écologique de vos habitudes numériques.</p>
+            <button class="button start-quiz-button">Commencer le quiz</button>
+          </div>
+
+          <div class="quiz-container" style="display: none;">
             <h2 class="question-title"></h2>
+            <!-- Barre de progression -->
             <div class="progress-container">
               <div class="progress-bar"></div>
             </div>
+            <!-- Numéro de la question -->
             <p class="question-count"></p>
+            <!-- Options de réponse -->
             <div class="options"></div>
+            <!-- Boîte d'informations pour l'impact et les recommandations -->
             <div class="info-box">
               <p class="info-text"></p>
               <p
                 class="recommendation-text"
-                style="margin-top: 8px; color: #166534"
+                style="margin-top: 8px; color: #F9F909"
               ></p>
             </div>
+            <!-- Bouton pour valider la réponse -->
+            <button class="button validate-button" style="display: none;">
+              Valider
+            </button>
+            <!-- Bouton pour passer à la question suivante -->
             <button class="button next-button" style="display: none">
               Question suivante
             </button>

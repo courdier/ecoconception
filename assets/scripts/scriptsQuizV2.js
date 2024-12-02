@@ -223,16 +223,26 @@
 
         let currentStep = 0;
         let userAnswers = {};
+        let selectedOption = null;
 
+        const startQuizButton = document.querySelector('.start-quiz-button');
+        const welcomeContainer = document.querySelector('.welcome-container');
+        const quizContainer = document.querySelector('.quiz-container');
+        
+        // Met à jour la question actuelle
         function updateQuestion() {
             const question = questions[currentStep];
+            selectedOption = null;
+
+            // Mise à jour du titre, de la barre de progression et du compteur
             document.querySelector('.question-title').textContent = question.question;
             document.querySelector('.progress-bar').style.width = `${((currentStep + 1) / questions.length) * 100}%`;
             document.querySelector('.question-count').textContent = `Question ${currentStep + 1} sur ${questions.length}`;
 
+            // Affichage des options
             const optionsContainer = document.querySelector('.options');
             optionsContainer.innerHTML = '';
-            
+
             question.options.forEach(option => {
                 const button = document.createElement('button');
                 button.className = 'option-button';
@@ -240,43 +250,72 @@
                     <span class="option-icon">${question.icon}</span>
                     <span>${option.label}</span>
                 `;
-                button.onclick = () => handleAnswer(option, button);
+                button.addEventListener('click', () => handleAnswer(option, button));
                 optionsContainer.appendChild(button);
             });
 
-            // Reset info box and next button
+            // Réinitialisation des informations et des boutons
             document.querySelector('.info-box').classList.remove('visible');
+            document.querySelector('.validate-button').style.display = 'block';
             document.querySelector('.next-button').style.display = 'none';
         }
 
-        function handleAnswer(option, selectedButton) {
-            userAnswers[questions[currentStep].id] = option.value;
+        // Sélectionne une option
+        function selectOption(option) {
+            selectedOption = option;
 
-            // Update selected state
-            document.querySelectorAll('.option-button').forEach(btn => {
-                btn.classList.remove('selected');
+            // Réinitialise la sélection visuelle
+            document.querySelectorAll('.option-button').forEach(button => button.classList.remove('selected'));
+
+            // Ajoute la classe `selected` au bouton correspondant
+            const selectedButton = Array.from(document.querySelectorAll('.option-button')).find(btn => {
+                return btn.querySelector('span:last-child').textContent.trim() === option.label;
             });
-            selectedButton.classList.add('selected');
 
-            // Show info and recommendation
-            const infoBox = document.querySelector('.info-box');
-            document.querySelector('.info-text').textContent = option.info;
-            document.querySelector('.recommendation-text').textContent = option.recommendation;
-            infoBox.classList.add('visible');
-
-            // Show next button
-            const nextButton = document.querySelector('.next-button');
-            nextButton.style.display = 'block';
-            nextButton.onclick = () => {
-                if (currentStep < questions.length - 1) {
-                    currentStep++;
-                    updateQuestion();
-                } else {
-                    showResults();
-                }
-            };
+            if (selectedButton) {
+                selectedButton.classList.add('selected');
+            } else {
+                console.error("Bouton correspondant introuvable pour l'option :", option);
+            }
         }
 
+        // Gère la réponse sélectionnée
+        function handleAnswer(option, button) {
+            selectOption(option); // Met à jour `selectedOption`
+            console.log("Option sélectionnée :", option); // Pour débogage
+        }
+
+        // Valide la réponse sélectionnée
+        function validateAnswer() {
+            if (!selectedOption) {
+                alert("Veuillez sélectionner une réponse !");
+                return;
+            }
+
+            // Stocke la réponse
+            userAnswers[questions[currentStep].id] = selectedOption.value;
+
+            // Affiche les informations associées à l'option sélectionnée
+            document.querySelector('.info-text').textContent = `Impact : ${selectedOption.impact} kg CO2`;
+            document.querySelector('.recommendation-text').textContent = `Recommandation : ${selectedOption.recommendation}`;
+            document.querySelector('.info-box').classList.add('visible');
+
+            // Met à jour l'affichage des boutons
+            document.querySelector('.validate-button').style.display = 'none';
+            document.querySelector('.next-button').style.display = 'block';
+        }
+
+        // Passe à la question suivante
+        function goToNextQuestion() {
+            currentStep++;
+            if (currentStep >= questions.length) {
+                showResults();
+            } else {
+                updateQuestion();
+            }
+        }
+
+        // Calcule l'impact total
         function calculateTotalImpact() {
             return Object.entries(userAnswers).reduce((total, [questionId, answerValue]) => {
                 const question = questions.find(q => q.id === questionId);
@@ -285,6 +324,7 @@
             }, 0);
         }
 
+        // Affiche les résultats
         function showResults() {
             const impact = calculateTotalImpact();
             const co2Impact = impact * 10; // Conversion en kg CO2
@@ -293,11 +333,11 @@
             document.querySelector('.quiz-container').style.display = 'none';
             document.querySelector('.results').classList.add('visible');
 
-            // Mettre à jour les valeurs d'impact
+            // Met à jour les valeurs d'impact
             document.getElementById('co2-impact').textContent = co2Impact.toFixed(1);
             document.getElementById('french-average').textContent = `${((co2Impact / FRENCH_AVERAGE) * 100).toFixed(1)}%`;
 
-            // Afficher les recommandations
+            // Affiche les recommandations
             const recommendationsList = document.getElementById('recommendations-list');
             recommendationsList.innerHTML = '';
             
@@ -310,14 +350,27 @@
             });
         }
 
-        function restartQuiz() {
-            currentStep = 0;
-            userAnswers = {};
-            document.querySelector('.quiz-container').style.display = 'block';
-            document.querySelector('.results').classList.remove('visible');
+        // Fonction pour démarrer le quiz
+        function startQuiz() {
+            // Masquer l'accueil et afficher le quiz
+            welcomeContainer.style.display = 'none';
+            quizContainer.style.display = 'block';
+
+            // Charger la première question
             updateQuestion();
         }
 
 
-        // Démarrer le quiz
-        updateQuestion();
+        // Redémarre le quiz
+        function restartQuiz() {
+            currentStep = 0;
+            userAnswers = {};
+            quizContainer.style.display = 'block';
+            document.querySelector('.results').classList.remove('visible');
+            updateQuestion();
+        }
+
+        // Gestionnaires de boutons
+        startQuizButton.addEventListener('click', startQuiz);
+        document.querySelector('.validate-button').addEventListener('click', validateAnswer);
+        document.querySelector('.next-button').addEventListener('click', goToNextQuestion);

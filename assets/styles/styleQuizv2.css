@@ -7,7 +7,7 @@
   body {
     padding: 20px;
     min-height: 100vh;
-    background-color: #081c15;
+    background-image: url("../img/BG2.png");
     color: #d8f3dc;
   }
   
@@ -16,8 +16,9 @@
     max-width: 800px;
     margin: 0 auto;
     overflow: hidden;
-    border: 1px solid #2d6a4f;
+    border: 1px solid #85ff83;
     background-color: #1b4332;
+    
   }
   
   .card_:hover {
@@ -33,11 +34,12 @@
   }
   
   .card-title {
-    font-size: 28px;
+    font-size: 50px;
     font-weight: bold;
     margin-bottom: 8px;
     margin: 15px;
     color: #d8f3dc;
+    text-align: center;
   }
   
   .card-subtitle {
@@ -50,6 +52,54 @@
   .card-content {
     padding: 24px;
   }
+  .welcome-container {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .quiz-title {
+    font-size: 30px;
+    color: #d8f3dc;
+    margin-bottom: 20px;
+    text-align: center;
+    white-space: nowrap; 
+    overflow: hidden;
+    animation: typing-title 2s steps(34, end) forwards;
+  }
+  
+  
+  .text {
+    font-size: 16px;
+    color: #d8f3dc;
+    white-space: nowrap; 
+    overflow: hidden; 
+    visibility: hidden; 
+    animation: typing-text 3s steps(70, end) forwards; 
+    animation-delay: 2s; 
+  }
+  
+  /* Animation for .quiz-title  */
+  @keyframes typing-title {
+    from {
+      width: 0; 
+    }
+    to {
+      width: 34ch; 
+    }
+  }
+  
+  /* Animation for .text  */
+  @keyframes typing-text {
+    0% {
+      visibility: visible; 
+      width: 0; 
+    }
+    100% {
+      width: 72ch; 
+      visibility: visible;
+    }
+  }
+  
   
   .question-title {
     font-size: 20px;
