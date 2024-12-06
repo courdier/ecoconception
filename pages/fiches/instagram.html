@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Impact environnemental d'Instagram">
+    <meta name="keywords" content="écoconception, Instagram, empreinte carbone, réseaux sociaux, environnement">
+    <meta name="author" content="Rochat Lise">
+    <meta name="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
+    <title>Instagram - Écoconception Numérique</title>
+    <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/styles/styles.css">
+    <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="mg-0"><a href="../../index.html">Home</a></li>
+                <li class="mg-0"><a href="../en-pratique.html">Ressources</a></li>
+                <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main">
+        <h1>Impact Environnemental d'Instagram</h1>
+        <section class="services-container">
+            <section class="intro-text">
+                <p>Instagram est une plateforme de réseaux sociaux très populaire, mais elle contribue également à l'empreinte environnementale numérique. Cette fiche examine l'impact carbone d'une heure d'utilisation d'Instagram par rapport à d'autres activités numériques courantes.</p>
+            </section>
+            <section class="stats-icons">
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <h2>2+ Milliards</h2>
+                    <p>Utilisateurs actifs mensuels <sup><a href="#source1">[1]</a></sup></p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-photo-video"></i>
+                    <h2>95+ Millions</h2>
+                    <p>Photos et vidéos publiées chaque jour <sup><a href="#source2">[2]</a></sup></p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-leaf"></i>
+                    <h2>0.87 g CO2</h2>
+                    <p>Émissions de CO2 par minute d'utilisation <sup><a href="#source3">[2]</a></sup></p>
+                </div>
+            </section>
+            <section class="impact-details">
+                <h2>Comparaison de l'empreinte carbone <sup><a href="#source3">[2]</a></sup></h2>
+                <p>Une heure passée sur Instagram génère environ 52 g de CO2. Ce chiffre peut sembler faible, mais il s'additionne rapidement avec des millions d'utilisateurs actifs chaque jour, représentant une empreinte environnementale significative.</p>
+
+                <div class="chart-container" style="display: flex; justify-content: center;">
+                    <canvas id="co2Chart" width="600" height="400"></canvas>
+                </div>
+            </section>
+            <section class="additional-impact">
+                <h2>Impact supplémentaire <sup><a href="#source3">[2]</a></sup></h2>
+                <p>Outre les émissions directes, l'infrastructure qui supporte Instagram consomme d'énormes quantités d'énergie. Les centres de données et le streaming vidéo représentent une part importante de cet impact.</p>
+            </section>
+            <section class="tips">
+                <h2>Conseils pour réduire l'empreinte carbone</h2>
+                <section class="additional-impact-content">
+                    <div class="tip-item">
+                        <p>Réduisez le temps passé sur Instagram lorsque ce n'est pas nécessaire.</p>
+                    </div>
+                    <div class="tip-item">
+                        <p>Privilégiez le visionnage en basse définition pour limiter la consommation de données.</p>
+                    </div>
+                    <div class="tip-item">
+                        <p>Désactivez le chargement automatique des vidéos.</p>
+                    </div>
+                </section>
+            </section>
+        </section>
+        <section class="bibliography">
+            <h2>Sources</h2>
+            <ul class="bibliography-list">
+                <li id="source1">[1] "Chiffres Instagram – 2024," Blog du modérateur. Disponible en ligne : <a href="https://www.blogdumoderateur.com/chiffres-instagram/" target="_blank">https://www.blogdumoderateur.com/chiffres-instagram//</a></li>
+                <li id="source3">[2] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2023 ," Greenspector. Disponible en ligne : <a href="https://greenspector.com/fr/quelle-empreinte-environnementale-pour-les-applications-reseaux-sociaux-edition-2023/" target="_blank">https://greenspector.com/fr/quelle-empreinte-environnementale-pour-les-applications-reseaux-sociaux-edition-2023/</a></li>
+            </ul>
+        </section>
+        <div class="button-container">
+            <button class="button" onclick="window.print()" title="Imprimez uniquement si nécessaire.">Imprimer cette fiche</button>
+            <button class="button-secondary" onclick="window.open('../quelques-chiffres.html')">Voir d'autres services</button>
+        </div>
+    </div>
+    <footer>
+        <p class="mg-0">&copy; 2024 ROCHAT Lise - <a href="../a-propos.html">À propos</a></p>
+    </footer>
+    <script>
+        var ctx = document.getElementById('co2Chart').getContext('2d');
+        var co2Chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Instagram (1h - 52 g)', '1 km en voiture (150 g)', '100 g de boeuf (3 kg)'],
+                datasets: [{
+                    label: 'g CO2 par action',
+                    data: [52, 150, 3000],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(255, 99, 132, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 3500
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw + ' g CO2';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
