@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Impact environnemental de Twitch">
+    <meta name="keywords" content="écoconception, Twitch, empreinte carbone, streaming, environnement">
+    <meta name="author" content="Rochat Lise">
+    <meta name="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
+    <title>Twitch - Écoconception Numérique</title>
+    <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/styles/styles.css">
+    <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="mg-0"><a href="../../index.html">Home</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main">
+        <h1>Impact Environnemental de Twitch</h1>
+        <section class="services-container">
+            <section class="intro-text">
+                <p>Twitch, la plateforme de streaming en direct dédiée principalement aux jeux vidéo, attire des millions d'utilisateurs chaque jour. Ce type de contenu, en direct et en haute définition, consomme énormément de ressources, entraînant une empreinte carbone importante.</p>
+            </section>
+            <section class="stats-icons">
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <h2>30+ Millions</h2>
+                    <p>Nombre de spectateurs actifs quotidiens <sup><a href="#source1">[1]</a></sup></p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-globe"></i>
+                    <h2>230+ Pays</h2>
+                    <p>Présence mondiale de Twitch <sup><a href="#source2">[2]</a></sup></p>
+                </div>
+                <div class="stat-item-container">
+                    <div class="stat-item" id="stat-item-base">
+                        <i class="fas fa-video"></i>
+                        <h2>31g CO2</h2>
+                        <p>Émission de CO2 par heure de streaming <sup><a href="#source3">[3]</a></sup></p>
+                    </div>
+                    <div class="stat-item" id="stat-item-hover">
+                        <i class="fa-solid fa-car"></i>
+                        <h2>98 km</h2>
+                        <p>Equivalent carbone (km en voiture) selon impact CO2<sup><a href="#source3">[3]</a></sup></p>
+                    </div>
+                </div>
+            </section>
+            <section class="impact-details">
+                <h2>Répartition des consommations par type de contenu <sup><a href="#source4">[4]</a></sup></h2> 
+                    <p>Le streaming en direct sur Twitch représente une part significative du trafic internet mondial. La plateforme, avec ses diffusions de jeux vidéo en direct et en haute définition, contribue de manière substantielle à la consommation énergétique et aux émissions de CO2 associées au numérique.</p>
+                <div class="chart-container" style="display: flex; justify-content: center; align-items: center;">
+                    <canvas id="serviceChart" width="400%" height="400%"></canvas>
+                </div>
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=ySMSiw5CrP-wn40C" style="color: #1c1c1e; text-decoration: none;">easter egg</a>
+            </section>
+            <section class="future-impact">
+                <h2>Impact de la vidéo 4K en streaming <sup><a href="#source4">[4]</a></sup></h2> 
+                <p>La popularité croissante des vidéos en haute définition et en 4K sur Twitch nécessite plus de bande passante et une puissance de traitement accrue, contribuant ainsi à une empreinte environnementale plus élevée. Cette qualité vidéo élevée augmente aussi la consommation d'énergie des appareils et des serveurs.</p>
+                <section class="additional-impact-content">
+                    <div class="impact-card impact-card-1">
+                        <p class="impact-value">20% plus d'énergie</p>
+                        <p class="impact-label">Consommation accrue des diffusions en 4K</p>
+                    </div>
+                    <div class="impact-card impact-card-2">
+                        <p class="impact-value">10 To/jour</p>
+                        <p class="impact-label">Trafic généré par les streamers populaires</p>
+                    </div>
+                    <div class="impact-card impact-card-3">
+                        <p class="impact-value">25% du trafic de jeux</p>
+                        <p class="impact-label">Provenant de Twitch et de services similaires</p>
+                    </div>
+                </section>
+            </section>
+            <section class="future-impact">
+                <h2>Consommation d'énergie en fonction de la qualité de la vidéo <sup><a href="#source4">[4]</a></sup></h2>
+                <p>La consommation d'énergie liée au streaming sur Twitch augmente avec la qualité de la vidéo. Diffuser en 4K, par exemple, demande beaucoup plus de bande passante et de puissance de traitement que des diffusions de qualité inférieure, augmentant ainsi l'empreinte environnementale.</p>
+                <div class="comparison-box">
+                    <div class="comparison-item">
+                        <p>480p - 1,0 g CO2/h</p>
+                        <div class="progress-bar">
+                            <div class="progress-bar-inner" style="width: 10%; background-color: #4b8b8b; color: white;">1,0 g</div>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-train"></i>
+                            <p style="text-align: center;"> équivaut à <strong>0,578 km</strong> en TGV</p>
+                        </div>
+                    </div>
+                    <div class="comparison-item">
+                        <p>720p - 5,0 g CO2/h</p>
+                        <div class="progress-bar">
+                            <div class="progress-bar-inner" style="width: 30%; background-color: #f0ad4e; color: black;">5,0 g</div>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-train"></i>
+                            <p style="text-align: center;"> équivaut à <strong>2,89 km </strong>en TGV</p>
+                        </div>
+                    </div>
+                    <div class="comparison-item">
+                        <p>1080p - 15,0 g CO2/h</p>
+                        <div class="progress-bar">
+                            <div class="progress-bar-inner" style="width: 60%; background-color: #5bc0de; color: black;">15,0 g</div>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-train"></i>
+                            <p style="text-align: center;"> équivaut à <strong>8,67 km</strong> en TGV</p>
+                        </div>
+                    </div>
+                    <div class="comparison-item">
+                        <p>4K - 30,0 g CO2/h</p>
+                        <div class="progress-bar">
+                            <div class="progress-bar-inner" style="width: 100%; background-color: #d9534f; color: white;">30,0 g</div>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-train"></i>
+                            <p style="text-align: center;"> équivaut à <strong>17,34 km</strong> en TGV</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </section>            
+            <section class="tips">
+                <h2>Conseils pour réduire l'empreinte carbone</h2>
+                <section class="additional-impact-content">
+                    <div class="tip-item">
+                        <p>Utilisez des options de qualité de streaming plus faibles quand possible (par exemple, HD au lieu de 4K).</p>
+                    </div>
+                    <div class="tip-item">
+                        <p>Éteignez l’écran si vous n’êtes pas en train de regarder activement le flux.</p>
+                    </div>
+                    <div class="tip-item">
+                        <p>Privilégiez le Wi-Fi au lieu des données mobiles pour réduire la consommation d’énergie.</p>
+                    </div>
+                </section>
+            </section>
+        </section>
+        <section class="bibliography">
+            <h2>Sources</h2>
+            <ul class="bibliography-list">
+                <li id="source1">[1] "Chiffres Twitch – 2024," <em>Blog du Moderateur</em>, Disponible en ligne : <a href="https://www.blogdumoderateur.com/chiffres-twitch/" target="_blank">https://www.blogdumoderateur.com/</a></li>
+                <li id="source2">[2] "Twitch est disponible dans plus de 230 pays," <em>Twitch Support</em>, Disponible en ligne : <a href="https://help.twitch.tv/" target="_blank">https://help.twitch.tv/</a></li>
+                <li id="source3">[3] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2023," <em>Greenspector</em>, Disponible en ligne : <a href="https://greenspector.com/fr/quelle-empreinte-environnementale-pour-les-applications-reseaux-sociaux-edition-2023/" target="_blank">https://greenspector.com/</a></li>
+                <li id="source4">[4] "Streaming et impact environnemental," <em>EcoReseau</em>, Disponible en ligne : <a href="https://ecoreseau.fr/" target="_blank">https://ecoreseau.fr/</a></li>
+                <li id="source4">[5] "GreenIT: Vidéo en ligne : quels impacts environnementaux ?," <em>greenit</em>, Disponible en ligne : <a href="https://www.greenit.fr/2019/07/22/%ef%bb%bfvideo-en-ligne-quels-impacts-environnementaux/" target="_blank">https://greenit.fr/</a></li>
+                <li id="source4">[6] "Que représente (réellement) une tonne d’équivalent CO2 ?," <em>Hellocarbo</em>, Disponible en ligne : <a href="https://www.hellocarbo.com/blog/calculer/tonne-equivalent-co2/" target="_blank">www.hellocarbo.com/</a></li>
+                
+            </ul>          
+        </section>
+        <div class="button-container">
+            <button class="button" onclick="window.print()" title="Imprimez uniquement si nécessaire pour l'enseignement ou lorsque le numérique n'est pas adapté.">Imprimer cette fiche</button>
+            <button class="button-secondary" onclick="window.open('../quelques-chiffres.html')">Découvrir les autres services</button>
+        </div>
+    </div>
+    <footer>
+        <p class="mg-0">&copy; 2024 ROCHAT Lise & COURDIER Remy - <a href="../a-propos.html">À propos</a></p>
+    </footer>
+    <script>
+        var ctx = document.getElementById('serviceChart').getContext('2d');
+        var serviceChart = new Chart(ctx, {
+            type: 'bar',  // Type de graphique en barres
+            data: {
+                labels: ['Just Chatting', 'Grand Theft Auto V', 'League of Legends', 'Fortnite'],
+                datasets: [{
+                    data: [70.6, 20.2, 18.8, 14.1],
+                    backgroundColor: [
+                        '#8e44ad',
+                        '#3498db',
+                        '#2ecc71',
+                        '#f39c12'
+                    ],
+                    borderColor: [
+                        '#8e44ad',
+                        '#3498db',
+                        '#2ecc71',
+                        '#f39c12'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false // Désactivation de la légende
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw + 'M'; // Modification du texte du tooltip
+                            }
+                        }
+                    },
+                    title: {
+                        display: true, // Activation du titre
+                        text: 'Top 4 des types de contenu les plus regardé sur Twitch', // Texte du titre
+                        font: {
+                            size: 18, // Taille de la police
+                            weight: 'bold' // Poids de la police
+                        },
+                        padding: {
+                            top: 20, // Espacement du titre
+                            bottom: 20
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: "Nombre d'heurs visionées (en milion)"
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Type de contenu'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>
