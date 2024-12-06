@@ -476,6 +476,24 @@ section .stats-icons {
     font-weight: bold;
 }
 
+.progress-bar-basse-def {
+    width: 27%;
+    background-color: var(--success-color);
+    color: var(--background-color);
+}
+
+.progress-bar-haute-def {
+    width: 50%;
+    background-color: var(--becoming-color);
+    color: var(--background-color);
+}
+
+.progress-bar-4k {
+    width: 50%;
+    background-color: var(--warning-color);
+    color: var(--background-color);
+}
+
 .progress-bar-smartphone {
     width: 27%;
     background-color: var(--success-color);
@@ -492,6 +510,12 @@ section .stats-icons {
 .progress-bar-tablette {
     width: 50%;
     background-color: var(--warning-color);
+    color: var(--background-color);
+}
+
+.progress-bar-desktop {
+    width: 50%;
+    background-color: var(--emergency-color);
     color: var(--background-color);
 }
 
@@ -569,6 +593,40 @@ sup a {
     max-width: 1200px; 
     margin:0 auto;
 }
+
+.stat-item-container {
+    position: relative;
+    width: 200px;
+    height: 150px; 
+}
+
+.stat-item-container:hover #stat-item-hover {
+    transition: opacity 0.5s;
+    opacity: 1;
+    display: block;
+}
+
+.stat-item-container:hover #stat-item-base {
+    transition: opacity 0.5s;
+    opacity: 0;
+}
+
+#stat-item-base, #stat-item-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#stat-item-base {
+    opacity: 1;
+}
+
+#stat-item-hover {
+    opacity: 0;
+}
+
 
 /* En Pratique - Écoconception Numérique */
 #objectifs,
