@@ -476,6 +476,24 @@ section .stats-icons {
     font-weight: bold;
 }
 
+.progress-bar-basse-def {
+    width: 27%;
+    background-color: var(--success-color);
+    color: var(--background-color);
+}
+
+.progress-bar-haute-def {
+    width: 50%;
+    background-color: var(--becoming-color);
+    color: var(--background-color);
+}
+
+.progress-bar-4k {
+    width: 50%;
+    background-color: var(--warning-color);
+    color: var(--background-color);
+}
+
 .progress-bar-smartphone {
     width: 27%;
     background-color: var(--success-color);
