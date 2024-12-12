@@ -135,7 +135,6 @@ const questions = [
     }
 ];
 
-
 document.getElementById("validate-btn").addEventListener("click", function () {
     const selectedAnswer = document.querySelector('input[name="answer"]:checked');
     if (selectedAnswer) {
@@ -297,7 +296,6 @@ function showResults() {
         </div>
     `;
 }
-
 
 window.onload = function () {
     loadQuestion(currentQuestionIndex);
