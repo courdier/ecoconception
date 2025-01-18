@@ -719,7 +719,41 @@ sup a {
     color: #333;
 }
 
-/* Code blocks */
+/* ----------- Colones pas de page index ---*/
+.container {
+    display: flex;
+    justify-content: center; /* Centre les colonnes horizontalement   justify-content: space-between; */
+    background-color: #54ad79; /* Vert  foncé */
+    color: white;
+    padding: 20px;
+}
+
+.column_1 {
+    width: 90%;
+    margin: 10px;
+    padding: 15px;
+    background-color: #37876b; /* Vert légèrement plus clair */
+    border-radius: 8px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.column {
+    width: 30%;
+    margin: 10px;
+    padding: 15px;
+    background-color: #24563a; /* Vert légèrement plus clair */
+    border-radius: 8px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.column h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* --- Code blocks --- */
 pre {
     color: #f8f8f2;
     padding: 10px;
