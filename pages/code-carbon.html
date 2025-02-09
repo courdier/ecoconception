@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez les outils essentiels pour l'éco-conception de services numériques.">
+    <meta name="keywords" content="écoconception, outils, développement durable, web, environnement">
+    <meta name="author" content="Rémy Courdier, Rochat Lise">
+    <title>Outils - Écoconception Numérique</title>
+    <link rel="stylesheet" href="../assets/styles/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="mg-0"><a href="../index.html">Home</a></li>
+                <li class="mg-0"><a href="./quelques-chiffres.html">Chiffres</a></li>
+                <li class="mg-0"><a href="./quizV1.html">Quiz</a></li>
+                <li class="mg-0"><a href="./en-pratique.html">Ateliers</a></li>
+                <li class="mg-0"><a href="./ressources.html" class="active">Ressources</a></li>
+                <li class="mg-0"><a href="./outils.html" class="active">Outils</a></li>
+                <li class="mg-0"><a href="./terminologie.html">Terminologie</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main">
+        <section id="methodology">
+            <h1>Méthodologie</h1>
+            <h2>Méthode de calcul</h2>
+            <p>Les émissions de dioxyde de carbone (CO₂), exprimées en kilogrammes d'équivalents CO₂ [CO₂eq], résultent de deux facteurs principaux :</p>
+            <ul>
+                <li><strong>C</strong> = L'intensité carbone de l'électricité consommée pour le calcul, quantifiée en grammes de CO₂ émis par kilowattheure.</li>
+                <li><strong>E</strong> = L'énergie consommée par l'infrastructure de calcul, quantifiée en kilowattheures.</li>
+            </ul>
+            <p>Les émissions de dioxyde de carbone (CO₂eq) peuvent ainsi être calculées comme suit : <strong>C * E</strong>. La source de notre intensité carbone est un élément clé de cette analyse.</p>
+            <h2>Intensité Carbone</h2>
+            <p>L'intensité carbone de l'électricité consommée est calculée comme une moyenne pondérée des émissions des différentes sources d'énergie utilisées pour produire l'électricité, incluant les énergies fossiles et renouvelables.</p>
+            <p>Les énergies fossiles telles que le charbon, le pétrole et le gaz naturel ont des intensités carbone spécifiques. Les énergies renouvelables ou à faibles émissions incluent l'énergie solaire, l'hydroélectricité, la biomasse, la géothermie, etc.</p>
+            <h2>Provenance des chiffres</h2>
+            <p>Lorsque disponible, CodeCarbon utilise l'intensité carbone globale de l'électricité par fournisseur cloud (<a href="https://github.com/mlco2/codecarbon">source</a>) ou par pays (<a href="https://ourworldindata.org/grapher/carbon-intensity-electricity">source</a>).</p>
+            <p>Si ces données ne sont pas disponibles, mais que le mix énergétique du pays l'est, l'intensité carbone de l'électricité est calculée à l'aide du <a href="https://mlco2.github.io/codecarbon/methodology.html#id6">tableau suivant</a></p>
+            <p>Sources : <a href="https://www.iea.org/reports/world-energy-outlook">IEA</a> pour les énergies fossiles et <a href="https://ourworldindata.org/energy-mix">Our World in Data</a> pour les énergies renouvelables.</p>
+            <p>Par exemple, si le mix énergétique d'un réseau est composé de 25 % de charbon, 35 % de pétrole, 26 % de gaz naturel et 14 % de nucléaire :</p>
+            <p><strong>Intensité carbone nette</strong> = (0.25 * 995) + (0.35 * 816) + (0.26 * 743) + (0.14 * 29) = 731.59 kgCO₂/kWh</p>
+            <p>Depuis peu, Our World in Data fournit l'intensité carbone globale de l'électricité par pays (<a href="https://ourworldindata.org/grapher/carbon-intensity-electricity">source</a>). Lorsqu'aucune donnée récente n'est disponible, la donnée de l'année précédente est utilisée.</p>
+            <p>Si aucune donnée spécifique n'est disponible, une moyenne mondiale de 475 gCO₂eq/kWh est appliquée (<a href="https://ourworldindata.org/electricity-mix">source</a>).</p>
+        </section>
+        <section id="monitoring">
+            <h1>Surveillance de votre machine 💻</h1>
+            <p>CodeCarbon permet le suivi en deux modes en analysant un bout de code isolé ou en traquant la consommation totale de la machine.</p>
+            <p>Le suivi de la machine est simple il suffit de lancer la commande :</p>
+            <code>codecarbon monitor</code>
+            <p>Nous obtenons le résultat suivant :</p>
+            <img src="./images/Suivmachinecodecarbon.png" alt="Suivmachinecodecarbon">
+            <p>Ce package permet de suivre vos émissions indépendamment de votre code.</p>
+        </section>
+        <section id="code">
+            <h1>Partie de POUDROUX</h1>
+            <p> Bli bla bla</p>
+        </section>
+        <footer>
+            <p class="mg-0">&copy; 2024 - ROCHAT Lise & COURDIER Remy - <a href="./a-propos.html">À propos</a></p>
+        </footer>
+    </div>
+</body>
+</html>
