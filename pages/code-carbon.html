@@ -57,8 +57,52 @@
             <p>Ce package permet de suivre vos émissions indépendamment de votre code.</p>
         </section>
         <section id="code">
-            <h1>Partie de POUDROUX</h1>
-            <p> Bli bla bla</p>
+            <h1>Partie de Vincent</h1>
+            <p>CodeCarbon est un outil puissant pour mesurer l'impact environnemental de vos scripts Python. Voici comment vous pouvez l'intégrer dans votre projet :</p>
+            <h2>Installation</h2>
+            <p>Pour installer CodeCarbon, utilisez la commande suivante :</p>
+            <code>pip install codecarbon</code>
+            <h2>Utilisation de base</h2>
+            <p>Voici un exemple simple d'utilisation de CodeCarbon pour mesurer les émissions de CO₂ d'un script Python :</p>
+            <pre><code>
+from codecarbon import track_emissions
+
+@track_emissions
+def ma_fonction():
+    # Votre code ici
+    pass
+
+if __name__ == "__main__":
+    ma_fonction()
+            </code></pre>
+            <p>Ce décorateur <code>@track_emissions</code> permet de mesurer les émissions de CO₂ générées par l'exécution de la fonction <code>ma_fonction</code>.</p>
+            <h2>Configuration avancée</h2>
+            <p>Vous pouvez configurer CodeCarbon pour enregistrer les données dans un fichier CSV ou une base de données. Voici un exemple de configuration :</p>
+            <pre><code>
+from codecarbon import EmissionsTracker
+
+tracker = EmissionsTracker(output_dir="results", output_file="emissions.csv")
+tracker.start()
+
+# Votre code ici
+
+tracker.stop()
+            </code></pre>
+            <p>Ce code enregistre les émissions de CO₂ dans un fichier CSV nommé <code>emissions.csv</code> dans le dossier <code>results</code>.</p>
+            <h2>Visualisation des résultats</h2>
+            <p>Une fois les données collectées, vous pouvez les visualiser à l'aide d'outils comme Pandas ou Matplotlib pour analyser l'impact environnemental de votre code.</p>
+            <pre><code>
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data = pd.read_csv("results/emissions.csv")
+plt.plot(data['timestamp'], data['emissions'])
+plt.xlabel('Temps')
+plt.ylabel('Émissions de CO₂ (kg)')
+plt.title('Émissions de CO₂ au fil du temps')
+plt.show()
+            </code></pre>
+            <p>Ce script permet de visualiser les émissions de CO₂ au fil du temps.</p>
         </section>
         <footer>
             <p class="mg-0">&copy; 2024 - ROCHAT Lise & COURDIER Remy - <a href="./a-propos.html">À propos</a></p>
