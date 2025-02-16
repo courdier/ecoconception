@@ -139,32 +139,47 @@ volumes:
                                 (<strong>admin</strong>/<strong>admin</strong>) et modifiez le mot de passe lors de la
                                 première connexion.</p>
                         </li>
+
                         <li class="step">
-                            <h3>Étape 2 : Installation de Plugin Eco Code</h3>
-                            <p>Téléchargez le plugin <a href="https://www.sonarplugins.com/ecocodejavascript">ecoCode
-                                    Javascript</a> :</p>
-                            <p>Copiez le fichier du plugin dans le répertoire des extensions de SonarQube :</p>
-                            <pre><code class="bash">docker cp ecocode-javascript-plugin-1.4.0.jar container_sonarqube:/opt/sonarqube/extensions/plugins</code></pre>
-                            <p>redémarrez SonarQube pour appliquer les changements :</p>
-                            <pre><code class="bash">docker-compose restart sonarqube</code></pre>
-                        </li>
-                        <li class="step">
-                            <h3>Étape 3 : Configuration du profil qualité sur SonarQube</h3>
+                            <h3>Étape 2 : Configuration du profil qualité sur SonarQube</h3>
                             <ol>
                                 <li>Accédez à l'interface SonarQube à <a
                                         href="http://localhost:9000">http://localhost:9000</a>.</li>
-                                <li>Allez dans Administration > Quality Profiles.</li>
+                                <li>Allez dans Quality Profiles.</li>
                                 <li>Cliquez sur "Create" pour créer un nouveau profil de qualité.</li>
-                                <li>Ajoutez des règles du plugin Eco Code à ce profil en recherchant les règles et en
-                                    les activant.</li>
-                                <li>Assurez-vous d'associer ce profil à votre projet.</li>
+                                <li>Choisissez "Create Blank Quality Profile".</li>
+                                <li>Choisissez le language "JavaScript.</li>
+                                <li>Utilisez le nom de profile "Eco_conception".</li>
+                            </ol>
+                        </li>
+
+                        <li class="step">
+                            <h3>Étape 3 : Installation des règles Creendengo pour JavaScript</h3>
+                            <ol>
+                                <li>Allez dans Administration > Marketplace.</li>
+                                <li>Recherchez "creedengo" et installer le plugin pour JavaScript.</li>
+                                <li>Retournez dans Quality Profiles puis choissez le profile "Eco_conception".</li>
+                                <li>Cliquez sur "Activate More" pour ajouter de nouvelles règles.</li>
+                                <li>Recherchez "creedengo" et installez les règles pour JavaScript.</li>
+                                <li>Redemarrez le server comme recommandé.</li>
+                            </ol>
+                        </li>
+
+                        <li class="step">
+                            <h3>Étape 4 : Ajouter les règles au profil</h3>
+                            <ol>
+                                <li>Retournez dans Quality Profiles et sélectionnez "Eco_conception".</li>
+                                <li>En bas de la page selectionnez "Activate More".</li>
+                                <li>Recherchez "creedengo" et ajouter les avec l'option "Bulk Change".</li>
+                                <li>Sauvegardez le profil.</li>
                             </ol>
                         </li>
                         <li class="step step-btm">
-                            <h3>Étape 4 : Installation de SonarScanner</h3>
+                            <h3>Étape 5 : Installation de SonarScanner</h3>
                             <p><strong>Ubuntu :</strong></p>
-                            <pre><code class="bash">sudo apt-get update
-                            sudo apt-get install sonar-scanner</code></pre>
+                            <pre>
+                                <code class="bash">sudo apt-get install sonar-scanner</code>
+                            </pre>
                             <p><strong>macOS :</strong> Installez avec Homebrew :</p>
                             <pre><code class="bash">brew install sonar-scanner</code></pre>
                             <p><strong>Windows :</strong></p>
