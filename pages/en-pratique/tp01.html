@@ -195,27 +195,34 @@ volumes:
                 </div>
             </section>
             <section class="collapsible">
-                <h2>Etude de cas : Site vitrine du bureau des etudiants de l'esiroi <span class="toggle-icon">+</span>
+                <h2>Etude de cas : Site "anything-llm" <span class="toggle-icon">+</span>
                 </h2>
                 <div class="content">
-                    <p>Pour cette étude de cas, vous allez analyser un projet réel représentant le site vitrine du
-                        bureau des étudiants de l'ESIROI. Ce site contient plusieurs pages simples en HTML, CSS, et
-                        JavaScript. Votre objectif est de l'analyser avec SonarQube et le plugin Eco Code pour
-                        identifier des pistes d'amélioration en termes de performance et d'éco-conception.</p>
+                    <p>Pour cette étude de cas, vous allez analyser un projet réel portant le nom <a href="https://github.com/Mintplex-Labs/anything-llm">anything-llm</a>. <br>
+                        C'est un projet github très populaire et open-source, nous allons alors utiliser ce projet comme exemple.
+                    </p>
                     <ol>
                         <li class="step">
                             <h4>Étape 1: Clonage du dépôt GitHub</h4>
                             <p>Clonez le dépôt contenant le site vitrine :</p>
-                            <pre><code class="bash">git clone https://github.com/username/bde-esiroi.git</code></pre>
+                            <pre><code class="bash">git clone https://github.com/Mintplex-Labs/anything-llm.git</code></pre>
 
                             <p>Déplacez-vous dans le répertoire du projet :</p>
-                            <pre><code class="bash">cd bde-esiroi</code></pre>
+                            <pre><code class="bash">cd anything-llm</code></pre>
                         </li>
                         <li class="step">
                             <h4>Étape 2: Configuration du projet dans SonarQube</h4>
                             <p>Créez un fichier <code class="inline-code">sonar-project.properties</code> dans le
                                 répertoire racine du projet avec le contenu suivant :</p>
-                            <pre><code class="yaml">sonar.projectKey=bde_esiroi <br>sonar.sources=. <br>sonar.host.url=http://localhost:9000 <br>sonar.login=your_sonarqube_token</code></pre>
+                            <pre>
+<code class="yaml">sonar.projectKey=review
+sonar.sources=.
+sonar.exclusions=node_modules/**
+sonar.host.url=http://localhost:9000
+sonar.token=votre_token
+</code>
+                            </pre>
+                            Vous pouvez générer un token Administration > Security et cliquer sur les trois points a droite de Administator. Vous pouvez maintenant générer un token.
                         </li>
                         <li class="step">
                             <h4>Étape 3: Analyse du projet avec SonarScanner</h4>
@@ -226,7 +233,7 @@ volumes:
                             <h4>Étape 4: Interprétation des résultats</h4>
                             <p>Une fois l'analyse terminée, consultez les résultats sur l'interface SonarQube.
                                 Identifiez les points faibles en termes de performance et d'éco-conception.</p>
-                            <p>Recherchez les recommandations faites par Eco Code pour améliorer l'efficacité du code et
+                            <p>Recherchez les recommandations faites par Creendengo pour améliorer l'efficacité du code et
                                 réduire son empreinte écologique.</p>
 
                         </li>
