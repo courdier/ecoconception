@@ -879,3 +879,36 @@ pre code {
         justify-content: center;
     }
 }
+
+
+/* Titre centré + espacement léger */
+.main > h1 {
+  text-align: center;
+  letter-spacing: .08em;
+  margin-top: .5rem;
+  margin-bottom: 1rem;
+}
+
+/* Intro mise en valeur (carte douce) */
+.intro-card {
+  max-width: var(--max-content-width);
+  margin: 0 auto 2.5rem;
+  border: 1px solid rgba(47, 223, 173, .35);
+  border-radius: 18px;
+  background:
+    radial-gradient(180px 80px at 10% 0%, rgba(47,223,173,.07), transparent),
+    linear-gradient(180deg, rgba(47,223,173,.05), rgba(47,223,173,.02));
+  padding: 1.15rem 1.25rem;
+}
+.intro-card .intro-content{
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.intro-card .intro-icon{
+  font-size: 1.3rem;
+  color: var(--highlight-color);
+  opacity: .9;
+}
