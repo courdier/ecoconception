@@ -17,10 +17,16 @@
     <link rel="stylesheet" href="../../assets/styles/styles.css">
     <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="../../assets/scripts/hamburger.js"></script>
 </head>
 <body>
     <header>
-        <nav>
+                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
                 <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
@@ -56,7 +62,7 @@
             <section class="impact-details">
                 <h2>Répartition des consommations par type de service <sup><a href="#source4">[4]</a></sup></h2> 
                     <p>La vidéo en ligne représente <strong>60 %</strong> du flux mondial de données et est responsable de <strong>306 millions de tonnes de CO2 en 2018</strong>, soit 20 % des émissions totales de gaz à effet de serre dues au numérique. Ce pourcentage inclut divers types de contenus : <strong>la VoD (34 %)</strong>, les vidéos pornographiques (27 %), les "Tubes" (21 %), et les autres vidéos en ligne (18 %). Cette domination de la vidéo dans le trafic global de données est une source majeure de la consommation d'énergie et des émissions de GES.</p>
-                <div class="chart-container" style="display: flex; justify-content: center; align-items: center;">
+                <div class="chart-container" style="display: flex; justify-content: center; max-width: 100%; position: relative; height: 400px;">
                     <canvas id="serviceChart" width="400" height="400"></canvas>
                 </div>
             </section>

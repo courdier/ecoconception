@@ -17,10 +17,16 @@
     <link rel="stylesheet" href="../../assets/styles/styles.css">
     <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="../../assets/scripts/hamburger.js"></script>
 </head>
 <body>
     <header>
-        <nav>
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
                 <li class="mg-0"><a href="../en-pratique.html">Ressources</a></li>
@@ -57,8 +63,8 @@
                 <h2>Comparaison de l'empreinte carbone <sup><a href="#source3">[3]</a></sup></h2>
                 <p>Une requête sur ChatGPT génère 1.54 g de CO2, ce qui est significativement moins que d'autres actions individuelles telles que la consommation de viande de boeuf ou un trajet en voiture thermique. <br> L'intelligence artificielle, bien qu'exigeant des ressources importantes, reste une alternative moins polluante en comparaison à d'autres activités humaines.</p>
 
-                <div class="chart-container" style="display: flex; justify-content: center;">
-                    <canvas id="co2Chart" width="600" height="400"></canvas>
+                <div class="chart-container" style="display: flex; justify-content: center; max-width: 100%; position: relative; height: 400px;">
+                    <canvas id="co2Chart"></canvas>
                 </div>
             </section>   
             <section class="additional-impact">
