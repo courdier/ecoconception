@@ -767,6 +767,38 @@ pre code {
     line-height: 1.4em;
 }
 
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 20px;
+    z-index: 1001;
+    padding: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--highlight-color);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
 /* Responsive Design */
 
 /* Tablettes (Portrait et Paysage) */
@@ -806,6 +838,35 @@ pre code {
 
 /* Petites Tablettes et Smartphones (Paysage) */
 @media screen and (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: var(--background-color);
+        border-top: 1px solid var(--highlight-color);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    nav.active ul {
+        max-height: 300px;
+    }
+
+    nav a {
+        font-size: 1rem;
+        padding: 15px 20px;
+        display: block;
+        border-bottom: 1px solid rgba(47, 223, 173, 0.1);
+    }
+
     .main {
         max-width: 98%;
         padding: 10px;
@@ -848,7 +909,7 @@ pre code {
     }
 
     li {
-        margin-left: 3px;
+        margin-left: 0;
     }
 
     .additional-impact-content {
@@ -912,4 +973,37 @@ pre code {
     .additional-impact-content {
         justify-content: center;
     }
+}
+
+
+/* Titre centré + espacement léger */
+.main > h1 {
+  text-align: center;
+  letter-spacing: .08em;
+  margin-top: .5rem;
+  margin-bottom: 1rem;
+}
+
+/* Intro mise en valeur (carte douce) */
+.intro-card {
+  max-width: var(--max-content-width);
+  margin: 0 auto 2.5rem;
+  border: 1px solid rgba(47, 223, 173, .35);
+  border-radius: 18px;
+  background:
+    radial-gradient(180px 80px at 10% 0%, rgba(47,223,173,.07), transparent),
+    linear-gradient(180deg, rgba(47,223,173,.05), rgba(47,223,173,.02));
+  padding: 1.15rem 1.25rem;
+}
+.intro-card .intro-content{
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.intro-card .intro-icon{
+  font-size: 1.3rem;
+  color: var(--highlight-color);
+  opacity: .9;
 }

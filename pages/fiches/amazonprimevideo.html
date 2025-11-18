@@ -17,10 +17,16 @@
     <link rel="stylesheet" href="../../assets/styles/styles.css">
     <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="../../assets/scripts/hamburger.js"></script>
 </head>
 <body>
     <header>
-        <nav>
+                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
                 <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
@@ -38,7 +44,7 @@
             <section class="stats-icons">
                 <div class="stat-item">
                     <i class="fas fa-users"></i>
-                    <h2>230+ Millions</h2>
+                    <h2>200 Millions</h2>
                     <p>Nombre d'abonnés à Amazon Prime Video en 2023 <sup><a href="#source1">[1]</a></sup></p>
                 </div>
                 <div class="stat-item">
@@ -48,28 +54,28 @@
                 </div>
                 <div class="stat-item">
                     <i class="fas fa-video"></i>
-                    <h2>31.5g CO2</h2>
-                    <p>Émission de CO2 par heure de streaming <sup><a href="#source3">[3]</a></sup></p>
+                    <h2>32.5g CO₂/h par utilisateur</h2>
+                    <p>Émission de CO₂ par heure de streaming <sup><a href="#source3">[3]</a></sup></p>
                 </div>
             </section>
             <section class="impact-details">
-                <h2>Comparatif des émissions de CO2 par quailité dus streaming <sup><a href="#source4">[4]</a></sup></h2>
-                <p>La qualité de la vidéo choisie pour le streaming a un impact direct sur la consommation d'énergie et les émissions de CO2. Plus la qualité est élevée, plus la bande passante et la puissance des centres de données sont sollicitées, augmentant ainsi l'empreinte carbone.</p>
+                <h2>Comparatif des émissions de CO₂ par qualité du streaming <sup><a href="#source4">[4]</a></sup></h2>
+                <p>La qualité de la vidéo choisie pour le streaming a un impact direct sur la consommation d'énergie et les émissions de CO₂. Plus la qualité est élevée, plus la bande passante et la puissance des centres de données sont sollicitées, augmentant ainsi l'empreinte carbone.</p>
                 <div class="comparison-box">
                     <div class="comparison-item">
-                        <p>Basse définition - 10,2 g CO2/h </p>
+                        <p>Basse définition - 10,2 g CO₂/h </p>
                         <div class="progress-bar">
                             <div class="progress-bar-inner progress-bar-basse-def" style="width: 10%;">10,2 g</div>
                         </div>
                     </div>
                     <div class="comparison-item">
-                        <p>Haute définition - 31,7 g CO2/h </p>
+                        <p>Haute définition - 31,7 g CO₂/h </p>
                         <div class="progress-bar">
                             <div class="progress-bar-inner progress-bar-haute-def" style="width: 30%;">31,7 g</div>
                         </div>
                     </div>
                     <div class="comparison-item">
-                        <p>4K définition - 69,2 g CO2/h </p>
+                        <p>4K définition - 69,2 g CO₂/h </p>
                         <div class="progress-bar">
                             <div class="progress-bar-inner progress-bar-4k" style="width: 70%;">69,2 g</div>
                         </div>
@@ -81,11 +87,11 @@
                 <p>Le secteur de l’audiovisuel, en particulier le streaming vidéo, représente aujourd’hui une part significative de la consommation énergétique mondiale, alimentée par des milliards d’heures de contenu diffusées chaque jour.</p>
                 <section class="additional-impact-content">
                     <div class="impact-card impact-card-1">
-                        <p class="impact-value">5,6 millions de tonnes de CO2</p>
+                        <p class="impact-value">5,6 millions de tonnes de CO₂</p>
                         <p class="impact-label">L'audiovisuel en France</p>
                     </div>
                     <div class="impact-card impact-card-2">
-                        <p class="impact-value">33% empreinte carbone globale</p>
+                        <p class="impact-value">33% de l'empreinte carbone globale</p>
                         <p class="impact-label"> Du numérique en France</p>
                     </div>
                     <div class="impact-card impact-card-3">
@@ -112,7 +118,7 @@
         <section class="bibliography">
             <h2>Sources</h2>
             <ul class="bibliography-list">
-                <li id="source1">[1] "Amazon Prime Video atteint les 230 millions d'abonnés," <em>TechCrunch</em>, Disponible en ligne : <a href="https://fr.statista.com/statistiques/1328928/nombre-amazon-prime-monde/" target="_blank">https://fr.statista.com/statistiques/1328928/nombre-amazon-prime-monde/</a></li>
+                <li id="source1">[1] "Amazon Prime - statistics & facts" <em>Daniela Coppola</em>, Disponible en ligne : <a href="https://www.statista.com/topics/4076/amazon-prime/#topicOverview" target="_blank">https://www.statista.com/topics/4076/amazon-prime/#topicOverview</a></li>
                 <li id="source2">[2] "Amazon Prime Video est disponible dans plus de 200 pays," <em>Amazon Help Center</em>, Disponible en ligne : <a href="https://www.aboutamazon.eu/news/press-lounge/amazon-prime-video-now-available-in-more-than-200-countries-and-territories-around-the-world" target="_blank">https://www.aboutamazon.eu/news/press-lounge/amazon-prime-video-now-available-in-more-than-200-countries-and-territories-around-the-world</a></li>
                 <li id="source3">[3] "Le coût écologique du streaming vidéo," <em>Impactco2</em>, Disponible en ligne : <a href="https://impactco2.fr/outils/usagenumerique/streamingvideo" target="_blank">https://impactco2.fr/outils/usagenumerique/streamingvideo</a></li>
                 <li id="source4">[4] "L'impact environnemental du streaming vidéo en France," <em>Économie Matin</em>, Disponible en ligne :  <a href="https://www.economiematin.fr/internet-streaming-consommation-energie-france" target="_blank">https://www.economiematin.fr/internet-streaming-consommation-energie-france</a></li>

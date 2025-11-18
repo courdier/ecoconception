@@ -17,10 +17,16 @@
     <link rel="stylesheet" href="../../assets/styles/styles.css">
     <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="../../assets/scripts/hamburger.js"></script>
 </head>
 <body>
     <header>
-        <nav>
+                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
                 <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
@@ -39,8 +45,8 @@
             <section class="stats-icons">
                 <div class="stat-item">
                     <i class="fas fa-users"></i>
-                    <h2>200+ Millions</h2>
-                    <p>Nombre d'abonnés à Netflix en 2022 <sup><a href="#source1">[1]</a></sup></p>
+                    <h2>300+ Millions</h2>
+                    <p>Nombre d'abonnés à Netflix en décembre 2024<sup><a href="#source1">[1]</a></sup></p>
                 </div>
                 <div class="stat-item">
                     <i class="fas fa-globe"></i>
@@ -56,7 +62,7 @@
             <section class="impact-details">
                 <h2>Répartition des consommations par type de service <sup><a href="#source4">[4]</a></sup></h2> 
                     <p>La vidéo en ligne représente <strong>60 %</strong> du flux mondial de données et est responsable de <strong>306 millions de tonnes de CO2 en 2018</strong>, soit 20 % des émissions totales de gaz à effet de serre dues au numérique. Ce pourcentage inclut divers types de contenus : <strong>la VoD (34 %)</strong>, les vidéos pornographiques (27 %), les "Tubes" (21 %), et les autres vidéos en ligne (18 %). Cette domination de la vidéo dans le trafic global de données est une source majeure de la consommation d'énergie et des émissions de GES.</p>
-                <div class="chart-container" style="display: flex; justify-content: center; align-items: center;">
+                <div class="chart-container" style="display: flex; justify-content: center; max-width: 100%; position: relative; height: 400px;">
                     <canvas id="serviceChart" width="400" height="400"></canvas>
                 </div>
             </section>
@@ -91,6 +97,13 @@
                     <div class="tip-item">
                         <p>Utilisez le Wi-Fi plutôt que les données mobiles pour réduire la consommation énergétique.</p>
                     </div>
+                    <div class="tip-item">
+                        <p>Réduire la luminosité des appareils pendant le visionnage et privilégier les modes d'affichage économique.</p>
+                    </div>
+                    <div class="tip-item">
+                        <p>Privilégiez les appareils à faible consommation pour le visionnage (ordinateur portable, tablette)
+     plutôt que les téléviseurs 4K ou consoles de salon, beaucoup plus énergivores.</p>
+                    </div>
                 </section>
 
             </section>
@@ -98,10 +111,15 @@
         <section class="bibliography">
             <h2>Sources</h2>
             <ul class="bibliography-list">
-                <li id="source1">[1] "Netflix compte près de 270 millions d'abonnés dans le monde," <em>CB News</em>, Disponible en ligne : <a href="https://www.cbnews.fr/medias/image-netflix-compte-pres-270-millions-abonnes-monde-84005#:~:text=DANS%20LE%20MONDE-,Netflix%20compte%20pr%C3%A8s%20de%20270%20millions%20d'abonn%C3%A9s%20dans%20le,croissance%20pour%20rester%20au%20sommet" target="_blank">https://www.cbnews.fr/medias/image-netflix-compte-pres-270-millions-abonnes-monde-84005</a></li>
+                <li id="source1">[1] "Un 2e trimestre positif pour Netflix," <em>CB News</em>, Disponible en ligne : <a href="https://www.cbnews.fr/medias/image-2e-trimestre-positif-netflix-image-94500" target="_blank">https://www.cbnews.fr/medias/image-2e-trimestre-positif-netflix-image-94500</a></li>
                 <li id="source2">[2] "Netflix est disponible en streaming dans plus de 190 pays," <em>Netflix Help Center</em>, Disponible en ligne : <a href="https://help.netflix.com/fr/node/14164#:~:text=Netflix%20est%20disponible%20en%20streaming%20dans%20plus%20de%20190%20pays" target="_blank">https://help.netflix.com/fr/node/14164</a></li>
                 <li id="source3">[3] "Le vrai coût écologique du streaming vidéo," <em>Les Numériques</em>, Disponible en ligne : <a href="https://www.lesnumeriques.com/vie-du-net/le-vrai-cout-ecologique-du-streaming-video-a197241.html" target="_blank">https://www.lesnumeriques.com/vie-du-net/le-vrai-cout-ecologique-du-streaming-video-a197241.html</a></li>
                 <li id="source4">[4] "Netflix : l'impact carbone de votre addiction," <em>La Conscience des Étudiants</em>, 10 mai 2020. Disponible en ligne : <a href="https://laconsciencedesetudiants.fr/2020/05/10/netflix-limpact-carbone-de-votre-addiction/" target="_blank">https://laconsciencedesetudiants.fr/2020/05/10/netflix-limpact-carbone-de-votre-addiction/</a></li>
+                <li id="source5">[5] "The Unsustainable Use of Online Video - Executive Summary," <em>The Shift Project</em>, avril 2025. Disponible en ligne : 
+<a href="https://theshiftproject.org/app/uploads/2025/04/Excutive-Summary_EN_The-unsustainable-use-of-online-video.pdf" target="_blank">
+https://theshiftproject.org/app/uploads/2025/04/Excutive-Summary_EN_The-unsustainable-use-of-online-video.pdf
+</a></li>
+
             </ul>          
         </section>
         <div class="button-container">
@@ -140,6 +158,7 @@
                 plugins: {
                     legend: {
                         position: 'right', 
+                        labels: {color:'#e8e8e8'}
                     },
                     tooltip: {
                         callbacks: {
