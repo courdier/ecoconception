@@ -20,15 +20,12 @@
     <script defer src="../assets/scripts/hamburger.js"></script>
 </head>
 
-
 <body>
     <header>
-                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu" aria-controls="navbar" aria-expanded="false">
+            <span></span><span></span><span></span>
         </button>
-<nav id="navbar">
+        <nav id="navbar" aria-label="Navigation principale">
             <ul>
                 <li class="mg-0"><a href="../index.html">Home</a></li>
                 <li class="mg-0"><a href="./ressources.html" class="active">Ressources</a></li>
@@ -38,14 +35,14 @@
             </ul>
         </nav>
     </header>
-    <div class="main">
+    <main class="main">
         <h1>Ressources utiles</h1>
         <section>
             <section class="collapsible">
                 <h2>Impact des réseaux sociaux et services numériques <span class="toggle-icon">+</span></h2>
                 <div class="content">
 
-<!-- 
+                    <!-- 
 Format des références pour avoir les indices automatiques:
 La référence doit être un li à l'intérieur d'un ul de class bibliography-list. Suivez la forme des références présentes ci-dessous
 Pour faire en sorte qu'une référence ne soit pas indicée avec les autres (donc ignoréé de l'ajout automatique):
@@ -94,42 +91,52 @@ Ajouter la classe "ignoreAutoIndex" au li: <li class="ignoreAutoIndex">ADEME, "B
 
                             [Accessed: Aug. 12, 2024].
                         </li>
-                        <li class="step-btm">Altanshagai Batmunkh, "Empreinte environnementale du numérique mondial," <em>GreenIT.fr</em>,
+                        <li class="step-btm">Altanshagai Batmunkh, "Empreinte environnementale du numérique mondial,"
+                            <em>GreenIT.fr</em>,
                             [Online]. Available:
                             <a href="https://www.researchgate.net/publication/358794471_Carbon_Footprint_of_The_Most_Popular_Social_Media_Platforms"
                                 target="_blank">
                                 https://www.researchgate.net/publication/358794471_Carbon_Footprint_of_The_Most_Popular_Social_Media_Platforms
                             </a>. [Accessed: Nov. 12, 2025].
                         </li>
-                        <li class="step-btm">Guillaume Vendé, Frédéric Bordage et Boris Siegenthaler, "Comment concilier la tech et l'écologie," <em>youtube.com</em>,
+                        <li class="step-btm">Guillaume Vendé, Frédéric Bordage et Boris Siegenthaler, "Comment concilier
+                            la tech et l'écologie," <em>youtube.com</em>,
                             [Online]. Available:
-                            <a href="https://youtu.be/wMsxd2qajxI?si=tZSErwKki-puq1dx"
-                                target="_blank">
+                            <a href="https://youtu.be/wMsxd2qajxI?si=tZSErwKki-puq1dx" target="_blank">
                                 https://youtu.be/wMsxd2qajxI?si=tZSErwKki-puq1dx
                             </a>. [Accessed: Nov. 12, 2025].
                         </li>
-                        <li class="step-btm">Frédéric Bordage, "Quels sont les impacts environnementaux et sanitaires de l'IA ?," <em>GreenIT.fr</em>,
+                        <li class="step-btm">Frédéric Bordage, "Quels sont les impacts environnementaux et sanitaires de
+                            l'IA ?," <em>GreenIT.fr</em>,
                             [Online]. Available:
                             <a href="https://www.greenit.fr/2025/10/21/quels-sont-les-impacts-environnementaux-et-sanitaires-de-lia/"
                                 target="_blank">
                                 https://www.greenit.fr/2025/10/21/quels-sont-les-impacts-environnementaux-et-sanitaires-de-lia/
                             </a>. [Accessed: Nov. 12, 2025].
                         </li>
-                        <li class="step-btm">RSE Magazine, "Écouter Spotify c’est relâcher l’équivalent de 18 Tour Eiffel de CO2 par an," <em>www.rse-magazine.com</em>,
+                        <li class="step-btm">RSE Magazine, "Écouter Spotify c’est relâcher l’équivalent de 18 Tour
+                            Eiffel de CO2 par an," <em>www.rse-magazine.com</em>,
                             [Online]. Available:
                             <a href="https://www.rse-magazine.com/ecouter-spotify-cest-relacher-lequivalent-de-18-tour-eiffel-de-co2-par-an/"
                                 target="_blank">
                                 https://www.rse-magazine.com/ecouter-spotify-cest-relacher-lequivalent-de-18-tour-eiffel-de-co2-par-an/
                             </a>. [Accessed: Nov. 12, 2025].
                         </li>
-                        <li class="step-btm">ADEME, "Écouter Spotify c’est relâcher l’équivalent de 18 Tour Eiffel de CO2 par an," <em>agirpourlatransition.ademe.fr</em>,
+                        <li class="step-btm">ADEME, "Écouter Spotify c’est relâcher l’équivalent de 18 Tour Eiffel de
+                            CO2 par an," <em>agirpourlatransition.ademe.fr</em>,
                             [Online]. Available:
                             <a href="https://agirpourlatransition.ademe.fr/particuliers/mieux-consommer/numerique/impacts-lecture-musique-films-jeux-ligne"
                                 target="_blank">
                                 https://agirpourlatransition.ademe.fr/particuliers/mieux-consommer/numerique/impacts-lecture-musique-films-jeux-ligne
                             </a>. [Accessed: Nov. 12, 2025].
                         </li>
-                   </ul>
+                        <li class="step-btm"> "Prime Video ad tier breaks astonishing new subscriber record"
+                            <em>TechRadar</em>, 2025
+                            <a href="https://www.techradar.com/streaming/amazon-prime-video/prime-video-ad-tier-breaks-astonishing-new-subscriber-record-but-im-close-to-cancelling-the-amazon-service"
+                                target="_blank">https://www.techradar.com/streaming/amazon-prime-video/prime-video-ad-tier-breaks-astonishing-new-subscriber-record-but-im-close-to-cancelling-the-amazon-service
+                            </a>. [Accessed: Nov. 12, 2025].
+                        </li>
+                    </ul>
                 </div>
             </section>
             <section class="collapsible">
@@ -167,7 +174,8 @@ Ajouter la classe "ignoreAutoIndex" au li: <li class="ignoreAutoIndex">ADEME, "B
                                 href="https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/"
                                 target="_blank">https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/
                             </a>. [Accessed: Nov. 10, 2025]</li>
-                        <li class="step-btm">F. Bordage, "Carbon Footprint of The Most Popular Social Media Platforms," <em>researchgate.net</em>,
+                        <li class="step-btm">F. Bordage, "Carbon Footprint of The Most Popular Social Media Platforms,"
+                            <em>researchgate.net</em>,
                             [Online]. Available:
                             <a href="https://www.greenit.fr/wp-content/uploads/2019/10/2019-10-GREENIT-etude_EENM-rapport-accessible.VF_.pdf"
                                 target="_blank">
@@ -218,9 +226,10 @@ Ajouter la classe "ignoreAutoIndex" au li: <li class="ignoreAutoIndex">ADEME, "B
                 <h2>Communautés et ressources en ligne <span class="toggle-icon">+</span></h2>
                 <div class="content">
                     <ul class="bibliography-list">
-                        <li>"Sobriété numérique et éco-conception Web," LunaWeb, [Online]. Available: <a
-                                href="https://ecoconception.lunaweb.fr/"
-                                target="_blank"></a>https://ecoconception.lunaweb.fr/</a>. [Accessed: Nov. 10, 2025].
+                        <!-- Fixed malformed anchor -->
+                        <li>"Sobriété numérique et éco-conception Web," LunaWeb, [Online]. Available:
+                            <a href="https://ecoconception.lunaweb.fr/" target="_blank">https://ecoconception.lunaweb.fr/</a>.
+                            [Accessed: Nov. 10, 2025].
                         </li>
                         <li>"Best Practices," <em>cnumr</em>, [Online]. Available: <a
                                 href="https://github.com/cnumr/best-practices"
@@ -250,15 +259,15 @@ Ajouter la classe "ignoreAutoIndex" au li: <li class="ignoreAutoIndex">ADEME, "B
                             [Accessed: Aug. 12, 2024].</li>
                         <li>"Sustainable IT Tools," <em>ISIT Europe</em>, [Online]. Available: <a
                                 href="https://sustainableit-tools.isit-europe.org/"
-                                target="_blank">https://sustainableit-tools.isit-europe.org/</a>. [Accessed: Aug. 12,
-                            2024].</li>
+                                target="_blank">https://sustainableit-tools.isit-europe.org/</a>.
+                            [Accessed: Aug. 12, 2024].</li>
                         <li>"Académie NR," <em>Académie NR</em>, [Online]. Available: <a
                                 href="https://www.academie-nr.org/" target="_blank">https://www.academie-nr.org/</a>.
                             [Accessed: Aug. 12, 2024].</li>
                         <li class="step-btm">"Sustainable IT Tools," <em>ISIT Europe</em>, [Online]. Available: <a
                                 href="https://sustainableit-tools.isit-europe.org/"
-                                target="_blank">https://sustainableit-tools.isit-europe.org/</a>. [Accessed: Aug. 12,
-                            2024].</li>
+                                target="_blank">https://sustainableit-tools.isit-europe.org/</a>.
+                            [Accessed: Aug. 12, 2024].</li>
                     </ul>
                 </div>
             </section>
@@ -268,13 +277,14 @@ Ajouter la classe "ignoreAutoIndex" au li: <li class="ignoreAutoIndex">ADEME, "B
             <a href="./quelques-chiffres.html" class="button-secondary">Quelques Chiffres</a>
             <a href="./en-pratique.html" class="button-secondary">En Pratique</a>
         </div>
-    </div>
+    </main>
     <footer>
         <p class="mg-0">&copy; 2024 - ROCHAT Lise & COURDIER Remy - <a href="./a-propos.html">A propos</a> </p>
     </footer>
-    
-    <script src="../assets/scripts/bibliographyListManager.js"></script>
+
+    <!-- Auto-secure external links -->
     <script>
+        document.querySelectorAll('a[target="_blank"]').forEach(a => { if (!a.rel) a.rel = 'noopener noreferrer'; });
         document.querySelectorAll('.collapsible h2').forEach(h2 => {
             h2.addEventListener('click', () => {
                 const content = h2.nextElementSibling;
@@ -283,10 +293,7 @@ Ajouter la classe "ignoreAutoIndex" au li: <li class="ignoreAutoIndex">ADEME, "B
                 icon.textContent = icon.textContent === '+' ? '−' : '+';
             });
         });
-        // Initialize all sections as collapsed
-        document.querySelectorAll('.collapsible .content').forEach(content => {
-            content.style.display = 'none';
-        });
+        document.querySelectorAll('.collapsible .content').forEach(content => { content.style.display = 'none'; });
     </script>
 </body>
 

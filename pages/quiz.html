@@ -21,22 +21,20 @@
 </head>
 <body>
     <header>
-                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu" aria-controls="navbar" aria-expanded="false">
+            <span></span><span></span><span></span>
         </button>
-<nav id="navbar">
+        <nav id="navbar" aria-label="Navigation principale">
             <ul>
                 <li class="mg-0"><a href="../index.html">Home</a></li>
                 <li class="mg-0"><a href="./ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="./outils.html">Outils</a></li>
-                <li class="mg-0"><a href="./Quiz.html">Quiz</a></li>
+                <li class="mg-0"><a href="./quiz.html" class="active">Quiz</a></li>
                 <li class="mg-0"><a href="./terminologie.html">Terminologie</a></li>
             </ul>
         </nav>
     </header>
-    <div class="main">
+    <main class="main">
         <h1>Êtes-vous un(e) surfeur(se) responsable ou un(e) accro au pixel ?</h1>
         <section id="quiz">
             <div id="quiz-container">
@@ -55,7 +53,7 @@
                 <p id="source-text"></p>
             </div>
         </section>
-    </div>
+    </main>
     <footer>
         <p class="mg-0">&copy; 2024 - ROCHAT Lise & COURDIER Remy - <a href="./a-propos.html">A propos</a> </p>
     </footer>

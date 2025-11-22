@@ -19,14 +19,13 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script defer src="../../assets/scripts/hamburger.js"></script>
 </head>
+
 <body>
     <header>
-                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu" aria-controls="navbar" aria-expanded="false">
+            <span></span><span></span><span></span>
         </button>
-<nav id="navbar">
+        <nav id="navbar" aria-label="Navigation principale">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
                 <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
@@ -36,11 +35,13 @@
             </ul>
         </nav>
     </header>
-    <div class="main">
+    <main class="main">
         <h1>Impact Environnemental de YouTube</h1>
         <section class="services-container">
             <section class="intro-text">
-                <p>YouTube est la plus grande plateforme de partage de vidéos au monde, mais son impact environnemental est considérable. Chaque heure de streaming vidéo génère une empreinte carbone significative due à la consommation d'énergie des serveurs, des centres de données, et des appareils de diffusion.</p>
+                <p>YouTube est la plus grande plateforme de partage de vidéos au monde, mais son impact environnemental est
+                    considérable. Chaque heure de streaming vidéo génère une empreinte carbone significative due à la
+                    consommation d'énergie des serveurs, des centres de données, et des appareils de diffusion.</p>
             </section>
             <section class="stats-icons">
                 <div class="stat-item">
@@ -61,7 +62,9 @@
             </section>
             <section class="impact-details">
                 <h2>Comparatif des émissions de CO2 par Support <sup><a href="#source4">[4]</a></sup></h2>
-                <p>Les émissions de CO2 générées par YouTube varient considérablement en fonction du support utilisé pour le visionnage. Regarder une vidéo sur un smartphone consomme moins d'énergie que de la regarder sur une Smart TV.</p>
+                <p>Les émissions de CO2 générées par YouTube varient considérablement en fonction du support utilisé pour le
+                    visionnage. Regarder une vidéo sur un smartphone consomme moins d'énergie que de la regarder sur une
+                    Smart TV.</p>
                 <div class="comparison-box">
                     <div class="comparison-item">
                         <p>Smartphone - 0,56 g CO2/h </p>
@@ -127,21 +130,45 @@
         <section class="bibliography">
             <h2>Sources</h2>
             <ul class="bibliography-list">
-                <li id="source1">[1] "Chiffres YouTube," Blog du Modérateur, Disponible en ligne : <a href="https://www.blogdumoderateur.com/chiffres-youtube/" target="_blank">https://www.blogdumoderateur.com/chiffres-youtube/</a></li>
-                <li id="source2">[2] "YouTube," Wikipedia, Disponible en ligne : <a href="https://fr.wikipedia.org/wiki/YouTube#:~:text=Au%206%20avril%202015%20%2C%20YouTube%20est%20disponible%20en%2076%20langues,80%20langues%20dans%20100%20pays." target="_blank">https://fr.wikipedia.org/wiki/YouTube</a></li>
-                <li id="source3">[3] "Le visionnage annuel des vidéos YouTube émet autant de CO2 qu'une ville de petite taille," Clubic, 2021. Disponible en ligne : <a href="https://www.clubic.com/television-tv/video-streaming/youtube/actualite-856610-visionnage-annuel-videos-youtube-emet-co2-ville-petite-taille.html" target="_blank">https://www.clubic.com/television-tv/video-streaming/youtube/</a></li>
-                <li id="source4">[4] "Impact environnemental de la Tech et du Numérique," WeAreGreen, Disponible en ligne : <a href="https://wearegreen.io/article/impact-environnemental-de-la-tech-et-du-numerique#:~:text=Consid%C3%A9rons%20les%20%C3%A9missions%20de%20gaz,%C3%A9met%2055%2C56%20g%20CO%E2%82%82e." target="_blank">https://wearegreen.io/article/impact-environnemental-de-la-tech-et-du-numerique</a></li>
-                <li id="source5">[5] "Réseaux sociaux 2021," Greenspector, Disponible en ligne : <a href="https://greenspector.com/fr/reseaux-sociaux-2021/" target="_blank">https://greenspector.com/fr/reseaux-sociaux-2021/</a></li>
-                <li id="source6">[6] "Streaming : nos conseils pour moins polluer," Internet Sans Crainte, Disponible en ligne : <a href="https://www.internetsanscrainte.fr/dossiers/parentalite-numerique/conseils/streaming-nos-conseils-pour-moins-polluer" target="_blank">https://www.internetsanscrainte.fr/dossiers/parentalite-numerique/conseils/streaming-nos-conseils-pour-moins-polluer</a></li>
-            </ul>            
+                <li id="source1">[1] "Chiffres YouTube," Blog du Modérateur, Disponible en ligne : <a
+                        href="https://www.blogdumoderateur.com/chiffres-youtube/" target="_blank">https://www.blogdumoderateur.com/chiffres-youtube/</a>
+                </li>
+                <li id="source2">[2] "YouTube," Wikipedia, Disponible en ligne : <a
+                        href="https://fr.wikipedia.org/wiki/YouTube#:~:text=Au%206%20avril%202015%20%2C%20YouTube%20est%20disponible%20en%2076%20langues,80%20langues%20dans%20100%20pays."
+                        target="_blank">https://fr.wikipedia.org/wiki/YouTube</a></li>
+                <li id="source3">[3] "Le visionnage annuel des vidéos YouTube émet autant de CO2 qu'une ville de petite
+                    taille," Clubic, 2021. Disponible en ligne : <a
+                        href="https://www.clubic.com/television-tv/video-streaming/youtube/actualite-856610-visionnage-annuel-videos-youtube-emet-co2-ville-petite-taille.html"
+                        target="_blank">https://www.clubic.com/television-tv/video-streaming/youtube/</a></li>
+                <li id="source4">[4] "Impact environnemental de la Tech et du Numérique," WeAreGreen, Disponible en ligne :
+                    <a
+                        href="https://wearegreen.io/article/impact-environnemental-de-la-tech-et-du-numerique#:~:text=Consid%C3%A9rons%20les%20%C3%A9missions%20de%20gaz,%C3%A9met%2055%2C56%20g%20CO%E2%82%82e."
+                        target="_blank">https://wearegreen.io/article/impact-environnemental-de-la-tech-et-du-numerique</a>
+                </li>
+                <li id="source5">[5] "Réseaux sociaux 2021," Greenspector, Disponible en ligne : <a
+                        href="https://greenspector.com/fr/reseaux-sociaux-2021/" target="_blank">https://greenspector.com/fr/reseaux-sociaux-2021/</a>
+                </li>
+                <li id="source6">[6] "Streaming : nos conseils pour moins polluer," Internet Sans Crainte, Disponible en
+                    ligne : <a
+                        href="https://www.internetsanscrainte.fr/dossiers/parentalite-numerique/conseils/streaming-nos-conseils-pour-moins-polluer"
+                        target="_blank">https://www.internetsanscrainte.fr/dossiers/parentalite-numerique/conseils/streaming-nos-conseils-pour-moins-polluer</a>
+                </li>
+            </ul>
         </section>
         <div class="button-container ">
-            <button class="button" onclick="window.print()" title="Imprimez uniquement si nécessaire pour l'enseignement ou lorsque le numérique n'est pas adapté.">Imprimer cette fiche</button>
-            <button class="button-secondary" onclick="window.open('../quelques-chiffres.html')">Découvrir les autres services</button>
+            <button class="button" onclick="window.print()"
+                title="Imprimez uniquement si nécessaire pour l'enseignement ou lorsque le numérique n'est pas adapté.">Imprimer
+                cette fiche</button>
+            <button class="button-secondary" onclick="window.open('../quelques-chiffres.html')">Découvrir les autres
+                services</button>
         </div>
-    </div>
+    </main>
     <footer>
         <p class="mg-0">&copy; 2024 ROCHAT Lise & COURDIER Remy - <a href="../a-propos.html">À propos</a></p>
     </footer>
+    <script>
+        document.querySelectorAll('a[target="_blank"]').forEach(a => { if (!a.rel) a.rel = 'noopener noreferrer'; });
+    </script>
 </body>
+
 </html>

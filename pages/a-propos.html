@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,23 +19,20 @@
 </head>
 <body>
     <header>
-                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu" aria-controls="navbar" aria-expanded="false">
+            <span></span><span></span><span></span>
         </button>
-<nav id="navbar">
+        <nav id="navbar" aria-label="Navigation principale">
             <ul>
                 <li class="mg-0"><a href="../index.html">Home</a></li>
                 <li class="mg-0"><a href="./ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="./outils.html">Outils</a></li>
                 <li class="mg-0"><a href="./quizV2.html">Quiz</a></li>
                 <li class="mg-0"><a href="./terminologie.html">Terminologie</a></li>
-
             </ul>
         </nav>
     </header>
-    <div class="main">
+    <main class="main">
         <h1>À Propos</h1>
         <section>
             <section id="project-overview">
@@ -55,27 +54,21 @@
             </section>
             <section id="contribution">
                 <h2>Contribuer et échanger</h2>
-                <p>
-                    Vous avez des idées à partager, des informations supplémentaires à apporter, ou souhaitez simplement discuter du projet ? Nous serions ravis d'échanger avec vous ! Votre retour d'expérience est précieux pour enrichir ce projet et améliorer notre compréhension collective de l'écoconception numérique.
-                </p>
-                <p>
-                    Pour nous contacter, vous pouvez nous retrouver sur LinkedIn :
-                </p>
+                <p>Pour nous contacter, vous pouvez nous retrouver sur LinkedIn :</p>
                 <ul>
-                    <li><a href="https://www.linkedin.com/in/liserochat/" target="_blank"><strong>Lise Rochat</strong></a></li>
-                    <li><a href="https://www.linkedin.com/in/remy-courdier-a309aa38/" target="_blank"><strong>Rémy Courdier</strong></a></li>
+                    <li><a href="https://www.linkedin.com/in/liserochat/" target="_blank" rel="noopener noreferrer"><strong>Lise Rochat</strong></a></li>
+                    <li><a href="https://www.linkedin.com/in/remy-courdier-a309aa38/" target="_blank" rel="noopener noreferrer"><strong>Rémy Courdier</strong></a></li>
                 </ul>
-            </ul>
-        </section>
+            </section>
         </section>
         <div class="button-container">
-            <a href="./quiz.html" class="button" >Quiz</a>
+            <a href="./quiz.html" class="button">Quiz</a>
             <a href="./quelques-chiffres.html" class="button-secondary">Quelques Chiffres</a>
             <a href="./en-pratique.html" class="button-secondary">En Pratique</a>
         </div>
-</div>
-<footer>
-    <p class="mg-0">&copy; 2024 - COURDIER Rémy & ROCHAT Lise - <a href="./a-propos.html">A propos</a> </p>
-</footer>
+    </main>
+    <footer>
+        <p class="mg-0">&copy; 2024 - COURDIER Rémy & ROCHAT Lise - <a href="./a-propos.html">A propos</a></p>
+    </footer>
 </body>
 </html>

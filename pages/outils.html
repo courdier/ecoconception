@@ -5,10 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Outils essentiels pour l'écoconception numérique, classés par usage avec recommandations.">
-    <meta name="keywords" content="écoconception, outils, développement durable, web, impact environnemental">
-    <meta name="author" content="Rochat Lise">
-    <title>Outils - Écoconception Numérique</title>
+        content="Outils pour l'écoconception numérique : mesure d'impact environnemental, performance web, qualité du code et sensibilisation.">
+    <title>Outils pour l'écoconception numérique</title>
 
     <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../assets/styles/styles.css">
@@ -20,10 +18,10 @@
 
 <body>
     <header>
-        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu" aria-controls="navbar" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
-        <nav id="navbar">
+        <nav id="navbar" aria-label="Navigation principale du site">
             <ul>
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="./ressources.html">Ressources</a></li>
@@ -34,8 +32,8 @@
         </nav>
     </header>
 
-    <div class="main">
-        <h1>Outils pour l'Écoconception Web</h1>
+    <main class="main">
+        <h1>Outils pour l'éco-conception Web</h1>
 
         <!-- Introduction -->
         <section class="intro-card">
@@ -44,7 +42,8 @@
                 <p>
                     Cette page regroupe des outils essentiels pour améliorer la performance, mesurer l’impact
                     environnemental et optimiser la qualité de vos services numériques. Les outils sont classés par
-                    catégories pour vous aider à choisir rapidement ceux qui correspondent à vos objectifs.
+                    catégories pour vous aider à choisir rapidement ceux qui correspondent à vos objectifs, tout en
+                    réduisant l’empreinte carbone de vos projets.
                 </p>
             </div>
         </section>
@@ -62,10 +61,10 @@
         </section>
 
         <!-- Catégorie : Impact Environnemental -->
-        <h2 class="category-title">🌱 Mesure de l'Impact Environnemental</h2>
+        <h2 class="category-title">🌱 Mesure de l'impact environnemental</h2>
         <section id="cards">
             <div class="card">
-                <a href="https://www.websitecarbon.com/" target="_blank">
+                <a href="https://www.websitecarbon.com/" target="_blank" rel="noopener noreferrer">
                     <h3>Website Carbon Calculator</h3>
                     <p>Estime l’empreinte carbone d’une page web et calcule la quantité CO₂ générée par visite. Idéal
                         pour débuter une analyse rapide.</p>
@@ -73,7 +72,7 @@
             </div>
 
             <div class="card">
-                <a href="https://ecoindex.fr/" target="_blank">
+                <a href="https://ecoindex.fr/" target="_blank" rel="noopener noreferrer">
                     <h3>EcoIndex</h3>
                     <p>Mesure la performance environnementale d’une page : poids, requêtes, DOM… Donne une note et des
                         pistes d’améliorations concrètes.</p>
@@ -81,7 +80,7 @@
             </div>
 
             <div class="card">
-                <a href="https://greenframe.io/" target="_blank">
+                <a href="https://greenframe.io/" target="_blank" rel="noopener noreferrer">
                     <h3>GreenFrame</h3>
                     <p>Mesure la consommation énergétique réelle côté serveur et client. Très utile pour les
                         applications web complexes.</p>
@@ -89,7 +88,7 @@
             </div>
 
             <div class="card">
-                <a href="https://www.thegreenwebfoundation.org/co2js" target="_blank">
+                <a href="https://www.thegreenwebfoundation.org/co2js" target="_blank" rel="noopener noreferrer">
                     <h3>CO2.js</h3>
                     <p>Librairie JavaScript open-source pour estimer les émissions liées au transfert de données de
                         votre application. Pratique pour intégrer l’impact carbone dans un workflow CI/CD.</p>
@@ -101,7 +100,7 @@
         <h2 class="category-title">⚡ Outils de Performance Web</h2>
         <section id="cards">
             <div class="card">
-                <a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank">
+                <a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank" rel="noopener noreferrer">
                     <h3>PageSpeed Insights</h3>
                     <p>Analyse les performances sur mobile et desktop avec des conseils très orientés UX et
                         optimisation énergétique indirecte.</p>
@@ -109,7 +108,7 @@
             </div>
 
             <div class="card">
-                <a href="https://gtmetrix.com/" target="_blank">
+                <a href="https://gtmetrix.com/" target="_blank" rel="noopener noreferrer">
                     <h3>GTmetrix</h3>
                     <p>Évalue la vitesse de chargement et fournit un rapport détaillé sur les optimisations
                         avancées à appliquer.</p>
@@ -117,7 +116,7 @@
             </div>
 
             <div class="card">
-                <a href="https://www.webpagetest.org/" target="_blank">
+                <a href="https://www.webpagetest.org/" target="_blank" rel="noopener noreferrer">
                     <h3>WebPageTest</h3>
                     <p>Permet de tester une page depuis différents pays et navigateurs pour une analyse fine et
                         professionnelle.</p>
@@ -126,7 +125,7 @@
 
             <div class="card">
                 <a href="https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=fr"
-                    target="_blank">
+                    target="_blank" rel="noopener noreferrer">
                     <h3>Lighthouse</h3>
                     <p>Outil open-source intégré à Chrome pour analyser performance, accessibilité et bonnes pratiques.
                         Recommandé pour un premier diagnostic.</p>
@@ -138,7 +137,7 @@
         <h2 class="category-title">🛠️ Analyse de Code & Qualité</h2>
         <section id="cards">
             <div class="card">
-                <a href="https://docs.sonarsource.com/sonarqube/9.9/try-out-sonarqube/" target="_blank">
+                <a href="https://docs.sonarsource.com/sonarqube/9.9/try-out-sonarqube/" target="_blank" rel="noopener noreferrer">
                     <h3>SonarQube</h3>
                     <p>Analyse statique du code pour identifier dettes techniques, duplications et problèmes
                         énergivores potentiels.</p>
@@ -148,9 +147,9 @@
 
         <!-- Catégorie : Sensibilisation -->
         <h2 class="category-title">🎓 Sensibilisation & Compréhension</h2>
-        <section id="cards">
+        <section id="cards" aria-label="Outils de sensibilisation aux impacts du numérique">
             <div class="card">
-                <a href="https://www.fresquedunumerique.org" target="_blank">
+                <a href="https://www.fresquedunumerique.org" target="_blank" rel="noopener noreferrer">
                     <h3>Fresque du Numérique</h3>
                     <p>Atelier ludique et collaboratif pour comprendre les impacts du numérique. Idéal pour former une
                         équipe ou sensibiliser un public.</p>
@@ -159,15 +158,15 @@
         </section>
 
         <div class="button-container">
-            <a href="./quiz.html" class="button">Quiz</a>
-            <a href="./quelques-chiffres.html" class="button-secondary">Quelques Chiffres</a>
-            <a href="./en-pratique.html" class="button-secondary">En Pratique</a>
+            <a href="./quiz.html" class="button">Quiz général</a>
+            <a href="./quelques-chiffres.html" class="button-secondary">Quelques chiffres clés</a>
+            <a href="./en-pratique.html" class="button-secondary">Mise en pratique</a>
         </div>
-    </div>
+    </main>
 
     <footer>
         <p>&copy; 2024 - ROCHAT Lise & COURDIER Remy -
-            <a href="./a-propos.html">A propos</a>
+            <a href="./a-propos.html">À propos</a>
         </p>
     </footer>
 </body>

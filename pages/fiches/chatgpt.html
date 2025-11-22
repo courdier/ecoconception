@@ -21,22 +21,22 @@
 </head>
 <body>
     <header>
-        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu" aria-controls="navbar" aria-expanded="false">
             <span></span>
             <span></span>
             <span></span>
         </button>
-<nav id="navbar">
+<nav id="navbar" aria-label="Navigation principale">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
-                <li class="mg-0"><a href="../en-pratique.html">Ressources</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
                 <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
 
             </ul>
         </nav>
     </header>
-    <div class="main">
+    <main class="main">
         <h1>Impact Environnemental de ChatGPT</h1>
         <section class="services-container">
             <section class="intro-text">
@@ -111,58 +111,58 @@
             <button class="button" onclick="window.print()" title="Imprimez uniquement si nécessaire pour l'enseignement ou lorsque le numérique n'est pas adapté.">Imprimer cette fiche</button>
             <button class="button-secondary" onclick="window.open('../quelques-chiffres.html')">Découvrir les autres services</button>
         </div>
-    </div>
+    </main>
     <footer>
         <p class="mg-0">&copy; 2024 ROCHAT Lise & COURDIER Remy - <a href="../a-propos.html">À propos</a></p>
     </footer>
     <script>
-        var ctx = document.getElementById('co2Chart').getContext('2d');
-        var co2Chart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['ChatGPT (1.54 g)', '1 km en voiture (150 g)', '100 g de boeuf (3 kg)'],
-                datasets: [{
-                    label: 'g CO2 par action',
-                    data: [1.54, 150, 3000],
-                    backgroundColor: [
-                        'rgba(54, 162, 235, 0.6)',
-                        'rgba(75, 192, 192, 0.6)',
-                        'rgba(255, 99, 132, 0.6)'
-                    ],
-                    borderColor: [
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(255, 99, 132, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 3500
-                    }
+        // Secure external links
+        document.querySelectorAll('a[target="_blank"]').forEach(a => { if (!a.rel) a.rel = 'noopener noreferrer'; });
+        // Protect chart tooltip text and ensure chart renders after DOM
+        document.addEventListener('DOMContentLoaded', function(){
+            var ctx = document.getElementById('co2Chart').getContext('2d');
+            var co2Chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['ChatGPT (1.54 g)', '1 km en voiture (150 g)', '100 g de boeuf (3 kg)'],
+                    datasets: [{
+                        label: 'g CO2 par action',
+                        data: [1.54, 150, 3000],
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(255, 99, 132, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 99, 132, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
                 },
-                plugins: {
-                    legend: {
-                        display: false
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 3500
+                        }
                     },
-                    tooltip: {
-                        callbacks: {
-                            label: function(tooltipItem) {
-                                return tooltipItem.label + ': ' + tooltipItem.raw + ' g CO2';
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw + ' g CO2';
+                                }
                             }
                         }
                     }
                 }
-            }
+            });
         });
     </script>
-    <footer>
-        <section class="footer-content">
-            <p>&copy; 2024 - Impact Environnemental de ChatGPT | étudiant en Master 2 informatique</p>
-        </section>
-    </footer>    
 </body>
 </html>

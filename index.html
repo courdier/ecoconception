@@ -19,15 +19,16 @@
         <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./assets/styles/styles.css">
         <link rel="stylesheet" href="assets/styles/chatbot.css">
-        <script defer src="./assets/scripts/scripts-tp.js"></script>
+        <!-- Fix broken path: scriptsTp.js -->
+        <script defer src="./assets/scripts/scriptsTp.js"></script>
         <script defer src="assets/scripts/chatbot.js"></script>
-         <script defer src="./assets/scripts/hamburger.js"></script>
+        <script defer src="./assets/scripts/hamburger.js"></script>
 </head>
 
 <body>
     <header>
-        <nav>
-            <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+        <nav aria-label="Navigation principale">
+            <button class="hamburger" id="hamburger-menu" aria-label="Menu" aria-controls="navbar" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -42,7 +43,7 @@
         </nav>
     </header>
 
-    <div class="main">
+    <main class="main">
         <h1>Sensibilisation à l'empreinte écologique des services numériques</h1>
         <section id="home">
             <p>L’objectif principal de ce site est de <strong>sensibiliser</strong> à l'empreinte écologique des
@@ -82,10 +83,11 @@
             <a href="./pages/quelques-chiffres.html" class="button-secondary">Quelques Chiffres</a>
             <a href="./pages/en-pratique.html" class="button-secondary">En Pratique</a>
         </div>
-    </div>
+    </main>
 
     <footer>
         <p class="mg-0">&copy; 2024 - COURDIER Rémy & ROCHAT Lise - <a href="./pages/a-propos.html">A propos</a> </p>
     </footer>
 </body>
+
 </html>

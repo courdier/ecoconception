@@ -10,7 +10,7 @@
     <meta name="author" content="Rochat Lise">
     <meta http-equiv="cache-control" content="max-age=31536000, must-revalidate">
     <meta http-equiv="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
-    <title>Mise en Pratique - Écoconception Numérique</title>
+    <title>Mise en pratique - Travaux pratiques d'écoconception numérique</title>
     <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,10 +38,12 @@
         </nav>
     </header>
 
-    <div class="main">
-        <h1>Mise en pratique</h1>
+    <!-- Structure plus sémantique -->
+    <main class="main">
+        <h1>Mise en pratique : travaux pratiques d'écoconception numérique</h1>
 
-        <section>
+        <section aria-labelledby="titre-objectifs">
+            <h2 id="titre-objectifs">Objectifs des travaux pratiques</h2>
             <section id="objectifs">
                 <p>
                     L'objectif de ces travaux pratiques est de vous introduire aux principes de l'éco-conception numérique,
@@ -51,7 +53,8 @@
                 </p>
             </section>
 
-            <section id="prerequis">
+            <section id="prerequis" aria-labelledby="titre-prerequis">
+                <h3 id="titre-prerequis">Prérequis</h3>
                 <p>
                     <strong>Prérequis :</strong> Connaissances de base en HTML, CSS, et JavaScript, ainsi que de l'expérience
                     avec Git, Docker, et Docker Compose. Vous devez disposer d'un environnement de développement sous
@@ -59,7 +62,8 @@
                 </p>
             </section>
 
-            <section id="presentation-bde">
+            <section id="presentation-bde" aria-labelledby="titre-bde">
+                <h3 id="titre-bde">Présentation du site de l'association ESIROI</h3>
                 <p>
                     Le site web de l'<strong>Association Étudiante ESIROI</strong> a été conçu pour offrir une plateforme
                     dynamique aux étudiants, leur permettant d'accéder facilement aux informations relatives aux activités,
@@ -70,16 +74,17 @@
                     le développement web.
                 </p>
                 <p>
-                    Découvrez <a href="../en-pratique/bde-esiroi/index.html" target="_blank">le site de l'association</a>.
+                    Découvrez 
+                    <a href="../en-pratique/bde-esiroi/index.html" target="_blank" rel="noopener noreferrer">
+                        le site de l'association étudiante ESIROI</a>
                 </p>
             </section>
         </section>
 
-        <section id="cards">
-
+        <section id="cards" aria-label="Liste des travaux pratiques">
             <div class="card">
                 <a href="./en-pratique/qcm.html">
-                    <h2><strong>QCM</strong> : Connaissances Générales en Informatique Responsable</h2>
+                    <h2><strong>QCM</strong> : Connaissances générales en informatique responsable</h2>
                     <p>
                         Avant de commencer les TPs, répondez à ce questionnaire pour évaluer vos connaissances sur les principes
                         de l'informatique responsable et vous préparer aux exercices pratiques.
@@ -89,7 +94,7 @@
 
             <div class="card">
                 <a href="./en-pratique/tp01.html">
-                    <h2><strong>TP 01</strong> : Introduction à SonarQube et Eco Code</h2>
+                    <h2><strong>TP1</strong> : Introduction à SonarQube et Eco Code</h2>
                     <p>
                         Installez et configurez SonarQube avec Eco Code pour analyser un projet et identifier les améliorations
                         possibles en termes d'éco-conception. Observez les métriques proposées et documentez les recommandations
@@ -100,7 +105,7 @@
 
             <div class="card">
                 <a href="./en-pratique/tp02.html">
-                    <h2><strong>TP 02</strong> : Optimisation des Ressources Web</h2>
+                    <h2><strong>TP2</strong> : Optimisation des ressources web du site BDE</h2>
                     <p>
                         Optimisez les ressources du site du BDE (images, scripts, CSS) pour réduire son <strong>empreinte écologique</strong>
                         et améliorer ses performances. Mesurez l’impact sur le temps de chargement et le poids des pages avant
@@ -111,25 +116,24 @@
 
             <div class="card">
                 <a href="./en-pratique/tp03.html">
-                    <h2><strong>TP 03</strong> : Détection et Réduction des Scripts Inutilisés</h2>
+                    <h2><strong>TP3</strong> : Détection et réduction des scripts inutilisés</h2>
                     <p>
                         Objectif : Identifier et éliminer les scripts JavaScript inutilisés ou redondants pour améliorer les
-                        performances et réduire l’empreinte écologique. <br>
-                        Étapes : 
-                        <ol>
-                            <li>Analysez les scripts à l’aide de Chrome DevTools Coverage ou d’un outil similaire.</li>
-                            <li>Identifiez les scripts redondants ou inutilisés.</li>
-                            <li>Supprimez ou chargez conditionnellement ces scripts sans perturber le fonctionnement du site.</li>
-                            <li>Mesurez l’impact sur le poids des pages, le temps de chargement et la consommation énergétique.</li>
-                            <li>Documentez vos changements et leurs effets.</li>
-                        </ol>
+                        performances et réduire l’empreinte écologique. 
                     </p>
+                    <ol>
+                        <li>Analysez les scripts à l’aide de Chrome DevTools (Coverage) ou d’un outil similaire.</li>
+                        <li>Identifiez les scripts redondants ou inutilisés.</li>
+                        <li>Supprimez ou chargez conditionnellement ces scripts sans perturber le fonctionnement du site.</li>
+                        <li>Mesurez l’impact sur le poids des pages, le temps de chargement et la consommation énergétique.</li>
+                        <li>Documentez vos changements et leurs effets.</li>
+                    </ol>
                 </a>
             </div>
 
             <div class="card">
                 <a href="./en-pratique/tp04.html">
-                    <h2><strong>TP 04</strong> : Optimisation de l'Utilisation des Polices Web</h2>
+                    <h2><strong>TP4</strong> : Optimisation de l'utilisation des polices web</h2>
                     <p>
                         Apprenez à optimiser les polices web pour améliorer les performances et réduire l’empreinte écologique
                         du site. Analysez les polices utilisées, supprimez celles inutiles, et implémentez le lazy loading
@@ -137,17 +141,16 @@
                     </p>
                 </a>
             </div>
-
         </section>
 
         <div class="button-container">
-            <a href="./quiz.html" class="button">Quiz</a>
-            <a href="./quelques-chiffres.html" class="button-secondary">Quelques Chiffres</a>
+            <a href="./quiz.html" class="button">Accéder au quiz général</a>
+            <a href="./quelques-chiffres.html" class="button-secondary">Voir quelques chiffres clés</a>
         </div>
-    </div>
+    </main>
 
     <footer>
-        <p class="mg-0">&copy; 2024 - ROCHAT Lise & COURDIER Remy - <a href="./a-propos.html">A propos</a></p>
+        <p class="mg-0">&copy; 2024 - ROCHAT Lise & COURDIER Remy - <a href="./a-propos.html">À propos</a></p>
     </footer>
 </body>
 
