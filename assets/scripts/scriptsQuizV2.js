@@ -225,9 +225,9 @@
                 icon: '🎶',
                 options: [
                     { value: 1, label: "Pas du tout, je télécharge toutes mes playlists.", impact: 0, info: "Télécharger ses musiques préférée, c'est réduire son impact de 3%.", recommendation: "Continuez à télécharger les morceaux que vous écoutez régulièrement." },
-                    { value: 2, label: "De temps en temps sur les trajets", impact: 10, info: "Télécharger ses musiques préférée, c'est réduire son impact de 3%.", recommendation: "Assurez-vous de n'activer la sauvegarde que sur l'essentiel." },
+                    { value: 2, label: "De temps en temps sur les trajets", impact: 10, info: "Télécharger ses musiques préférée, c'est réduire son impact de 3%.", recommendation: "Si vous écoutez les mêmes morceaux en boucles, vous devriez les télécharger." },
                     { value: 3, label: "Oui, régulièrement.", impact: 20, info: "En moyenne, chaque utilisateur laisse derrière lui 276 grammes de CO2 chaque année.", recommendation: "Si possible, envisagez de télécharger les morceaux que vous écoutez régulièrement." },
-                    { value: 4, label: "Oui, je streame Spotify en permanence !", impact: 30, info: "L'empreinte carbone du streaming musical est d'environ 1,04 grammes de CO2 par heure d'écoute.", recommendation: "Si possible, envisagez de télécharger les morceaux que vous écoutez régulièrement." }
+                    { value: 4, label: "Oui, je streame Spotify en permanence !", impact: 30, info: "L'empreinte carbone du streaming musical est d'environ 1,04 grammes de CO2 par heure d'écoute.", recommendation: "Si vous ne souhaitez pas réduire votre temps d'écoute, envisagez de télécharger les morceaux que vous écoutez régulièrement." }
                 ]
             }
         ];
