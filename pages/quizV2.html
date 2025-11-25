@@ -1,122 +1,120 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../assets/styles/styleQuizv2.css" />
-    <link rel="stylesheet" href="../assets/styles/styles.css" /> 
 
-    <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon" />
-    <script defer src="../assets/scripts/scriptsQuizV2.js"></script>
-    <script defer src="../assets/scripts/hamburger.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../assets/styles/styleQuizv2.css" />
+  <link rel="stylesheet" href="../assets/styles/styles.css" />
 
-    <title>Quiz - Écoconception Numérique</title>
-  </head>
-  <body>
-    <header>
-                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-<nav id="navbar">
-        <ul>
-          <li class="mg-0"><a href="../index.html">Home</a></li>
-          <li class="mg-0"><a href="./ressources.html">Ressources</a></li>
-          <li class="mg-0"><a href="./outils.html">Outils</a></li>
-          <li class="mg-0"><a href="./quizV2.html">Quiz</a></li>
-          <li class="mg-0"><a href="./terminologie.html">Terminologie</a></li>
-        </ul>
-      </nav>
-    </header>
+  <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon" />
+  <script defer src="../assets/scripts/scriptsQuizV2.js"></script>
+  <script defer src="../assets/scripts/hamburger.js"></script>
 
-    <main>
-      <div class="card_">
-        <div class="card-header">
-          <h1 class="card-title">Quiz Green IT 🌿</h1>
-          <!-- <p class="card-subtitle">
+  <title>Quiz - Écoconception Numérique</title>
+</head>
+
+<body>
+  <header>
+    <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav id="navbar">
+      <ul>
+        <li class="mg-0"><a href="../index.html">Home</a></li>
+        <li class="mg-0"><a href="./quelques-chiffres.html">Chiffres</a></li>
+        <li class="mg-0"><a href="./quizz-access.html" class="active">Quiz</a></li>
+        <li class="mg-0"><a href="./en-pratique.html">Ateliers</a></li>
+        <li class="mg-0"><a href="./ressources.html">Ressources</a></li>
+        <li class="mg-0"><a href="./outils.html">Outils</a></li>
+        <li class="mg-0"><a href="./terminologie.html">Terminologie</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="card_">
+      <div class="card-header">
+        <h1 class="card-title">Quiz Green IT 🌿</h1>
+        <!-- <p class="card-subtitle">
             Évaluez votre impact numérique sur l'environnement
           </p> -->
+      </div>
+
+      <div class="card-content">
+
+        <div class="welcome-container">
+          <h1 class="quiz-title">Bienvenue sur le Quiz Écologique "</h1>
+          <p class="text">Testez vos connaissances et découvrez l'impact écologique de vos habitudes numériques.</p>
+          <button class="button start-quiz-button">Commencer le quiz</button>
         </div>
 
-        <div class="card-content">
-
-          <div class="welcome-container">
-            <h1 class="quiz-title">Bienvenue sur le Quiz Écologique "</h1>
-            <p class="text">Testez vos connaissances et découvrez l'impact écologique de vos habitudes numériques.</p>
-            <button class="button start-quiz-button">Commencer le quiz</button>
+        <div class="quiz-container" style="display: none;">
+          <h2 class="question-title"></h2>
+          <!-- Barre de progression -->
+          <div class="progress-container">
+            <div class="progress-bar"></div>
           </div>
-
-          <div class="quiz-container" style="display: none;">
-            <h2 class="question-title"></h2>
-            <!-- Barre de progression -->
-            <div class="progress-container">
-              <div class="progress-bar"></div>
-            </div>
-            <!-- Numéro de la question -->
-            <p class="question-count"></p>
-            <!-- Options de réponse -->
-            <div class="options"></div>
-            <!-- Boîte d'informations pour l'impact et les recommandations -->
-            <div class="info-box">
-              <p class="info-text"></p>
-              <p
-                class="recommendation-text"
-                style="margin-top: 8px; color: #F9F909"
-              ></p>
-            </div>
-            <!-- Bouton pour valider la réponse -->
-            <button class="button validate-button" style="display: none;">
-              Valider
-            </button>
-            <!-- Bouton pour passer à la question suivante -->
-            <button class="button next-button" style="display: none">
-              Question suivante
-            </button>
+          <!-- Numéro de la question -->
+          <p class="question-count"></p>
+          <!-- Options de réponse -->
+          <div class="options"></div>
+          <!-- Boîte d'informations pour l'impact et les recommandations -->
+          <div class="info-box">
+            <p class="info-text"></p>
+            <p class="recommendation-text" style="margin-top: 8px; color: #F9F909"></p>
           </div>
+          <!-- Bouton pour valider la réponse -->
+          <button class="button validate-button" style="display: none;">
+            Valider
+          </button>
+          <!-- Bouton pour passer à la question suivante -->
+          <button class="button next-button" style="display: none">
+            Question suivante
+          </button>
+        </div>
 
-          <div class="results">
-            <h2 style="color: #166534; margin-bottom: 20px">
-              Résultats de votre impact numérique
-            </h2>
+        <div class="results">
+          <h2 style="color: #166534; margin-bottom: 20px">
+            Résultats de votre impact numérique
+          </h2>
 
-            <div class="impact-grid">
-              <div class="impact-card">
-                <div class="impact-value" id="co2-impact">0</div>
-                <div class="impact-label">kg eq. CO2 par an</div>
-              </div>
-              <div class="impact-card">
-                <div class="impact-value" id="french-average">0</div>
-                <div class="impact-label">
-                  de l'empreinte moyenne d'un Français
-                  <br />
-                  <span style="font-size: 12px">(9.9 tonnes CO2 eq./an)</span>
-                </div>
+          <div class="impact-grid">
+            <div class="impact-card">
+              <div class="impact-value" id="co2-impact">0</div>
+              <div class="impact-label">kg eq. CO2 par an</div>
+            </div>
+            <div class="impact-card">
+              <div class="impact-value" id="french-average">0</div>
+              <div class="impact-label">
+                de l'empreinte moyenne d'un Français
+                <br />
+                <span style="font-size: 12px">(9.9 tonnes CO2 eq./an)</span>
               </div>
             </div>
-
-            <div class="recommendations">
-              <h3>Recommandations personnalisées</h3>
-              <ul id="recommendations-list"></ul>
-            </div>
-
-            <button
-              class="button"
-              onclick="restartQuiz()"
-              style="background: #dcfce7; color: #166534"
-            >
-              Recommencer le quiz
-            </button>
           </div>
+
+          <div class="recommendations">
+            <h3>Recommandations personnalisées</h3>
+            <ul id="recommendations-list"></ul>
+          </div>
+
+          <button class="button" onclick="restartQuiz()" style="background: #dcfce7; color: #166534">
+            Recommencer le quiz
+          </button>
         </div>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <footer>
-      <p class="mg-0">
-        &copy; 2024 - ROCHAT Lise & COURDIER Remy -
-        <a href="./a-propos.html">A propos</a>
-      </p>
-    </footer>
-  </body>
+  <footer>
+    <p class="mg-0">
+      &copy; 2024 - ROCHAT Lise & COURDIER Remy -
+      <a href="./a-propos.html">A propos</a>
+    </p>
+  </footer>
+</body>
+
 </html>
