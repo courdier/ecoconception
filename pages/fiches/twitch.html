@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Impact environnemental de Twitch">
     <meta name="keywords" content="écoconception, Twitch, empreinte carbone, streaming, environnement">
-    <meta name="author" content="Rochat Lise">
+    <meta name="author" content="GRONDIN Olivier">
     <meta name="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
     <title>Twitch - Écoconception Numérique</title>
     <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
@@ -17,12 +17,21 @@
     <link rel="stylesheet" href="../../assets/styles/styles.css">
     <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="../../assets/scripts/hamburger.js"></script>
 </head>
 <body>
     <header>
-        <nav>
+                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html" class="active">Chiffres</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
                 <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
@@ -74,7 +83,7 @@
             <section class="impact-details">
                 <h2>Répartition des consommations par type de contenu <sup><a href="#source4">[4]</a></sup></h2> 
                     <p>Le streaming en direct sur Twitch représente une part significative du trafic internet mondial. La plateforme, avec ses diffusions de jeux vidéo en direct et en haute définition, contribue de manière substantielle à la consommation énergétique et aux émissions de CO2 associées au numérique.</p>
-                <div class="chart-container" style="display: flex; justify-content: center; align-items: center;">
+                <div class="chart-container" style="display: flex; justify-content: center; max-width: 100%; position: relative; height: 400px;">
                     <canvas id="serviceChart" width="400%" height="400%"></canvas>
                 </div>
                 <a href="https://youtu.be/dQw4w9WgXcQ?si=ySMSiw5CrP-wn40C" style="color: #1c1c1e; text-decoration: none;">easter egg</a>

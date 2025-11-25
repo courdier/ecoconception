@@ -135,7 +135,6 @@ const questions = [
     }
 ];
 
-
 document.getElementById("validate-btn").addEventListener("click", function () {
     const selectedAnswer = document.querySelector('input[name="answer"]:checked');
     if (selectedAnswer) {
@@ -291,12 +290,12 @@ function showResults() {
         </ul>
         <br>
         <div class="button-container">
+            <button onclick="location.href='../../ecoconception/pages/quizV2.html'" class="button">Encore un Quiz...</button>
             <button onclick="location.href='../../pages/quelques-chiffres.html'" class="button">Quelques Chiffres</button>
             <button onclick="location.href='../../pages/en-pratique.html'" class="button-secondary">En Pratique</button>
         </div>
     `;
 }
-
 
 window.onload = function () {
     loadQuestion(currentQuestionIndex);

@@ -17,12 +17,21 @@
     <link rel="stylesheet" href="../../assets/styles/styles.css">
     <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="../../assets/scripts/hamburger.js"></script>
 </head>
 <body>
     <header>
-        <nav>
+                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html" class="active">Chiffres</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
                 <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
@@ -49,14 +58,38 @@
                 </div>
                 <div class="stat-item">
                     <i class="fas fa-video"></i>
-                    <h2>36g CO2</h2>
+                    <h2>55g CO2</h2>
                     <p>Émission de CO2 par heure de streaming <sup><a href="#source3">[3]</a></sup></p>
+                </div>
+            </section>
+            <section class="impact-details">
+                <h2>Comparatif des émissions de CO₂ par qualité du streaming <sup><a href="#source6">[6]</a></sup></h2>
+                <p>La qualité de la vidéo choisie pour le streaming a un impact direct sur la consommation d'énergie et les émissions de CO₂. Plus la qualité est élevée, plus la bande passante et la puissance des centres de données sont sollicitées, augmentant ainsi l'empreinte carbone.</p>
+                <div class="comparison-box">
+                    <div class="comparison-item">
+                        <p>Basse définition - 10,2 g CO₂/h </p>
+                        <div class="progress-bar">
+                            <div class="progress-bar-inner progress-bar-basse-def" style="width: 10%;">10,2 g</div>
+                        </div>
+                    </div>
+                    <div class="comparison-item">
+                        <p>Haute définition - 31,7 g CO₂/h </p>
+                        <div class="progress-bar">
+                            <div class="progress-bar-inner progress-bar-haute-def" style="width: 30%;">31,7 g</div>
+                        </div>
+                    </div>
+                    <div class="comparison-item">
+                        <p>4K définition - 69,2 g CO₂/h </p>
+                        <div class="progress-bar">
+                            <div class="progress-bar-inner progress-bar-4k" style="width: 70%;">69,2 g</div>
+                        </div>
+                    </div>
                 </div>
             </section>
             <section class="impact-details">
                 <h2>Répartition des consommations par type de service <sup><a href="#source4">[4]</a></sup></h2> 
                     <p>La vidéo en ligne représente <strong>60 %</strong> du flux mondial de données et est responsable de <strong>306 millions de tonnes de CO2 en 2018</strong>, soit 20 % des émissions totales de gaz à effet de serre dues au numérique. Ce pourcentage inclut divers types de contenus : <strong>la VoD (34 %)</strong>, les vidéos pornographiques (27 %), les "Tubes" (21 %), et les autres vidéos en ligne (18 %). Cette domination de la vidéo dans le trafic global de données est une source majeure de la consommation d'énergie et des émissions de GES.</p>
-                <div class="chart-container" style="display: flex; justify-content: center; align-items: center;">
+                <div class="chart-container" style="display: flex; justify-content: center; max-width: 100%; position: relative; height: 400px;">
                     <canvas id="serviceChart" width="400" height="400"></canvas>
                 </div>
             </section>
@@ -107,12 +140,13 @@
             <ul class="bibliography-list">
                 <li id="source1">[1] "Un 2e trimestre positif pour Netflix," <em>CB News</em>, Disponible en ligne : <a href="https://www.cbnews.fr/medias/image-2e-trimestre-positif-netflix-image-94500" target="_blank">https://www.cbnews.fr/medias/image-2e-trimestre-positif-netflix-image-94500</a></li>
                 <li id="source2">[2] "Netflix est disponible en streaming dans plus de 190 pays," <em>Netflix Help Center</em>, Disponible en ligne : <a href="https://help.netflix.com/fr/node/14164#:~:text=Netflix%20est%20disponible%20en%20streaming%20dans%20plus%20de%20190%20pays" target="_blank">https://help.netflix.com/fr/node/14164</a></li>
-                <li id="source3">[3] "Le vrai coût écologique du streaming vidéo," <em>Les Numériques</em>, Disponible en ligne : <a href="https://www.lesnumeriques.com/vie-du-net/le-vrai-cout-ecologique-du-streaming-video-a197241.html" target="_blank">https://www.lesnumeriques.com/vie-du-net/le-vrai-cout-ecologique-du-streaming-video-a197241.html</a></li>
+                <li id="source3">[3] "La vérité sur l'impact climatique du streaming vidéo," <em>Emma Stewart</em>, Disponible en ligne : <a href="https://about.netflix.com/fr/news/the-true-climate-impact-of-streaming" target="_blank">https://about.netflix.com/fr/news/the-true-climate-impact-of-streaming</a></li>
                 <li id="source4">[4] "Netflix : l'impact carbone de votre addiction," <em>La Conscience des Étudiants</em>, 10 mai 2020. Disponible en ligne : <a href="https://laconsciencedesetudiants.fr/2020/05/10/netflix-limpact-carbone-de-votre-addiction/" target="_blank">https://laconsciencedesetudiants.fr/2020/05/10/netflix-limpact-carbone-de-votre-addiction/</a></li>
                 <li id="source5">[5] "The Unsustainable Use of Online Video - Executive Summary," <em>The Shift Project</em>, avril 2025. Disponible en ligne : 
 <a href="https://theshiftproject.org/app/uploads/2025/04/Excutive-Summary_EN_The-unsustainable-use-of-online-video.pdf" target="_blank">
 https://theshiftproject.org/app/uploads/2025/04/Excutive-Summary_EN_The-unsustainable-use-of-online-video.pdf
 </a></li>
+<li id="source4">[6] "L'impact environnemental du streaming vidéo en France," <em>Économie Matin</em>, Disponible en ligne :  <a href="https://www.economiematin.fr/internet-streaming-consommation-energie-france" target="_blank">https://www.economiematin.fr/internet-streaming-consommation-energie-france</a></li>
 
             </ul>          
         </section>

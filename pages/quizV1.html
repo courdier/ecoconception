@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Découvrez l'impact du numérique sur l'environnement et les moyens de réduire notre empreinte carbone.">
     <meta name="keywords" content="écoconception, numérique, empreinte carbone, développement durable, environnement">
-    <meta name="author" content="Rochat Lise">
+    <meta name="author" content="Rémy Courdier, Rochat Lise">
     <meta http-equiv="cache-control" content="max-age=31536000, must-revalidate">
     <meta http-equiv="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
     <title>Quiz - Écoconception Numérique</title>
@@ -17,19 +17,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles/styles.css">
     <script defer src="../assets/scripts/scripts.js"></script>
+    <script defer src="../assets/scripts/hamburger.js"></script>
 </head>
+
 <body>
     <header>
-        <nav>
+                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../index.html">Home</a></li>
+                <li class="mg-0"><a href="./quelques-chiffres.html">Chiffres</a></li>
+                <li class="mg-0"><a href="./quizz-access.html" class="active">Quiz</a></li>
+                <li class="mg-0"><a href="./en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="./ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="./outils.html">Outils</a></li>
-                <li class="mg-0"><a href="./Quiz.html">Quiz</a></li>
                 <li class="mg-0"><a href="./terminologie.html">Terminologie</a></li>
             </ul>
         </nav>
     </header>
+
     <div class="main">
         <h1>Êtes-vous un(e) surfeur(se) responsable ou un(e) accro au pixel ?</h1>
         <section id="quiz">
@@ -50,8 +60,9 @@
             </div>
         </section>
     </div>
+
     <footer>
-        <p class="mg-0">&copy; 2024 - ROCHAT Lise & COURDIER Remy - <a href="./a-propos.html">A propos</a> </p>
+        <p class="mg-0">&copy; 2024 - COURDIER Rémy & ROCHAT Lise - <a href="./a-propos.html">A propos</a> </p>
     </footer>
 </body>
 </html>

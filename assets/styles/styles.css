@@ -719,7 +719,41 @@ sup a {
     color: #333;
 }
 
-/* Code blocks */
+/* ----------- Colones pas de page index ---*/
+.container {
+    display: flex;
+    justify-content: center; /* Centre les colonnes horizontalement   justify-content: space-between; */
+    background-color: #54ad79; /* Vert  foncé */
+    color: white;
+    padding: 20px;
+}
+
+.column_1 {
+    width: 90%;
+    margin: 10px;
+    padding: 15px;
+    background-color: #37876b; /* Vert légèrement plus clair */
+    border-radius: 8px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.column {
+    width: 30%;
+    margin: 10px;
+    padding: 15px;
+    background-color: #24563a; /* Vert légèrement plus clair */
+    border-radius: 8px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.column h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* --- Code blocks --- */
 pre {
     color: #f8f8f2;
     padding: 10px;
@@ -731,6 +765,38 @@ pre {
 pre code {
     display: block;
     line-height: 1.4em;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 20px;
+    z-index: 1001;
+    padding: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--highlight-color);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
 }
 
 /* Responsive Design */
@@ -772,6 +838,35 @@ pre code {
 
 /* Petites Tablettes et Smartphones (Paysage) */
 @media screen and (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: var(--background-color);
+        border-top: 1px solid var(--highlight-color);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    nav.active ul {
+        max-height: 300px;
+    }
+
+    nav a {
+        font-size: 1rem;
+        padding: 15px 20px;
+        display: block;
+        border-bottom: 1px solid rgba(47, 223, 173, 0.1);
+    }
+
     .main {
         max-width: 98%;
         padding: 10px;
@@ -814,7 +909,7 @@ pre code {
     }
 
     li {
-        margin-left: 3px;
+        margin-left: 0;
     }
 
     .additional-impact-content {
@@ -912,3 +1007,205 @@ pre code {
   color: var(--highlight-color);
   opacity: .9;
 }
+
+.tools-comparatif {
+    margin: 40px 0;
+    padding: 0;
+}
+
+.tools-comparatif h2 {
+    text-align: center;
+    color: var(--highlight-color);
+    font-size: 2em;
+    margin-bottom: 30px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    border-bottom: none;
+}
+
+.tools-comparatif .table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(47, 223, 173, 0.2);
+    border: 1px solid rgba(47, 223, 173, 0.3);
+}
+
+.tools-comparatif table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgba(28, 28, 30, 0.95);
+}
+
+.tools-comparatif caption {
+    caption-side: top;
+    text-align: center;
+    color: var(--text-color-light);
+    font-size: 1em;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.tools-comparatif thead {
+    background: linear-gradient(135deg, rgba(47, 223, 173, 0.9) 0%, rgba(125, 212, 188, 0.9) 100%);
+    color: var(--background-color);
+}
+
+.tools-comparatif th {
+    padding: 18px 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    color: var(--background-color);
+}
+
+.tools-comparatif th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.tools-comparatif th:last-child {
+    border-top-right-radius: 12px;
+}
+
+.tools-comparatif tbody tr {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(47, 223, 173, 0.2);
+}
+
+.tools-comparatif tbody tr:last-child {
+    border-bottom: none;
+}
+
+.tools-comparatif tbody tr:hover {
+    background: linear-gradient(90deg, rgba(47, 223, 173, 0.05) 0%, rgba(47, 223, 173, 0.1) 100%);
+    transform: scale(1.01);
+    box-shadow: 0 4px 12px rgba(47, 223, 173, 0.15);
+}
+
+.tools-comparatif td {
+    padding: 16px 15px;
+    color: var(--text-color);
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+.tools-comparatif td:first-child {
+    font-weight: 600;
+    color: var(--light-color);
+}
+
+.tools-comparatif a {
+    color: var(--highlight-color);
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.tools-comparatif a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: linear-gradient(90deg, var(--highlight-color) 0%, var(--light-color) 100%);
+    transition: width 0.3s ease;
+}
+
+.tools-comparatif a:hover {
+    color: var(--light-color);
+}
+
+.tools-comparatif a:hover::after {
+    width: 100%;
+}
+
+.tools-comparatif .conseil-box {
+    background: radial-gradient(180px 80px at 10% 0%, rgba(47,223,173,.07), transparent),
+                linear-gradient(180deg, rgba(47,223,173,.05), rgba(47,223,173,.02));
+    border: 1px solid rgba(47, 223, 173, 0.35);
+    border-left: 5px solid var(--highlight-color);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(47, 223, 173, 0.1);
+    margin-top: 20px;
+}
+
+.tools-comparatif .conseil-box strong {
+    color: var(--highlight-color);
+    font-size: 1.15em;
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.tools-comparatif .conseil-box p {
+    color: var(--text-color);
+    line-height: 1.7;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .tools-comparatif h2 {
+        font-size: 1.6em;
+    }
+
+    .tools-comparatif th, 
+    .tools-comparatif td {
+        padding: 12px 10px;
+        font-size: 0.85em;
+    }
+
+    .tools-comparatif .conseil-box {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tools-comparatif h2 {
+        font-size: 1.4em;
+    }
+
+    .tools-comparatif th, 
+    .tools-comparatif td {
+        padding: 10px 8px;
+        font-size: 0.8em;
+    }
+}
+
+.infographie-cycle {
+    margin: 2em auto;
+    padding: 1em;
+    background: radial-gradient(180px 80px at 10% 0%, rgba(47,223,173,.07), transparent),
+                linear-gradient(180deg, rgba(47,223,173,.05), rgba(47,223,173,.02));
+    border: 1px solid rgba(47, 223, 173, 0.35);
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(47, 223, 173, 0.1);
+}
+
+.infographie-cycle figure {
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.infographie-cycle img,
+.infographie-cycle svg {
+    display: block;
+    margin: 0 auto 12px;
+    max-width: 100%;
+    height: auto;
+}
+
+.infographie-cycle figcaption {
+    font-size: 0.95em;
+    color: var(--text-color);
+    margin-bottom: 0.5em;
+}
+
+.infographie-cycle svg text { font-weight: bold; }

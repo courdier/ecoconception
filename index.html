@@ -8,7 +8,7 @@
             content="Découvrez l'impact du numérique sur l'environnement et les moyens de réduire notre empreinte carbone.">
         <meta name="keywords"
             content="écoconception, numérique, empreinte carbone, développement durable, environnement">
-        <meta name="author" content="Rochat Lise, Courdier Rémy">
+            <meta name="author" content="Rémy Courdier, Rochat Lise">
         <meta http-equiv="cache-control" content="max-age=31536000, must-revalidate">
         <meta http-equiv="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
         <title>Écoconception Numérique</title>
@@ -18,19 +18,26 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./assets/styles/styles.css">
-        <link rel="stylesheet" href="assets/styles/chatbot.css">
+        <!-- <link rel="stylesheet" href="assets/styles/chatbot.css"> -->
         <script defer src="./assets/scripts/scripts-tp.js"></script>
-        <script defer src="assets/scripts/chatbot.js"></script>
+        <!-- <script defer src="assets/scripts/chatbot.js"></script> -->
 </head>
 
 <body>
     <header>
-        <nav>   
-            <ul>
+        <nav>
+            <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="navbar">
                 <li class="mg-0"><a href="./index.html" class="active">Home</a></li>
+                <li class="mg-0"><a href="./pages/quelques-chiffres.html">Chiffres</a></li>
+                <li class="mg-0"><a href="./pages/quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="./pages/en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="./pages/ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="./pages/outils.html">Outils</a></li>
-                <li class="mg-0"><a href="./pages/quizV2.html">Quiz</a></li>
                 <li class="mg-0"><a href="./pages/terminologie.html">Terminologie</a></li>
             </ul>
         </nav>
@@ -38,8 +45,50 @@
 
     <div class="main">
         <h1>Sensibilisation à l'empreinte écologique des services numériques</h1>
+
+        <div class="infographie-cycle">
+            <h2>Cycle de Vie d'un Service Numérique & Impact</h2>
+            <figure>
+                <svg width="100%" height="180" viewBox="0 0 700 180" aria-label="Cycle de vie d'un service numérique">
+                    <!-- Fabrication -->
+                    <circle cx="70" cy="110" r="50" fill="#73b26c" />
+                    <text x="70" y="115" text-anchor="middle" fill="#1c1c1e" font-size="16" font-family="sans-serif" font-weight="bold">Fabrication</text>
+                    
+                    <!-- Stockage -->
+                    <circle cx="210" cy="110" r="50" fill="#ffd966" />
+                    <text x="210" y="115" text-anchor="middle" fill="#1c1c1e" font-size="16" font-family="sans-serif" font-weight="bold">Stockage</text>
+                    
+                    <!-- Transmission -->
+                    <circle cx="350" cy="110" r="50" fill="#66a2e3" />
+                    <text x="350" y="115" text-anchor="middle" fill="#1c1c1e" font-size="16" font-family="sans-serif" font-weight="bold">Transmission</text>
+                    
+                    <!-- Usage -->
+                    <circle cx="490" cy="110" r="50" fill="#a28ae3" />
+                    <text x="490" y="115" text-anchor="middle" fill="#1c1c1e" font-size="16" font-family="sans-serif" font-weight="bold">Usage</text>
+                    
+                    <!-- Fin de vie -->
+                    <circle cx="630" cy="110" r="50" fill="#de6462" />
+                    <text x="630" y="115" text-anchor="middle" fill="#ffffff" font-size="16" font-family="sans-serif" font-weight="bold">Fin de vie</text>
+                    
+                    <!-- flèches entre cercles -->
+                    <polyline points="115,110 165,110" stroke="var(--text-color)" stroke-width="3" fill="none" />
+                    <polyline points="255,110 305,110" stroke="var(--text-color)" stroke-width="3" fill="none" />
+                    <polyline points="395,110 445,110" stroke="var(--text-color)" stroke-width="3" fill="none" />
+                    <polyline points="535,110 585,110" stroke="var(--text-color)" stroke-width="3" fill="none" />
+                </svg>
+                <figcaption>
+                    De la production d'appareils à la fin de vie, chaque étape a un impact : énergie, CO₂, ressources.<br>
+                    <small>(Illustration schématique)</small>
+                </figcaption>
+            </figure>
+        </div>
+    
+
+
+
         <section id="home">
-            <p>L’objectif principal de ce site est de <strong>sensibiliser</strong> à l'empreinte écologique des
+            <p> Ce site s'inscrit dans une démarche collaborative, développée en co-construction avec des étudiants du secteur informatique, sous la supervision d'experts du domaine.
+                L’objectif principal est de <strong>sensibiliser</strong> à l'empreinte écologique des
                 services numériques et de <strong>démystifier</strong> leur apparente immatérialité. En effet, l’usage
                 de service numérique repose sur une infrastructure physique qui consomme de grandes quantités d’énergie
                 et nécessite des ressources importantes pour leur fonctionnement. En prenant conscience de cette
@@ -53,15 +102,15 @@
             <p>Pour y parvenir, nous proposons trois types d'activités essentielles :</p>
             <ul>
                 <li>
-                    <strong>Quiz</strong> : Testez vos connaissances sur l'impact du numérique sur votre empreinte
-                    carbone à travers 15 questions.
-                </li>
-                <li>
-                    <strong>Quelques Chiffres</strong> : Découvrez les principales données sur les grands services
+                    <strong><a href="./pages/quelques-chiffres.html">Chiffres</a></strong> : Découvrez les principales données sur les grands services
                     numériques que nous utilisons au quotidien.
                 </li>
                 <li>
-                    <strong>En Pratique</strong> : Explorez une série de travaux pratiques et questionnaire conçus pour
+                    <strong><a href="./pages/quizV1.html">Quiz</a></strong> : Testez vos connaissances sur l'impact du numérique sur votre empreinte
+                    carbone à travers 15 questions.
+                </li>
+                <li>
+                    <strong><a href="./pages/en-pratique.html">Ateliers</a></strong> : Explorez une série de travaux pratiques et questionnaire conçus pour
                     les développeurs souhaitant approfondir leurs connaissances en éco-conception web.
                 </li>
             </ul>
@@ -71,11 +120,6 @@
                     cours</a> permettra d'explorer plus en profondeur les solutions et les pratiques durables à adopter.
             </p>
         </section>
-        <div class="button-container">
-            <a href="./pages/quiz.html" class="button">Quiz</a>
-            <a href="./pages/quelques-chiffres.html" class="button-secondary">Quelques Chiffres</a>
-            <a href="./pages/en-pratique.html" class="button-secondary">En Pratique</a>
-        </div>
     </div>
 
     <footer>

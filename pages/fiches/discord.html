@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Impact environnemental de Netflix">
+    <meta name="keywords" content="écoconception, Netflix, empreinte carbone, streaming, environnement">
+    <meta name="author" content="Rochat Lise">
+    <meta name="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
+    <title>Discord - Écoconception Numérique</title>
+    <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/styles/styles.css">
+    <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="mg-0"><a href="../../index.html">Home</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html" class="active">Chiffres</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main">
+        <h1>Impact Environnemental de Discord</h1>
+        <section class="services-container">
+            <section class="intro-text">
+                <p>Discord est une plateforme de communication populaire pour les communautés en ligne, combinant
+                    messagerie textuelle, audio et vidéo. Chaque interaction génère une consommation énergétique pour
+                    les serveurs, le stockage des données et le streaming audio/vidéo en temps réel.</p>
+            </section>
+            <section class="stats-icons">
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <h2>~154 Millions</h2>
+                    <p>Utilisateurs mensuels estimés (Statista) <sup><a href="#source1">[1]</a></sup></p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-server"></i>
+                    <h2>—</h2>
+                    <p>Nombre de serveurs : non disponible publiquement fiable</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-bolt"></i>
+                    <h2>—</h2>
+                    <p>Émissions CO₂ estimées : données spécifiques non trouvées pour Discord</p>
+                </div>
+            </section>
+            <section class="impact-details">
+                <h2>Répartition potentielle de l'empreinte carbone</h2>
+                <p>Il est difficile de donner des chiffres précis pour Discord seul, mais l'impact des plateformes
+                    numériques de communication peut se répartir en : usage audio/vidéo, stockage des messages, et
+                    notifications/textes.</p>
+            </section>
+            <section class="tips">
+                <h2>Conseils pour réduire l'empreinte carbone</h2>
+                <section class="additional-impact-content">
+                    <div class="tip-item">
+                        <p>Préférez l’audio aux vidéos lorsque possible.</p>
+                    </div>
+                    <div class="tip-item">
+                        <p>Supprimez régulièrement les fichiers/messages anciens non nécessaires.</p>
+                    </div>
+                    <div class="tip-item">
+                        <p>Utilisez le Wi‑Fi plutôt que les données mobiles.</p>
+                    </div>
+                </section>
+            </section>
+        </section>
+
+        <section class="bibliography">
+            <h2>Sources</h2>
+            <ul class="bibliography-list">
+                <li id="source1">[1] "Discord - statistics & facts," <em>Statista</em>, [Online]. Disponible : <a
+                        href="https://www.statista.com/topics/9816/discord/"
+                        target="_blank">https://www.statista.com/topics/9816/discord/</a></li>
+                <li id="source2">[2] "Impact environnemental du numérique," <em>ADEME</em>, [Online]. Disponible : <a
+                        href="https://communication-responsable.ademe.fr/comprendre-limpact-du-numerique"
+                        target="_blank">https://communication-responsable.ademe.fr/comprendre-limpact-du-numerique</a>
+                </li>
+            </ul>
+        </section>
+
+        <div class="button-container">
+            <button class="button" onclick="window.print()" title="Imprimer cette fiche">Imprimer cette fiche</button>
+            <button class="button-secondary" onclick="window.open('../quelques-chiffres.html')">Découvrir les autres
+                services</button>
+        </div>
+    </div>
+
+
+    <section class="footer-content">
+        <p>&copy; 2025 - Impact Environnemental de Discord | Asmahani Saroumaia, étudiante en Master 2 informatique</p>
+    </section>
+    <script>
+        var ctx = document.getElementById('serviceChart').getContext('2d');
+        var serviceChart = new Chart(ctx, {
+            type: 'doughnut',  // Camembert en forme de donut
+            data: {
+                labels: ['VOD (34%)', 'Tubes (21%)', 'Pornographie (27%)', 'Autres (18%)'],
+                datasets: [{
+                    data: [34, 21, 27, 18],
+                    backgroundColor: [
+                        '#f7bf58',    // VOD
+                        '#fd6363',    // Tubes
+                        '#7dd4bc',    // Pornographie
+                        '#638ffd'     // Autres
+                    ],
+                    borderColor: [
+                        '#f7bf58',
+                        '#fd6363',
+                        '#7dd4bc',
+                        '#638ffd'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

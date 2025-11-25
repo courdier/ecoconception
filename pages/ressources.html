@@ -7,7 +7,7 @@
     <meta name="description"
         content="Découvrez l'impact du numérique sur l'environnement et les moyens de réduire notre empreinte carbone.">
     <meta name="keywords" content="écoconception, numérique, empreinte carbone, développement durable, environnement">
-    <meta name="author" content="Rochat Lise">
+    <meta name="author" content="Rémy Courdier, Rochat Lise">
     <meta http-equiv="cache-control" content="max-age=31536000, must-revalidate">
     <meta http-equiv="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
     <title>Ressources - Écoconception Numérique</title>
@@ -17,25 +17,93 @@
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles/styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script defer src="../assets/scripts/hamburger.js"></script>
 </head>
 
 
 <body>
     <header>
-        <nav>
+                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../index.html">Home</a></li>
+                <li class="mg-0"><a href="./quelques-chiffres.html">Chiffres</a></li>
+                <li class="mg-0"><a href="./quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="./en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="./ressources.html" class="active">Ressources</a></li>
                 <li class="mg-0"><a href="./outils.html">Outils</a></li>
-                <li class="mg-0"><a href="./quizV2.html">Quiz</a></li>
                 <li class="mg-0"><a href="./terminologie.html">Terminologie</a></li>
             </ul>
         </nav>
     </header>
     <div class="main">
-        <h1>Ressources utiles</h1>
         <section>
+            <section id="supports" class="section-spacing">
+                <h1>Supports pédagogiques</h1>
+                <P><strong class="align-bottom">
+                    Partie 1 - Comprendre les enjeux environnementaux du numérique : impacts et constats globaux  
+                    <a href="http://lim.univ-reunion.fr/staff/courdier/old/cours/greenit/greenit_part1.pdf" target="_top">
+                        <img src="../assets/img/pdf.gif" alt="cours en couleur au format pdf" align="middle" border="2" height="31" width="28">
+                    </a>
+                    <a href="http://lim.univ-reunion.fr/staff/courdier/old/cours/greenit/greenit_part1_imp.pdf" target="_top">
+                        <img src="../assets/img/imp.gif" alt="cours au format pdf pour impression" align="middle" border="2" height="31" width="28">
+                    </a>
+                </strong></p>
+                <P> Dans cette première partie, nous aborderons les enjeux 
+                    globaux liés à l’empreinte écologique du numérique, en explorant les principaux indicateurs environnementaux, 
+                    les constats actuels sur son impact, et la répartition des contributions aux émissions tout au long du cycle 
+                    de vie des services numériques. Cette introduction vise à poser les bases pour comprendre l’urgence d’adopter 
+                    des pratiques numériques plus responsables.</P>
+                <P><strong class="align-bottom">
+                    Partie 2 - Les bases de l’écoconception : concepts, cadre légal et pratiques normées
+                    <a href="http://lim.univ-reunion.fr/staff/courdier/old/cours/greenit/greenit_part2.pdf" target="_top">
+                        <img src="../assets/img/pdf.gif" alt="cours en couleur au format pdf" align="middle" border="2" height="31" width="28">
+                    </a>
+                    <a href="http://lim.univ-reunion.fr/staff/courdier/old/cours/greenit/greenit_part2_imp.pdf" target="_top">
+                        <img src="../assets/img/imp.gif" alt="cours au format pdf pour impression" align="middle" border="2" height="31" width="28">
+                    </a>
+                </strong></p>
+                <p> Dans cette seconde partie, nous explorerons les définitions, 
+                    la genèse et les objectifs de cette démarche, tout en découvrant les fondamentaux qui guident la conception responsable 
+                    de services numériques. Nous aborderons également les labels, les normes et la législation encadrant ces pratiques, 
+                    afin de fournir un cadre clair et concret pour adopter des solutions durables dans ce domaine.</P>
+                <P><strong class="align-bottom">
+                    Partie 3 - Mise en œuvre de l’écoconception : outils pratiques pour les développeurs
+                    <a href="http://lim.univ-reunion.fr/staff/courdier/old/cours/greenit/greenit_part3.pdf" target="_top">
+                        <img src="../assets/img/pdf.gif" alt="cours en couleur au format pdf" align="middle" border="2" height="31" width="28">
+                    </a>
+                    <a href="http://lim.univ-reunion.fr/staff/courdier/old/cours/greenit/greenit_part3_imp.pdf" target="_top">
+                        <img src="../assets/img/imp.gif" alt="cours au format pdf pour impression" align="middle" border="2" height="31" width="28">
+                    </a>
+                </strong></p>
+                <p> Dans cette troisième partie, nous nous concentrerons sur la mise en pratique de l’éco-conception par le développeur. 
+                    Nous explorerons les outils d’évaluation de l’impact environnemental, 
+                    en partant de simples check-lists jusqu'aux suites logicielles d’éco-conception. 
+                    Enfin, nous découvrirons les outils de conception et de développement logiciel qui accompagnent les développeurs tout au 
+                    long du cycle de vie d’un service numérique, favorisant ainsi des pratiques durables et responsables.</P>
+                <P><strong class="align-bottom">
+                    Partie 4 - Réduire l’impact environnemental des objets connectés : défis et recommandations
+                    <a href="http://lim.univ-reunion.fr/staff/courdier/old/cours/greenit/greenit_part4_iod.pdf" target="_top">
+                        <img src="../assets/img/pdf.gif" alt="cours en couleur au format pdf" align="middle" border="2" height="31" width="28">
+                    </a>
+                    <a href="http://lim.univ-reunion.fr/staff/courdier/old/cours/greenit/greenit_part4_io_imp.pdf" target="_top">
+                        <img src="../assets/img/imp.gif" alt="cours au format pdf pour impression" align="middle" border="2" height="31" width="28">
+                    </a>
+                </strong></p>
+                <p> Cette quatrième partie explore les recommandations pour réduire l’impact environnemental de l’Internet des objets (IoT), 
+                    un domaine clé du numérique. 
+                    Elle aborde les enjeux liés à la massification des usages et infrastructures et propose des points de vigilence
+                    pour répondre aux engagements climatiques tout en maîtrisant l’empreinte carbone des systèmes IoT.</P>
+            </section>
+
             <section class="collapsible">
+                <BR>
+                <h1>Références bibliographiques</h1>
+                <BR>
                 <h2>Impact des réseaux sociaux et services numériques <span class="toggle-icon">+</span></h2>
                 <div class="content">
 
@@ -116,13 +184,14 @@ Ajouter la classe "ignoreAutoIndex" au li: <li class="ignoreAutoIndex">ADEME, "B
                                 https://www.rse-magazine.com/ecouter-spotify-cest-relacher-lequivalent-de-18-tour-eiffel-de-co2-par-an/
                             </a>. [Accessed: Nov. 12, 2025].
                         </li>
-                        <li class="step-btm">ADEME, "Écouter Spotify c’est relâcher l’équivalent de 18 Tour Eiffel de CO2 par an," <em>agirpourlatransition.ademe.fr</em>,
+                        <li>ADEME, "Écouter Spotify c’est relâcher l’équivalent de 18 Tour Eiffel de CO2 par an," <em>agirpourlatransition.ademe.fr</em>,
                             [Online]. Available:
                             <a href="https://agirpourlatransition.ademe.fr/particuliers/mieux-consommer/numerique/impacts-lecture-musique-films-jeux-ligne"
                                 target="_blank">
                                 https://agirpourlatransition.ademe.fr/particuliers/mieux-consommer/numerique/impacts-lecture-musique-films-jeux-ligne
                             </a>. [Accessed: Nov. 12, 2025].
                         </li>
+                        <li class="step-btm">[13] Arnaud Le Roux, <em>"Impact écologique des médias sociaux en 2023 : Analyse des empreintes environnementales"</em>, [Online]. Available: <a href="https://www.digisante.fr/impact-ecologique-des-medias-sociaux-en-2023-analyse-des-empreintes-environnementales/" target="_blank">https://www.digisante.fr/impact-ecologique-des-medias-sociaux-en-2023-analyse-des-empreintes-environnementales/</a>. [Accessed: Aug. 12, 2024].</li>
                    </ul>
                 </div>
             </section>
@@ -161,14 +230,21 @@ Ajouter la classe "ignoreAutoIndex" au li: <li class="ignoreAutoIndex">ADEME, "B
                                 href="https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/"
                                 target="_blank">https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/
                             </a>. [Accessed: Nov. 10, 2025]</li>
-                        <li class="step-btm">F. Bordage, "Carbon Footprint of The Most Popular Social Media Platforms," <em>researchgate.net</em>,
+                        <li>F. Bordage, "Carbon Footprint of The Most Popular Social Media Platforms," <em>researchgate.net</em>,
                             [Online]. Available:
                             <a href="https://www.greenit.fr/wp-content/uploads/2019/10/2019-10-GREENIT-etude_EENM-rapport-accessible.VF_.pdf"
                                 target="_blank">
                                 https://www.greenit.fr/wp-content/uploads/2019/10/2019-10-GREENIT-etude_EENM-rapport-accessible.VF_.pdf
                             </a>. [Accessed: Nov. 10, 2025].
                         </li>
-                    </ul>
+                        <li>Designers Éthiques, "Guide d'Éco-conception de Services Numériques," <em>eco-conception.designersethiques.org</em>, [Online]. Available: 
+                            <a href="https://eco-conception.designersethiques.org/guide/fr/content/0-introduction.html"
+                                target="_blank">
+                                https://eco-conception.designersethiques.org/guide/fr/content/0-introduction.html
+                            </a>. [Accessed: Nov. 19, 2025].
+                        </li>
+                        <li class="step-btm">[22] ADEME, "Calculer l'empreinte carbone de vos usages numériques" <em>ADEME</em>, [Online]. Available: <a href="https://agirpourlatransition.ademe.fr/particuliers/evaluer-son-impact/calculer-empreinte-carbone/calculez-empreinte-carbone-usages-numeriques" target="_blank">https://agirpourlatransition.ademe.fr/particuliers/evaluer-son-impact/calculer-empreinte-carbone/calculez-empreinte-carbone-usages-numeriques</a></li>
+                        </ul>
                 </div>
             </section>
             <section class="collapsible">
@@ -201,10 +277,14 @@ Ajouter la classe "ignoreAutoIndex" au li: <li class="ignoreAutoIndex">ADEME, "B
                                 href="https://www.youtube.com/watch?v=NqvlJfGKCYA&list=PLuZ_sYdawLiXf92Uq5iE5LlYKrOv1IUvx"
                                 target="_blank">https://www.youtube.com/watch?v=NqvlJfGKCYA&list=PLuZ_sYdawLiXf92Uq5iE5LlYKrOv1IUvx</a>.
                             [Accessed: Aug. 12, 2024].</li>
-                            <li class="step-btm">"The Green Web Foundation," <em>developers.thegreenwebfoundation.org</em>, [Online]. Available: <a
+                            <li class>"The Green Web Foundation," <em>developers.thegreenwebfoundation.org</em>, [Online]. Available: <a
                                 href="https://developers.thegreenwebfoundation.org/"
                                 target="_blank">https://developers.thegreenwebfoundation.org/</a>.
                             [Accessed: Nov. 12, 2025].</li>
+                            <li class="step-btm">Association Green IT, <em>"Nos outils et référentiels"</em>, [Online]. Available: <a
+                                href="https://greenit.eco/nos-outils-et-referentiels/?utm_source=chatgpt.com"
+                                target="_blank">https://greenit.eco/nos-outils-et-referentiels/?utm_source=chatgpt.com</a>.
+                            [Accessed: 2025].</li>
                     </ul>
                 </div>
             </section>
@@ -257,14 +337,9 @@ Ajouter la classe "ignoreAutoIndex" au li: <li class="ignoreAutoIndex">ADEME, "B
                 </div>
             </section>
         </section>
-        <div class="button-container">
-            <a href="./quiz.html" class="button">Quiz</a>
-            <a href="./quelques-chiffres.html" class="button-secondary">Quelques Chiffres</a>
-            <a href="./en-pratique.html" class="button-secondary">En Pratique</a>
-        </div>
-    </div>
+     </div>
     <footer>
-        <p class="mg-0">&copy; 2024 - ROCHAT Lise & COURDIER Remy - <a href="./a-propos.html">A propos</a> </p>
+        <p class="mg-0">&copy; 2024 - COURDIER Rémy - <a href="./a-propos.html">A propos</a> </p>
     </footer>
     
     <script src="../assets/scripts/bibliographyListManager.js"></script>

@@ -7,7 +7,7 @@
     <meta name="description"
         content="Découvrez l'impact du numérique sur l'environnement et les moyens de réduire notre empreinte carbone.">
     <meta name="keywords" content="écoconception, numérique, empreinte carbone, développement durable, environnement">
-    <meta name="author" content="Rochat Lise">
+    <meta name="author" content="Rémy Courdier, Rochat Lise">
     <meta http-equiv="cache-control" content="max-age=31536000, must-revalidate">
     <meta http-equiv="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
     <title>Mise en Pratique - Écoconception Numérique</title>
@@ -17,84 +17,188 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles/styles.css">
+    <script defer src="../assets/scripts/hamburger.js"></script>
 </head>
+
 <body>
     <header>
-        <nav>
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../index.html">Home</a></li>
+                <li class="mg-0"><a href="./quelques-chiffres.html">Chiffres</a></li>
+                <li class="mg-0"><a href="./quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="./en-pratique.html" class="active">Ateliers</a></li>
                 <li class="mg-0"><a href="./ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="./outils.html">Outils</a></li>
-                <li class="mg-0"><a href="./quizV2.html">Quiz</a></li>
                 <li class="mg-0"><a href="./terminologie.html">Terminologie</a></li>
-
             </ul>
         </nav>
     </header>
+
     <div class="main">
         <h1>Mise en pratique</h1>
+
         <section>
             <section id="objectifs">
                 <p>
-                    L'objectif de ces travaux pratiques est de vous introduire aux principes de l'éco-conception numérique, en appliquant ces concepts à un <strong>cas réel</strong> : le site web de l'association étudiante ESIROI. À travers ces TPs, vous apprendrez à analyser et optimiser les performances des sites web tout en réduisant leur <strong>empreinte écologique</strong>.
+                    L'objectif de ces travaux pratiques est de vous introduire aux principes de l'éco-conception
+                    numérique,
+                    en appliquant ces concepts à un <strong>cas réel</strong> : le site web de l'association étudiante
+                    ESIROI.
+                    À travers ces TPs, vous apprendrez à analyser et optimiser les performances des sites web tout en
+                    réduisant
+                    leur <strong>empreinte écologique</strong>.
                 </p>
             </section>
+
             <section id="prerequis">
                 <p>
-                    <strong>Prérequis :</strong> Connaissances de base en HTML, CSS, et JavaScript, ainsi que de l'expérience avec Git, Docker, et Docker Compose. Vous devez disposer d'un environnement de développement sous Ubuntu, Windows, ou macOS.
+                    <strong>Prérequis :</strong> Connaissances de base en HTML, CSS, et JavaScript, ainsi que de
+                    l'expérience
+                    avec Git, Docker, et Docker Compose. Vous devez disposer d'un environnement de développement sous
+                    Ubuntu, Windows, ou macOS.
                 </p>
             </section>
+
             <section id="presentation-bde">
                 <p>
-                    Le site web de l'<strong>Association Étudiante ESIROI</strong> a été conçu pour offrir une plateforme dynamique aux étudiants, leur permettant d'accéder facilement aux informations relatives aux activités, événements et services proposés par l'association. <br>
-                    Aujourd'hui, l'association souhaite améliorer son site en intégrant les principes d'éco-conception numérique afin de réduire son impact environnemental tout en maintenant une expérience utilisateur de qualité. Ce projet servira de base pour nos travaux pratiques, soulignant l'importance de l'éco-responsabilité dans le développement web.
+                    Le site web de l'<strong>Association Étudiante ESIROI</strong> a été conçu pour offrir une
+                    plateforme
+                    dynamique aux étudiants, leur permettant d'accéder facilement aux informations relatives aux
+                    activités,
+                    événements et services proposés par l'association. <br>
+                    Aujourd'hui, l'association souhaite améliorer son site en intégrant les principes d'éco-conception
+                    numérique
+                    afin de réduire son impact environnemental tout en maintenant une expérience utilisateur de qualité.
+                    Ce
+                    projet servira de base pour nos travaux pratiques, soulignant l'importance de l'éco-responsabilité
+                    dans
+                    le développement web.
                 </p>
                 <p>
-                    Découvrez <a href="../en-pratique/bde-esiroi/index.html" target="_blank">le site de l'association</a>.
+                    Découvrez <a href="../en-pratique/bde-esiroi/index.html" target="_blank">le site de
+                        l'association</a>.
                 </p>
             </section>
         </section>
+
         <section id="cards">
+
             <div class="card">
                 <a href="./en-pratique/qcm.html">
                     <h2><strong>QCM</strong> : Connaissances Générales en Informatique Responsable</h2>
+                    <p class="card-meta">20 min • ⭐</p>
                     <p>
-                        Avant de commencer les TPs, répondez à ce questionnaire pour évaluer vos connaissances sur les principes de l'informatique responsable et vous préparer aux exercices pratiques.
+                        Avant de commencer les TPs, répondez à ce questionnaire pour évaluer vos connaissances sur les
+                        principes
+                        de l'informatique responsable et vous préparer aux exercices pratiques.
                     </p>
                 </a>
             </div>
+
             <div class="card">
                 <a href="./en-pratique/tp01.html">
                     <h2><strong>TP 01</strong> : Introduction à SonarQube et Eco Code</h2>
-                    <p>Installez et configurez SonarQube avec Eco Code pour analyser un projet et identifier les améliorations possibles en termes d'éco-conception.</p>
+                    <p class="card-meta">1h30 • ⭐⭐</p>
+                    <p>
+                        Installez et configurez SonarQube avec Eco Code pour analyser un projet et identifier les
+                        améliorations
+                        possibles en termes d'éco-conception. Observez les métriques proposées et documentez les
+                        recommandations
+                        pour réduire l’empreinte écologique du code.
+                    </p>
                 </a>
             </div>
+
             <div class="card">
                 <a href="./en-pratique/tp02.html">
                     <h2><strong>TP 02</strong> : Optimisation des Ressources Web</h2>
-                    <p>Optimisez les ressources du site du BDE pour réduire son **empreinte écologique** et améliorer ses performances.</p>
+                    <p class="card-meta">2h30-3h • ⭐⭐⭐</p>
+                    <p>
+                        Optimisez les ressources du site du BDE (images, scripts, CSS) pour réduire son
+                        <strong>empreinte écologique</strong> et améliorer ses performances.<br><br>
+                        <strong>Méthodologie et outils :</strong>
+                        <ul>
+                            <li>Utilisez au moins deux outils parmi Chrome DevTools (Network, Lighthouse), EcoIndex,
+                                Website Carbon Calculator.</li>
+                            <li>Procédez en 4 étapes : audit initial, identification des ressources à optimiser,
+                                optimisations, nouvel audit/synthèse.</li>
+                        </ul>
+                        <strong>Objectifs :</strong>
+                        <ul>
+                            <li>Réduire le poids total de la page d’au moins <strong>30 %</strong>.</li>
+                            <li>Abaisser le temps de chargement sous <strong>2 secondes</strong> (mobile simulé).</li>
+                            <li>Améliorer le score EcoIndex ou réduire le CO₂ estimé.</li>
+                        </ul>
+                        <strong>Contraintes :</strong>
+                        <ul>
+                            <li>Ne pas dégrader l’accessibilité ou la lisibilité du site (contrastes, textes
+                                alternatifs, navigation…)</li>
+                        </ul>
+                        <strong>Livrable attendu :</strong>
+                        <ul>
+                            <li>Tableau comparatif avant/après (poids, temps, score, CO₂…)</li>
+                            <li>Liste et justification des optimisations effectuées</li>
+                            <li>Captures d’écran des outils utilisés</li>
+                            <li>Courte explication (5–10 lignes) sur le lien entre optimisation technique, volume de
+                                données et impact environnemental</li>
+                        </ul>
+                    </p>
                 </a>
             </div>
+
             <div class="card">
                 <a href="./en-pratique/tp03.html">
                     <h2><strong>TP 03</strong> : Détection et Réduction des Scripts Inutilisés</h2>
-                    <p>Identifiez et éliminez les scripts JavaScript inutilisés ou redondants pour un site plus performant et éco-responsable.</p>
+                    <p class="card-meta">2h • ⭐⭐</p>
+                    <p>
+                        Objectif : Identifier et éliminer les scripts JavaScript inutilisés ou redondants pour améliorer
+                        les
+                        performances et réduire l’empreinte écologique. <br>
+                        Étapes :
+                        <ol>
+                            <li>Analysez les scripts à l’aide de Chrome DevTools Coverage ou d’un outil similaire.</li>
+                            <li>Identifiez les scripts redondants ou inutilisés.</li>
+                            <li>Supprimez ou chargez conditionnellement ces scripts sans perturber le fonctionnement du
+                                site.</li>
+                            <li>Mesurez l’impact sur le poids des pages, le temps de chargement et la consommation
+                                énergétique.</li>
+                            <li>Documentez vos changements et leurs effets.</li>
+                        </ol>
+                    </p>
                 </a>
             </div>
+
             <div class="card">
                 <a href="./en-pratique/tp04.html">
                     <h2><strong>TP 04</strong> : Optimisation de l'Utilisation des Polices Web</h2>
-                    <p>Apprenez à optimiser les polices web pour améliorer les performances et réduire l'empreinte écologique du site.</p>
+                    <p class="card-meta">1h30 • ⭐</p>
+                    <p>
+                        Apprenez à optimiser les polices web pour améliorer les performances et réduire l’empreinte
+                        écologique
+                        du site. Analysez les polices utilisées, supprimez celles inutiles, et implémentez le lazy
+                        loading
+                        lorsque possible. Mesurez l’impact sur le poids des pages et le temps de chargement.
+                    </p>
                 </a>
             </div>
+
         </section>
+
         <div class="button-container">
-            <a href="./quiz.html" class="button" >Quiz</a>
+            <a href="./quiz.html" class="button">Quiz</a>
             <a href="./quelques-chiffres.html" class="button-secondary">Quelques Chiffres</a>
         </div>
     </div>
+
     <footer>
-        <p class="mg-0">&copy; 2024 - ROCHAT Lise & COURDIER Remy - <a href="./a-propos.html">A propos</a> </p>
+        <p class="mg-0">&copy; 2024 - ROCHAT Lise & COURDIER Remy - <a href="./a-propos.html">A propos</a></p>
     </footer>
 </body>
+
 </html>
