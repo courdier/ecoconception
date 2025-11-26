@@ -26,10 +26,15 @@
 <body>
     <header>
         <nav>
-            <ul>
+            <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="navbar">
                 <li class="mg-0"><a href="./index.html" class="active">Home</a></li>
                 <li class="mg-0"><a href="./pages/quelques-chiffres.html">Chiffres</a></li>
-                <li class="mg-0"><a href="./pages/quizV1.html">Quiz</a></li>
+                <li class="mg-0"><a href="./pages/quizz-access.html">Quiz</a></li>
                 <li class="mg-0"><a href="./pages/en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="./pages/ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="./pages/outils.html">Outils</a></li>
@@ -40,6 +45,47 @@
 
     <div class="main">
         <h1>Sensibilisation à l'empreinte écologique des services numériques</h1>
+
+        <div class="infographie-cycle">
+            <h2>Cycle de Vie d'un Service Numérique & Impact</h2>
+            <figure>
+                <svg width="100%" height="180" viewBox="0 0 700 180" aria-label="Cycle de vie d'un service numérique">
+                    <!-- Fabrication -->
+                    <circle cx="70" cy="110" r="50" fill="#73b26c" />
+                    <text x="70" y="115" text-anchor="middle" fill="#1c1c1e" font-size="16" font-family="sans-serif" font-weight="bold">Fabrication</text>
+                    
+                    <!-- Stockage -->
+                    <circle cx="210" cy="110" r="50" fill="#ffd966" />
+                    <text x="210" y="115" text-anchor="middle" fill="#1c1c1e" font-size="16" font-family="sans-serif" font-weight="bold">Stockage</text>
+                    
+                    <!-- Transmission -->
+                    <circle cx="350" cy="110" r="50" fill="#66a2e3" />
+                    <text x="350" y="115" text-anchor="middle" fill="#1c1c1e" font-size="16" font-family="sans-serif" font-weight="bold">Transmission</text>
+                    
+                    <!-- Usage -->
+                    <circle cx="490" cy="110" r="50" fill="#a28ae3" />
+                    <text x="490" y="115" text-anchor="middle" fill="#1c1c1e" font-size="16" font-family="sans-serif" font-weight="bold">Usage</text>
+                    
+                    <!-- Fin de vie -->
+                    <circle cx="630" cy="110" r="50" fill="#de6462" />
+                    <text x="630" y="115" text-anchor="middle" fill="#ffffff" font-size="16" font-family="sans-serif" font-weight="bold">Fin de vie</text>
+                    
+                    <!-- flèches entre cercles -->
+                    <polyline points="115,110 165,110" stroke="var(--text-color)" stroke-width="3" fill="none" />
+                    <polyline points="255,110 305,110" stroke="var(--text-color)" stroke-width="3" fill="none" />
+                    <polyline points="395,110 445,110" stroke="var(--text-color)" stroke-width="3" fill="none" />
+                    <polyline points="535,110 585,110" stroke="var(--text-color)" stroke-width="3" fill="none" />
+                </svg>
+                <figcaption>
+                    De la production d'appareils à la fin de vie, chaque étape a un impact : énergie, CO₂, ressources.<br>
+                    <small>(Illustration schématique)</small>
+                </figcaption>
+            </figure>
+        </div>
+    
+
+
+
         <section id="home">
             <p> Ce site s'inscrit dans une démarche collaborative, développée en co-construction avec des étudiants du secteur informatique, sous la supervision d'experts du domaine.
                 L’objectif principal est de <strong>sensibiliser</strong> à l'empreinte écologique des
@@ -69,72 +115,15 @@
                 </li>
             </ul>
             <br>
-            <p>En parallèle, pour ceux qui souhaitent approfondir leurs connaissances :</p> 
-                <ul>
-                    <li>
-                        <strong><a href="./pages/ressources.html">Ressources</a></strong> : Cette rubrique offre une collection complète de supports pédagogiques et de références bibliographiques 
-                                                      pour approfondir vos connaissances sur l’impact environnemental du numérique. 
-                    </li>
-                    <li>
-                        <strong><a href="./pages/outils.html">Outils</a></strong> : Cette section met à disposition des outils pratiques et accessibles pour évaluer ou réduire l’empreinte 
-                                                  écologique des services numériques.
-                    </li>
-                    <li>
-                        <strong><a href="./pages/terminologie.html">Terminologie</a></strong> : Cette rubrique est un glossaire regroupant les principaux 
-                                                        termes et concepts liés à l’impact écologique des services numériques. 
-                    </li>
-                </ul>
-        </section>
-
-        <section>
-            <div class="container">
-                <!-- Colonne 1 : Public Cible -->
-                <div class="column">
-                    <h2>Public Cible</h2>
-                    <p>Ce site s'adresse à toute personne souhaitant réduire l'empreinte écologique du numérique, notamment :</p>
-                    <ul>
-                        <li>Étudiants en informatique ou disciplines connexes.</li>
-                        <li>Professionnels du numérique cherchant des solutions durables.</li>
-                        <li>Enseignants souhaitant sensibiliser leurs apprenants aux impacts du numérique.</li>
-                        <li>Grand public curieux des impacts environnementaux du numérique.</li>
-                    </ul>
-                </div>
-        
-                <!-- Colonne 2 : Prérequis -->
-                <div class="column">
-                    <h2>Prérequis</h2>
-                    <p>Aucun prérequis technique n'est nécessaire. Ce site est conçu pour être accessible à tous.</p>
-                    <p>Toutefois, des bases en informatique ou une familiarité avec le numérique sont un plus pour les sections avancées :</p>
-                    <ul>
-                        <li>Notions de programmation pour les ateliers d’éco-conception.</li>
-                        <li>Intérêt pour les solutions de développement durable dans le numérique.</li>
-                    </ul>
-                </div>
-        
-                <!-- Colonne 3 : Points clés -->
-                <div class="column">
-                    <h2>À quoi s'attendre ?</h2>
-                    <p>En explorant ce site, vous pourrez :</p>
-                    <ul>
-                        <li><strong>Découvrir</strong> des données clés sur l'empreinte écologique des services numériques.</li>
-                        <li><strong>Tester</strong> vos connaissances grâce à des quiz interactifs.</li>
-                        <li><strong>Apprendre</strong> des techniques pratiques pour réduire l'impact des services numériques.</li>
-                        <li><strong>Accéder</strong> à des ressources pour approfondir vos connaissances.</li>
-                    </ul>
-                    <p><i class="fas fa-leaf"></i> Ce site est conçu pour encourager l’adoption de pratiques numériques responsables.</p>
-                </div>
-            </div>
-            <strong><BR>Pour commençer, nous vous proposons un p'tit quiz pour rentrer dans le sujet</strong>
-            <div class="button-container">
-                <a href="./pages/quizV1.html" class="button">Quiz</a>
-             </div>
-    
+            <p>En parallèle, pour ceux qui souhaitent approfondir leurs connaissances. <a
+                    href="http://lim.univ-reunion.fr/staff/courdier/old/cours/greenit/index.html" target="_blank">Ce
+                    cours</a> permettra d'explorer plus en profondeur les solutions et les pratiques durables à adopter.
+            </p>
         </section>
     </div>
 
     <footer>
-        <p class="mg-0">&copy; 2025 - COURDIER Rémy, ROCHAT Lise & all - <a href="./pages/a-propos.html">A propos</a> </p>
+        <p class="mg-0">&copy; 2024 - COURDIER Rémy & ROCHAT Lise - <a href="./pages/a-propos.html">A propos</a> </p>
     </footer>
 </body>
-
 </html>
