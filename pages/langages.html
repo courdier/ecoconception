@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Éco-conception et impact environnemental des langages de programmation">
+    <meta name="keywords" content="écoconception, langages, programmation, PHP, Python, C, empreinte carbone, environnement">
+    <meta name="author" content="Rémy Courdier, Youssouf ONIAN">
+    <meta http-equiv="cache-control" content="max-age=31536000, must-revalidate">
+    <title>Langages de Programmation - Écoconception Numérique</title>
+    <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/styles/styles.css">
+    <script defer src="../assets/scripts/scripts-tp.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="mg-0"><a href="../index.html">Home</a></li>
+                <li class="mg-0"><a href="./quelques-chiffres.html">Chiffres</a></li>
+                <li class="mg-0"><a href="./quizV1.html">Quiz</a></li>
+                <li class="mg-0"><a href="./en-pratique.html">Ateliers</a></li>
+                <li class="mg-0"><a href="./ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="./outils.html">Outils</a></li>
+                <li class="mg-0"><a href="./terminologie.html">Terminologie</a></li>
+                <li class="mg-0"><a href="./langages.html" class="active">Langages</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main">
+        <h1>Langages de Programmation & Éco-conception</h1>
+
+        <section id="intro">
+            <p>
+                Tous les langages de programmation ne se valent pas en termes d'<strong>efficacité énergétique</strong>.
+                Le choix d'un langage peut avoir un <strong>impact significatif</strong> sur la consommation d'énergie,
+                les émissions de CO₂ et l'empreinte écologique globale d'une application.
+            </p>
+            <br>
+            <p>
+                Cette section présente une <strong>analyse comparative</strong> des langages de programmation
+                sous l'angle de l'écoconception, avec des <strong>règles d'optimisation concrètes</strong>
+                pour réduire l'impact environnemental de votre code.
+            </p>
+        </section>
+
+        <section>
+            <h2>Classement énergétique des langages</h2>
+            <p>
+                Selon l'étude de l'Université de Minho (Portugal), les langages compilés sont
+                <strong>significativement plus économes</strong> que les langages interprétés :
+            </p>
+
+            <div class="container" style="margin-top: 30px;">
+                <!-- Colonne 1 : Langages efficaces -->
+                <div class="column">
+                    <h3 style="color: var(--success-color);">
+                        <i class="fas fa-leaf"></i> Très efficaces
+                    </h3>
+                    <ul style="text-align: left;">
+                        <li><strong>C</strong> (77 joules)</li>
+                        <li><strong>C++</strong> (79 joules)</li>
+                        <li><strong>Rust</strong> (80 joules)</li>
+                        <li><strong>Ada</strong> (98 joules)</li>
+                        <li><strong>Java</strong> (114 joules)</li>
+                    </ul>
+                    <p style="font-size: 0.9rem; color: var(--text-color-light); margin-top: 10px;">
+                        Langages compilés natifs avec excellent rapport performance/énergie
+                    </p>
+                </div>
+
+                <!-- Colonne 2 : Langages intermédiaires -->
+                <div class="column">
+                    <h3 style="color: var(--warning-color);">
+                        <i class="fas fa-bolt"></i> Intermédiaires
+                    </h3>
+                    <ul style="text-align: left;">
+                        <li><strong>C#</strong> (555 joules)</li>
+                        <li><strong>Go</strong> (650 joules)</li>
+                        <li><strong>JavaScript</strong> (1817 joules)</li>
+                        <li><strong>PHP</strong> (2213 joules) - 21ᵉ/27</li>
+                    </ul>
+                    <p style="font-size: 0.9rem; color: var(--text-color-light); margin-top: 10px;">
+                        Langages interprétés ou JIT avec optimisations possibles
+                    </p>
+                </div>
+
+                <!-- Colonne 3 : Langages gourmands -->
+                <div class="column">
+                    <h3 style="color: var(--emergency-color);">
+                        <i class="fas fa-fire"></i> Moins efficaces
+                    </h3>
+                    <ul style="text-align: left;">
+                        <li><strong>Python</strong> (4390 joules) - 26ᵉ/27</li>
+                        <li><strong>Ruby</strong> (4267 joules)</li>
+                        <li><strong>Perl</strong> (4541 joules)</li>
+                        <li><strong>Lua</strong> (2892 joules)</li>
+                    </ul>
+                    <p style="font-size: 0.9rem; color: var(--text-color-light); margin-top: 10px;">
+                        Langages interprétés avec forte consommation énergétique
+                    </p>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; padding: 15px; background-color: rgba(47, 223, 173, 0.1); border-left: 4px solid var(--primary-color);">
+                <p style="margin: 0;">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>À retenir :</strong> Python consomme <strong>45× plus d'énergie</strong> que C++
+                    pour exécuter les mêmes programmes !
+                    <strong>28× supérieure</strong> à C++.
+                </p>
+            </div>
+        </section>
+
+        <section style="margin-top: 50px;">
+            <h2>Langages analysés</h2>
+            <p>
+                Sélectionnez un langage pour découvrir ses <strong>règles d'éco-conception</strong>,
+                des <strong>exemples de code optimisé</strong> et des <strong>bonnes pratiques</strong>
+                pour réduire son empreinte environnementale.
+            </p>
+
+            <!-- Grille de langages -->
+            <div class="services-grid" style="margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+
+                <!-- Card PHP -->
+                <div class="service-card" style="background: linear-gradient(135deg, rgba(119, 123, 180, 0.15) 0%, rgba(119, 123, 180, 0.05) 100%); border: 2px solid #777bb4; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 10px; right: 10px; background-color: var(--success-color); color: var(--background-color); padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: bold;">
+                        DISPONIBLE
+                    </div>
+                    <i class="fab fa-php" style="font-size: 4rem; color: #777bb4; margin-bottom: 20px;"></i>
+                    <h3 style="color: #777bb4; font-size: 1.8rem; margin-bottom: 10px;">PHP</h3>
+                    <p style="color: var(--text-color-light); margin-bottom: 15px;">
+                        21ᵉ/27 en efficacité énergétique
+                    </p>
+                    <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">
+                        Découvrez <strong>10 règles d'optimisation</strong> pour réduire l'empreinte
+                        environnementale de vos applications PHP : gestion mémoire, concaténation,
+                        recherches dans tableaux, OPcache, et bien plus.
+                    </p>
+                    <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                        <span style="background-color: rgba(119, 123, 180, 0.2); padding: 5px 10px; border-radius: 12px; font-size: 0.85rem;">
+                            <i class="fas fa-bolt"></i> Performance ×4
+                        </span>
+                        <span style="background-color: rgba(119, 123, 180, 0.2); padding: 5px 10px; border-radius: 12px; font-size: 0.85rem;">
+                            <i class="fas fa-memory"></i> -60% mémoire
+                        </span>
+                        <span style="background-color: rgba(119, 123, 180, 0.2); padding: 5px 10px; border-radius: 12px; font-size: 0.85rem;">
+                            <i class="fas fa-leaf"></i> 10 éco-rules
+                        </span>
+                    </div>
+                    <a href="./langages/php.html" class="button" style="margin-top: 25px; display: inline-block; background-color: #777bb4; color: white; padding: 12px 25px; text-decoration: none; border-radius: 25px; font-weight: bold; transition: all 0.3s;">
+                        Explorer PHP <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Card Python (placeholder) -->
+                <div class="service-card" style="background: linear-gradient(135deg, rgba(255, 212, 59, 0.15) 0%, rgba(74, 117, 178, 0.1) 100%); border: 2px solid #ffd43b; position: relative; opacity: 0.7;">
+                    <div style="position: absolute; top: 10px; right: 10px; background-color: var(--becoming-color); color: var(--background-color); padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: bold;">
+                        BIENTÔT
+                    </div>
+                    <i class="fab fa-python" style="font-size: 4rem; color: #ffd43b; margin-bottom: 20px;"></i>
+                    <h3 style="color: #ffd43b; font-size: 1.8rem; margin-bottom: 10px;">Python</h3>
+                    <p style="color: var(--text-color-light); margin-bottom: 15px;">
+                        26ᵉ/27 en efficacité énergétique
+                    </p>
+                    <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">
+                        Règles d'optimisation pour Python : compréhensions de listes, générateurs,
+                        f-strings, fonctions natives, NumPy vectorisation, et gestion mémoire efficace.
+                    </p>
+                    <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                        <span style="background-color: rgba(255, 212, 59, 0.2); padding: 5px 10px; border-radius: 12px; font-size: 0.85rem;">
+                            <i class="fas fa-code"></i> Interprété
+                        </span>
+                        <span style="background-color: rgba(255, 212, 59, 0.2); padding: 5px 10px; border-radius: 12px; font-size: 0.85rem;">
+                            <i class="fas fa-fire"></i> 45× vs C++
+                        </span>
+                    </div>
+                    <button disabled class="button" style="margin-top: 25px; background-color: #555; color: #999; padding: 12px 25px; border-radius: 25px; border: none; cursor: not-allowed;">
+                        En construction...
+                    </button>
+                </div>
+
+                <!-- Card C (placeholder) -->
+                <div class="service-card" style="background: linear-gradient(135deg, rgba(99, 157, 225, 0.15) 0%, rgba(99, 157, 225, 0.05) 100%); border: 2px solid #639de1; position: relative; opacity: 0.7;">
+                    <div style="position: absolute; top: 10px; right: 10px; background-color: var(--becoming-color); color: var(--background-color); padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: bold;">
+                        BIENTÔT
+                    </div>
+                    <i class="fas fa-code" style="font-size: 4rem; color: #639de1; margin-bottom: 20px;"></i>
+                    <h3 style="color: #639de1; font-size: 1.8rem; margin-bottom: 10px;">C / C++</h3>
+                    <p style="color: var(--text-color-light); margin-bottom: 15px;">
+                        1ᵉʳ et 2ᵉ en efficacité énergétique
+                    </p>
+                    <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">
+                        Les champions de l'efficacité énergétique : compilation native, gestion mémoire
+                        manuelle, optimisations compilateur, et zéro overhead runtime.
+                    </p>
+                    <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                        <span style="background-color: rgba(99, 157, 225, 0.2); padding: 5px 10px; border-radius: 12px; font-size: 0.85rem;">
+                            <i class="fas fa-trophy"></i> Champion
+                        </span>
+                        <span style="background-color: rgba(99, 157, 225, 0.2); padding: 5px 10px; border-radius: 12px; font-size: 0.85rem;">
+                            <i class="fas fa-leaf"></i> 77 joules
+                        </span>
+                    </div>
+                    <button disabled class="button" style="margin-top: 25px; background-color: #555; color: #999; padding: 12px 25px; border-radius: 25px; border: none; cursor: not-allowed;">
+                        En construction...
+                    </button>
+                </div>
+
+                <!-- Card Java (placeholder) -->
+                <div class="service-card" style="background: linear-gradient(135deg, rgba(237, 109, 54, 0.15) 0%, rgba(237, 109, 54, 0.05) 100%); border: 2px solid #ed6d36; position: relative; opacity: 0.7;">
+                    <div style="position: absolute; top: 10px; right: 10px; background-color: var(--becoming-color); color: var(--background-color); padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: bold;">
+                        BIENTÔT
+                    </div>
+                    <i class="fab fa-java" style="font-size: 4rem; color: #ed6d36; margin-bottom: 20px;"></i>
+                    <h3 style="color: #ed6d36; font-size: 1.8rem; margin-bottom: 10px;">Java</h3>
+                    <p style="color: var(--text-color-light); margin-bottom: 15px;">
+                        5ᵉ/27 en efficacité énergétique
+                    </p>
+                    <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">
+                        Optimisations JVM, garbage collection efficace, compilation JIT,
+                        choix des structures de données, et bonnes pratiques enterprise.
+                    </p>
+                    <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                        <span style="background-color: rgba(237, 109, 54, 0.2); padding: 5px 10px; border-radius: 12px; font-size: 0.85rem;">
+                            <i class="fas fa-rocket"></i> JIT
+                        </span>
+                        <span style="background-color: rgba(237, 109, 54, 0.2); padding: 5px 10px; border-radius: 12px; font-size: 0.85rem;">
+                            <i class="fas fa-recycle"></i> GC optimisé
+                        </span>
+                    </div>
+                    <button disabled class="button" style="margin-top: 25px; background-color: #555; color: #999; padding: 12px 25px; border-radius: 25px; border: none; cursor: not-allowed;">
+                        En construction...
+                    </button>
+                </div>
+
+                <!-- Card Dart (placeholder) -->
+                <div class="service-card" style="background: linear-gradient(135deg, rgba(0, 180, 216, 0.15) 0%, rgba(0, 180, 216, 0.05) 100%); border: 2px solid #00b4d8; position: relative; opacity: 0.7;">
+                    <div style="position: absolute; top: 10px; right: 10px; background-color: var(--becoming-color); color: var(--background-color); padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: bold;">
+                        BIENTÔT
+                    </div>
+                    <i class="fas fa-bullseye" style="font-size: 4rem; color: #00b4d8; margin-bottom: 20px;"></i>
+                    <h3 style="color: #00b4d8; font-size: 1.8rem; margin-bottom: 10px;">Dart</h3>
+                    <p style="color: var(--text-color-light); margin-bottom: 15px;">
+                        Langage optimisé pour UI
+                    </p>
+                    <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">
+                        Compilation AOT pour performances natives, hot reload efficace,
+                        optimisé pour Flutter et applications cross-platform éco-responsables.
+                    </p>
+                    <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                        <span style="background-color: rgba(0, 180, 216, 0.2); padding: 5px 10px; border-radius: 12px; font-size: 0.85rem;">
+                            <i class="fas fa-mobile-alt"></i> Flutter
+                        </span>
+                        <span style="background-color: rgba(0, 180, 216, 0.2); padding: 5px 10px; border-radius: 12px; font-size: 0.85rem;">
+                            <i class="fas fa-bolt"></i> AOT
+                        </span>
+                    </div>
+                    <button disabled class="button" style="margin-top: 25px; background-color: #555; color: #999; padding: 12px 25px; border-radius: 25px; border: none; cursor: not-allowed;">
+                        En construction...
+                    </button>
+                </div>
+
+                <!-- Card JavaScript (placeholder) -->
+                <div class="service-card" style="background: linear-gradient(135deg, rgba(247, 223, 30, 0.15) 0%, rgba(247, 223, 30, 0.05) 100%); border: 2px solid #f7df1e; position: relative; opacity: 0.7;">
+                    <div style="position: absolute; top: 10px; right: 10px; background-color: var(--becoming-color); color: var(--background-color); padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: bold;">
+                        BIENTÔT
+                    </div>
+                    <i class="fab fa-js" style="font-size: 4rem; color: #f7df1e; margin-bottom: 20px;"></i>
+                    <h3 style="color: #f7df1e; font-size: 1.8rem; margin-bottom: 10px;">JavaScript</h3>
+                    <p style="color: var(--text-color-light); margin-bottom: 15px;">
+                        18ᵉ/27 en efficacité énergétique
+                    </p>
+                    <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">
+                        Optimisations V8/SpiderMonkey, async/await efficace, tree-shaking,
+                        code splitting, et réduction du bundle size pour le web.
+                    </p>
+                    <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                        <span style="background-color: rgba(247, 223, 30, 0.2); padding: 5px 10px; border-radius: 12px; font-size: 0.85rem; color: var(--text-color);">
+                            <i class="fas fa-globe"></i> Web
+                        </span>
+                        <span style="background-color: rgba(247, 223, 30, 0.2); padding: 5px 10px; border-radius: 12px; font-size: 0.85rem; color: var(--text-color);">
+                            <i class="fas fa-server"></i> Node.js
+                        </span>
+                    </div>
+                    <button disabled class="button" style="margin-top: 25px; background-color: #555; color: #999; padding: 12px 25px; border-radius: 25px; border: none; cursor: not-allowed;">
+                        En construction...
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <section style="margin-top: 60px; padding: 25px; background: linear-gradient(135deg, rgba(47, 223, 173, 0.1) 0%, rgba(47, 223, 173, 0.02) 100%); border-radius: 10px; border: 2px solid var(--primary-color);">
+            <h2 style="margin-bottom: 20px;">
+                <i class="fas fa-lightbulb"></i> Pourquoi cette section ?
+            </h2>
+            <div class="container">
+                <div class="column">
+                    <h3><i class="fas fa-chart-line"></i> Impact global</h3>
+                    <p>
+                        Les data centers consomment <strong>2% de l'électricité mondiale</strong>,
+                        et d'ici 2040, le secteur TIC pourrait représenter <strong>14% du carbone mondial</strong>.
+                    </p>
+                </div>
+                <div class="column">
+                    <h3><i class="fas fa-code-branch"></i> Choix techniques</h3>
+                    <p>
+                        Un même algorithme en Python peut consommer <strong>45× plus d'énergie</strong>
+                        qu'en C++. Le choix du langage n'est pas neutre écologiquement.
+                    </p>
+                </div>
+                <div class="column">
+                    <h3><i class="fas fa-tools"></i> Solutions concrètes</h3>
+                    <p>
+                        Chaque langage dispose d'<strong>optimisations spécifiques</strong> permettant
+                        de réduire drastiquement son empreinte sans changer de technologie.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bibliography" style="margin-top: 50px;">
+            <h2>Sources principales</h2>
+            <ul class="bibliography-list" style="text-align: left; max-width: 900px; margin: 0 auto;">
+                <li id="source1">
+                    <strong>[1]</strong> Pereira, R., Couto, M., Ribeiro, F., Rua, R., Cunha, J., Fernandes, J. P., & Saraiva, J. (2017).
+                    <em>Energy efficiency across programming languages: how do energy, time, and memory relate?</em>
+                    Proceedings of the 10th ACM SIGPLAN International Conference on Software Language Engineering.
+                    <a href="https://repositorium.uminho.pt/bitstream/1822/69044/1/paper.pdf" target="_blank" rel="noopener">
+                        [PDF]
+                    </a>
+                </li>
+                <li id="source2">
+                    <strong>[2]</strong> Softjourn (2026). <em>The Most Efficient and Environmentally Friendly Programming Languages in 2026.</em>
+                    <a href="https://softjourn.com/insights/environmentally-friendly-programming-languages" target="_blank" rel="noopener">
+                        [Lien]
+                    </a>
+                </li>
+                <li id="source3">
+                    <strong>[3]</strong> Green Code Initiative. <em>ecoCode - Reduce the environmental footprint of your software programs.</em>
+                    <a href="https://github.com/green-code-initiative" target="_blank" rel="noopener">
+                        [GitHub]
+                    </a>
+                </li>
+                <li id="source4">
+                    <strong>[4]</strong> Ubiminds (2025). <em>Green Coding Practices: Minimize Software's Carbon Footprint.</em>
+                    <a href="https://ubiminds.com/en-us/green-coding-practices/" target="_blank" rel="noopener">
+                        [Lien]
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <div class="button-container" style="margin-top: 50px;">
+            <a href="../index.html" class="button">
+                <i class="fas fa-home"></i> Retour à l'accueil
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p class="mg-0">&copy; 2026 - COURDIER Rémy, ONIAN Youssouf & all - <a href="./a-propos.html">A propos</a></p>
+    </footer>
+</body>
+
+</html>
