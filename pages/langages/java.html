@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Règles d'éco-conception pour Java - Optimisations environnementales">
-    <meta name="keywords" content="Java, écoconception, optimisation, performance, empreinte carbone, green coding">
+    <meta name="keywords" content="Java, écoconception, optimisation, performance, empreinte carbone, green coding, JVM">
     <meta name="author" content="Youssouf ONIAN">
-    <title>Java - Éco-conception & Green Coding</title>
+    <title>Java - Éco-conception & Optimisations</title>
+    <title>Java - Éco-conception & Optimisations</title>
     <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -150,9 +151,9 @@
         }
 
         .nav-languages a.active {
-            background-color: #777bb4;
+            background-color: #f89820;
             color: white;
-            border-color: #777bb4;
+            border-color: #f89820;
         }
 
         .summary-table {
@@ -215,9 +216,10 @@
         <!-- Navigation entre langages -->
         <div class="nav-languages">
             <a href="./php.html"><i class="fab fa-php"></i> PHP</a>
+            <a href="./php.html"><i class="fab fa-php"></i> PHP</a>
             <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fab fa-python"></i> Python (bientôt)</a>
             <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fas fa-code"></i> C/C++ (bientôt)</a>
-            <a href="./java.html" class="active"><i class="fab fa-java"></i> Java (bientôt)</a>
+            <a href="./java.html" class="active"><i class="fab fa-java"></i> Java</a>
             <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fas fa-cog"></i> Rust (bientôt)</a>
             <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fab fa-js"></i> JavaScript (bientôt)</a>
         </div>
@@ -225,15 +227,15 @@
         <!-- Introduction -->
         <section class="intro-text">
             <p>
-                PHP se classe <strong>21ᵉ sur 27</strong> en termes d'efficacité énergétique, consommant
-                environ <strong>28× plus d'énergie</strong> que C++ pour exécuter les mêmes programmes.
-                Cependant, avec <strong>40-50% des sites web</strong> utilisant PHP (WordPress, Drupal, Laravel...),
-                même de petites optimisations ont un <strong>impact global significatif</strong>.
+                Java se classe <strong>5ᵉ sur 27</strong> en termes d'efficacité énergétique, consommant
+                environ <strong>1.98× plus d'énergie</strong> que C pour exécuter les mêmes programmes.
+                Avec plus de <strong>35 millions de développeurs</strong> et une présence massive dans l'entreprise,
+                le cloud et Android, les optimisations Java ont un <strong>impact environnemental considérable</strong>.
             </p>
             <br>
             <p>
                 Cette page présente <strong>10 règles d'éco-conception</strong> concrètes pour réduire
-                l'empreinte environnementale de vos applications PHP, avec des exemples de code
+                l'empreinte environnementale de vos applications Java, avec des exemples de code
                 avant/après et des mesures de gains réels.
             </p>
         </section>
@@ -243,22 +245,24 @@
             <div class="stat-item">
                 <i class="fas fa-bolt"></i>
                 <h2>5ᵉ / 27</h2>
+                <h2>5ᵉ / 27</h2>
                 <p>Classement énergétique des langages <sup><a href="#source1">[1]</a></sup></p>
             </div>
             <div class="stat-item">
-                <i class="fas fa-globe"></i>
-                <h2>3ème</h2>
-                <p>Language de programmation le plus populaire (janvier 2026) <sup><a href="#source2">[2]</a></sup></p>
+                <i class="fas fa-users"></i>
+                <h2>35M+</h2>
+                <p>Développeurs Java dans le monde <sup><a href="#source2">[2]</a></sup></p>
             </div>
             <div class="stat-item">
                 <i class="fas fa-fire"></i>
-                <h2>2× vs C++</h2>
+                <h2>1.98× vs C</h2>
                 <p>Consommation énergétique relative <sup><a href="#source1">[1]</a></sup></p>
             </div>
         </section>
 
         <!-- Tableau récapitulatif -->
         <section style="margin-top: 50px;">
+            <h2>Récapitulatif des 10 éco-rules Java</h2>
             <h2>Récapitulatif des 10 éco-rules Java</h2>
             <p>Cliquez sur une règle pour accéder directement aux détails et exemples de code.</p>
 
@@ -275,73 +279,73 @@
                 <tbody>
                     <tr onclick="location.href='#rule1'" style="cursor: pointer;">
                         <td>1</td>
-                        <td><strong>stringBuilder</strong> - Concaténation en boucle</td>
-                        <td>×10 plus rapide</td>
+                        <td><strong>StringBuilder</strong> - Concaténation en boucle</td>
+                        <td>×10-100 plus rapide</td>
                         <td>-70-90%</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐</span></td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
                     </tr>
                     <tr onclick="location.href='#rule2'" style="cursor: pointer;">
                         <td>2</td>
-                        <td><strong>stream_filtering</strong> - Filtrage de collections</td>
+                        <td><strong>ArrayList sizing</strong> - Pré-dimensionner les listes</td>
                         <td>×2-3 plus rapide</td>
-                        <td>-40-60%</td>
+                        <td>-30-50%</td>
                         <td><span class="impact-badge impact-high">⭐⭐⭐</span></td>
                     </tr>
                     <tr onclick="location.href='#rule3'" style="cursor: pointer;">
                         <td>3</td>
-                        <td><strong>hashmap_vs_list</strong> - Recherche optimale</td>
-                        <td>×100+ plus rapide</td>
-                        <td>-30-50%</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
+                        <td><strong>Stream vs Loop</strong> - Choix approprié</td>
+                        <td>Variable</td>
+                        <td>Variable</td>
+                        <td><span class="impact-badge impact-medium">⭐⭐</span></td>
                     </tr>
                     <tr onclick="location.href='#rule4'" style="cursor: pointer;">
                         <td>4</td>
-                        <td><strong>lazy_initialization</strong> - Initialisation tardive</td>
-                        <td>Variable</td>
-                        <td>-50-80%</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐</span></td>
+                        <td><strong>HashSet lookup</strong> - Recherche efficace</td>
+                        <td>×1000 plus rapide</td>
+                        <td>Faible</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
                     </tr>
                     <tr onclick="location.href='#rule5'" style="cursor: pointer;">
                         <td>5</td>
-                        <td><strong>object_pooling</strong> - Réutilisation d'objets</td>
+                        <td><strong>Primitive types</strong> - Éviter l'autoboxing</td>
                         <td>×3-5 plus rapide</td>
-                        <td>-60-80%</td>
+                        <td>-75%</td>
                         <td><span class="impact-badge impact-high">⭐⭐⭐</span></td>
                     </tr>
                     <tr onclick="location.href='#rule6'" style="cursor: pointer;">
                         <td>6</td>
-                        <td><strong>parallel_streams</strong> - Parallélisation</td>
-                        <td>×4 plus rapide (8 cores)</td>
-                        <td>Modéré</td>
+                        <td><strong>Try-with-resources</strong> - Gestion des ressources</td>
+                        <td>Évite les fuites</td>
+                        <td>Significatif</td>
                         <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
                     </tr>
                     <tr onclick="location.href='#rule7'" style="cursor: pointer;">
                         <td>7</td>
-                        <td><strong>gc_tuning</strong> - Optimiser le GC</td>
-                        <td>×2-3 plus rapide</td>
-                        <td>Variable</td>
+                        <td><strong>JVM tuning</strong> - Optimiser les paramètres JVM</td>
+                        <td>×2-5 plus rapide</td>
+                        <td>Optimisé</td>
                         <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
                     </tr>
                     <tr onclick="location.href='#rule8'" style="cursor: pointer;">
                         <td>8</td>
-                        <td><strong>try_with_resources</strong> - Gestion de ressources</td>
-                        <td>Évite bugs</td>
-                        <td>Libère ressources</td>
+                        <td><strong>Lazy initialization</strong> - Initialisation différée</td>
+                        <td>Variable</td>
+                        <td>Significatif</td>
                         <td><span class="impact-badge impact-medium">⭐⭐</span></td>
                     </tr>
                     <tr onclick="location.href='#rule9'" style="cursor: pointer;">
                         <td>9</td>
-                        <td><strong>null_checks</strong> - Vérifications ciblées</td>
-                        <td>5-8%</td>
-                        <td>Faible</td>
-                        <td><span class="impact-badge impact-low">⭐</span></td>
+                        <td><strong>Connection pooling</strong> - Réutiliser les connexions</td>
+                        <td>×10-50 plus rapide</td>
+                        <td>Élevé</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
                     </tr>
                     <tr onclick="location.href='#rule10'" style="cursor: pointer;">
                         <td>10</td>
-                        <td><strong>dependency_injection</strong> - Injection de dépendances</td>
-                        <td>Variable</td>
-                        <td>Modéré</td>
-                        <td><span class="impact-badge impact-medium">⭐⭐</span></td>
+                        <td><strong>Logging optimisé</strong> - Logs conditionnels</td>
+                        <td>10-30%</td>
+                        <td>Faible</td>
+                        <td><span class="impact-badge impact-low">⭐</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -350,7 +354,7 @@
         <!-- LES 10 ÉCO-RULES -->
         <section style="margin-top: 60px;">
             <h2 style="text-align: center; font-size: 2rem; color: var(--primary-color); margin-bottom: 40px;">
-                <i class="fas fa-leaf"></i> Les 10 Éco-Rules PHP
+                <i class="fas fa-leaf"></i> Les 10 Éco-Rules Java
             </h2>
 
             <!-- RÈGLE 1 : StringBuilder -->
@@ -359,471 +363,518 @@
                     <span class="rule-number">1</span>
                     StringBuilder - Concaténation de chaînes en boucle
                 </h3>
-                <p><span class="impact-badge impact-high"><i class="fas fa-leaf"></i> Impact ÉLEVÉ</span></p>
+                <p><span class="impact-badge impact-high"><i class="fas fa-leaf"></i> Impact TRÈS ÉLEVÉ</span></p>
 
                 <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code inefficace :</h4>
                 <div class="code-block bad">
-<pre><code><span class="variable">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="string">""</span><span class="operator">;</span>
-<span class="keyword">for</span> <span class="operator">(</span><span class="variable">String</span> <span class="variable">item</span> <span class="operator">:</span> <span class="variable">items</span><span class="operator">)</span> <span class="operator">{</span>
+<pre><code><span class="keyword">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="string">""</span><span class="operator">;</span>
+<span class="keyword">for</span> <span class="operator">(</span><span class="keyword">String</span> <span class="variable">item</span> <span class="operator">:</span> <span class="variable">items</span><span class="operator">)</span> <span class="operator">{</span>
     <span class="variable">result</span> <span class="operator">+=</span> <span class="variable">item</span> <span class="operator">+</span> <span class="string">", "</span><span class="operator">;</span>
-<span class="operator">}</span>
-<span class="variable">result</span> <span class="operator">=</span> <span class="variable">result</span><span class="operator">.</span><span class="function">substring</span><span class="operator">(</span><span class="string">0</span><span class="operator">,</span> <span class="variable">result</span><span class="operator">.</span><span class="function">length</span><span class="operator">()</span> <span class="operator">-</span> <span class="string">2</span><span class="operator">);</span></code></pre>
+<span class="operator">}</span></code></pre>
                 </div>
 
                 <div class="explanation-box">
                     <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
                     <ul style="text-align: left;">
-                        <li>En Java, <code>String</code> est <strong>immuable</strong> : chaque <code>+=</code> crée une nouvelle chaîne en mémoire</li>
-                        <li>Pour 1000 éléments : <strong>1000 allocations mémoire</strong> et copies (O(n²))</li>
-                        <li><strong>Surconsommation mémoire CPU</strong> + temps d'exécution exponentiel</li>
+                        <li>Les <code>String</code> sont <strong>immuables</strong> en Java</li>
+                        <li>Chaque <code>+=</code> crée un <strong>nouvel objet String</strong> en mémoire</li>
+                        <li>Pour 1000 éléments : <strong>O(n²)</strong> opérations de copie</li>
                     </ul>
                 </div>
 
                 <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
                 <div class="code-block good">
-<pre><code><span class="variable">StringBuilder</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="variable">StringBuilder</span><span class="operator">();</span>
-<span class="keyword">for</span> <span class="operator">(</span><span class="keyword">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="string">0</span><span class="operator">;</span> <span class="variable">i</span> <span class="operator">&lt;</span> <span class="variable">items</span><span class="operator">.</span><span class="function">size</span><span class="operator">();</span> <span class="variable">i</span><span class="operator">++)</span> <span class="operator">{</span>
-    <span class="variable">result</span><span class="operator">.</span><span class="function">append</span><span class="operator">(</span><span class="variable">items</span><span class="operator">.</span><span class="function">get</span><span class="operator">(</span><span class="variable">i</span><span class="operator">));</span>
-    <span class="keyword">if</span> <span class="operator">(</span><span class="variable">i</span> <span class="operator">&lt;</span> <span class="variable">items</span><span class="operator">.</span><span class="function">size</span><span class="operator">()</span> <span class="operator">-</span> <span class="string">1</span><span class="operator">)</span> <span class="variable">result</span><span class="operator">.</span><span class="function">append</span><span class="operator">(</span><span class="string">", "</span><span class="operator">);</span>
+<pre><code><span class="keyword">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="function">StringBuilder</span><span class="operator">();</span>
+<span class="keyword">for</span> <span class="operator">(</span><span class="keyword">String</span> <span class="variable">item</span> <span class="operator">:</span> <span class="variable">items</span><span class="operator">)</span> <span class="operator">{</span>
+    <span class="variable">sb</span><span class="operator">.</span><span class="function">append</span><span class="operator">(</span><span class="variable">item</span><span class="operator">).</span><span class="function">append</span><span class="operator">(</span><span class="string">", "</span><span class="operator">);</span>
 <span class="operator">}</span>
-<span class="variable">String</span> <span class="variable">finalResult</span> <span class="operator">=</span> <span class="variable">result</span><span class="operator">.</span><span class="function">toString</span><span class="operator">();</span></code></pre>
+<span class="keyword">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="variable">sb</span><span class="operator">.</span><span class="function">toString</span><span class="operator">();</span>
+
+<span class="comment">// Ou avec String.join() (Java 8+) :</span>
+<span class="keyword">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="function">String</span><span class="operator">.</span><span class="function">join</span><span class="operator">(</span><span class="string">", "</span><span class="operator">,</span> <span class="variable">items</span><span class="operator">);</span></code></pre>
                 </div>
 
                 <div class="gain-box">
                     <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
                     <ul style="text-align: left;">
-                        <li><strong>×10 plus rapide</strong> pour 10 000 éléments <sup><a href="#source3">[3]</a></sup></li>
+                        <li><strong>×10-100 plus rapide</strong> pour les grandes listes <sup><a href="#source3">[3]</a></sup></li>
                         <li>Réduit la consommation mémoire de <strong>70-90%</strong></li>
-                        <li>Complexité O(n) au lieu de O(n²)</li>
+                        <li>Moins de pression sur le Garbage Collector</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- RÈGLE 2 : Stream Filtering -->
+            <!-- RÈGLE 2 : ArrayList sizing -->
             <div class="eco-rule" id="rule2">
                 <h3>
                     <span class="rule-number">2</span>
-                    Stream Filtering - Filtrage efficace de collections
+                    ArrayList sizing - Pré-dimensionner les collections
                 </h3>
                 <p><span class="impact-badge impact-high"><i class="fas fa-leaf"></i> Impact ÉLEVÉ</span></p>
 
                 <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code inefficace :</h4>
                 <div class="code-block bad">
-<pre><code><span class="variable">List</span><span class="operator">&lt;</span><span class="variable">User</span><span class="operator">&gt;</span> <span class="variable">activeUsers</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="variable">ArrayList</span><span class="operator">&lt;&gt;();</span>
-<span class="keyword">for</span> <span class="operator">(</span><span class="variable">User</span> <span class="variable">user</span> <span class="operator">:</span> <span class="variable">users</span><span class="operator">)</span> <span class="operator">{</span>
-    <span class="keyword">if</span> <span class="operator">(</span><span class="variable">user</span><span class="operator">.</span><span class="function">isActive</span><span class="operator">())</span> <span class="operator">{</span>
-        <span class="variable">activeUsers</span><span class="operator">.</span><span class="function">add</span><span class="operator">(</span><span class="variable">user</span><span class="operator">);</span>
-    <span class="operator">}</span>
+<pre><code><span class="keyword">List</span><span class="operator">&lt;</span><span class="keyword">String</span><span class="operator">&gt;</span> <span class="variable">results</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="function">ArrayList</span><span class="operator">&lt;&gt;();</span>  <span class="comment">// Capacité par défaut : 10</span>
+<span class="keyword">for</span> <span class="operator">(</span><span class="keyword">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="string">0</span><span class="operator">;</span> <span class="variable">i</span> <span class="operator">&lt;</span> <span class="string">10000</span><span class="operator">;</span> <span class="variable">i</span><span class="operator">++)</span> <span class="operator">{</span>
+    <span class="variable">results</span><span class="operator">.</span><span class="function">add</span><span class="operator">(</span><span class="function">process</span><span class="operator">(</span><span class="variable">i</span><span class="operator">));</span>
 <span class="operator">}</span></code></pre>
                 </div>
 
                 <div class="explanation-box">
                     <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
                     <ul style="text-align: left;">
-                        <li>Code impératif avec boucle explicite et mutations</li>
-                        <li>Crée une liste intermédiaire même si non nécessaire</li>
-                        <li>Moins optimisable par le JIT compiler</li>
+                        <li><code>ArrayList</code> double sa capacité quand elle est pleine</li>
+                        <li>Pour 10 000 éléments : <strong>~13 redimensionnements</strong> avec copies</li>
+                        <li>Chaque redimensionnement = allocation + copie de tous les éléments</li>
                     </ul>
                 </div>
 
                 <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
                 <div class="code-block good">
-<pre><code><span class="variable">List</span><span class="operator">&lt;</span><span class="variable">User</span><span class="operator">&gt;</span> <span class="variable">activeUsers</span> <span class="operator">=</span> <span class="variable">users</span><span class="operator">.</span><span class="function">stream</span><span class="operator">()</span>
-    <span class="operator">.</span><span class="function">filter</span><span class="operator">(</span><span class="variable">User</span><span class="operator">::</span><span class="function">isActive</span><span class="operator">)</span>
-    <span class="operator">.</span><span class="function">collect</span><span class="operator">(</span><span class="variable">Collectors</span><span class="operator">.</span><span class="function">toList</span><span class="operator">());</span></code></pre>
+<pre><code><span class="comment">// Pré-allouer avec la taille attendue :</span>
+<span class="keyword">List</span><span class="operator">&lt;</span><span class="keyword">String</span><span class="operator">&gt;</span> <span class="variable">results</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="function">ArrayList</span><span class="operator">&lt;&gt;(</span><span class="string">10000</span><span class="operator">);</span>
+<span class="keyword">for</span> <span class="operator">(</span><span class="keyword">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="string">0</span><span class="operator">;</span> <span class="variable">i</span> <span class="operator">&lt;</span> <span class="string">10000</span><span class="operator">;</span> <span class="variable">i</span><span class="operator">++)</span> <span class="operator">{</span>
+    <span class="variable">results</span><span class="operator">.</span><span class="function">add</span><span class="operator">(</span><span class="function">process</span><span class="operator">(</span><span class="variable">i</span><span class="operator">));</span>
+<span class="operator">}</span></code></pre>
                 </div>
 
                 <div class="gain-box">
                     <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
                     <ul style="text-align: left;">
-                        <li><strong>×2-3 plus rapide</strong> avec parallel streams <sup><a href="#source4">[4]</a></sup></li>
-                        <li>Réduit la consommation mémoire de <strong>40-60%</strong> (lazy evaluation)</li>
-                        <li>Code plus lisible et facilement parallélisable</li>
+                        <li>Réduit le temps d'exécution de <strong>30-50%</strong></li>
+                        <li>Élimine les copies de tableaux inutiles</li>
+                        <li>Même principe pour <code>HashMap</code>, <code>HashSet</code>, etc. <sup><a href="#source4">[4]</a></sup></li>
                     </ul>
                 </div>
             </div>
 
-            <!-- RÈGLE 3 : HashMap vs List -->
+            <!-- RÈGLE 3 : Stream vs Loop -->
             <div class="eco-rule" id="rule3">
                 <h3>
                     <span class="rule-number">3</span>
-                    HashMap vs List - Recherche optimale
+                    Stream vs Loop - Choisir la bonne approche
                 </h3>
-                <p><span class="impact-badge impact-high"><i class="fas fa-fire"></i> Impact TRÈS ÉLEVÉ</span></p>
+                <p><span class="impact-badge impact-medium"><i class="fas fa-bolt"></i> Impact MOYEN</span></p>
 
-                <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code inefficace :</h4>
+                <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Usage inapproprié des Streams :</h4>
                 <div class="code-block bad">
-<pre><code><span class="variable">List</span><span class="operator">&lt;</span><span class="variable">Permission</span><span class="operator">&gt;</span> <span class="variable">permissions</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="variable">ArrayList</span><span class="operator">&lt;&gt;();</span>
-<span class="variable">permissions</span><span class="operator">.</span><span class="function">add</span><span class="operator">(</span><span class="keyword">new</span> <span class="variable">Permission</span><span class="operator">(</span><span class="string">"READ"</span><span class="operator">));</span>
-<span class="variable">permissions</span><span class="operator">.</span><span class="function">add</span><span class="operator">(</span><span class="keyword">new</span> <span class="variable">Permission</span><span class="operator">(</span><span class="string">"WRITE"</span><span class="operator">));</span>
+<pre><code><span class="comment">// Stream pour une simple itération avec effets de bord</span>
+<span class="variable">list</span><span class="operator">.</span><span class="function">stream</span><span class="operator">()</span>
+    <span class="operator">.</span><span class="function">forEach</span><span class="operator">(</span><span class="variable">item</span> <span class="operator">-&gt;</span> <span class="function">process</span><span class="operator">(</span><span class="variable">item</span><span class="operator">));</span>
 
-<span class="keyword">if</span> <span class="operator">(</span><span class="variable">permissions</span><span class="operator">.</span><span class="function">stream</span><span class="operator">()</span><span class="operator">.</span><span class="function">anyMatch</span><span class="operator">(</span><span class="variable">p</span> <span class="operator">-&gt;</span> <span class="variable">p</span><span class="operator">.</span><span class="function">getName</span><span class="operator">().</span><span class="function">equals</span><span class="operator">(</span><span class="string">"READ"</span><span class="operator">)))</span> <span class="operator">{</span>
-    <span class="comment">// Accès autorisé</span>
-<span class="operator">}</span></code></pre>
+<span class="comment">// Ou pire, boxed() sur des primitifs</span>
+<span class="keyword">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="function">IntStream</span><span class="operator">.</span><span class="function">range</span><span class="operator">(</span><span class="string">0</span><span class="operator">,</span> <span class="string">1000</span><span class="operator">)</span>
+    <span class="operator">.</span><span class="function">boxed</span><span class="operator">()</span>
+    <span class="operator">.</span><span class="function">reduce</span><span class="operator">(</span><span class="string">0</span><span class="operator">,</span> <span class="function">Integer</span><span class="operator">::</span><span class="function">sum</span><span class="operator">);</span></code></pre>
                 </div>
 
                 <div class="explanation-box">
-                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <h4><i class="fas fa-info-circle"></i> Quand éviter les Streams ?</h4>
                     <ul style="text-align: left;">
-                        <li><code>List.contains()</code> parcourt <strong>séquentiellement</strong> (O(n))</li>
-                        <li>Pour 10 000 permissions : <strong>×100 plus lent</strong> qu'un HashMap <sup><a href="#source5">[5]</a></sup></li>
-                        <li>Temps CPU croît linéairement avec la taille de la collection</li>
+                        <li>Streams créent des <strong>objets intermédiaires</strong> (lambdas, iterators)</li>
+                        <li><code>boxed()</code> convertit les primitifs en objets (autoboxing)</li>
+                        <li>Pour des opérations simples, une boucle for est plus efficace</li>
                     </ul>
                 </div>
 
                 <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
                 <div class="code-block good">
-<pre><code><span class="variable">Set</span><span class="operator">&lt;</span><span class="variable">String</span><span class="operator">&gt;</span> <span class="variable">permissions</span> <span class="operator">=</span> <span class="variable">Set</span><span class="operator">.</span><span class="function">of</span><span class="operator">(</span><span class="string">"READ"</span><span class="operator">,</span> <span class="string">"WRITE"</span><span class="operator">);</span>
+<pre><code><span class="comment">// Boucle classique pour les effets de bord :</span>
+<span class="keyword">for</span> <span class="operator">(</span><span class="keyword">Item</span> <span class="variable">item</span> <span class="operator">:</span> <span class="variable">list</span><span class="operator">)</span> <span class="operator">{</span>
+    <span class="function">process</span><span class="operator">(</span><span class="variable">item</span><span class="operator">);</span>
+<span class="operator">}</span>
 
-<span class="keyword">if</span> <span class="operator">(</span><span class="variable">permissions</span><span class="operator">.</span><span class="function">contains</span><span class="operator">(</span><span class="string">"READ"</span><span class="operator">))</span> <span class="operator">{</span>
-    <span class="comment">// Accès autorisé</span>
-<span class="operator">}</span></code></pre>
+<span class="comment">// IntStream sans boxed() :</span>
+<span class="keyword">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="function">IntStream</span><span class="operator">.</span><span class="function">range</span><span class="operator">(</span><span class="string">0</span><span class="operator">,</span> <span class="string">1000</span><span class="operator">).</span><span class="function">sum</span><span class="operator">();</span>
+
+<span class="comment">// Streams pour transformations complexes (bonne utilisation) :</span>
+<span class="keyword">List</span><span class="operator">&lt;</span><span class="keyword">String</span><span class="operator">&gt;</span> <span class="variable">names</span> <span class="operator">=</span> <span class="variable">users</span><span class="operator">.</span><span class="function">stream</span><span class="operator">()</span>
+    <span class="operator">.</span><span class="function">filter</span><span class="operator">(</span><span class="variable">u</span> <span class="operator">-&gt;</span> <span class="variable">u</span><span class="operator">.</span><span class="function">isActive</span><span class="operator">())</span>
+    <span class="operator">.</span><span class="function">map</span><span class="operator">(</span><span class="function">User</span><span class="operator">::</span><span class="function">getName</span><span class="operator">)</span>
+    <span class="operator">.</span><span class="function">collect</span><span class="operator">(</span><span class="function">Collectors</span><span class="operator">.</span><span class="function">toList</span><span class="operator">());</span></code></pre>
                 </div>
 
                 <div class="gain-box">
-                    <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
+                    <h4><i class="fas fa-chart-line"></i> Bonnes pratiques :</h4>
                     <ul style="text-align: left;">
-                        <li><strong>Performance</strong> : O(1) vs O(n), temps constant <sup><a href="#source5">[5]</a></sup></li>
-                        <li>Pour 100k éléments : <strong>×1000+ plus rapide</strong></li>
-                        <li>Complexité constante peu importe la taille</li>
+                        <li><strong>Boucles for</strong> : effets de bord, itérations simples</li>
+                        <li><strong>Streams</strong> : transformations, filtres, chaînes d'opérations <sup><a href="#source5">[5]</a></sup></li>
+                        <li>Préférer les streams primitifs (<code>IntStream</code>, <code>LongStream</code>)</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- RÈGLE 4 : Lazy Initialization -->
+            <!-- RÈGLE 4 : HashSet lookup -->
             <div class="eco-rule" id="rule4">
                 <h3>
                     <span class="rule-number">4</span>
-                    Lazy Initialization - Initialisation tardive
+                    HashSet lookup - Recherche dans les collections
                 </h3>
                 <p><span class="impact-badge impact-high"><i class="fas fa-fire"></i> Impact TRÈS ÉLEVÉ</span></p>
 
                 <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code inefficace :</h4>
                 <div class="code-block bad">
-<pre><code><span class="keyword">public class</span> <span class="variable">DatabaseCache</span> <span class="operator">{</span>
-    <span class="keyword">private</span> <span class="variable">List</span><span class="operator">&lt;</span><span class="variable">User</span><span class="operator">&gt;</span> <span class="variable">users</span><span class="operator">;</span>
-    
-    <span class="keyword">public</span> <span class="variable">DatabaseCache</span><span class="operator">()</span> <span class="operator">{</span>
-        <span class="comment">// Charge 1M de users au démarrage !</span>
-        <span class="keyword">this</span><span class="operator">.</span><span class="variable">users</span> <span class="operator">=</span> <span class="function">loadAllUsersFromDB</span><span class="operator">();</span>
-    <span class="operator">}</span>
+<pre><code><span class="keyword">List</span><span class="operator">&lt;</span><span class="keyword">String</span><span class="operator">&gt;</span> <span class="variable">allowedRoles</span> <span class="operator">=</span> <span class="function">Arrays</span><span class="operator">.</span><span class="function">asList</span><span class="operator">(</span><span class="string">"admin"</span><span class="operator">,</span> <span class="string">"editor"</span><span class="operator">,</span> <span class="string">"author"</span><span class="operator">);</span>
+
+<span class="keyword">if</span> <span class="operator">(</span><span class="variable">allowedRoles</span><span class="operator">.</span><span class="function">contains</span><span class="operator">(</span><span class="variable">userRole</span><span class="operator">))</span> <span class="operator">{</span>
+    <span class="comment">// Accès autorisé</span>
 <span class="operator">}</span></code></pre>
                 </div>
 
                 <div class="explanation-box">
                     <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
                     <ul style="text-align: left;">
-                        <li>Charge <strong>tous les données</strong> même si non utilisées</li>
-                        <li>Temps de démarrage long + consommation mémoire massive</li>
-                        <li>Gaspille de l'énergie pour les données jamais accédées</li>
+                        <li><code>List.contains()</code> parcourt <strong>séquentiellement</strong> la liste (O(n))</li>
+                        <li>Pour 10 000 éléments : <strong>×1000 plus lent</strong> qu'un <code>HashSet</code></li>
+                        <li>Temps CPU élevé pour des recherches fréquentes</li>
                     </ul>
                 </div>
 
                 <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
                 <div class="code-block good">
-<pre><code><span class="keyword">public class</span> <span class="variable">DatabaseCache</span> <span class="operator">{</span>
-    <span class="keyword">private</span> <span class="variable">List</span><span class="operator">&lt;</span><span class="variable">User</span><span class="operator">&gt;</span> <span class="variable">users</span> <span class="operator">=</span> <span class="keyword">null</span><span class="operator">;</span>
-    
-    <span class="keyword">public synchronized</span> <span class="variable">List</span><span class="operator">&lt;</span><span class="variable">User</span><span class="operator">&gt;</span> <span class="function">getUsers</span><span class="operator">()</span> <span class="operator">{</span>
-        <span class="keyword">if</span> <span class="operator">(</span><span class="variable">users</span> <span class="operator">==</span> <span class="keyword">null</span><span class="operator">)</span> <span class="operator">{</span>
-            <span class="variable">users</span> <span class="operator">=</span> <span class="function">loadAllUsersFromDB</span><span class="operator">();</span>
-        <span class="operator">}</span>
-        <span class="keyword">return</span> <span class="variable">users</span><span class="operator">;</span>
-    <span class="operator">}</span>
-<span class="operator">}</span></code></pre>
+<pre><code><span class="comment">// Utiliser HashSet pour O(1) lookup :</span>
+<span class="keyword">Set</span><span class="operator">&lt;</span><span class="keyword">String</span><span class="operator">&gt;</span> <span class="variable">allowedRoles</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="function">HashSet</span><span class="operator">&lt;&gt;(</span>
+    <span class="function">Arrays</span><span class="operator">.</span><span class="function">asList</span><span class="operator">(</span><span class="string">"admin"</span><span class="operator">,</span> <span class="string">"editor"</span><span class="operator">,</span> <span class="string">"author"</span><span class="operator">)</span>
+<span class="operator">);</span>
+
+<span class="keyword">if</span> <span class="operator">(</span><span class="variable">allowedRoles</span><span class="operator">.</span><span class="function">contains</span><span class="operator">(</span><span class="variable">userRole</span><span class="operator">))</span> <span class="operator">{</span>
+    <span class="comment">// Accès autorisé</span>
+<span class="operator">}</span>
+
+<span class="comment">// Ou avec Set.of() (Java 9+) :</span>
+<span class="keyword">Set</span><span class="operator">&lt;</span><span class="keyword">String</span><span class="operator">&gt;</span> <span class="variable">allowedRoles</span> <span class="operator">=</span> <span class="function">Set</span><span class="operator">.</span><span class="function">of</span><span class="operator">(</span><span class="string">"admin"</span><span class="operator">,</span> <span class="string">"editor"</span><span class="operator">,</span> <span class="string">"author"</span><span class="operator">);</span></code></pre>
                 </div>
 
                 <div class="gain-box">
                     <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
                     <ul style="text-align: left;">
-                        <li><strong>Temps de démarrage</strong> réduit de <strong>50-80%</strong></li>
-                        <li>Mémoire initiale : quasi zéro (chargement on-demand)</li>
-                        <li>Ne charge que ce qui est réellement utilisé</li>
+                        <li><strong>Performance</strong> : O(1) vs O(n) <sup><a href="#source6">[6]</a></sup></li>
+                        <li><strong>×1000+ plus rapide</strong> pour grandes collections</li>
+                        <li>Économie CPU significative sur recherches fréquentes</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- RÈGLE 5 : Object Pooling -->
+            <!-- RÈGLE 5 : Primitive types -->
             <div class="eco-rule" id="rule5">
                 <h3>
                     <span class="rule-number">5</span>
-                    Object Pooling - Réutilisation d'objets
+                    Primitive types - Éviter l'autoboxing inutile
                 </h3>
                 <p><span class="impact-badge impact-high"><i class="fas fa-leaf"></i> Impact ÉLEVÉ</span></p>
 
                 <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code inefficace :</h4>
                 <div class="code-block bad">
-<pre><code><span class="keyword">public</span> <span class="variable">void</span> <span class="function">processRequests</span><span class="operator">(</span><span class="variable">List</span><span class="operator">&lt;</span><span class="variable">Request</span><span class="operator">&gt;</span> <span class="variable">requests</span><span class="operator">)</span> <span class="operator">{</span>
-    <span class="keyword">for</span> <span class="operator">(</span><span class="variable">Request</span> <span class="variable">req</span> <span class="operator">:</span> <span class="variable">requests</span><span class="operator">)</span> <span class="operator">{</span>
-        <span class="comment">// Créé 10k objets Buffer !</span>
-        <span class="variable">Buffer</span> <span class="variable">buffer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="variable">Buffer</span><span class="operator">(</span><span class="string">1024</span><span class="operator">);</span>
-        <span class="function">process</span><span class="operator">(</span><span class="variable">req</span><span class="operator">,</span> <span class="variable">buffer</span><span class="operator">);</span>
-    <span class="operator">}</span>
-<span class="operator">}</span></code></pre>
+<pre><code><span class="comment">// Utilisation de wrappers au lieu de primitifs</span>
+<span class="keyword">Integer</span> <span class="variable">total</span> <span class="operator">=</span> <span class="string">0</span><span class="operator">;</span>
+<span class="keyword">for</span> <span class="operator">(</span><span class="keyword">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="string">0</span><span class="operator">;</span> <span class="variable">i</span> <span class="operator">&lt;</span> <span class="string">1000000</span><span class="operator">;</span> <span class="variable">i</span><span class="operator">++)</span> <span class="operator">{</span>
+    <span class="variable">total</span> <span class="operator">+=</span> <span class="variable">i</span><span class="operator">;</span>  <span class="comment">// Autoboxing à chaque itération !</span>
+<span class="operator">}</span>
+
+<span class="comment">// Ou avec List&lt;Integer&gt; au lieu de int[]</span>
+<span class="keyword">List</span><span class="operator">&lt;</span><span class="keyword">Integer</span><span class="operator">&gt;</span> <span class="variable">numbers</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="function">ArrayList</span><span class="operator">&lt;&gt;();</span></code></pre>
                 </div>
 
                 <div class="explanation-box">
                     <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
                     <ul style="text-align: left;">
-                        <li>Crée <strong>10 000 objets Buffer</strong> lors d'une boucle</li>
-                        <li>Chaque création = allocation mémoire + GC overhead</li>
-                        <li>Garbage Collector doit nettoyer <strong>10k allocations inutiles</strong> = consommation CPU/énergie</li>
+                        <li><code>Integer</code> crée un <strong>objet sur le heap</strong> (16-24 octets vs 4 pour int)</li>
+                        <li>Chaque <code>+=</code> avec Integer crée un <strong>nouvel objet</strong></li>
+                        <li>1 million d'itérations = 1 million d'objets pour le GC</li>
                     </ul>
                 </div>
 
                 <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
                 <div class="code-block good">
-<pre><code><span class="keyword">public</span> <span class="variable">void</span> <span class="function">processRequests</span><span class="operator">(</span><span class="variable">List</span><span class="operator">&lt;</span><span class="variable">Request</span><span class="operator">&gt;</span> <span class="variable">requests</span><span class="operator">)</span> <span class="operator">{</span>
-    <span class="variable">Buffer</span> <span class="variable">buffer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="variable">Buffer</span><span class="operator">(</span><span class="string">1024</span><span class="operator">);</span>
-    <span class="keyword">for</span> <span class="operator">(</span><span class="variable">Request</span> <span class="variable">req</span> <span class="operator">:</span> <span class="variable">requests</span><span class="operator">)</span> <span class="operator">{</span>
-        <span class="variable">buffer</span><span class="operator">.</span><span class="function">clear</span><span class="operator">();</span>  <span class="comment">// Réutilise l'objet</span>
-        <span class="function">process</span><span class="operator">(</span><span class="variable">req</span><span class="operator">,</span> <span class="variable">buffer</span><span class="operator">);</span>
-    <span class="operator">}</span>
-<span class="operator">}</span></code></pre>
+<pre><code><span class="comment">// Utiliser les types primitifs :</span>
+<span class="keyword">long</span> <span class="variable">total</span> <span class="operator">=</span> <span class="string">0</span><span class="operator">;</span>
+<span class="keyword">for</span> <span class="operator">(</span><span class="keyword">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="string">0</span><span class="operator">;</span> <span class="variable">i</span> <span class="operator">&lt;</span> <span class="string">1000000</span><span class="operator">;</span> <span class="variable">i</span><span class="operator">++)</span> <span class="operator">{</span>
+    <span class="variable">total</span> <span class="operator">+=</span> <span class="variable">i</span><span class="operator">;</span>  <span class="comment">// Pas d'allocation !</span>
+<span class="operator">}</span>
+
+<span class="comment">// Utiliser int[] au lieu de List&lt;Integer&gt; :</span>
+<span class="keyword">int</span><span class="operator">[]</span> <span class="variable">numbers</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="keyword">int</span><span class="operator">[</span><span class="string">1000</span><span class="operator">];</span></code></pre>
                 </div>
 
                 <div class="gain-box">
                     <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
                     <ul style="text-align: left;">
-                        <li><strong>×3-5 plus rapide</strong> pour les boucles intensives <sup><a href="#source6">[6]</a></sup></li>
-                        <li>Réduit mémoire de <strong>60-80%</strong> (1 objet au lieu de 10k)</li>
-                        <li>GC pause time diminue drastiquement</li>
+                        <li><strong>×3-5 plus rapide</strong> sans autoboxing <sup><a href="#source7">[7]</a></sup></li>
+                        <li>Mémoire réduite de <strong>75%</strong> (4 octets vs 16-24)</li>
+                        <li>Moins de pression sur le Garbage Collector</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- RÈGLE 6 : Parallel Streams -->
+            <!-- RÈGLE 6 : Try-with-resources -->
             <div class="eco-rule" id="rule6">
                 <h3>
                     <span class="rule-number">6</span>
-                    Parallel Streams - Parallélisation des traitements
+                    Try-with-resources - Gestion des ressources
                 </h3>
                 <p><span class="impact-badge impact-high"><i class="fas fa-fire"></i> Impact TRÈS ÉLEVÉ</span></p>
 
-                <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code inefficace :</h4>
-                <div class="code-block bad">
-<pre><code><span class="variable">List</span><span class="operator">&lt;</span><span class="variable">Integer</span><span class="operator">&gt;</span> <span class="variable">results</span> <span class="operator">=</span> <span class="variable">numbers</span><span class="operator">.</span><span class="function">stream</span><span class="operator">()</span>
-    <span class="operator">.</span><span class="function">map</span><span class="operator">(</span><span class="variable">n</span> <span class="operator">-&gt;</span> <span class="function">complexCalculation</span><span class="operator">(</span><span class="variable">n</span><span class="operator">))</span>
-    <span class="operator">.</span><span class="function">collect</span><span class="operator">(</span><span class="variable">Collectors</span><span class="operator">.</span><span class="function">toList</span><span class="operator">());</span>
-<span class="comment">// Traitement séquentiel = 100% d'un seul core</span></code></pre>
-                </div>
-
-                <div class="explanation-box">
-                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
-                    <ul style="text-align: left;">
-                        <li>Traitement <strong>séquentiel</strong> : n'utilise qu'un seul core CPU</li>
-                        <li>Autres cores restent <strong>inactifs</strong> = gaspillage de ressources</li>
-                        <li>Sur une machine 8-core : <strong>87.5% des ressources perdues</strong></li>
-                    </ul>
-                </div>
-
-                <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
-                <div class="code-block good">
-<pre><code><span class="variable">List</span><span class="operator">&lt;</span><span class="variable">Integer</span><span class="operator">&gt;</span> <span class="variable">results</span> <span class="operator">=</span> <span class="variable">numbers</span><span class="operator">.</span><span class="function">parallelStream</span><span class="operator">()</span>
-    <span class="operator">.</span><span class="function">map</span><span class="operator">(</span><span class="variable">n</span> <span class="operator">-&gt;</span> <span class="function">complexCalculation</span><span class="operator">(</span><span class="variable">n</span><span class="operator">))</span>
-    <span class="operator">.</span><span class="function">collect</span><span class="operator">(</span><span class="variable">Collectors</span><span class="operator">.</span><span class="function">toList</span><span class="operator">());</span>
-<span class="comment">// Traitement parallèle = utilise tous les cores !</span></code></pre>
-                </div>
-
-                <div class="gain-box">
-                    <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
-                    <ul style="text-align: left;">
-                        <li><strong>×4 plus rapide</strong> sur 8 cores <sup><a href="#source7">[7]</a></sup></li>
-                        <li>Temps total réduit = moins d'énergie consommée</li>
-                        <li>Meilleure utilisation des ressources matérielles</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- RÈGLE 7 : GC Tuning -->
-            <div class="eco-rule" id="rule7">
-                <h3>
-                    <span class="rule-number">7</span>
-                    GC Tuning - Optimiser le Garbage Collector
-                </h3>
-                <p><span class="impact-badge impact-high"><i class="fas fa-fire"></i> Impact CRITIQUE</span></p>
-
-                <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Configuration inefficace :</h4>
-                <div class="code-block bad">
-<pre><code><span class="comment">// Lancer Java avec GC par défaut</span>
-<span class="variable">java</span> <span class="operator">-</span><span class="variable">jar</span> <span class="variable">app</span><span class="operator">.</span><span class="variable">jar</span>
-
-<span class="comment">// GC standard = stop-the-world pauses longues !</span></code></pre>
-                </div>
-
-                <div class="explanation-box">
-                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
-                    <ul style="text-align: left;">
-                        <li>GC par défaut provoque des <strong>pauses stop-the-world</strong> longues</li>
-                        <li>L'application s'arrête pendant que GC nettoie la mémoire</li>
-                        <li>Temps gaspillé = CPU idle = énergie consommée inutilement</li>
-                    </ul>
-                </div>
-
-                <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Configuration optimisée :</h4>
-                <div class="code-block good">
-<pre><code><span class="comment">// Utiliser G1GC (meilleur pour applications modernes)</span>
-<span class="variable">java</span> <span class="operator">-</span><span class="variable">XX</span>:<span class="operator">+</span><span class="variable">UseG1GC</span> <span class="operator">\</span>
-     <span class="operator">-</span><span class="variable">XX</span>:<span class="variable">MaxGCPauseMillis</span><span class="operator">=</span><span class="string">200</span> <span class="operator">\</span>
-     <span class="operator">-</span><span class="variable">XX</span>:<span class="variable">InitiatingHeapOccupancyPercent</span><span class="operator">=</span><span class="string">35</span> <span class="operator">\</span>
-     <span class="operator">-</span><span class="variable">jar</span> <span class="variable">app</span><span class="operator">.</span><span class="variable">jar</span></code></pre>
-                </div>
-
-                <div class="gain-box">
-                    <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
-                    <ul style="text-align: left;">
-                        <li><strong>×2-3 plus rapide</strong> avec G1GC optimisé <sup><a href="#source8">[8]</a></sup></li>
-                        <li>GC pauses réduites de <strong>50-70%</strong></li>
-                        <li>Consommation énergie directement proportionnelle au temps d'exécution</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- RÈGLE 8 : Try-with-Resources -->
-            <div class="eco-rule" id="rule8">
-                <h3>
-                    <span class="rule-number">8</span>
-                    Try-with-Resources - Gestion propre des ressources
-                </h3>
-                <p><span class="impact-badge impact-medium"><i class="fas fa-bolt"></i> Impact MOYEN</span></p>
-
                 <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code dangereux :</h4>
                 <div class="code-block bad">
-<pre><code><span class="variable">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="variable">FileInputStream</span><span class="operator">(</span><span class="string">"file.txt"</span><span class="operator">);</span>
+<pre><code><span class="keyword">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">null</span><span class="operator">;</span>
 <span class="keyword">try</span> <span class="operator">{</span>
-    <span class="keyword">byte</span><span class="operator">[]</span> <span class="variable">data</span> <span class="operator">=</span> <span class="variable">fis</span><span class="operator">.</span><span class="function">readAllBytes</span><span class="operator">();</span>
-    <span class="comment">// ⚠️ Si exception avant finally : ressource NON libérée</span>
+    <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="function">FileInputStream</span><span class="operator">(</span><span class="string">"file.txt"</span><span class="operator">);</span>
+    <span class="comment">// Lecture...</span>
+<span class="operator">}</span> <span class="keyword">catch</span> <span class="operator">(</span><span class="keyword">IOException</span> <span class="variable">e</span><span class="operator">)</span> <span class="operator">{</span>
+    <span class="variable">e</span><span class="operator">.</span><span class="function">printStackTrace</span><span class="operator">();</span>
 <span class="operator">}</span> <span class="keyword">finally</span> <span class="operator">{</span>
-    <span class="variable">fis</span><span class="operator">.</span><span class="function">close</span><span class="operator">();</span>
+    <span class="keyword">if</span> <span class="operator">(</span><span class="variable">fis</span> <span class="operator">!=</span> <span class="keyword">null</span><span class="operator">)</span> <span class="operator">{</span>
+        <span class="keyword">try</span> <span class="operator">{</span> <span class="variable">fis</span><span class="operator">.</span><span class="function">close</span><span class="operator">();</span> <span class="operator">}</span> <span class="keyword">catch</span> <span class="operator">(</span><span class="keyword">IOException</span> <span class="variable">e</span><span class="operator">)</span> <span class="operator">{}</span>
+    <span class="operator">}</span>
 <span class="operator">}</span></code></pre>
                 </div>
 
                 <div class="explanation-box">
                     <h4><i class="fas fa-info-circle"></i> Pourquoi c'est dangereux ?</h4>
                     <ul style="text-align: left;">
-                        <li>Possibilité de <strong>fuite de ressources</strong> (fichiers ouverts, connexions DB...)</li>
-                        <li>Code boilerplate inefficace et sujet aux bugs</li>
-                        <li>Ressources orphelines consomment de la mémoire</li>
+                        <li>Code verbeux et sujet aux <strong>fuites de ressources</strong></li>
+                        <li>Si exception dans finally, la ressource reste ouverte</li>
+                        <li>File descriptors, connexions DB non libérés = <strong>fuite mémoire</strong></li>
                     </ul>
                 </div>
 
                 <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
                 <div class="code-block good">
-<pre><code><span class="keyword">try</span> <span class="operator">(</span><span class="variable">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="variable">FileInputStream</span><span class="operator">(</span><span class="string">"file.txt"</span><span class="operator">))</span> <span class="operator">{</span>
-    <span class="keyword">byte</span><span class="operator">[]</span> <span class="variable">data</span> <span class="operator">=</span> <span class="variable">fis</span><span class="operator">.</span><span class="function">readAllBytes</span><span class="operator">();</span>
-    <span class="comment">// ✅ Ressource automatiquement fermée</span>
-<span class="operator">}</span> <span class="keyword">catch</span> <span class="operator">(</span><span class="variable">IOException</span> <span class="variable">e</span><span class="operator">)</span> <span class="operator">{</span>
+<pre><code><span class="comment">// Try-with-resources (Java 7+) :</span>
+<span class="keyword">try</span> <span class="operator">(</span><span class="keyword">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="function">FileInputStream</span><span class="operator">(</span><span class="string">"file.txt"</span><span class="operator">))</span> <span class="operator">{</span>
+    <span class="comment">// Lecture...</span>
+<span class="operator">}</span> <span class="keyword">catch</span> <span class="operator">(</span><span class="keyword">IOException</span> <span class="variable">e</span><span class="operator">)</span> <span class="operator">{</span>
     <span class="variable">e</span><span class="operator">.</span><span class="function">printStackTrace</span><span class="operator">();</span>
+<span class="operator">}</span>
+<span class="comment">// Fermeture automatique garantie !</span>
+
+<span class="comment">// Plusieurs ressources :</span>
+<span class="keyword">try</span> <span class="operator">(</span><span class="keyword">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> <span class="function">getConnection</span><span class="operator">();</span>
+     <span class="keyword">PreparedStatement</span> <span class="variable">ps</span> <span class="operator">=</span> <span class="variable">conn</span><span class="operator">.</span><span class="function">prepareStatement</span><span class="operator">(</span><span class="variable">sql</span><span class="operator">);</span>
+     <span class="keyword">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> <span class="variable">ps</span><span class="operator">.</span><span class="function">executeQuery</span><span class="operator">())</span> <span class="operator">{</span>
+    <span class="comment">// Traitement...</span>
 <span class="operator">}</span></code></pre>
                 </div>
 
                 <div class="gain-box">
                     <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
                     <ul style="text-align: left;">
-                        <li>Évite les fuites de ressources (fichiers, sockets...)</li>
-                        <li>Code plus lisible et moins sujet aux erreurs <sup><a href="#source9">[9]</a></sup></li>
-                        <li>Libération garantie même en cas d'exception</li>
+                        <li><strong>Élimine les fuites de ressources</strong></li>
+                        <li>Code plus court et lisible</li>
+                        <li>Libération garantie même en cas d'exception <sup><a href="#source8">[8]</a></sup></li>
                     </ul>
                 </div>
             </div>
 
-            <!-- RÈGLE 9 : Null Checks -->
-            <div class="eco-rule" id="rule9">
+            <!-- RÈGLE 7 : JVM tuning -->
+            <div class="eco-rule" id="rule7">
                 <h3>
-                    <span class="rule-number">9</span>
-                    Null Checks - Vérifications ciblées
+                    <span class="rule-number">7</span>
+                    JVM tuning - Optimiser les paramètres JVM
                 </h3>
-                <p><span class="impact-badge impact-low"><i class="fas fa-info"></i> Impact FAIBLE</span></p>
+                <p><span class="impact-badge impact-high"><i class="fas fa-fire"></i> Impact CRITIQUE</span></p>
 
-                <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code inefficace :</h4>
+                <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Configuration par défaut :</h4>
                 <div class="code-block bad">
-<pre><code><span class="keyword">if</span> <span class="operator">(</span><span class="variable">config</span> <span class="operator">!=</span> <span class="keyword">null</span> <span class="operator">&&</span> <span class="variable">config</span><span class="operator">.</span><span class="function">getDatabase</span><span class="operator">()</span> <span class="operator">!=</span> <span class="keyword">null</span> 
-    <span class="operator">&&</span> <span class="variable">config</span><span class="operator">.</span><span class="function">getDatabase</span><span class="operator">().</span><span class="function">getHost</span><span class="operator">()</span> <span class="operator">!=</span> <span class="keyword">null</span><span class="operator">)</span> <span class="operator">{</span>
-    <span class="function">connect</span><span class="operator">(</span><span class="variable">config</span><span class="operator">.</span><span class="function">getDatabase</span><span class="operator">().</span><span class="function">getHost</span><span class="operator">());</span>
-<span class="operator">}</span></code></pre>
+<pre><code><span class="comment"># Lancement sans optimisation</span>
+<span class="keyword">java</span> <span class="operator">-jar</span> <span class="string">application.jar</span></code></pre>
                 </div>
 
                 <div class="explanation-box">
                     <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
                     <ul style="text-align: left;">
-                        <li>Vérifications répétées de <code>null</code> = overhead CPU</li>
-                        <li>Code difficile à lire et maintenir</li>
-                        <li>Appels de méthode répétés pour chaque vérification</li>
+                        <li>Heap par défaut souvent <strong>sous-dimensionné ou surdimensionné</strong></li>
+                        <li>GC par défaut pas toujours optimal pour le use case</li>
+                        <li>JIT compilation non optimisée pour la charge réelle</li>
                     </ul>
                 </div>
 
-                <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
+                <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Configuration optimisée :</h4>
                 <div class="code-block good">
-<pre><code><span class="variable">String</span> <span class="variable">host</span> <span class="operator">=</span> <span class="variable">Optional</span><span class="operator">.</span><span class="function">ofNullable</span><span class="operator">(</span><span class="variable">config</span><span class="operator">)</span>
-    <span class="operator">.</span><span class="function">map</span><span class="operator">(</span><span class="variable">Config</span><span class="operator">::</span><span class="function">getDatabase</span><span class="operator">)</span>
-    <span class="operator">.</span><span class="function">map</span><span class="operator">(</span><span class="variable">Database</span><span class="operator">::</span><span class="function">getHost</span><span class="operator">)</span>
-    <span class="operator">.</span><span class="function">orElse</span><span class="operator">(</span><span class="keyword">null</span><span class="operator">);</span>
+<pre><code><span class="comment"># Configuration production optimisée</span>
+<span class="keyword">java</span> <span class="operator">-Xms512m</span> <span class="operator">-Xmx512m</span> \           <span class="comment"># Heap fixe (pas de redim)</span>
+     <span class="operator">-XX:+UseG1GC</span> \                  <span class="comment"># G1 GC pour faible latence</span>
+     <span class="operator">-XX:MaxGCPauseMillis=100</span> \      <span class="comment"># Limite pause GC</span>
+     <span class="operator">-XX:+UseStringDeduplication</span> \   <span class="comment"># Déduplique les Strings</span>
+     <span class="operator">-jar</span> <span class="string">application.jar</span>
 
-<span class="keyword">if</span> <span class="operator">(</span><span class="variable">host</span> <span class="operator">!=</span> <span class="keyword">null</span><span class="operator">)</span> <span class="operator">{</span>
-    <span class="function">connect</span><span class="operator">(</span><span class="variable">host</span><span class="operator">);</span>
-<span class="operator">}</span></code></pre>
+<span class="comment"># Pour applications cloud/containers :</span>
+<span class="keyword">java</span> <span class="operator">-XX:+UseContainerSupport</span> \     <span class="comment"># Détecte les limites container</span>
+     <span class="operator">-XX:MaxRAMPercentage=75.0</span> \     <span class="comment"># Utilise 75% de la RAM dispo</span>
+     <span class="operator">-jar</span> <span class="string">application.jar</span></code></pre>
                 </div>
 
                 <div class="gain-box">
                     <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
                     <ul style="text-align: left;">
-                        <li><strong>×1.05-1.08 plus rapide</strong> avec Optional (lazy evaluation) <sup><a href="#source10">[10]</a></sup></li>
-                        <li>Moins d'appels de méthode</li>
-                        <li>Code plus lisible et idiomatique</li>
+                        <li><strong>Performance</strong> : ×2-5 selon la configuration <sup><a href="#source9">[9]</a></sup></li>
+                        <li>Réduit les pauses GC de <strong>50-80%</strong></li>
+                        <li>Moins de cycles CPU gaspillés = moins de consommation électrique</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- RÈGLE 10 : Dependency Injection -->
-            <div class="eco-rule" id="rule10">
+            <!-- RÈGLE 8 : Lazy initialization -->
+            <div class="eco-rule" id="rule8">
                 <h3>
-                    <span class="rule-number">10</span>
-                    Dependency Injection - Injection de dépendances
+                    <span class="rule-number">8</span>
+                    Lazy initialization - Initialisation différée
                 </h3>
                 <p><span class="impact-badge impact-medium"><i class="fas fa-bolt"></i> Impact MOYEN</span></p>
 
                 <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code inefficace :</h4>
                 <div class="code-block bad">
-<pre><code><span class="keyword">public class</span> <span class="variable">UserService</span> <span class="operator">{</span>
-    <span class="keyword">private</span> <span class="variable">DatabaseConnection</span> <span class="variable">db</span><span class="operator">;</span>
+<pre><code><span class="keyword">public class</span> <span class="function">UserService</span> <span class="operator">{</span>
+    <span class="comment">// Chargé immédiatement même si jamais utilisé</span>
+    <span class="keyword">private final</span> <span class="keyword">ExpensiveResource</span> <span class="variable">resource</span> <span class="operator">=</span> 
+        <span class="keyword">new</span> <span class="function">ExpensiveResource</span><span class="operator">();</span>
     
-    <span class="keyword">public</span> <span class="variable">UserService</span><span class="operator">()</span> <span class="operator">{</span>
-        <span class="comment">// Création directe = couplage fort</span>
-        <span class="keyword">this</span><span class="operator">.</span><span class="variable">db</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="variable">DatabaseConnection</span><span class="operator">(</span><span class="string">"prod"</span><span class="operator">);</span>
-    <span class="operator">}</span>
+    <span class="keyword">private final</span> <span class="keyword">List</span><span class="operator">&lt;</span><span class="keyword">Config</span><span class="operator">&gt;</span> <span class="variable">configs</span> <span class="operator">=</span> 
+        <span class="function">loadAllConfigs</span><span class="operator">();</span>  <span class="comment">// Coûteux au démarrage</span>
 <span class="operator">}</span></code></pre>
                 </div>
 
                 <div class="explanation-box">
                     <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
                     <ul style="text-align: left;">
-                        <li><strong>Couplage fort</strong> : crée toujours une instance réelle</li>
-                        <li>Impossible de tester ou d'utiliser des mocks/stubs légers</li>
-                        <li>Charge de ressources inutiles au démarrage</li>
+                        <li>Ressources allouées <strong>même si jamais utilisées</strong></li>
+                        <li>Temps de démarrage application augmenté</li>
+                        <li>Mémoire consommée inutilement</li>
                     </ul>
                 </div>
 
                 <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
                 <div class="code-block good">
-<pre><code><span class="keyword">public class</span> <span class="variable">UserService</span> <span class="operator">{</span>
-    <span class="keyword">private final</span> <span class="variable">DatabaseConnection</span> <span class="variable">db</span><span class="operator">;</span>
+<pre><code><span class="keyword">public class</span> <span class="function">UserService</span> <span class="operator">{</span>
+    <span class="keyword">private</span> <span class="keyword">ExpensiveResource</span> <span class="variable">resource</span><span class="operator">;</span>  <span class="comment">// null au départ</span>
     
-    <span class="keyword">public</span> <span class="variable">UserService</span><span class="operator">(</span><span class="variable">DatabaseConnection</span> <span class="variable">db</span><span class="operator">)</span> <span class="operator">{</span>
-        <span class="comment">// ✅ Injection via constructeur = couplage faible</span>
-        <span class="keyword">this</span><span class="operator">.</span><span class="variable">db</span> <span class="operator">=</span> <span class="variable">db</span><span class="operator">;</span>
+    <span class="keyword">public</span> <span class="keyword">ExpensiveResource</span> <span class="function">getResource</span><span class="operator">()</span> <span class="operator">{</span>
+        <span class="keyword">if</span> <span class="operator">(</span><span class="variable">resource</span> <span class="operator">==</span> <span class="keyword">null</span><span class="operator">)</span> <span class="operator">{</span>
+            <span class="variable">resource</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="function">ExpensiveResource</span><span class="operator">();</span>
+        <span class="operator">}</span>
+        <span class="keyword">return</span> <span class="variable">resource</span><span class="operator">;</span>
     <span class="operator">}</span>
 <span class="operator">}</span>
 
-<span class="comment">// Test : injection facile d'un mock</span>
-<span class="variable">UserService</span> <span class="variable">service</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="variable">UserService</span><span class="operator">(</span><span class="keyword">new</span> <span class="variable">MockDatabaseConnection</span><span class="operator">());</span></code></pre>
+<span class="comment">// Ou avec Supplier (Java 8+) :</span>
+<span class="keyword">private final</span> <span class="keyword">Supplier</span><span class="operator">&lt;</span><span class="keyword">ExpensiveResource</span><span class="operator">&gt;</span> <span class="variable">resourceSupplier</span> <span class="operator">=</span>
+    <span class="function">Suppliers</span><span class="operator">.</span><span class="function">memoize</span><span class="operator">(</span><span class="function">ExpensiveResource</span><span class="operator">::</span><span class="keyword">new</span><span class="operator">);</span></code></pre>
                 </div>
 
                 <div class="gain-box">
                     <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
                     <ul style="text-align: left;">
-                        <li>Meilleure testabilité = moins de code à refactoriser</li>
-                        <li>Flexibilité : utiliser des stubs/mocks pour tests (très légers)</li>
-                        <li>Réduction de la charge au démarrage avec lazy initialization <sup><a href="#source11">[11]</a></sup></li>
+                        <li>Temps de démarrage réduit significativement</li>
+                        <li>Mémoire allouée seulement si nécessaire</li>
+                        <li>Meilleure réactivité de l'application <sup><a href="#source10">[10]</a></sup></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- RÈGLE 9 : Connection pooling -->
+            <div class="eco-rule" id="rule9">
+                <h3>
+                    <span class="rule-number">9</span>
+                    Connection pooling - Réutiliser les connexions
+                </h3>
+                <p><span class="impact-badge impact-high"><i class="fas fa-fire"></i> Impact TRÈS ÉLEVÉ</span></p>
+
+                <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code inefficace :</h4>
+                <div class="code-block bad">
+<pre><code><span class="comment">// Nouvelle connexion à chaque requête</span>
+<span class="keyword">public</span> <span class="keyword">User</span> <span class="function">findUser</span><span class="operator">(</span><span class="keyword">int</span> <span class="variable">id</span><span class="operator">)</span> <span class="operator">{</span>
+    <span class="keyword">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> <span class="function">DriverManager</span><span class="operator">.</span><span class="function">getConnection</span><span class="operator">(</span><span class="variable">url</span><span class="operator">,</span> <span class="variable">user</span><span class="operator">,</span> <span class="variable">pass</span><span class="operator">);</span>
+    <span class="comment">// Exécuter la requête...</span>
+    <span class="variable">conn</span><span class="operator">.</span><span class="function">close</span><span class="operator">();</span>  <span class="comment">// Connexion détruite</span>
+    <span class="keyword">return</span> <span class="variable">user</span><span class="operator">;</span>
+<span class="operator">}</span></code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul style="text-align: left;">
+                        <li>Créer une connexion DB = <strong>50-200ms</strong> (handshake TCP, auth...)</li>
+                        <li>Pour 1000 requêtes/sec : <strong>1000 connexions créées/détruites</strong></li>
+                        <li>Surcharge réseau, CPU et mémoire considérable</li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
+                <div class="code-block good">
+<pre><code><span class="comment">// Configuration HikariCP (pool de connexions)</span>
+<span class="keyword">HikariConfig</span> <span class="variable">config</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="function">HikariConfig</span><span class="operator">();</span>
+<span class="variable">config</span><span class="operator">.</span><span class="function">setJdbcUrl</span><span class="operator">(</span><span class="variable">url</span><span class="operator">);</span>
+<span class="variable">config</span><span class="operator">.</span><span class="function">setUsername</span><span class="operator">(</span><span class="variable">user</span><span class="operator">);</span>
+<span class="variable">config</span><span class="operator">.</span><span class="function">setPassword</span><span class="operator">(</span><span class="variable">pass</span><span class="operator">);</span>
+<span class="variable">config</span><span class="operator">.</span><span class="function">setMaximumPoolSize</span><span class="operator">(</span><span class="string">10</span><span class="operator">);</span>  <span class="comment">// Réutilise 10 connexions</span>
+
+<span class="keyword">HikariDataSource</span> <span class="variable">ds</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="function">HikariDataSource</span><span class="operator">(</span><span class="variable">config</span><span class="operator">);</span>
+
+<span class="keyword">public</span> <span class="keyword">User</span> <span class="function">findUser</span><span class="operator">(</span><span class="keyword">int</span> <span class="variable">id</span><span class="operator">)</span> <span class="operator">{</span>
+    <span class="keyword">try</span> <span class="operator">(</span><span class="keyword">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> <span class="variable">ds</span><span class="operator">.</span><span class="function">getConnection</span><span class="operator">())</span> <span class="operator">{</span>  <span class="comment">// &lt;1ms</span>
+        <span class="comment">// Exécuter la requête...</span>
+    <span class="operator">}</span>  <span class="comment">// Connexion retournée au pool</span>
+<span class="operator">}</span></code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
+                    <ul style="text-align: left;">
+                        <li><strong>×10-50 plus rapide</strong> pour obtenir une connexion <sup><a href="#source11">[11]</a></sup></li>
+                        <li>Réduit la charge serveur DB de <strong>80-95%</strong></li>
+                        <li>Moins de ressources réseau consommées</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- RÈGLE 10 : Logging optimisé -->
+            <div class="eco-rule" id="rule10">
+                <h3>
+                    <span class="rule-number">10</span>
+                    Logging optimisé - Logs conditionnels
+                </h3>
+                <p><span class="impact-badge impact-low"><i class="fas fa-info"></i> Impact FAIBLE</span></p>
+
+                <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code inefficace :</h4>
+                <div class="code-block bad">
+<pre><code><span class="comment">// Concaténation toujours exécutée même si debug désactivé</span>
+<span class="variable">logger</span><span class="operator">.</span><span class="function">debug</span><span class="operator">(</span><span class="string">"User "</span> <span class="operator">+</span> <span class="variable">user</span><span class="operator">.</span><span class="function">getName</span><span class="operator">()</span> <span class="operator">+</span> 
+             <span class="string">" performed action "</span> <span class="operator">+</span> <span class="variable">action</span><span class="operator">.</span><span class="function">toString</span><span class="operator">());</span>
+
+<span class="comment">// Appel coûteux pour rien</span>
+<span class="variable">logger</span><span class="operator">.</span><span class="function">debug</span><span class="operator">(</span><span class="string">"Data: "</span> <span class="operator">+</span> <span class="function">expensiveToString</span><span class="operator">(</span><span class="variable">largeObject</span><span class="operator">));</span></code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul style="text-align: left;">
+                        <li>La concaténation est <strong>toujours exécutée</strong> avant l'appel</li>
+                        <li>Les méthodes <code>toString()</code> sont appelées inutilement</li>
+                        <li>En production (level INFO), le debug est ignoré mais le calcul est fait</li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
+                <div class="code-block good">
+<pre><code><span class="comment">// Utiliser les placeholders (SLF4J) :</span>
+<span class="variable">logger</span><span class="operator">.</span><span class="function">debug</span><span class="operator">(</span><span class="string">"User {} performed action {}"</span><span class="operator">,</span> 
+             <span class="variable">user</span><span class="operator">.</span><span class="function">getName</span><span class="operator">(),</span> <span class="variable">action</span><span class="operator">);</span>
+
+<span class="comment">// Pour les appels coûteux, vérifier d'abord :</span>
+<span class="keyword">if</span> <span class="operator">(</span><span class="variable">logger</span><span class="operator">.</span><span class="function">isDebugEnabled</span><span class="operator">())</span> <span class="operator">{</span>
+    <span class="variable">logger</span><span class="operator">.</span><span class="function">debug</span><span class="operator">(</span><span class="string">"Data: {}"</span><span class="operator">,</span> <span class="function">expensiveToString</span><span class="operator">(</span><span class="variable">largeObject</span><span class="operator">));</span>
+<span class="operator">}</span>
+
+<span class="comment">// Ou avec lambda (Log4j2, SLF4J 2.0+) :</span>
+<span class="variable">logger</span><span class="operator">.</span><span class="function">debug</span><span class="operator">(</span><span class="string">"Data: {}"</span><span class="operator">,</span> <span class="operator">()</span> <span class="operator">-&gt;</span> <span class="function">expensiveToString</span><span class="operator">(</span><span class="variable">largeObject</span><span class="operator">));</span></code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
+                    <ul style="text-align: left;">
+                        <li>Évite les allocations String inutiles</li>
+                        <li><strong>10-30%</strong> de réduction CPU dans code avec beaucoup de logs <sup><a href="#source12">[12]</a></sup></li>
+                        <li>Lambdas évaluées seulement si niveau actif</li>
                     </ul>
                 </div>
             </div>
@@ -838,41 +889,49 @@
 
             <div class="container">
                 <div class="column">
-                    <h3><i class="fas fa-check-circle"></i> Type Safety</h3>
+                    <h3><i class="fas fa-check-circle"></i> Records (Java 16+)</h3>
                     <div class="code-block" style="font-size: 0.85rem;">
-<pre><code><span class="keyword">public</span> <span class="variable">long</span> <span class="function">calculateTotal</span><span class="operator">(</span><span class="keyword">double</span> <span class="variable">price</span><span class="operator">,</span> <span class="keyword">int</span> <span class="variable">qty</span><span class="operator">)</span> <span class="operator">{</span>
-    <span class="keyword">return</span> <span class="operator">(</span><span class="keyword">long</span><span class="operator">)</span> <span class="operator">(</span><span class="variable">price</span> <span class="operator">*</span> <span class="variable">qty</span><span class="operator">);</span>
-<span class="operator">}</span></code></pre>
+<pre><code><span class="comment">// Remplace les POJO verbeux</span>
+<span class="keyword">public record</span> <span class="function">User</span><span class="operator">(</span>
+    <span class="keyword">String</span> <span class="variable">name</span><span class="operator">,</span>
+    <span class="keyword">int</span> <span class="variable">age</span><span class="operator">,</span>
+    <span class="keyword">String</span> <span class="variable">email</span>
+<span class="operator">) {}</span></code></pre>
                     </div>
                     <p style="font-size: 0.9rem; color: var(--text-color-light);">
-                        Types explicites = moins de conversions runtime → économie CPU
+                        Moins de code = moins de bytecode = moins de mémoire
                     </p>
                 </div>
 
                 <div class="column">
-                    <h3><i class="fas fa-database"></i> Requêtes SQL</h3>
+                    <h3><i class="fas fa-database"></i> Batch processing</h3>
                     <div class="code-block good" style="font-size: 0.85rem;">
-<pre><code><span class="comment">// ✅ Une seule requête avec IN</span>
-<span class="variable">List</span><span class="operator">&lt;</span><span class="variable">User</span><span class="operator">&gt;</span> <span class="variable">users</span> <span class="operator">=</span> <span class="variable">db</span><span class="operator">.</span><span class="function">query</span><span class="operator">(</span>
-    <span class="string">"SELECT * FROM users WHERE id IN ?"</span><span class="operator">,</span> <span class="variable">userIds</span>
-<span class="operator">);</span></code></pre>
-                    </div>
-                    <p style="font-size: 0.9rem; color: var(--text-color-light);">
-                        Évite le problème N+1 → moins de requêtes réseau
-                    </p>
-                </div>
-
-                <div class="column">
-                    <h3><i class="fas fa-memory"></i> Iterator Pattern</h3>
-                    <div class="code-block good" style="font-size: 0.85rem;">
-<pre><code><span class="keyword">try</span> <span class="operator">(</span><span class="variable">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> <span class="variable">stmt</span><span class="operator">.</span><span class="function">executeQuery</span><span class="operator">())</span> <span class="operator">{</span>
-    <span class="keyword">while</span> <span class="operator">(</span><span class="variable">rs</span><span class="operator">.</span><span class="function">next</span><span class="operator">())</span> <span class="operator">{</span>
-        <span class="function">process</span><span class="operator">(</span><span class="variable">rs</span><span class="operator">);</span>  <span class="comment">// Itération sans charger tout en mémoire</span>
+<pre><code><span class="comment">// ✅ Batch insert au lieu de 1000 inserts</span>
+<span class="keyword">try</span> <span class="operator">(</span><span class="keyword">PreparedStatement</span> <span class="variable">ps</span> <span class="operator">=</span> <span class="variable">conn</span><span class="operator">.</span><span class="function">prepareStatement</span><span class="operator">(</span><span class="variable">sql</span><span class="operator">))</span> <span class="operator">{</span>
+    <span class="keyword">for</span> <span class="operator">(</span><span class="keyword">User</span> <span class="variable">u</span> <span class="operator">:</span> <span class="variable">users</span><span class="operator">)</span> <span class="operator">{</span>
+        <span class="variable">ps</span><span class="operator">.</span><span class="function">setString</span><span class="operator">(</span><span class="string">1</span><span class="operator">,</span> <span class="variable">u</span><span class="operator">.</span><span class="function">name</span><span class="operator">());</span>
+        <span class="variable">ps</span><span class="operator">.</span><span class="function">addBatch</span><span class="operator">();</span>
     <span class="operator">}</span>
+    <span class="variable">ps</span><span class="operator">.</span><span class="function">executeBatch</span><span class="operator">();</span>
 <span class="operator">}</span></code></pre>
                     </div>
                     <p style="font-size: 0.9rem; color: var(--text-color-light);">
-                        Mémoire constante au lieu de charger 100k lignes
+                        Réduit les allers-retours réseau de 99%
+                    </p>
+                </div>
+
+                <div class="column">
+                    <h3><i class="fas fa-memory"></i> Virtual Threads (Java 21+)</h3>
+                    <div class="code-block good" style="font-size: 0.85rem;">
+<pre><code><span class="comment">// Threads légers pour I/O</span>
+<span class="keyword">try</span> <span class="operator">(</span><span class="keyword">var</span> <span class="variable">executor</span> <span class="operator">=</span> 
+    <span class="function">Executors</span><span class="operator">.</span><span class="function">newVirtualThreadPerTaskExecutor</span><span class="operator">())</span> <span class="operator">{</span>
+    <span class="variable">tasks</span><span class="operator">.</span><span class="function">forEach</span><span class="operator">(</span><span class="variable">task</span> <span class="operator">-&gt;</span> 
+        <span class="variable">executor</span><span class="operator">.</span><span class="function">submit</span><span class="operator">(</span><span class="variable">task</span><span class="operator">));</span>
+<span class="operator">}</span></code></pre>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-color-light);">
+                        Millions de threads avec faible empreinte mémoire
                     </p>
                 </div>
             </div>
@@ -884,29 +943,29 @@
             <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px;">
 
                 <div class="service-card">
-                    <i class="fas fa-tachometer-alt" style="font-size: 2.5rem; color: var(--primary-color);"></i>
-                    <h3>JMH (Java Microbenchmark Harness)</h3>
-                    <p>Framework pour écrire des benchmarks Java précis. Évalue la performance réelle des optimisations avec statistiques fiables.</p>
-                    <a href="https://github.com/openjdk/jmh" target="_blank" class="button" style="margin-top: 15px; font-size: 0.9rem;">
+                    <i class="fas fa-code" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                    <h3>ecoCode Java</h3>
+                    <p>Plugin SonarQube dédié à l'analyse statique Java pour identifier les structures de code ayant un impact écologique négatif.</p>
+                    <a href="https://github.com/green-code-initiative/ecoCode" target="_blank" class="button" style="margin-top: 15px; font-size: 0.9rem;">
                         <i class="fab fa-github"></i> GitHub
                     </a>
                 </div>
 
                 <div class="service-card">
                     <i class="fas fa-chart-bar" style="font-size: 2.5rem; color: var(--info-color);"></i>
-                    <h3>JProfiler</h3>
-                    <p>Profileur Java pour mesurer la consommation mémoire, temps d'exécution et identifier les goulots d'étranglement en production.</p>
-                    <a href="https://www.jprofiler.com/" target="_blank" class="button" style="margin-top: 15px; font-size: 0.9rem; background-color: var(--info-color);">
-                        <i class="fas fa-external-link-alt"></i> Visiter
+                    <h3>JProfiler / VisualVM</h3>
+                    <p>Profileurs Java pour mesurer la consommation mémoire, le temps CPU et identifier les goulots d'étranglement.</p>
+                    <a href="https://visualvm.github.io/" target="_blank" class="button" style="margin-top: 15px; font-size: 0.9rem; background-color: var(--info-color);">
+                        <i class="fas fa-external-link-alt"></i> VisualVM
                     </a>
                 </div>
 
                 <div class="service-card">
-                    <i class="fas fa-bug" style="font-size: 2.5rem; color: var(--warning-color);"></i>
-                    <h3>SpotBugs</h3>
-                    <p>Analyse statique pour détecter les bugs Java, les inefficacités de code et améliorer la qualité des applications.</p>
-                    <a href="https://spotbugs.github.io/" target="_blank" class="button" style="margin-top: 15px; font-size: 0.9rem; background-color: var(--warning-color);">
-                        <i class="fas fa-external-link-alt"></i> Visiter
+                    <i class="fas fa-tachometer-alt" style="font-size: 2.5rem; color: var(--warning-color);"></i>
+                    <h3>JMH (Java Microbenchmark)</h3>
+                    <p>Framework de benchmark officiel pour mesurer précisément les performances du code Java et comparer les optimisations.</p>
+                    <a href="https://github.com/openjdk/jmh" target="_blank" class="button" style="margin-top: 15px; font-size: 0.9rem; background-color: var(--warning-color);">
+                        <i class="fab fa-github"></i> GitHub
                     </a>
                 </div>
 
@@ -923,52 +982,52 @@
                     <a href="https://repositorium.uminho.pt/bitstream/1822/69044/1/paper.pdf" target="_blank">[PDF]</a>
                 </li>
                 <li id="source2">
-                    <strong>[2]</strong> TIOBE. <em>TIOBE Index - Java.</em>
-                    <a href="https://www.tiobe.com/tiobe-index/java/" target="_blank">[Lien]</a>
+                    <strong>[2]</strong> Oracle. <em>Java: 35+ Million Developers Worldwide.</em>
+                    <a href="https://www.oracle.com/java/" target="_blank">[Lien]</a>
                 </li>
                 <li id="source3">
-                    <strong>[3]</strong> SitePoint. <em>High-Performance String Concatenation in PHP.</em>
-                    <a href="https://www.sitepoint.com/high-performance-string-concatenation-in-php/" target="_blank">[Lien]</a>
+                    <strong>[3]</strong> Baeldung. <em>Performance of String Concatenation in Java.</em>
+                    <a href="https://www.baeldung.com/java-string-concatenation" target="_blank">[Lien]</a>
                 </li>
                 <li id="source4">
-                    <strong>[4]</strong> WordPress Trac. <em>Reduce PHP memory usage / No unnecessary concatenation.</em>
-                    <a href="https://core.trac.wordpress.org/ticket/31950" target="_blank">[Lien]</a>
+                    <strong>[4]</strong> Oracle. <em>ArrayList Initial Capacity - Java Documentation.</em>
+                    <a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" target="_blank">[Lien]</a>
                 </li>
                 <li id="source5">
-                    <strong>[5]</strong> Krzych Jończyk. <em>PHPyths Buster: A great string performance test!</em>
-                    <a href="https://jonczyk.me/2016/10/23/phpyths-buster-great-string-performance-test/" target="_blank">[Lien]</a>
+                    <strong>[5]</strong> Baeldung. <em>Java 8 Streams vs Loops Performance.</em>
+                    <a href="https://www.baeldung.com/java-streams-vs-loops" target="_blank">[Lien]</a>
                 </li>
                 <li id="source6">
-                    <strong>[6]</strong> GitHub Gist. <em>Performance comparison: in-array vs. isset vs. array_key_exists.</em>
-                    <a href="https://gist.github.com/alcaeus/536156663fac96744eba77b3e133e50a" target="_blank">[Lien]</a>
+                    <strong>[6]</strong> Oracle. <em>HashSet vs ArrayList Performance - Collections Framework.</em>
+                    <a href="https://docs.oracle.com/javase/tutorial/collections/implementations/set.html" target="_blank">[Lien]</a>
                 </li>
                 <li id="source7">
-                    <strong>[7]</strong> Infinum - WordPress Handbook. <em>PHP coding standards - Optimizations.</em>
-                    <a href="https://infinum.com/handbook/wordpress/coding-standards/php-coding-standards/optimizations" target="_blank">[Lien]</a>
+                    <strong>[7]</strong> Baeldung. <em>Autoboxing and Unboxing in Java - Performance Impact.</em>
+                    <a href="https://www.baeldung.com/java-autoboxing" target="_blank">[Lien]</a>
                 </li>
                 <li id="source8">
-                    <strong>[8]</strong> Zend. <em>PHP Performance: Developer's Guide | PHP Tuning Tips.</em>
-                    <a href="https://www.zend.com/blog/php-performance" target="_blank">[Lien]</a>
+                    <strong>[8]</strong> Oracle. <em>The try-with-resources Statement.</em>
+                    <a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html" target="_blank">[Lien]</a>
                 </li>
                 <li id="source9">
-                    <strong>[9]</strong> Phabricator. <em>PHP Pitfalls - References in foreach loops.</em>
-                    <a href="https://secure.phabricator.com/book/phabflavor/article/php_pitfalls/" target="_blank">[Lien]</a>
+                    <strong>[9]</strong> Oracle. <em>Java HotSpot VM Options - JVM Tuning Guide.</em>
+                    <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html" target="_blank">[Lien]</a>
                 </li>
                 <li id="source10">
-                    <strong>[10]</strong> Contextual Code. <em>PHP micro-optimization: Variable boolean cast VS !empty.</em>
-                    <a href="https://www.contextualcode.com/Blog/php-micro-optimization.-variable-boolean-cast-vs-!empty" target="_blank">[Lien]</a>
+                    <strong>[10]</strong> Baeldung. <em>Lazy Initialization in Java.</em>
+                    <a href="https://www.baeldung.com/java-lazy-initialization" target="_blank">[Lien]</a>
                 </li>
                 <li id="source11">
-                    <strong>[11]</strong> PHP Manual. <em>spl_autoload_register - Register given function as __autoload() implementation.</em>
-                    <a href="https://www.php.net/manual/en/function.spl-autoload-register.php" target="_blank">[Lien]</a>
+                    <strong>[11]</strong> HikariCP. <em>Fast, simple, reliable - HikariCP connection pool.</em>
+                    <a href="https://github.com/brettwooldridge/HikariCP" target="_blank">[GitHub]</a>
                 </li>
                 <li id="source12">
-                    <strong>[12]</strong> Green Code Initiative. <em>ecoCode - Reduce the environmental footprint of your PHP software programs.</em>
-                    <a href="https://github.com/green-code-initiative/creedengo-php" target="_blank">[GitHub]</a>
+                    <strong>[12]</strong> SLF4J. <em>SLF4J Parameterized Messages - Performance.</em>
+                    <a href="https://www.slf4j.org/faq.html#logging_performance" target="_blank">[Lien]</a>
                 </li>
                 <li id="source13">
-                    <strong>[13]</strong> Ubiminds. <em>Green Coding Practices: Minimize Software's Carbon Footprint.</em>
-                    <a href="https://ubiminds.com/en-us/green-coding-practices/" target="_blank">[Lien]</a>
+                    <strong>[13]</strong> Green Code Initiative. <em>ecoCode - Reduce the environmental footprint of your Java software programs.</em>
+                    <a href="https://github.com/green-code-initiative/ecoCode" target="_blank">[GitHub]</a>
                 </li>
             </ul>
         </section>
