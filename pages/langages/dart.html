@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Règles d'éco-conception pour Dart et Flutter - Optimisations environnementales">
+    <meta name="keywords" content="Dart, Flutter, écoconception, optimisation, performance, empreinte carbone, green coding">
+    <meta name="author" content="Youssouf ONIAN">
+    <title>Dart - Éco-conception & Optimisations</title>
+    <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/styles/styles.css">
+    <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
+    <script defer src="../../assets/scripts/scripts-tp.js"></script>
+    <style>
+        /* Styles spécifiques pour les code blocks */
+        .code-block {
+            background-color: #2d2d2d;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block.bad {
+            border-left-color: var(--emergency-color);
+            background-color: rgba(253, 99, 99, 0.1);
+        }
+
+        .code-block.good {
+            border-left-color: var(--success-color);
+            background-color: rgba(105, 240, 109, 0.1);
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #e8e8e8;
+        }
+
+        .code-block code {
+            color: #e8e8e8;
+        }
+
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .function { color: #dcdcaa; }
+        .variable { color: #9cdcfe; }
+        .comment { color: #6a9955; font-style: italic; }
+        .operator { color: #d4d4d4; }
+        .type { color: #4ec9b0; }
+
+        .eco-rule {
+            margin: 40px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.05) 0%, rgba(0, 180, 216, 0.01) 100%);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 180, 216, 0.3);
+        }
+
+        .eco-rule h3 {
+            color: #00b4d8;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .eco-rule .rule-number {
+            background-color: #00b4d8;
+            color: var(--background-color);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .impact-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .impact-high {
+            background-color: var(--success-color);
+            color: var(--background-color);
+        }
+
+        .impact-medium {
+            background-color: var(--warning-color);
+            color: var(--background-color);
+        }
+
+        .impact-low {
+            background-color: var(--info-color);
+            color: white;
+        }
+
+        .explanation-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 3px solid var(--info-color);
+        }
+
+        .gain-box {
+            background-color: rgba(105, 240, 109, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 3px solid var(--success-color);
+        }
+
+        .nav-languages {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-languages a {
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .nav-languages a:hover {
+            background-color: rgba(0, 180, 216, 0.2);
+            border-color: #00b4d8;
+        }
+
+        .nav-languages a.active {
+            background-color: #00b4d8;
+            color: white;
+            border-color: #00b4d8;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .summary-table th,
+        .summary-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .summary-table th {
+            background-color: rgba(0, 180, 216, 0.2);
+            color: #00b4d8;
+            font-weight: bold;
+        }
+
+        .summary-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .eco-rule h3 {
+                font-size: 1.3rem;
+            }
+
+            .code-block {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="mg-0"><a href="../../index.html">Home</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html">Chiffres</a></li>
+                <li class="mg-0"><a href="../quizV1.html">Quiz</a></li>
+                <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
+                <li class="mg-0"><a href="../langages.html" class="active">Langages</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main">
+        <h1><i class="fas fa-bullseye"></i> Dart - Éco-conception & Green Coding</h1>
+
+        <!-- Navigation entre langages -->
+        <div class="nav-languages">
+            <a href="./php.html"><i class="fab fa-php"></i> PHP</a>
+            <a href="./dart.html" class="active"><i class="fas fa-bullseye"></i> Dart</a>
+            <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fab fa-python"></i> Python (bientôt)</a>
+            <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fas fa-code"></i> C/C++ (bientôt)</a>
+            <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fab fa-java"></i> Java (bientôt)</a>
+            <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fab fa-js"></i> JavaScript (bientôt)</a>
+        </div>
+
+        <!-- Introduction -->
+        <section class="intro-text">
+            <p>
+                Dart, le langage derrière <strong>Flutter</strong>, offre un positionnement unique en termes d'efficacité énergétique.
+                Bien que classé parmi les <strong>langages interprétés gourmands en mémoire</strong> (570 Mo en moyenne),
+                sa compilation <strong>AOT (Ahead-of-Time)</strong> en production permet d'atteindre des performances
+                <strong>proches du natif</strong> tout en maintenant un développement agile avec le mode JIT (Just-In-Time).
+            </p>
+            <br>
+            <p>
+                Cette page présente <strong>10 règles d'éco-conception</strong> spécifiques à Dart et Flutter pour réduire
+                l'empreinte environnementale de vos applications cross-platform, avec des exemples concrets et des mesures
+                de gains réels en performance et consommation énergétique.
+            </p>
+        </section>
+
+        <!-- Statistiques clés -->
+        <section class="stats-icons">
+            <div class="stat-item">
+                <i class="fas fa-mobile-alt"></i>
+                <h2>2M+</h2>
+                <p>Développeurs Flutter/Dart actifs <sup><a href="#source1">[1]</a></sup></p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-memory"></i>
+                <h2>570 MB</h2>
+                <p>Consommation mémoire moyenne <sup><a href="#source2">[2]</a></sup></p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-rocket"></i>
+                <h2>30%</h2>
+                <p>Gain de vitesse avec AOT vs JIT <sup><a href="#source3">[3]</a></sup></p>
+            </div>
+        </section>
+
+        <!-- Tableau récapitulatif -->
+        <section style="margin-top: 50px;">
+            <h2>Récapitulatif des 10 éco-rules Dart/Flutter</h2>
+            <p>Cliquez sur une règle pour accéder directement aux détails et exemples de code.</p>
+
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Règle</th>
+                        <th>Gain Performance</th>
+                        <th>Gain Mémoire</th>
+                        <th>Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr onclick="location.href='#rule1'" style="cursor: pointer;">
+                        <td>1</td>
+                        <td><strong>const_widgets</strong> - Utiliser const systématiquement</td>
+                        <td>Réduction rebuilds</td>
+                        <td>-40-60%</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="location.href='#rule2'" style="cursor: pointer;">
+                        <td>2</td>
+                        <td><strong>listview_builder</strong> - Lazy loading avec ListView.builder</td>
+                        <td>×10 plus rapide</td>
+                        <td>-80-90%</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="location.href='#rule3'" style="cursor: pointer;">
+                        <td>3</td>
+                        <td><strong>stringbuffer</strong> - StringBuffer pour concaténations</td>
+                        <td>×3-4 plus rapide</td>
+                        <td>-50-70%</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="location.href='#rule4'" style="cursor: pointer;">
+                        <td>4</td>
+                        <td><strong>aot_compilation</strong> - Activer la compilation AOT</td>
+                        <td>+30% vitesse</td>
+                        <td>Réduit runtime</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="location.href='#rule5'" style="cursor: pointer;">
+                        <td>5</td>
+                        <td><strong>async_programming</strong> - Programmation asynchrone efficace</td>
+                        <td>Fluidité UI</td>
+                        <td>Réduit blocages</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="location.href='#rule6'" style="cursor: pointer;">
+                        <td>6</td>
+                        <td><strong>build_method_pure</strong> - Méthode build() pure</td>
+                        <td>Évite calculs</td>
+                        <td>Réduit GC</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="location.href='#rule7'" style="cursor: pointer;">
+                        <td>7</td>
+                        <td><strong>image_optimization</strong> - Optimisation des images</td>
+                        <td>Chargement rapide</td>
+                        <td>-60-80%</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="location.href='#rule8'" style="cursor: pointer;">
+                        <td>8</td>
+                        <td><strong>tree_shaking</strong> - Tree-shaking et code splitting</td>
+                        <td>Startup rapide</td>
+                        <td>-40-50%</td>
+                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="location.href='#rule9'" style="cursor: pointer;">
+                        <td>9</td>
+                        <td><strong>stateless_first</strong> - Préférer StatelessWidget</td>
+                        <td>Moins de surcharge</td>
+                        <td>Moins d'état</td>
+                        <td><span class="impact-badge impact-medium">⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="location.href='#rule10'" style="cursor: pointer;">
+                        <td>10</td>
+                        <td><strong>dispose_resources</strong> - Libérer les ressources</td>
+                        <td>Évite fuites</td>
+                        <td>Nettoie mémoire</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- LES 10 ÉCO-RULES -->
+        <section style="margin-top: 60px;">
+            <h2 style="text-align: center; font-size: 2rem; color: #00b4d8; margin-bottom: 40px;">
+                <i class="fas fa-leaf"></i> Les 10 Éco-Rules Dart/Flutter
+            </h2>
+
+            <!-- RÈGLE 1 : const_widgets -->
+            <div class="eco-rule" id="rule1">
+                <h3>
+                    <span class="rule-number">1</span>
+                    const_widgets - Utilisation systématique de const
+                </h3>
+                <p><span class="impact-badge impact-high"><i class="fas fa-leaf"></i> Impact TRÈS ÉLEVÉ</span></p>
+
+                <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code inefficace :</h4>
+                <div class="code-block bad">
+<pre><code><span class="comment">// Crée un nouvel objet à chaque reconstruction d'interface</span>
+<span class="keyword">return</span> <span class="type">Padding</span><span class="operator">(</span>
+  <span class="variable">padding:</span> <span class="type">EdgeInsets</span><span class="operator">.</span><span class="function">all</span><span class="operator">(</span><span class="string">8.0</span><span class="operator">),</span> 
+  <span class="variable">child:</span> <span class="type">Text</span><span class="operator">(</span><span class="string">"Bonjour"</span><span class="operator">),</span>
+<span class="operator">);</span></code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul style="text-align: left;">
+                        <li>Flutter <strong>recrée les widgets</strong> à chaque rebuild sans const</li>
+                        <li>Augmente le travail du <strong>Garbage Collector</strong></li>
+                        <li>Consomme plus de <strong>CPU et mémoire</strong> inutilement</li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
+                <div class="code-block good">
+<pre><code><span class="comment">// L'instance est unique et réutilisée en mémoire</span>
+<span class="keyword">return const</span> <span class="type">Padding</span><span class="operator">(</span>
+  <span class="variable">padding:</span> <span class="type">EdgeInsets</span><span class="operator">.</span><span class="function">all</span><span class="operator">(</span><span class="string">8.0</span><span class="operator">),</span>
+  <span class="variable">child:</span> <span class="type">Text</span><span class="operator">(</span><span class="string">"Bonjour"</span><span class="operator">),</span>
+<span class="operator">);</span></code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
+                    <ul style="text-align: left;">
+                        <li><strong>Réduction drastique</strong> des cycles CPU lors des rebuilds</li>
+                        <li>Diminution de <strong>40-60%</strong> de l'usage RAM <sup><a href="#source4">[4]</a></sup></li>
+                        <li>Instance canonique créée <strong>une seule fois</strong> en mémoire</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- RÈGLE 2 : listview_builder -->
+            <div class="eco-rule" id="rule2">
+                <h3>
+                    <span class="rule-number">2</span>
+                    listview_builder - Lazy Loading avec ListView.builder
+                </h3>
+                <p><span class="impact-badge impact-high"><i class="fas fa-fire"></i> Impact CRITIQUE</span></p>
+
+                <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code inefficace :</h4>
+                <div class="code-block bad">
+<pre><code><span class="comment">// Charge 10 000 éléments en mémoire immédiatement</span>
+<span class="type">ListView</span><span class="operator">(</span>
+  <span class="variable">children:</span> <span class="variable">items</span><span class="operator">.</span><span class="function">map</span><span class="operator">((</span><span class="variable">i</span><span class="operator">)</span> <span class="operator">=></span> <span class="type">MyWidget</span><span class="operator">(</span><span class="variable">i</span><span class="operator">)).</span><span class="function">toList</span><span class="operator">(),</span>
+<span class="operator">)</span></code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul style="text-align: left;">
+                        <li>Crée <strong>tous les widgets</strong> d'un coup, même non visibles</li>
+                        <li>Consommation mémoire <strong>exponentielle</strong> avec le nombre d'items</li>
+                        <li>Temps de chargement initial <strong>très long</strong></li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
+                <div class="code-block good">
+<pre><code><span class="comment">// Ne crée que les widgets visibles à l'écran</span>
+<span class="type">ListView</span><span class="operator">.</span><span class="function">builder</span><span class="operator">(</span>
+  <span class="variable">itemCount:</span> <span class="variable">items</span><span class="operator">.</span><span class="variable">length</span><span class="operator">,</span>
+  <span class="variable">itemBuilder:</span> <span class="operator">(</span><span class="variable">context</span><span class="operator">,</span> <span class="variable">index</span><span class="operator">)</span> <span class="operator">=></span> <span class="type">MyWidget</span><span class="operator">(</span><span class="variable">items</span><span class="operator">[</span><span class="variable">index</span><span class="operator">]),</span>
+<span class="operator">)</span></code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
+                    <ul style="text-align: left;">
+                        <li><strong>×10 plus rapide</strong> pour le chargement initial</li>
+                        <li>Économie de <strong>80-90%</strong> de mémoire vive <sup><a href="#source5">[5]</a></sup></li>
+                        <li>Création <strong>à la demande</strong> uniquement des widgets visibles</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- RÈGLE 3 : stringbuffer -->
+            <div class="eco-rule" id="rule3">
+                <h3>
+                    <span class="rule-number">3</span>
+                    stringbuffer - StringBuffer pour concaténations
+                </h3>
+                <p><span class="impact-badge impact-high"><i class="fas fa-leaf"></i> Impact ÉLEVÉ</span></p>
+
+                <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code inefficace :</h4>
+                <div class="code-block bad">
+<pre><code><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> <span class="string">""</span><span class="operator">;</span>
+<span class="keyword">for</span> <span class="operator">(</span><span class="keyword">var</span> <span class="variable">i</span> <span class="operator">=</span> <span class="string">0</span><span class="operator">;</span> <span class="variable">i</span> <span class="operator">&lt;</span> <span class="string">100</span><span class="operator">;</span> <span class="variable">i</span><span class="operator">++)</span> <span class="operator">{</span>
+  <span class="variable">s</span> <span class="operator">+=</span> <span class="string">"donnée </span><span class="variable">$i</span><span class="string">"</span><span class="operator">;</span> <span class="comment">// Crée un nouvel objet String à chaque fois</span>
+<span class="operator">}</span></code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul style="text-align: left;">
+                        <li>Chaque <code>+=</code> crée une <strong>nouvelle chaîne en mémoire</strong></li>
+                        <li>Pour 100 itérations : <strong>100 allocations</strong> distinctes</li>
+                        <li>Surcharge importante du <strong>Garbage Collector</strong></li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
+                <div class="code-block good">
+<pre><code><span class="keyword">var</span> <span class="variable">buffer</span> <span class="operator">=</span> <span class="type">StringBuffer</span><span class="operator">();</span>
+<span class="keyword">for</span> <span class="operator">(</span><span class="keyword">var</span> <span class="variable">i</span> <span class="operator">=</span> <span class="string">0</span><span class="operator">;</span> <span class="variable">i</span> <span class="operator">&lt;</span> <span class="string">100</span><span class="operator">;</span> <span class="variable">i</span><span class="operator">++)</span> <span class="operator">{</span>
+  <span class="variable">buffer</span><span class="operator">.</span><span class="function">write</span><span class="operator">(</span><span class="string">"donnée </span><span class="variable">$i</span><span class="string">"</span><span class="operator">);</span>
+<span class="operator">}</span>
+<span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> <span class="variable">buffer</span><span class="operator">.</span><span class="function">toString</span><span class="operator">();</span> <span class="comment">// Une seule allocation finale</span></code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
+                    <ul style="text-align: left;">
+                        <li><strong>×3-4 plus rapide</strong> selon la taille <sup><a href="#source6">[6]</a></sup></li>
+                        <li>Réduction de <strong>50-70%</strong> de l'usage mémoire</li>
+                        <li>Une seule allocation au lieu de N</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- RÈGLE 4 : aot_compilation -->
+            <div class="eco-rule" id="rule4">
+                <h3>
+                    <span class="rule-number">4</span>
+                    aot_compilation - Activer la compilation AOT
+                </h3>
+                <p><span class="impact-badge impact-high"><i class="fas fa-fire"></i> Impact CRITIQUE</span></p>
+
+                <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Configuration inefficace :</h4>
+                <div class="code-block bad">
+<pre><code><span class="comment">// Mode Debug avec JIT - bon pour le développement</span>
+flutter run
+
+<span class="comment">// Mais trop lent et gourmand pour la production</span></code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul style="text-align: left;">
+                        <li>Le mode JIT (Just-In-Time) <strong>compile à la volée</strong></li>
+                        <li>Overhead de la <strong>machine virtuelle</strong> Dart</li>
+                        <li>Temps de démarrage plus long et <strong>consommation CPU élevée</strong></li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Configuration optimisée :</h4>
+                <div class="code-block good">
+<pre><code><span class="comment">// Build Release avec compilation AOT (Ahead-of-Time)</span>
+flutter build apk <span class="operator">--</span>release
+flutter build ios <span class="operator">--</span>release
+
+<span class="comment">// Avec optimisations supplémentaires</span>
+flutter build apk <span class="operator">--</span>release <span class="operator">--</span>split<span class="operator">-</span>per<span class="operator">-</span>abi
+flutter build apk <span class="operator">--</span>release <span class="operator">--</span>obfuscate <span class="operator">--</span>split<span class="operator">-</span>debug<span class="operator">-</span>info<span class="operator">=</span>build<span class="operator">/</span>symbols</code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
+                    <ul style="text-align: left;">
+                        <li><strong>+30% de vitesse</strong> d'exécution vs JIT <sup><a href="#source3">[3]</a></sup></li>
+                        <li>Temps de démarrage <strong>réduit de 40-50%</strong></li>
+                        <li>Code compilé en <strong>machine natif</strong> = moins de CPU</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- RÈGLE 5 : async_programming -->
+            <div class="eco-rule" id="rule5">
+                <h3>
+                    <span class="rule-number">5</span>
+                    async_programming - Programmation asynchrone efficace
+                </h3>
+                <p><span class="impact-badge impact-high"><i class="fas fa-bolt"></i> Impact ÉLEVÉ</span></p>
+
+                <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code inefficace :</h4>
+                <div class="code-block bad">
+<pre><code><span class="comment">// Bloque le thread UI principal</span>
+<span class="keyword">void</span> <span class="function">loadData</span><span class="operator">()</span> <span class="operator">{</span>
+  <span class="keyword">var</span> <span class="variable">data</span> <span class="operator">=</span> <span class="function">fetchFromApi</span><span class="operator">();</span> <span class="comment">// Bloquant!</span>
+  <span class="function">setState</span><span class="operator">(()</span> <span class="operator">{</span>
+    <span class="variable">_data</span> <span class="operator">=</span> <span class="variable">data</span><span class="operator">;</span>
+  <span class="operator">});</span>
+<span class="operator">}</span></code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul style="text-align: left;">
+                        <li>Le thread UI est <strong>bloqué</strong> pendant le chargement</li>
+                        <li>Interface <strong>gelée</strong> = mauvaise expérience utilisateur</li>
+                        <li>CPU occupé <strong>en attente</strong> au lieu d'être idle</li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
+                <div class="code-block good">
+<pre><code><span class="comment">// Utilise async/await pour libérer le thread</span>
+<span class="type">Future</span><span class="operator">&lt;</span><span class="keyword">void</span><span class="operator">&gt;</span> <span class="function">loadData</span><span class="operator">()</span> <span class="keyword">async</span> <span class="operator">{</span>
+  <span class="keyword">var</span> <span class="variable">data</span> <span class="operator">=</span> <span class="keyword">await</span> <span class="function">fetchFromApi</span><span class="operator">();</span> <span class="comment">// Non-bloquant!</span>
+  <span class="function">setState</span><span class="operator">(()</span> <span class="operator">{</span>
+    <span class="variable">_data</span> <span class="operator">=</span> <span class="variable">data</span><span class="operator">;</span>
+  <span class="operator">});</span>
+<span class="operator">}</span>
+
+<span class="comment">// Ou avec FutureBuilder</span>
+<span class="type">FutureBuilder</span><span class="operator">(</span>
+  <span class="variable">future:</span> <span class="function">fetchFromApi</span><span class="operator">(),</span>
+  <span class="variable">builder:</span> <span class="operator">(</span><span class="variable">context</span><span class="operator">,</span> <span class="variable">snapshot</span><span class="operator">)</span> <span class="operator">=></span> <span class="operator">...</span>
+<span class="operator">)</span></code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
+                    <ul style="text-align: left;">
+                        <li><strong>UI fluide</strong> même pendant les opérations lourdes</li>
+                        <li>Réduction de la <strong>consommation CPU idle</strong> <sup><a href="#source7">[7]</a></sup></li>
+                        <li>Meilleure <strong>expérience utilisateur</strong> et réactivité</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- RÈGLE 6 : build_method_pure -->
+            <div class="eco-rule" id="rule6">
+                <h3>
+                    <span class="rule-number">6</span>
+                    build_method_pure - Méthode build() pure et légère
+                </h3>
+                <p><span class="impact-badge impact-high"><i class="fas fa-leaf"></i> Impact ÉLEVÉ</span></p>
+
+                <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code inefficace :</h4>
+                <div class="code-block bad">
+<pre><code><span class="operator">@</span>override
+<span class="type">Widget</span> <span class="function">build</span><span class="operator">(</span><span class="type">BuildContext</span> <span class="variable">context</span><span class="operator">)</span> <span class="operator">{</span>
+  <span class="comment">// Calculs lourds dans build() - MAUVAIS!</span>
+  <span class="keyword">var</span> <span class="variable">processedData</span> <span class="operator">=</span> <span class="function">expensiveComputation</span><span class="operator">(</span><span class="variable">data</span><span class="operator">);</span>
+  <span class="keyword">var</span> <span class="variable">filteredList</span> <span class="operator">=</span> <span class="variable">items</span><span class="operator">.</span><span class="function">where</span><span class="operator">((</span><span class="variable">i</span><span class="operator">)</span> <span class="operator">=></span> <span class="variable">i</span> <span class="operator">&gt;</span> <span class="string">10</span><span class="operator">).</span><span class="function">toList</span><span class="operator">();</span>
+  
+  <span class="keyword">return</span> <span class="type">Text</span><span class="operator">(</span><span class="variable">processedData</span><span class="operator">);</span>
+<span class="operator">}</span></code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul style="text-align: left;">
+                        <li>build() peut être appelé <strong>jusqu'à 120 fois/seconde</strong></li>
+                        <li>Calculs répétés <strong>inutilement</strong> à chaque frame</li>
+                        <li>Surcharge CPU et <strong>risque de janks</strong> (frames perdus)</li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
+                <div class="code-block good">
+<pre><code><span class="comment">// Calculs dans initState() ou didUpdateWidget()</span>
+<span class="operator">@</span>override
+<span class="keyword">void</span> <span class="function">initState</span><span class="operator">()</span> <span class="operator">{</span>
+  <span class="keyword">super</span><span class="operator">.</span><span class="function">initState</span><span class="operator">();</span>
+  <span class="variable">_processedData</span> <span class="operator">=</span> <span class="function">expensiveComputation</span><span class="operator">(</span><span class="variable">widget</span><span class="operator">.</span><span class="variable">data</span><span class="operator">);</span>
+  <span class="variable">_filteredList</span> <span class="operator">=</span> <span class="variable">widget</span><span class="operator">.</span><span class="variable">items</span><span class="operator">.</span><span class="function">where</span><span class="operator">((</span><span class="variable">i</span><span class="operator">)</span> <span class="operator">=></span> <span class="variable">i</span> <span class="operator">&gt;</span> <span class="string">10</span><span class="operator">).</span><span class="function">toList</span><span class="operator">();</span>
+<span class="operator">}</span>
+
+<span class="operator">@</span>override
+<span class="type">Widget</span> <span class="function">build</span><span class="operator">(</span><span class="type">BuildContext</span> <span class="variable">context</span><span class="operator">)</span> <span class="operator">{</span>
+  <span class="comment">// build() reste pure et rapide</span>
+  <span class="keyword">return</span> <span class="type">Text</span><span class="operator">(</span><span class="variable">_processedData</span><span class="operator">);</span>
+<span class="operator">}</span></code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
+                    <ul style="text-align: left;">
+                        <li><strong>Framerate stable</strong> à 60 FPS</li>
+                        <li>Réduction de <strong>50%</strong> du temps build() <sup><a href="#source8">[8]</a></sup></li>
+                        <li>Moins de travail pour le GC</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- RÈGLE 7 : image_optimization -->
+            <div class="eco-rule" id="rule7">
+                <h3>
+                    <span class="rule-number">7</span>
+                    image_optimization - Optimisation des images
+                </h3>
+                <p><span class="impact-badge impact-high"><i class="fas fa-bolt"></i> Impact ÉLEVÉ</span></p>
+
+                <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code inefficace :</h4>
+                <div class="code-block bad">
+<pre><code><span class="comment">// Image haute résolution non optimisée</span>
+<span class="type">Image</span><span class="operator">.</span><span class="function">network</span><span class="operator">(</span>
+  <span class="string">'https://example.com/huge-image-4K.jpg'</span><span class="operator">,</span> <span class="comment">// 8 MB!</span>
+<span class="operator">)</span></code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul style="text-align: left;">
+                        <li>Téléchargement de <strong>plusieurs MB</strong> de données</li>
+                        <li>Décodage image = <strong>forte consommation CPU</strong></li>
+                        <li>Mémoire vive saturée par les images en cache</li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
+                <div class="code-block good">
+<pre><code><span class="comment">// Utiliser CachedNetworkImage avec dimensions</span>
+<span class="type">CachedNetworkImage</span><span class="operator">(</span>
+  <span class="variable">imageUrl:</span> <span class="string">'https://example.com/optimized.webp'</span><span class="operator">,</span>
+  <span class="variable">width:</span> <span class="string">200</span><span class="operator">,</span>
+  <span class="variable">height:</span> <span class="string">200</span><span class="operator">,</span>
+  <span class="variable">memCacheWidth:</span> <span class="string">200</span><span class="operator">,</span>
+  <span class="variable">memCacheHeight:</span> <span class="string">200</span><span class="operator">,</span>
+  <span class="variable">placeholder:</span> <span class="operator">(</span><span class="variable">context</span><span class="operator">,</span> <span class="variable">url</span><span class="operator">)</span> <span class="operator">=></span> <span class="type">CircularProgressIndicator</span><span class="operator">(),</span>
+  <span class="variable">errorWidget:</span> <span class="operator">(</span><span class="variable">context</span><span class="operator">,</span> <span class="variable">url</span><span class="operator">,</span> <span class="variable">error</span><span class="operator">)</span> <span class="operator">=></span> <span class="type">Icon</span><span class="operator">(</span><span class="type">Icons</span><span class="operator">.</span><span class="variable">error</span><span class="operator">),</span>
+<span class="operator">)</span></code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
+                    <ul style="text-align: left;">
+                        <li>Réduction de <strong>60-80%</strong> du poids des images (WebP)</li>
+                        <li>Cache automatique = <strong>moins de requêtes réseau</strong> <sup><a href="#source9">[9]</a></sup></li>
+                        <li>Décodage optimisé avec dimensions cibles</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- RÈGLE 8 : tree_shaking -->
+            <div class="eco-rule" id="rule8">
+                <h3>
+                    <span class="rule-number">8</span>
+                    tree_shaking - Tree-shaking et code splitting
+                </h3>
+                <p><span class="impact-badge impact-medium"><i class="fas fa-bolt"></i> Impact MOYEN-ÉLEVÉ</span></p>
+
+                <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Configuration inefficace :</h4>
+                <div class="code-block bad">
+<pre><code><span class="comment">// Import de bibliothèques entières</span>
+<span class="keyword">import</span> <span class="string">'package:my_app/all_features.dart'</span><span class="operator">;</span>
+
+<span class="comment">// Tout le code est inclus dans le bundle final</span></code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul style="text-align: left;">
+                        <li>Bundle final <strong>gonflé</strong> avec du code inutilisé</li>
+                        <li>Temps de téléchargement et startup <strong>plus longs</strong></li>
+                        <li>Mémoire occupée par du code mort</li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Configuration optimisée :</h4>
+                <div class="code-block good">
+<pre><code><span class="comment">// Import spécifique uniquement</span>
+<span class="keyword">import</span> <span class="string">'package:my_app/features/login.dart'</span><span class="operator">;</span>
+
+<span class="comment">// Avec deferred loading pour code splitting</span>
+<span class="keyword">import</span> <span class="string">'package:my_app/features/admin.dart'</span> <span class="keyword">deferred as</span> <span class="variable">admin</span><span class="operator">;</span>
+
+<span class="comment">// Charger à la demande</span>
+<span class="keyword">await</span> <span class="variable">admin</span><span class="operator">.</span><span class="function">loadLibrary</span><span class="operator">();</span>
+<span class="variable">admin</span><span class="operator">.</span><span class="function">showAdminPanel</span><span class="operator">();</span></code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
+                    <ul style="text-align: left;">
+                        <li>Réduction de <strong>40-50%</strong> de la taille du bundle <sup><a href="#source10">[10]</a></sup></li>
+                        <li>Startup <strong>plus rapide</strong> de 30-40%</li>
+                        <li>Tree-shaking automatique élimine le code mort</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- RÈGLE 9 : stateless_first -->
+            <div class="eco-rule" id="rule9">
+                <h3>
+                    <span class="rule-number">9</span>
+                    stateless_first - Préférer StatelessWidget
+                </h3>
+                <p><span class="impact-badge impact-medium"><i class="fas fa-info"></i> Impact MOYEN</span></p>
+
+                <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code inefficace :</h4>
+                <div class="code-block bad">
+<pre><code><span class="comment">// StatefulWidget pour un contenu statique</span>
+<span class="keyword">class</span> <span class="type">MyLabel</span> <span class="keyword">extends</span> <span class="type">StatefulWidget</span> <span class="operator">{</span>
+  <span class="operator">@</span>override
+  <span class="variable">_MyLabelState</span> <span class="function">createState</span><span class="operator">()</span> <span class="operator">=></span> <span class="variable">_MyLabelState</span><span class="operator">();</span>
+<span class="operator">}</span>
+
+<span class="keyword">class</span> <span class="variable">_MyLabelState</span> <span class="keyword">extends</span> <span class="type">State</span><span class="operator">&lt;</span><span class="type">MyLabel</span><span class="operator">&gt;</span> <span class="operator">{</span>
+  <span class="operator">@</span>override
+  <span class="type">Widget</span> <span class="function">build</span><span class="operator">(</span><span class="type">BuildContext</span> <span class="variable">context</span><span class="operator">)</span> <span class="operator">{</span>
+    <span class="keyword">return</span> <span class="type">Text</span><span class="operator">(</span><span class="string">'Label fixe'</span><span class="operator">);</span>
+  <span class="operator">}</span>
+<span class="operator">}</span></code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul style="text-align: left;">
+                        <li>StatefulWidget crée un <strong>objet State</strong> supplémentaire</li>
+                        <li>Overhead de gestion du <strong>cycle de vie</strong></li>
+                        <li>Consommation mémoire et CPU inutile</li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
+                <div class="code-block good">
+<pre><code><span class="comment">// StatelessWidget pour contenu statique</span>
+<span class="keyword">class</span> <span class="type">MyLabel</span> <span class="keyword">extends</span> <span class="type">StatelessWidget</span> <span class="operator">{</span>
+  <span class="keyword">const</span> <span class="function">MyLabel</span><span class="operator">();</span>
+
+  <span class="operator">@</span>override
+  <span class="type">Widget</span> <span class="function">build</span><span class="operator">(</span><span class="type">BuildContext</span> <span class="variable">context</span><span class="operator">)</span> <span class="operator">{</span>
+    <span class="keyword">return const</span> <span class="type">Text</span><span class="operator">(</span><span class="string">'Label fixe'</span><span class="operator">);</span>
+  <span class="operator">}</span>
+<span class="operator">}</span></code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
+                    <ul style="text-align: left;">
+                        <li>Moins d'objets en mémoire</li>
+                        <li>Rebuild <strong>plus rapide</strong> <sup><a href="#source11">[11]</a></sup></li>
+                        <li>Code plus simple et maintenable</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- RÈGLE 10 : dispose_resources -->
+            <div class="eco-rule" id="rule10">
+                <h3>
+                    <span class="rule-number">10</span>
+                    dispose_resources - Libérer les ressources proprement
+                </h3>
+                <p><span class="impact-badge impact-high"><i class="fas fa-leaf"></i> Impact ÉLEVÉ</span></p>
+
+                <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code dangereux :</h4>
+                <div class="code-block bad">
+<pre><code><span class="keyword">class</span> <span class="variable">_MyWidgetState</span> <span class="keyword">extends</span> <span class="type">State</span><span class="operator">&lt;</span><span class="type">MyWidget</span><span class="operator">&gt;</span> <span class="operator">{</span>
+  <span class="type">StreamSubscription</span>? <span class="variable">_subscription</span><span class="operator">;</span>
+  <span class="type">AnimationController</span>? <span class="variable">_controller</span><span class="operator">;</span>
+
+  <span class="operator">@</span>override
+  <span class="keyword">void</span> <span class="function">initState</span><span class="operator">()</span> <span class="operator">{</span>
+    <span class="keyword">super</span><span class="operator">.</span><span class="function">initState</span><span class="operator">();</span>
+    <span class="variable">_subscription</span> <span class="operator">=</span> <span class="variable">stream</span><span class="operator">.</span><span class="function">listen</span><span class="operator">((</span><span class="variable">data</span><span class="operator">)</span> <span class="operator">=></span> <span class="operator">...);</span>
+    <span class="variable">_controller</span> <span class="operator">=</span> <span class="type">AnimationController</span><span class="operator">(...);</span>
+  <span class="operator">}</span>
+  
+  <span class="comment">// ⚠️ Pas de dispose() = fuite mémoire!</span>
+<span class="operator">}</span></code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est dangereux ?</h4>
+                    <ul style="text-align: left;">
+                        <li>Les ressources ne sont <strong>jamais libérées</strong></li>
+                        <li><strong>Fuites mémoire</strong> progressives</li>
+                        <li>Listeners actifs continuent de <strong>consommer CPU</strong></li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Code optimisé :</h4>
+                <div class="code-block good">
+<pre><code><span class="keyword">class</span> <span class="variable">_MyWidgetState</span> <span class="keyword">extends</span> <span class="type">State</span><span class="operator">&lt;</span><span class="type">MyWidget</span><span class="operator">&gt;</span> <span class="operator">{</span>
+  <span class="type">StreamSubscription</span>? <span class="variable">_subscription</span><span class="operator">;</span>
+  <span class="type">AnimationController</span>? <span class="variable">_controller</span><span class="operator">;</span>
+
+  <span class="operator">@</span>override
+  <span class="keyword">void</span> <span class="function">initState</span><span class="operator">()</span> <span class="operator">{</span>
+    <span class="keyword">super</span><span class="operator">.</span><span class="function">initState</span><span class="operator">();</span>
+    <span class="variable">_subscription</span> <span class="operator">=</span> <span class="variable">stream</span><span class="operator">.</span><span class="function">listen</span><span class="operator">((</span><span class="variable">data</span><span class="operator">)</span> <span class="operator">=></span> <span class="operator">...);</span>
+    <span class="variable">_controller</span> <span class="operator">=</span> <span class="type">AnimationController</span><span class="operator">(...);</span>
+  <span class="operator">}</span>
+
+  <span class="operator">@</span>override
+  <span class="keyword">void</span> <span class="function">dispose</span><span class="operator">()</span> <span class="operator">{</span>
+    <span class="comment">// ✅ Libération propre des ressources</span>
+    <span class="variable">_subscription</span><span class="operator">?.</span><span class="function">cancel</span><span class="operator">();</span>
+    <span class="variable">_controller</span><span class="operator">?.</span><span class="function">dispose</span><span class="operator">();</span>
+    <span class="keyword">super</span><span class="operator">.</span><span class="function">dispose</span><span class="operator">();</span>
+  <span class="operator">}</span>
+<span class="operator">}</span></code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
+                    <ul style="text-align: left;">
+                        <li>Évite les <strong>fuites mémoire</strong></li>
+                        <li>Libère CPU des listeners inactifs <sup><a href="#source12">[12]</a></sup></li>
+                        <li>Application plus stable dans la durée</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Bonnes pratiques complémentaires -->
+        <section style="margin-top: 60px; padding: 30px; background: linear-gradient(135deg, rgba(0, 180, 216, 0.1) 0%, rgba(0, 180, 216, 0.02) 100%); border-radius: 10px;">
+            <h2 style="color: #00b4d8; margin-bottom: 30px;">
+                <i class="fas fa-leaf"></i> Bonnes pratiques complémentaires
+            </h2>
+
+            <div class="container">
+                <div class="column">
+                    <h3><i class="fas fa-chart-bar"></i> DevTools Profiling</h3>
+                    <div class="code-block" style="font-size: 0.85rem;">
+<pre><code><span class="comment">// Lancer en mode profile</span>
+flutter run <span class="operator">--</span>profile
+
+<span class="comment">// Analyser les performances</span>
+flutter pub global run devtools</code></pre>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-color-light);">
+                        Identifier les bottlenecks CPU, GPU et mémoire
+                    </p>
+                </div>
+
+                <div class="column">
+                    <h3><i class="fas fa-cube"></i> Widgets efficaces</h3>
+                    <div class="code-block good" style="font-size: 0.85rem;">
+<pre><code><span class="comment">// Préférer SizedBox à Container</span>
+<span class="type">SizedBox</span><span class="operator">(</span>
+  <span class="variable">width:</span> <span class="string">100</span><span class="operator">,</span>
+  <span class="variable">child:</span> <span class="operator">...</span>
+<span class="operator">)</span>
+
+<span class="comment">// Plus léger que Container()</span></code></pre>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-color-light);">
+                        Widgets spécialisés = moins de calculs
+                    </p>
+                </div>
+
+                <div class="column">
+                    <h3><i class="fas fa-compress"></i> Obfuscation</h3>
+                    <div class="code-block good" style="font-size: 0.85rem;">
+<pre><code>flutter build apk <span class="operator">--</span>release \
+  <span class="operator">--</span>obfuscate \
+  <span class="operator">--</span>split<span class="operator">-</span>debug<span class="operator">-</span>info<span class="operator">=</span>symbols</code></pre>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-color-light);">
+                        Réduit la taille et protège le code
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Outils recommandés -->
+        <section style="margin-top: 50px;">
+            <h2><i class="fas fa-tools"></i> Outils pour mesurer et améliorer</h2>
+            <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px;">
+
+                <div class="service-card">
+                    <i class="fas fa-chart-line" style="font-size: 2.5rem; color: #00b4d8;"></i>
+                    <h3>Flutter DevTools</h3>
+                    <p>Suite complète d'outils de profiling pour analyser les performances CPU, GPU, mémoire et identifier les rebuilds inutiles.</p>
+                    <a href="https://docs.flutter.dev/tools/devtools" target="_blank" class="button" style="margin-top: 15px; font-size: 0.9rem; background-color: #00b4d8;">
+                        <i class="fas fa-external-link-alt"></i> Documentation
+                    </a>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-code" style="font-size: 2.5rem; color: var(--info-color);"></i>
+                    <h3>Dart Analyzer</h3>
+                    <p>Analyse statique du code Dart pour détecter les problèmes de performance et suggérer des optimisations.</p>
+                    <a href="https://dart.dev/tools/dartanalyzer" target="_blank" class="button" style="margin-top: 15px; font-size: 0.9rem; background-color: var(--info-color);">
+                        <i class="fas fa-external-link-alt"></i> Visiter
+                    </a>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-tachometer-alt" style="font-size: 2.5rem; color: var(--warning-color);"></i>
+                    <h3>Flutter Performance</h3>
+                    <p>Guide officiel des bonnes pratiques de performance Flutter avec exemples et benchmarks.</p>
+                    <a href="https://docs.flutter.dev/perf/best-practices" target="_blank" class="button" style="margin-top: 15px; font-size: 0.9rem; background-color: var(--warning-color);">
+                        <i class="fas fa-external-link-alt"></i> Guide
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Sources -->
+        <section class="bibliography" style="margin-top: 60px;">
+            <h2>Sources & Références</h2>
+            <ul class="bibliography-list" style="text-align: left; max-width: 900px; margin: 0 auto;">
+                <li id="source1">
+                    <strong>[1]</strong> Stack Overflow Developer Survey 2024.
+                    <em>Flutter and Dart Usage Statistics.</em>
+                    <a href="https://survey.stackoverflow.co/2024" target="_blank">[Lien]</a>
+                </li>
+                <li id="source2">
+                    <strong>[2]</strong> Pereira, R., et al. (2017).
+                    <em>Energy efficiency across programming languages - Dart Memory Consumption.</em>
+                    <a href="https://repositorium.uminho.pt/bitstream/1822/69044/1/paper.pdf" target="_blank">[PDF]</a>
+                </li>
+                <li id="source3">
+                    <strong>[3]</strong> Miquido. (2025).
+                    <em>Dart Language Performance Overview - AOT vs JIT Compilation.</em>
+                    <a href="https://www.miquido.com/flutter-101/dart-performance/" target="_blank">[Lien]</a>
+                </li>
+                <li id="source4">
+                    <strong>[4]</strong> Somnio Software.
+                    <em>10 Best Practices Every Flutter Developer Should Follow - Const Constructors.</em>
+                    <a href="https://somniosoftware.com/post/top-10-flutter-best-practices" target="_blank">[Lien]</a>
+                </li>
+                <li id="source5">
+                    <strong>[5]</strong> Flutter Documentation.
+                    <em>Performance best practices - ListView.builder.</em>
+                    <a href="https://docs.flutter.dev/perf/best-practices" target="_blank">[Lien]</a>
+                </li>
+                <li id="source6">
+                    <strong>[6]</strong> Dart.dev.
+                    <em>StringBuffer class - Efficient String Concatenation.</em>
+                    <a href="https://api.dart.dev/stable/dart-core/StringBuffer-class.html" target="_blank">[Lien]</a>
+                </li>
+                <li id="source7">
+                    <strong>[7]</strong> Somnio Software. (2025).
+                    <em>13 best practices for Flutter performance optimization - Async Programming.</em>
+                    <a href="https://somniosoftware.com/blog/13-best-practices-for-flutter-performance-optimization" target="_blank">[Lien]</a>
+                </li>
+                <li id="source8">
+                    <strong>[8]</strong> Lazebny.io. (2024).
+                    <em>Dart & Flutter best practices - Pure Build Methods.</em>
+                    <a href="https://lazebny.io/flutter-best-practices/" target="_blank">[Lien]</a>
+                </li>
+                <li id="source9">
+                    <strong>[9]</strong> Bacancy Technology. (2025).
+                    <em>Flutter Performance Optimization in 2025 - Image Optimization.</em>
+                    <a href="https://www.bacancytechnology.com/blog/flutter-performance" target="_blank">[Lien]</a>
+                </li>
+                <li id="source10">
+                    <strong>[10]</strong> Medium - Chandru G. (2025).
+                    <em>Optimizing Flutter App Performance in 2025 - Tree Shaking.</em>
+                    <a href="https://medium.com/@chandru1918g/optimizing-flutter-app-performance-in-2025-a-developers-guide-c2c32e6f9f21" target="_blank">[Lien]</a>
+                </li>
+                <li id="source11">
+                    <strong>[11]</strong> Flutter Architecture Documentation.
+                    <em>Architecture recommendations and resources.</em>
+                    <a href="https://docs.flutter.dev/app-architecture/recommendations" target="_blank">[Lien]</a>
+                </li>
+                <li id="source12">
+                    <strong>[12]</strong> TechAhead. (2025).
+                    <em>Flutter App Performance Optimization: Best Practices - Resource Management.</em>
+                    <a href="https://www.techaheadcorp.com/blog/how-to-optimize-performance-in-your-flutter-apps-best-practices/" target="_blank">[Lien]</a>
+                </li>
+                <li id="source13">
+                    <strong>[13]</strong> CloudDevs. (2024).
+                    <em>Web Assembly with Dart: Unlocking High-Performance Web Apps.</em>
+                    <a href="https://clouddevs.com/dart/performance-optimization-techniques/" target="_blank">[Lien]</a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Navigation -->
+        <div class="button-container" style="margin-top: 60px; gap: 15px; display: flex; flex-wrap: wrap; justify-content: center;">
+            <a href="../langages.html" class="button">
+                <i class="fas fa-arrow-left"></i> Retour aux langages
+            </a>
+            <a href="../../index.html" class="button" style="background-color: var(--info-color);">
+                <i class="fas fa-home"></i> Accueil
+            </a>
+            <a href="../en-pratique.html" class="button" style="background-color: var(--success-color);">
+                <i class="fas fa-code"></i> Ateliers pratiques
+            </a>
+        </div>
+
+    </div>
+
+    <footer>
+        <p class="mg-0">&copy; 2025 - COURDIER Rémy, ROCHAT Lise, ONIAN Youssouf & all - <a href="../a-propos.html">A propos</a></p>
+    </footer>
+
+    <script>
+        // Smooth scroll pour les ancres
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
