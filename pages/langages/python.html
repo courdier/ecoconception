@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Règles d'éco-conception pour Python - Optimisations environnementales">
+    <meta name="keywords" content="Python, écoconception, optimisation, performance, empreinte carbone, green coding">
+    <meta name="author" content="COURDIER Rémy, ROCHAT Lise, ONIAN Youssouf">
+    <title>Python - Éco-conception & Optimisations</title>
+    <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/styles/styles.css">
+    <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
+    <script defer src="../../assets/scripts/scripts-tp.js"></script>
+    <style>
+        /* Styles spécifiques pour les code blocks */
+        .code-block {
+            background-color: #2d2d2d;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block.bad {
+            border-left-color: var(--emergency-color);
+            background-color: rgba(253, 99, 99, 0.1);
+        }
+
+        .code-block.good {
+            border-left-color: var(--success-color);
+            background-color: rgba(105, 240, 109, 0.1);
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #e8e8e8;
+        }
+
+        .code-block code {
+            color: #e8e8e8;
+        }
+
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .function { color: #dcdcaa; }
+        .variable { color: #9cdcfe; }
+        .comment { color: #6a9955; font-style: italic; }
+        .operator { color: #d4d4d4; }
+
+        /* Styles pour les règles collapsibles */
+        .eco-rule {
+            margin: 20px 0;
+            background: linear-gradient(135deg, rgba(47, 223, 173, 0.05) 0%, rgba(47, 223, 173, 0.01) 100%);
+            border-radius: 10px;
+            border: 1px solid rgba(47, 223, 173, 0.3);
+            overflow: hidden;
+        }
+
+        .rule-header {
+            padding: 20px 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .rule-header:hover {
+            background-color: rgba(47, 223, 173, 0.1);
+        }
+
+        .rule-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .rule-number {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .rule-title-section {
+            flex: 1;
+        }
+
+        .rule-title {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin: 0 0 5px 0;
+        }
+
+        .rule-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .tag {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: var(--text-color);
+        }
+
+        .rule-metrics {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .metric-item {
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .metric-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--success-color);
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            color: var(--text-color-light);
+            margin-top: 2px;
+        }
+
+        .expand-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            transition: transform 0.3s;
+        }
+
+        .eco-rule.active .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .rule-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding: 0 25px;
+        }
+
+        .eco-rule.active .rule-content {
+            max-height: 5000px;
+            padding: 0 25px 25px 25px;
+        }
+
+        .impact-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .impact-high {
+            background-color: var(--success-color);
+            color: var(--background-color);
+        }
+
+        .impact-medium {
+            background-color: var(--warning-color);
+            color: var(--background-color);
+        }
+
+        .impact-low {
+            background-color: var(--info-color);
+            color: white;
+        }
+
+        .explanation-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 3px solid var(--info-color);
+        }
+
+        .gain-box {
+            background-color: rgba(105, 240, 109, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 3px solid var(--success-color);
+        }
+
+        .nav-languages {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-languages a {
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .nav-languages a:hover {
+            background-color: rgba(47, 223, 173, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .nav-languages a.active {
+            background-color: #306998;
+            color: white;
+            border-color: #FFD43B;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .summary-table th,
+        .summary-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .summary-table th {
+            background-color: rgba(47, 223, 173, 0.2);
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .summary-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Collapsible methodology section */
+        .methodology-section {
+            margin: 40px 0;
+            background: linear-gradient(135deg, rgba(47, 223, 173, 0.05) 0%, rgba(47, 223, 173, 0.01) 100%);
+            border-radius: 10px;
+            border: 1px solid rgba(47, 223, 173, 0.3);
+        }
+
+        .methodology-header {
+            padding: 20px 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .methodology-header:hover {
+            background-color: rgba(47, 223, 173, 0.1);
+        }
+
+        .methodology-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding: 0 25px;
+        }
+
+        .methodology-section.active .methodology-content {
+            max-height: 8000px;
+            padding: 0 25px 25px 25px;
+        }
+
+        .methodology-section.active .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        @media (max-width: 768px) {
+            .rule-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .rule-metrics {
+                width: 100%;
+                justify-content: space-around;
+            }
+
+            .code-block {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="mg-0"><a href="../../index.html">Home</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html">Chiffres</a></li>
+                <li class="mg-0"><a href="../quizV1.html">Quiz</a></li>
+                <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
+                <li class="mg-0"><a href="../langages.html" class="active">Langages</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main">
+        <h1><i class="fab fa-python"></i> Python - Éco-conception & Green Coding</h1>
+
+        <!-- Navigation entre langages -->
+        <div class="nav-languages">
+            <a href="./php.html"><i class="fab fa-php"></i> PHP</a>
+            <a href="./python.html" class="active"><i class="fab fa-python"></i> Python</a>
+            <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fas fa-code"></i> C/C++ (bientôt)</a>
+            <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fab fa-java"></i> Java (bientôt)</a>
+            <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fas fa-cog"></i> Rust (bientôt)</a>
+            <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fab fa-js"></i> JavaScript (bientôt)</a>
+        </div>
+
+        <!-- Introduction -->
+        <section class="intro-text">
+            <p>
+                Python est un langage de programmation <strong>interprété</strong>, polyvalent et largement utilisé 
+                dans de nombreux domaines. Sa <strong>simplicité de syntaxe</strong> permet de développer rapidement, 
+                mais peut conduire à des mauvaises pratiques ayant un <strong>impact environnemental significatif</strong>.
+            </p>
+            <br>
+            <p>
+                Cette page présente <strong>10 règles d'éco-conception</strong> concrètes pour réduire
+                l'empreinte carbone de vos applications Python, avec des <strong>mesures réelles</strong> 
+                via CodeCarbon et des <strong>équivalences écologiques parlantes</strong>.
+            </p>
+        </section>
+
+        <!-- Statistiques clés -->
+        <section class="stats-icons">
+            <div class="stat-item">
+                <i class="fas fa-leaf"></i>
+                <h2>55 kg CO₂</h2>
+                <p>Économisés par serveur/an <sup><a href="#source-codecarbon">[1]</a></sup></p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-car"></i>
+                <h2>220 km</h2>
+                <p>Équivalent voiture essence <sup><a href="#source-ademe">[2]</a></sup></p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-tree"></i>
+                <h2>2.5 arbres</h2>
+                <p>Préservés par serveur/an <sup><a href="#source-epa">[3]</a></sup></p>
+            </div>
+        </section>
+
+        <!-- Méthodologie collapsible -->
+        <section class="methodology-section">
+            <div class="methodology-header">
+                <h2 style="color: var(--primary-color); margin: 0;">
+                    <i class="fas fa-flask"></i> Méthodologie de Mesure
+                </h2>
+                <i class="fas fa-chevron-down expand-icon"></i>
+            </div>
+            <div class="methodology-content">
+                <p style="margin-top: 15px;">
+                    Notre approche d'évaluation repose sur <strong>trois dimensions complémentaires</strong> : 
+                    le temps d'exécution, la consommation mémoire, et l'impact énergétique mesuré via CodeCarbon.
+                </p>
+
+                <h3 style="color: var(--primary-color); margin-top: 30px;">
+                    <i class="fas fa-clock"></i> 1.1 Temps d'exécution
+                </h3>
+                <div class="explanation-box">
+                    <p>
+                        Le temps de calcul est le <strong>premier indicateur</strong> de l'efficacité énergétique. 
+                        Plus un algorithme s'exécute rapidement, moins il sollicite le processeur.
+                    </p>
+                    <ul style="text-align: left; margin-top: 10px;">
+                        <li><strong>Temps wall-clock</strong> : temps réel écoulé (incluant I/O)</li>
+                        <li><strong>Temps CPU</strong> : temps processeur effectif (calculs purs)</li>
+                    </ul>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 30px;">
+                    <i class="fas fa-memory"></i> 1.2 Consommation mémoire
+                </h3>
+                <div class="explanation-box">
+                    <p>
+                        La mémoire vive (RAM) consommée a un <strong>impact indirect mais significatif</strong> :
+                    </p>
+                    <ul style="text-align: left; margin-top: 10px;">
+                        <li>Serveurs plus puissants = <strong>énergie grise</strong> (fabrication)</li>
+                        <li>Risque de <strong>swapping</strong> (extrêmement énergivore)</li>
+                        <li>Infrastructure surdimensionnée</li>
+                    </ul>
+                    <p style="margin-top: 10px;">
+                        Nous utilisons <code>tracemalloc</code> pour mesurer le pic mémoire atteint.
+                    </p>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 30px;">
+                    <i class="fas fa-leaf"></i> 1.3 Impact environnemental avec CodeCarbon
+                </h3>
+                <div class="explanation-box">
+                    <h4>Qu'est-ce que CodeCarbon ?</h4>
+                    <p>
+                        CodeCarbon est une bibliothèque open-source qui estime les <strong>émissions de CO₂</strong> 
+                        en combinant : consommation électrique du matériel, durée d'exécution, et mix énergétique géographique.
+                    </p>
+                    <div class="code-block" style="margin-top: 15px;">
+<pre><code><span class="comment"># Installation</span>
+<span class="keyword">pip install</span> codecarbon
+
+<span class="comment"># Utilisation</span>
+<span class="keyword">from</span> codecarbon <span class="keyword">import</span> EmissionsTracker
+
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"test"</span>)
+tracker.<span class="function">start</span>()
+<span class="comment"># votre code</span>
+emissions <span class="operator">=</span> tracker.<span class="function">stop</span>()
+<span class="keyword">print</span>(<span class="string">f"{emissions:.6f} kg CO₂e"</span>)</code></pre>
+                    </div>
+                    <p style="margin-top: 15px;">
+                        <strong>Formule :</strong> Émissions (kg CO₂) = Énergie (kWh) × Facteur pays (g CO₂/kWh) ÷ 1000
+                    </p>
+                    <p>
+                        Le facteur varie : <strong>France ~50 g/kWh</strong>, Allemagne ~400 g/kWh, Chine >600 g/kWh
+                    </p>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 30px;">
+                    <i class="fas fa-vial"></i> 1.4 Protocole expérimental
+                </h3>
+                <div class="explanation-box">
+                    <ol style="text-align: left;">
+                        <li><strong>Préparation</strong> : Identification anti-pattern vs solution optimisée</li>
+                        <li><strong>Mesure</strong> : Exécution séparée avec temps, mémoire et CodeCarbon</li>
+                        <li><strong>Analyse</strong> : Calcul gains + équivalences écologiques</li>
+                        <li><strong>Répétition</strong> : Plusieurs runs pour réduire le bruit</li>
+                    </ol>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 30px;">
+                    <i class="fas fa-exclamation-triangle"></i> 1.5 Limites et précisions
+                </h3>
+                <div class="explanation-box">
+                    <ul style="text-align: left;">
+                        <li><strong>Précision</strong> : CodeCarbon donne des estimations (erreur ~10-20%)</li>
+                        <li><strong>Variabilité</strong> : Résultats dépendent du processeur, température, processus parallèles</li>
+                        <li><strong>Gains relatifs</strong> privilégiés sur valeurs absolues</li>
+                    </ul>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 30px;">
+                    <i class="fas fa-server"></i> 1.6 Configuration de référence
+                </h3>
+                <div class="explanation-box">
+                    <p><strong>Matériel :</strong> Intel Core i7 quadricœur, 16 Go RAM, Linux</p>
+                    <p><strong>Localisation :</strong> France (mix énergétique bas-carbone ~50 g CO₂/kWh)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tableau récapitulatif -->
+        <section style="margin-top: 50px;">
+            <h2>Récapitulatif des 10 éco-rules Python</h2>
+            <p>Cliquez sur une règle pour afficher les détails et exemples de code.</p>
+
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Règle</th>
+                        <th>Gain CO₂</th>
+                        <th>Équivalence</th>
+                        <th>Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr onclick="document.getElementById('rule1').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule1').classList.add('active');" style="cursor: pointer;">
+                        <td>1</td>
+                        <td><strong>Set vs List</strong> - Recherche O(1)</td>
+                        <td>96.5%</td>
+                        <td>🚗 36 km</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="document.getElementById('rule2').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule2').classList.add('active');" style="cursor: pointer;">
+                        <td>2</td>
+                        <td><strong>Générateurs</strong> - Flux massifs</td>
+                        <td>3.5%*</td>
+                        <td>💾 99.9% mémoire</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="document.getElementById('rule3').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule3').classList.add('active');" style="cursor: pointer;">
+                        <td>3</td>
+                        <td><strong>NumPy</strong> - Calcul vectorisé</td>
+                        <td>98.2%</td>
+                        <td>🚗 79 km</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="document.getElementById('rule4').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule4').classList.add('active');" style="cursor: pointer;">
+                        <td>4</td>
+                        <td><strong>join()</strong> - Concaténation O(n)</td>
+                        <td>85.6%</td>
+                        <td>🚗 13 km</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="document.getElementById('rule5').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule5').classList.add('active');" style="cursor: pointer;">
+                        <td>5</td>
+                        <td><strong>Buffers I/O</strong> - 64KB chunks</td>
+                        <td>96.1%</td>
+                        <td>🚗 35 km</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="document.getElementById('rule6').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule6').classList.add('active');" style="cursor: pointer;">
+                        <td>6</td>
+                        <td><strong>Multiprocessing</strong> - Parallélisme</td>
+                        <td>38.5%</td>
+                        <td>🚗 4.4 km</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="document.getElementById('rule7').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule7').classList.add('active');" style="cursor: pointer;">
+                        <td>7</td>
+                        <td><strong>deque</strong> - Files FIFO O(1)</td>
+                        <td>71.4%</td>
+                        <td>🚗 29 km</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="document.getElementById('rule8').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule8').classList.add('active');" style="cursor: pointer;">
+                        <td>8</td>
+                        <td><strong>lru_cache</strong> - Memoïsation</td>
+                        <td>97.6%</td>
+                        <td>🚗 56 km</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="document.getElementById('rule9').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule9').classList.add('active');" style="cursor: pointer;">
+                        <td>9</td>
+                        <td><strong>any()/all()</strong> - Court-circuit</td>
+                        <td>62.0%</td>
+                        <td>🚗 1.6 km</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="document.getElementById('rule10').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule10').classList.add('active');" style="cursor: pointer;">
+                        <td>10</td>
+                        <td><strong>Bonnes pratiques</strong> - Micro-optim</td>
+                        <td>~5%</td>
+                        <td>🚗 6 km</td>
+                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- LES 10 ÉCO-RULES (Collapsibles) -->
+        <section style="margin-top: 60px;">
+            <h2 style="text-align: center; font-size: 2rem; color: var(--primary-color); margin-bottom: 40px;">
+                <i class="fas fa-leaf"></i> Les 10 Éco-Rules Python
+            </h2>
+
+            <!-- RÈGLE 1 : Set vs List -->
+            <div class="eco-rule" id="rule1">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <span class="rule-number">1</span>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">Set vs List pour la recherche</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#structures-de-donnees</span>
+                                <span class="tag">#algorithmique</span>
+                                <span class="tag">#cpu</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">96.5%</div>
+                            <div class="metric-label">Gain CO₂</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">97,400×</div>
+                            <div class="metric-label">Plus rapide</div>
+                        </div>
+                        <span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                </div>
+                <div class="rule-content">
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Authentification, permissions, filtrage, dédoublonnage</p>
+
+                    <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Anti-pattern (O(n) - linéaire) :</h4>
+                    <div class="code-block bad">
+<pre><code><span class="comment"># Recherche séquentielle dans une liste</span>
+items_list <span class="operator">=</span> <span class="function">list</span>(<span class="function">range</span>(<span class="string">10_000_000</span>))
+found <span class="operator">=</span> target <span class="keyword">in</span> items_list  <span class="comment"># O(n)</span></code></pre>
+                    </div>
+
+                    <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Solution (O(1) - constant) :</h4>
+                    <div class="code-block good">
+<pre><code><span class="comment"># Recherche par hash dans un set</span>
+items_set <span class="operator">=</span> <span class="function">set</span>(<span class="function">range</span>(<span class="string">10_000_000</span>))
+found <span class="operator">=</span> target <span class="keyword">in</span> items_set  <span class="comment"># O(1)</span></code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <h4><i class="fas fa-chart-line"></i> Résultats mesurés :</h4>
+                        <table style="width: 100%; margin-top: 10px;">
+                            <thead>
+                                <tr style="background-color: rgba(105, 240, 109, 0.2);">
+                                    <th>Métrique</th>
+                                    <th>Liste</th>
+                                    <th>Set</th>
+                                    <th>Gain</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Temps</td>
+                                    <td>13.585 s</td>
+                                    <td>0.000 s</td>
+                                    <td><strong>97,400×</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Énergie</td>
+                                    <td>0.000046 kWh</td>
+                                    <td>0.000002 kWh</td>
+                                    <td><strong>96.5%</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>CO₂</td>
+                                    <td>0.000026 kg</td>
+                                    <td>0.000001 kg</td>
+                                    <td><strong>96.5%</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-globe"></i> Impact écologique concret (par serveur/an) :</h4>
+                        <ul style="text-align: left;">
+                            <li><strong>9.1 kg CO₂ économisés</strong> =</li>
+                            <li>🚗 <strong>36 km en voiture essence</strong> non parcourus</li>
+                            <li>💡 <strong>1 ampoule LED allumée continuellement pendant 2 ans</strong></li>
+                            <li>🌳 <strong>40% de ce qu'un arbre absorbe annuellement</strong></li>
+                        </ul>
+                        <p style="margin-top: 10px;"><strong>À l'échelle de 100 serveurs :</strong> 910 kg CO₂ = <strong>3,640 km de voiture</strong> = <strong>41 arbres préservés</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RÈGLE 2 : Générateurs -->
+            <div class="eco-rule" id="rule2">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <span class="rule-number">2</span>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">Générateurs pour flux massifs</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#memoire</span>
+                                <span class="tag">#streaming</span>
+                                <span class="tag">#scalabilite</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">99.9%</div>
+                            <div class="metric-label">Gain Mémoire</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">3.5%</div>
+                            <div class="metric-label">Gain CO₂</div>
+                        </div>
+                        <span class="impact-badge impact-high">⭐⭐⭐⭐</span>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                </div>
+                <div class="rule-content">
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Fichiers logs, ETL big data, streaming base de données</p>
+
+                    <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Anti-pattern :</h4>
+                    <div class="code-block bad">
+<pre><code><span class="comment"># Charge tout en RAM</span>
+lines <span class="operator">=</span> [<span class="function">process</span>(line) <span class="keyword">for</span> line <span class="keyword">in</span> huge_file]</code></pre>
+                    </div>
+
+                    <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Solution :</h4>
+                    <div class="code-block good">
+<pre><code><span class="comment"># Traite un élément à la fois</span>
+<span class="keyword">for</span> line <span class="keyword">in</span> (<span class="function">process</span>(l) <span class="keyword">for</span> l <span class="keyword">in</span> huge_file):
+    <span class="keyword">pass</span></code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <h4><i class="fas fa-chart-line"></i> Résultats mesurés :</h4>
+                        <table style="width: 100%; margin-top: 10px;">
+                            <thead>
+                                <tr style="background-color: rgba(105, 240, 109, 0.2);">
+                                    <th>Métrique</th>
+                                    <th>Liste</th>
+                                    <th>Générateur</th>
+                                    <th>Gain</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mémoire</td>
+                                    <td>587.4 MB</td>
+                                    <td>0.2 MB</td>
+                                    <td><strong>99.9%</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Énergie</td>
+                                    <td>0.000036 kWh</td>
+                                    <td>0.000034 kWh</td>
+                                    <td>5.6%</td>
+                                </tr>
+                                <tr>
+                                    <td>CO₂</td>
+                                    <td>0.000020 kg</td>
+                                    <td>0.000020 kg</td>
+                                    <td>3.5%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-info-circle"></i> Pourquoi c'est efficace ?</h4>
+                        <p>
+                            Le gain énergétique direct est modeste (3.5%), mais la <strong>réduction mémoire de 99.9%</strong> évite :
+                        </p>
+                        <ul style="text-align: left; margin-top: 10px;">
+                            <li>Le <strong>swapping disque</strong> (très énergivore)</li>
+                            <li>Les <strong>crashs OOM</strong> et redémarrages serveur</li>
+                            <li>Le <strong>surdimensionnement</strong> des infrastructures</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><strong>Équivalence :</strong> Éviter 1 crash OOM/jour = <strong>~50 kg CO₂/an</strong> (redémarrage + perte de traitement)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RÈGLE 3 : NumPy -->
+            <div class="eco-rule" id="rule3">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <span class="rule-number">3</span>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">NumPy pour calcul numérique</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#calcul-numerique</span>
+                                <span class="tag">#vectorisation</span>
+                                <span class="tag">#ml</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">98.2%</div>
+                            <div class="metric-label">Gain CO₂</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">753×</div>
+                            <div class="metric-label">Plus rapide</div>
+                        </div>
+                        <span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                </div>
+                <div class="rule-content">
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Machine learning, data science, simulations, traitement d'images</p>
+
+                    <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Anti-pattern (Python pur) :</h4>
+                    <div class="code-block bad">
+<pre><code>numbers <span class="operator">=</span> [<span class="function">float</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="string">10_000_000</span>)]
+result <span class="operator">=</span> <span class="function">sum</span>([x<span class="operator">**</span><span class="string">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> numbers])</code></pre>
+                    </div>
+
+                    <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Solution (NumPy vectorisé) :</h4>
+                    <div class="code-block good">
+<pre><code><span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+numbers <span class="operator">=</span> np.<span class="function">arange</span>(<span class="string">10_000_000</span>, dtype<span class="operator">=</span>np.float64)
+result <span class="operator">=</span> np.<span class="function">sum</span>(numbers<span class="operator">**</span><span class="string">2</span>)</code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <h4><i class="fas fa-chart-line"></i> Résultats mesurés :</h4>
+                        <table style="width: 100%; margin-top: 10px;">
+                            <thead>
+                                <tr style="background-color: rgba(105, 240, 109, 0.2);">
+                                    <th>Métrique</th>
+                                    <th>Liste Python</th>
+                                    <th>NumPy</th>
+                                    <th>Gain</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Temps</td>
+                                    <td>28.911 s</td>
+                                    <td>0.038 s</td>
+                                    <td><strong>753×</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Mémoire</td>
+                                    <td>627.9 MB</td>
+                                    <td>152.6 MB</td>
+                                    <td><strong>75.7%</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>CO₂</td>
+                                    <td>0.000054 kg</td>
+                                    <td>0.000001 kg</td>
+                                    <td><strong>98.2%</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-globe"></i> Impact écologique concret (par serveur/an) :</h4>
+                        <ul style="text-align: left;">
+                            <li><strong>19.7 kg CO₂ économisés</strong> =</li>
+                            <li>🚗 <strong>79 km en voiture essence</strong></li>
+                            <li>💡 <strong>4.4 ans d'éclairage LED continu</strong></li>
+                            <li>🌳 <strong>Presque 1 arbre entier</strong> (un arbre absorbe ~22 kg CO₂/an)</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><strong>Pour un cluster de 50 serveurs :</strong> 985 kg CO₂ = <strong>3,940 km de voiture</strong> = <strong>45 arbres préservés</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RÈGLE 4 : Concaténation -->
+            <div class="eco-rule" id="rule4">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <span class="rule-number">4</span>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">Concaténation de chaînes optimisée</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#strings</span>
+                                <span class="tag">#web</span>
+                                <span class="tag">#json</span>
+                                <span class="tag">#memoire</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">85.6%</div>
+                            <div class="metric-label">Gain CO₂</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">18.7×</div>
+                            <div class="metric-label">Plus rapide</div>
+                        </div>
+                        <span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                </div>
+                <div class="rule-content">
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Génération HTML, JSON, logs, rapports</p>
+
+                    <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Anti-pattern (O(n²)) :</h4>
+                    <div class="code-block bad">
+<pre><code>html <span class="operator">=</span> <span class="string">""</span>
+<span class="keyword">for</span> item <span class="keyword">in</span> items:
+    html <span class="operator">+=</span> <span class="string">f"&lt;div&gt;{item}&lt;/div&gt;"</span></code></pre>
+                    </div>
+
+                    <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Solution (O(n)) :</h4>
+                    <div class="code-block good">
+<pre><code>html <span class="operator">=</span> <span class="string">""</span>.<span class="function">join</span>(<span class="string">f"&lt;div&gt;{item}&lt;/div&gt;"</span> <span class="keyword">for</span> item <span class="keyword">in</span> items)</code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <h4><i class="fas fa-chart-line"></i> Résultats mesurés :</h4>
+                        <table style="width: 100%; margin-top: 10px;">
+                            <thead>
+                                <tr style="background-color: rgba(105, 240, 109, 0.2);">
+                                    <th>Métrique</th>
+                                    <th>+=</th>
+                                    <th>join()</th>
+                                    <th>Gain</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Temps</td>
+                                    <td>4.611 s</td>
+                                    <td>0.246 s</td>
+                                    <td><strong>18.7×</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Énergie</td>
+                                    <td>0.000017 kWh</td>
+                                    <td>0.000002 kWh</td>
+                                    <td><strong>85.6%</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>CO₂</td>
+                                    <td>0.000010 kg</td>
+                                    <td>0.000001 kg</td>
+                                    <td><strong>85.6%</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-globe"></i> Impact écologique concret (par serveur/an) :</h4>
+                        <ul style="text-align: left;">
+                            <li><strong>3.2 kg CO₂ économisés</strong> =</li>
+                            <li>🚗 <strong>13 km en voiture</strong></li>
+                            <li>💡 <strong>8 mois d'éclairage LED</strong></li>
+                            <li>🌳 <strong>15% d'un arbre</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RÈGLE 5 : Bufferisation I/O -->
+            <div class="eco-rule" id="rule5">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <span class="rule-number">5</span>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">Bufferisation I/O</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#io</span>
+                                <span class="tag">#disque</span>
+                                <span class="tag">#fichiers</span>
+                                <span class="tag">#systeme</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">96.1%</div>
+                            <div class="metric-label">Gain CO₂</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">454×</div>
+                            <div class="metric-label">Plus rapide</div>
+                        </div>
+                        <span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                </div>
+                <div class="rule-content">
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Copie de fichiers, sauvegardes, streaming</p>
+
+                    <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Anti-pattern :</h4>
+                    <div class="code-block bad">
+<pre><code><span class="comment"># 1 octet = 1 appel système</span>
+<span class="keyword">while</span> <span class="keyword">True</span>:
+    byte <span class="operator">=</span> f.<span class="function">read</span>(<span class="string">1</span>)
+    <span class="keyword">if not</span> byte: <span class="keyword">break</span>
+    f_out.<span class="function">write</span>(byte)</code></pre>
+                    </div>
+
+                    <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Solution :</h4>
+                    <div class="code-block good">
+<pre><code><span class="comment"># 64KB = 1 appel système</span>
+<span class="keyword">while</span> <span class="keyword">True</span>:
+    chunk <span class="operator">=</span> f.<span class="function">read</span>(<span class="string">65536</span>)
+    <span class="keyword">if not</span> chunk: <span class="keyword">break</span>
+    f_out.<span class="function">write</span>(chunk)</code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <h4><i class="fas fa-chart-line"></i> Résultats mesurés :</h4>
+                        <table style="width: 100%; margin-top: 10px;">
+                            <thead>
+                                <tr style="background-color: rgba(105, 240, 109, 0.2);">
+                                    <th>Métrique</th>
+                                    <th>1 octet</th>
+                                    <th>64KB</th>
+                                    <th>Gain</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Temps</td>
+                                    <td>12.713 s</td>
+                                    <td>0.028 s</td>
+                                    <td><strong>454×</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>CO₂</td>
+                                    <td>0.000025 kg</td>
+                                    <td>0.000001 kg</td>
+                                    <td><strong>96.1%</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-globe"></i> Impact écologique concret (par serveur/an) :</h4>
+                        <ul style="text-align: left;">
+                            <li><strong>8.8 kg CO₂ économisés</strong> =</li>
+                            <li>🚗 <strong>35 km en voiture</strong></li>
+                            <li>💡 <strong>2 ans d'éclairage LED</strong></li>
+                            <li>🌳 <strong>40% d'un arbre</strong></li>
+                        </ul>
+                        <p style="margin-top: 10px;"><strong>Pour 200 serveurs de stockage :</strong> 1,760 kg CO₂ = <strong>7,040 km</strong> = <strong>80 arbres</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RÈGLE 6 : Multiprocessing -->
+            <div class="eco-rule" id="rule6">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <span class="rule-number">6</span>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">Parallélisme adapté (Multiprocessing)</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#concurrence</span>
+                                <span class="tag">#cpu</span>
+                                <span class="tag">#gil</span>
+                                <span class="tag">#calcul-parallele</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">38.5%</div>
+                            <div class="metric-label">Gain CO₂</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">2.2×</div>
+                            <div class="metric-label">Plus rapide</div>
+                        </div>
+                        <span class="impact-badge impact-high">⭐⭐⭐⭐</span>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                </div>
+                <div class="rule-content">
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Calcul scientifique, web scraping, rendu 3D</p>
+
+                    <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Anti-pattern (Threading - sérialisé par le GIL) :</h4>
+                    <div class="code-block bad">
+<pre><code><span class="keyword">import</span> threading
+
+threading.<span class="function">Thread</span>(target<span class="operator">=</span>cpu_task).<span class="function">start</span>()</code></pre>
+                    </div>
+
+                    <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Solution (Vrai parallélisme) :</h4>
+                    <div class="code-block good">
+<pre><code><span class="keyword">import</span> multiprocessing
+
+multiprocessing.<span class="function">Pool</span>(processes<span class="operator">=</span><span class="string">4</span>).<span class="function">map</span>(cpu_task, chunks)</code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <h4><i class="fas fa-chart-line"></i> Résultats mesurés :</h4>
+                        <table style="width: 100%; margin-top: 10px;">
+                            <thead>
+                                <tr style="background-color: rgba(105, 240, 109, 0.2);">
+                                    <th>Métrique</th>
+                                    <th>Threading</th>
+                                    <th>Multiprocessing</th>
+                                    <th>Gain</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Temps</td>
+                                    <td>1.197 s</td>
+                                    <td>0.545 s</td>
+                                    <td><strong>2.2×</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>CO₂</td>
+                                    <td>0.000003 kg</td>
+                                    <td>0.000002 kg</td>
+                                    <td><strong>38.5%</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-globe"></i> Impact écologique concret (par serveur/an) :</h4>
+                        <ul style="text-align: left;">
+                            <li><strong>1.1 kg CO₂ économisés</strong> =</li>
+                            <li>🚗 <strong>4.4 km en voiture</strong></li>
+                            <li>💡 <strong>3 mois d'éclairage LED</strong></li>
+                            <li>🌳 <strong>5% d'un arbre</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RÈGLE 7 : deque -->
+            <div class="eco-rule" id="rule7">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <span class="rule-number">7</span>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">deque pour files FIFO</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#structures-de-donnees</span>
+                                <span class="tag">#queue</span>
+                                <span class="tag">#algorithmique</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">71.4%</div>
+                            <div class="metric-label">Gain CO₂</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">65×</div>
+                            <div class="metric-label">Plus rapide</div>
+                        </div>
+                        <span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                </div>
+                <div class="rule-content">
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Files d'attente, BFS, task queues, buffering</p>
+
+                    <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Anti-pattern (O(n)) :</h4>
+                    <div class="code-block bad">
+<pre><code><span class="comment"># Décale tous les éléments</span>
+queue <span class="operator">=</span> <span class="function">list</span>(<span class="function">range</span>(<span class="string">100000</span>))
+<span class="keyword">while</span> queue:
+    item <span class="operator">=</span> queue.<span class="function">pop</span>(<span class="string">0</span>)</code></pre>
+                    </div>
+
+                    <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Solution (O(1)) :</h4>
+                    <div class="code-block good">
+<pre><code><span class="keyword">from</span> collections <span class="keyword">import</span> deque
+
+<span class="comment"># Accès direct</span>
+queue <span class="operator">=</span> <span class="function">deque</span>(<span class="function">range</span>(<span class="string">100000</span>))
+<span class="keyword">while</span> queue:
+    item <span class="operator">=</span> queue.<span class="function">popleft</span>()</code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <h4><i class="fas fa-chart-line"></i> Résultats mesurés :</h4>
+                        <table style="width: 100%; margin-top: 10px;">
+                            <thead>
+                                <tr style="background-color: rgba(105, 240, 109, 0.2);">
+                                    <th>Métrique</th>
+                                    <th>list.pop(0)</th>
+                                    <th>deque.popleft()</th>
+                                    <th>Gain</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Temps</td>
+                                    <td>1.314 s</td>
+                                    <td>0.020 s</td>
+                                    <td><strong>65×</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>CO₂</td>
+                                    <td>0.000003 kg</td>
+                                    <td>0.000001 kg</td>
+                                    <td><strong>71.4%</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-globe"></i> Impact écologique concret (par serveur/an) :</h4>
+                        <ul style="text-align: left;">
+                            <li><strong>7.3 kg CO₂ économisés</strong> =</li>
+                            <li>🚗 <strong>29 km en voiture</strong></li>
+                            <li>💡 <strong>1.6 an d'éclairage LED</strong></li>
+                            <li>🌳 <strong>33% d'un arbre</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RÈGLE 8 : lru_cache -->
+            <div class="eco-rule" id="rule8">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <span class="rule-number">8</span>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">Memoïsation avec lru_cache</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#cache</span>
+                                <span class="tag">#memoire</span>
+                                <span class="tag">#api</span>
+                                <span class="tag">#algorithmes</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">97.6%</div>
+                            <div class="metric-label">Gain CO₂</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">751,645×</div>
+                            <div class="metric-label">Plus rapide</div>
+                        </div>
+                        <span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                </div>
+                <div class="rule-content">
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> API, calculs répétés, fonctions récursives</p>
+
+                    <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Anti-pattern (Recalcule à chaque fois) :</h4>
+                    <div class="code-block bad">
+<pre><code><span class="keyword">def</span> <span class="function">fib</span>(n):
+    <span class="keyword">if</span> n <span class="operator">&lt;</span> <span class="string">2</span>: <span class="keyword">return</span> n
+    <span class="keyword">return</span> <span class="function">fib</span>(n<span class="operator">-</span><span class="string">1</span>) <span class="operator">+</span> <span class="function">fib</span>(n<span class="operator">-</span><span class="string">2</span>)</code></pre>
+                    </div>
+
+                    <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Solution (Mémorise les résultats) :</h4>
+                    <div class="code-block good">
+<pre><code><span class="keyword">from</span> functools <span class="keyword">import</span> lru_cache
+
+<span class="variable">@lru_cache</span>(maxsize<span class="operator">=</span><span class="string">128</span>)
+<span class="keyword">def</span> <span class="function">fib</span>(n):
+    <span class="keyword">if</span> n <span class="operator">&lt;</span> <span class="string">2</span>: <span class="keyword">return</span> n
+    <span class="keyword">return</span> <span class="function">fib</span>(n<span class="operator">-</span><span class="string">1</span>) <span class="operator">+</span> <span class="function">fib</span>(n<span class="operator">-</span><span class="string">2</span>)</code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <h4><i class="fas fa-chart-line"></i> Résultats mesurés :</h4>
+                        <table style="width: 100%; margin-top: 10px;">
+                            <thead>
+                                <tr style="background-color: rgba(105, 240, 109, 0.2);">
+                                    <th>Métrique</th>
+                                    <th>Sans cache</th>
+                                    <th>Avec cache</th>
+                                    <th>Gain</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Temps</td>
+                                    <td>20.788 s</td>
+                                    <td>0.000 s</td>
+                                    <td><strong>751,645×</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>CO₂</td>
+                                    <td>0.000039 kg</td>
+                                    <td>0.000001 kg</td>
+                                    <td><strong>97.6%</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-globe"></i> Impact écologique concret (par serveur/an) :</h4>
+                        <ul style="text-align: left;">
+                            <li><strong>13.9 kg CO₂ économisés</strong> =</li>
+                            <li>🚗 <strong>56 km en voiture</strong></li>
+                            <li>💡 <strong>3.1 ans d'éclairage LED</strong></li>
+                            <li>🌳 <strong>63% d'un arbre</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RÈGLE 9 : any()/all() -->
+            <div class="eco-rule" id="rule9">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <span class="rule-number">9</span>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">Court-circuitage any()/all()</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#algorithmique</span>
+                                <span class="tag">#validation</span>
+                                <span class="tag">#logique</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">62.0%</div>
+                            <div class="metric-label">Gain CO₂</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">59,078×</div>
+                            <div class="metric-label">Plus rapide</div>
+                        </div>
+                        <span class="impact-badge impact-high">⭐⭐⭐⭐</span>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                </div>
+                <div class="rule-content">
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Validation de données, recherche, filtres</p>
+
+                    <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Anti-pattern (Évalue tout) :</h4>
+                    <div class="code-block bad">
+<pre><code><span class="comment"># Crée la liste complète avant vérification</span>
+<span class="function">any</span>([<span class="function">is_invalid</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> data])</code></pre>
+                    </div>
+
+                    <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Solution (S'arrête au premier True) :</h4>
+                    <div class="code-block good">
+<pre><code><span class="comment"># Générateur - évaluation paresseuse</span>
+<span class="function">any</span>(<span class="function">is_invalid</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> data)</code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <h4><i class="fas fa-chart-line"></i> Résultats mesurés :</h4>
+                        <table style="width: 100%; margin-top: 10px;">
+                            <thead>
+                                <tr style="background-color: rgba(105, 240, 109, 0.2);">
+                                    <th>Métrique</th>
+                                    <th>Liste</th>
+                                    <th>Générateur</th>
+                                    <th>Gain</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Temps</td>
+                                    <td>0.817 s</td>
+                                    <td>0.000 s</td>
+                                    <td><strong>59,078×</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>CO₂</td>
+                                    <td>0.000002 kg</td>
+                                    <td>0.000001 kg</td>
+                                    <td><strong>62.0%</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-globe"></i> Impact écologique concret (par serveur/an) :</h4>
+                        <ul style="text-align: left;">
+                            <li><strong>0.4 kg CO₂ économisés</strong> =</li>
+                            <li>🚗 <strong>1.6 km en voiture</strong></li>
+                            <li>💡 <strong>1 mois d'éclairage LED</strong></li>
+                            <li>🌳 <strong>2% d'un arbre</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RÈGLE 10 : Bonnes pratiques -->
+            <div class="eco-rule" id="rule10">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <span class="rule-number">10</span>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">Bonnes pratiques de base</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#micro-optimisation</span>
+                                <span class="tag">#fiabilite</span>
+                                <span class="tag">#bonnes-pratiques</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">~5%</div>
+                            <div class="metric-label">Gain CO₂</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">6 km</div>
+                            <div class="metric-label">Voiture/an</div>
+                        </div>
+                        <span class="impact-badge impact-medium">⭐⭐⭐</span>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                </div>
+                <div class="rule-content">
+                    <p style="margin-top: 15px;"><strong>Trois micro-optimisations cumulées :</strong></p>
+
+                    <div class="gain-box" style="margin-top: 20px;">
+                        <h4><i class="fas fa-chart-line"></i> Gains par sous-règle :</h4>
+                        <table style="width: 100%; margin-top: 10px;">
+                            <thead>
+                                <tr style="background-color: rgba(105, 240, 109, 0.2);">
+                                    <th>Sous-règle</th>
+                                    <th>Gain CO₂</th>
+                                    <th>Équivalence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Variables locales</td>
+                                    <td>9.5%</td>
+                                    <td>~1.0 kg CO₂ = 4 km voiture</td>
+                                </tr>
+                                <tr>
+                                    <td>Imports globaux</td>
+                                    <td>4.7%</td>
+                                    <td>~0.5 kg CO₂ = 2 km voiture</td>
+                                </tr>
+                                <tr>
+                                    <td><code>with</code> statement</td>
+                                    <td>0.8% (fiabilité)</td>
+                                    <td>Évite fuites mémoire</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p style="margin-top: 15px;"><strong>Total :</strong> ~1.5 kg CO₂/an = 🚗 <strong>6 km</strong> + fiabilité accrue</p>
+                    </div>
+
+                    <h4 style="color: var(--primary-color); margin-top: 25px;"><i class="fas fa-code"></i> Variables locales :</h4>
+                    <div class="code-block good">
+<pre><code><span class="comment"># Éviter l'accès global répété</span>
+<span class="keyword">def</span> <span class="function">process_data</span>(data):
+    <span class="comment"># Mauvais : accès global à chaque itération</span>
+    <span class="comment"># for item in data:</span>
+    <span class="comment">#     result = math.sqrt(item)</span>
+    
+    <span class="comment"># Bon : variable locale</span>
+    sqrt <span class="operator">=</span> math.sqrt
+    <span class="keyword">for</span> item <span class="keyword">in</span> data:
+        result <span class="operator">=</span> <span class="function">sqrt</span>(item)</code></pre>
+                    </div>
+
+                    <h4 style="color: var(--primary-color); margin-top: 25px;"><i class="fas fa-code"></i> Imports globaux :</h4>
+                    <div class="code-block good">
+<pre><code><span class="comment"># Éviter imports répétés en boucle</span>
+<span class="keyword">import</span> json  <span class="comment"># Au début du fichier</span>
+
+<span class="keyword">def</span> <span class="function">process_items</span>(items):
+    <span class="keyword">for</span> item <span class="keyword">in</span> items:
+        data <span class="operator">=</span> json.<span class="function">loads</span>(item)  <span class="comment"># Pas de "import json" ici</span></code></pre>
+                    </div>
+
+                    <h4 style="color: var(--primary-color); margin-top: 25px;"><i class="fas fa-code"></i> <code>with</code> statement :</h4>
+                    <div class="code-block good">
+<pre><code><span class="comment"># Garantit la fermeture des ressources</span>
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">'file.txt'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:
+    data <span class="operator">=</span> f.<span class="function">read</span>()
+<span class="comment"># Fichier automatiquement fermé, même en cas d'erreur</span></code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Impact à grande échelle -->
+        <section style="margin-top: 60px; padding: 30px; background: linear-gradient(135deg, rgba(47, 223, 173, 0.1) 0%, rgba(47, 223, 173, 0.02) 100%); border-radius: 10px;">
+            <h2 style="color: var(--primary-color); margin-bottom: 30px;">
+                <i class="fas fa-globe-americas"></i> Impact à grande échelle
+            </h2>
+
+            <div class="explanation-box">
+                <h3 style="color: var(--primary-color);">Si 1 000 développeurs Python appliquent ces règles :</h3>
+                <table class="summary-table" style="margin-top: 20px;">
+                    <thead>
+                        <tr>
+                            <th>Métrique</th>
+                            <th>Valeur</th>
+                            <th>Équivalence</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CO₂ économisé</td>
+                            <td><strong>55 000 kg/an</strong></td>
+                            <td>2.5 poids d'une voiture</td>
+                        </tr>
+                        <tr>
+                            <td>Voiture</td>
+                            <td><strong>220 000 km</strong></td>
+                            <td><strong>5.5 tours du monde</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Arbres</td>
+                            <td><strong>2 500</strong></td>
+                            <td>Forêt de 5 hectares</td>
+                        </tr>
+                        <tr>
+                            <td>Énergie</td>
+                            <td><strong>2 750 kWh</strong></td>
+                            <td>110 foyers français / mois</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Checklist -->
+        <section style="margin-top: 50px;">
+            <h2><i class="fas fa-check-square"></i> Checklist d'Écoconception Python</h2>
+            <div class="explanation-box" style="margin-top: 30px;">
+                <ul style="text-align: left; list-style: none; padding-left: 0;">
+                    <li style="margin-bottom: 10px;">☐ <strong>Set/dict pour recherches</strong> (Règle 1) → 36 km de voiture économisés</li>
+                    <li style="margin-bottom: 10px;">☐ <strong>Générateurs pour gros fichiers</strong> (Règle 2) → Évite OOM</li>
+                    <li style="margin-bottom: 10px;">☐ <strong>NumPy pour calculs</strong> (Règle 3) → 79 km de voiture économisés</li>
+                    <li style="margin-bottom: 10px;">☐ <strong>join() pour strings</strong> (Règle 4) → 13 km de voiture économisés</li>
+                    <li style="margin-bottom: 10px;">☐ <strong>Buffers 64KB pour I/O</strong> (Règle 5) → 35 km de voiture économisés</li>
+                    <li style="margin-bottom: 10px;">☐ <strong>Multiprocessing pour CPU</strong> (Règle 6) → 4.4 km de voiture économisés</li>
+                    <li style="margin-bottom: 10px;">☐ <strong>deque pour files</strong> (Règle 7) → 29 km de voiture économisés</li>
+                    <li style="margin-bottom: 10px;">☐ <strong>@lru_cache pour API</strong> (Règle 8) → 56 km de voiture économisés</li>
+                    <li style="margin-bottom: 10px;">☐ <strong>any()/all() avec générateurs</strong> (Règle 9) → 1.6 km de voiture économisés</li>
+                    <li style="margin-bottom: 10px;">☐ <strong>Variables locales, imports globaux, with</strong> (Règle 10) → 6 km de voiture économisés</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Outils recommandés -->
+        <section style="margin-top: 50px;">
+            <h2><i class="fas fa-tools"></i> Outils pour mesurer et améliorer</h2>
+            <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px;">
+
+                <div class="service-card">
+                    <i class="fas fa-leaf" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                    <h3>CodeCarbon</h3>
+                    <p>Bibliothèque Python pour mesurer l'empreinte carbone de votre code en temps réel.</p>
+                    <a href="https://codecarbon.io/" target="_blank" class="button" style="margin-top: 15px; font-size: 0.9rem;">
+                        <i class="fas fa-external-link-alt"></i> Visiter
+                    </a>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-tachometer-alt" style="font-size: 2.5rem; color: var(--info-color);"></i>
+                    <h3>Scalene</h3>
+                    <p>Profileur haute performance pour CPU, GPU et mémoire, avec mesures d'énergie.</p>
+                    <a href="https://github.com/plasma-umass/scalene" target="_blank" class="button" style="margin-top: 15px; font-size: 0.9rem; background-color: var(--info-color);">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-code" style="font-size: 2.5rem; color: var(--warning-color);"></i>
+                    <h3>Green Metrics Tool</h3>
+                    <p>Outil de mesure open-source pour analyser la consommation énergétique de vos applications.</p>
+                    <a href="https://www.green-coding.io/" target="_blank" class="button" style="margin-top: 15px; font-size: 0.9rem; background-color: var(--warning-color);">
+                        <i class="fas fa-external-link-alt"></i> Visiter
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Bibliographie -->
+        <section class="bibliography" style="margin-top: 60px;">
+            <h2>Bibliographie & Références</h2>
+            <ul class="bibliography-list" style="text-align: left; max-width: 900px; margin: 0 auto;">
+                <li id="source-codecarbon">
+                    <strong>[1]</strong> CodeCarbon. <em>Machine Learning CO2 Impact Estimator</em>.
+                    <a href="https://codecarbon.io/" target="_blank">[Site officiel]</a>
+                    <a href="https://github.com/mlco2/codecarbon" target="_blank">[GitHub]</a>
+                </li>
+                <li id="source-ademe">
+                    <strong>[2]</strong> ADEME. <em>Base Carbone - Facteurs d'émissions</em>.
+                    <a href="https://bilans-ges.ademe.fr/" target="_blank">[Base Carbone]</a>
+                </li>
+                <li id="source-epa">
+                    <strong>[3]</strong> EPA. <em>Greenhouse Gas Equivalencies Calculator</em>.
+                    <a href="https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator" target="_blank">[EPA Calculator]</a>
+                </li>
+                <li id="source-python-perf">
+                    <strong>[4]</strong> Python Software Foundation. <em>Performance Tips - Official Documentation</em>.
+                    <a href="https://wiki.python.org/moin/PythonSpeed/PerformanceTips" target="_blank">[Python Wiki]</a>
+                </li>
+                <li id="source-numpy">
+                    <strong>[5]</strong> Harris, C. R., et al. (2020). <em>Array programming with NumPy</em>. Nature, 585(7825), 357-362.
+                    <a href="https://www.nature.com/articles/s41586-020-2649-2" target="_blank">[Nature]</a>
+                </li>
+                <li id="source-generators">
+                    <strong>[6]</strong> Van Rossum, G., & Drake, F. L. (2011). <em>The Python Language Reference Manual</em> - Generators.
+                    <a href="https://docs.python.org/3/reference/expressions.html#generator-expressions" target="_blank">[Python Docs]</a>
+                </li>
+                <li id="source-multiprocessing">
+                    <strong>[7]</strong> Python Documentation. <em>multiprocessing — Process-based parallelism</em>.
+                    <a href="https://docs.python.org/3/library/multiprocessing.html" target="_blank">[Docs]</a>
+                </li>
+                <li><strong>[8]</strong> Python Documentation. <em>collections — deque objects</em>. <a href="https://docs.python.org/3/library/collections.html#collections.deque" target="_blank">[Docs]</a></li>
+                <li><strong>[9]</strong> Python Documentation. <em>functools — lru_cache decorator</em>. <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" target="_blank">[Docs]</a></li>
+                <li><strong>[10]</strong> Lannelongue, L., Grealey, J., & Inouye, M. (2021). <em>Green Algorithms: Quantifying the Carbon Footprint of Computation</em>. Advanced Science, 8(12). <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/advs.202100707" target="_blank">[Paper]</a></li>
+                <li><strong>[11]</strong> Pereira, R., Couto, M., Ribeiro, F., et al. (2017). <em>Energy efficiency across programming languages</em>. SLE 2017. <a href="https://greenlab.di.uminho.pt/wp-content/uploads/2017/10/sleFinal.pdf" target="_blank">[PDF]</a></li>
+                <li><strong>[12]</strong> McKinney, W. (2012). <em>Python for Data Analysis: I/O and Performance</em>. O'Reilly Media. <a href="https://wesmckinney.com/book/" target="_blank">[Book]</a></li>
+                <li><strong>[13]</strong> Python Performance Tips. <em>String Concatenation</em>. <a href="https://wiki.python.org/moin/PythonSpeed/PerformanceTips#String_Concatenation" target="_blank">[Wiki]</a></li>
+                <li><strong>[14]</strong> Berger, E. D., & Holloway, S. (2023). <em>Scalene: Scripting-Language Aware Profiling for Python</em>. <a href="https://github.com/plasma-umass/scalene" target="_blank">[GitHub]</a></li>
+                <li><strong>[15]</strong> Green Software Foundation. <em>Software Carbon Intensity (SCI) Specification</em>. <a href="https://greensoftware.foundation/" target="_blank">[GSF]</a></li>
+                <li><strong>[16]</strong> NumPy Developers. <em>NumPy Documentation - Performance</em>. <a href="https://numpy.org/doc/stable/user/performance.html" target="_blank">[NumPy Docs]</a></li>
+                <li><strong>[17]</strong> Real Python. <em>Python Generators</em>. <a href="https://realpython.com/introduction-to-python-generators/" target="_blank">[Tutorial]</a></li>
+                <li><strong>[18]</strong> Green Coding Initiative. <em>Green Coding Best Practices</em>. <a href="https://github.com/green-code-initiative" target="_blank">[GitHub]</a></li>
+            </ul>
+        </section>
+
+        <!-- Navigation -->
+        <div class="button-container" style="margin-top:60px; gap:15px; display:flex; flex-wrap:wrap; justify-content:center;">
+            <a href="../langages.html" class="button"><i class="fas fa-arrow-left"></i> Retour aux langages</a>
+            <a href="../../index.html" class="button" style="background-color:var(--info-color);"><i class="fas fa-home"></i> Accueil</a>
+            <a href="../en-pratique.html" class="button" style="background-color:var(--success-color);"><i class="fas fa-code"></i> Ateliers pratiques</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <p class="mg-0">&copy; 2025 - <a href="../a-propos.html">A propos</a></p>
+    </footer>
+
+    <script>
+        function toggleRule(ruleId) {
+            const rule = document.getElementById(ruleId);
+            if (rule) {
+                rule.scrollIntoView({behavior: 'smooth', block: 'start'});
+                if (!rule.classList.contains('active')) {
+                    rule.classList.add('active');
+                }
+            }
+        }
+
+        // Toggle méthodologie
+        document.querySelector('.methodology-section .methodology-header').addEventListener('click', function() {
+            this.parentElement.classList.toggle('active');
+        });
+
+        // Toggle règles
+        document.querySelectorAll('.eco-rule .rule-header').forEach(header => {
+            header.addEventListener('click', function() {
+                this.parentElement.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
