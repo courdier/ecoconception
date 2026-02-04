@@ -616,7 +616,12 @@ emissions <span class="operator">=</span> tracker.<span class="function">stop</s
                     </div>
                 </div>
                 <div class="rule-content">
-                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Authentification, permissions, filtrage, dédoublonnage</p>
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Vérification d'existence dans une collection (authentification, permissions), filtrage et dédoublonnage de données, recherche fréquente dans des référentiels (codes postaux, IDs produits).</p>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color); margin-top: 20px;">
+                        <h4><i class="fas fa-lightbulb"></i> Principe</h4>
+                        <p>Utiliser des structures à accès constant O(1) (<code>set</code>, <code>dict</code>) plutôt que linéaire O(n) (<code>list</code>) pour les opérations de recherche fréquentes.</p>
+                    </div>
 
                     <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Anti-pattern (O(n) - linéaire) :</h4>
                     <div class="code-block bad">
@@ -630,6 +635,15 @@ found <span class="operator">=</span> target <span class="keyword">in</span> ite
 <pre><code><span class="comment"># Recherche par hash dans un set</span>
 items_set <span class="operator">=</span> <span class="function">set</span>(<span class="function">range</span>(<span class="string">10_000_000</span>))
 found <span class="operator">=</span> target <span class="keyword">in</span> items_set  <span class="comment"># O(1)</span></code></pre>
+                    </div>
+
+                    <div class="explanation-box" style="margin-top: 20px;">
+                        <h4><i class="fas fa-cogs"></i> Explication</h4>
+                        <ul style="text-align: left;">
+                            <li><strong>Liste</strong> : Stockage séquentiel, recherche linéaire O(n) — parcourt potentiellement tout le tableau</li>
+                            <li><strong>Set</strong> : Table de hachage, calcul d'index direct O(1) — accès direct via hash</li>
+                            <li><strong>Impact</strong> : Pour 10M éléments, passage de ~13.6 secondes à ~0.00014 secondes</li>
+                        </ul>
                     </div>
 
                     <div class="gain-box">
@@ -676,6 +690,40 @@ found <span class="operator">=</span> target <span class="keyword">in</span> ite
                         </ul>
                         <p style="margin-top: 10px;"><strong>À l'échelle de 100 serveurs :</strong> 910 kg CO₂ = <strong>3,640 km de voiture</strong> = <strong>41 arbres préservés</strong></p>
                     </div>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color);">
+                        <h4><i class="fas fa-flask"></i> Code de test complet :</h4>
+                        <div class="code-block" style="margin-top: 15px;">
+<pre><code><span class="keyword">import</span> time
+<span class="keyword">from</span> codecarbon <span class="keyword">import</span> EmissionsTracker
+
+<span class="comment"># Configuration</span>
+SIZE <span class="operator">=</span> <span class="string">10_000_000</span>
+target <span class="operator">=</span> SIZE <span class="operator">-</span> <span class="string">1</span>  <span class="comment"># Pire cas</span>
+
+<span class="comment"># Test LISTE (O(n))</span>
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"list_search"</span>)
+tracker.<span class="function">start</span>()
+items_list <span class="operator">=</span> <span class="function">list</span>(<span class="function">range</span>(SIZE))
+start <span class="operator">=</span> time.<span class="function">time</span>()
+found <span class="operator">=</span> target <span class="keyword">in</span> items_list
+time_list <span class="operator">=</span> time.<span class="function">time</span>() <span class="operator">-</span> start
+emissions_list <span class="operator">=</span> tracker.<span class="function">stop</span>()
+
+<span class="comment"># Test SET (O(1))</span>
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"set_search"</span>)
+tracker.<span class="function">start</span>()
+items_set <span class="operator">=</span> <span class="function">set</span>(<span class="function">range</span>(SIZE))
+start <span class="operator">=</span> time.<span class="function">time</span>()
+found <span class="operator">=</span> target <span class="keyword">in</span> items_set
+time_set <span class="operator">=</span> time.<span class="function">time</span>() <span class="operator">-</span> start
+emissions_set <span class="operator">=</span> tracker.<span class="function">stop</span>()
+
+<span class="keyword">print</span>(<span class="string">f"Liste: {time_list:.3f}s, {emissions_list:.6f} kg CO₂"</span>)
+<span class="keyword">print</span>(<span class="string">f"Set:   {time_set:.3f}s, {emissions_set:.6f} kg CO₂"</span>)
+<span class="keyword">print</span>(<span class="string">f"Gain:  {(1-emissions_set/emissions_list)*100:.1f}%"</span>)</code></pre>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -707,19 +755,33 @@ found <span class="operator">=</span> target <span class="keyword">in</span> ite
                     </div>
                 </div>
                 <div class="rule-content">
-                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Fichiers logs, ETL big data, streaming base de données</p>
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Traitement de fichiers logs volumineux (GB/TB), streaming de données depuis des bases de données, pipeline ETL (Extract, Transform, Load) sur big data, lecture de fichiers CSV/JSON trop grands pour la RAM.</p>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color); margin-top: 20px;">
+                        <h4><i class="fas fa-lightbulb"></i> Principe</h4>
+                        <p>Utiliser des générateurs (<code>yield</code>, expressions génératrices) pour traiter les données en streaming, évitant le chargement complet en mémoire. Le gain principal est la <strong>stabilité mémoire</strong> (pas de risque OOM).</p>
+                    </div>
 
                     <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Anti-pattern :</h4>
                     <div class="code-block bad">
-<pre><code><span class="comment"># Charge tout en RAM</span>
+<pre><code><span class="comment"># Chargement complet en mémoire - Risque OOM</span>
 lines <span class="operator">=</span> [<span class="function">process</span>(line) <span class="keyword">for</span> line <span class="keyword">in</span> huge_file]</code></pre>
                     </div>
 
                     <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Solution :</h4>
                     <div class="code-block good">
-<pre><code><span class="comment"># Traite un élément à la fois</span>
+<pre><code><span class="comment"># Traitement streaming - O(1) mémoire</span>
 <span class="keyword">for</span> line <span class="keyword">in</span> (<span class="function">process</span>(l) <span class="keyword">for</span> l <span class="keyword">in</span> huge_file):
-    <span class="keyword">pass</span></code></pre>
+    <span class="keyword">pass</span>  <span class="comment"># Traite à la volée sans charger en RAM</span></code></pre>
+                    </div>
+
+                    <div class="explanation-box" style="margin-top: 20px;">
+                        <h4><i class="fas fa-cogs"></i> Explication</h4>
+                        <ul style="text-align: left;">
+                            <li><strong>Liste</strong> : Allocation O(n), pic mémoire proportionnel à la taille des données</li>
+                            <li><strong>Générateur</strong> : Allocation O(1), traitement à la volée</li>
+                            <li><strong>Bénéfice écologique indirect</strong> : Évite le swapping disque (très énergivore) et les crashs OOM</li>
+                        </ul>
                     </div>
 
                     <div class="gain-box">
@@ -768,6 +830,43 @@ lines <span class="operator">=</span> [<span class="function">process</span>(lin
                         </ul>
                         <p style="margin-top: 10px;"><strong>Équivalence :</strong> Éviter 1 crash OOM/jour = <strong>~50 kg CO₂/an</strong> (redémarrage + perte de traitement)</p>
                     </div>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color);">
+                        <h4><i class="fas fa-flask"></i> Code de test complet :</h4>
+                        <div class="code-block" style="margin-top: 15px;">
+<pre><code><span class="keyword">import</span> tracemalloc
+<span class="keyword">from</span> codecarbon <span class="keyword">import</span> EmissionsTracker
+
+<span class="keyword">def</span> <span class="function">process</span>(x):
+    <span class="keyword">return</span> x <span class="operator">*</span> <span class="string">2</span>
+
+SIZE <span class="operator">=</span> <span class="string">10_000_000</span>
+data <span class="operator">=</span> <span class="function">range</span>(SIZE)
+
+<span class="comment"># Test LISTE (charge tout en RAM)</span>
+tracemalloc.<span class="function">start</span>()
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"list_comp"</span>)
+tracker.<span class="function">start</span>()
+result_list <span class="operator">=</span> [<span class="function">process</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> data]
+mem_list <span class="operator">=</span> tracemalloc.<span class="function">get_traced_memory</span>()[<span class="string">1</span>]
+emissions_list <span class="operator">=</span> tracker.<span class="function">stop</span>()
+tracemalloc.<span class="function">stop</span>()
+
+<span class="comment"># Test GÉNÉRATEUR (traite un à la fois)</span>
+tracemalloc.<span class="function">start</span>()
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"generator"</span>)
+tracker.<span class="function">start</span>()
+<span class="keyword">for</span> item <span class="keyword">in</span> (<span class="function">process</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> data):
+    <span class="keyword">pass</span>
+mem_gen <span class="operator">=</span> tracemalloc.<span class="function">get_traced_memory</span>()[<span class="string">1</span>]
+emissions_gen <span class="operator">=</span> tracker.<span class="function">stop</span>()
+tracemalloc.<span class="function">stop</span>()
+
+<span class="keyword">print</span>(<span class="string">f"Liste:      {mem_list/1e6:.1f} MB"</span>)
+<span class="keyword">print</span>(<span class="string">f"Générateur: {mem_gen/1e6:.1f} MB"</span>)
+<span class="keyword">print</span>(<span class="string">f"Gain mémoire: {(1-mem_gen/mem_list)*100:.1f}%"</span>)</code></pre>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -799,11 +898,17 @@ lines <span class="operator">=</span> [<span class="function">process</span>(lin
                     </div>
                 </div>
                 <div class="rule-content">
-                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Machine learning, data science, simulations, traitement d'images</p>
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Calcul scientifique, machine learning, data science, traitement d'images et signaux, simulations numériques (Monte Carlo, modèles physiques), analyse financière sur séries temporelles.</p>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color); margin-top: 20px;">
+                        <h4><i class="fas fa-lightbulb"></i> Principe</h4>
+                        <p>Utiliser NumPy pour stocker des collections homogènes de nombres en mémoire contiguë, avec opérations vectorisées en C.</p>
+                    </div>
 
                     <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Anti-pattern (Python pur) :</h4>
                     <div class="code-block bad">
-<pre><code>numbers <span class="operator">=</span> [<span class="function">float</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="string">10_000_000</span>)]
+<pre><code><span class="comment"># Liste de flottants - stockage dispersé, opération lente</span>
+numbers <span class="operator">=</span> [<span class="function">float</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="string">10_000_000</span>)]
 result <span class="operator">=</span> <span class="function">sum</span>([x<span class="operator">**</span><span class="string">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> numbers])</code></pre>
                     </div>
 
@@ -812,7 +917,16 @@ result <span class="operator">=</span> <span class="function">sum</span>([x<span
 <pre><code><span class="keyword">import</span> numpy <span class="keyword">as</span> np
 
 numbers <span class="operator">=</span> np.<span class="function">arange</span>(<span class="string">10_000_000</span>, dtype<span class="operator">=</span>np.float64)
-result <span class="operator">=</span> np.<span class="function">sum</span>(numbers<span class="operator">**</span><span class="string">2</span>)</code></pre>
+result <span class="operator">=</span> np.<span class="function">sum</span>(numbers<span class="operator">**</span><span class="string">2</span>)  <span class="comment"># BLAS/LAPACK optimisé</span></code></pre>
+                    </div>
+
+                    <div class="explanation-box" style="margin-top: 20px;">
+                        <h4><i class="fas fa-cogs"></i> Explication</h4>
+                        <ul style="text-align: left;">
+                            <li><strong>Liste Python</strong> : Tableau de pointeurs vers objets Float, overhead ~28 octets par nombre</li>
+                            <li><strong>NumPy</strong> : Buffer contigu de valeurs brutes (8 octets par double), SIMD possible</li>
+                            <li><strong>Vectorisation</strong> : Délégation aux bibliothèques C optimisées (BLAS/LAPACK)</li>
+                        </ul>
                     </div>
 
                     <div class="gain-box">
@@ -859,6 +973,46 @@ result <span class="operator">=</span> np.<span class="function">sum</span>(numb
                         </ul>
                         <p style="margin-top: 10px;"><strong>Pour un cluster de 50 serveurs :</strong> 985 kg CO₂ = <strong>3,940 km de voiture</strong> = <strong>45 arbres préservés</strong></p>
                     </div>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color);">
+                        <h4><i class="fas fa-flask"></i> Code de test complet :</h4>
+                        <div class="code-block" style="margin-top: 15px;">
+<pre><code><span class="keyword">import</span> time
+<span class="keyword">import</span> tracemalloc
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+<span class="keyword">from</span> codecarbon <span class="keyword">import</span> EmissionsTracker
+
+SIZE <span class="operator">=</span> <span class="string">10_000_000</span>
+
+<span class="comment"># Test PYTHON PUR</span>
+tracemalloc.<span class="function">start</span>()
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"python_pure"</span>)
+tracker.<span class="function">start</span>()
+start <span class="operator">=</span> time.<span class="function">time</span>()
+numbers <span class="operator">=</span> [<span class="function">float</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(SIZE)]
+result <span class="operator">=</span> <span class="function">sum</span>([x<span class="operator">**</span><span class="string">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> numbers])
+time_py <span class="operator">=</span> time.<span class="function">time</span>() <span class="operator">-</span> start
+mem_py <span class="operator">=</span> tracemalloc.<span class="function">get_traced_memory</span>()[<span class="string">1</span>]
+emissions_py <span class="operator">=</span> tracker.<span class="function">stop</span>()
+tracemalloc.<span class="function">stop</span>()
+
+<span class="comment"># Test NUMPY</span>
+tracemalloc.<span class="function">start</span>()
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"numpy"</span>)
+tracker.<span class="function">start</span>()
+start <span class="operator">=</span> time.<span class="function">time</span>()
+numbers <span class="operator">=</span> np.<span class="function">arange</span>(SIZE, dtype<span class="operator">=</span>np.float64)
+result <span class="operator">=</span> np.<span class="function">sum</span>(numbers<span class="operator">**</span><span class="string">2</span>)
+time_np <span class="operator">=</span> time.<span class="function">time</span>() <span class="operator">-</span> start
+mem_np <span class="operator">=</span> tracemalloc.<span class="function">get_traced_memory</span>()[<span class="string">1</span>]
+emissions_np <span class="operator">=</span> tracker.<span class="function">stop</span>()
+tracemalloc.<span class="function">stop</span>()
+
+<span class="keyword">print</span>(<span class="string">f"Python: {time_py:.3f}s, {mem_py/1e6:.1f}MB"</span>)
+<span class="keyword">print</span>(<span class="string">f"NumPy:  {time_np:.3f}s, {mem_np/1e6:.1f}MB"</span>)
+<span class="keyword">print</span>(<span class="string">f"Accélération: {time_py/time_np:.0f}x"</span>)</code></pre>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -891,18 +1045,33 @@ result <span class="operator">=</span> np.<span class="function">sum</span>(numb
                     </div>
                 </div>
                 <div class="rule-content">
-                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Génération HTML, JSON, logs, rapports</p>
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Génération de pages HTML, XML, JSON dynamiques, construction de requêtes SQL ou de logs, sérialisation de données en masse, templates et génération de rapports.</p>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color); margin-top: 20px;">
+                        <h4><i class="fas fa-lightbulb"></i> Principe</h4>
+                        <p>Utiliser <code>str.join()</code> ou <code>io.StringIO</code> plutôt que l'opérateur <code>+=</code> pour construire des chaînes dans des boucles.</p>
+                    </div>
 
                     <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Anti-pattern (O(n²)) :</h4>
                     <div class="code-block bad">
-<pre><code>html <span class="operator">=</span> <span class="string">""</span>
+<pre><code><span class="comment"># Concaténation quadratique O(n²) - Nouvelle allocation + copie!</span>
+html <span class="operator">=</span> <span class="string">""</span>
 <span class="keyword">for</span> item <span class="keyword">in</span> items:
     html <span class="operator">+=</span> <span class="string">f"&lt;div&gt;{item}&lt;/div&gt;"</span></code></pre>
                     </div>
 
                     <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Solution (O(n)) :</h4>
                     <div class="code-block good">
-<pre><code>html <span class="operator">=</span> <span class="string">""</span>.<span class="function">join</span>(<span class="string">f"&lt;div&gt;{item}&lt;/div&gt;"</span> <span class="keyword">for</span> item <span class="keyword">in</span> items)</code></pre>
+<pre><code><span class="comment"># Solution pythonique avec join - une seule allocation</span>
+html <span class="operator">=</span> <span class="string">""</span>.<span class="function">join</span>(<span class="string">f"&lt;div&gt;{item}&lt;/div&gt;"</span> <span class="keyword">for</span> item <span class="keyword">in</span> items)</code></pre>
+                    </div>
+
+                    <div class="explanation-box" style="margin-top: 20px;">
+                        <h4><i class="fas fa-cogs"></i> Explication</h4>
+                        <ul style="text-align: left;">
+                            <li><strong><code>+=</code> sur str</strong> : Immuable → nouvelle allocation + copie complète → O(n²)</li>
+                            <li><strong><code>join</code></strong> : Calcule taille totale upfront → une seule allocation → O(n)</li>
+                        </ul>
                     </div>
 
                     <div class="gain-box">
@@ -948,6 +1117,38 @@ result <span class="operator">=</span> np.<span class="function">sum</span>(numb
                             <li>🌳 <strong>15% d'un arbre</strong></li>
                         </ul>
                     </div>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color);">
+                        <h4><i class="fas fa-flask"></i> Code de test complet :</h4>
+                        <div class="code-block" style="margin-top: 15px;">
+<pre><code><span class="keyword">import</span> time
+<span class="keyword">from</span> codecarbon <span class="keyword">import</span> EmissionsTracker
+
+items <span class="operator">=</span> <span class="function">list</span>(<span class="function">range</span>(<span class="string">100_000</span>))
+
+<span class="comment"># Test += (O(n²))</span>
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"concat_plus"</span>)
+tracker.<span class="function">start</span>()
+start <span class="operator">=</span> time.<span class="function">time</span>()
+html <span class="operator">=</span> <span class="string">""</span>
+<span class="keyword">for</span> item <span class="keyword">in</span> items:
+    html <span class="operator">+=</span> <span class="string">f"&lt;div&gt;{item}&lt;/div&gt;"</span>
+time_plus <span class="operator">=</span> time.<span class="function">time</span>() <span class="operator">-</span> start
+emissions_plus <span class="operator">=</span> tracker.<span class="function">stop</span>()
+
+<span class="comment"># Test join() (O(n))</span>
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"concat_join"</span>)
+tracker.<span class="function">start</span>()
+start <span class="operator">=</span> time.<span class="function">time</span>()
+html <span class="operator">=</span> <span class="string">""</span>.<span class="function">join</span>(<span class="string">f"&lt;div&gt;{item}&lt;/div&gt;"</span> <span class="keyword">for</span> item <span class="keyword">in</span> items)
+time_join <span class="operator">=</span> time.<span class="function">time</span>() <span class="operator">-</span> start
+emissions_join <span class="operator">=</span> tracker.<span class="function">stop</span>()
+
+<span class="keyword">print</span>(<span class="string">f"+=:     {time_plus:.3f}s, {emissions_plus:.6f} kg CO₂"</span>)
+<span class="keyword">print</span>(<span class="string">f"join(): {time_join:.3f}s, {emissions_join:.6f} kg CO₂"</span>)
+<span class="keyword">print</span>(<span class="string">f"Accélération: {time_plus/time_join:.1f}x"</span>)</code></pre>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -980,11 +1181,16 @@ result <span class="operator">=</span> np.<span class="function">sum</span>(numb
                     </div>
                 </div>
                 <div class="rule-content">
-                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Copie de fichiers, sauvegardes, streaming</p>
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Copie de fichiers volumineux, traitement de logs en temps réel, sauvegarde et restauration de bases de données, streaming vidéo/audio.</p>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color); margin-top: 20px;">
+                        <h4><i class="fas fa-lightbulb"></i> Principe</h4>
+                        <p>Lire et écrire par blocs de taille optimale (4-64 KB) plutôt qu'octet par octet.</p>
+                    </div>
 
                     <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Anti-pattern :</h4>
                     <div class="code-block bad">
-<pre><code><span class="comment"># 1 octet = 1 appel système</span>
+<pre><code><span class="comment"># 1 octet = 1 appel système - catastrophe!</span>
 <span class="keyword">while</span> <span class="keyword">True</span>:
     byte <span class="operator">=</span> f.<span class="function">read</span>(<span class="string">1</span>)
     <span class="keyword">if not</span> byte: <span class="keyword">break</span>
@@ -993,11 +1199,19 @@ result <span class="operator">=</span> np.<span class="function">sum</span>(numb
 
                     <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Solution :</h4>
                     <div class="code-block good">
-<pre><code><span class="comment"># 64KB = 1 appel système</span>
+<pre><code><span class="comment"># 64KB = 1 appel système - optimal!</span>
 <span class="keyword">while</span> <span class="keyword">True</span>:
-    chunk <span class="operator">=</span> f.<span class="function">read</span>(<span class="string">65536</span>)
+    chunk <span class="operator">=</span> f.<span class="function">read</span>(<span class="string">65536</span>)  <span class="comment"># Taille de page mémoire</span>
     <span class="keyword">if not</span> chunk: <span class="keyword">break</span>
     f_out.<span class="function">write</span>(chunk)</code></pre>
+                    </div>
+
+                    <div class="explanation-box" style="margin-top: 20px;">
+                        <h4><i class="fas fa-cogs"></i> Explication</h4>
+                        <ul style="text-align: left;">
+                            <li><strong>Appel système</strong> : Transition user/kernel coûteuse (~1000 cycles CPU)</li>
+                            <li><strong>Buffer optimal</strong> : 64KB correspond à la taille de page mémoire et secteur disque</li>
+                        </ul>
                     </div>
 
                     <div class="gain-box">
@@ -1038,6 +1252,49 @@ result <span class="operator">=</span> np.<span class="function">sum</span>(numb
                         </ul>
                         <p style="margin-top: 10px;"><strong>Pour 200 serveurs de stockage :</strong> 1,760 kg CO₂ = <strong>7,040 km</strong> = <strong>80 arbres</strong></p>
                     </div>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color);">
+                        <h4><i class="fas fa-flask"></i> Code de test complet :</h4>
+                        <div class="code-block" style="margin-top: 15px;">
+<pre><code><span class="keyword">import</span> time
+<span class="keyword">import</span> os
+<span class="keyword">from</span> codecarbon <span class="keyword">import</span> EmissionsTracker
+
+<span class="comment"># Créer fichier test (1 MB)</span>
+test_file <span class="operator">=</span> <span class="string">"test_io.bin"</span>
+<span class="keyword">with</span> <span class="function">open</span>(test_file, <span class="string">"wb"</span>) <span class="keyword">as</span> f:
+    f.<span class="function">write</span>(os.<span class="function">urandom</span>(<span class="string">1_000_000</span>))
+
+<span class="comment"># Test 1 OCTET</span>
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"io_1byte"</span>)
+tracker.<span class="function">start</span>()
+start <span class="operator">=</span> time.<span class="function">time</span>()
+<span class="keyword">with</span> <span class="function">open</span>(test_file, <span class="string">"rb"</span>) <span class="keyword">as</span> f, <span class="function">open</span>(<span class="string">"out1.bin"</span>, <span class="string">"wb"</span>) <span class="keyword">as</span> f_out:
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        byte <span class="operator">=</span> f.<span class="function">read</span>(<span class="string">1</span>)
+        <span class="keyword">if not</span> byte: <span class="keyword">break</span>
+        f_out.<span class="function">write</span>(byte)
+time_1b <span class="operator">=</span> time.<span class="function">time</span>() <span class="operator">-</span> start
+emissions_1b <span class="operator">=</span> tracker.<span class="function">stop</span>()
+
+<span class="comment"># Test 64KB BUFFER</span>
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"io_64kb"</span>)
+tracker.<span class="function">start</span>()
+start <span class="operator">=</span> time.<span class="function">time</span>()
+<span class="keyword">with</span> <span class="function">open</span>(test_file, <span class="string">"rb"</span>) <span class="keyword">as</span> f, <span class="function">open</span>(<span class="string">"out2.bin"</span>, <span class="string">"wb"</span>) <span class="keyword">as</span> f_out:
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        chunk <span class="operator">=</span> f.<span class="function">read</span>(<span class="string">65536</span>)
+        <span class="keyword">if not</span> chunk: <span class="keyword">break</span>
+        f_out.<span class="function">write</span>(chunk)
+time_64k <span class="operator">=</span> time.<span class="function">time</span>() <span class="operator">-</span> start
+emissions_64k <span class="operator">=</span> tracker.<span class="function">stop</span>()
+
+<span class="keyword">print</span>(<span class="string">f"1 octet: {time_1b:.3f}s"</span>)
+<span class="keyword">print</span>(<span class="string">f"64KB:    {time_64k:.3f}s"</span>)
+<span class="keyword">print</span>(<span class="string">f"Accélération: {time_1b/time_64k:.0f}x"</span>)
+os.<span class="function">remove</span>(test_file)</code></pre>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1070,12 +1327,18 @@ result <span class="operator">=</span> np.<span class="function">sum</span>(numb
                     </div>
                 </div>
                 <div class="rule-content">
-                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Calcul scientifique, web scraping, rendu 3D</p>
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Traitement parallèle de données (calcul scientifique), web scraping avec parsing intensif, rendu 3D, traitement d'images, calculs cryptographiques.</p>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color); margin-top: 20px;">
+                        <h4><i class="fas fa-lightbulb"></i> Principe</h4>
+                        <p>Choisir le modèle de concurrence selon la nature de la tâche : <code>multiprocessing</code> pour CPU-bound, <code>asyncio</code> pour I/O-bound. <strong>Jamais <code>threading</code> pour du calcul CPU.</strong></p>
+                    </div>
 
                     <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Anti-pattern (Threading - sérialisé par le GIL) :</h4>
                     <div class="code-block bad">
 <pre><code><span class="keyword">import</span> threading
 
+<span class="comment"># Threading pour calcul CPU - BLOQUÉ PAR LE GIL</span>
 threading.<span class="function">Thread</span>(target<span class="operator">=</span>cpu_task).<span class="function">start</span>()</code></pre>
                     </div>
 
@@ -1083,7 +1346,16 @@ threading.<span class="function">Thread</span>(target<span class="operator">=</s
                     <div class="code-block good">
 <pre><code><span class="keyword">import</span> multiprocessing
 
+<span class="comment"># Processus séparés = pas de GIL, vrai parallélisme</span>
 multiprocessing.<span class="function">Pool</span>(processes<span class="operator">=</span><span class="string">4</span>).<span class="function">map</span>(cpu_task, chunks)</code></pre>
+                    </div>
+
+                    <div class="explanation-box" style="margin-top: 20px;">
+                        <h4><i class="fas fa-cogs"></i> Explication</h4>
+                        <ul style="text-align: left;">
+                            <li><strong>GIL (Global Interpreter Lock)</strong> : Empêche l'exécution parallèle réelle des threads Python sur CPU</li>
+                            <li><strong>Multiprocessing</strong> : Processus séparés = pas de GIL, vrai parallélisme sur multicœur</li>
+                        </ul>
                     </div>
 
                     <div class="gain-box">
@@ -1123,6 +1395,44 @@ multiprocessing.<span class="function">Pool</span>(processes<span class="operato
                             <li>🌳 <strong>5% d'un arbre</strong></li>
                         </ul>
                     </div>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color);">
+                        <h4><i class="fas fa-flask"></i> Code de test complet :</h4>
+                        <div class="code-block" style="margin-top: 15px;">
+<pre><code><span class="keyword">import</span> time
+<span class="keyword">import</span> threading
+<span class="keyword">import</span> multiprocessing
+<span class="keyword">from</span> codecarbon <span class="keyword">import</span> EmissionsTracker
+
+<span class="keyword">def</span> <span class="function">cpu_task</span>(n):
+    <span class="keyword">return</span> <span class="function">sum</span>(i<span class="operator">**</span><span class="string">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(n))
+
+chunks <span class="operator">=</span> [<span class="string">1_000_000</span>] <span class="operator">*</span> <span class="string">4</span>
+
+<span class="comment"># Test THREADING (GIL)</span>
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"threading"</span>)
+tracker.<span class="function">start</span>()
+start <span class="operator">=</span> time.<span class="function">time</span>()
+threads <span class="operator">=</span> [threading.<span class="function">Thread</span>(target<span class="operator">=</span>cpu_task, args<span class="operator">=</span>(c,)) <span class="keyword">for</span> c <span class="keyword">in</span> chunks]
+<span class="keyword">for</span> t <span class="keyword">in</span> threads: t.<span class="function">start</span>()
+<span class="keyword">for</span> t <span class="keyword">in</span> threads: t.<span class="function">join</span>()
+time_thread <span class="operator">=</span> time.<span class="function">time</span>() <span class="operator">-</span> start
+emissions_thread <span class="operator">=</span> tracker.<span class="function">stop</span>()
+
+<span class="comment"># Test MULTIPROCESSING</span>
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"multiproc"</span>)
+tracker.<span class="function">start</span>()
+start <span class="operator">=</span> time.<span class="function">time</span>()
+<span class="keyword">with</span> multiprocessing.<span class="function">Pool</span>(processes<span class="operator">=</span><span class="string">4</span>) <span class="keyword">as</span> pool:
+    results <span class="operator">=</span> pool.<span class="function">map</span>(cpu_task, chunks)
+time_mp <span class="operator">=</span> time.<span class="function">time</span>() <span class="operator">-</span> start
+emissions_mp <span class="operator">=</span> tracker.<span class="function">stop</span>()
+
+<span class="keyword">print</span>(<span class="string">f"Threading:      {time_thread:.3f}s"</span>)
+<span class="keyword">print</span>(<span class="string">f"Multiprocessing: {time_mp:.3f}s"</span>)
+<span class="keyword">print</span>(<span class="string">f"Accélération: {time_thread/time_mp:.1f}x"</span>)</code></pre>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1154,24 +1464,37 @@ multiprocessing.<span class="function">Pool</span>(processes<span class="operato
                     </div>
                 </div>
                 <div class="rule-content">
-                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Files d'attente, BFS, task queues, buffering</p>
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Files d'attente de messages (broker, task queues), BFS (Breadth-First Search) en graphes, buffer circulaire pour streaming, algorithmes de scheduling.</p>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color); margin-top: 20px;">
+                        <h4><i class="fas fa-lightbulb"></i> Principe</h4>
+                        <p>Utiliser <code>collections.deque</code> au lieu de <code>list</code> pour les files d'attente avec ajout/suppression aux extrémités.</p>
+                    </div>
 
                     <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Anti-pattern (O(n)) :</h4>
                     <div class="code-block bad">
-<pre><code><span class="comment"># Décale tous les éléments</span>
+<pre><code><span class="comment"># Liste utilisée comme file - décale tous les éléments!</span>
 queue <span class="operator">=</span> <span class="function">list</span>(<span class="function">range</span>(<span class="string">100000</span>))
 <span class="keyword">while</span> queue:
-    item <span class="operator">=</span> queue.<span class="function">pop</span>(<span class="string">0</span>)</code></pre>
+    item <span class="operator">=</span> queue.<span class="function">pop</span>(<span class="string">0</span>)  <span class="comment"># O(n) - catastrophe!</span></code></pre>
                     </div>
 
                     <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Solution (O(1)) :</h4>
                     <div class="code-block good">
 <pre><code><span class="keyword">from</span> collections <span class="keyword">import</span> deque
 
-<span class="comment"># Accès direct</span>
+<span class="comment"># Structure doublement chaînée - accès direct!</span>
 queue <span class="operator">=</span> <span class="function">deque</span>(<span class="function">range</span>(<span class="string">100000</span>))
 <span class="keyword">while</span> queue:
-    item <span class="operator">=</span> queue.<span class="function">popleft</span>()</code></pre>
+    item <span class="operator">=</span> queue.<span class="function">popleft</span>()  <span class="comment"># O(1) - constant!</span></code></pre>
+                    </div>
+
+                    <div class="explanation-box" style="margin-top: 20px;">
+                        <h4><i class="fas fa-cogs"></i> Explication</h4>
+                        <ul style="text-align: left;">
+                            <li><strong>Liste <code>pop(0)</code></strong> : Supprime index 0 → décale n-1 éléments → O(n)</li>
+                            <li><strong>Deque <code>popleft()</code></strong> : Structure doublement chaînée → O(1)</li>
+                        </ul>
                     </div>
 
                     <div class="gain-box">
@@ -1211,6 +1534,41 @@ queue <span class="operator">=</span> <span class="function">deque</span>(<span 
                             <li>🌳 <strong>33% d'un arbre</strong></li>
                         </ul>
                     </div>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color);">
+                        <h4><i class="fas fa-flask"></i> Code de test complet :</h4>
+                        <div class="code-block" style="margin-top: 15px;">
+<pre><code><span class="keyword">import</span> time
+<span class="keyword">from</span> collections <span class="keyword">import</span> deque
+<span class="keyword">from</span> codecarbon <span class="keyword">import</span> EmissionsTracker
+
+SIZE <span class="operator">=</span> <span class="string">100_000</span>
+
+<span class="comment"># Test LIST.pop(0) - O(n)</span>
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"list_pop"</span>)
+tracker.<span class="function">start</span>()
+start <span class="operator">=</span> time.<span class="function">time</span>()
+queue <span class="operator">=</span> <span class="function">list</span>(<span class="function">range</span>(SIZE))
+<span class="keyword">while</span> queue:
+    item <span class="operator">=</span> queue.<span class="function">pop</span>(<span class="string">0</span>)
+time_list <span class="operator">=</span> time.<span class="function">time</span>() <span class="operator">-</span> start
+emissions_list <span class="operator">=</span> tracker.<span class="function">stop</span>()
+
+<span class="comment"># Test DEQUE.popleft() - O(1)</span>
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"deque_pop"</span>)
+tracker.<span class="function">start</span>()
+start <span class="operator">=</span> time.<span class="function">time</span>()
+queue <span class="operator">=</span> <span class="function">deque</span>(<span class="function">range</span>(SIZE))
+<span class="keyword">while</span> queue:
+    item <span class="operator">=</span> queue.<span class="function">popleft</span>()
+time_deque <span class="operator">=</span> time.<span class="function">time</span>() <span class="operator">-</span> start
+emissions_deque <span class="operator">=</span> tracker.<span class="function">stop</span>()
+
+<span class="keyword">print</span>(<span class="string">f"list.pop(0):     {time_list:.3f}s"</span>)
+<span class="keyword">print</span>(<span class="string">f"deque.popleft(): {time_deque:.3f}s"</span>)
+<span class="keyword">print</span>(<span class="string">f"Accélération: {time_list/time_deque:.0f}x"</span>)</code></pre>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1243,13 +1601,19 @@ queue <span class="operator">=</span> <span class="function">deque</span>(<span 
                     </div>
                 </div>
                 <div class="rule-content">
-                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> API, calculs répétés, fonctions récursives</p>
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> API avec calculs coûteux répétés (routage, géocodage), fonctions récursives (Fibonacci, combinatoire), requêtes base de données fréquentes, calculs de hash et signature.</p>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color); margin-top: 20px;">
+                        <h4><i class="fas fa-lightbulb"></i> Principe</h4>
+                        <p>Utiliser <code>@lru_cache</code> pour mémoriser les résultats de fonctions pures coûteuses, avec limite de taille pour éviter la fuite mémoire.</p>
+                    </div>
 
                     <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Anti-pattern (Recalcule à chaque fois) :</h4>
                     <div class="code-block bad">
-<pre><code><span class="keyword">def</span> <span class="function">fib</span>(n):
+<pre><code><span class="comment"># Recalcul systématique - exponentiel O(2^n)</span>
+<span class="keyword">def</span> <span class="function">fib</span>(n):
     <span class="keyword">if</span> n <span class="operator">&lt;</span> <span class="string">2</span>: <span class="keyword">return</span> n
-    <span class="keyword">return</span> <span class="function">fib</span>(n<span class="operator">-</span><span class="string">1</span>) <span class="operator">+</span> <span class="function">fib</span>(n<span class="operator">-</span><span class="string">2</span>)</code></pre>
+    <span class="keyword">return</span> <span class="function">fib</span>(n<span class="operator">-</span><span class="string">1</span>) <span class="operator">+</span> <span class="function">fib</span>(n<span class="operator">-</span><span class="string">2</span>)  <span class="comment"># fib(35) = 29M appels!</span></code></pre>
                     </div>
 
                     <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Solution (Mémorise les résultats) :</h4>
@@ -1257,9 +1621,17 @@ queue <span class="operator">=</span> <span class="function">deque</span>(<span 
 <pre><code><span class="keyword">from</span> functools <span class="keyword">import</span> lru_cache
 
 <span class="variable">@lru_cache</span>(maxsize<span class="operator">=</span><span class="string">128</span>)
-<span class="keyword">def</span> <span class="function">fib</span>(n):
+<span class="keyword">def</span> <span class="function">fib</span>(n):  <span class="comment"># O(n) unique, puis O(1) lookup</span>
     <span class="keyword">if</span> n <span class="operator">&lt;</span> <span class="string">2</span>: <span class="keyword">return</span> n
     <span class="keyword">return</span> <span class="function">fib</span>(n<span class="operator">-</span><span class="string">1</span>) <span class="operator">+</span> <span class="function">fib</span>(n<span class="operator">-</span><span class="string">2</span>)</code></pre>
+                    </div>
+
+                    <div class="explanation-box" style="margin-top: 20px;">
+                        <h4><i class="fas fa-cogs"></i> Explication</h4>
+                        <ul style="text-align: left;">
+                            <li><strong>Sans cache</strong> : Complexité exponentielle O(2^n), redondance massive des calculs</li>
+                            <li><strong>Avec cache</strong> : O(n) unique, puis O(1) lookup — les résultats sont stockés</li>
+                        </ul>
                     </div>
 
                     <div class="gain-box">
@@ -1299,6 +1671,48 @@ queue <span class="operator">=</span> <span class="function">deque</span>(<span 
                             <li>🌳 <strong>63% d'un arbre</strong></li>
                         </ul>
                     </div>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color);">
+                        <h4><i class="fas fa-flask"></i> Code de test complet :</h4>
+                        <div class="code-block" style="margin-top: 15px;">
+<pre><code><span class="keyword">import</span> time
+<span class="keyword">from</span> functools <span class="keyword">import</span> lru_cache
+<span class="keyword">from</span> codecarbon <span class="keyword">import</span> EmissionsTracker
+
+<span class="comment"># Sans cache (exponentiel)</span>
+<span class="keyword">def</span> <span class="function">fib_no_cache</span>(n):
+    <span class="keyword">if</span> n <span class="operator">&lt;</span> <span class="string">2</span>: <span class="keyword">return</span> n
+    <span class="keyword">return</span> <span class="function">fib_no_cache</span>(n<span class="operator">-</span><span class="string">1</span>) <span class="operator">+</span> <span class="function">fib_no_cache</span>(n<span class="operator">-</span><span class="string">2</span>)
+
+<span class="comment"># Avec cache (linéaire)</span>
+<span class="variable">@lru_cache</span>(maxsize<span class="operator">=</span><span class="string">128</span>)
+<span class="keyword">def</span> <span class="function">fib_cached</span>(n):
+    <span class="keyword">if</span> n <span class="operator">&lt;</span> <span class="string">2</span>: <span class="keyword">return</span> n
+    <span class="keyword">return</span> <span class="function">fib_cached</span>(n<span class="operator">-</span><span class="string">1</span>) <span class="operator">+</span> <span class="function">fib_cached</span>(n<span class="operator">-</span><span class="string">2</span>)
+
+N <span class="operator">=</span> <span class="string">35</span>
+
+<span class="comment"># Test SANS CACHE</span>
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"no_cache"</span>)
+tracker.<span class="function">start</span>()
+start <span class="operator">=</span> time.<span class="function">time</span>()
+result <span class="operator">=</span> <span class="function">fib_no_cache</span>(N)
+time_no <span class="operator">=</span> time.<span class="function">time</span>() <span class="operator">-</span> start
+emissions_no <span class="operator">=</span> tracker.<span class="function">stop</span>()
+
+<span class="comment"># Test AVEC CACHE</span>
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"with_cache"</span>)
+tracker.<span class="function">start</span>()
+start <span class="operator">=</span> time.<span class="function">time</span>()
+result <span class="operator">=</span> <span class="function">fib_cached</span>(N)
+time_cached <span class="operator">=</span> time.<span class="function">time</span>() <span class="operator">-</span> start
+emissions_cached <span class="operator">=</span> tracker.<span class="function">stop</span>()
+
+<span class="keyword">print</span>(<span class="string">f"Sans cache: {time_no:.3f}s"</span>)
+<span class="keyword">print</span>(<span class="string">f"Avec cache: {time_cached:.6f}s"</span>)
+<span class="keyword">print</span>(<span class="string">f"Accélération: {time_no/time_cached:,.0f}x"</span>)</code></pre>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1330,18 +1744,31 @@ queue <span class="operator">=</span> <span class="function">deque</span>(<span 
                     </div>
                 </div>
                 <div class="rule-content">
-                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Validation de données, recherche, filtres</p>
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Validation de données (formulaires, fichiers), recherche d'éléments satisfaisant une condition, vérification d'erreurs dans des logs, tests de propriétés sur collections.</p>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color); margin-top: 20px;">
+                        <h4><i class="fas fa-lightbulb"></i> Principe</h4>
+                        <p>Exploiter le court-circuitage booléen pour arrêter le traitement dès que le résultat est déterminé.</p>
+                    </div>
 
                     <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Anti-pattern (Évalue tout) :</h4>
                     <div class="code-block bad">
-<pre><code><span class="comment"># Crée la liste complète avant vérification</span>
+<pre><code><span class="comment"># Crée la liste complète avant vérification - évalue TOUS les éléments</span>
 <span class="function">any</span>([<span class="function">is_invalid</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> data])</code></pre>
                     </div>
 
                     <h4 style="color: var(--success-color); margin-top: 20px;"><i class="fas fa-check-circle"></i> Solution (S'arrête au premier True) :</h4>
                     <div class="code-block good">
-<pre><code><span class="comment"># Générateur - évaluation paresseuse</span>
-<span class="function">any</span>(<span class="function">is_invalid</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> data)</code></pre>
+<pre><code><span class="comment"># Générateur - évaluation paresseuse (lazy evaluation)</span>
+<span class="function">any</span>(<span class="function">is_invalid</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> data)  <span class="comment"># S'arrête au premier True!</span></code></pre>
+                    </div>
+
+                    <div class="explanation-box" style="margin-top: 20px;">
+                        <h4><i class="fas fa-cogs"></i> Explication</h4>
+                        <ul style="text-align: left;">
+                            <li><strong>Liste compréhension</strong> : Évalue tous les éléments, crée liste en mémoire</li>
+                            <li><strong>Générateur</strong> : <code>any()</code> demande éléments un par un, s'arrête au premier <code>True</code></li>
+                        </ul>
                     </div>
 
                     <div class="gain-box">
@@ -1381,6 +1808,39 @@ queue <span class="operator">=</span> <span class="function">deque</span>(<span 
                             <li>🌳 <strong>2% d'un arbre</strong></li>
                         </ul>
                     </div>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color);">
+                        <h4><i class="fas fa-flask"></i> Code de test complet :</h4>
+                        <div class="code-block" style="margin-top: 15px;">
+<pre><code><span class="keyword">import</span> time
+<span class="keyword">from</span> codecarbon <span class="keyword">import</span> EmissionsTracker
+
+<span class="keyword">def</span> <span class="function">is_invalid</span>(x):
+    <span class="keyword">return</span> x <span class="operator">==</span> <span class="string">0</span>  <span class="comment"># Premier élément!</span>
+
+data <span class="operator">=</span> <span class="function">list</span>(<span class="function">range</span>(<span class="string">10_000_000</span>))
+
+<span class="comment"># Test LISTE (tout évaluer)</span>
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"any_list"</span>)
+tracker.<span class="function">start</span>()
+start <span class="operator">=</span> time.<span class="function">time</span>()
+result <span class="operator">=</span> <span class="function">any</span>([<span class="function">is_invalid</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> data])
+time_list <span class="operator">=</span> time.<span class="function">time</span>() <span class="operator">-</span> start
+emissions_list <span class="operator">=</span> tracker.<span class="function">stop</span>()
+
+<span class="comment"># Test GÉNÉRATEUR (court-circuit)</span>
+tracker <span class="operator">=</span> <span class="function">EmissionsTracker</span>(project_name<span class="operator">=</span><span class="string">"any_gen"</span>)
+tracker.<span class="function">start</span>()
+start <span class="operator">=</span> time.<span class="function">time</span>()
+result <span class="operator">=</span> <span class="function">any</span>(<span class="function">is_invalid</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> data)
+time_gen <span class="operator">=</span> time.<span class="function">time</span>() <span class="operator">-</span> start
+emissions_gen <span class="operator">=</span> tracker.<span class="function">stop</span>()
+
+<span class="keyword">print</span>(<span class="string">f"Liste:      {time_list:.3f}s"</span>)
+<span class="keyword">print</span>(<span class="string">f"Générateur: {time_gen:.6f}s"</span>)
+<span class="keyword">print</span>(<span class="string">f"Accélération: {time_list/time_gen:,.0f}x"</span>)</code></pre>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1412,7 +1872,17 @@ queue <span class="operator">=</span> <span class="function">deque</span>(<span 
                     </div>
                 </div>
                 <div class="rule-content">
-                    <p style="margin-top: 15px;"><strong>Trois micro-optimisations cumulées :</strong></p>
+                    <p style="margin-top: 15px;"><strong>Cas d'usage :</strong> Tout code Python en production, boucles critiques (traitement de données en masse), gestion de ressources système (fichiers, connexions réseau), code appelé fréquemment (API, services).</p>
+
+                    <div class="explanation-box" style="border-left-color: var(--primary-color); margin-top: 20px;">
+                        <h4><i class="fas fa-lightbulb"></i> Principe</h4>
+                        <p>Cette règle regroupe trois micro-optimisations essentielles pour un code Python propre et efficace :</p>
+                        <ul style="text-align: left; margin-top: 10px;">
+                            <li><strong>Variables locales</strong> : Capturer les variables globales et attributs en variables locales avant les boucles serrées</li>
+                            <li><strong>Imports au niveau module</strong> : Importer les modules au niveau global, jamais à l'intérieur de fonctions appelées fréquemment</li>
+                            <li><strong>Gestion des ressources avec <code>with</code></strong> : Utiliser systématiquement <code>with</code> pour garantir la libération immédiate des ressources</li>
+                        </ul>
+                    </div>
 
                     <div class="gain-box" style="margin-top: 20px;">
                         <h4><i class="fas fa-chart-line"></i> Gains par sous-règle :</h4>
