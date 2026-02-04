@@ -76,6 +76,46 @@
                         <p class="impact-label">Consommation d'énergie</p>
                     </div>
                 </section>
+
+                <!-- Personnalisation selon l'usage (module sobre, calcul local) -->
+                <section class="usage-impact" aria-labelledby="usage-title">
+                <h3 id="usage-title">Personnaliser selon votre usage</h3>
+
+                <div class="usage-input">
+                    <label for="dailyMinutes">Temps d’usage quotidien (en minutes) :</label>
+                    <input id="dailyMinutes" type="number" min="0" max="600" value="60" inputmode="numeric">
+                </div>
+
+                <div class="usage-results" role="status" aria-live="polite">
+                    <div class="usage-card water">
+                    <p class="usage-label">Eau</p>
+                    <p class="usage-line"><strong id="waterDay">-</strong> / jour</p>
+                    </div>
+
+                    <div class="usage-card land">
+                    <p class="usage-label">Occupation des sols</p>
+                    <p class="usage-line"><strong id="landDay">-</strong> / jour</p>
+                    </div>
+
+                    <div class="usage-card energy">
+                    <p class="usage-label">Énergie</p>
+                    <p class="usage-line"><strong id="energyDay">-</strong> / jour</p>
+                    </div>
+                </div>
+
+                <details class="meaning">
+                    <summary>Ça veut dire quoi concètement ?</summary>
+                    <p>
+                        Pour être plus clair et donner un ordre de grandeur, une douche consomme en moyenne 6 litres d’eau par minute, 
+                        une batterie de smartphone est souvent autour de 4 500 mAh et l’occupation des sols représente la surface mobilisée par les infrastructures numériques.
+                    </p>
+                    <p>
+                        Ainsi, 1 heure quotidienne sur TikTok correspond à une douche de presque <strong>3 minutes</strong>, à <strong>une centaine de mètres carrés</strong> d’infrastructures mobilisées, 
+                        ainsi qu’à une consommation d’énergie équivalente à <strong>près d'un quart</strong> de batterie d'un smartphone.
+                    </p>
+                </details>
+                </section>
+
             </section>
             <section class="tips">
                 <h2>Conseils pour réduire l'empreinte carbone <sup><a href="#source5">[5]</a></sup></h2>
@@ -106,7 +146,7 @@
         </section>
         <div class="button-container">
             <button class="button" onclick="window.print()" title="Imprimez uniquement si nécessaire pour l'enseignement ou lorsque le numérique n'est pas adapté.">Imprimer cette fiche</button>
-            <button class="button-secondary" onclick="window.open('../quelques-chiffres.html')">Découvrir les autres services</button>
+            <button class="button-secondary" onclick="window.location.href='../quelques-chiffres.html'">Retour aux autres services</button>
         </div>
     </div>
     <footer>
@@ -150,5 +190,43 @@
             }
         });
     </script>
+
+    <script>
+        const WATER_PER_MIN = 0.27;   
+        const LAND_PER_MIN  = 1.88; 
+        const ENERGY_PER_MIN = 15;  
+
+        const input = document.getElementById("dailyMinutes");
+
+        const out = {
+            waterDay: document.getElementById("waterDay"),
+            landDay: document.getElementById("landDay"),
+            energyDay: document.getElementById("energyDay")
+        };
+
+        function formatNumber(n, unit) {
+            const value =
+            n >= 100 ? n.toFixed(0) :
+            n >= 10  ? n.toFixed(1) :
+                        n.toFixed(2);
+            return `${value.replace(".", ",")} ${unit}`;
+        }
+
+        function update() {
+            const minutes = Math.max(0, Number(input.value) || 0);
+
+            const waterDay = WATER_PER_MIN * minutes;
+            const landDay  = LAND_PER_MIN  * minutes;
+            const energyDay = ENERGY_PER_MIN * minutes;
+
+            out.waterDay.textContent = formatNumber(waterDay, "L");
+            out.landDay.textContent = formatNumber(landDay, "m²");
+            out.energyDay.textContent = formatNumber(energyDay, "mAh");
+        }
+
+        input.addEventListener("input", update);
+        update();
+    </script>
+
 </body>
 </html>

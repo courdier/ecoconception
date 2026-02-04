@@ -767,6 +767,54 @@ pre code {
     line-height: 1.4em;
 }
 
+/* --- Module "Personnaliser selon votre usage" --- */
+.usage-input{
+  display:flex; 
+  gap:12px; 
+  align-items:center; 
+  flex-wrap:wrap;
+  margin: 0 20px 20px;
+}
+
+.usage-input input{
+  width:120px; 
+  padding:8px 10px;
+  border-radius:10px; 
+  border:1px solid var(--highlight-color);
+  background: var(--background-color); 
+  color: var(--text-color);
+}
+
+.usage-results{
+  display:flex; 
+  gap:20px; 
+  flex-wrap:wrap; 
+  justify-content:center;
+  margin: 0 20px;
+}
+
+.usage-card{
+  width:240px; 
+  padding:20px; 
+  text-align:center;
+  border-radius:25px; 
+  border:2px solid var(--info-color);
+  color: var(--text-color); 
+  font-weight:bold;
+}
+.usage-card.water{ border-color: var(--emergency-color); }
+.usage-card.land{ border-color: var(--becoming-color); }
+.usage-card.energy{ border-color: var(--success-color); }
+
+.meaning{
+  margin:20px 20px 0; 
+  padding:15px;
+  border-radius:10px; 
+  border:1px solid var(--highlight-color);
+  text-align:left;
+}
+.meaning summary{ cursor:pointer; font-weight:700; }
+
 /* Responsive Design */
 
 /* Tablettes (Portrait et Paysage) */
