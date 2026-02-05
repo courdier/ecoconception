@@ -1793,16 +1793,7 @@ emissions_gen <span class="operator">=</span> tracker.<span class="function">sto
                         </div>
                     </div>
                     <div class="rule-metrics">
-                        <div class="metric-item">
-                            <div class="metric-value">~5%</div>
-                            <div class="metric-label">Gain CO₂</div>
-                        </div>
-                        <div class="metric-item">
-                            <div class="metric-value">13 km</div>
-                            <div class="metric-label">Voiture/an</div>
-                        </div>
-                        <span class="impact-badge impact-medium">⭐⭐⭐</span>
-                        <i class="fas fa-chevron-down expand-icon"></i>
+                        
                     </div>
                 </div>
                 <div class="rule-content">
@@ -1816,41 +1807,6 @@ emissions_gen <span class="operator">=</span> tracker.<span class="function">sto
                             <li><strong>Imports au niveau module</strong> : Importer les modules au niveau global, jamais à l'intérieur de fonctions appelées fréquemment</li>
                             <li><strong>Gestion des ressources avec <code>with</code></strong> : Utiliser systématiquement <code>with</code> pour garantir la libération immédiate des ressources</li>
                         </ul>
-                    </div>
-
-                    <div class="gain-box" style="margin-top: 20px;">
-                        <h4><i class="fas fa-chart-line"></i> Gains par sous-règle (Green IT) :</h4>
-                        <table style="width: 100%; margin-top: 10px;">
-                            <thead>
-                                <tr style="background-color: rgba(105, 240, 109, 0.2);">
-                                    <th>Sous-règle</th>
-                                    <th>Gain CO₂</th>
-                                    <th>Équivalence voiture</th>
-                                    <th>Équivalence française</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Variables locales</td>
-                                    <td>9.5%</td>
-                                    <td>~1.0 kg = 9 km</td>
-                                    <td>~0.2% empreinte annuelle</td>
-                                </tr>
-                                <tr>
-                                    <td>Imports globaux</td>
-                                    <td>4.7%</td>
-                                    <td>~0.5 kg = 4 km</td>
-                                    <td>~0.1% empreinte annuelle</td>
-                                </tr>
-                                <tr>
-                                    <td><code>with</code> statement</td>
-                                    <td>0.8% (fiabilité)</td>
-                                    <td>Évite fuites mémoire</td>
-                                    <td>Fiabilité accrue</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p style="margin-top: 15px;"><strong>Total :</strong> ~1.5 kg CO₂/an = 🚗 <strong>13 km</strong> (112 g/km) + fiabilité accrue</p>
                     </div>
 
                     <h4 style="color: var(--primary-color); margin-top: 25px;"><i class="fas fa-code"></i> Variables locales :</h4>
@@ -1885,132 +1841,121 @@ emissions_gen <span class="operator">=</span> tracker.<span class="function">sto
 <span class="comment"># Fichier automatiquement fermé, même en cas d'erreur</span></code></pre>
                     </div>
 
-                    <div class="explanation-box">
-                        <h4><i class="fas fa-calculator"></i> Équivalence concrète (Green IT) :</h4>
-                        <p>Pour une API traitant <strong>10 000 requêtes/seconde</strong> :</p>
-                        <ul style="text-align: left; margin-top: 10px;">
-                            <li><strong>Variables locales</strong> : ~1.0 kg CO₂/an = 🚗 9 km en voiture (112 g/km)</li>
-                            <li><strong>Imports globaux</strong> : ~0.5 kg CO₂/an = 🚗 4 km en voiture</li>
-                            <li><strong>Gain total</strong> : ~1.5 kg CO₂/an = 🚗 13 km en voiture</li>
-                            <li><strong>Équivalence française</strong> : ~0.4% de l'empreinte numérique annuelle</li>
-                        </ul>
-                        <p style="margin-top: 10px; font-size: 0.9rem;"><em>Note : Ces micro-optimisations cumulées sur des millions d'appels quotidiens deviennent significatives.</em></p>
-                    </div>
                 </div>
             </div>
 
         </section>
 
-        <!-- Tableau récapitulatif MIS À JOUR et CORRIGÉ -->
-        <section style="margin-top: 50px;">
-            <h2>Récapitulatif des 10 éco-rules Python</h2>
-            <p>Cliquez sur une règle pour afficher les détails et exemples de code.</p>
+<!-- Tableau récapitulatif MIS À JOUR et CORRIGÉ -->
+<section style="margin-top: 50px;">
+    <h2>Récapitulatif des 10 éco-rules Python</h2>
+    <p>Cliquez sur une règle pour afficher les détails et exemples de code.</p>
 
-            <table class="summary-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Règle</th>
-                        <th>Gain CO₂</th>
-                        <th>Gain temps</th>
-                        <th>Gain mémoire/énergie</th>
-                        <th>Impact</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr onclick="document.getElementById('rule1').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule1').classList.add('active');" style="cursor: pointer;">
-                        <td>1</td>
-                        <td><strong>Set vs List</strong> - Recherche O(1)</td>
-                        <td>96.5%</td>
-                        <td>97,400×</td>
-                        <td>96.5%</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
-                    </tr>
-                    <tr onclick="document.getElementById('rule2').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule2').classList.add('active');" style="cursor: pointer;">
-                        <td>2</td>
-                        <td><strong>Générateurs</strong> - Flux massifs</td>
-                        <td>3.5%</td>
-                        <td>1.04×</td>
-                        <td>100% (mémoire)</td>
-                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
-                    </tr>
-                    <tr onclick="document.getElementById('rule3').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule3').classList.add('active');" style="cursor: pointer;">
-                        <td>3</td>
-                        <td><strong>__slots__</strong> - Réduction mémoire objets*</td>
-                        <td>-57.9%</td>
-                        <td>-60%</td>
-                        <td>20% (mémoire)</td>
-                        <td><span class="impact-badge impact-low">⚠️</span></td>
-                    </tr>
-                    <tr onclick="document.getElementById('rule4').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule4').classList.add('active');" style="cursor: pointer;">
-                        <td>4</td>
-                        <td><strong>NumPy</strong> - Calcul vectorisé</td>
-                        <td>98.2%</td>
-                        <td>753×</td>
-                        <td>75.7% (mémoire)</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
-                    </tr>
-                    <tr onclick="document.getElementById('rule5').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule5').classList.add('active');" style="cursor: pointer;">
-                        <td>5</td>
-                        <td><strong>Variables locales</strong> - Lookups optimisés</td>
-                        <td>9.5%</td>
-                        <td>1.1×</td>
-                        <td>9.5%</td>
-                        <td><span class="impact-badge impact-low">⭐</span></td>
-                    </tr>
-                    <tr onclick="document.getElementById('rule6').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule6').classList.add('active');" style="cursor: pointer;">
-                        <td>6</td>
-                        <td><strong>join()</strong> - Concaténation O(n)</td>
-                        <td>85.6%</td>
-                        <td>18.7×</td>
-                        <td>85.6%</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
-                    </tr>
-                    <tr onclick="document.getElementById('rule7').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule7').classList.add('active');" style="cursor: pointer;">
-                        <td>7</td>
-                        <td><strong>Buffers I/O</strong> - 64KB chunks</td>
-                        <td>96.1%</td>
-                        <td>454×</td>
-                        <td>96.1%</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
-                    </tr>
-                    <tr onclick="document.getElementById('rule8').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule8').classList.add('active');" style="cursor: pointer;">
-                        <td>8</td>
-                        <td><strong>Multiprocessing</strong> - Parallélisme</td>
-                        <td>38.5%</td>
-                        <td>2.2×</td>
-                        <td>38.5%</td>
-                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
-                    </tr>
-                    <tr onclick="document.getElementById('rule9').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule9').classList.add('active');" style="cursor: pointer;">
-                        <td>9</td>
-                        <td><strong>deque</strong> - Files FIFO O(1)</td>
-                        <td>71.4%</td>
-                        <td>65×</td>
-                        <td>71.4%</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
-                    </tr>
-                    <tr onclick="document.getElementById('rule10').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule10').classList.add('active');" style="cursor: pointer;">
-                        <td>10</td>
-                        <td><strong>weakref</strong> - Gestion mémoire</td>
-                        <td>2.3%</td>
-                        <td>1.0×</td>
-                        <td>2.3%</td>
-                        <td><span class="impact-badge impact-low">⭐</span></td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="6" style="font-size: 0.8rem; color: var(--text-color-light); padding-top: 15px;">
-                            *__slots__ montre des performances dégradées dans ce test spécifique - à utiliser avec précaution<br>
-                            **Le gain mémoire des générateurs évite le swapping et les crashs OOM<br>
-                            ***Les performances réelles dépendent du contexte d'utilisation<br>
-                            <strong>Note :</strong> Les règles lru_cache et any()/all() n'ont pas été testées dans cette série
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
-        </section>
+    <table class="summary-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Règle</th>
+                <th>Gain CO₂</th>
+                <th>Gain temps</th>
+                <th>Gain mémoire/énergie</th>
+                <th>Impact</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr onclick="document.getElementById('rule1').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule1').classList.add('active');" style="cursor: pointer;">
+                <td>1</td>
+                <td><strong>Set vs List</strong> - Recherche O(1)</td>
+                <td>96.5%</td>
+                <td>97400x</td>
+                <td>96.5%</td>
+                <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
+            </tr>
+            <tr onclick="document.getElementById('rule2').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule2').classList.add('active');" style="cursor: pointer;">
+                <td>2</td>
+                <td><strong>Générateurs</strong> - Flux massifs</td>
+                <td>3.5%</td>
+                <td>Négligeable (0.04x)</td>
+                <td>100% (mémoire)</td>
+                <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
+            </tr>
+            <tr onclick="document.getElementById('rule3').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule3').classList.add('active');" style="cursor: pointer;">
+                <td>3</td>
+                <td><strong>__slots__</strong> - Réduction mémoire objets*</td>
+                <td>98.2%</td>
+                <td>753x</td>
+                <td>75.7% (mémoire)</td>
+                <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
+            </tr>
+            <tr onclick="document.getElementById('rule4').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule4').classList.add('active');" style="cursor: pointer;">
+                <td>4</td>
+                <td><strong>NumPy</strong> - Calcul vectorisé</td>
+                <td>85.6%</td>
+                <td>18.7x</td>
+                <td>85.6%</td>
+                <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
+            </tr>
+            <tr onclick="document.getElementById('rule5').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule5').classList.add('active');" style="cursor: pointer;">
+                <td>5</td>
+                <td><strong>Variables locales</strong> - Lookups optimisés</td>
+                <td>96.1%</td>
+                <td>454x</td>
+                <td>96.1%</td>
+                <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
+            </tr>
+            <tr onclick="document.getElementById('rule6').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule6').classList.add('active');" style="cursor: pointer;">
+                <td>6</td>
+                <td><strong>join()</strong> - Concaténation O(n)</td>
+                <td>38.5%</td>
+                <td>2.2x</td>
+                <td>38.5%</td>
+                <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
+            </tr>
+            <tr onclick="document.getElementById('rule7').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule7').classList.add('active');" style="cursor: pointer;">
+                <td>7</td>
+                <td><strong>Buffers I/O</strong> - 64KB chunks</td>
+                <td>71.4%</td>
+                <td>65x</td>
+                <td>71.4%</td>
+                <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
+            </tr>
+            <tr onclick="document.getElementById('rule8').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule8').classList.add('active');" style="cursor: pointer;">
+                <td>8</td>
+                <td><strong>Multiprocessing</strong> - Parallélisme</td>
+                <td>0.000001 kg</td>
+                <td>0.000s</td>
+                <td>0.000002 kWh</td>
+                <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
+            </tr>
+            <tr onclick="document.getElementById('rule9').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule9').classList.add('active');" style="cursor: pointer;">
+                <td>9</td>
+                <td><strong>deque</strong> - Files FIFO O(1)</td>
+                <td>62.0%</td>
+                <td>59078x</td>
+                <td>62.0%</td>
+                <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
+            </tr>
+            <tr onclick="document.getElementById('rule10').scrollIntoView({behavior: 'smooth'}); document.getElementById('rule10').classList.add('active');" style="cursor: pointer;">
+                <td>10</td>ues
+                <td><strong>Les bonnes pratiques de base</strong></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><span class="impact-badge impact-low">⭐⭐</span></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6" style="font-size: 0.8rem; color: var(--text-color-light); padding-top: 15px;">
+                    *__slots__ montre des performances dégradées dans ce test spécifique - à utiliser avec précaution<br>
+                    **Le gain mémoire des générateurs évite le swapping et les crashs OOM<br>
+                    ***Les performances réelles dépendent du contexte d'utilisation<br>
+                    <strong>Note :</strong> Les règles lru_cache et any()/all() n'ont pas été testées dans cette série
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</section>
 
         <!-- Checklist MIS À JOUR -->
         <section style="margin-top: 50px;">
