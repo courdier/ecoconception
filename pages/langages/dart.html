@@ -401,7 +401,7 @@
                     <ul style="text-align: left;">
                         <li>Si un widget est un <strong>const</strong>, Flutter sait que ce widget ne change pas, et donc il ne rebuild pas ce widget inutilement</li>
                         <li>Flutter utilise l'identification de widget pour déterminer les changements d'un widget. Avec <strong>const</strong>, l'identification est <strong>plus rapide</strong> et <strong>plus efficace</strong> <sup><a href="#source4">[4]</a></sup></li>
-                        <li>Instance canonique créée <strong>une seule fois</strong> en mémoire -> Réduction de la consommation mémoire + réduction des phases "Garbage Collector" avec moins d'objects à supprimer </li>
+                        <li>Instance canonique créée <strong>une seule fois</strong> en mémoire -> Réduction de la consommation mémoire + réduction des phases "Garbage Collector" avec moins d'objects à supprimer à chaque rebuild</li>
                     </ul>
                 </div>
             </div>
