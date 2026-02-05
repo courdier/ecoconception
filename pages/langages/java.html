@@ -375,7 +375,6 @@
                     <ul style="text-align: left;">
                         <li>Les <code>String</code> sont <strong>immuables</strong> en Java</li>
                         <li>Chaque <code>+=</code> crée un <strong>nouvel objet String</strong> en mémoire</li>
-                        <li>Pour 1000 éléments : <strong>O(n²)</strong> opérations de copie</li>
                     </ul>
                 </div>
 
@@ -394,8 +393,8 @@
                 <div class="gain-box">
                     <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
                     <ul style="text-align: left;">
-                        <li><strong>×10-100 plus rapide</strong> pour les grandes listes <sup><a href="#source3">[3]</a></sup></li>
-                        <li>Réduit la consommation mémoire de <strong>70-90%</strong></li>
+                        <li><strong>Plus rapide</strong> pour les grandes listes <sup><a href="#source3">[3]</a></sup></li>
+                        <li>Réduit la <strong>consommation mémoire</strong></li>
                         <li>Moins de pression sur le Garbage Collector</li>
                     </ul>
                 </div>
@@ -420,8 +419,7 @@
                 <div class="explanation-box">
                     <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
                     <ul style="text-align: left;">
-                        <li><code>ArrayList</code> double sa capacité quand elle est pleine</li>
-                        <li>Pour 10 000 éléments : <strong>~13 redimensionnements</strong> avec copies</li>
+                        <li><code>ArrayList</code> Augmente sa capacité quand elle est pleine</li>
                         <li>Chaque redimensionnement = allocation + copie de tous les éléments</li>
                     </ul>
                 </div>
@@ -436,9 +434,8 @@
                 </div>
 
                 <div class="gain-box">
-                    <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
+                    <h4><i class="fas fa-chart-line"></i> Gains:</h4>
                     <ul style="text-align: left;">
-                        <li>Réduit le temps d'exécution de <strong>30-50%</strong></li>
                         <li>Élimine les copies de tableaux inutiles</li>
                         <li>Même principe pour <code>HashMap</code>, <code>HashSet</code>, etc. <sup><a href="#source4">[4]</a></sup></li>
                     </ul>
@@ -495,7 +492,8 @@
                     <h4><i class="fas fa-chart-line"></i> Bonnes pratiques :</h4>
                     <ul style="text-align: left;">
                         <li><strong>Boucles for</strong> : effets de bord, itérations simples</li>
-                        <li><strong>Streams</strong> : transformations, filtres, chaînes d'opérations <sup><a href="#source5">[5]</a></sup></li>
+                        <li><strong>Streams</strong> : transformations, filtres, chaînes d'opérations </li>
+                        <li><strong>Gains de performance : </strong> L'utilisation des boucles à la place de stream peut être 3x plus performant <sup><a href="#source5">[5]</a></sup></li>
                         <li>Préférer les streams primitifs (<code>IntStream</code>, <code>LongStream</code>)</li>
                     </ul>
                 </div>
@@ -522,7 +520,7 @@
                     <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
                     <ul style="text-align: left;">
                         <li><code>List.contains()</code> parcourt <strong>séquentiellement</strong> la liste (O(n))</li>
-                        <li>Pour 10 000 éléments : <strong>×1000 plus lent</strong> qu'un <code>HashSet</code></li>
+                        <li>Pour 10 000 éléments : <strong>pourrais être ×1000 plus lent</strong> qu'un <code>HashSet (O(1)) en moyenne</code></li>
                         <li>Temps CPU élevé pour des recherches fréquentes</li>
                     </ul>
                 </div>
@@ -546,7 +544,7 @@
                     <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
                     <ul style="text-align: left;">
                         <li><strong>Performance</strong> : O(1) vs O(n) <sup><a href="#source6">[6]</a></sup></li>
-                        <li><strong>×1000+ plus rapide</strong> pour grandes collections</li>
+                        <li><strong>Beaucoup plus rapide</strong> pour grandes collections</li>
                         <li>Économie CPU significative sur recherches fréquentes</li>
                     </ul>
                 </div>
@@ -596,7 +594,7 @@
                 <div class="gain-box">
                     <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
                     <ul style="text-align: left;">
-                        <li><strong>×3-5 plus rapide</strong> sans autoboxing <sup><a href="#source7">[7]</a></sup></li>
+                        <li><strong>Plus rapide</strong> sans autoboxing <sup><a href="#source7">[7]</a></sup></li>
                         <li>Mémoire réduite de <strong>75%</strong> (4 octets vs 16-24)</li>
                         <li>Moins de pression sur le Garbage Collector</li>
                     </ul>
@@ -609,7 +607,7 @@
                     <span class="rule-number">6</span>
                     Try-with-resources - Gestion des ressources
                 </h3>
-                <p><span class="impact-badge impact-high"><i class="fas fa-fire"></i> Impact TRÈS ÉLEVÉ</span></p>
+                <p><span class="impact-badge impact-medium"><i class="fas fa-fire"></i> Impact MOYEN</span></p>
 
                 <h4 style="color: var(--emergency-color); margin-top: 20px;"><i class="fas fa-times-circle"></i> Code dangereux :</h4>
                 <div class="code-block bad">
@@ -704,8 +702,7 @@
                 <div class="gain-box">
                     <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
                     <ul style="text-align: left;">
-                        <li><strong>Performance</strong> : ×2-5 selon la configuration <sup><a href="#source9">[9]</a></sup></li>
-                        <li>Réduit les pauses GC de <strong>50-80%</strong></li>
+                        <li><strong>Performance</strong> : Selon la configuration <sup><a href="#source9">[9]</a></sup></li>
                         <li>Moins de cycles CPU gaspillés = moins de consommation électrique</li>
                     </ul>
                 </div>
@@ -999,8 +996,8 @@
                     <a href="https://docs.oracle.com/javase/tutorial/collections/implementations/set.html" target="_blank">[Lien]</a>
                 </li>
                 <li id="source7">
-                    <strong>[7]</strong> Baeldung. <em>Autoboxing and Unboxing in Java - Performance Impact.</em>
-                    <a href="https://www.baeldung.com/java-autoboxing" target="_blank">[Lien]</a>
+                    <strong>[7]</strong><em>Performance impact of autoboxing</em>
+                    <a href="https://stackoverflow.com/questions/3430671/performance-impact-of-autoboxing" target="_blank">[Lien]</a>
                 </li>
                 <li id="source8">
                     <strong>[8]</strong> Oracle. <em>The try-with-resources Statement.</em>
@@ -1011,8 +1008,8 @@
                     <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html" target="_blank">[Lien]</a>
                 </li>
                 <li id="source10">
-                    <strong>[10]</strong> Baeldung. <em>Lazy Initialization in Java.</em>
-                    <a href="https://www.baeldung.com/java-lazy-initialization" target="_blank">[Lien]</a>
+                    <strong>[10]</strong><em>What is lazy initialization and why is it useful?</em>
+                    <a href="https://stackoverflow.com/questions/978759/what-is-lazy-initialization-and-why-is-it-useful" target="_blank">[Lien]</a>
                 </li>
                 <li id="source11">
                     <strong>[11]</strong> HikariCP. <em>Fast, simple, reliable - HikariCP connection pool.</em>
