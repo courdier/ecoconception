@@ -399,9 +399,9 @@
                 <div class="gain-box">
                     <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
                     <ul style="text-align: left;">
-                        <li><strong>Réduction drastique</strong> des cycles CPU lors des rebuilds</li>
-                        <li>Diminution de <strong>40-60%</strong> de l'usage RAM <sup><a href="#source4">[4]</a></sup></li>
-                        <li>Instance canonique créée <strong>une seule fois</strong> en mémoire</li>
+                        <li>Si un widget est un <strong>const</strong>, Flutter sait que ce widget ne change pas, et donc il ne rebuild pas ce widget inutilement</li>
+                        <li>Flutter utilise l'identification de widget pour déterminer les changements d'un widget. Avec <strong>const</strong>, l'identification est <strong>plus rapide</strong> et <strong>plus efficace</strong> <sup><a href="#source4">[4]</a></sup></li>
+                        <li>Instance canonique créée <strong>une seule fois</strong> en mémoire -> Réduction de la consommation mémoire + réduction des phases "Garbage Collector" avec moins d'objects à supprimer </li>
                     </ul>
                 </div>
             </div>
@@ -981,7 +981,7 @@ flutter pub global run devtools</code></pre>
                 <li id="source4">
                     <strong>[4]</strong> Somnio Software.
                     <em>10 Best Practices Every Flutter Developer Should Follow - Const Constructors.</em>
-                    <a href="https://somniosoftware.com/post/top-10-flutter-best-practices" target="_blank">[Lien]</a>
+                    <a href="https://medium.com/@atefelsaid3/why-using-const-in-flutter-makes-your-app-faster-but-sometimes-larger-2933a618782f" target="_blank">[Lien]</a>
                 </li>
                 <li id="source5">
                     <strong>[5]</strong> Flutter Documentation.
