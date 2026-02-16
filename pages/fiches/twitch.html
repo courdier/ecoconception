@@ -17,12 +17,21 @@
     <link rel="stylesheet" href="../../assets/styles/styles.css">
     <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="../../assets/scripts/hamburger.js"></script>
 </head>
 <body>
     <header>
-        <nav>
+                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html" class="active">Chiffres</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
                 <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
@@ -40,6 +49,18 @@
                     <i class="fas fa-users"></i>
                     <h2>30+ Millions</h2>
                     <p>Nombre de spectateurs actifs quotidiens <sup><a href="#source1">[1]</a></sup></p>
+                </div>
+                <div class="stat-item-container">
+                    <div class="stat-item" id="stat-item-base">
+                        <i class="fas fa-video"></i>
+                        <h2>2,201,081 heures</h2>
+                        <p>de contenu diffusées par jour<sup><a href="#source5">[7]</a></sup></p>
+                    </div>
+                    <div class="stat-item" id="stat-item-hover">
+                        <i class="fa-solid fa-video"></i>
+                        <h2>46,259,400 heures</h2>
+                        <p>de contenu regardées par jour<sup><a href="#source5">[7]</a></sup></p>
+                    </div>
                 </div>
                 <div class="stat-item">
                     <i class="fas fa-globe"></i>
@@ -62,7 +83,7 @@
             <section class="impact-details">
                 <h2>Répartition des consommations par type de contenu <sup><a href="#source4">[4]</a></sup></h2> 
                     <p>Le streaming en direct sur Twitch représente une part significative du trafic internet mondial. La plateforme, avec ses diffusions de jeux vidéo en direct et en haute définition, contribue de manière substantielle à la consommation énergétique et aux émissions de CO2 associées au numérique.</p>
-                <div class="chart-container" style="display: flex; justify-content: center; align-items: center;">
+                <div class="chart-container" style="display: flex; justify-content: center; max-width: 100%; position: relative; height: 400px;">
                     <canvas id="serviceChart" width="400%" height="400%"></canvas>
                 </div>
                 <a href="https://youtu.be/dQw4w9WgXcQ?si=ySMSiw5CrP-wn40C" style="color: #1c1c1e; text-decoration: none;">easter egg</a>
@@ -156,6 +177,7 @@
                 <li id="source4">[4] "Streaming et impact environnemental," <em>EcoReseau</em>, Disponible en ligne : <a href="https://ecoreseau.fr/" target="_blank">https://ecoreseau.fr/</a></li>
                 <li id="source4">[5] "GreenIT: Vidéo en ligne : quels impacts environnementaux ?," <em>greenit</em>, Disponible en ligne : <a href="https://www.greenit.fr/2019/07/22/%ef%bb%bfvideo-en-ligne-quels-impacts-environnementaux/" target="_blank">https://greenit.fr/</a></li>
                 <li id="source4">[6] "Que représente (réellement) une tonne d’équivalent CO2 ?," <em>Hellocarbo</em>, Disponible en ligne : <a href="https://www.hellocarbo.com/blog/calculer/tonne-equivalent-co2/" target="_blank">www.hellocarbo.com/</a></li>
+                <li id="source5">[7] "Chiffres Twitch - 2025," <em>TwitchTracker</em>, Disponible en ligne : <a href="https://twitchtracker.com/statistics" target="_blank">https://twitchtracker.com//</a></li>
                 
             </ul>          
         </section>
@@ -234,9 +256,9 @@
             }
         });
     </script>
-    <footer>
+     <footer>
         <section class="footer-content">
-            <p>&copy; 2024 - Impact Environnemental de TWITCH | Conçu par GRONDIN Olivier, étudiant de Master informatique, UR</p>
+            <p>&copy; 2024 - Impact Environnemental de Twitch | GRONDIN Olivier, étudiant en Master 2 informatique</p>
         </section>
     </footer>   
 </body>

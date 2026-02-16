@@ -16,36 +16,49 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles/styles.css">
+    <script defer src="../assets/scripts/hamburger.js"></script>
 </head>
+
 <body>
     <header>
-        <nav>
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../index.html">Home</a></li>
                 <li class="mg-0"><a href="./quelques-chiffres.html" class="active">Chiffres</a></li>
-                <li class="mg-0"><a href="./quizV1.html">Quiz</a></li>
+                <li class="mg-0"><a href="./quizz-access.html">Quiz</a></li>
                 <li class="mg-0"><a href="./en-pratique.html">Ateliers</a></li>
-                <li class="mg-0"><a href="./ressources.html"">Ressources</a></li>
+                <li class="mg-0"><a href="./ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="./outils.html">Outils</a></li>
-                <li class="mg-0"><a href="./terminologie.html">Terminologie</a>
+                <li class="mg-0"><a href="./terminologie.html">Terminologie</a></li>
             </ul>
         </nav>
     </header>
     <div class="main">
         <h1>Quelques chiffres sur nos applications du quotidien</h1>
         <section class="intro-text">
-            <p>Le <strong>cycle de vie</strong> d'un produit numérique comprend plusieurs étapes : 
-                extraction des ressources, 
-                fabrication, 
+            <p>Le <strong>cycle de vie</strong> d'un produit numérique comprend plusieurs étapes :
+                extraction des ressources,
+                fabrication,
                 transport,
                 utilisation,
                 fin de vie.
             <p>Chacune de ces étapes contribue à <strong> l'empreinte écologique globale</strong> du produit.</p>
-            <p>Il est souvent difficile de trouver des données précises pour chaque étape, et les chiffres que nous utilisons doivent être pris avec précaution. En particulier, les impacts environnementaux peuvent varier en fonction des <strong>technologies</strong>, des <strong>régions</strong> et des <strong>pratiques de recyclage</strong>.</p>
-            <p>Les fiches que nous avons créées pour différentes applications numériques fournissent des <strong>estimations</strong> , mais elles ne doivent pas être considérées comme des valeurs absolues. L'objectif est de sensibiliser et d'encourager des pratiques plus durables.</p>
+            <p>Il est souvent difficile de trouver des données précises pour chaque étape, et les chiffres que nous
+                utilisons doivent être pris avec précaution. En particulier, les impacts environnementaux peuvent varier
+                en fonction des <strong>technologies</strong>, des <strong>régions</strong> et des <strong>pratiques de
+                    recyclage</strong>.</p>
+            <p>Les fiches que nous avons créées pour différentes applications numériques fournissent des
+                <strong>estimations</strong> , mais elles ne doivent pas être considérées comme des valeurs absolues.
+                L'objectif est de sensibiliser et d'encourager des pratiques plus durables.
+            </p>
         </section>
 
-        <!-- Zone des servives -->    
+        <!-- Zone des servives -->
         <section id="cards">
             <div class="card">
                 <a href="./fiches/amazonprimevideo.html">
@@ -65,10 +78,28 @@
                     <p>Découvrez l'impact environnemental d'un réseau social</p>
                 </a>
             </div>
+
+            <div class="card">
+                <a href="./fiches/x.html">
+                    <h2>X ( Twitter )</h2>
+                    <p>Explorez l’impact environnemental d’une plateforme de micro-messages en temps réel, où chaque
+                        tweet parcourt la planète.</p>
+                </a>
+            </div>
+            <div class="card">
+                <a href="./fiches/discord.html">
+                    <h2>Discord</h2>
+                    <p>Découvrez l'impact environnemental des interactions sur la plateforme de communication Discord.
+                    </p>
+                </a>
+            </div>
+
+
             <div class="card">
                 <a href="./fiches/instagram.html">
                     <h2>Instagram</h2>
-                    <p>Découvrez l'impact environnemental d'une plateforme de partage de photos, vidéos et stories visuelles interactives</p>
+                    <p>Découvrez l'impact environnemental d'une plateforme de partage de photos, vidéos et stories
+                        visuelles interactives</p>
                 </a>
             </div>
             <div class="card">
@@ -78,31 +109,43 @@
                 </a>
             </div>
             <div class="card">
-                <a href="./fiches/steam.html">
-                    <h2>Steam</h2>
-                    <p>Explorez l'empreinte écologique d'une plateforme de distribution numérique de jeux vidéo.</p>
-                </a>
-            </div>    
-            <div class="card">
-                <a href="./fiches/tiktok.html">
-                    <h2>TikTok</h2>
-                    <p>Analysez l'impact environnemental des vidéos courtes qui captivent le monde entier.</p>
+                <a href="./fiches/chatgpt.html">
+                    <h2>ChatGPT</h2>
+                    <p>Découvrez l'impact environnemental des assistants conversationnels intelligents.</p>
                 </a>
             </div>
             <div class="card">
-                <a href="./fiches/twitch.html">
-                    <h2>Twitch</h2>
-                    <p>Découvrez l'impact d'une plateforme de streaming pour jeux vidéo et divertissement.</p>
+                <a href="./fiches/google.html">
+                    <h2>Google</h2>
+                    <p>Explorez l'impact environnemental du moteur de recherche le plus utilisé au monde.</p>
                 </a>
-            </div>                                         
+            </div>
+            <div class="card">
+                <a href="./fiches/facebook.html">
+                    <h2>Facebook</h2>
+                    <p>Découvrez l'impact environnemental de Facebook.</p>
+                </a>
+            </div>
             <div class="card">
                 <a href="./fiches/youtube.html">
                     <h2>YouTube</h2>
                     <p>Explorez l'empreinte écologique du plus grand site de partage de vidéos au monde.</p>
                 </a>
             </div>
+            <div class="card">
+                <a href="./fiches/twitch.html">
+                    <h2>Twitch</h2>
+                    <p>Découvrez l'empreinte écologique du plus grand site de diffusion vidéo en direct au monde.</p>
+                </a>
+            </div>
+            <div class="card">
+                <a href="./fiches/steam.html">
+                    <h2>Steam</h2>
+                    <p>Explorez l'empreinte écologique de la plateforme de distribution de jeux vidéo Steam.</p>
+                </a>
+            </div>
 
-        <!-- zone boutons -->        
+            <!-- zone boutons -->
         </section>
         <div class="button-container">
             <a href="./quizV1.html" class="button">Quiz</a>
@@ -110,8 +153,9 @@
         </div>
     </div>
     <footer>
-        <p class="mg-0">&copy; 2024 - COURDIER Rémy & ROCHAT Lise - <a href="./a-propos.html">A propos</a> </p>
+        <p class="mg-0">&copy; 2024 - COURDIER Rémy & ROCHAT Lise <a href="./a-propos.html">A propos</a> </p>
     </footer>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
+
 </html>

@@ -17,14 +17,23 @@
     <link rel="stylesheet" href="../../assets/styles/styles.css">
     <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="../../assets/scripts/hamburger.js"></script>
 </head>
 
 <body>
     <header>
-        <nav>
+                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
-                <li class="mg-0"><a href="../en-pratique.html">Ressources</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html" class="active">Chiffres</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
                 <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
             </ul>
@@ -57,8 +66,8 @@
                 <h2>Comparaison de l'empreinte carbone <sup><a href="#source3">[2]</a></sup></h2>
                 <p>Une heure passée sur Instagram génère environ 52 g de CO2. Ce chiffre peut sembler faible, mais il s'additionne rapidement avec des millions d'utilisateurs actifs chaque jour, représentant une empreinte environnementale significative.</p>
 
-                <div class="chart-container" style="display: flex; justify-content: center;">
-                    <canvas id="co2Chart" width="600" height="400"></canvas>
+                <div class="chart-container" style="display: flex; justify-content: center; max-width: 100%; position: relative; height: 400px;">
+                    <canvas id="co2Chart"></canvas>
                 </div>
             </section>
             <section class="additional-impact">

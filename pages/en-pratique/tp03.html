@@ -16,10 +16,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/styles/styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script defer src="../../assets/scripts/hamburger.js"></script>
 </head>
+
 <body>
     <header>
-        <nav>
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
                 <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
@@ -73,6 +80,14 @@
                         <li><a href="https://firefox-source-docs.mozilla.org/devtools-user/" target="_blank">Firefox
                                 Developer Tools</a></li>
                         <li><a href="https://docs.sonarsource.com/sonarqube/latest/" target="_blank">SonarQube</a></li>
+                        <li><a href="https://docs.sonarqube.org/latest/" target="_blank">Guide SonarQube pour analyser
+                                la qualité du code</a></li>
+                        <li><a href="https://developers.google.com/web/tools/lighthouse" target="_blank">Utiliser
+                                Lighthouse pour mesurer la performance et l’écoconception</a></li>
+                        <li><a href="https://ecoindex.fr/" target="_blank">Tester l'empreinte écologique de la page avec
+                                EcoIndex</a></li>
+                        <li><a href="https://www.youtube.com/results?search_query=chrome+devtools+javascript+audit"
+                                target="_blank">Tutoriels vidéo (YouTube) : Audit JavaScript avec DevTools</a></li>
                     </ul>
                 </div>
             </section>
@@ -123,7 +138,8 @@
                                     <li>Accédez à Chrome DevTools en appuyant sur <strong>F12</strong> ou <strong>Ctrl +
                                             Shift + I</strong>.</li>
                                     <li>Allez dans l'onglet <strong>Sources</strong> puis dans
-                                        <strong>Coverage</strong>.</li>
+                                        <strong>Coverage</strong>.
+                                    </li>
                                     <li>Cliquez sur <strong>Start Instrumenting Coverage</strong> pour démarrer
                                         l'analyse des scripts.</li>
                                     <li>Naviguez sur les différentes pages du site pour capturer l'utilisation des
@@ -186,6 +202,85 @@
                 </div>
             </section>
             <section class="collapsible">
+                <h2>Check-list de Réalisation du TP</h2>
+                <div class="content">
+                    <p>
+                        Cette check-list a pour but d’accompagner l’étudiant tout au long du TP,
+                        étape par étape. Elle permet de vérifier que chaque action attendue a bien été réalisée
+                        et de visualiser sa progression durant le travail.
+                        N’hésite pas à cocher chaque case au fur et à mesure de ta démarche !
+                    </p>
+                    <ul>
+                        <li><input type="checkbox"> Audit des scripts JS présents sur la page</li>
+                        <li><input type="checkbox"> Identification des scripts inutilisés ou redondants</li>
+                        <li><input type="checkbox"> Suppression ou optimisation des scripts identifiés</li>
+                        <li><input type="checkbox"> Test de fonctionnement après modifications</li>
+                        <li><input type="checkbox"> Mesure des indicateurs de performance (taille JS, temps de
+                            chargement, score écologique)</li>
+                        <li><input type="checkbox"> Rédaction du rapport (tableau, captures, commentaires)</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="collapsible">
+                <h2>Synthèse des résultats (Avant / Après optimisation)</h2>
+                <div class="content">
+                    <p>
+                        <strong>Remplis le tableau ci-dessous au fur et à mesure de ton travail.</strong>
+                        Ce modèle t’aide à synthétiser tes actions, à comparer la situation « avant » et « après »
+                        optimisation,
+                        et à rendre ton rapport plus clair et structuré.
+                        Tu pourras ainsi présenter, de manière chiffrée et argumentée, les gains obtenus en termes de
+                        performance et d’écoconception.
+                        N’hésite pas à ajouter des lignes pour détailler chaque script traité !
+                    </p>
+                    <h3>Tableau Comparatif des Scripts JS (Avant / Après Optimisation)</h3>
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>Script</th>
+                                <th>Action (Suppression/Optimisation)</th>
+                                <th>Taille Initiale (Ko)</th>
+                                <th>Taille Finale (Ko)</th>
+                                <th>Temps de chargement avant (ms)</th>
+                                <th>Temps après (ms)</th>
+                                <th>Score écologique avant</th>
+                                <th>Score écologique après</th>
+                                <th>Commentaire / Justification</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>script1.js</td>
+                                <td>supprimé</td>
+                                <td>100</td>
+                                <td>0</td>
+                                <td>1200</td>
+                                <td>900</td>
+                                <td>45</td>
+                                <td>55</td>
+                                <td>Script inutilisé détecté, gain de performance et écoconception</td>
+                            </tr>
+                            <tr>
+                                <td>script2.js</td>
+                                <td>optimisé</td>
+                                <td>60</td>
+                                <td>40</td>
+                                <td>900</td>
+                                <td>650</td>
+                                <td>50</td>
+                                <td>62</td>
+                                <td>Minification et suppression de fonctions non appelées</td>
+                            </tr>
+                            <!-- Ajoute autant de lignes que nécessaire -->
+                        </tbody>
+                    </table>
+                    <p>
+                        Ceci n'est qu'un exemple, adapte le tableau avec tes propres résultats.
+                    </p>
+                </div>
+            </section>
+
+            <section class="collapsible">
                 <h2>Conclusion: Rédaction du rapport <span class="toggle-icon">+</span></h2>
                 <div class="content">
                     <p>Documentez les résultats de l'analyse et proposez des recommandations spécifiques pour améliorer
@@ -196,7 +291,8 @@
         </section>
         </section>
         <div class="button-container ">
-            <button class="button-secondary" onclick="window.open('../en-pratique.html')">Découvrir les autres sujets</button>
+            <button class="button-secondary" onclick="window.open('../en-pratique.html')">Découvrir les autres
+                sujets</button>
         </div>
     </div>
 
@@ -219,4 +315,5 @@
         });
     </script>
 </body>
+
 </html>
