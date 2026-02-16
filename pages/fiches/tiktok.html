@@ -77,45 +77,44 @@
                     </div>
                 </section>
 
-                <!-- Personnalisation selon l'usage (module sobre, calcul local) -->
+                <!-- Personnalisation selon l'usage -->
                 <section class="usage-impact" aria-labelledby="usage-title">
-                <h3 id="usage-title">Personnaliser selon votre usage</h3>
+                    <h3 id="usage-title">Personnaliser selon votre usage</h3>
 
-                <div class="usage-input">
-                    <label for="dailyMinutes">Temps d’usage quotidien (en minutes) :</label>
-                    <input id="dailyMinutes" type="number" min="0" max="600" value="60" inputmode="numeric">
-                </div>
-
-                <div class="usage-results" role="status" aria-live="polite">
-                    <div class="usage-card water">
-                    <p class="usage-label">Eau</p>
-                    <p class="usage-line"><strong id="waterDay">-</strong> / jour</p>
+                    <div class="usage-input">
+                        <label for="dailyMinutes">Temps d’usage quotidien (en minutes) :</label>
+                        <input id="dailyMinutes" type="number" min="0" max="600" value="60" inputmode="numeric">
                     </div>
 
-                    <div class="usage-card land">
-                    <p class="usage-label">Occupation des sols</p>
-                    <p class="usage-line"><strong id="landDay">-</strong> / jour</p>
+                    <div class="usage-results" role="status" aria-live="polite">
+                        <div class="usage-card red">
+                        <p class="usage-label">Eau</p>
+                        <p class="usage-line"><strong id="waterDay">-</strong> / jour</p>
+                        </div>
+
+                        <div class="usage-card yellow">
+                        <p class="usage-label">Occupation des sols</p>
+                        <p class="usage-line"><strong id="landDay">-</strong> / jour</p>
+                        </div>
+
+                        <div class="usage-card green">
+                        <p class="usage-label">Énergie</p>
+                        <p class="usage-line"><strong id="energyDay">-</strong> / jour</p>
+                        </div>
                     </div>
 
-                    <div class="usage-card energy">
-                    <p class="usage-label">Énergie</p>
-                    <p class="usage-line"><strong id="energyDay">-</strong> / jour</p>
-                    </div>
-                </div>
-
-                <details class="meaning">
-                    <summary>Ça veut dire quoi concètement ?</summary>
-                    <p>
-                        Pour être plus clair et donner un ordre de grandeur, une douche consomme en moyenne 6 litres d’eau par minute, 
-                        une batterie de smartphone est souvent autour de 4 500 mAh et l’occupation des sols représente la surface mobilisée par les infrastructures numériques.
-                    </p>
-                    <p>
-                        Ainsi, 1 heure quotidienne sur TikTok correspond à une douche de presque <strong>3 minutes</strong>, à <strong>une centaine de mètres carrés</strong> d’infrastructures mobilisées, 
-                        ainsi qu’à une consommation d’énergie équivalente à <strong>près d'un quart</strong> de batterie d'un smartphone.
-                    </p>
-                </details>
+                    <details class="meaning">
+                        <summary>Ça veut dire quoi concètement ?</summary>
+                        <p>
+                            Pour être plus clair et donner un ordre de grandeur, une douche consomme en moyenne 6 litres d’eau par minute, 
+                            une batterie de smartphone est souvent autour de 4 500 mAh et l’occupation des sols représente la surface mobilisée par les infrastructures numériques.
+                        </p>
+                        <p>
+                            Ainsi, <strong>1 heure</strong> quotidienne sur TikTok correspond à une douche de presque <strong>3 minutes</strong>, à <strong>une centaine de mètres carrés</strong> d’infrastructures mobilisées, 
+                            ainsi qu’à une consommation d’énergie équivalente à <strong>20%</strong> de batterie d'un smartphone.
+                        </p>
+                    </details>
                 </section>
-
             </section>
             <section class="tips">
                 <h2>Conseils pour réduire l'empreinte carbone <sup><a href="#source5">[5]</a></sup></h2>

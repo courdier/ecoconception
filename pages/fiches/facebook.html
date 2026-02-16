@@ -83,17 +83,56 @@
                 <h2>Autres impacts environnementaux <sup><a href="#source5">[5]</a></sup></h2>
                 <section class="additional-impact-content">
                     <div class="impact-card impact-card-1">
-                        <p class="impact-value">0,07 Litres /min</p>
+                        <p class="impact-value">0,12 Litres /min</p>
                         <p class="impact-label">Ressource en Eau</p>
                     </div>
                     <div class="impact-card impact-card-2">
-                        <p class="impact-value">0,85 m² /min</p>
+                        <p class="impact-value">1,38 m² /min</p>
                         <p class="impact-label">Occupation des sols</p>
                     </div>
                     <div class="impact-card impact-card-3">
-                        <p class="impact-value">7.8 mAh /min</p>
+                        <p class="impact-value">12,36 mAh /min</p>
                         <p class="impact-label">Consommation d'énergie</p>
                     </div>
+                </section>
+
+                <!-- Personnalisation selon l'usage -->
+                <section class="usage-impact" aria-labelledby="usage-title">
+                    <h3 id="usage-title">Personnaliser selon votre usage</h3>
+
+                    <div class="usage-input">
+                        <label for="dailyMinutes">Temps d’usage quotidien (en minutes) :</label>
+                        <input id="dailyMinutes" type="number" min="0" max="600" value="60" inputmode="numeric">
+                    </div>
+
+                    <div class="usage-results" role="status" aria-live="polite">
+                        <div class="usage-card red">
+                        <p class="usage-label">Eau</p>
+                        <p class="usage-line"><strong id="waterDay">-</strong> / jour</p>
+                        </div>
+
+                        <div class="usage-card yellow">
+                        <p class="usage-label">Occupation des sols</p>
+                        <p class="usage-line"><strong id="landDay">-</strong> / jour</p>
+                        </div>
+
+                        <div class="usage-card green">
+                        <p class="usage-label">Énergie</p>
+                        <p class="usage-line"><strong id="energyDay">-</strong> / jour</p>
+                        </div>
+                    </div>
+
+                    <details class="meaning">
+                        <summary>Ça veut dire quoi concètement ?</summary>
+                        <p>
+                            Pour être plus clair et donner un ordre de grandeur, une bouteille d’eau contient environ 1,5L, 
+                            une batterie de smartphone est souvent autour de 4 500 mAh et l’occupation des sols représente la surface mobilisée par les infrastructures numériques.
+                        </p>
+                        <p>
+                            Ainsi, <strong>1 heure</strong> quotidienne sur Facebook correspond à environ <strong>5 bouteilles d’eau</strong> consommées, à <strong>une quatre-vingtaine de mètres carrés</strong> d’infrastructures mobilisées, 
+                            ainsi qu’à une consommation d’énergie équivalente à <strong>environ 17%</strong> de batterie d'un smartphone.
+                        </p>
+                    </details>
                 </section>
             </section>
             <section class="tips">
@@ -121,7 +160,7 @@
                 <li id="source2">[2] "Facebook et ses utilisateurs," Blog du Modérateur, Disponible en ligne : <a href="https://www.blogdumoderateur.com/chiffres-facebook/" target="_blank">https://www.blogdumoderateur.com/chiffres-facebook/</a></li>
                 <li id="source3">[3] "Facebook : Impact Environnemental," Greenspector, Disponible en ligne : <a href="https://greenspector.com/fr/impact-environnemental-facebook/" target="_blank">https://greenspector.com/fr/impact-environnemental-facebook/</a></li>
                 <li id="source4">[4] "Empreinte Carbone des réseaux sociaux," WeAreGreen, Disponible en ligne : <a href="https://wearegreen.io/article/impact-reseaux-sociaux/" target="_blank">https://wearegreen.io/article/impact-reseaux-sociaux/</a></li>
-                <li id="source5">[5] "Environnement et réseaux sociaux," Greenspector, Disponible en ligne : <a href="https://greenspector.com/fr/environnement-et-reseaux-sociaux/" target="_blank">https://greenspector.com/fr/environnement-et-reseaux-sociaux/</a></li>
+                <li id="source5">[5] "Réseaux sociaux 2021," Greenspector, Disponible en ligne : <a href="https://greenspector.com/fr/reseaux-sociaux-2021/" target="_blank">https://greenspector.com/fr/reseaux-sociaux-2021/</a></li>
                 <li id="source6">[6] "Réduire l'impact environnemental de Facebook," Internet Sans Crainte, Disponible en ligne : <a href="https://www.internetsanscrainte.fr/dossiers/reseaux-sociaux/impact-facebook/" target="_blank">https://www.internetsanscrainte.fr/dossiers/reseaux-sociaux/impact-facebook/</a></li>
             </ul>
         </section>
@@ -135,5 +174,42 @@
             <p>&copy; 2024 - Impact Environnemental de Facebook | Conçu par BIDOIS Dewen, étudiant de Master informatique, UR</p>
         </section>
     </footer>
+
+    <script>
+        const WATER_PER_MIN = 0.12;   
+        const LAND_PER_MIN  = 1.38; 
+        const ENERGY_PER_MIN = 12.36;  
+
+        const input = document.getElementById("dailyMinutes");
+
+        const out = {
+            waterDay: document.getElementById("waterDay"),
+            landDay: document.getElementById("landDay"),
+            energyDay: document.getElementById("energyDay")
+        };
+
+        function formatNumber(n, unit) {
+            const value =
+            n >= 100 ? n.toFixed(0) :
+            n >= 10  ? n.toFixed(1) :
+                        n.toFixed(2);
+            return `${value.replace(".", ",")} ${unit}`;
+        }
+
+        function update() {
+            const minutes = Math.max(0, Number(input.value) || 0);
+
+            const waterDay = WATER_PER_MIN * minutes;
+            const landDay  = LAND_PER_MIN  * minutes;
+            const energyDay = ENERGY_PER_MIN * minutes;
+
+            out.waterDay.textContent = formatNumber(waterDay, "L");
+            out.landDay.textContent = formatNumber(landDay, "m²");
+            out.energyDay.textContent = formatNumber(energyDay, "mAh");
+        }
+
+        input.addEventListener("input", update);
+        update();
+    </script>
 </body>
 </html>

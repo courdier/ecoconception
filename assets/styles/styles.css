@@ -802,9 +802,9 @@ pre code {
   color: var(--text-color); 
   font-weight:bold;
 }
-.usage-card.water{ border-color: var(--emergency-color); }
-.usage-card.land{ border-color: var(--becoming-color); }
-.usage-card.energy{ border-color: var(--success-color); }
+.usage-card.red{ border-color: var(--emergency-color); }
+.usage-card.yellow{ border-color: var(--becoming-color); }
+.usage-card.green{ border-color: var(--success-color); }
 
 .meaning{
   margin:20px 20px 0; 
