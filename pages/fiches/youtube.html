@@ -48,23 +48,31 @@
             <section class="stats-icons">
                 <div class="stat-item">
                     <i class="fas fa-users"></i>
-                    <h2>plus de 2.5 Milliards</h2>
-                    <p>Nombre d'utilisateurs actifs par mois en 2025 <sup><a href="#source1">[1]</a></sup></p>
+                    <h2>+2.5 Milliards</h2>
+                    <p>Nombre d'utilisateurs actifs par mois <sup><a href="#source1">[1]</a></sup></p>
                 </div>
                 <div class="stat-item">
                     <i class="fas fa-globe"></i>
                     <h2>100+ Pays</h2>
                     <p>Présence mondiale de YouTube <sup><a href="#source2">[2]</a></sup></p>
                 </div>
-                <div class="stat-item">
-                    <i class="fas fa-broadcast-tower"></i>
-                    <h2>11.3 millions de tonnes</h2>
-                    <p>Émissions de CO2 en 2016<sup><a href="#source3">[3]</a></sup></p>
+                <div class="stat-item-container">
+                    <div class="stat-item" id="stat-item-base">
+                        <i class="fas fa-broadcast-tower"></i>
+                        <h2>52g CO2</h2>
+                        <p>Émission de CO2 par heure de visionnage<sup><a href="#source3">[3]</a></sup></p>
+                    </div>
+                    <div class="stat-item" id="stat-item-hover">
+                        <i class="fa-solid fa-car"></i>
+                        <h2>260 m</h2>
+                        <p>Équivalent carbone (distance en voiture) selon impact CO2<sup><a href="#source3">[3]</a></sup></p>
+                    </div>
                 </div>
             </section>
             <section class="impact-details">
-                <h2>Comparatif des émissions de CO2 par Support <sup><a href="#source4">[4]</a></sup></h2>
+                <h2>Comparatif des émissions de CO2 par Support</h2>
                 <p>Les émissions de CO2 générées par YouTube varient considérablement en fonction du support utilisé pour le visionnage. Regarder une vidéo sur un smartphone consomme moins d'énergie que de la regarder sur une Smart TV.</p>
+                <p>Ces estimations n’incluent pas l’impact des centres de données et des réseaux.</p>
                 <div class="comparison-box">
                     <div class="comparison-item">
                         <p>Smartphone - 0,56 g CO2/h </p>
@@ -93,7 +101,7 @@
                 </div>
             </section>
             <section class="additional-impact">
-                <h2>Autres impacts environnementaux <sup><a href="#source5">[5]</a></sup></h2>
+                <h2>Autres impacts environnementaux <sup><a href="#source4">[4]</a></sup></h2>
                 <section class="additional-impact-content">
                     <div class="impact-card impact-card-1">
                         <p class="impact-value">0,08 Litres /min</p>
@@ -110,8 +118,8 @@
                 </section>
 
                 <!-- Personnalisation selon l'usage -->
-                <section class="usage-impact" aria-labelledby="usage-title">
-                    <h3 id="usage-title">Personnaliser selon votre usage</h3>
+                <details class="personnalize" aria-labelledby="usage-title">
+                    <summary id="usage-title">Personnaliser selon votre usage</summary>
 
                     <div class="usage-input">
                         <label for="dailyMinutes">Temps d’usage quotidien (en minutes) :</label>
@@ -135,8 +143,8 @@
                         </div>
                     </div>
 
-                    <details class="meaning">
-                        <summary>Ça veut dire quoi concètement ?</summary>
+                    <section class="meaning">
+                        <h4>Ça veut dire quoi concètement ?</h4>
                         <p>
                             Pour être plus clair et donner un ordre de grandeur, une bouteille d’eau contient environ 1,5L, 
                             une batterie de smartphone est souvent autour de 4 500 mAh et l’occupation des sols représente la surface mobilisée par les infrastructures numériques.
@@ -145,11 +153,11 @@
                             Ainsi, <strong>1 heure</strong> quotidienne sur Youtube correspond à environ <strong>3 bouteilles d’eau</strong> consommées, à <strong>une cinquantaine de mètres carrés</strong> d’infrastructures mobilisées, 
                             ainsi qu’à une consommation d’énergie équivalente à <strong>environ à 10%</strong> de batterie d'un smartphone.
                         </p>
-                    </details>
+                    </section>
                 </section>
             </section>
             <section class="tips">
-                <h2>Conseils pour réduire l'empreinte carbone <sup><a href="#source6">[6]</a></sup></h2>
+                <h2>Conseils pour réduire l'empreinte carbone <sup><a href="#source5">[5]</a></sup></h2>
                 <section class="additional-impact-content">
                     <div class="tip-item">
                         <p>Réduisez la qualité de streaming lorsque possible (passer de HD à SD).</p>
@@ -169,12 +177,11 @@
         <section class="bibliography">
             <h2>Sources</h2>
             <ul class="bibliography-list">
-                <li id="source1">[1] "Chiffres YouTube," Blog du Modérateur, Disponible en ligne : <a href="https://www.blogdumoderateur.com/chiffres-youtube/" target="_blank">https://www.blogdumoderateur.com/chiffres-youtube/</a></li>
-                <li id="source2">[2] "YouTube," Wikipedia, Disponible en ligne : <a href="https://fr.wikipedia.org/wiki/YouTube#:~:text=Au%206%20avril%202015%20%2C%20YouTube%20est%20disponible%20en%2076%20langues,80%20langues%20dans%20100%20pays." target="_blank">https://fr.wikipedia.org/wiki/YouTube</a></li>
-                <li id="source3">[3] "Le visionnage annuel des vidéos YouTube émet autant de CO2 qu'une ville de petite taille," Clubic, 2021. Disponible en ligne : <a href="https://www.clubic.com/television-tv/video-streaming/youtube/actualite-856610-visionnage-annuel-videos-youtube-emet-co2-ville-petite-taille.html" target="_blank">https://www.clubic.com/television-tv/video-streaming/youtube/</a></li>
-                <li id="source4">[4] "Impact environnemental de la Tech et du Numérique," WeAreGreen, Disponible en ligne : <a href="https://wearegreen.io/article/impact-environnemental-de-la-tech-et-du-numerique#:~:text=Consid%C3%A9rons%20les%20%C3%A9missions%20de%20gaz,%C3%A9met%2055%2C56%20g%20CO%E2%82%82e." target="_blank">https://wearegreen.io/article/impact-environnemental-de-la-tech-et-du-numerique</a></li>
-                <li id="source5">[5] "Réseaux sociaux 2021," Greenspector, Disponible en ligne : <a href="https://greenspector.com/fr/reseaux-sociaux-2021/" target="_blank">https://greenspector.com/fr/reseaux-sociaux-2021/</a></li>
-                <li id="source6">[6] "Streaming : nos conseils pour moins polluer," Internet Sans Crainte, Disponible en ligne : <a href="https://www.internetsanscrainte.fr/dossiers/parentalite-numerique/conseils/streaming-nos-conseils-pour-moins-polluer" target="_blank">https://www.internetsanscrainte.fr/dossiers/parentalite-numerique/conseils/streaming-nos-conseils-pour-moins-polluer</a></li>
+                <li id="source1">[1] "Chiffres YouTube," Blog du Modérateur, Disponible en ligne : <a href="https://www.blogdumoderateur.com/chiffres-youtube/" target="_blank">https://www.blogdumoderateur.com/</a></li>
+                <li id="source2">[2] "YouTube," Wikipedia, Disponible en ligne : <a href="https://fr.wikipedia.org/wiki/YouTube#:~:text=Au%206%20avril%202015%20%2C%20YouTube%20est%20disponible%20en%2076%20langues,80%20langues%20dans%20100%20pays." target="_blank">https://fr.wikipedia.org/</a></li>
+                <li id="source3">[3] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2023," Greenspector, Disponible en ligne : <a href="https://greenspector.com/quelle-empreinte-environnementale-pour-les-applications-reseaux-sociaux-edition-2023/" target="_blank">https://greenspector.com/</a></li>
+                <li id="source4">[4] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2021," Greenspector, Disponible en ligne : <a href="https://greenspector.com/fr/reseaux-sociaux-2021/" target="_blank">https://greenspector.com/fr/</a></li>
+                <li id="source5">[5] "Streaming : nos conseils pour moins polluer," Internet Sans Crainte, Disponible en ligne : <a href="https://www.internetsanscrainte.fr/dossiers/parentalite-numerique/conseils/streaming-nos-conseils-pour-moins-polluer" target="_blank">https://www.internetsanscrainte.fr/</a></li>
             </ul>            
         </section>
         <div class="button-container ">

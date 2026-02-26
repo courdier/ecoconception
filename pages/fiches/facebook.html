@@ -24,6 +24,9 @@
         <nav>
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html" class="active">Chiffres</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
                 <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
@@ -42,22 +45,30 @@
                 <div class="stat-item">
                     <i class="fas fa-users"></i>
                     <h2>3.07 Milliards</h2>
-                    <p>Utilisateurs actifs quotidiens à la fin de 2023<sup><a href="#source1">[1]</a></sup></p>
+                    <p>Utilisateurs actifs mensuels de Facebook<sup><a href="#source1">[1]</a></sup></p>
                 </div>
                 <div class="stat-item">
                     <i class="fas fa-globe"></i>
                     <h2>Présence mondiale</h2>
-                    <p>Facebook est le réseau social numéro un dans 154 pays<sup><a href="#source2">[2]</a></sup></p>
+                    <p>4e application la plus téléchargée dans le monde<sup><a href="#source1">[1]</a></sup></p>
                 </div>
-                <div class="stat-item">
-                    <i class="fas fa-broadcast-tower"></i>
-                    <h2>102 millions de tonnes</h2>
-                    <p>Émissions de CO2 en 2023<sup><a href="#source3">[3]</a></sup></p>
+                <div class="stat-item-container">
+                    <div class="stat-item" id="stat-item-base">
+                        <i class="fas fa-broadcast-tower"></i>
+                        <h2>38g CO2</h2>
+                        <p>Émission de CO2 par heure d'utilisation<sup><a href="#source3">[3]</a></sup></p>
+                    </div>
+                    <div class="stat-item" id="stat-item-hover">
+                        <i class="fa-solid fa-car"></i>
+                        <h2>190 m</h2>
+                        <p>Équivalent carbone (distance en voiture) selon impact CO2<sup><a href="#source3">[3]</a></sup></p>
+                    </div>
                 </div>
             </section>
             <section class="impact-details">
-                <h2>Comparatif des émissions de CO2 par Support <sup><a href="#source4">[4]</a></sup></h2>
+                <h2>Comparatif des émissions de CO2 par Support</h2>
                 <p>Les émissions de CO2 varient selon le support utilisé. Consulter Facebook sur un smartphone consomme moins d'énergie que sur un ordinateur de bureau ou une tablette.</p>
+                <p>Ces estimations n’incluent pas l’impact des infrastructures réseau et des serveurs.</p>
                 <div class="comparison-box">
                     <div class="comparison-item">
                         <p>Smartphone - 0,45 g CO2/h </p>
@@ -80,7 +91,7 @@
                 </div>
             </section>
             <section class="additional-impact">
-                <h2>Autres impacts environnementaux <sup><a href="#source5">[5]</a></sup></h2>
+                <h2>Autres impacts environnementaux <sup><a href="#source3">[3]</a></sup></h2>
                 <section class="additional-impact-content">
                     <div class="impact-card impact-card-1">
                         <p class="impact-value">0,12 Litres /min</p>
@@ -97,8 +108,8 @@
                 </section>
 
                 <!-- Personnalisation selon l'usage -->
-                <section class="usage-impact" aria-labelledby="usage-title">
-                    <h3 id="usage-title">Personnaliser selon votre usage</h3>
+                <details class="personnalize" aria-labelledby="usage-title">
+                    <summary id="usage-title">Personnaliser selon votre usage</summary>
 
                     <div class="usage-input">
                         <label for="dailyMinutes">Temps d’usage quotidien (en minutes) :</label>
@@ -122,8 +133,8 @@
                         </div>
                     </div>
 
-                    <details class="meaning">
-                        <summary>Ça veut dire quoi concètement ?</summary>
+                    <section class="meaning">
+                        <h4>Ça veut dire quoi concètement ?</h4>
                         <p>
                             Pour être plus clair et donner un ordre de grandeur, une bouteille d’eau contient environ 1,5L, 
                             une batterie de smartphone est souvent autour de 4 500 mAh et l’occupation des sols représente la surface mobilisée par les infrastructures numériques.
@@ -132,11 +143,11 @@
                             Ainsi, <strong>1 heure</strong> quotidienne sur Facebook correspond à environ <strong>5 bouteilles d’eau</strong> consommées, à <strong>une quatre-vingtaine de mètres carrés</strong> d’infrastructures mobilisées, 
                             ainsi qu’à une consommation d’énergie équivalente à <strong>environ 17%</strong> de batterie d'un smartphone.
                         </p>
-                    </details>
-                </section>
+                    </section>
+                </details>
             </section>
             <section class="tips">
-                <h2>Conseils pour réduire l'empreinte carbone <sup><a href="#source6">[6]</a></sup></h2>
+                <h2>Conseils pour réduire l'empreinte carbone</h2>
                 <section class="additional-impact-content">
                     <div class="tip-item">
                         <p>Limiter l'usage de vidéos et privilégier les formats texte et image.</p>
@@ -156,12 +167,9 @@
         <section class="bibliography">
             <h2>Sources</h2>
             <ul class="bibliography-list">
-                <li id="source1">[1] "Chiffres de Facebook," Statista, Disponible en ligne : <a href="https://fr.statista.com/infographie/26783/utilisateurs-actifs-mensuels-et-quotidiens-de-facebook-taux-de-croissance-annuel/" target="_blank">https://fr.statista.com/infographie/26783/utilisateurs-actifs</a></li>
-                <li id="source2">[2] "Facebook et ses utilisateurs," Blog du Modérateur, Disponible en ligne : <a href="https://www.blogdumoderateur.com/chiffres-facebook/" target="_blank">https://www.blogdumoderateur.com/chiffres-facebook/</a></li>
-                <li id="source3">[3] "Facebook : Impact Environnemental," Greenspector, Disponible en ligne : <a href="https://greenspector.com/fr/impact-environnemental-facebook/" target="_blank">https://greenspector.com/fr/impact-environnemental-facebook/</a></li>
-                <li id="source4">[4] "Empreinte Carbone des réseaux sociaux," WeAreGreen, Disponible en ligne : <a href="https://wearegreen.io/article/impact-reseaux-sociaux/" target="_blank">https://wearegreen.io/article/impact-reseaux-sociaux/</a></li>
-                <li id="source5">[5] "Réseaux sociaux 2021," Greenspector, Disponible en ligne : <a href="https://greenspector.com/fr/reseaux-sociaux-2021/" target="_blank">https://greenspector.com/fr/reseaux-sociaux-2021/</a></li>
-                <li id="source6">[6] "Réduire l'impact environnemental de Facebook," Internet Sans Crainte, Disponible en ligne : <a href="https://www.internetsanscrainte.fr/dossiers/reseaux-sociaux/impact-facebook/" target="_blank">https://www.internetsanscrainte.fr/dossiers/reseaux-sociaux/impact-facebook/</a></li>
+                <li id="source1">[1] "Chiffres Facebook - 2025," Blog du Modérateur, Disponible en ligne : <a href="https://www.blogdumoderateur.com/chiffres-facebook/" target="_blank">https://www.blogdumoderateur.com/</a></li>
+                <li id="source2">[2] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2023," Greenspector, Disponible en ligne : <a href="https://greenspector.com/quelle-empreinte-environnementale-pour-les-applications-reseaux-sociaux-edition-2023/" target="_blank">https://greenspector.com/</a></li>
+                <li id="source3">[3] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2021," Greenspector, Disponible en ligne : <a href="https://greenspector.com/fr/reseaux-sociaux-2021/" target="_blank">https://greenspector.com/</a></li>
             </ul>
         </section>
         <div class="button-container">

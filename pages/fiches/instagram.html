@@ -54,16 +54,23 @@
                 <div class="stat-item">
                     <i class="fas fa-photo-video"></i>
                     <h2>95+ Millions</h2>
-                    <p>Photos et vidéos publiées chaque jour <sup><a href="#source2">[2]</a></sup></p>
+                    <p>Photos et vidéos publiées chaque jour <sup><a href="#source1">[1]</a></sup></p>
                 </div>
-                <div class="stat-item">
-                    <i class="fas fa-leaf"></i>
-                    <h2>0.87 g CO2</h2>
-                    <p>Émissions de CO2 par minute d'utilisation <sup><a href="#source3">[2]</a></sup></p>
+                <div class="stat-item-container">
+                    <div class="stat-item" id="stat-item-base">
+                        <i class="fas fa-leaf"></i>
+                        <h2>52g CO2</h2>
+                        <p>Émission de CO2 par heure d'utilisation<sup><a href="#source2">[2]</a></sup></p>
+                    </div>
+                    <div class="stat-item" id="stat-item-hover">
+                        <i class="fa-solid fa-car"></i>
+                        <h2>260 m</h2>
+                        <p>Équivalent carbone (distance en voiture) selon impact CO2<sup><a href="#source2">[2]</a></sup></p>
+                    </div>
                 </div>
             </section>
             <section class="impact-details">
-                <h2>Comparaison de l'empreinte carbone <sup><a href="#source3">[2]</a></sup></h2>
+                <h2>Comparaison de l'empreinte carbone <sup><a href="#source2">[2]</a></sup></h2>
                 <p>Une heure passée sur Instagram génère environ 52 g de CO2. Ce chiffre peut sembler faible, mais il s'additionne rapidement avec des millions d'utilisateurs actifs chaque jour, représentant une empreinte environnementale significative.</p>
 
                 <div class="chart-container" style="display: flex; justify-content: center; max-width: 100%; position: relative; height: 400px;">
@@ -71,7 +78,7 @@
                 </div>
             </section>
             <section class="additional-impact">
-                <h2>Autres impacts environnementaux <sup><a href="#source5">[5]</a></sup></h2>
+                <h2>Autres impacts environnementaux <sup><a href="#source3">[3]</a></sup></h2>
                 <section class="additional-impact-content">
                     <div class="impact-card impact-card-1">
                         <p class="impact-value">0,12 Litres /min</p>
@@ -88,8 +95,8 @@
                 </section>
 
                 <!-- Personnalisation selon l'usage -->
-                <section class="usage-impact" aria-labelledby="usage-title">
-                    <h3 id="usage-title">Personnaliser selon votre usage</h3>
+                <details class ="personnalize" aria-labelledby="usage-title">
+                    <summary>Personnaliser selon votre usage</summary>
 
                     <div class="usage-input">
                         <label for="dailyMinutes">Temps d’usage quotidien (en minutes) :</label>
@@ -113,18 +120,18 @@
                         </div>
                     </div>
 
-                    <details class="meaning">
-                        <summary>Ça veut dire quoi concètement ?</summary>
+                    <section class="meaning">
+                        <h4>Ça veut dire quoi concètement ?</h4>
                         <p>
-                            Pour être plus clair et donner un ordre de grandeur, une bouteille d’eau contient environ 1,5L, 
+                            Pour être plus clair et donner un ordre de grandeur, une bouteille d’eau contient environ 1.5L, 
                             une batterie de smartphone est souvent autour de 4 500 mAh et l’occupation des sols représente la surface mobilisée par les infrastructures numériques.
                         </p>
                         <p>
                             Ainsi, <strong>1 heure</strong> quotidienne sur Instagram correspond à environ <strong>5 bouteilles d’eau</strong> consommées, à <strong>une soixantaine de mètres carrés</strong> d’infrastructures mobilisées, 
                             ainsi qu’à une consommation d’énergie équivalente à <strong>environ 12%</strong> de batterie d'un smartphone.
                         </p>
-                    </details>
-                </section>
+                    </section>
+                </details>
             </section>
             <section class="tips">
                 <h2>Conseils pour réduire l'empreinte carbone</h2>
@@ -144,8 +151,9 @@
         <section class="bibliography">
             <h2>Sources</h2>
             <ul class="bibliography-list">
-                <li id="source1">[1] "Chiffres Instagram – 2024," Blog du modérateur. Disponible en ligne : <a href="https://www.blogdumoderateur.com/chiffres-instagram/" target="_blank">https://www.blogdumoderateur.com/chiffres-instagram//</a></li>
-                <li id="source3">[2] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2023 ," Greenspector. Disponible en ligne : <a href="https://greenspector.com/fr/quelle-empreinte-environnementale-pour-les-applications-reseaux-sociaux-edition-2023/" target="_blank">https://greenspector.com/fr/quelle-empreinte-environnementale-pour-les-applications-reseaux-sociaux-edition-2023/</a></li>
+                <li id="source1">[1] "Chiffres Instagram - 2025," Blog du modérateur. Disponible en ligne : <a href="https://www.blogdumoderateur.com/chiffres-instagram/" target="_blank">https://www.blogdumoderateur.com/</a></li>
+                <li id="source2">[2] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2023 ," Greenspector. Disponible en ligne : <a href="https://greenspector.com/fr/quelle-empreinte-environnementale-pour-les-applications-reseaux-sociaux-edition-2023/" target="_blank">https://greenspector.com/</a></li>
+                <li id="source3">[3] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2021," Greenspector, Disponible en ligne : <a href="https://greenspector.com/fr/reseaux-sociaux-2021/" target="_blank">https://greenspector.com/</a></li>
             </ul>
         </section>
         <div class="button-container">

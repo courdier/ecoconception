@@ -35,7 +35,7 @@
         <section class="services-container">
             <section class="intro-text">
                 <p>
-                    X (Twitter) est une plateforme mondiale de microblogging comptant environ <strong>335 millions</strong> d'utilisateurs actifs mensuels (<a href="https://fr.statista.com/statistiques/282268/nombre-utilisateurs-twitter-france/" target="_blank">Statista</a>), utilisée dans plus de 40 langues (<a href="https://kinsta.com/fr/blog/statistiques-twitter/" target="_blank">Kinsta</a>).
+                    X (Twitter) est une plateforme mondiale de microblogging comptant environ 335 millions d'utilisateurs actifs mensuels, disponible en plus de 40 langues différentes.
                     Son fonctionnement s'appuie sur des infrastructures serveurs réparties sur tous les continents.
                 </p>
             </section>
@@ -43,28 +43,25 @@
                 <div class="stat-item">
                     <i class="fas fa-users"></i>
                     <h2>335 Millions</h2>
-                    <p>Utilisateurs actifs mensuels (2025)<sup><a href="https://fr.statista.com/statistiques/282268/nombre-utilisateurs-twitter-france/" target="_blank">[1]</a></sup></p>
+                    <p>Utilisateurs actifs mensuels<sup><a href="#source1">[1]</a></sup></p>
                 </div>
                 <div class="stat-item">
                     <i class="fas fa-globe"></i>
                     <h2>+40 Langues</h2>
-                    <p>Présence globale<sup><a href="https://kinsta.com/fr/blog/statistiques-twitter/" target="_blank">[2]</a></sup></p>
+                    <p>Présence globale<sup><a href="#source1">[1]</a></sup></p>
                 </div>
-                <div class="stat-item">
-                    <i class="fas fa-cloud"></i>
-                    <h2>~8 200 Tonnes</h2>
-                    <p>Émissions de CO₂ annuelles des tweets<sup><a href="https://www.greenit.fr/2010/06/28/combien-d-energie-pour-un-tweet/" target="_blank">[3]</a></sup></p>
-                </div>
-            </section>
-
-            <section class="additional-impact">
-                <h2>Autres impacts environnementaux<sup><a href="https://lesnumeriques.com/grand-public/pollution-twitter-top-10-emet-co2-n200415.html" target="_blank">[4]</a></sup></h2>
-                <section class="additional-impact-content">
-                    <div class="impact-card impact-card-2">
-                        <p class="impact-value">Moins de 10 % d'énergie renouvelable</p>
-                        <p class="impact-label">Proportion énergie verte utilisée en 2025 (<a href="https://www.greenit.fr/2010/06/28/combien-d-energie-pour-un-tweet/" target="_blank">Source</a>)</p>
+                <div class="stat-item-container">
+                    <div class="stat-item" id="stat-item-base">
+                        <i class="fas fa-cloud"></i>
+                        <h2>31g CO2</h2>
+                        <p>Émission de CO2 par heure d'utilisation <sup><a href="#source2">[2]</a></sup></p>
                     </div>
-                </section>
+                    <div class="stat-item" id="stat-item-hover">
+                        <i class="fa-solid fa-car"></i>
+                        <h2>155 m</h2>
+                        <p>Équivalent carbone (distance en voiture) selon impact CO2<sup><a href="#source2">[2]</a></sup></p>
+                    </div>
+                </div>
             </section>
 
             <section class="main-stats">
@@ -74,22 +71,68 @@
                     <li>📦 Un tweet ≈ 0,026g de CO₂, soit environ 26 kg par million de tweets.</li>
                     <li>👥 Les 10 comptes les plus suivis concentrent plus de 22 tonnes de CO₂/an.</li>
                     <li>⚡ Datacenters principalement alimentés par de l’énergie non renouvelable (&lt;10%).</li>
-                    <li>📈 Empreinte totale : 8 200 tonnes/an (données Greenly/Les Numériques 2024).</li>
                 </ul>
             </section>
 
-            <section class="societal-impact">
-                <h2>Enjeux sociétaux et transition écologique</h2>
-                <p>
-                    Twitter/X est un lieu majeur de sensibilisation, mais l'utilisation massive de la plateforme et le partage de contenus lourds
-                    ont une empreinte qui questionne. De nombreux spécialistes et ONG se sont détournés du réseau depuis 2022 pour privilégier
-                    des alternatives plus responsables<sup><a href="https://www.lemonde.fr/en/pixels/article/2023/08/15/twitter-environmentalists-deserting-social-media-platform-since-elon-musk-s-takeover_6094084_13.html" target="_blank">[4]</a></sup>.
-                </p>
+            <section class="additional-impact">
+                <h2>Autres impacts environnementaux <sup><a href="#source3">[3]</a></sup></h2>
+                <section class="additional-impact-content">
+                    <div class="impact-card impact-card-1">
+                        <p class="impact-value">0,10 Litres /min</p>
+                        <p class="impact-label">Ressource en Eau</p>
+                    </div>
+                    <div class="impact-card impact-card-2">
+                        <p class="impact-value">1,14 m² /min</p>
+                        <p class="impact-label">Occupation des sols</p>
+                    </div>
+                    <div class="impact-card impact-card-3">
+                        <p class="impact-value">10,28 mAh /min</p>
+                        <p class="impact-label">Consommation d'énergie</p>
+                    </div>
+                </section>
+
+                <!-- Personnalisation selon l'usage -->
+                <details class="personnalize" aria-labelledby="usage-title">
+                    <summary id="usage-title">Personnaliser selon votre usage</summary>
+
+                    <div class="usage-input">
+                        <label for="dailyMinutes">Temps d’usage quotidien (en minutes) :</label>
+                        <input id="dailyMinutes" type="number" min="0" max="600" value="60" inputmode="numeric">
+                    </div>
+
+                    <div class="usage-results" role="status" aria-live="polite">
+                        <div class="usage-card red">
+                        <p class="usage-label">Eau</p>
+                        <p class="usage-line"><strong id="waterDay">-</strong> / jour</p>
+                        </div>
+
+                        <div class="usage-card yellow">
+                        <p class="usage-label">Occupation des sols</p>
+                        <p class="usage-line"><strong id="landDay">-</strong> / jour</p>
+                        </div>
+
+                        <div class="usage-card green">
+                        <p class="usage-label">Énergie</p>
+                        <p class="usage-line"><strong id="energyDay">-</strong> / jour</p>
+                        </div>
+                    </div>
+
+                    <section class="meaning">
+                        <h4>Ça veut dire quoi concètement ?</h4>
+                        <p>
+                            Pour être plus clair et donner un ordre de grandeur, une bouteille d’eau contient environ 1,5L, 
+                            une batterie de smartphone est souvent autour de 4 500 mAh et l’occupation des sols représente la surface mobilisée par les infrastructures numériques.
+                        </p>
+                        <p>
+                            Ainsi, <strong>1 heure</strong> quotidienne sur X correspond à environ <strong>4 bouteilles d’eau</strong> consommées, à <strong>une soixantaine de mètres carrés</strong> d’infrastructures mobilisées, 
+                            ainsi qu’à une consommation d’énergie équivalente à <strong>environ 15%</strong> de batterie d'un smartphone.
+                        </p>
+                    </section>
+                </details>
             </section>
 
-
             <section class="tips">
-                <h2>Conseils pour réduire l’empreinte carbone<sup><a href="https://hellocarbo.com/sobriete-numerique-faut-il-debrancher/" target="_blank">[5]</a></sup></h2>
+                <h2>Conseils pour réduire l’empreinte carbone</h2>
                 <section class="additional-impact-content">
                     <div class="tip-item"><p>Limiter les vidéos et GIF, très énergivores.</p></div>
                     <div class="tip-item"><p>Réduire la fréquence de rafraîchissement du fil.</p></div>
@@ -102,21 +145,15 @@
         <section class="bibliography">
             <h2>Sources</h2>
             <ul class="bibliography-list">
-                <li><a href="https://www.statista.com/topics/737/twitter/#topicOverview" target="_blank">[1] Statista – Nombre d'utilisateurs Twitter/X</a></li>
-                <li><a href="https://kinsta.com/fr/blog/statistiques-twitter/" target="_blank">[2] Kinsta – Infos et chiffres Twitter/X 2025</a></li>
-                <li><a href="https://envirotecmagazine.com/2022/12/08/tracking-the-ecological-cost-of-a-tweet/" target="_blank">[3] CO₂ émis par X (Twitter)</a></li>
-                <li><a href="https://www.lemonde.fr/en/pixels/article/2023/08/15/twitter-environmentalists-deserting-social-media-platform-since-elon-musk-s-takeover_6094084_13.html" target="_blank">[4] Les Numériques – Pollution et émissions Twitter</a></li>
-                <li><a href="https://www.itforbusiness.fr/combien-coute-un-tweet-a-la-planete-57809" target="_blank">[5] IT For Business – Combien coûte un tweet à la planète ?</a></li>
-                <li><a href="https://greenly.earth/leaf-media/data-stories/le-cout-environnemental-des-reseaux-sociaux" target="_blank">[6] Greenly Earth – Le coût environnemental des réseaux sociaux</a></li>
-                <li><a href="https://www.larevuedudigital.com/tiktok-meta-x-et-youtube-des-emissions-de-gaz-a-effet-de-serre-passes-au-crible-par-greenly/" target="_blank">[7] LaRevueDuDigital – TikTok, Meta, X et YouTube : émissions GES</a></li>
-                <li><a href="https://www.linkedin.com/pulse/carbon-footprint-tweet-gilad-regev" target="_blank">[8] Gilad Regev – The Carbon Footprint of a Tweet</a></li>
-                <li><a href="https://www.lemagit.fr/actualites/366617326/Les-reseaux-sociaux-polluent-autant-que-des-pays-europeens-selon-le-francais-Greenly" target="_blank">[9] LeMagIT – Les réseaux sociaux polluent autant que des pays européens</a></li>
+                <li id="source1">[1] "Statistiques et faits époustouflants sur notre réseau préféré," Kinsta, Disponible en ligne : <a href="https://kinsta.com/fr/blog/statistiques-twitter/" target="_blank">https://kinsta.com/</a></li>
+                <li id="source2">[2] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2023 ," Greenspector, Disponible en ligne : <a href="https://greenspector.com/quelle-empreinte-environnementale-pour-les-applications-reseaux-sociaux-edition-2023/" target="_blank">https://greenspector.com/</a></li>
+                <li id="source3">[3] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2021," Greenspector, Disponible en ligne : <a href="https://greenspector.com/fr/reseaux-sociaux-2021/" target="_blank">https://greenspector.com/</a></li>
             </ul>
         </section>
 
         <div class="button-container">
             <button class="button" onclick="window.print()">Imprimer cette fiche</button>
-            <button class="button-secondary" onclick="window.open('../quelques-chiffres.html', '_self')">Retour</button>
+            <button class="button-secondary" onclick="window.open('../quelques-chiffres.html', '_self')">Retour aux autres services</button>
         </div>
     </div>
 
@@ -125,6 +162,43 @@
             <p>&copy; 2025 - Impact Environnemental de X (Twitter) | Andrianina Herimandimby </p>
         </section>
     </footer>
+
+    <script>
+        const WATER_PER_MIN = 0.10;   
+        const LAND_PER_MIN  = 1.14; 
+        const ENERGY_PER_MIN = 10.28;  
+
+        const input = document.getElementById("dailyMinutes");
+
+        const out = {
+            waterDay: document.getElementById("waterDay"),
+            landDay: document.getElementById("landDay"),
+            energyDay: document.getElementById("energyDay")
+        };
+
+        function formatNumber(n, unit) {
+            const value =
+            n >= 100 ? n.toFixed(0) :
+            n >= 10  ? n.toFixed(1) :
+                        n.toFixed(2);
+            return `${value.replace(".", ",")} ${unit}`;
+        }
+
+        function update() {
+            const minutes = Math.max(0, Number(input.value) || 0);
+
+            const waterDay = WATER_PER_MIN * minutes;
+            const landDay  = LAND_PER_MIN  * minutes;
+            const energyDay = ENERGY_PER_MIN * minutes;
+
+            out.waterDay.textContent = formatNumber(waterDay, "L");
+            out.landDay.textContent = formatNumber(landDay, "m²");
+            out.energyDay.textContent = formatNumber(energyDay, "mAh");
+        }
+
+        input.addEventListener("input", update);
+        update();
+    </script>
 
 </body>
 </html>

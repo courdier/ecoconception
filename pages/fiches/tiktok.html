@@ -56,21 +56,28 @@
                     <h2>155 Pays</h2>
                     <p>Présence mondiale de TikTok <sup><a href="#source2">[1]</a></sup></p>
                 </div>
-                <div class="stat-item">
-                    <i class="fas fa-broadcast-tower"></i>
-                    <h2>2,921 g CO2/min</h2>
-                    <p>Émissions de CO2 par minute d'utilisation <sup><a href="#source3">[2]</a></sup></p>
+                <div class="stat-item-container">
+                    <div class="stat-item" id="stat-item-base">
+                        <i class="fas fa-broadcast-tower"></i>
+                        <h2>57g CO2</h2>
+                        <p>Émission de CO2 par heure d'utilisation' <sup><a href="#source3">[3]</a></sup></p>
+                    </div>
+                    <div class="stat-item" id="stat-item-hover">
+                        <i class="fa-solid fa-car"></i>
+                        <h2>285 m</h2>
+                        <p>Équivalent carbone (distance en voiture) selon impact CO2<sup><a href="#source3">[3]</a></sup></p>
+                    </div>
                 </div>
             </section>
             <section class="impact-details">
-                <h2>Répartition des émissions de CO2 <sup><a href="#source4">[3]</a></sup></h2>
+                <h2>Répartition des émissions de CO2</h2>
                 <p>Les émissions de CO2 générées par TikTok proviennent principalement des centres de données, des réseaux de distribution, et des appareils des utilisateurs.</p>
                 <div class="chart-container">
                     <canvas id="co2Chart" width="600" height="600"></canvas>
                 </div>
             </section>
             <section class="additional-impact">
-                <h2>Autres impacts environnementaux <sup><a href="#source4">[4]</a></sup></h2>
+                <h2>Autres impacts environnementaux <sup><a href="#source2">[2]</a></sup></h2>
                 <section class="additional-impact-content">
                     <div class="impact-card impact-card-1">
                         <p class="impact-value">0,27 Litres /min</p>
@@ -87,8 +94,8 @@
                 </section>
 
                 <!-- Personnalisation selon l'usage -->
-                <section class="usage-impact" aria-labelledby="usage-title">
-                    <h3 id="usage-title">Personnaliser selon votre usage</h3>
+                <details class="personnalize" aria-labelledby="usage-title">
+                    <summary id="usage-title">Personnaliser selon votre usage</summary>
 
                     <div class="usage-input">
                         <label for="dailyMinutes">Temps d’usage quotidien (en minutes) :</label>
@@ -112,8 +119,8 @@
                         </div>
                     </div>
 
-                    <details class="meaning">
-                        <summary>Ça veut dire quoi concètement ?</summary>
+                    <section class="meaning">
+                        <h4>Ça veut dire quoi concètement ?</h4>
                         <p>
                             Pour être plus clair et donner un ordre de grandeur, une douche consomme en moyenne 6 litres d’eau par minute, 
                             une batterie de smartphone est souvent autour de 4 500 mAh et l’occupation des sols représente la surface mobilisée par les infrastructures numériques.
@@ -122,11 +129,11 @@
                             Ainsi, <strong>1 heure</strong> quotidienne sur TikTok correspond à une douche de presque <strong>3 minutes</strong>, à <strong>une centaine de mètres carrés</strong> d’infrastructures mobilisées, 
                             ainsi qu’à une consommation d’énergie équivalente à <strong>20%</strong> de batterie d'un smartphone.
                         </p>
-                    </details>
+                    </section>
                 </section>
             </section>
             <section class="tips">
-                <h2>Conseils pour réduire l'empreinte carbone <sup><a href="#source5">[5]</a><a href="#source6">[6]</a></sup></h2>
+                <h2>Conseils pour réduire l'empreinte carbone <sup><a href="#source4">[4]</a></sup></h2>
                 <section class="additional-impact-content">
                     <div class="tip-item">
                         <p>Limitez le temps passé sur TikTok pour réduire votre empreinte carbone.</p>
@@ -149,18 +156,10 @@
         <section class="bibliography">
             <h2>Sources</h2>
             <ul class="bibliography-list">
-                <li id="source1">[1] "TikTok en chiffres clés et statistiques en France et dans le Monde en 2024" Disponible en ligne : <a href="https://blog.digimind.com/fr/agences/tiktok-chiffres-et-statistiques-france-monde-2020#:~:text=TikTok%20est%20disponible%20dans%20155,la%20France%20en%204%C3%A8me%20position.&text=TikTok%20a%20atteint%20les%203%20milliards%20de%20t%C3%A9l%C3%A9chargements%20en%20juillet%202021." target="_blank">https://blog.digimind.com/fr/agences/tiktok-chiffres-et-statistiques-france-monde-2020.</a></li>
-                <li id="source2">[2] "Pollution numérique et réseaux sociaux" Disponible en ligne : <a href="https://yotta.paris/blog/reseaux-sociaux-pollution-numerique" target="_blank">https://yotta.paris/blog/reseaux-sociaux-pollution-numerique</a></li>
-                <li id="source3">[3] "L'Arcep à l’écoute des enjeux environnementaux," Arcep, 2021, Disponible en ligne : <a href="https://www.arcep.fr/la-regulation/grands-dossiers-thematiques-transverses/lempreinte-environnementale-du-numerique.html#:~:text=D'apr%C3%A8s%20les%20deux%20premiers,de%204%20%C3%A0%2013%25." target="_blank">https://www.arcep.fr/la-regulation/grands-dossiers-thematiques-transverses/lempreinte-environnementale-du-numerique.html.</a></li>
-                <li id="source5">[4] "Réseaux sociaux 2021," Greenspector, Disponible en ligne : <a href="https://greenspector.com/fr/reseaux-sociaux-2021/" target="_blank">https://greenspector.com/fr/reseaux-sociaux-2021/</a></li>
-                <li id="source5">[5] "Réduire son impact environnemental sur les médias sociaux: Guide pour les utilisateurs conscients", Disponible en ligne : <a href="https://digital.hec.ca/blog/reduire-son-impact-environnemental-sur-les-medias-sociaux/" target="_blank">https://digital.hec.ca/blog/reduire-son-impact-environnemental-sur-les-medias-sociaux/</a></li>
-                <li id="source6">[6]
-                    ADEME, « Comment adopter la sobriété numérique », 2024. 
-                    Disponible : 
-                    <a href="https://librairie.ademe.fr/consommer-autrement/7575-comment-adopter-la-sobriete-numerique--9791029724237.html" target="_blank">
-                        https://librairie.ademe.fr/consommer-autrement/7575-comment-adopter-la-sobriete-numerique--9791029724237.html
-                    </a>
-                </li>
+                <li id="source1">[1] "TikTok en chiffres clés et statistiques en France et dans le Monde en 2024" Disponible en ligne : <a href="https://blog.digimind.com/fr/agences/tiktok-chiffres-et-statistiques-france-monde-2020#:~:text=TikTok%20est%20disponible%20dans%20155,la%20France%20en%204%C3%A8me%20position.&text=TikTok%20a%20atteint%20les%203%20milliards%20de%20t%C3%A9l%C3%A9chargements%20en%20juillet%202021." target="_blank">https://blog.digimind.com/</a></li>
+                <li id="source2">[2] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2021 ," Greenspector, Disponible en ligne : <a href="https://greenspector.com/fr/reseaux-sociaux-2021/" target="_blank">https://greenspector.com/</a></li>
+                <li id="source3">[3] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2023 ," Greenspector, Disponible en ligne : <a href="https://greenspector.com/quelle-empreinte-environnementale-pour-les-applications-reseaux-sociaux-edition-2023/" target="_blank">https://greenspector.com/</a></li>
+                <li id="source4">[4] "Réduire son impact environnemental sur les médias sociaux: Guide pour les utilisateurs conscients", Disponible en ligne : <a href="https://digital.hec.ca/blog/reduire-son-impact-environnemental-sur-les-medias-sociaux/" target="_blank">https://digital.hec.ca/</a></li>
             </ul>            
         </section>
         <div class="button-container">

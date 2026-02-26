@@ -47,20 +47,13 @@
             <section class="stats-icons">
                 <div class="stat-item">
                     <i class="fas fa-users"></i>
-                    <h2>30+ Millions</h2>
+                    <h2>35+ Millions</h2>
                     <p>Nombre de spectateurs actifs quotidiens <sup><a href="#source1">[1]</a></sup></p>
                 </div>
-                <div class="stat-item-container">
-                    <div class="stat-item" id="stat-item-base">
-                        <i class="fas fa-video"></i>
-                        <h2>2,201,081 heures</h2>
-                        <p>de contenu diffusées par jour<sup><a href="#source5">[7]</a></sup></p>
-                    </div>
-                    <div class="stat-item" id="stat-item-hover">
-                        <i class="fa-solid fa-video"></i>
-                        <h2>46,259,400 heures</h2>
-                        <p>de contenu regardées par jour<sup><a href="#source5">[7]</a></sup></p>
-                    </div>
+                <div class="stat-item">
+                    <i class="fas fa-video"></i>
+                    <h2>7,3 Millions</h2>
+                    <p>Nombre de chaînes actives chaque mois<sup><a href="#source1">[1]</a></sup></p>
                 </div>
                 <div class="stat-item">
                     <i class="fas fa-globe"></i>
@@ -75,39 +68,13 @@
                     </div>
                     <div class="stat-item" id="stat-item-hover">
                         <i class="fa-solid fa-car"></i>
-                        <h2>98 km</h2>
-                        <p>Equivalent carbone (km en voiture) selon impact CO2<sup><a href="#source3">[3]</a></sup></p>
+                        <h2>155 m</h2>
+                        <p>Équivalent carbone (distance en voiture) selon impact CO2<sup><a href="#source3">[3]</a></sup></p>
                     </div>
                 </div>
             </section>
-            <section class="impact-details">
-                <h2>Répartition des consommations par type de contenu <sup><a href="#source4">[4]</a></sup></h2> 
-                    <p>Le streaming en direct sur Twitch représente une part significative du trafic internet mondial. La plateforme, avec ses diffusions de jeux vidéo en direct et en haute définition, contribue de manière substantielle à la consommation énergétique et aux émissions de CO2 associées au numérique.</p>
-                <div class="chart-container" style="display: flex; justify-content: center; max-width: 100%; position: relative; height: 400px;">
-                    <canvas id="serviceChart" width="400%" height="400%"></canvas>
-                </div>
-                <a href="https://youtu.be/dQw4w9WgXcQ?si=ySMSiw5CrP-wn40C" style="color: #1c1c1e; text-decoration: none;">easter egg</a>
-            </section>
             <section class="future-impact">
-                <h2>Impact de la vidéo 4K en streaming <sup><a href="#source4">[4]</a></sup></h2> 
-                <p>La popularité croissante des vidéos en haute définition et en 4K sur Twitch nécessite plus de bande passante et une puissance de traitement accrue, contribuant ainsi à une empreinte environnementale plus élevée. Cette qualité vidéo élevée augmente aussi la consommation d'énergie des appareils et des serveurs.</p>
-                <section class="additional-impact-content">
-                    <div class="impact-card impact-card-1">
-                        <p class="impact-value">20% plus d'énergie</p>
-                        <p class="impact-label">Consommation accrue des diffusions en 4K</p>
-                    </div>
-                    <div class="impact-card impact-card-2">
-                        <p class="impact-value">10 To/jour</p>
-                        <p class="impact-label">Trafic généré par les streamers populaires</p>
-                    </div>
-                    <div class="impact-card impact-card-3">
-                        <p class="impact-value">25% du trafic de jeux</p>
-                        <p class="impact-label">Provenant de Twitch et de services similaires</p>
-                    </div>
-                </section>
-            </section>
-            <section class="future-impact">
-                <h2>Consommation d'énergie en fonction de la qualité de la vidéo <sup><a href="#source4">[4]</a></sup></h2>
+                <h2>Consommation d'énergie en fonction de la qualité de la vidéo</h2>
                 <p>La consommation d'énergie liée au streaming sur Twitch augmente avec la qualité de la vidéo. Diffuser en 4K, par exemple, demande beaucoup plus de bande passante et de puissance de traitement que des diffusions de qualité inférieure, augmentant ainsi l'empreinte environnementale.</p>
                 <div class="comparison-box">
                     <div class="comparison-item">
@@ -151,8 +118,63 @@
                         </div>
                     </div>
                 </div>
-                
             </section>            
+            <section class="additional-impact">
+                <h2>Autres impacts environnementaux <sup><a href="#source3">[3]</a></sup></h2>
+                <section class="additional-impact-content">
+                    <div class="impact-card impact-card-1">
+                        <p class="impact-value">0,09 Litres /min</p>
+                        <p class="impact-label">Ressource en Eau</p>
+                    </div>
+                    <div class="impact-card impact-card-2">
+                        <p class="impact-value">1,01 m² /min</p>
+                        <p class="impact-label">Occupation des sols</p>
+                    </div>
+                    <div class="impact-card impact-card-3">
+                        <p class="impact-value">9,05 mAh /min</p>
+                        <p class="impact-label">Consommation d'énergie</p>
+                    </div>
+                </section>
+
+                <!-- Personnalisation selon l'usage -->
+                <details class="personnalize" aria-labelledby="usage-title">
+                    <summary id="usage-title">Personnaliser selon votre usage</summary>
+
+                    <div class="usage-input">
+                        <label for="dailyMinutes">Temps d’usage quotidien (en minutes) :</label>
+                        <input id="dailyMinutes" type="number" min="0" max="600" value="60" inputmode="numeric">
+                    </div>
+
+                    <div class="usage-results" role="status" aria-live="polite">
+                        <div class="usage-card red">
+                        <p class="usage-label">Eau</p>
+                        <p class="usage-line"><strong id="waterDay">-</strong> / jour</p>
+                        </div>
+
+                        <div class="usage-card yellow">
+                        <p class="usage-label">Occupation des sols</p>
+                        <p class="usage-line"><strong id="landDay">-</strong> / jour</p>
+                        </div>
+
+                        <div class="usage-card green">
+                        <p class="usage-label">Énergie</p>
+                        <p class="usage-line"><strong id="energyDay">-</strong> / jour</p>
+                        </div>
+                    </div>
+
+                    <section class="meaning">
+                        <h4>Ça veut dire quoi concètement ?</h4>
+                        <p>
+                            Pour être plus clair et donner un ordre de grandeur, une bouteille d’eau contient environ 1,5L, 
+                            une batterie de smartphone est souvent autour de 4 500 mAh et l’occupation des sols représente la surface mobilisée par les infrastructures numériques.
+                        </p>
+                        <p>
+                            Ainsi, <strong>1 heure</strong> quotidienne sur Twitch correspond à environ <strong>4 bouteilles d’eau</strong> consommées, à <strong>une soixantaine de mètres carrés</strong> d’infrastructures mobilisées, 
+                            ainsi qu’à une consommation d’énergie équivalente à <strong>environ 12%</strong> de batterie d'un smartphone.
+                        </p>
+                    </section>
+                </details>
+            </section>
             <section class="tips">
                 <h2>Conseils pour réduire l'empreinte carbone</h2>
                 <section class="additional-impact-content">
@@ -171,14 +193,10 @@
         <section class="bibliography">
             <h2>Sources</h2>
             <ul class="bibliography-list">
-                <li id="source1">[1] "Chiffres Twitch – 2024," <em>Blog du Moderateur</em>, Disponible en ligne : <a href="https://www.blogdumoderateur.com/chiffres-twitch/" target="_blank">https://www.blogdumoderateur.com/</a></li>
-                <li id="source2">[2] "Twitch est disponible dans plus de 230 pays," <em>Twitch Support</em>, Disponible en ligne : <a href="https://help.twitch.tv/" target="_blank">https://help.twitch.tv/</a></li>
-                <li id="source3">[3] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2023," <em>Greenspector</em>, Disponible en ligne : <a href="https://greenspector.com/fr/quelle-empreinte-environnementale-pour-les-applications-reseaux-sociaux-edition-2023/" target="_blank">https://greenspector.com/</a></li>
-                <li id="source4">[4] "Streaming et impact environnemental," <em>EcoReseau</em>, Disponible en ligne : <a href="https://ecoreseau.fr/" target="_blank">https://ecoreseau.fr/</a></li>
-                <li id="source4">[5] "GreenIT: Vidéo en ligne : quels impacts environnementaux ?," <em>greenit</em>, Disponible en ligne : <a href="https://www.greenit.fr/2019/07/22/%ef%bb%bfvideo-en-ligne-quels-impacts-environnementaux/" target="_blank">https://greenit.fr/</a></li>
-                <li id="source4">[6] "Que représente (réellement) une tonne d’équivalent CO2 ?," <em>Hellocarbo</em>, Disponible en ligne : <a href="https://www.hellocarbo.com/blog/calculer/tonne-equivalent-co2/" target="_blank">www.hellocarbo.com/</a></li>
-                <li id="source5">[7] "Chiffres Twitch - 2025," <em>TwitchTracker</em>, Disponible en ligne : <a href="https://twitchtracker.com/statistics" target="_blank">https://twitchtracker.com//</a></li>
-                
+                <li id="source1">[1] "Chiffres Twitch - 2026," <em>Blog du Moderateur</em>, Disponible en ligne : <a href="https://www.blogdumoderateur.com/chiffres-twitch/" target="_blank">https://www.blogdumoderateur.com/</a></li>
+                <li id="source2">[2] "Twitch : le nouveau terrain de jeu du sport," <em>Sport Heroes</em>, Disponible en ligne : <a href="https://blog.sportheroes.com/fr/twitch-la-nouvelle-plateforme-streaming-sport?utm_source=chatgpt.com" target="_blank">https://blog.sportheroes.com/</a></li>
+                <li id="source3">[3] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2023," <em>Greenspector</em>, Disponible en ligne : <a href="https://greenspector.com/fr/quelle-empreinte-environnementale-pour-les-applications-reseaux-sociaux-edition-2023/" target="_blank">https://greenspector.com/</a></li> 
+                <li id="source4">[4] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2021," <em>Greenspector</em>, Disponible en ligne : <a href="https://greenspector.com/reseaux-sociaux-2021/" target="_blank">https://greenspector.com/</a></li>                           
             </ul>          
         </section>
         <div class="button-container">
@@ -189,77 +207,47 @@
     <footer>
         <p class="mg-0">&copy; 2024 ROCHAT Lise & COURDIER Remy - <a href="../a-propos.html">À propos</a></p>
     </footer>
-    <script>
-        var ctx = document.getElementById('serviceChart').getContext('2d');
-        var serviceChart = new Chart(ctx, {
-            type: 'bar',  // Type de graphique en barres
-            data: {
-                labels: ['Just Chatting', 'Grand Theft Auto V', 'League of Legends', 'Fortnite'],
-                datasets: [{
-                    data: [70.6, 20.2, 18.8, 14.1],
-                    backgroundColor: [
-                        '#8e44ad',
-                        '#3498db',
-                        '#2ecc71',
-                        '#f39c12'
-                    ],
-                    borderColor: [
-                        '#8e44ad',
-                        '#3498db',
-                        '#2ecc71',
-                        '#f39c12'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false // Désactivation de la légende
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(tooltipItem) {
-                                return tooltipItem.label + ': ' + tooltipItem.raw + 'M'; // Modification du texte du tooltip
-                            }
-                        }
-                    },
-                    title: {
-                        display: true, // Activation du titre
-                        text: 'Top 4 des types de contenu les plus regardé sur Twitch', // Texte du titre
-                        font: {
-                            size: 18, // Taille de la police
-                            weight: 'bold' // Poids de la police
-                        },
-                        padding: {
-                            top: 20, // Espacement du titre
-                            bottom: 20
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: "Nombre d'heurs visionées (en milion)"
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Type de contenu'
-                        }
-                    }
-                }
-            }
-        });
-    </script>
      <footer>
         <section class="footer-content">
             <p>&copy; 2024 - Impact Environnemental de Twitch | GRONDIN Olivier, étudiant en Master 2 informatique</p>
         </section>
-    </footer>   
+    </footer>  
+    
+    <script>
+        const WATER_PER_MIN = 0.09;   
+        const LAND_PER_MIN  = 1.01; 
+        const ENERGY_PER_MIN = 9.05;  
+
+        const input = document.getElementById("dailyMinutes");
+
+        const out = {
+            waterDay: document.getElementById("waterDay"),
+            landDay: document.getElementById("landDay"),
+            energyDay: document.getElementById("energyDay")
+        };
+
+        function formatNumber(n, unit) {
+            const value =
+            n >= 100 ? n.toFixed(0) :
+            n >= 10  ? n.toFixed(1) :
+                        n.toFixed(2);
+            return `${value.replace(".", ",")} ${unit}`;
+        }
+
+        function update() {
+            const minutes = Math.max(0, Number(input.value) || 0);
+
+            const waterDay = WATER_PER_MIN * minutes;
+            const landDay  = LAND_PER_MIN  * minutes;
+            const energyDay = ENERGY_PER_MIN * minutes;
+
+            out.waterDay.textContent = formatNumber(waterDay, "L");
+            out.landDay.textContent = formatNumber(landDay, "m²");
+            out.energyDay.textContent = formatNumber(energyDay, "mAh");
+        }
+
+        input.addEventListener("input", update);
+        update();
+    </script>
 </body>
 </html>
