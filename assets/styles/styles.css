@@ -862,6 +862,13 @@ pre code {
     transform: rotate(-45deg) translate(7px, -7px);
 }
 
+.bg-logo {
+    position: absolute;
+    opacity: 0.09;
+    width: 80px;
+    pointer-events: none;
+}
+
 /* Responsive Design */
 
 /* Tablettes (Portrait et Paysage) */
