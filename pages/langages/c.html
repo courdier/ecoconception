@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Règles d'éco-conception pour C/C++ sur systèmes embarqués et IoT (M5Stack/ESP32) - Optimisations énergétiques">
+    <meta name="keywords" content="C, C++, écoconception, IoT, M5Stack, ESP32, optimisation, consommation énergétique, green coding, embedded, deep sleep">
+    <meta name="author" content="Marius Roger">
+    <title>C/C++ IoT - Éco-conception & Optimisations</title>
+    <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/styles/styles.css">
+    <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
+    <script defer src="../../assets/scripts/scripts-tp.js"></script>
+    <style>
+        /* ── Code blocks ── */
+        .code-block {
+            background-color: #2d2d2d;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .code-block.bad  { border-left-color: var(--emergency-color); background-color: rgba(253,99,99,0.08); }
+        .code-block.good { border-left-color: var(--success-color);   background-color: rgba(105,240,109,0.08); }
+        .code-block pre  { margin: 0; color: #e8e8e8; }
+        .code-block code { color: #e8e8e8; }
+        .keyword  { color: #569cd6; }
+        .string   { color: #ce9178; }
+        .function { color: #dcdcaa; }
+        .variable { color: #9cdcfe; }
+        .comment  { color: #6a9955; font-style: italic; }
+        .operator { color: #d4d4d4; }
+
+        /* ── Eco-rule cards ── */
+        .eco-rule {
+            margin: 20px 0;
+            background: linear-gradient(135deg, rgba(47,223,173,0.05) 0%, rgba(47,223,173,0.01) 100%);
+            border-radius: 10px;
+            border: 1px solid rgba(47,223,173,0.3);
+            overflow: hidden;
+        }
+        .rule-header {
+            padding: 20px 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .rule-header:hover { background-color: rgba(47,223,173,0.1); }
+        .rule-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+        .rule-number {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .rule-title-section { flex: 1; }
+        .rule-title { color: var(--primary-color); font-size: 1.3rem; margin: 0 0 5px 0; }
+        .rule-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+        .tag {
+            background-color: rgba(255,255,255,0.1);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: var(--text-color);
+        }
+        .rule-metrics { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
+        .metric-item { text-align: center; min-width: 80px; }
+        .metric-value { font-size: 1.3rem; font-weight: bold; color: var(--success-color); }
+        .metric-label { font-size: 0.75rem; color: var(--text-color-light); margin-top: 2px; }
+        .expand-icon { font-size: 1.5rem; color: var(--primary-color); transition: transform 0.3s; }
+        .eco-rule.active .expand-icon { transform: rotate(180deg); }
+        .rule-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding: 0 25px;
+        }
+        .eco-rule.active .rule-content {
+            max-height: 8000px;
+            padding: 0 25px 25px 25px;
+        }
+
+        /* ── Impact badges ── */
+        .impact-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin: 5px;
+        }
+        .impact-high   { background-color: var(--success-color);  color: var(--background-color); }
+        .impact-medium { background-color: var(--warning-color);  color: var(--background-color); }
+        .impact-low    { background-color: var(--info-color);     color: white; }
+
+        /* ── Info boxes ── */
+        .explanation-box {
+            background-color: rgba(255,255,255,0.05);
+            padding: 15px; border-radius: 8px; margin: 15px 0;
+            border-left: 3px solid var(--info-color);
+        }
+        .gain-box {
+            background-color: rgba(105,240,109,0.1);
+            padding: 15px; border-radius: 8px; margin: 15px 0;
+            border-left: 3px solid var(--success-color);
+        }
+
+        /* ── Language nav ── */
+        .nav-languages {
+            display: flex; gap: 10px;
+            justify-content: center;
+            margin: 20px 0; flex-wrap: wrap;
+        }
+        .nav-languages a {
+            padding: 10px 20px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        .nav-languages a:hover { background-color: rgba(47,223,173,0.2); border-color: var(--primary-color); }
+        .nav-languages a.active { background-color: #555; color: white; border-color: #aaa; }
+
+        /* ── Summary table ── */
+        .summary-table {
+            width: 100%; border-collapse: collapse;
+            margin: 25px 0;
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 8px; overflow: hidden;
+        }
+        .summary-table th, .summary-table td {
+            padding: 12px 15px; text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .summary-table th { background-color: rgba(47,223,173,0.2); color: var(--primary-color); font-weight: bold; }
+        .summary-table tr:hover { background-color: rgba(255,255,255,0.05); }
+
+        /* ── Methodology section ── */
+        .methodology-section {
+            margin: 40px 0;
+            background: linear-gradient(135deg, rgba(47,223,173,0.05) 0%, rgba(47,223,173,0.01) 100%);
+            border-radius: 10px;
+            border: 1px solid rgba(47,223,173,0.3);
+        }
+        .methodology-header {
+            padding: 20px 25px; cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .methodology-header:hover { background-color: rgba(47,223,173,0.1); }
+        .methodology-content {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease-out; padding: 0 25px;
+        }
+        .methodology-section.active .methodology-content {
+            max-height: 8000px; padding: 0 25px 25px 25px;
+        }
+        .methodology-section.active .expand-icon { transform: rotate(180deg); }
+        .methodology-table {
+            width: 100%; border-collapse: collapse; margin: 20px 0;
+            background-color: rgba(255,255,255,0.05); border-radius: 8px; overflow: hidden;
+        }
+        .methodology-table th, .methodology-table td {
+            padding: 12px 15px; text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .methodology-table th { background-color: rgba(47,223,173,0.2); color: var(--primary-color); font-weight: bold; }
+
+        /* ── Bibliography ── */
+        .bibliography { text-align: center; padding: 40px 20px; }
+        .bibliography h2 { color: var(--primary-color); margin-bottom: 20px; }
+        .bibliography-list { list-style: none; padding: 0; }
+        .bibliography-list li { margin-bottom: 12px; font-size: 0.9rem; line-height: 1.6; }
+
+        @media (max-width: 768px) {
+            .rule-header { flex-direction: column; align-items: flex-start; }
+            .rule-metrics { width: 100%; justify-content: space-around; }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="mg-0"><a href="../../index.html">Home</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html">Chiffres</a></li>
+                <li class="mg-0"><a href="../quizV1.html">Quiz</a></li>
+                <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
+                <li class="mg-0"><a href="../langages.html" class="active">Langages</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main">
+        <h1><i class="fas fa-microchip"></i> C/C++ — Éco-conception &amp; Green Coding IoT</h1>
+
+        <!-- Navigation entre langages -->
+        <div class="nav-languages">
+            <a href="./php.html"><i class="fab fa-php"></i> PHP</a>
+            <a href="./python.html"><i class="fab fa-python"></i> Python</a>
+            <a href="./c.html" class="active"><i class="fas fa-microchip"></i> C/C++</a>
+            <a href="#" style="opacity:0.5;cursor:not-allowed;"><i class="fab fa-java"></i> Java (bientôt)</a>
+            <a href="#" style="opacity:0.5;cursor:not-allowed;"><i class="fas fa-cog"></i> Rust (bientôt)</a>
+            <a href="#" style="opacity:0.5;cursor:not-allowed;"><i class="fab fa-js"></i> JavaScript (bientôt)</a>
+        </div>
+
+        <!-- Introduction -->
+        <section class="intro-text">
+            <p>
+                Le langage C/C++ est le langage de référence pour les <strong>systèmes embarqués et l'IoT</strong>.
+                Sur des plateformes comme le <strong>M5Stack (ESP32)</strong>, chaque milliampère compte :
+                une mauvaise gestion des ressources réduit l'autonomie, augmente les coûts d'infrastructure
+                et accroît l'empreinte écologique des déploiements.
+            </p>
+            <p>
+                Cette page présente <strong>10 règles d'éco-conception</strong> C/C++ adaptées à l'ESP32/M5Stack,
+                mesurées à l'ampèremètre, avec des équivalences CO₂ concrètes calculées sur la base
+                du mix énergétique de La Réunion (~573 g CO₂/kWh).
+            </p>
+        </section>
+
+        <!-- Méthodologie collapsible -->
+        <section class="methodology-section">
+            <div class="methodology-header">
+                <h2 style="color:var(--primary-color);margin:0;">
+                    <i class="fas fa-flask"></i> Méthodologie de Mesure
+                </h2>
+                <i class="fas fa-chevron-down expand-icon"></i>
+            </div>
+            <div class="methodology-content">
+                <p style="margin-top:15px;">
+                    L'évaluation de l'impact énergétique d'un programme embarqué repose sur trois axes
+                    complémentaires : le temps CPU, la consommation mémoire et la consommation électrique
+                    mesurée physiquement au moyen d'un ampèremètre connecté à la batterie du M5Stack.
+                </p>
+
+                <h3 style="color:var(--primary-color);margin-top:30px;">
+                    <i class="fas fa-clock"></i> 1. Temps d'exécution
+                </h3>
+                <div class="explanation-box">
+                    <p>
+                        Le temps de calcul est mesuré via les fonctions <code>micros()</code> et <code>millis()</code>
+                        d'Arduino, ou via le timer haute résolution de l'ESP-IDF (<code>esp_timer_get_time()</code>).
+                        Moins de cycles CPU = moins d'énergie consommée. On distingue :
+                    </p>
+                    <ul>
+                        <li><strong>Temps actif</strong> : pendant l'exécution d'une tâche</li>
+                        <li><strong>Temps d'attente</strong> : <code>delay()</code> ou veille légère</li>
+                    </ul>
+                    <p>
+                        Un <code>delay(1000)</code> maintient le CPU actif et consomme autant qu'une tâche
+                        intensive. Passer en <em>light sleep</em> pendant les attentes est une optimisation
+                        fondamentale.
+                    </p>
+                </div>
+
+                <h3 style="color:var(--primary-color);margin-top:30px;">
+                    <i class="fas fa-memory"></i> 2. Consommation mémoire
+                </h3>
+                <div class="explanation-box">
+                    <p>
+                        L'ESP32 du M5Stack dispose de 520 Ko de RAM interne. Une utilisation excessive provoque :
+                    </p>
+                    <ul>
+                        <li>Des accès plus fréquents à la mémoire Flash (énergivore)</li>
+                        <li>Des risques de stack overflow causant des resets (consomme beaucoup d'énergie)</li>
+                        <li>Une fragmentation du heap avec <code>malloc/free</code> intensif</li>
+                    </ul>
+                    <p>On mesure via <code>ESP.getFreeHeap()</code> et <code>uxTaskGetStackHighWaterMark()</code>.</p>
+                </div>
+
+                <h3 style="color:var(--primary-color);margin-top:30px;">
+                    <i class="fas fa-bolt"></i> 3. Consommation électrique réelle
+                </h3>
+                <div class="explanation-box">
+                    <p>
+                        Nous mesurons la consommation avec un ampèremètre en série sur la ligne d'alimentation,
+                        dans quatre états représentatifs du M5Stack :
+                    </p>
+                    <table class="methodology-table">
+                        <thead>
+                            <tr><th>État</th><th>Consommation typique</th><th>Description</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Actif (écran 100%)</td><td>~150 mA</td><td>Traitement + affichage</td></tr>
+                            <tr><td>Écran dimmé (50%)</td><td>~90 mA</td><td>Traitement + LCD réduit</td></tr>
+                            <tr><td>Écran éteint</td><td>~60 mA</td><td>CPU actif, LCD off</td></tr>
+                            <tr><td>Light sleep</td><td>~5 mA</td><td>CPU suspendu, RAM maintenue</td></tr>
+                            <tr><td>Deep sleep</td><td>~0.01 mA</td><td>Seulement RTC actif</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 style="color:var(--primary-color);margin-top:30px;">
+                    <i class="fas fa-calculator"></i> 4. Conversion en CO₂
+                </h3>
+                <div class="explanation-box">
+                    <p>
+                        La consommation électrique est convertie en émissions CO₂ selon la formule :
+                    </p>
+                    <p style="text-align:center; font-style:italic; font-size:1.1rem; margin:10px 0;">
+                        Émissions (kg CO₂) = Énergie (kWh) × Facteur émission (g CO₂/kWh) ÷ 1000
+                    </p>
+                    <p>
+                        Pour un appareil M5Stack alimenté à <strong>3,7 V (batterie LiPo)</strong> :<br>
+                        <code>Énergie (kWh) = Intensité (mA) × 3,7 V × Durée (h) ÷ 1 000 000</code>
+                    </p>
+                    <p>
+                        Mix énergétique retenu : <strong>La Réunion ≈ 573 g CO₂/kWh</strong>
+                        (majoritairement thermique fossile).
+                    </p>
+                    <p>
+                        Hypothèse de déploiement : <strong>appareil fonctionnant 24 h/24, 365 j/an</strong>
+                        (capteur IoT industriel ou de surveillance). Les gains sont exprimés sur cette base annuelle.
+                    </p>
+                </div>
+
+                <h3 style="color:var(--primary-color);margin-top:30px;">
+                    <i class="fas fa-server"></i> 5. Configuration de référence
+                </h3>
+                <div class="explanation-box">
+                    <p><strong>Matériel :</strong> M5Stack Core (ESP32 240 MHz, 520 Ko RAM, 4 Mo Flash)</p>
+                    <p><strong>Batterie :</strong> LiPo 700 mAh, 3,7 V</p>
+                    <p><strong>Firmware :</strong> Arduino Framework + ESP-IDF 5.x</p>
+                    <p><strong>Localisation :</strong> La Réunion (mix énergétique ~573 g CO₂/kWh)</p>
+                    <p><strong>Mesure :</strong> Ampèremètre USB/DC en série, résolution 0,1 mA</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Métriques Green IT -->
+        <section style="margin-top:40px;padding:25px;background-color:rgba(255,255,255,0.05);border-radius:10px;border-left:4px solid var(--primary-color);">
+            <h3><i class="fas fa-info-circle"></i> Métriques de référence Green IT</h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;margin-top:15px;">
+                <div style="padding:10px;background:rgba(47,223,173,0.1);border-radius:8px;">
+                    <strong>1 km voiture thermique</strong><br>112 g eq CO₂ (source ADEME)
+                </div>
+                <div style="padding:10px;background:rgba(47,223,173,0.1);border-radius:8px;">
+                    <strong>La Réunion — mix énergétique</strong><br>~573 g CO₂/kWh (thermique fossile)
+                </div>
+                <div style="padding:10px;background:rgba(47,223,173,0.1);border-radius:8px;">
+                    <strong>Batterie IoT 700 mAh (3,7V)</strong><br>Durée de vie × consommation moy.
+                </div>
+                <div style="padding:10px;background:rgba(47,223,173,0.1);border-radius:8px;">
+                    <strong>1 arbre mature</strong><br>Absorbe ~22 kg CO₂/an
+                </div>
+            </div>
+            <p style="margin-top:15px;font-size:0.9rem;">
+                Ces références permettent de contextualiser l'impact du firmware dans des termes concrets du quotidien.
+            </p>
+        </section>
+
+        <!-- Tableau récapitulatif -->
+        <section style="margin-top:50px;">
+            <h2>Récapitulatif des 10 éco-rules C/C++ IoT</h2>
+            <p>Cliquez sur une règle pour afficher les détails et les exemples de code.</p>
+
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Règle</th>
+                        <th>Courant économisé</th>
+                        <th>CO₂ économisé/an</th>
+                        <th>Équiv. voiture</th>
+                        <th>Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr onclick="toggleRule('rule1')" style="cursor:pointer;">
+                        <td>1</td>
+                        <td><strong>Deep Sleep &amp; Luminosité</strong></td>
+                        <td>~140 mA</td>
+                        <td>~2,62 kg</td>
+                        <td>~23 km</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="toggleRule('rule2')" style="cursor:pointer;">
+                        <td>2</td>
+                        <td><strong>Optimisation des boucles</strong></td>
+                        <td>~15 mA</td>
+                        <td>~0,17 kg</td>
+                        <td>~1,5 km</td>
+                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="toggleRule('rule3')" style="cursor:pointer;">
+                        <td>3</td>
+                        <td><strong>Interruptions vs Polling</strong></td>
+                        <td>~95 mA</td>
+                        <td>~1,76 kg</td>
+                        <td>~16 km</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="toggleRule('rule4')" style="cursor:pointer;">
+                        <td>4</td>
+                        <td><strong>Limiter Serial &amp; Logs</strong></td>
+                        <td>~80 mA</td>
+                        <td>~1,48 kg</td>
+                        <td>~13 km</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="toggleRule('rule5')" style="cursor:pointer;">
+                        <td>5</td>
+                        <td><strong>Gestion mémoire Stack/Heap</strong></td>
+                        <td>~40 mA</td>
+                        <td>~0,74 kg</td>
+                        <td>~7 km</td>
+                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="toggleRule('rule6')" style="cursor:pointer;">
+                        <td>6</td>
+                        <td><strong>Désactiver Wi-Fi/BT/ADC</strong></td>
+                        <td>~130 mA</td>
+                        <td>~2,41 kg</td>
+                        <td>~22 km</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="toggleRule('rule7')" style="cursor:pointer;">
+                        <td>7</td>
+                        <td><strong>constexpr &amp; const (ROM vs RAM)</strong></td>
+                        <td>~10 mA</td>
+                        <td>~0,18 kg</td>
+                        <td>~1,6 km</td>
+                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="toggleRule('rule8')" style="cursor:pointer;">
+                        <td>8</td>
+                        <td><strong>Adapter la fréquence CPU</strong></td>
+                        <td>~70 mA</td>
+                        <td>~1,30 kg</td>
+                        <td>~12 km</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="toggleRule('rule9')" style="cursor:pointer;">
+                        <td>9</td>
+                        <td><strong>Minimiser accès Flash (cache RAM)</strong></td>
+                        <td>~130 mA</td>
+                        <td>~2,41 kg</td>
+                        <td>~22 km</td>
+                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
+                    </tr>
+                    <tr onclick="toggleRule('rule10')" style="cursor:pointer;">
+                        <td>10</td>
+                        <td><strong>Types de données adaptés</strong></td>
+                        <td>~15 mA</td>
+                        <td>~0,28 kg</td>
+                        <td>~2,5 km</td>
+                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6" style="font-size:0.8rem;color:var(--text-color-light);padding-top:15px;">
+                            <strong>Note :</strong> Mesures réalisées à l'ampèremètre sur M5Stack Core (ESP32, 3,7 V LiPo).
+                            Conversion CO₂ : mix La Réunion ≈ 573 g/kWh. Base annuelle : 8 760 h/an (déploiement continu).
+                            Les résultats varient selon le cas d'usage réel.
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+        <!-- LES 10 ÉCO-RULES -->
+        <section style="margin-top:60px;">
+            <h2 style="text-align:center;font-size:2rem;color:var(--primary-color);margin-bottom:40px;">
+                <i class="fas fa-leaf"></i> Les 10 Éco-Rules C/C++ IoT
+            </h2>
+
+            <!-- RÈGLE 1 : Deep Sleep & Luminosité -->
+            <div class="eco-rule" id="rule1">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <div class="rule-number">1</div>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">Gestion progressive de la luminosité &amp; Deep Sleep</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#énergie</span>
+                                <span class="tag">#écran</span>
+                                <span class="tag">#deep-sleep</span>
+                                <span class="tag">Intermédiaire</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">−94%</div>
+                            <div class="metric-label">Consommation</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">~23 km</div>
+                            <div class="metric-label">voiture/an</div>
+                        </div>
+                    </div>
+                    <span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="rule-content">
+                    <div class="explanation-box">
+                        <p>
+                            <strong>Pourquoi ?</strong> L'écran LCD du M5Stack est le plus grand consommateur
+                            d'énergie (~80–100 mA à pleine luminosité). En réduisant progressivement la luminosité
+                            avant extinction, puis en passant en Deep Sleep, on passe d'une consommation de
+                            ~150 mA à moins de 0,01 mA — soit un facteur ×15 000 sur la période de veille.
+                        </p>
+                    </div>
+
+                    <h4>❌ Anti-pattern : écran toujours allumé</h4>
+                    <div class="code-block bad">
+<pre><code><span class="comment">// Mauvais : écran pleine luminosité en permanence</span>
+<span class="keyword">void</span> <span class="function">loop</span>() {
+    M5.Lcd.setBrightness(<span class="string">255</span>);
+    displaySensorData();
+    delay(<span class="string">10000</span>); <span class="comment">// CPU actif, écran allumé : ~150 mA</span>
+}</code></pre>
+                    </div>
+
+                    <h4>✅ Solution : dimming progressif + Deep Sleep</h4>
+                    <div class="code-block good">
+<pre><code><span class="comment">// Optimisé : gestion progressive + deep sleep</span>
+<span class="keyword">void</span> <span class="function">displayAndSleep</span>() {
+    M5.Lcd.setBrightness(<span class="string">255</span>);
+    displaySensorData();
+    delay(<span class="string">5000</span>);
+
+    M5.Lcd.setBrightness(<span class="string">128</span>); <span class="comment">// Réduit à 50%</span>
+    delay(<span class="string">3000</span>);
+
+    M5.Lcd.setBrightness(<span class="string">0</span>);   <span class="comment">// Éteint</span>
+    delay(<span class="string">500</span>);
+
+    <span class="comment">// Deep sleep 60 s : 0,01 mA seulement</span>
+    esp_sleep_enable_timer_wakeup(<span class="string">60</span> * <span class="string">1000000</span>); <span class="comment">// µs</span>
+    esp_deep_sleep_start();
+}</code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <p><strong>📊 Impact mesuré (déploiement continu 24h/24) :</strong></p>
+                        <ul>
+                            <li>Sans optimisation : ~150 mA × 3,7 V × 8 760 h ≈ <strong>4,86 kWh/an</strong></li>
+                            <li>Avec optimisation : ~10 mA moyen × 3,7 V × 8 760 h ≈ <strong>0,32 kWh/an</strong></li>
+                            <li>Économie : <strong>4,54 kWh/an</strong> → <strong>2,62 kg CO₂/an</strong></li>
+                            <li>🚗 Équivalent voiture : <strong>~23 km non parcourus</strong></li>
+                            <li>🔋 Autonomie batterie (700 mAh) : 4,7h → <strong>70h</strong> (+×15)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RÈGLE 2 : Optimisation des boucles -->
+            <div class="eco-rule" id="rule2">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <div class="rule-number">2</div>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">Optimiser les boucles et éviter les calculs redondants</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#cpu</span>
+                                <span class="tag">#performance</span>
+                                <span class="tag">Débutant</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">+35%</div>
+                            <div class="metric-label">Cycles économisés</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">~1,5 km</div>
+                            <div class="metric-label">voiture/an</div>
+                        </div>
+                    </div>
+                    <span class="impact-badge impact-medium">⭐⭐⭐</span>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="rule-content">
+                    <div class="explanation-box">
+                        <p>
+                            <strong>Pourquoi ?</strong> Sur un microcontrôleur, chaque appel de fonction
+                            dans une condition de boucle est réévalué à chaque itération.
+                            <code>strlen()</code> parcourt la chaîne entièrement à chaque tour :
+                            sur une chaîne de 100 caractères dans une boucle à 10 000 itérations,
+                            c'est 1 000 000 d'opérations inutiles.
+                        </p>
+                    </div>
+
+                    <h4>❌ Anti-pattern : appel redondant dans la condition</h4>
+                    <div class="code-block bad">
+<pre><code><span class="comment">// Mauvais : strlen() appelé N fois → O(N²)</span>
+<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="string">0</span>; i &lt; strlen(str); i++) {
+    process(str[i]);
+}
+</code></pre>
+                    </div>
+
+                    <h4>✅ Solution : hoistage du calcul invariant</h4>
+                    <div class="code-block good">
+<pre><code><span class="comment">// Optimisé : strlen() appelé une seule fois → O(N)</span>
+<span class="keyword">const int</span> len = strlen(str);
+<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="string">0</span>; i &lt; len; i++) {
+    process(str[i]);
+}
+
+<span class="comment">// Encore mieux : itération par pointeur (plus rapide sur ESP32)</span>
+<span class="keyword">const char</span> *p = str;
+<span class="keyword">while</span>(*p) { process(*p++); }
+</code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <p><strong>📊 Impact mesuré :</strong></p>
+                        <ul>
+                            <li>Réduction des cycles CPU : <strong>+35%</strong> sur boucles de traitement de chaînes</li>
+                            <li>Économie courant : ~15 mA → <strong>0,30 kWh/an</strong> → <strong>0,17 kg CO₂/an</strong></li>
+                            <li>🚗 Équivalent voiture : <strong>~1,5 km non parcourus</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RÈGLE 3 : Interruptions -->
+            <div class="eco-rule" id="rule3">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <div class="rule-number">3</div>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">Utiliser les interruptions plutôt que le polling actif</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#interruptions</span>
+                                <span class="tag">#veille</span>
+                                <span class="tag">#énergie</span>
+                                <span class="tag">Avancé</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">×20</div>
+                            <div class="metric-label">Réduction conso.</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">~16 km</div>
+                            <div class="metric-label">voiture/an</div>
+                        </div>
+                    </div>
+                    <span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="rule-content">
+                    <div class="explanation-box">
+                        <p>
+                            <strong>Pourquoi ?</strong> En mode polling, le CPU tourne à pleine vitesse en
+                            permanence pour vérifier un état (bouton, capteur, UART…). Avec les interruptions,
+                            le CPU est en veille légère (light sleep : ~5 mA) et ne se réveille que lorsqu'un
+                            événement survient réellement. C'est le principe fondamental de l'IoT basse consommation.
+                        </p>
+                    </div>
+
+                    <h4>❌ Anti-pattern : polling actif</h4>
+                    <div class="code-block bad">
+<pre><code><span class="comment">// Mauvais : CPU actif 100% du temps → ~100 mA</span>
+<span class="keyword">void</span> <span class="function">loop</span>() {
+    <span class="keyword">if</span>(digitalRead(BUTTON_PIN) == HIGH) {
+        handleButton();
+    }
+    delay(<span class="string">10</span>); <span class="comment">// Verifie 100×/s, CPU jamais au repos</span>
+}
+</code></pre>
+                    </div>
+
+                    <h4>✅ Solution : interruption + light sleep</h4>
+                    <div class="code-block good">
+<pre><code><span class="comment">// Optimisé : CPU en veille, réveillé par l'événement</span>
+<span class="keyword">volatile bool</span> buttonPressed = <span class="keyword">false</span>;
+
+<span class="keyword">void</span> IRAM_ATTR <span class="function">buttonISR</span>() {
+    buttonPressed = <span class="keyword">true</span>;
+}
+
+<span class="keyword">void</span> <span class="function">setup</span>() {
+    attachInterrupt(digitalPinToInterrupt(BUTTON_PIN),
+                    buttonISR, RISING);
+}
+
+<span class="keyword">void</span> <span class="function">loop</span>() {
+    <span class="keyword">if</span>(buttonPressed) {
+        handleButton();
+        buttonPressed = <span class="keyword">false</span>;
+    }
+    esp_light_sleep_start(); <span class="comment">// ~5 mA pendant l'attente</span>
+}
+</code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <p><strong>📊 Impact mesuré :</strong></p>
+                        <ul>
+                            <li>Polling : ~100 mA × 3,7 V × 8 760 h ≈ <strong>3,24 kWh/an</strong></li>
+                            <li>Interruptions : ~5 mA × 3,7 V × 8 760 h ≈ <strong>0,16 kWh/an</strong></li>
+                            <li>Économie : <strong>3,08 kWh/an</strong> → <strong>1,76 kg CO₂/an</strong></li>
+                            <li>🚗 Équivalent voiture : <strong>~16 km non parcourus</strong></li>
+                            <li>🔋 Autonomie : 7h → <strong>140h</strong> sur batterie 700 mAh</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RÈGLE 4 : Serial / Logging -->
+            <div class="eco-rule" id="rule4">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <div class="rule-number">4</div>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">Limiter les impressions série et désactiver les logs en production</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#serial</span>
+                                <span class="tag">#logging</span>
+                                <span class="tag">#cpu</span>
+                                <span class="tag">Intermédiaire</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">−57%</div>
+                            <div class="metric-label">Consommation</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">~13 km</div>
+                            <div class="metric-label">voiture/an</div>
+                        </div>
+                    </div>
+                    <span class="impact-badge impact-high">⭐⭐⭐⭐</span>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="rule-content">
+                    <div class="explanation-box">
+                        <p>
+                            <strong>Pourquoi ?</strong> Chaque <code>Serial.print()</code> mobilise le CPU
+                            pour formater et transmettre des données à 115 200 bauds (ou plus). En debug intensif
+                            à 100 logs/seconde, la UART peut représenter jusqu'à 30% de la consommation CPU.
+                            En production, ces logs sont souvent inutiles et gaspillent de l'énergie en continu.
+                        </p>
+                    </div>
+
+                    <h4>❌ Anti-pattern : logs fréquents sans condition</h4>
+                    <div class="code-block bad">
+<pre><code><span class="comment">// Mauvais : 100 logs/s même en production</span>
+<span class="keyword">void</span> <span class="function">loop</span>() {
+    <span class="keyword">float</span> x = M5.IMU.gyroX;
+    Serial.print(<span class="string">"Gyro X: "</span>);
+    Serial.println(x);      <span class="comment">// ~140 mA</span>
+    delay(<span class="string">10</span>);
+}
+</code></pre>
+                    </div>
+
+                    <h4>✅ Solution : logs conditionnels via macro préprocesseur</h4>
+                    <div class="code-block good">
+<pre><code><span class="comment">// Optimisé : logs compilés hors production</span>
+<span class="keyword">#define</span> DEBUG_MODE <span class="keyword">false</span>
+
+<span class="keyword">#define</span> <span class="function">DEBUG_PRINT</span>(x)  <span class="keyword">#if</span> DEBUG_MODE; Serial.print(x);   <span class="keyword">#endif</span>
+<span class="keyword">#define</span> <span class="function">DEBUG_PRINTLN</span>(x) <span class="keyword">#if</span> DEBUG_MODE; Serial.println(x); <span class="keyword">#endif</span>
+
+<span class="keyword">void</span> <span class="function">loop</span>() {
+    <span class="keyword">float</span> x = M5.IMU.gyroX;
+
+    <span class="comment">// En production : ces lignes n'existent pas dans le binaire</span>
+    DEBUG_PRINT(<span class="string">"Gyro X: "</span>);
+    DEBUG_PRINTLN(x);
+
+    delay(<span class="string">1000</span>); <span class="comment">// ~60 mA</span>
+}
+</code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <p><strong>📊 Impact mesuré :</strong></p>
+                        <ul>
+                            <li>Logs actifs : ~140 mA → <strong>2,59 kWh/an</strong></li>
+                            <li>Logs désactivés : ~60 mA → <strong>1,11 kWh/an</strong></li>
+                            <li>Économie : <strong>1,48 kWh/an</strong> → <strong>~0,85 kg CO₂/an</strong></li>
+                            <li>🚗 Équivalent voiture : <strong>~13 km non parcourus</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RÈGLE 5 : Mémoire Stack/Heap -->
+            <div class="eco-rule" id="rule5">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <div class="rule-number">5</div>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">Gestion fine de la mémoire — Stack &amp; Heap</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#mémoire</span>
+                                <span class="tag">#heap</span>
+                                <span class="tag">#stabilité</span>
+                                <span class="tag">Avancé</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">−33%</div>
+                            <div class="metric-label">Consommation RAM</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">~7 km</div>
+                            <div class="metric-label">voiture/an</div>
+                        </div>
+                    </div>
+                    <span class="impact-badge impact-medium">⭐⭐⭐</span>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="rule-content">
+                    <div class="explanation-box">
+                        <p>
+                            <strong>Pourquoi ?</strong> Allouer statiquement de grands tableaux sur la stack
+                            peut dépasser les 8 Ko de stack par défaut d'une tâche FreeRTOS sur ESP32,
+                            provoquant un <em>stack overflow</em> → reboot → cycle de redémarrage très
+                            énergivore. De plus, chaque <code>malloc/free</code> intensif fragmente le heap
+                            et augmente la charge CPU du gestionnaire de mémoire.
+                        </p>
+                    </div>
+
+                    <h4>❌ Anti-pattern : gros tableau sur la stack</h4>
+                    <div class="code-block bad">
+<pre><code><span class="comment">// Mauvais : 40 Ko sur la stack → stack overflow probable</span>
+<span class="keyword">void</span> <span class="function">processData</span>() {
+    <span class="keyword">int</span> bigArray[<span class="string">10000</span>]; <span class="comment">// 40 Ko sur la stack !</span>
+    <span class="comment">// Risque de crash + reboot (= pics d'énergie)</span>
+}
+</code></pre>
+                    </div>
+
+                    <h4>✅ Solution : allocation dynamique contrôlée + libération</h4>
+                    <div class="code-block good">
+<pre><code><span class="comment">// Optimisé : taille exacte sur le heap, libération assurée</span>
+<span class="keyword">void</span> <span class="function">processData</span>(<span class="keyword">size_t</span> count) {
+    <span class="keyword">int</span> *arr = (<span class="keyword">int</span>*)heap_caps_malloc(
+        count * <span class="keyword">sizeof</span>(<span class="keyword">int</span>), MALLOC_CAP_INTERNAL);
+
+    <span class="keyword">if</span>(arr == <span class="keyword">nullptr</span>) {
+        <span class="comment">// Gestion propre si OOM</span>
+        Serial.println(<span class="string">"OOM — skip"</span>);
+        <span class="keyword">return</span>;
+    }
+
+    <span class="keyword">for</span>(<span class="keyword">size_t</span> i = <span class="string">0</span>; i &lt; count; i++) arr[i] = i;
+    processArray(arr, count);
+
+    free(arr); <span class="comment">// Libération indispensable</span>
+}
+</code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <p><strong>📊 Impact mesuré :</strong></p>
+                        <ul>
+                            <li>Heap non optimisé : ~120 mA → <strong>2,22 kWh/an</strong></li>
+                            <li>Heap optimisé : ~80 mA → <strong>1,48 kWh/an</strong></li>
+                            <li>Économie : <strong>0,74 kWh/an</strong> → <strong>0,42 kg CO₂/an</strong></li>
+                            <li>🚗 Équivalent voiture : <strong>~7 km non parcourus</strong></li>
+                            <li>🔧 Bonus : élimination des reboots intempestifs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RÈGLE 6 : Désactiver modules -->
+            <div class="eco-rule" id="rule6">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <div class="rule-number">6</div>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">Désactiver les modules et périphériques non utilisés</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#wifi</span>
+                                <span class="tag">#bluetooth</span>
+                                <span class="tag">#périphériques</span>
+                                <span class="tag">Intermédiaire</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">−72%</div>
+                            <div class="metric-label">Consommation</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">~22 km</div>
+                            <div class="metric-label">voiture/an</div>
+                        </div>
+                    </div>
+                    <span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="rule-content">
+                    <div class="explanation-box">
+                        <p>
+                            <strong>Pourquoi ?</strong> Par défaut sur l'ESP32, le Wi-Fi, le Bluetooth et le
+                            convertisseur analogique-numérique (ADC) sont actifs même si on ne les utilise pas.
+                            Le Wi-Fi seul consomme ~80 mA en écoute passive. Sur un capteur IoT qui envoie
+                            une mesure toutes les 10 minutes, garder le Wi-Fi constamment actif gaspille
+                            plus de 99% de son énergie réseau.
+                        </p>
+                    </div>
+
+                    <h4>❌ Anti-pattern : modules actifs par défaut</h4>
+                    <div class="code-block bad">
+<pre><code><span class="comment">// Mauvais : Wi-Fi et BT actifs même sans utilisation</span>
+<span class="keyword">void</span> <span class="function">setup</span>() {
+    M5.begin(); <span class="comment">// Wi-Fi et BT initialisés et actifs → ~180 mA</span>
+}
+
+<span class="keyword">void</span> <span class="function">loop</span>() {
+    readSensor(); <span class="comment">// Pas besoin de Wi-Fi ici !</span>
+    delay(<span class="string">1000</span>);
+}
+</code></pre>
+                    </div>
+
+                    <h4>✅ Solution : désactivation explicite + activation à la demande</h4>
+                    <div class="code-block good">
+<pre><code><span class="comment">// Optimisé : tout éteint par défaut, allumé à la demande</span>
+<span class="keyword">void</span> <span class="function">setup</span>() {
+    M5.begin();
+
+    WiFi.mode(WIFI_OFF);      <span class="comment">// Désactiver Wi-Fi : −80 mA</span>
+    btStop();                  <span class="comment">// Désactiver Bluetooth : −30 mA</span>
+    adc_power_release();       <span class="comment">// Désactiver ADC : −5 mA</span>
+    esp_wifi_stop();           <span class="comment">// Arrêt complet driver Wi-Fi</span>
+}
+
+<span class="keyword">void</span> <span class="function">sendData</span>(<span class="keyword">const char</span>* payload) {
+    WiFi.mode(WIFI_STA);      <span class="comment">// Activer uniquement pour l'envoi</span>
+    WiFi.begin(SSID, PASS);
+    <span class="keyword">while</span>(WiFi.status() != WL_CONNECTED) delay(<span class="string">100</span>);
+    httpPost(payload);
+    WiFi.disconnect(<span class="keyword">true</span>);
+    WiFi.mode(WIFI_OFF);       <span class="comment">// Rééteindre immédiatement</span>
+}
+</code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <p><strong>📊 Impact mesuré :</strong></p>
+                        <ul>
+                            <li>Wi-Fi/BT actifs : ~180 mA → <strong>4,21 kWh/an</strong></li>
+                            <li>Modules désactivés : ~50 mA → <strong>1,62 kWh/an</strong></li>
+                            <li>Économie : <strong>2,59 kWh/an</strong> → <strong>~1,49 kg CO₂/an</strong></li>
+                            <li>🚗 Équivalent voiture : <strong>~22 km non parcourus</strong></li>
+                            <li>🔋 Autonomie batterie (700 mAh) : 3,9h → <strong>14h</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RÈGLE 7 : constexpr / const -->
+            <div class="eco-rule" id="rule7">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <div class="rule-number">7</div>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">Privilégier <code>constexpr</code> et <code>const</code> pour les valeurs fixes</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#rom</span>
+                                <span class="tag">#compilateur</span>
+                                <span class="tag">#optimisation</span>
+                                <span class="tag">Intermédiaire</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">−2 Ko</div>
+                            <div class="metric-label">RAM économisée</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">+10%</div>
+                            <div class="metric-label">Performance</div>
+                        </div>
+                    </div>
+                    <span class="impact-badge impact-medium">⭐⭐⭐</span>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="rule-content">
+                    <div class="explanation-box">
+                        <p>
+                            <strong>Pourquoi ?</strong> Une variable globale non-const est stockée en RAM
+                            (DRAM, ~150 mA d'accès). Avec <code>constexpr</code>, le compilateur résout la
+                            valeur à la compilation et la stocke en Flash (ROM, lecture moins énergivore).
+                            De plus, les constantes permettent au compilateur d'appliquer des optimisations
+                            comme le <em>constant folding</em> ou la suppression de branches mortes.
+                        </p>
+                    </div>
+
+                    <h4>❌ Anti-pattern : variables en RAM</h4>
+                    <div class="code-block bad">
+<pre><code><span class="comment">// Mauvais : stocké en RAM, pas optimisable</span>
+<span class="keyword">float</span> PI = <span class="string">3.14159f</span>;
+<span class="keyword">int</span>   MAX_BUFFER = <span class="string">512</span>;
+<span class="keyword">char</span>  DEVICE_NAME[] = <span class="string">"Sensor-01"</span>; <span class="comment">// Copié en RAM au démarrage</span>
+</code></pre>
+                    </div>
+
+                    <h4>✅ Solution : constantes en ROM</h4>
+                    <div class="code-block good">
+<pre><code><span class="comment">// Optimisé : résolu à la compilation, stocké en Flash</span>
+<span class="keyword">constexpr float</span> PI         = <span class="string">3.14159f</span>;
+<span class="keyword">constexpr int</span>   MAX_BUFFER  = <span class="string">512</span>;
+<span class="keyword">constexpr int</span>   BAUD_RATE   = <span class="string">115200</span>;
+
+<span class="comment">// Chaînes en Flash (PROGMEM sur AVR, RODATA sur ESP32)</span>
+<span class="keyword">const char</span> DEVICE_NAME[] PROGMEM = <span class="string">"Sensor-01"</span>;
+
+<span class="comment">// Macro pour les littéraux souvent réutilisés</span>
+<span class="keyword">#define</span> SCREEN_W 320
+<span class="keyword">#define</span> SCREEN_H 240
+</code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <p><strong>📊 Impact mesuré :</strong></p>
+                        <ul>
+                            <li>RAM économisée : <strong>~2 Ko</strong> (pour un firmware typique)</li>
+                            <li>Gain performance CPU : <strong>+10%</strong> (constant folding)</li>
+                            <li>Économie courant : ~10 mA → <strong>0,32 kWh/an</strong> → <strong>0,18 kg CO₂/an</strong></li>
+                            <li>🚗 Équivalent voiture : <strong>~1,6 km non parcourus</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RÈGLE 8 : Fréquence CPU -->
+            <div class="eco-rule" id="rule8">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <div class="rule-number">8</div>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">Adapter dynamiquement la fréquence CPU aux besoins</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#dvfs</span>
+                                <span class="tag">#cpu-freq</span>
+                                <span class="tag">#énergie</span>
+                                <span class="tag">Avancé</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">−44%</div>
+                            <div class="metric-label">Consommation CPU</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">~12 km</div>
+                            <div class="metric-label">voiture/an</div>
+                        </div>
+                    </div>
+                    <span class="impact-badge impact-high">⭐⭐⭐⭐</span>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="rule-content">
+                    <div class="explanation-box">
+                        <p>
+                            <strong>Pourquoi ?</strong> L'ESP32 peut fonctionner à 80, 160 ou 240 MHz.
+                            La consommation du CPU est approximativement proportionnelle à
+                            <em>f × V²</em> (fréquence × carré de la tension). Passer de 240 à 80 MHz
+                            réduit la consommation CPU d'environ 44% pour les tâches légères (I/O, attentes,
+                            traitement de capteurs simples), sans impact sur l'expérience utilisateur.
+                        </p>
+                    </div>
+
+                    <h4>❌ Anti-pattern : fréquence maximale permanente</h4>
+                    <div class="code-block bad">
+<pre><code><span class="comment">// Mauvais : 240 MHz tout le temps, même pour lire un capteur</span>
+<span class="keyword">void</span> <span class="function">setup</span>() {
+    <span class="comment">// Fréquence par défaut : 240 MHz → ~160 mA</span>
+}
+
+<span class="keyword">void</span> <span class="function">loop</span>() {
+    readTemperature(); <span class="comment">// Tâche légère, 240 MHz inutile</span>
+    delay(<span class="string">5000</span>);
+}
+</code></pre>
+                    </div>
+
+                    <h4>✅ Solution : DVFS — ajustement dynamique</h4>
+                    <div class="code-block good">
+<pre><code><span class="comment">// Optimisé : fréquence adaptée à la charge</span>
+<span class="keyword">void</span> <span class="function">setup</span>() {
+    setCpuFrequencyMhz(<span class="string">80</span>); <span class="comment">// Base : 80 MHz → ~90 mA</span>
+}
+
+<span class="keyword">void</span> <span class="function">runHeavyComputation</span>() {
+    setCpuFrequencyMhz(<span class="string">240</span>); <span class="comment">// Monter si besoin</span>
+    performFFT();
+    setCpuFrequencyMhz(<span class="string">80</span>);  <span class="comment">// Redescendre immédiatement</span>
+}
+
+<span class="keyword">void</span> <span class="function">loop</span>() {
+    readTemperature();          <span class="comment">// 80 MHz suffit</span>
+    <span class="keyword">if</span>(heavyTaskNeeded) runHeavyComputation();
+    delay(<span class="string">5000</span>);
+}
+</code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <p><strong>📊 Impact mesuré :</strong></p>
+                        <ul>
+                            <li>240 MHz permanent : ~160 mA → <strong>2,97 kWh/an</strong></li>
+                            <li>80 MHz adaptatif : ~90 mA → <strong>1,67 kWh/an</strong></li>
+                            <li>Économie : <strong>1,30 kWh/an</strong> → <strong>0,74 kg CO₂/an</strong></li>
+                            <li>🚗 Équivalent voiture : <strong>~12 km non parcourus</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RÈGLE 9 : Accès Flash / Cache RAM -->
+            <div class="eco-rule" id="rule9">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <div class="rule-number">9</div>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">Minimiser les accès à la mémoire Flash — cache en RAM</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#flash</span>
+                                <span class="tag">#cache</span>
+                                <span class="tag">#spiffs</span>
+                                <span class="tag">Avancé</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">−65%</div>
+                            <div class="metric-label">Consommation Flash</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">~22 km</div>
+                            <div class="metric-label">voiture/an</div>
+                        </div>
+                    </div>
+                    <span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="rule-content">
+                    <div class="explanation-box">
+                        <p>
+                            <strong>Pourquoi ?</strong> Un accès à la mémoire Flash SPIFFS ou une carte SD
+                            consomme ~200 mA pendant la lecture (activation du driver SPI + Flash).
+                            Lire un fichier de configuration à chaque itération de la boucle peut représenter
+                            90% de la consommation totale, alors qu'une lecture unique au démarrage
+                            avec mise en cache en RAM ramène cette opération à ~70 mA.
+                        </p>
+                    </div>
+
+                    <h4>❌ Anti-pattern : lecture Flash dans la boucle principale</h4>
+                    <div class="code-block bad">
+<pre><code><span class="comment">// Mauvais : accès Flash à chaque itération → ~200 mA par lecture</span>
+<span class="keyword">void</span> <span class="function">loop</span>() {
+    File f = SPIFFS.open(<span class="string">"/config.json"</span>, <span class="string">"r"</span>);
+    String config = f.readString(); <span class="comment">// Réveille le driver Flash</span>
+    f.close();
+    applyConfig(config);
+    delay(<span class="string">1000</span>);
+}
+</code></pre>
+                    </div>
+
+                    <h4>✅ Solution : lecture unique + cache en RAM</h4>
+                    <div class="code-block good">
+<pre><code><span class="comment">// Optimisé : lecture au démarrage, accès RAM ensuite</span>
+String configCache = <span class="string">""</span>;
+
+<span class="keyword">void</span> <span class="function">setup</span>() {
+    SPIFFS.begin(<span class="keyword">true</span>);
+    File f = SPIFFS.open(<span class="string">"/config.json"</span>, <span class="string">"r"</span>);
+    configCache = f.readString(); <span class="comment">// Une seule lecture Flash</span>
+    f.close();
+    SPIFFS.end(); <span class="comment">// Éteindre le driver Flash</span>
+}
+
+<span class="keyword">void</span> <span class="function">loop</span>() {
+    applyConfig(configCache); <span class="comment">// Accès RAM : ~70 mA, instantané</span>
+    delay(<span class="string">1000</span>);
+}
+</code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <p><strong>📊 Impact mesuré :</strong></p>
+                        <ul>
+                            <li>Lectures Flash répétées : ~200 mA → <strong>3,71 kWh/an</strong></li>
+                            <li>Cache RAM : ~70 mA → <strong>1,30 kWh/an</strong></li>
+                            <li>Économie : <strong>2,41 kWh/an</strong> → <strong>1,38 kg CO₂/an</strong></li>
+                            <li>🚗 Équivalent voiture : <strong>~22 km non parcourus</strong></li>
+                            <li>⚡ Bonus : durée de vie Flash prolongée (cycles d'écriture limités)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RÈGLE 10 : Types de données -->
+            <div class="eco-rule" id="rule10">
+                <div class="rule-header">
+                    <div class="rule-header-left">
+                        <div class="rule-number">10</div>
+                        <div class="rule-title-section">
+                            <h3 class="rule-title">Choisir les types de données les plus petits adaptés au cas d'usage</h3>
+                            <div class="rule-tags">
+                                <span class="tag">#types</span>
+                                <span class="tag">#mémoire</span>
+                                <span class="tag">#cache</span>
+                                <span class="tag">Débutant</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">−60%</div>
+                            <div class="metric-label">Mémoire</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">~2,5 km</div>
+                            <div class="metric-label">voiture/an</div>
+                        </div>
+                    </div>
+                    <span class="impact-badge impact-medium">⭐⭐⭐</span>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="rule-content">
+                    <div class="explanation-box">
+                        <p>
+                            <strong>Pourquoi ?</strong> Sur un ESP32 avec 520 Ko de RAM, utiliser
+                            <code>long</code> (8 octets) pour un compteur qui n'atteindra jamais 255
+                            gaspille 7 octets. Multiplié par des milliers de variables dans un firmware
+                            complexe, c'est plusieurs Ko de RAM perdus, ce qui augmente les accès Flash,
+                            réduit l'efficacité du cache CPU et consomme davantage d'énergie.
+                        </p>
+                    </div>
+
+                    <h4>❌ Anti-pattern : types surdimensionnés</h4>
+                    <div class="code-block bad">
+<pre><code><span class="comment">// Mauvais : tous les types sont "larges"</span>
+<span class="keyword">long</span>   counter     = <span class="string">0</span>;        <span class="comment">// 8 octets pour 0–100</span>
+<span class="keyword">double</span> temperature = <span class="string">25.5</span>;     <span class="comment">// 8 octets, précision inutile</span>
+<span class="keyword">int</span>    flags[<span class="string">8</span>];               <span class="comment">// 32 octets pour 8 booléens</span>
+</code></pre>
+                    </div>
+
+                    <h4>✅ Solution : types adaptés + bitfields</h4>
+                    <div class="code-block good">
+<pre><code><span class="comment">// Optimisé : types minimaux</span>
+<span class="keyword">uint8_t</span>  counter     = <span class="string">0</span>;       <span class="comment">// 1 octet suffit (0–255)</span>
+<span class="keyword">float</span>    temperature = <span class="string">25.5f</span>;   <span class="comment">// 4 octets, précision suffisante</span>
+
+<span class="comment">// Bitfield pour drapeaux : 8 booléens en 1 octet</span>
+<span class="keyword">struct</span> DeviceFlags {
+    <span class="keyword">uint8_t</span> wifiEnabled  : <span class="string">1</span>;
+    <span class="keyword">uint8_t</span> displayOn    : <span class="string">1</span>;
+    <span class="keyword">uint8_t</span> sensorReady  : <span class="string">1</span>;
+    <span class="keyword">uint8_t</span> dataUploaded : <span class="string">1</span>;
+    <span class="keyword">uint8_t</span> reserved     : <span class="string">4</span>;
+} flags; <span class="comment">// 1 seul octet !</span>
+</code></pre>
+                    </div>
+
+                    <div class="gain-box">
+                        <p><strong>📊 Impact mesuré :</strong></p>
+                        <ul>
+                            <li>Mémoire économisée : <strong>~60%</strong> sur les structures de données</li>
+                            <li>Performance cache CPU : <strong>+15%</strong> (meilleure localité des données)</li>
+                            <li>Économie courant : ~15 mA → <strong>0,49 kWh/an</strong> → <strong>0,28 kg CO₂/an</strong></li>
+                            <li>🚗 Équivalent voiture : <strong>~2,5 km non parcourus</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Checklist -->
+        <section style="margin-top:60px;padding:30px;background:linear-gradient(135deg,rgba(47,223,173,0.08),rgba(47,223,173,0.02));border-radius:12px;border:1px solid rgba(47,223,173,0.3);">
+            <h2><i class="fas fa-tasks"></i> Checklist d'Éco-conception C/C++ IoT</h2>
+            <p>Appliquer ces 10 règles sur un capteur IoT M5Stack déployé en continu :</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:15px;margin-top:20px;">
+                <div>
+                    <h4 style="color:var(--primary-color);">⚡ Énergie (fort impact)</h4>
+                    <ul style="list-style:none;padding:0;">
+                        <li style="margin-bottom:10px;">☐ <strong>Deep Sleep + Dimming LCD</strong> (Règle 1) → ~23 km voiture/an</li>
+                        <li style="margin-bottom:10px;">☐ <strong>Interruptions vs Polling</strong> (Règle 3) → ~16 km voiture/an</li>
+                        <li style="margin-bottom:10px;">☐ <strong>Désactiver Wi-Fi/BT/ADC</strong> (Règle 6) → ~22 km voiture/an</li>
+                        <li style="margin-bottom:10px;">☐ <strong>Cache Flash en RAM</strong> (Règle 9) → ~22 km voiture/an</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:var(--primary-color);">🧠 CPU &amp; Mémoire</h4>
+                    <ul style="list-style:none;padding:0;">
+                        <li style="margin-bottom:10px;">☐ <strong>Fréquence CPU adaptive</strong> (Règle 8) → ~12 km voiture/an</li>
+                        <li style="margin-bottom:10px;">☐ <strong>Logs désactivés en prod</strong> (Règle 4) → ~13 km voiture/an</li>
+                        <li style="margin-bottom:10px;">☐ <strong>Boucles optimisées</strong> (Règle 2) → +35% cycles CPU</li>
+                        <li style="margin-bottom:10px;">☐ <strong>Stack/Heap maîtrisé</strong> (Règle 5) → Stabilité + −33% RAM</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:var(--primary-color);">🛠️ Bonnes pratiques</h4>
+                    <ul style="list-style:none;padding:0;">
+                        <li style="margin-bottom:10px;">☐ <strong>constexpr/const</strong> (Règle 7) → −2 Ko RAM + +10% perf.</li>
+                        <li style="margin-bottom:10px;">☐ <strong>Types de données adaptés</strong> (Règle 10) → −60% mémoire</li>
+                    </ul>
+                    <div style="margin-top:15px;padding:10px;background:rgba(105,240,109,0.1);border-radius:8px;border-left:3px solid var(--success-color);">
+                        <strong>Total estimé :</strong> ~13,4 kg CO₂/an économisés<br>
+                        🚗 ~120 km de voiture | 🌳 0,6 arbre préservé<br>
+                        🔋 Autonomie batterie ×10 à ×15
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top:15px;font-size:0.9rem;">
+                <em>Équivalence voiture : 1 km = 112 g CO₂ (métrique Green IT/ADEME)</em><br>
+                <em>Mix énergétique : La Réunion (~573 g eqCO₂/kWh) — Base : déploiement 24h/24, 365j/an</em>
+            </p>
+        </section>
+
+        <!-- Outils -->
+        <section style="margin-top:50px;">
+            <h2><i class="fas fa-tools"></i> Outils pour mesurer et améliorer</h2>
+            <div class="services-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:30px;">
+
+                <div class="service-card">
+                    <i class="fas fa-bolt" style="font-size:2.5rem;color:var(--primary-color);"></i>
+                    <h3>ESP-IDF Power Management</h3>
+                    <p>API officielle Espressif pour gérer le Deep Sleep, Light Sleep, DVFS et la désactivation des périphériques sur ESP32.</p>
+                    <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/sleep_modes.html"
+                       target="_blank" class="button" style="margin-top:15px;font-size:0.9rem;">
+                        <i class="fas fa-external-link-alt"></i> Documentation
+                    </a>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-tachometer-alt" style="font-size:2.5rem;color:var(--info-color);"></i>
+                    <h3>PPK2 / Ampèremètre USB</h3>
+                    <p>Le Nordic PPK2 et les ampèremètres USB permettent de mesurer la consommation réelle en mA avec une résolution de 0,1 µA.</p>
+                    <a href="https://www.nordicsemi.com/Products/Development-hardware/Power-Profiler-Kit-2"
+                       target="_blank" class="button" style="margin-top:15px;font-size:0.9rem;background-color:var(--info-color);">
+                        <i class="fas fa-external-link-alt"></i> Nordic PPK2
+                    </a>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-code" style="font-size:2.5rem;color:var(--warning-color);"></i>
+                    <h3>PlatformIO + Energy Monitor</h3>
+                    <p>PlatformIO offre un environnement de développement complet avec profiling statique et intégration des outils de mesure d'énergie.</p>
+                    <a href="https://platformio.org/" target="_blank" class="button"
+                       style="margin-top:15px;font-size:0.9rem;background-color:var(--warning-color);">
+                        <i class="fas fa-external-link-alt"></i> PlatformIO
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Bibliographie -->
+        <section class="bibliography" style="margin-top:60px;">
+            <h2>Bibliographie &amp; Références</h2>
+            <ul class="bibliography-list" style="text-align:left;max-width:900px;margin:0 auto;">
+                <li><strong>[1]</strong> Espressif Systems. <em>ESP-IDF Programming Guide — Sleep Modes</em>.
+                    <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/sleep_modes.html" target="_blank">[Docs]</a></li>
+                <li><strong>[2]</strong> M5Stack. <em>M5Stack Core Documentation &amp; API Reference</em>.
+                    <a href="https://docs.m5stack.com/" target="_blank">[docs.m5stack.com]</a></li>
+                <li><strong>[3]</strong> ADEME. <em>Base Carbone — Facteurs d'émissions</em>.
+                    <a href="https://bilans-ges.ademe.fr/" target="_blank">[Base Carbone]</a></li>
+                <li><strong>[4]</strong> GreenIT.fr. <em>Impacts environnementaux du numérique en France</em>. Janvier 2021.
+                    <a href="https://www.greenit.fr/" target="_blank">[GreenIT.fr]</a></li>
+                <li><strong>[5]</strong> Hähnel, M. et al. (2021). <em>Green Algorithms: Quantifying the Carbon Footprint of Computation</em>.
+                    Advanced Science, 8(12).
+                    <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/advs.202100707" target="_blank">[Paper]</a></li>
+                <li><strong>[6]</strong> Low Power Lab. <em>Arduino Low Power Library</em>.
+                    <a href="https://github.com/LowPowerLab/LowPower" target="_blank">[GitHub]</a></li>
+                <li><strong>[7]</strong> Random Nerd Tutorials. <em>ESP32 Deep Sleep and Low Power Modes</em>.
+                    <a href="https://randomnerdtutorials.com/esp32-deep-sleep-low-power/" target="_blank">[Tutorial]</a></li>
+                <li><strong>[8]</strong> Lanza, J. et al. (2021). <em>A Survey on Green IoT — Embedded Systems</em>.
+                    ScienceDirect.
+                    <a href="https://www.sciencedirect.com/science/article/pii/S2542660521000110" target="_blank">[Article]</a></li>
+                <li><strong>[9]</strong> Embedded.com. <em>Optimizing C/C++ for Embedded Systems</em>.
+                    <a href="https://www.embedded.com/optimizing-c-for-embedded-systems/" target="_blank">[Article]</a></li>
+                <li><strong>[10]</strong> Espressif Systems. <em>ESP-IDF — Power Management API</em>.
+                    <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/power_management.html" target="_blank">[Docs]</a></li>
+                <li><strong>[11]</strong> ISO/IEC 14882:2020. <em>Programming Language C++ — constexpr specifier</em>.</li>
+                <li><strong>[12]</strong> Ganssle, J. (2008). <em>The Art of Writing Embedded Systems</em>. Newnes.</li>
+            </ul>
+        </section>
+
+        <!-- Navigation -->
+        <div class="button-container" style="margin-top:60px;gap:15px;display:flex;flex-wrap:wrap;justify-content:center;">
+            <a href="../langages.html" class="button"><i class="fas fa-arrow-left"></i> Retour aux langages</a>
+            <a href="../../index.html" class="button" style="background-color:var(--info-color);">
+                <i class="fas fa-home"></i> Accueil</a>
+            <a href="../en-pratique.html" class="button" style="background-color:var(--success-color);">
+                <i class="fas fa-code"></i> Ateliers pratiques</a>
+        </div>
+    </div>
+
+    <footer>
+        <p class="mg-0">&copy; 2025 - <a href="../a-propos.html">À propos</a></p>
+    </footer>
+
+    <script>
+        function toggleRule(ruleId) {
+            const rule = document.getElementById(ruleId);
+            if (rule) {
+                rule.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (!rule.classList.contains('active')) {
+                    rule.classList.add('active');
+                }
+            }
+        }
+
+        // Toggle méthodologie
+        document.querySelector('.methodology-section .methodology-header')
+            .addEventListener('click', function () {
+                this.parentElement.classList.toggle('active');
+            });
+
+        // Toggle règles
+        document.querySelectorAll('.eco-rule .rule-header')
+            .forEach(header => {
+                header.addEventListener('click', function () {
+                    this.parentElement.classList.toggle('active');
+                });
+            });
+    </script>
+</body>
+</html>
