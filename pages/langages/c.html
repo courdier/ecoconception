@@ -144,7 +144,7 @@
             border: 2px solid transparent;
         }
         .nav-languages a:hover { background-color: rgba(47,223,173,0.2); border-color: var(--primary-color); }
-        .nav-languages a.active { background-color: #555; color: white; border-color: #aaa; }
+        .nav-languages a.active { background-color: #639de1; color: white; border-color: #aaa; }
 
         /* ── Summary table ── */
         .summary-table {
@@ -212,25 +212,26 @@
                 <li class="mg-0"><a href="../quelques-chiffres.html">Chiffres</a></li>
                 <li class="mg-0"><a href="../quizV1.html">Quiz</a></li>
                 <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
-                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
-                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
                 <li class="mg-0"><a href="../langages.html" class="active">Langages</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="main">
-        <h1><i class="fas fa-microchip"></i> C/C++ — Éco-conception &amp; Green Coding IoT</h1>
+        <h1><i class="fas fa-microchip"></i> C/C++ - Éco-conception &amp; Green Coding IoT</h1>
 
         <!-- Navigation entre langages -->
         <div class="nav-languages">
             <a href="./php.html"><i class="fab fa-php"></i> PHP</a>
-            <a href="./python.html"><i class="fab fa-python"></i> Python</a>
-            <a href="./c.html" class="active"><i class="fas fa-microchip"></i> C/C++</a>
-            <a href="#" style="opacity:0.5;cursor:not-allowed;"><i class="fab fa-java"></i> Java (bientôt)</a>
-            <a href="#" style="opacity:0.5;cursor:not-allowed;"><i class="fas fa-cog"></i> Rust (bientôt)</a>
-            <a href="#" style="opacity:0.5;cursor:not-allowed;"><i class="fab fa-js"></i> JavaScript (bientôt)</a>
+            <a href="./rust.html"><i class="fab fa-rust"></i> Rust</a>
+            <a href="python.html"><i class="fab fa-python"></i> Python</a>
+            <a href="c.html" class="active"><i class="fas fa-code"></i> C/C++</a>
+            <a href="java.html"><i class="fab fa-java"></i> Java</a>
+            <a href="dart.html"><i class="fas fa-cog"></i> Dart</a>
+            <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fab fa-js"></i> JavaScript (bientôt)</a>
         </div>
 
         <!-- Introduction -->
@@ -246,115 +247,6 @@
                 mesurées à l'ampèremètre, avec des équivalences CO₂ concrètes calculées sur la base
                 du mix énergétique de La Réunion (~573 g CO₂/kWh).
             </p>
-        </section>
-
-        <!-- Méthodologie collapsible -->
-        <section class="methodology-section">
-            <div class="methodology-header">
-                <h2 style="color:var(--primary-color);margin:0;">
-                    <i class="fas fa-flask"></i> Méthodologie de Mesure
-                </h2>
-                <i class="fas fa-chevron-down expand-icon"></i>
-            </div>
-            <div class="methodology-content">
-                <p style="margin-top:15px;">
-                    L'évaluation de l'impact énergétique d'un programme embarqué repose sur trois axes
-                    complémentaires : le temps CPU, la consommation mémoire et la consommation électrique
-                    mesurée physiquement au moyen d'un ampèremètre connecté à la batterie du M5Stack.
-                </p>
-
-                <h3 style="color:var(--primary-color);margin-top:30px;">
-                    <i class="fas fa-clock"></i> 1. Temps d'exécution
-                </h3>
-                <div class="explanation-box">
-                    <p>
-                        Le temps de calcul est mesuré via les fonctions <code>micros()</code> et <code>millis()</code>
-                        d'Arduino, ou via le timer haute résolution de l'ESP-IDF (<code>esp_timer_get_time()</code>).
-                        Moins de cycles CPU = moins d'énergie consommée. On distingue :
-                    </p>
-                    <ul>
-                        <li><strong>Temps actif</strong> : pendant l'exécution d'une tâche</li>
-                        <li><strong>Temps d'attente</strong> : <code>delay()</code> ou veille légère</li>
-                    </ul>
-                    <p>
-                        Un <code>delay(1000)</code> maintient le CPU actif et consomme autant qu'une tâche
-                        intensive. Passer en <em>light sleep</em> pendant les attentes est une optimisation
-                        fondamentale.
-                    </p>
-                </div>
-
-                <h3 style="color:var(--primary-color);margin-top:30px;">
-                    <i class="fas fa-memory"></i> 2. Consommation mémoire
-                </h3>
-                <div class="explanation-box">
-                    <p>
-                        L'ESP32 du M5Stack dispose de 520 Ko de RAM interne. Une utilisation excessive provoque :
-                    </p>
-                    <ul>
-                        <li>Des accès plus fréquents à la mémoire Flash (énergivore)</li>
-                        <li>Des risques de stack overflow causant des resets (consomme beaucoup d'énergie)</li>
-                        <li>Une fragmentation du heap avec <code>malloc/free</code> intensif</li>
-                    </ul>
-                    <p>On mesure via <code>ESP.getFreeHeap()</code> et <code>uxTaskGetStackHighWaterMark()</code>.</p>
-                </div>
-
-                <h3 style="color:var(--primary-color);margin-top:30px;">
-                    <i class="fas fa-bolt"></i> 3. Consommation électrique réelle
-                </h3>
-                <div class="explanation-box">
-                    <p>
-                        Nous mesurons la consommation avec un ampèremètre en série sur la ligne d'alimentation,
-                        dans quatre états représentatifs du M5Stack :
-                    </p>
-                    <table class="methodology-table">
-                        <thead>
-                            <tr><th>État</th><th>Consommation typique</th><th>Description</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Actif (écran 100%)</td><td>~150 mA</td><td>Traitement + affichage</td></tr>
-                            <tr><td>Écran dimmé (50%)</td><td>~90 mA</td><td>Traitement + LCD réduit</td></tr>
-                            <tr><td>Écran éteint</td><td>~60 mA</td><td>CPU actif, LCD off</td></tr>
-                            <tr><td>Light sleep</td><td>~5 mA</td><td>CPU suspendu, RAM maintenue</td></tr>
-                            <tr><td>Deep sleep</td><td>~0.01 mA</td><td>Seulement RTC actif</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3 style="color:var(--primary-color);margin-top:30px;">
-                    <i class="fas fa-calculator"></i> 4. Conversion en CO₂
-                </h3>
-                <div class="explanation-box">
-                    <p>
-                        La consommation électrique est convertie en émissions CO₂ selon la formule :
-                    </p>
-                    <p style="text-align:center; font-style:italic; font-size:1.1rem; margin:10px 0;">
-                        Émissions (kg CO₂) = Énergie (kWh) × Facteur émission (g CO₂/kWh) ÷ 1000
-                    </p>
-                    <p>
-                        Pour un appareil M5Stack alimenté à <strong>3,7 V (batterie LiPo)</strong> :<br>
-                        <code>Énergie (kWh) = Intensité (mA) × 3,7 V × Durée (h) ÷ 1 000 000</code>
-                    </p>
-                    <p>
-                        Mix énergétique retenu : <strong>La Réunion ≈ 573 g CO₂/kWh</strong>
-                        (majoritairement thermique fossile).
-                    </p>
-                    <p>
-                        Hypothèse de déploiement : <strong>appareil fonctionnant 24 h/24, 365 j/an</strong>
-                        (capteur IoT industriel ou de surveillance). Les gains sont exprimés sur cette base annuelle.
-                    </p>
-                </div>
-
-                <h3 style="color:var(--primary-color);margin-top:30px;">
-                    <i class="fas fa-server"></i> 5. Configuration de référence
-                </h3>
-                <div class="explanation-box">
-                    <p><strong>Matériel :</strong> M5Stack Core (ESP32 240 MHz, 520 Ko RAM, 4 Mo Flash)</p>
-                    <p><strong>Batterie :</strong> LiPo 700 mAh, 3,7 V</p>
-                    <p><strong>Firmware :</strong> Arduino Framework + ESP-IDF 5.x</p>
-                    <p><strong>Localisation :</strong> La Réunion (mix énergétique ~573 g CO₂/kWh)</p>
-                    <p><strong>Mesure :</strong> Ampèremètre USB/DC en série, résolution 0,1 mA</p>
-                </div>
-            </div>
         </section>
 
         <!-- Métriques Green IT -->
@@ -1437,33 +1329,36 @@ String configCache = <span class="string">""</span>;
     </div>
 
     <footer>
-        <p class="mg-0">&copy; 2025 - <a href="../a-propos.html">À propos</a></p>
+        <p class="mg-0">&copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion - <a href="./a-propos.html">À propos</a> </p>
     </footer>
 
     <script>
-        function toggleRule(ruleId) {
+        function toggleRule(ruleId, shouldScroll = true) {
             const rule = document.getElementById(ruleId);
-            if (rule) {
+
+            if (!rule) return;
+
+            rule.classList.toggle('active');
+
+            if (shouldScroll) {
                 rule.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                if (!rule.classList.contains('active')) {
-                    rule.classList.add('active');
-                }
             }
         }
 
-        // Toggle méthodologie
-        document.querySelector('.methodology-section .methodology-header')
-            .addEventListener('click', function () {
+        // Toggle méthodologie seulement si elle existe
+        const methodologyHeader = document.querySelector('.methodology-section .methodology-header');
+        if (methodologyHeader) {
+            methodologyHeader.addEventListener('click', function () {
                 this.parentElement.classList.toggle('active');
             });
+        }
 
-        // Toggle règles
-        document.querySelectorAll('.eco-rule .rule-header')
-            .forEach(header => {
-                header.addEventListener('click', function () {
-                    this.parentElement.classList.toggle('active');
-                });
+        // Toggle cartes règles
+        document.querySelectorAll('.eco-rule .rule-header').forEach(header => {
+            header.addEventListener('click', function () {
+                this.parentElement.classList.toggle('active');
             });
+        });
     </script>
 </body>
 </html>

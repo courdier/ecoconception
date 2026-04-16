@@ -152,7 +152,7 @@
         .nav-languages a.active {
             background-color: #f06529;
             color: white;
-            border-color: #f06529;
+            border-color: #aaa;
         }
 
         .summary-table {
@@ -201,17 +201,17 @@
                 <li class="mg-0"><a href="../quelques-chiffres.html">Chiffres</a></li>
                 <li class="mg-0"><a href="../quizV1.html">Quiz</a></li>
                 <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
-                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
-                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
                 <li class="mg-0"><a href="../langages.html" class="active">Langages</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
             </ul>
         </nav>
     </header>
 
         <!-- Navigation entre langages -->
 <div class="main">
-        <h1><i class="fab fa-rust"></i> Rust Écoconception & Green Coding</h1>
+        <h1><i class="fab fa-rust"></i> Rust - Éco-conception & Green Coding</h1>
 
         <div class="nav-languages">
             <a href="./php.html"><i class="fab fa-php"></i> PHP</a>
@@ -220,7 +220,7 @@
             <a href="c.html"><i class="fas fa-code"></i> C/C++</a>
             <a href="java.html"><i class="fab fa-java"></i> Java</a>
             <a href="dart.html"><i class="fas fa-cog"></i> Dart</a>
-            <a href="javascript.html"><i class="fab fa-js"></i> JavaScript</a>
+            <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fab fa-js"></i> JavaScript (bientôt)</a>
         </div>
 
         <!-- Introduction -->
@@ -236,79 +236,25 @@
 
         </section>
 
-        <!--Spécificités-->
-                <h2>Spécificités du langage</h2>
-            <p>
-                Ce langage, qui a été accepté par une grande posséde plusieurs parrticularités qui permet à ce langage d'être à la fois haute performance et sûr.
-            <ul>
-                <li>
-                    <strong>Ownership, borrowing et lifetimes : </strong>
-Rust repose sur un modèle de propriété de la mémoire (ownership) complété par l’emprunt (borrowing) et les durées de vie (lifetimes).
-Ces règles, vérifiées à la compilation par le borrow checker, empêchent les erreurs mémoire classiques (use-after-free, double free, data races).<br>
-<a href="#source9">[9]</a>  
-                </li>
-<br>
-                <li>
-                    <strong>Sécurité mémoire sans garbage collector</strong>
-Rust garantit la sécurité mémoire sans ramasse-miettes, ce qui évite tout surcoût à l’exécution et la libération de la mémoire est déterministe et liée aux scopes.<br>
-<a href="#source9">[9]</a>  
-                </li>
-<br>
-                <li>
-                    <strong>Abstractions à coût nul (zero-cost abstractions)</strong>
-Les abstractions de haut niveau (itérateurs, traits, génériques, closures) sont optimisées à la compilation pour ne générer aucun surcoût runtime.
-Le code produit est équivalent en performance à du C/C++ écrit manuellement.<br>
-<a href="#source9">[9]</a>  
-                </li>
-<br>
-                <li>
-                    <strong>Concurrence sûre</strong>
-Le système de types empêche à la compilation les accès concurrents non sûrs à la mémoire partagée.
-Les data races sont impossibles sans utiliser explicitement des blocs unsafe. Ceci rend Rust compétent dans les traitements parrallèles devenue aujourd'hui important avec le processeurs multi-threads pour exploiter au mieux les performances d'une application.<br>
-<a href="#source9">[9]</a>  
-
-                </li>
-<br>
-                <li>
-                    <strong>Système de types fort et expressif</strong>
-Rust dispose d’un typage statique strict, avec inférence de type, enums algébriques et pattern matching.
-Cela permet d’exprimer des états complexes de manière sûre et lisible.<br>
-<a href="#source9">[9]</a>  
-                </li>
-<br>
-                <li>
-                    <strong>Traits (interfaces puissantes et génériques)</strong>
-Les traits définissent des comportements partagés entre types, tout en restant compatibles avec les performances bas niveau.
-Ils sont centraux pour la généricité et la modularité du code.<br>
-<a href="#source9">[9]</a>  
-                </li>
-<br>
-                <li>
-                    <strong>Écosystème structuré avec Cargo</strong>
-Cargo gère la compilation, les dépendances, les tests et la documentation de manière standardisée.
-Il favorise des projets reproductibles et maintenables.<br>
-<a href="#source9">[9]</a>  
-                </li>
-            </ul>
-        </section>
-
         <!-- Statistiques clés -->
-        <section class="stats-icons">
-            <div class="stat-item">
-                <i class="fas fa-bolt"></i>
-                <h2>2ᵉ / 27</h2>
-                <p>Classement énergétique des langages <sup><a href="#source1">[1]</a></sup></p>
-            </div>
-            <div class="stat-item">
-                <i class="fas fa-globe"></i>
-                <h2>Top 13</h2>
-                <p>Des langages populaire selon l'index TIOBE <sup><a href="#source2">[2]</a></sup></p>
-            </div>
-            <div class="stat-item">
-                <i class="fas fa-fire"></i>
-                <h2>x1.03 vs C</h2>
-                <p>Consommation énergétique relative <sup><a href="#source1">[1]</a></sup></p>
-            </div>
+        <section class="services-container">
+            <section class="stats-icons">
+                <div class="stat-item">
+                    <i class="fas fa-bolt"></i>
+                    <h2>2ᵉ / 27</h2>
+                    <p>Classement énergétique des langages <sup><a href="#source1">[1]</a></sup></p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-globe"></i>
+                    <h2>Top 13</h2>
+                    <p>Des langages populaire selon l'index TIOBE <sup><a href="#source2">[2]</a></sup></p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-fire"></i>
+                    <h2>x1.03 vs C</h2>
+                    <p>Consommation énergétique relative <sup><a href="#source1">[1]</a></sup></p>
+                </div>
+            </section>
         </section>
 
         <!-- Tableau récapitulatif -->
@@ -828,8 +774,22 @@ cargo build --release</code></pre>
     </ul>
 </section>
 
+<!-- Navigation -->
+<div class="button-container"
+    style="margin-top:60px; gap:15px; display:flex; flex-wrap:wrap; justify-content:center;">
+    <a href="../langages.html" class="button"><i
+            class="fas fa-arrow-left"></i> Retour aux langages</a>
+    <a href="../../index.html" class="button"
+        style="background-color:var(--info-color);"><i
+            class="fas fa-home"></i> Accueil</a>
+    <a href="../en-pratique.html" class="button"
+        style="background-color:var(--success-color);"><i
+            class="fas fa-code"></i> Ateliers pratiques</a>
+</div>
+
+
     <footer>
-        <p class="mg-0">&copy; 2025 - COURDIER Rémy, ROCHAT Lise, ONIAN Youssouf & all - <a href="../a-propos.html">A propos</a></p>
+        <p class="mg-0">&copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion - <a href="./a-propos.html">À propos</a> </p>
     </footer>
 
     <script>

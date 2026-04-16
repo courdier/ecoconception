@@ -243,9 +243,9 @@
         }
 
         .nav-languages a.active {
-            background-color: #306998;
+            background-color: #FFD43B;
             color: white;
-            border-color: #FFD43B;
+            border-color: #aaa;
         }
 
         .summary-table {
@@ -383,13 +383,13 @@
                     <li class="mg-0"><a href="../quizV1.html">Quiz</a></li>
                     <li class="mg-0"><a
                             href="../en-pratique.html">Ateliers</a></li>
-                    <li class="mg-0"><a
-                            href="../ressources.html">Ressources</a></li>
                     <li class="mg-0"><a href="../outils.html">Outils</a></li>
-                    <li class="mg-0"><a
-                            href="../terminologie.html">Terminologie</a></li>
                     <li class="mg-0"><a href="../langages.html"
                             class="active">Langages</a></li>
+                    <li class="mg-0"><a
+                            href="../ressources.html">Ressources</a></li>
+                    <li class="mg-0"><a
+                            href="../terminologie.html">Terminologie</a></li>
                 </ul>
             </nav>
         </header>
@@ -400,18 +400,14 @@
 
             <!-- Navigation entre langages -->
             <div class="nav-languages">
-                <a href="./php.html"><i class="fab fa-php"></i> PHP</a>
-                <a href="./python.html" class="active"><i
-                        class="fab fa-python"></i> Python</a>
-                <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i
-                        class="fas fa-code"></i> C/C++ (bientôt)</a>
-                <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i
-                        class="fab fa-java"></i> Java (bientôt)</a>
-                <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i
-                        class="fas fa-cog"></i> Rust (bientôt)</a>
-                <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i
-                        class="fab fa-js"></i> JavaScript (bientôt)</a>
-            </div>
+            <a href="./php.html"><i class="fab fa-php"></i> PHP</a>
+            <a href="./rust.html"><i class="fab fa-rust"></i> Rust</a>
+            <a href="python.html" class="active"><i class="fab fa-python"></i> Python</a>
+            <a href="c.html"><i class="fas fa-code"></i> C/C++</a>
+            <a href="java.html"><i class="fab fa-java"></i> Java</a>
+            <a href="dart.html"><i class="fas fa-cog"></i> Dart</a>
+            <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fab fa-js"></i> JavaScript (bientôt)</a>
+        </div>
 
             <!-- Introduction -->
             <section class="intro-text">
@@ -425,202 +421,13 @@
                 </p>
                 <br>
                 <p>
-                    Cette page présente <strong>9 règles
+                    Cette page présente <strong>10 règles
                         d'éco-conception</strong> concrètes pour réduire
                     l'empreinte carbone de vos applications Python, avec des
                     <strong>mesures réelles</strong>
                     via CodeCarbon et des <strong>équivalences écologiques
                         parlantes</strong> basées sur les métriques Green IT.
                 </p>
-            </section>
-
-            <!-- Méthodologie collapsible AMÉLIORÉE -->
-            <section class="methodology-section">
-                <div class="methodology-header">
-                    <h2 style="color: var(--primary-color); margin: 0;">
-                        <i class="fas fa-flask"></i> Méthodologie de Mesure
-                    </h2>
-                    <i class="fas fa-chevron-down expand-icon"></i>
-                </div>
-                <div class="methodology-content">
-                    <p style="margin-top: 15px;">
-                        Notre approche d'évaluation repose sur <strong>trois
-                            piliers complémentaires</strong> pour mesurer l'impact environnemental :
-                    </p>
-
-                    <table class="methodology-table">
-                        <thead>
-                            <tr>
-                                <th>Pilier</th>
-                                <th>Outil</th>
-                                <th>Métrique</th>
-                                <th>Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Performance</strong></td>
-                                <td><code>time.perf_counter</code></td>
-                                <td>secondes</td>
-                                <td>Temps CPU/wall-clock pour évaluer la vitesse d'exécution</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Mémoire</strong></td>
-                                <td><code>tracemalloc</code></td>
-                                <td>Mo (Pic RAM)</td>
-                                <td>Pic de consommation mémoire atteint pendant l'exécution</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Carbone</strong></td>
-                                <td><code>CodeCarbon</code></td>
-                                <td>kg eqCO₂</td>
-                                <td>Émissions de CO₂ estimées selon le mix énergétique local</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <h3 style="color: var(--primary-color); margin-top: 30px;">
-                        <i class="fas fa-leaf"></i> 1.1 Impact Carbone avec CodeCarbon
-                    </h3>
-                    <div class="explanation-box">
-                        <h4>Qu'est-ce que CodeCarbon ?</h4>
-                        <p>
-                            CodeCarbon est une bibliothèque open-source qui estime les <strong>émissions de CO₂</strong>
-                            en combinant : la <strong>puissance électrique consommée</strong> (CPU + GPU + RAM) via les 
-                            compteurs RAPL (Running Average Power Limit) ou estimations par modèle, et 
-                            l'<strong>intensité carbone du mix énergétique local</strong> (g eqCO₂/kWh).
-                        </p>
-                        <div class="code-block" style="margin-top: 15px;">
-                            <pre><code><span class="keyword">from</span> codecarbon <span class="keyword">import</span> OfflineEmissionsTracker
-
-<span class="comment"># Configuration pour précision maximale</span>
-tracker <span class="operator">=</span> <span class="function">OfflineEmissionsTracker</span>(
-    project_name<span class="operator">=</span><span class="string">"regle_test"</span>,
-    country_iso_code<span class="operator">=</span><span class="string">"REU"</span>,  <span class="comment"># Intensité carbone de La Réunion (~573g/kWh)</span>
-    measure_power_secs<span class="operator">=</span><span class="string">1</span>,    <span class="comment"># Fréquence élevée pour codes courts</span>
-    output_dir<span class="operator">=</span><span class="string">"."</span>
-)
-tracker.<span class="function">start</span>()
-<span class="comment"># ... code à mesurer ...</span>
-emissions <span class="operator">=</span> tracker.<span class="function">stop</span>()</code></pre>
-                        </div>
-                        <p style="margin-top: 15px;">
-                            <strong>Formule fondamentale :</strong><br>
-                            <code style="background: rgba(47, 223, 173, 0.1); padding: 8px 12px; border-radius: 4px; display: inline-block; margin-top: 8px;">
-                                CO₂ (g) = Énergie consommée (kWh) × Intensité carbone (g eqCO₂/kWh)
-                            </code>
-                        </p>
-                    </div>
-
-                    <h3 style="color: var(--primary-color); margin-top: 30px;">
-                        <i class="fas fa-globe"></i> 1.2 Contexte Énergétique (Mix par Pays)
-                    </h3>
-                    <div class="explanation-box">
-                        <p>L'intensité carbone varie considérablement selon le mix énergétique de chaque pays :</p>
-                        <table class="energy-mix-table" style="margin-top: 15px;">
-                            <thead>
-                                <tr>
-                                    <th>Pays</th>
-                                    <th>Intensité Carbone</th>
-                                    <th>Contexte Énergétique</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style="background-color: rgba(253, 99, 99, 0.1);">
-                                    <td><strong>La Réunion (REU)</strong></td>
-                                    <td><strong>~573 g eqCO₂/kWh</strong></td>
-                                    <td>Mix dominé par la thermique fossile</td>
-                                </tr>
-                                <tr style="background-color: rgba(105, 240, 109, 0.1);">
-                                    <td>France (FRA)</td>
-                                    <td>~56 g eqCO₂/kWh</td>
-                                    <td>Mix dominé par le nucléaire (~65%) et renouvelables</td>
-                                </tr>
-                                <tr>
-                                    <td>États-Unis (USA)</td>
-                                    <td>~369 g eqCO₂/kWh</td>
-                                    <td>Mix diversifié (gaz naturel, charbon en baisse, nucléaire)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p style="margin-top: 15px;">
-                            <strong>Implication :</strong> Une optimisation logicielle en France a un impact carbone 
-                            direct <strong>10× moindre</strong> que le même gain à La Réunion. Cependant, les économies 
-                            d'échelle sur des infrastructures globales rendent l'optimisation pertinente indépendamment 
-                            de la localisation.
-                        </p>
-                    </div>
-
-                    <h3 style="color: var(--primary-color); margin-top: 30px;">
-                        <i class="fas fa-clock"></i> 1.3 Temps d'exécution
-                    </h3>
-                    <div class="explanation-box">
-                        <p>
-                            Le temps de calcul est le <strong>premier indicateur</strong> de l'efficacité énergétique.
-                            Plus un algorithme s'exécute rapidement, moins il sollicite le processeur.
-                        </p>
-                        <ul style="text-align: left; margin-top: 10px;">
-                            <li><strong>Temps wall-clock</strong> : temps réel écoulé (incluant I/O)</li>
-                            <li><strong>Temps CPU</strong> : temps processeur effectif (calculs purs)</li>
-                        </ul>
-                    </div>
-
-                    <h3 style="color: var(--primary-color); margin-top: 30px;">
-                        <i class="fas fa-memory"></i> 1.4 Consommation mémoire
-                    </h3>
-                    <div class="explanation-box">
-                        <p>
-                            La mémoire vive (RAM) consommée a un <strong>impact indirect mais significatif</strong> :
-                        </p>
-                        <ul style="text-align: left; margin-top: 10px;">
-                            <li>Serveurs plus puissants = <strong>énergie grise</strong> (fabrication)</li>
-                            <li>Risque de <strong>swapping</strong> (extrêmement énergivore)</li>
-                            <li>Infrastructure surdimensionnée</li>
-                        </ul>
-                        <p style="margin-top: 10px;">
-                            Nous utilisons <code>tracemalloc</code> pour mesurer le pic mémoire atteint.
-                        </p>
-                    </div>
-
-                    <h3 style="color: var(--primary-color); margin-top: 30px;">
-                        <i class="fas fa-vial"></i> 1.5 Protocole expérimental robuste
-                    </h3>
-                    <div class="explanation-box">
-                        <ol style="text-align: left;">
-                            <li><strong>Préparation</strong> : Identification anti-pattern vs solution optimisée</li>
-                            <li><strong>Isolation</strong> : Séparer strictement l'exécution des anti-patterns et des 
-                                solutions dans des processus distincts pour éviter les effets de bord (cache CPU, 
-                                pollution mémoire, warm-up interpréteur)</li>
-                            <li><strong>Warm-up</strong> : Phase d'échauffement systématique avant chaque benchmark 
-                                pour stabiliser la fréquence CPU (turbo boost) et l'état du garbage collector Python</li>
-                            <li><strong>Mesure</strong> : Exécution séparée avec temps, mémoire et CodeCarbon</li>
-                            <li><strong>Répétition</strong> : Effectuer plusieurs runs consécutifs par scénario, 
-                                écarter les outliers (±2σ), et présenter moyenne + écart-type</li>
-                            <li><strong>Analyse</strong> : Calcul gains + équivalences écologiques (Green IT)</li>
-                        </ol>
-                    </div>
-
-                    <h3 style="color: var(--primary-color); margin-top: 30px;">
-                        <i class="fas fa-exclamation-triangle"></i> 1.6 Limites et précisions
-                    </h3>
-                    <div class="explanation-box">
-                        <ul style="text-align: left;">
-                            <li><strong>Précision</strong> : CodeCarbon donne des estimations (erreur ~10-20%)</li>
-                            <li><strong>Variabilité</strong> : Résultats dépendent du processeur, température, processus parallèles</li>
-                            <li><strong>Gains relatifs</strong> privilégiés sur valeurs absolues</li>
-                            <li><strong>Configuration matérielle</strong> : Les résultats peuvent varier selon le hardware</li>
-                        </ul>
-                    </div>
-
-                    <h3 style="color: var(--primary-color); margin-top: 30px;">
-                        <i class="fas fa-server"></i> 1.7 Configuration de référence
-                    </h3>
-                    <div class="explanation-box">
-                        <p><strong>Matériel :</strong> Processeur multi-cœur, 16+ Go RAM, SSD</p>
-                        <p><strong>Localisation :</strong> La Réunion (mix énergétique ~573 g CO₂/kWh)</p>
-                        <p><strong>Python :</strong> Version 3.8+ avec CodeCarbon 2.x</p>
-                    </div>
-                </div>
             </section>
 
             <!-- Section explicative sur les métriques Green IT -->
@@ -845,7 +652,7 @@ found <span class="operator">=</span> target <span class="keyword">in</span> ite
                         </div>
 
                         <h4 style="color: var(--success-color); margin-top: 20px;">
-                            <i class="fas fa-check-circle"></i> Solution (O(1) - constant) :
+                            <i class="fas fa-check-circle"></i> Sol ution (O(1) - constant) :
                         </h4>
                         <div class="code-block good">
                             <pre><code><span class="comment"># Recherche par hash dans un set</span>
@@ -3269,31 +3076,36 @@ groups <span class="operator">=</span> <span class="function">defaultdict</span>
         </div>
 
         <footer>
-            <p class="mg-0">&copy; 2025 - <a href="../a-propos.html">A propos</a></p>
+            <p class="mg-0">&copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion - <a href="./a-propos.html">À propos</a> </p>
         </footer>
 
         <script>
-        function toggleRule(ruleId) {
-            const rule = document.getElementById(ruleId);
-            if (rule) {
-                rule.scrollIntoView({behavior: 'smooth', block: 'start'});
-                if (!rule.classList.contains('active')) {
-                    rule.classList.add('active');
+            function toggleRule(ruleId, shouldScroll = true) {
+                const rule = document.getElementById(ruleId);
+
+                if (!rule) return;
+
+                rule.classList.toggle('active');
+
+                if (shouldScroll) {
+                    rule.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }
-        }
 
-        // Toggle méthodologie
-        document.querySelector('.methodology-section .methodology-header').addEventListener('click', function() {
-            this.parentElement.classList.toggle('active');
-        });
+            // Toggle méthodologie seulement si elle existe
+            const methodologyHeader = document.querySelector('.methodology-section .methodology-header');
+            if (methodologyHeader) {
+                methodologyHeader.addEventListener('click', function () {
+                    this.parentElement.classList.toggle('active');
+                });
+            }
 
-        // Toggle règles
-        document.querySelectorAll('.eco-rule .rule-header').forEach(header => {
-            header.addEventListener('click', function() {
-                this.parentElement.classList.toggle('active');
+            // Toggle cartes règles
+            document.querySelectorAll('.eco-rule .rule-header').forEach(header => {
+                header.addEventListener('click', function () {
+                    this.parentElement.classList.toggle('active');
+                });
             });
-        });
-    </script>
+        </script>
     </body>
 </html>

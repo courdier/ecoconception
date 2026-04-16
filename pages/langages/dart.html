@@ -146,14 +146,14 @@
         }
 
         .nav-languages a:hover {
-            background-color: rgba(0, 180, 216, 0.2);
-            border-color: #00b4d8;
+            background-color: rgba(47, 223, 173, 0.2);
+            border-color: var(--primary-color);
         }
 
         .nav-languages a.active {
             background-color: #00b4d8;
             color: white;
-            border-color: #00b4d8;
+            border-color: #aaa;;
         }
 
         .summary-table {
@@ -202,10 +202,10 @@
                 <li class="mg-0"><a href="../quelques-chiffres.html">Chiffres</a></li>
                 <li class="mg-0"><a href="../quizV1.html">Quiz</a></li>
                 <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
-                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
-                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
                 <li class="mg-0"><a href="../langages.html" class="active">Langages</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
             </ul>
         </nav>
     </header>
@@ -216,10 +216,11 @@
         <!-- Navigation entre langages -->
         <div class="nav-languages">
             <a href="./php.html"><i class="fab fa-php"></i> PHP</a>
-            <a href="./dart.html" class="active"><i class="fas fa-bullseye"></i> Dart</a>
-            <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fab fa-python"></i> Python (bientôt)</a>
-            <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fas fa-code"></i> C/C++ (bientôt)</a>
-            <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fab fa-java"></i> Java (bientôt)</a>
+            <a href="./rust.html"><i class="fab fa-rust"></i> Rust</a>
+            <a href="python.html"><i class="fab fa-python"></i> Python</a>
+            <a href="c.html"><i class="fas fa-code"></i> C/C++</a>
+            <a href="java.html"><i class="fab fa-java"></i> Java</a>
+            <a href="dart.html" class="active"><i class="fas fa-cog"></i> Dart</a>
             <a href="#" style="opacity: 0.5; cursor: not-allowed;"><i class="fab fa-js"></i> JavaScript (bientôt)</a>
         </div>
 
@@ -249,22 +250,24 @@
         </section>
 
         <!-- Statistiques clés -->
-        <section class="stats-icons">
-            <div class="stat-item">
-                <i class="fas fa-mobile-alt"></i>
-                <h2>2.8M</h2>
-                <p>Développeurs Flutter/Dart actifs mensuels <sup><a href="#source1">[1]</a></sup></p>
-            </div>
-            <div class="stat-item">
-                <i class="fas fa-memory"></i>
-                <h2>570 MB</h2>
-                <p>Consommation mémoire moyenne <sup><a href="#source2">[2]</a></sup></p>
-            </div>
-            <div class="stat-item">
-                <i class="fas fa-rocket"></i>
-                <h2>30%</h2>
-                <p>Gain de vitesse avec AOT vs JIT <sup><a href="#source3">[3]</a></sup></p>
-            </div>
+        <section class="services-container">
+            <section class="stats-icons">
+                <div class="stat-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h2>2.8M</h2>
+                    <p>Développeurs Flutter/Dart actifs mensuels <sup><a href="#source1">[1]</a></sup></p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-memory"></i>
+                    <h2>570 MB</h2>
+                    <p>Consommation mémoire moyenne <sup><a href="#source2">[2]</a></sup></p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-rocket"></i>
+                    <h2>30%</h2>
+                    <p>Gain de vitesse avec AOT vs JIT <sup><a href="#source3">[3]</a></sup></p>
+                </div>
+            </section>
         </section>
 
         <!-- Tableau récapitulatif -->
@@ -1054,7 +1057,7 @@ flutter pub global run devtools</code></pre>
     </div>
 
     <footer>
-        <p class="mg-0">&copy; 2025 - COURDIER Rémy, ROCHAT Lise, ONIAN Youssouf & all - <a href="../a-propos.html">A propos</a></p>
+        <p class="mg-0">&copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion - <a href="./a-propos.html">À propos</a> </p>
     </footer>
 
     <script>
