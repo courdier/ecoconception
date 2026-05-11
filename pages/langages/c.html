@@ -1207,48 +1207,6 @@ String configCache = <span class="string">""</span>;
 
         </section>
 
-        <!-- Checklist -->
-        <section style="margin-top:60px;padding:30px;background:linear-gradient(135deg,rgba(47,223,173,0.08),rgba(47,223,173,0.02));border-radius:12px;border:1px solid rgba(47,223,173,0.3);">
-            <h2><i class="fas fa-tasks"></i> Checklist d'Éco-conception C/C++ IoT</h2>
-            <p>Appliquer ces 10 règles sur un capteur IoT M5Stack déployé en continu :</p>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:15px;margin-top:20px;">
-                <div>
-                    <h4 style="color:var(--primary-color);">⚡ Énergie (fort impact)</h4>
-                    <ul style="list-style:none;padding:0;">
-                        <li style="margin-bottom:10px;">☐ <strong>Deep Sleep + Dimming LCD</strong> (Règle 1) → ~23 km voiture/an</li>
-                        <li style="margin-bottom:10px;">☐ <strong>Interruptions vs Polling</strong> (Règle 3) → ~16 km voiture/an</li>
-                        <li style="margin-bottom:10px;">☐ <strong>Désactiver Wi-Fi/BT/ADC</strong> (Règle 6) → ~22 km voiture/an</li>
-                        <li style="margin-bottom:10px;">☐ <strong>Cache Flash en RAM</strong> (Règle 9) → ~22 km voiture/an</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 style="color:var(--primary-color);">🧠 CPU &amp; Mémoire</h4>
-                    <ul style="list-style:none;padding:0;">
-                        <li style="margin-bottom:10px;">☐ <strong>Fréquence CPU adaptive</strong> (Règle 8) → ~12 km voiture/an</li>
-                        <li style="margin-bottom:10px;">☐ <strong>Logs désactivés en prod</strong> (Règle 4) → ~13 km voiture/an</li>
-                        <li style="margin-bottom:10px;">☐ <strong>Boucles optimisées</strong> (Règle 2) → +35% cycles CPU</li>
-                        <li style="margin-bottom:10px;">☐ <strong>Stack/Heap maîtrisé</strong> (Règle 5) → Stabilité + −33% RAM</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 style="color:var(--primary-color);">🛠️ Bonnes pratiques</h4>
-                    <ul style="list-style:none;padding:0;">
-                        <li style="margin-bottom:10px;">☐ <strong>constexpr/const</strong> (Règle 7) → −2 Ko RAM + +10% perf.</li>
-                        <li style="margin-bottom:10px;">☐ <strong>Types de données adaptés</strong> (Règle 10) → −60% mémoire</li>
-                    </ul>
-                    <div style="margin-top:15px;padding:10px;background:rgba(105,240,109,0.1);border-radius:8px;border-left:3px solid var(--success-color);">
-                        <strong>Total estimé :</strong> ~13,4 kg CO₂/an économisés<br>
-                        🚗 ~120 km de voiture | 🌳 0,6 arbre préservé<br>
-                        🔋 Autonomie batterie ×10 à ×15
-                    </div>
-                </div>
-            </div>
-            <p style="margin-top:15px;font-size:0.9rem;">
-                <em>Équivalence voiture : 1 km = 112 g CO₂ (métrique Green IT/ADEME)</em><br>
-                <em>Mix énergétique : La Réunion (~573 g eqCO₂/kWh) — Base : déploiement 24h/24, 365j/an</em>
-            </p>
-        </section>
-
         <!-- Outils -->
         <section style="margin-top:50px;">
             <h2><i class="fas fa-tools"></i> Outils pour mesurer et améliorer</h2>
