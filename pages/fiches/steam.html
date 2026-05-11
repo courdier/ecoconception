@@ -18,14 +18,24 @@
     <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="../../assets/scripts/hamburger.js"></script>
 </head>
 <body>
     <header>
-        <nav>
+                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
-                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html" class="active">Chiffres</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../langages.html">Langages</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
             </ul>
         </nav>
@@ -39,13 +49,13 @@
 			<section class="stats-icons">
 				<div class="stat-item">
 					<i class="fas fa-users"></i>
-					<h2>34.5 Millions+</h2>
-					<p>Joueurs connectés simultanément (pic en 2024) <sup><a href="#source1">[1]</a></sup></p>
+					<h2>42+ Millions</h2>
+					<p>Joueurs connectés simultanément (pic) <sup><a href="#source1">[1]</a></sup></p>
 				</div>
 				<div class="stat-item">
 					<i class="fas fa-download"></i>
-					<h2>25.8 Tbps</h2>
-					<p>Bande passante moyenne utilisée (sur 48h) <sup><a href="#source2">[2]</a></sup></p>
+					<h2>33 Tbps</h2>
+					<p>Bande passante moyenne utilisée <sup><a href="#source2">[2]</a></sup></p>
 				</div>
 				<div class="stat-item">
 					<i class="fas fa-leaf"></i>
@@ -64,7 +74,7 @@
                 </div>
             </section>
             <section class="additional-impact">
-                <h2>Autres impacts environnementaux <sup><a href="#source4">[4]</a></sup></h2>
+                <h2>Autres impacts environnementaux</h2>
                 <section class="additional-impact-content">
                     <div class="impact-card impact-card-1">
                         <p class="impact-value">0,32 Litres /Go</p>
@@ -82,11 +92,23 @@
                         <p class="impact-value">2 à 3 Go /10 min</p>
                         <p class="impact-label">Consommation bande passante</p>
                     </div>
+
+                    <details class="personnalize">
+                        <summary>Ça veut dire quoi concètement ?</summary>
+                        <p>
+                            Pour être plus clair et donner un ordre de grandeur, une douche consomme en moyenne 6 litres d’eau par minute, 
+                            une batterie de smartphone est souvent autour de 4 500 mAh et l’occupation des sols représente la surface mobilisée par les infrastructures numériques.
+                        </p>
+                        <p>
+                            Ainsi, <strong>1 heure</strong> d’utilisation de Steam avec environ <strong>50 Go</strong> téléchargés correspond à une douche de presque <strong>3 minutes</strong>, 
+                            à <strong>une centaine de mètres carrés</strong> d’infrastructures mobilisées ainsi qu'à une consommation d’énergie équivalente à près d’un quart de batterie d'un smartphone.
+                        </p>
+                    </details>
                 </section>
             </section>
 			
             <section class="tips">
-                <h2>Conseils pour réduire l'empreinte carbone <sup><a href="#source5">[5]</a></sup></h2>
+                <h2>Conseils pour réduire l'empreinte carbone <sup><a href="#source5">[5]</a><a href="#source6">[6]</a></sup></h2>
                 <section class="additional-impact-content">
                     <div class="tip-item">
                         <p>Privilégiez les jeux légers et moins gourmands en ressources.</p>
@@ -97,53 +119,68 @@
                     <div class="tip-item">
                         <p>Limitez les mises à jour automatiques pour économiser de la bande passante.</p>
                     </div>
+                    <div class="tip-item">
+                        <p>Eviter le cloud gaming. Le cloud gaming peut consommer jusqu'à 3x l'énergie par rapport à l'utilisation locale</p>
+                    </div>
+                    
                 </section>
             </section>
         </section>
         <section class="bibliography">
             <h2>Sources</h2>
 			<ul class="bibliography-list">
-				<li id="source1">
-					[1] <strong>Statistiques de téléchargement Steam</strong>. Disponible en ligne : 
-					<a href="https://store.steampowered.com/stats/content/?l=french" target="_blank">
-						store.steampowered.com/stats/content
+                <li id="source1">
+					[1] "Steam charts," <em>SteamDB</em>, Disponible en ligne : 
+					<a href="https://steamdb.info/app/753/charts/#max" target="_blank">
+						https://steamdb.info/
 					</a>
 				</li>
 				<li id="source2">
-					[2] <strong>Nombre de joueurs en ligne sur Steam</strong>. Disponible en ligne : 
-					<a href="https://store.steampowered.com/charts/?l=french" target="_blank">
-						store.steampowered.com/charts
+					[2] "Statistiques de téléchargement Steam," <em>Steam</em>, Disponible en ligne : 
+					<a href="https://store.steampowered.com/stats/content/?l=french" target="_blank">
+						https://store.steampowered.com/
 					</a>
 				</li>
 				<li id="source3">
-					[3] <strong>Comprendre l'empreinte environnementale des réseaux télécoms</strong>, Fédération Française des Télécoms. Disponible en ligne : 
+					[3] "Comprendre l'empreinte environnementale des réseaux télécoms", <em>Fédération Française des Télécoms</em>, Disponible en ligne : 
 					<a href="https://www.fftelecoms.org/nos-travaux-et-champs-dactions/telecoms-responsables/comprendre-lempreinte-environnementale-qui-figure-desormais-sur-vos-factures/" target="_blank">
-						fftelecoms.org
+						https://www.fftelecoms.org/
 					</a>
 				</li>
 				<li id="source4">
-					[4] <strong>Quelle empreinte carbone pour l’industrie des jeux vidéo</strong>. Disponible en ligne : 
+					[4] "Quelle empreinte carbone pour l’industrie des jeux vidéo ?," <em>HelloCarbo</em>, Disponible en ligne : 
 					<a href="https://www.hellocarbo.com/blog/calculer/empreinte-carbone-jeux-video/" target="_blank">
-						hellocarbo.com
+						https://www.hellocarbo.com/
 					</a>
 				</li>
 				<li id="source5">
-					[5] <strong>How to Reduce Gaming’s Carbon Footprint</strong>. Disponible en ligne : 
+					[5] "Baisser la consommation de son PC," <em>Gamer Top</em>, Disponible en ligne : 
 					<a href="https://gamertop.fr/baissez-la-consommation-de-son-pc-tuto/" target="_blank">
-						gamertop.fr
+						https://gamertop.fr/
 					</a>
 				</li>
+                <li id="source6">
+                    [6] "Reducing the energy use of video gaming," <em>Copenhagen Centre on Energy Efficiency</em>, Disponible en ligne :
+                    <a href="https://c2e2.unepccc.org/wp-content/uploads/sites/3/2020/10/reducing-the-energy-use-of-video-gaming-energy-efficiency-and-gamification-en.pdf" target="_blank">
+                        https://c2e2.unepccc.org/
+                    </a>
+                </li>
 			</ul>
 					 
         </section>
         <div class="button-container">
             <button class="button" onclick="window.print()" title="Imprimez uniquement si nécessaire pour l'enseignement ou lorsque le numérique n'est pas adapté.">Imprimer cette fiche</button>
-            <button class="button-secondary" onclick="window.open('../quelques-chiffres.html')">Découvrir les autres services</button>
+            <button class="button-secondary" onclick="window.location.href='../quelques-chiffres.html'">Retour aux autres services</button>
         </div>
     </div>
     <footer>
-        <p class="mg-0">&copy; 2024 ROCHAT Lise & COURDIER Remy - <a href="../a-propos.html">À propos</a></p>
+        <p class="mg-0">&copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion - <a href="./a-propos.html">À propos</a> </p>
     </footer>
+
+    <img src="../../assets/img/Steam_icon_logo.svg.png" class="bg-logo" style="top: 180px; left: 10%;">
+    <img src="../../assets/img/Steam_icon_logo.svg.png" class="bg-logo" style="top: 80px; right: 10%;">
+    <img src="../../assets/img/Steam_icon_logo.svg.png" class="bg-logo" style="bottom: 70px; right: 4%;">
+
     <script>
         var ctx = document.getElementById('co2Chart').getContext('2d');
         var co2Chart = new Chart(ctx, {
@@ -170,6 +207,7 @@
                 plugins: {
                     legend: {
                         position: 'right', 
+                        labels: {color:'#e8e8e8'}
                     },
                     tooltip: {
                         callbacks: {
@@ -183,9 +221,7 @@
         });
     </script>
     <footer>
-        <section class="footer-content">
-            <p>&copy; 2024 - Impact Environnemental de Facebook | Conçu par LENORMAND Julien, étudiant de Master informatique, UR</p>
-        </section>
+        <p class="mg-0">&copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion - <a href="../a-propos.html">À propos</a></p>
     </footer>
 </body>
 </html>

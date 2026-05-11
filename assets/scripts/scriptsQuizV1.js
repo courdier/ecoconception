@@ -118,8 +118,8 @@ const questions = [
             { text: "Non, jamais ", co2Impact: 0.1 }
         ],
         info: "Réduire la qualité de streaming ou limiter les emails inutiles sont des pratiques efficaces pour diminuer son empreinte carbone.",
-        extra: "Éteindre sa webcam pendant sa visioconférence, c'est bon pour la planète.",
-        source: "[10] 'Éteindre sa webcam pendant sa visioconférence, c'est bon pour la planète,' Huffington Post, 2023. [Online]. Available: <a href='https://www.huffingtonpost.fr/vie-de-bureau/video/eteindre-sa-webcam-pendant-sa-visioconference-c-est-bon-pour-la-planete_176254.html' target='_blank'>https://www.huffingtonpost.fr/vie-de-bureau/video/eteindre-sa-webcam-pendant-sa-visioconference-c-est-bon-pour-la-planete_176254.html</a>"
+        extra: "Éteindre sa webcam pendant sa visioconférence, c'est bon pour la planète. Passer votre vidéo de 4K à HD permet de réduire votre consommation énergétique.",
+        source: "[10] 'Éteindre sa webcam pendant sa visioconférence, c'est bon pour la planète,' Huffington Post, 2023. [Online]. Available: <a href='https://www.huffingtonpost.fr/vie-de-bureau/video/eteindre-sa-webcam-pendant-sa-visioconference-c-est-bon-pour-la-planete_176254.html' target='_blank'>https://www.huffingtonpost.fr/vie-de-bureau/video/eteindre-sa-webcam-pendant-sa-visioconference-c-est-bon-pour-la-planete_176254.html</a><br>[11] 'Energy consumption of video streaming' Université de Linköping, 2024. [Online]. Available: <a href='https://www.diva-portal.org/smash/get/diva2%3A1861519/FULLTEXT01.pdf' target='_blank'>https://www.diva-portal.org/smash/get/diva2%3A1861519/FULLTEXT01.pdf</a>"
     },
     {
         question: "Combien de fois par an achetez-vous de nouveaux équipements électroniques (ordinateurs, tablettes, gadgets, etc.) ?",
@@ -131,7 +131,7 @@ const questions = [
         ],
         info: "La fabrication de matériel informatique représente 97% de l’épuisement de nos ressources !",
         extra: "La fabrication de nouveau matériel informatique représente également : 29% de la consommation énergétique dans le monde, 54% des émissions de GES, et 61% de notre utilisation en eau.",
-        source: "[11] 'L'impact environnemental des équipements électroniques,' CNRS, 2023. [Online]. Available: <a href='https://csi.math.cnrs.fr/documents/info.pdf' target='_blank'>https://csi.math.cnrs.fr/documents/info.pdf</a>"
+        source: "[12] 'L'impact environnemental des équipements électroniques,' CNRS, 2023. [Online]. Available: <a href='https://csi.math.cnrs.fr/documents/info.pdf' target='_blank'>https://csi.math.cnrs.fr/documents/info.pdf</a>"
     }
 ];
 

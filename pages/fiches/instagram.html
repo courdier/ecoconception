@@ -17,15 +17,25 @@
     <link rel="stylesheet" href="../../assets/styles/styles.css">
     <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="../../assets/scripts/hamburger.js"></script>
 </head>
 
 <body>
     <header>
-        <nav>
+                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
-                <li class="mg-0"><a href="../en-pratique.html">Ressources</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html" class="active">Chiffres</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../langages.html">Langages</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
             </ul>
         </nav>
@@ -45,25 +55,84 @@
                 <div class="stat-item">
                     <i class="fas fa-photo-video"></i>
                     <h2>95+ Millions</h2>
-                    <p>Photos et vidéos publiées chaque jour <sup><a href="#source2">[2]</a></sup></p>
+                    <p>Photos et vidéos publiées chaque jour <sup><a href="#source1">[1]</a></sup></p>
                 </div>
-                <div class="stat-item">
-                    <i class="fas fa-leaf"></i>
-                    <h2>0.87 g CO2</h2>
-                    <p>Émissions de CO2 par minute d'utilisation <sup><a href="#source3">[2]</a></sup></p>
+                <div class="stat-item-container">
+                    <div class="stat-item" id="stat-item-base">
+                        <i class="fas fa-leaf"></i>
+                        <h2>52g CO2</h2>
+                        <p>Émission de CO2 par heure d'utilisation<sup><a href="#source2">[2]</a></sup></p>
+                    </div>
+                    <div class="stat-item" id="stat-item-hover">
+                        <i class="fa-solid fa-car"></i>
+                        <h2>260 m</h2>
+                        <p>Équivalent carbone (distance en voiture) selon impact CO2<sup><a href="#source2">[2]</a></sup></p>
+                    </div>
                 </div>
             </section>
             <section class="impact-details">
-                <h2>Comparaison de l'empreinte carbone <sup><a href="#source3">[2]</a></sup></h2>
+                <h2>Comparaison de l'empreinte carbone <sup><a href="#source2">[2]</a></sup></h2>
                 <p>Une heure passée sur Instagram génère environ 52 g de CO2. Ce chiffre peut sembler faible, mais il s'additionne rapidement avec des millions d'utilisateurs actifs chaque jour, représentant une empreinte environnementale significative.</p>
 
-                <div class="chart-container" style="display: flex; justify-content: center;">
-                    <canvas id="co2Chart" width="600" height="400"></canvas>
+                <div class="chart-container" style="display: flex; justify-content: center; max-width: 100%; position: relative; height: 400px;">
+                    <canvas id="co2Chart"></canvas>
                 </div>
             </section>
             <section class="additional-impact">
-                <h2>Impact supplémentaire <sup><a href="#source3">[2]</a></sup></h2>
-                <p>Outre les émissions directes, l'infrastructure qui supporte Instagram consomme d'énormes quantités d'énergie. Les centres de données et le streaming vidéo représentent une part importante de cet impact.</p>
+                <h2>Autres impacts environnementaux <sup><a href="#source3">[3]</a></sup></h2>
+                <section class="additional-impact-content">
+                    <div class="impact-card impact-card-1">
+                        <p class="impact-value">0,12 Litres /min</p>
+                        <p class="impact-label">Ressource en Eau</p>
+                    </div>
+                    <div class="impact-card impact-card-2">
+                        <p class="impact-value">1,03 m² /min</p>
+                        <p class="impact-label">Occupation des sols</p>
+                    </div>
+                    <div class="impact-card impact-card-3">
+                        <p class="impact-value">8,9 mAh /min</p>
+                        <p class="impact-label">Consommation d'énergie</p>
+                    </div>
+                </section>
+
+                <!-- Personnalisation selon l'usage -->
+                <details class ="personnalize" aria-labelledby="usage-title">
+                    <summary>Personnaliser selon votre usage</summary>
+
+                    <div class="usage-input">
+                        <label for="dailyMinutes">Temps d’usage quotidien (en minutes) :</label>
+                        <input id="dailyMinutes" type="number" min="0" max="600" value="60" inputmode="numeric">
+                    </div>
+
+                    <div class="usage-results" role="status" aria-live="polite">
+                        <div class="usage-card red">
+                        <p class="usage-label">Eau</p>
+                        <p class="usage-line"><strong id="waterDay">-</strong> / jour</p>
+                        </div>
+
+                        <div class="usage-card yellow">
+                        <p class="usage-label">Occupation des sols</p>
+                        <p class="usage-line"><strong id="landDay">-</strong> / jour</p>
+                        </div>
+
+                        <div class="usage-card green">
+                        <p class="usage-label">Énergie</p>
+                        <p class="usage-line"><strong id="energyDay">-</strong> / jour</p>
+                        </div>
+                    </div>
+
+                    <section class="meaning">
+                        <h4>Ça veut dire quoi concètement ?</h4>
+                        <p>
+                            Pour être plus clair et donner un ordre de grandeur, une bouteille d’eau contient environ 1.5L, 
+                            une batterie de smartphone est souvent autour de 4 500 mAh et l’occupation des sols représente la surface mobilisée par les infrastructures numériques.
+                        </p>
+                        <p>
+                            Ainsi, <strong>1 heure</strong> quotidienne sur Instagram correspond à environ <strong>5 bouteilles d’eau</strong> consommées, à <strong>une soixantaine de mètres carrés</strong> d’infrastructures mobilisées, 
+                            ainsi qu’à une consommation d’énergie équivalente à <strong>environ 12%</strong> de batterie d'un smartphone.
+                        </p>
+                    </section>
+                </details>
             </section>
             <section class="tips">
                 <h2>Conseils pour réduire l'empreinte carbone</h2>
@@ -83,18 +152,24 @@
         <section class="bibliography">
             <h2>Sources</h2>
             <ul class="bibliography-list">
-                <li id="source1">[1] "Chiffres Instagram – 2024," Blog du modérateur. Disponible en ligne : <a href="https://www.blogdumoderateur.com/chiffres-instagram/" target="_blank">https://www.blogdumoderateur.com/chiffres-instagram//</a></li>
-                <li id="source3">[2] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2023 ," Greenspector. Disponible en ligne : <a href="https://greenspector.com/fr/quelle-empreinte-environnementale-pour-les-applications-reseaux-sociaux-edition-2023/" target="_blank">https://greenspector.com/fr/quelle-empreinte-environnementale-pour-les-applications-reseaux-sociaux-edition-2023/</a></li>
+                <li id="source1">[1] "Chiffres Instagram - 2025," Blog du modérateur. Disponible en ligne : <a href="https://www.blogdumoderateur.com/chiffres-instagram/" target="_blank">https://www.blogdumoderateur.com/</a></li>
+                <li id="source2">[2] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2023 ," Greenspector. Disponible en ligne : <a href="https://greenspector.com/fr/quelle-empreinte-environnementale-pour-les-applications-reseaux-sociaux-edition-2023/" target="_blank">https://greenspector.com/</a></li>
+                <li id="source3">[3] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2021," Greenspector, Disponible en ligne : <a href="https://greenspector.com/fr/reseaux-sociaux-2021/" target="_blank">https://greenspector.com/</a></li>
             </ul>
         </section>
         <div class="button-container">
             <button class="button" onclick="window.print()" title="Imprimez uniquement si nécessaire.">Imprimer cette fiche</button>
-            <button class="button-secondary" onclick="window.open('../quelques-chiffres.html')">Voir d'autres services</button>
+            <button class="button-secondary" onclick="window.location.href='../quelques-chiffres.html'">Retour aux autres services</button>
         </div>
     </div>
     <footer>
-        <p class="mg-0">&copy; 2024 ROCHAT Lise - <a href="../a-propos.html">À propos</a></p>
+        <p class="mg-0">&copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion - <a href="../a-propos.html">À propos</a></p>
     </footer>
+
+    <img src="../../assets/img/Instagram_logo.png" class="bg-logo" style="top: 170px; left: 8%;">
+    <img src="../../assets/img/Instagram_logo.png" class="bg-logo" style="top: 80px; right: 8%;">
+    <img src="../../assets/img/Instagram_logo.png" class="bg-logo" style="bottom: 70px; right: 4%;">
+
     <script>
         var ctx = document.getElementById('co2Chart').getContext('2d');
         var co2Chart = new Chart(ctx, {
@@ -138,6 +213,43 @@
                 }
             }
         });
+    </script>
+
+    <script>
+        const WATER_PER_MIN = 0.12;   
+        const LAND_PER_MIN  = 1.03; 
+        const ENERGY_PER_MIN = 8.9;  
+
+        const input = document.getElementById("dailyMinutes");
+
+        const out = {
+            waterDay: document.getElementById("waterDay"),
+            landDay: document.getElementById("landDay"),
+            energyDay: document.getElementById("energyDay")
+        };
+
+        function formatNumber(n, unit) {
+            const value =
+            n >= 100 ? n.toFixed(0) :
+            n >= 10  ? n.toFixed(1) :
+                        n.toFixed(2);
+            return `${value.replace(".", ",")} ${unit}`;
+        }
+
+        function update() {
+            const minutes = Math.max(0, Number(input.value) || 0);
+
+            const waterDay = WATER_PER_MIN * minutes;
+            const landDay  = LAND_PER_MIN  * minutes;
+            const energyDay = ENERGY_PER_MIN * minutes;
+
+            out.waterDay.textContent = formatNumber(waterDay, "L");
+            out.landDay.textContent = formatNumber(landDay, "m²");
+            out.energyDay.textContent = formatNumber(energyDay, "mAh");
+        }
+
+        input.addEventListener("input", update);
+        update();
     </script>
    <footer>
     <section class="footer-content">

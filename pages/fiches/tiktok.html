@@ -18,14 +18,24 @@
     <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="../../assets/scripts/hamburger.js"></script>
 </head>
 <body>
     <header>
-        <nav>
+                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
-                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html" class="active">Chiffres</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../langages.html">Langages</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
             </ul>
         </nav>
@@ -47,21 +57,28 @@
                     <h2>155 Pays</h2>
                     <p>Présence mondiale de TikTok <sup><a href="#source2">[1]</a></sup></p>
                 </div>
-                <div class="stat-item">
-                    <i class="fas fa-broadcast-tower"></i>
-                    <h2>2,921 g CO2/min</h2>
-                    <p>Émissions de CO2 par minute d'utilisation <sup><a href="#source3">[2]</a></sup></p>
+                <div class="stat-item-container">
+                    <div class="stat-item" id="stat-item-base">
+                        <i class="fas fa-broadcast-tower"></i>
+                        <h2>57g CO2</h2>
+                        <p>Émission de CO2 par heure d'utilisation' <sup><a href="#source3">[3]</a></sup></p>
+                    </div>
+                    <div class="stat-item" id="stat-item-hover">
+                        <i class="fa-solid fa-car"></i>
+                        <h2>285 m</h2>
+                        <p>Équivalent carbone (distance en voiture) selon impact CO2<sup><a href="#source3">[3]</a></sup></p>
+                    </div>
                 </div>
             </section>
             <section class="impact-details">
-                <h2>Répartition des émissions de CO2 <sup><a href="#source4">[3]</a></sup></h2>
+                <h2>Répartition des émissions de CO2</h2>
                 <p>Les émissions de CO2 générées par TikTok proviennent principalement des centres de données, des réseaux de distribution, et des appareils des utilisateurs.</p>
                 <div class="chart-container">
                     <canvas id="co2Chart" width="600" height="600"></canvas>
                 </div>
             </section>
             <section class="additional-impact">
-                <h2>Autres impacts environnementaux <sup><a href="#source4">[4]</a></sup></h2>
+                <h2>Autres impacts environnementaux <sup><a href="#source2">[2]</a></sup></h2>
                 <section class="additional-impact-content">
                     <div class="impact-card impact-card-1">
                         <p class="impact-value">0,27 Litres /min</p>
@@ -76,9 +93,48 @@
                         <p class="impact-label">Consommation d'énergie</p>
                     </div>
                 </section>
+
+                <!-- Personnalisation selon l'usage -->
+                <details class="personnalize" aria-labelledby="usage-title">
+                    <summary id="usage-title">Personnaliser selon votre usage</summary>
+
+                    <div class="usage-input">
+                        <label for="dailyMinutes">Temps d’usage quotidien (en minutes) :</label>
+                        <input id="dailyMinutes" type="number" min="0" max="600" value="60" inputmode="numeric">
+                    </div>
+
+                    <div class="usage-results" role="status" aria-live="polite">
+                        <div class="usage-card red">
+                        <p class="usage-label">Eau</p>
+                        <p class="usage-line"><strong id="waterDay">-</strong> / jour</p>
+                        </div>
+
+                        <div class="usage-card yellow">
+                        <p class="usage-label">Occupation des sols</p>
+                        <p class="usage-line"><strong id="landDay">-</strong> / jour</p>
+                        </div>
+
+                        <div class="usage-card green">
+                        <p class="usage-label">Énergie</p>
+                        <p class="usage-line"><strong id="energyDay">-</strong> / jour</p>
+                        </div>
+                    </div>
+
+                    <section class="meaning">
+                        <h4>Ça veut dire quoi concètement ?</h4>
+                        <p>
+                            Pour être plus clair et donner un ordre de grandeur, une douche consomme en moyenne 6 litres d’eau par minute, 
+                            une batterie de smartphone est souvent autour de 4 500 mAh et l’occupation des sols représente la surface mobilisée par les infrastructures numériques.
+                        </p>
+                        <p>
+                            Ainsi, <strong>1 heure</strong> quotidienne sur TikTok correspond à une douche de presque <strong>3 minutes</strong>, à <strong>une centaine de mètres carrés</strong> d’infrastructures mobilisées, 
+                            ainsi qu’à une consommation d’énergie équivalente à <strong>20%</strong> de batterie d'un smartphone.
+                        </p>
+                    </section>
+                </section>
             </section>
             <section class="tips">
-                <h2>Conseils pour réduire l'empreinte carbone <sup><a href="#source5">[5]</a></sup></h2>
+                <h2>Conseils pour réduire l'empreinte carbone <sup><a href="#source4">[4]</a></sup></h2>
                 <section class="additional-impact-content">
                     <div class="tip-item">
                         <p>Limitez le temps passé sur TikTok pour réduire votre empreinte carbone.</p>
@@ -89,29 +145,37 @@
                     <div class="tip-item">
                         <p>Diminuez la résolution des vidéos pour réduire la consommation de données.</p>
                     </div>
+                    <div class="tip-item">
+                        <p>Activez les rappels de temps d’écran pour éviter l’autoplay prolongé sur TikTok.</p>
+                    </div>
+                    <div class="tip-item">
+                        <p>Limitez le temps passé sur TikTok pour réduire la quantité de vidéos chargées.</p>
+                    </div>
                 </section>
             </section>
         </section>
         <section class="bibliography">
             <h2>Sources</h2>
             <ul class="bibliography-list">
-                <li id="source1">[1] "TikTok en chiffres clés et statistiques en France et dans le Monde en 2024" Disponible en ligne : <a href="https://blog.digimind.com/fr/agences/tiktok-chiffres-et-statistiques-france-monde-2020#:~:text=TikTok%20est%20disponible%20dans%20155,la%20France%20en%204%C3%A8me%20position.&text=TikTok%20a%20atteint%20les%203%20milliards%20de%20t%C3%A9l%C3%A9chargements%20en%20juillet%202021." target="_blank">https://blog.digimind.com/fr/agences/tiktok-chiffres-et-statistiques-france-monde-2020.</a></li>
-                <li id="source2">[2] "Pollution numérique et réseaux sociaux" Disponible en ligne : <a href="https://yotta.paris/blog/reseaux-sociaux-pollution-numerique" target="_blank">https://yotta.paris/blog/reseaux-sociaux-pollution-numerique</a></li>
-                <li id="source3">[3] "L'Arcep à l’écoute des enjeux environnementaux," Arcep, 2021, Disponible en ligne : <a href="https://www.arcep.fr/la-regulation/grands-dossiers-thematiques-transverses/lempreinte-environnementale-du-numerique.html#:~:text=D'apr%C3%A8s%20les%20deux%20premiers,de%204%20%C3%A0%2013%25." target="_blank">https://www.arcep.fr/la-regulation/grands-dossiers-thematiques-transverses/lempreinte-environnementale-du-numerique.html.</a></li>
-                <li id="source5">[4] "Réseaux sociaux 2021," Greenspector, Disponible en ligne : <a href="https://greenspector.com/fr/reseaux-sociaux-2021/" target="_blank">https://greenspector.com/fr/reseaux-sociaux-2021/</a></li>
-                <li id="source5">[5] "Réduire son impact environnemental sur les médias sociaux: Guide pour les utilisateurs conscients", Disponible en ligne : <a href="https://digital.hec.ca/blog/reduire-son-impact-environnemental-sur-les-medias-sociaux/" target="_blank">https://digital.hec.ca/blog/reduire-son-impact-environnemental-sur-les-medias-sociaux/</a></li>
-                <li id="source6">[6] "L'empreinte carbone de Tiktok dépasse celle de la Grèce, Disponible en ligne : <a href="https://lareleveetlapeste.fr/lempreinte-carbone-de-tiktok-depasse-celle-de-la-grece" target="_blank">https://lareleveetlapeste.fr/lempreinte-carbone-de-tiktok-depasse-celle-de-la-grece</a></li>
-                <li id="source7">[7] "TikTok en chiffres clés et statistiques en France et dans le Monde en 2025", Disponible en ligne : <a href="https://blog.digimind.com/fr/agences/tiktok-chiffres-et-statistiques-france-monde-2020" target="_blank">https://blog.digimind.com/fr/agences/tiktok-chiffres-et-statistiques-france-monde-2020</a></li>
+                <li id="source1">[1] "TikTok en chiffres clés et statistiques en France et dans le Monde en 2024" Disponible en ligne : <a href="https://blog.digimind.com/fr/agences/tiktok-chiffres-et-statistiques-france-monde-2020#:~:text=TikTok%20est%20disponible%20dans%20155,la%20France%20en%204%C3%A8me%20position.&text=TikTok%20a%20atteint%20les%203%20milliards%20de%20t%C3%A9l%C3%A9chargements%20en%20juillet%202021." target="_blank">https://blog.digimind.com/</a></li>
+                <li id="source2">[2] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2021 ," Greenspector, Disponible en ligne : <a href="https://greenspector.com/fr/reseaux-sociaux-2021/" target="_blank">https://greenspector.com/</a></li>
+                <li id="source3">[3] "Quelle empreinte environnementale pour les applications réseaux sociaux ? Édition 2023 ," Greenspector, Disponible en ligne : <a href="https://greenspector.com/quelle-empreinte-environnementale-pour-les-applications-reseaux-sociaux-edition-2023/" target="_blank">https://greenspector.com/</a></li>
+                <li id="source4">[4] "Réduire son impact environnemental sur les médias sociaux: Guide pour les utilisateurs conscients", Disponible en ligne : <a href="https://digital.hec.ca/blog/reduire-son-impact-environnemental-sur-les-medias-sociaux/" target="_blank">https://digital.hec.ca/</a></li>
             </ul>            
         </section>
         <div class="button-container">
             <button class="button" onclick="window.print()" title="Imprimez uniquement si nécessaire pour l'enseignement ou lorsque le numérique n'est pas adapté.">Imprimer cette fiche</button>
-            <button class="button-secondary" onclick="window.open('../quelques-chiffres.html')">Découvrir les autres services</button>
+            <button class="button-secondary" onclick="window.location.href='../quelques-chiffres.html'">Retour aux autres services</button>
         </div>
     </div>
     <footer>
-        <p class="mg-0">&copy; 2024 ROCHAT Lise & COURDIER Remy - <a href="../a-propos.html">À propos</a></p>
+        <p class="mg-0">&copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion - <a href="../a-propos.html">À propos</a></p>
     </footer>
+
+    <img src="../../assets/img/Tiktok_logo.svg.png" class="bg-logo" style="top: 170px; left: 8%;">
+    <img src="../../assets/img/Tiktok_logo.svg.png" class="bg-logo" style="top: 80px; right: 8%;">
+    <img src="../../assets/img/Tiktok_logo.svg.png" class="bg-logo" style="bottom: 70px; right: 4%;">
+
     <script>
         var ctx = document.getElementById('co2Chart').getContext('2d');
         var co2Chart = new Chart(ctx, {
@@ -138,6 +202,7 @@
                 plugins: {
                     legend: {
                         position: 'right', 
+                        labels: {color:'#e8e8e8'}
                     },
                     tooltip: {
                         callbacks: {
@@ -150,5 +215,43 @@
             }
         });
     </script>
+
+    <script>
+        const WATER_PER_MIN = 0.27;   
+        const LAND_PER_MIN  = 1.88; 
+        const ENERGY_PER_MIN = 15;  
+
+        const input = document.getElementById("dailyMinutes");
+
+        const out = {
+            waterDay: document.getElementById("waterDay"),
+            landDay: document.getElementById("landDay"),
+            energyDay: document.getElementById("energyDay")
+        };
+
+        function formatNumber(n, unit) {
+            const value =
+            n >= 100 ? n.toFixed(0) :
+            n >= 10  ? n.toFixed(1) :
+                        n.toFixed(2);
+            return `${value.replace(".", ",")} ${unit}`;
+        }
+
+        function update() {
+            const minutes = Math.max(0, Number(input.value) || 0);
+
+            const waterDay = WATER_PER_MIN * minutes;
+            const landDay  = LAND_PER_MIN  * minutes;
+            const energyDay = ENERGY_PER_MIN * minutes;
+
+            out.waterDay.textContent = formatNumber(waterDay, "L");
+            out.landDay.textContent = formatNumber(landDay, "m²");
+            out.energyDay.textContent = formatNumber(energyDay, "mAh");
+        }
+
+        input.addEventListener("input", update);
+        update();
+    </script>
+
 </body>
 </html>

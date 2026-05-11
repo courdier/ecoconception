@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Impact environnemental de ChatGPT">
     <meta name="keywords" content="écoconception, ChatGPT, empreinte carbone, intelligence artificielle, environnement">
-    <meta name="author" content="Rémy Courdier">
+    <meta name="author" content="Master 2 informatique">
     <meta name="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
     <title>ChatGPT - Écoconception Numérique</title>
     <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
@@ -17,16 +17,25 @@
     <link rel="stylesheet" href="../../assets/styles/styles.css">
     <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="../../assets/scripts/hamburger.js"></script>
 </head>
 <body>
     <header>
-        <nav>
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
-                <li class="mg-0"><a href="../en-pratique.html">Ressources</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html" class="active">Chiffres</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../langages.html">Langages</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
-
             </ul>
         </nav>
     </header>
@@ -50,31 +59,35 @@
                 <div class="stat-item">
                     <i class="fas fa-broadcast-tower"></i>
                     <h2>1.54 g CO2</h2>
-                    <p>Émissions de CO2 par requête <sup><a href="#source3">[3]</a></sup></p>
+                    <p>Émissions de CO2 par requête <sup><a href="#source1">[1]</a></sup></p>
                 </div>
             </section>
             <section class="impact-details">
-                <h2>Comparaison de l'empreinte carbone <sup><a href="#source3">[3]</a></sup></h2>
+                <h2>Comparaison de l'empreinte carbone <sup><a href="#source1">[1]</a></sup></h2>
                 <p>Une requête sur ChatGPT génère 1.54 g de CO2, ce qui est significativement moins que d'autres actions individuelles telles que la consommation de viande de boeuf ou un trajet en voiture thermique. <br> L'intelligence artificielle, bien qu'exigeant des ressources importantes, reste une alternative moins polluante en comparaison à d'autres activités humaines.</p>
 
-                <div class="chart-container" style="display: flex; justify-content: center;">
-                    <canvas id="co2Chart" width="600" height="400"></canvas>
+                <div class="chart-container" style="display: flex; justify-content: center; max-width: 100%; position: relative; height: 400px;">
+                    <canvas id="co2Chart"></canvas>
                 </div>
             </section>   
             <section class="additional-impact">
-                <h2>Impact supplémentaire <sup><a href="#source3">[3]</a></sup></h2>
+                <h2>Impacts supplémentaires <sup><a href="#source1">[1]</a></sup><sup><a href="#source3">[3]</a></sup></h2>
                 <section class="additional-impact-content">
                     <div class="impact-card impact-card-1">
-                        <p class="impact-value">30%</p>
+                        <p class="impact-value">20-30% Empreinte carbone</p>
                         <p class="impact-label">Fabrication des serveurs</p>
                     </div>
                     <div class="impact-card impact-card-2">
+                        <p class="impact-value">5,4M Litres</p>
+                        <p class="impact-label">Ressources en eau pour l'entraînement de GPT-3</p>
+                    </div>
+                    <div class="impact-card impact-card-3">
                         <p class="impact-value">502 Tonnes</p>
-                        <p class="impact-label">CO2 pour l'entraînement</p>
+                        <p class="impact-label">CO2 pour l'entraînement de GPT-3</p>
                     </div>
                 </section>
                 <section class="additional-impact-content"> 
-                    <p>Le numérique, bien qu'il soit devenu une partie intégrante de notre quotidien, a un impact environnemental non négligeable. Les serveurs qui alimentent les services numériques, y compris ChatGPT, consomment une grande quantité d'énergie. L'empreinte environnementale de ces infrastructures est déjà importante, et leur impact pourrait croître avec l'augmentation continue de la demande en services numériques.</p>
+                    <p>Le numérique, bien qu'il soit devenu une partie intégrante de notre quotidien, a un impact environnemental non négligeable. Les serveurs qui alimentent les services numériques, y compris ChatGPT, consomment une grande quantité d'énergie et de ressources. L'empreinte environnementale de ces infrastructures est déjà importante, et leur impact pourrait croître avec l'augmentation continue de la demande en services numériques.</p>
                     <p>En comparaison, une requête sur ChatGPT demande <strong>4 à 5 fois</strong> plus de ressources de calcul qu'une recherche sur un moteur de recherche standard. C'est pourquoi il est essentiel de considérer ces impacts dans le contexte de notre consommation numérique globale.</p>
                 </section>
             </section>
@@ -90,6 +103,23 @@
                     <div class="tip-item">
                         <p>Privilégiez l'usage du Wi-Fi aux réseaux mobiles, car la 4G consomme 23 fois plus d'énergie que le Wi-Fi.</p>
                     </div>
+                    <div class="tip-item">
+                        <p>Limiter l'usage en multitâche</p>
+                    </div>
+                    <div class="tip-item">
+                        <p>Eviter la génération inutile d'image ou multimédia</p>
+                    </div>
+                    <div class="tip-item">
+                        <p>Reduire la complexité des prompts</p>
+                    </div>
+                    <div class="tip-item">
+                        <p>Éviter de conserver des conversations très longues : ouvrir une nouvelle discussion limite le contexte calculé par le modèle et réduit l'énergie utilisée.</p>
+                    </div>
+
+                    <div class="tip-item">
+                        <p>Privilégier l’utilisation de la version web plutôt que l’application mobile, qui peut générer davantage de logs et de traitement en arrière-plan.</p>
+                    </div>
+
                 </section>
             </section>
         </section>
@@ -98,17 +128,22 @@
             <ul class="bibliography-list">
                 <li id="source1">[1] "Quelle est l'empreinte carbone de ChatGPT ?," Blog d'Ekip, Disponible en ligne : <a href="https://blog.ekip.app/quelle-est-lempreinte-carbone-de-chatgpt/" target="_blank">https://blog.ekip.app/quelle-est-lempreinte-carbone-de-chatgpt/</a></li>
                 <li id="source2">[2] "Statistiques ChatGPT : Tout savoir sur les chiffres clés," Tool Advisor, Disponible en ligne : <a href="https://tool-advisor.fr/blog/statistiques-chatgpt/#:~:text=ChatGPT%20est%20disponible%20dans%20161%20pays&text=Selon%20OpenAI%2C%20ChatGPT%20est%20accessible,pays%20ayant%20interdit%20la%20technologie." target="_blank">https://tool-advisor.fr/blog/statistiques-chatgpt/</a></li>
-                <li id="source3">[3] S. Merciani, C. Bartolacelli, A. Ahmetovic, and A. Neyret, "Environnement : le numérique aussi a un impact," Médiamorphoses, no. 5112, Juin 2023. Disponible en ligne : <a href="https://www.greenit.fr/empreinte-environnementale-du-numerique-mondial/" target="_blank">https://www.greenit.fr/empreinte-environnementale-du-numerique-mondial/</a></li>
+                <li id="source3">[3] Benoit Raphaël, "Le vrai coût environnemental de ChatGPT" <a href="https://www.2050now.com/p/le-vrai-cou-t-environnemental-de-chatgpt" target="_blank">https://www.2050now.com/p/le-vrai-cou-t-environnemental-de-chatgpt/</a></li>
             </ul>
         </section>
         <div class="button-container">
             <button class="button" onclick="window.print()" title="Imprimez uniquement si nécessaire pour l'enseignement ou lorsque le numérique n'est pas adapté.">Imprimer cette fiche</button>
-            <button class="button-secondary" onclick="window.open('../quelques-chiffres.html')">Découvrir les autres services</button>
+            <button class="button-secondary" onclick="window.location.href='../quelques-chiffres.html'">Retour aux autres services</button>
         </div>
     </div>
     <footer>
-        <p class="mg-0">&copy; 2024 ROCHAT Lise & COURDIER Remy - <a href="../a-propos.html">À propos</a></p>
+        <p class="mg-0">&copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion - <a href="../a-propos.html">À propos</a></p>
     </footer>
+
+    <img src="../../assets/img/ChatGPT_logo.svg.png" class="bg-logo" style="top: 170px; left: 8%;">
+    <img src="../../assets/img/ChatGPT_logo.svg.png" class="bg-logo" style="top: 80px; right: 8%;">
+    <img src="../../assets/img/ChatGPT_logo.svg.png" class="bg-logo" style="bottom: 70px; right: 4%;">
+
     <script>
         var ctx = document.getElementById('co2Chart').getContext('2d');
         var co2Chart = new Chart(ctx, {
@@ -154,9 +189,7 @@
         });
     </script>
     <footer>
-        <section class="footer-content">
-            <p>&copy; 2024 - Impact Environnemental de ChatGPT | Conçu par X X, étudiant de Master informatique, UR</p>
-        </section>
-    </footer>    
+        <p class="mg-0">&copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion - <a href="./a-propos.html">À propos</a> </p>
+    </footer>   
 </body>
 </html>
