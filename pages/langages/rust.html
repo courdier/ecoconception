@@ -1,1614 +1,1453 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta
-      content="Règles d'éco-conception pour PHP - Optimisations environnementales"
-      name="description"
-    />
-    <meta
-      content="PHP, écoconception, optimisation, performance, empreinte carbone, green coding"
-      name="keywords"
-    />
-    <meta content="Youssouf ONIAN" name="author" />
-    <title>Rust - Éco-conception & Optimisations</title>
-    <link href="../../assets/img/favicon.ico" rel="icon" type="image/x-icon" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap"
-      rel="stylesheet"
-    />
-    <link href="../../assets/styles/styles.css" rel="stylesheet" />
-    <link href="../../assets/styles/print.css" media="print" rel="stylesheet" />
-    <script defer="" src="../../assets/scripts/scripts-tp.js"></script>
-    <style>
-      /* Styles spécifiques pour les code blocks */
-      .code-block {
-        background-color: #2d2d2d;
-        border-left: 4px solid var(--primary-color);
-        padding: 15px 20px;
-        border-radius: 5px;
-        margin: 15px 0;
-        overflow-x: auto;
-        font-family: "Courier New", Courier, monospace;
-        font-size: 0.9rem;
-        line-height: 1.6;
-      }
-
-      .code-block.bad {
-        border-left-color: var(--emergency-color);
-        background-color: rgba(253, 99, 99, 0.1);
-      }
-
-      .code-block.good {
-        border-left-color: var(--success-color);
-        background-color: rgba(105, 240, 109, 0.1);
-      }
-
-      .code-block pre {
-        margin: 0;
-        color: #e8e8e8;
-      }
-
-      .code-block code {
-        color: #e8e8e8;
-      }
-
-      .keyword {
-        color: #569cd6;
-      }
-      .string {
-        color: #ce9178;
-      }
-      .function {
-        color: #dcdcaa;
-      }
-      .variable {
-        color: #9cdcfe;
-      }
-      .comment {
-        color: #6a9955;
-        font-style: italic;
-      }
-      .operator {
-        color: #d4d4d4;
-      }
-
-      .eco-rule {
-        margin: 40px 0;
-        padding: 25px;
-        background: linear-gradient(
-          135deg,
-          rgba(47, 223, 173, 0.05) 0%,
-          rgba(47, 223, 173, 0.01) 100%
-        );
-        border-radius: 10px;
-        border: 1px solid rgba(47, 223, 173, 0.3);
-      }
-
-      .eco-rule h3 {
-        color: var(--primary-color);
-        font-size: 1.6rem;
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .eco-rule .rule-number {
-        background-color: var(--primary-color);
-        color: var(--background-color);
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 1.1rem;
-      }
-
-      .impact-badge {
-        display: inline-block;
-        padding: 5px 15px;
-        border-radius: 15px;
-        font-size: 0.85rem;
-        font-weight: bold;
-        margin: 5px;
-      }
-
-      .impact-high {
-        background-color: var(--success-color);
-        color: var(--background-color);
-      }
-
-      .impact-medium {
-        background-color: var(--warning-color);
-        color: var(--background-color);
-      }
-
-      .impact-low {
-        background-color: var(--info-color);
-        color: white;
-      }
-
-      .explanation-box {
-        background-color: rgba(255, 255, 255, 0.05);
-        padding: 15px;
-        border-radius: 8px;
-        margin: 15px 0;
-        border-left: 3px solid var(--info-color);
-      }
-
-      .gain-box {
-        background-color: rgba(105, 240, 109, 0.1);
-        padding: 15px;
-        border-radius: 8px;
-        margin: 15px 0;
-        border-left: 3px solid var(--success-color);
-      }
-
-      .nav-languages {
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-        margin: 20px 0;
-        flex-wrap: wrap;
-      }
-
-      .nav-languages a {
-        padding: 10px 20px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        text-decoration: none;
-        color: var(--text-color);
-        transition: all 0.3s;
-        border: 2px solid transparent;
-      }
-
-      .nav-languages a:hover {
-        background-color: rgba(47, 223, 173, 0.2);
-        border-color: var(--primary-color);
-      }
-
-      .nav-languages a.active {
-        background-color: #f06529;
-        color: white;
-        border-color: #aaa;
-      }
-
-      .summary-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 25px 0;
-        background-color: rgba(255, 255, 255, 0.05);
-        border-radius: 8px;
-        overflow: hidden;
-      }
-
-      .summary-table th,
-      .summary-table td {
-        padding: 12px 15px;
-        text-align: left;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .summary-table th {
-        background-color: rgba(47, 223, 173, 0.2);
-        color: var(--primary-color);
-        font-weight: bold;
-      }
-
-      .summary-table tr:hover {
-        background-color: rgba(255, 255, 255, 0.05);
-      }
-
-      @media (max-width: 768px) {
-        .eco-rule h3 {
-          font-size: 1.3rem;
-        }
-
-        .code-block {
-          font-size: 0.8rem;
-        }
-      }
-
-      /* Cartes dépliables */
-      .eco-rule {
-        margin: 20px 0;
-        padding: 0;
-        background: linear-gradient(
-          135deg,
-          rgba(47, 223, 173, 0.05) 0%,
-          rgba(47, 223, 173, 0.01) 100%
-        );
-        border-radius: 10px;
-        border: 1px solid rgba(47, 223, 173, 0.3);
-        overflow: hidden;
-      }
-
-      .rule-header {
-        padding: 20px 25px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 15px;
-      }
-
-      .rule-header:hover {
-        background-color: rgba(47, 223, 173, 0.1);
-      }
-
-      .rule-header-left {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        flex: 1;
-      }
-
-      .rule-number {
-        background-color: var(--primary-color);
-        color: var(--background-color);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 1.1rem;
-        flex-shrink: 0;
-      }
-
-      .rule-title-section {
-        flex: 1;
-      }
-
-      .eco-rule .rule-title {
-        color: var(--primary-color);
-        font-size: 1.4rem;
-        margin: 0 0 5px 0;
-        display: block;
-      }
-
-      .rule-tags {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        margin-top: 8px;
-      }
-
-      .tag {
-        background-color: rgba(255, 255, 255, 0.1);
-        padding: 4px 10px;
-        border-radius: 12px;
-        font-size: 0.75rem;
-        color: var(--text-color);
-      }
-
-      .rule-metrics {
-        display: flex;
-        gap: 15px;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-
-      .metric-item {
-        text-align: center;
-        min-width: 80px;
-      }
-
-      .metric-value {
-        font-size: 1.3rem;
-        font-weight: bold;
-        color: var(--success-color);
-      }
-
-      .metric-label {
-        font-size: 0.75rem;
-        color: var(--text-color-light);
-        margin-top: 2px;
-      }
-
-      .expand-icon {
-        font-size: 1.5rem;
-        color: var(--primary-color);
-        transition: transform 0.3s;
-      }
-
-      .eco-rule.active .expand-icon {
-        transform: rotate(180deg);
-      }
-
-      .rule-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-out;
-        padding: 0 25px;
-      }
-
-      .eco-rule.active .rule-content {
-        max-height: 9000px;
-        padding: 0 25px 25px 25px;
-      }
-
-      @media (max-width: 768px) {
-        .rule-header {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .rule-metrics {
-          width: 100%;
-          justify-content: space-around;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <nav>
-        <ul>
-          <li class="mg-0">
-            <a href="../../index.html"> Home </a>
-          </li>
-          <li class="mg-0">
-            <a href="../quelques-chiffres.html"> Chiffres </a>
-          </li>
-          <li class="mg-0">
-            <a href="../quizV1.html"> Quiz </a>
-          </li>
-          <li class="mg-0">
-            <a href="../en-pratique.html"> Ateliers </a>
-          </li>
-          <li class="mg-0">
-            <a href="../outils.html"> Outils </a>
-          </li>
-          <li class="mg-0">
-            <a class="active" href="../langages.html"> Langages </a>
-          </li>
-          <li class="mg-0">
-            <a href="../ressources.html"> Ressources </a>
-          </li>
-          <li class="mg-0">
-            <a href="../terminologie.html"> Terminologie </a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <!-- Navigation entre langages -->
-    <div class="main">
-      <h1>
-        <i class="fab fa-rust"> </i>
-        Rust - Éco-conception & Green Coding
-      </h1>
-      <div class="nav-languages">
-        <a href="./php.html">
-          <i class="fab fa-php"> </i>
-          PHP
-        </a>
-        <a class="active" href="./rust.html">
-          <i class="fab fa-rust"> </i>
-          Rust
-        </a>
-        <a href="python.html">
-          <i class="fab fa-python"> </i>
-          Python
-        </a>
-        <a href="c.html">
-          <i class="fas fa-code"> </i>
-          C/C++
-        </a>
-        <a href="java.html">
-          <i class="fab fa-java"> </i>
-          Java
-        </a>
-        <a href="dart.html">
-          <i class="fas fa-cog"> </i>
-          Dart
-        </a>
-        <a href="#" style="opacity: 0.5; cursor: not-allowed">
-          <i class="fab fa-js"> </i>
-          JavaScript (bientôt)
-        </a>
-      </div>
-      <!-- Introduction -->
-      <section class="intro-text">
-        <p>
-          Rust est un langage de programmation compilé moderne et
-          multi-paradigme, qui a fait ses preuves en devenant le langage de
-          nombreux systèmes critique . Créer en 2006 par Mozilla, il est conçu
-          pour les applications nécessitant de hautes performance comme les
-          moteurs de bases de données, les outils en ligne de commande (CLI),
-          les services web, les outils DevOps, les systèmes embarqués ou encore
-          les systèmes d'exploitations.
-        </p>
-        <br />
-        <p>
-          Cette page présente les spécificités du langage, ses performance ainsi
-          que
-          <strong> 10 règles d'éco-conception </strong>
-          concrètes pour réduire l'empreinte environnementale de vos
-          applications Rust.
-        </p>
-      </section>
-      <!-- Statistiques clés -->
-      <section class="services-container">
-        <section class="stats-icons">
-          <div class="stat-item">
-            <i class="fas fa-bolt"> </i>
-            <h2>2ᵉ / 27</h2>
-            <p>
-              Classement énergétique des langages
-              <sup>
-                <a href="#source1"> [1] </a>
-              </sup>
-            </p>
-          </div>
-          <div class="stat-item">
-            <i class="fas fa-globe"> </i>
-            <h2>Top 13</h2>
-            <p>
-              Des langages populaire selon l'index TIOBE
-              <sup>
-                <a href="#source2"> [2] </a>
-              </sup>
-            </p>
-          </div>
-          <div class="stat-item">
-            <i class="fas fa-fire"> </i>
-            <h2>x1.03 vs C</h2>
-            <p>
-              Consommation énergétique relative
-              <sup>
-                <a href="#source1"> [1] </a>
-              </sup>
-            </p>
-          </div>
-        </section>
-      </section>
-      <!-- Tableau récapitulatif -->
-      <section style="margin-top: 50px">
-        <h2>Récapitulatif des 10 éco-rules Rust</h2>
-        <p>
-          Cliquez sur une règle pour accéder directement aux détails et exemples
-          de code.
-        </p>
-        <table class="summary-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Règle</th>
-              <th>Gain Perf</th>
-              <th>Gain Énergie</th>
-              <th>Impact</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr onclick="openRule('rule1')" style="cursor: pointer">
-              <td>1</td>
-              <td>Réduire les allocations (with_capacity)</td>
-              <td>x1.4</td>
-              <td>15%</td>
-              <td>
-                <span class="impact-badge impact-high"> ⭐⭐⭐⭐ </span>
-              </td>
-            </tr>
-            <tr onclick="openRule('rule2')" style="cursor: pointer">
-              <td>2</td>
-              <td>Éviter les .clone() inutiles</td>
-              <td>x10+</td>
-              <td>40%</td>
-              <td>
-                <span class="impact-badge impact-high"> ⭐⭐⭐⭐⭐ </span>
-              </td>
-            </tr>
-            <tr onclick="openRule('rule3')" style="cursor: pointer">
-              <td>3</td>
-              <td>Itérateurs idiomatiques</td>
-              <td>x1.2</td>
-              <td>10%</td>
-              <td>
-                <span class="impact-badge impact-medium"> ⭐⭐⭐ </span>
-              </td>
-            </tr>
-            <tr onclick="openRule('rule4')" style="cursor: pointer">
-              <td>4</td>
-              <td>Structures de données adaptées</td>
-              <td>Variable</td>
-              <td>Variable</td>
-              <td>
-                <span class="impact-badge impact-medium"> ⭐⭐⭐ </span>
-              </td>
-            </tr>
-            <tr onclick="openRule('rule5')" style="cursor: pointer">
-              <td>5</td>
-              <td>Réutiliser les buffers en boucle</td>
-              <td>x2</td>
-              <td>25%</td>
-              <td>
-                <span class="impact-badge impact-high"> ⭐⭐⭐⭐ </span>
-              </td>
-            </tr>
-            <tr onclick="openRule('rule6')" style="cursor: pointer">
-              <td>6</td>
-              <td>Compilation en mode Release</td>
-              <td>x10-100</td>
-              <td>90%+</td>
-              <td>
-                <span class="impact-badge impact-high"> ⭐⭐⭐⭐⭐ </span>
-              </td>
-            </tr>
-            <tr onclick="openRule('rule7')" style="cursor: pointer">
-              <td>7</td>
-              <td>Parallélisation (Race to Sleep)</td>
-              <td>Optimisé</td>
-              <td>15%</td>
-              <td>
-                <span class="impact-badge impact-medium"> ⭐⭐⭐ </span>
-              </td>
-            </tr>
-            <tr onclick="openRule('rule8')" style="cursor: pointer">
-              <td>8</td>
-              <td>Link Time Optimization (LTO)</td>
-              <td>x1.1</td>
-              <td>5%</td>
-              <td>
-                <span class="impact-badge impact-low"> ⭐⭐ </span>
-              </td>
-            </tr>
-            <tr onclick="openRule('rule9')" style="cursor: pointer">
-              <td>9</td>
-              <td>Désérialisation sans copie</td>
-              <td>Significatif</td>
-              <td>Haut</td>
-              <td>
-                <span class="impact-badge impact-high"> ⭐⭐⭐⭐ </span>
-              </td>
-            </tr>
-            <tr onclick="openRule('rule10')" style="cursor: pointer">
-              <td>10</td>
-              <td>Static Dispatch (Génériques)</td>
-              <td>Marginal</td>
-              <td>Bas</td>
-              <td>
-                <span class="impact-badge impact-low"> ⭐ </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-      <!-- LES 10 ÉCO-RULES -->
-      <section style="margin-top: 60px">
-        <h2
-          style="
-            text-align: center;
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 40px;
-          "
-        >
-          <i class="fas fa-leaf"> </i>
-          Les 10 Éco-Rules Rust
-        </h2>
-        <div class="eco-rule" id="rule1">
-          <div class="rule-header">
-            <div class="rule-header-left">
-              <span class="rule-number"> 1 </span>
-              <div class="rule-title-section">
-                <h3 class="rule-title">
-                  Réduire les allocations mémoire (Pre-allocation)
-                </h3>
-                <div class="rule-tags">
-                  <span class="tag"> #mémoire </span>
-                  <span class="tag"> #allocation </span>
-                </div>
-              </div>
-            </div>
-            <div class="rule-metrics">
-              <div class="metric-item">
-                <div class="metric-value">x1.4</div>
-                <div class="metric-label">Gain Perf</div>
-              </div>
-              <div class="metric-item">
-                <div class="metric-value">15%</div>
-                <div class="metric-label">Gain Énergie</div>
-              </div>
-              <span class="impact-badge impact-high">⭐⭐⭐⭐</span>
-              <i class="fas fa-chevron-down expand-icon"> </i>
-            </div>
-          </div>
-          <div class="rule-content">
-            <h4 style="color: var(--emergency-color); margin-top: 20px">
-              <i class="fas fa-times-circle"> </i>
-              Code inefficace :
-            </h4>
-            <div class="code-block bad">
-              <pre><code><span class="comment">// Mauvais : provoque de multiples réallocations et copies en RAM</span>
-<span class="keyword">let</span> <span class="keyword">mut</span> <span class="variable">users</span> = <span class="type">Vec</span>::<span class="function">new</span>(); 
-
-<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">0</span>..<span class="number">500</span> {
-    <span class="variable">users</span>.<span class="function">push</span>(<span class="type">User</span>::<span class="function">new</span>(<span class="variable">i</span>)); 
-}</code></pre>
-            </div>
-            <div class="explanation-box">
-              <h4>
-                <i class="fas fa-info-circle"> </i>
-                Pourquoi c'est inefficace ?
-              </h4>
-              <ul style="text-align: left">
-                Sans capacité définie, le
-                <code> Vec </code>
-                doit se réallouer plusieurs fois. Chaque réallocation nécessite
-                un appel système (syscall), la recherche d'un bloc libre sur la
-                Heap, et la copie des données existantes. Cela sature le bus
-                mémoire et consomme des cycles CPU en gestion.
-              </ul>
-            </div>
-            <h4 style="color: var(--success-color); margin-top: 20px">
-              <i class="fas fa-check-circle"> </i>
-              Code optimisé :
-            </h4>
-            <div class="code-block good">
-              <pre><code><span class="comment">// Alloue la mémoire une seule fois pour 1000 éléments</span>
-<span class="keyword">let</span> <span class="keyword">mut</span> <span class="variable">v</span> = <span class="type">Vec</span>::<span class="function">with_capacity</span>(<span class="number">1000</span>);
-<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">0</span><span class="operator">..</span><span class="number">10_000_000</span> <span class="operator">{</span>
-    <span class="variable">v</span>.<span class="function">push</span>(<span class="variable">i</span>)<span class="operator">;</span>
-<span class="operator">}</span>
-</code></pre>
-            </div>
-            <div class="gain-box">
-              <h4>
-                <i class="fas fa-chart-line"> </i>
-                Gains mesurés (Dataset 10M d'éléments) :
-              </h4>
-              <ul style="text-align: left">
-                <li>
-                  <strong> ×1.4 plus rapide </strong>
-                  (Benchmark synthétique Criterion)
-                </li>
-                <li>
-                  Réduction de l'impact énergétique de
-                  <strong> 15% </strong>
-                  (moins de cycles CPU en mode Kernel)
-                </li>
-                <li>
-                  Suppression des pics de courant liés aux copies RAM massives
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="eco-rule" id="rule2">
-          <div class="rule-header">
-            <div class="rule-header-left">
-              <span class="rule-number"> 2 </span>
-              <div class="rule-title-section">
-                <h3 class="rule-title">Éviter les clones inutiles</h3>
-                <div class="rule-tags">
-                  <span class="tag"> #clone </span>
-                  <span class="tag"> #rust </span>
-                  <span class="tag"> #écoconception </span>
-                </div>
-              </div>
-            </div>
-            <div class="rule-metrics">
-              <div class="metric-item">
-                <div class="metric-value">x10+</div>
-                <div class="metric-label">Gain Perf</div>
-              </div>
-              <div class="metric-item">
-                <div class="metric-value">40%</div>
-                <div class="metric-label">Gain Énergie</div>
-              </div>
-              <span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span>
-              <i class="fas fa-chevron-down expand-icon"> </i>
-            </div>
-          </div>
-          <div class="rule-content">
-            <h4 style="color: var(--emergency-color); margin-top: 20px">
-              <i class="fas fa-times-circle"> </i>
-              Code inefficace :
-            </h4>
-            <div class="code-block bad">
-              <pre><code><span class="comment">// Mauvais : oblige à copier toute la String en mémoire</span>
-<span class="keyword">fn</span> <span class="function">calculer_longueur</span>(<span class="variable">texte</span>: <span class="type">String</span>) -> <span class="type">usize</span> {
-    <span class="variable">texte</span>.<span class="function">len</span>()
-}
-
-<span class="keyword">let</span> <span class="variable">leguide</span> = <span class="type">String</span>::<span class="function">from</span>(<span class="string">"un texte très long"</span>);
-<span class="function">calculer_longueur</span>(<span class="variable">leguide</span>.<span class="function">clone</span>());</code></pre>
-            </div>
-            <div class="explanation-box">
-              <h4>
-                <i class="fas fa-info-circle"> </i>
-                Pourquoi c'est inefficace ?
-              </h4>
-              <ul style="text-align: left">
-                Le
-                <code> .clone() </code>
-                effectue une "deep copy" sur la Heap. Si votre dataset fait
-                100MB, vous forcez le hardware à lire 100MB et écrire 100MB. La
-                consommation électrique de la DRAM est directement
-                proportionnelle au volume de données transitant sur le bus
-                mémoire.
-              </ul>
-            </div>
-            <h4 style="color: var(--success-color); margin-top: 20px">
-              <i class="fas fa-check-circle"> </i>
-              Code optimisé :
-            </h4>
-            <div class="code-block good">
-              <pre><code><span class="comment">// On passe une référence (&str) au lieu de copier la donnée</span>
-<span class="keyword">fn</span> <span class="function">calculer_longueur</span>(<span class="variable">texte</span>: &<span class="type">str</span>) -> <span class="type">usize</span> {
-    <span class="variable">texte</span>.<span class="function">len</span>()
-}
-
-<span class="keyword">let</span> <span class="variable">leguide</span> = <span class="type">String</span>::<span class="function">from</span>(<span class="string">"Un texte très long..."</span>);
-<span class="function">calculer_longueur</span>(&<span class="variable">leguide</span>); <span class="comment">// 0 copie en RAM</span></code></pre>
-            </div>
-            <div class="gain-box">
-              <h4>
-                <i class="fas fa-chart-line"> </i>
-                Gains mesurés (Dataset 100MB) :
-              </h4>
-              <ul style="text-align: left">
-                <li>
-                  <strong> ×10+ plus rapide </strong>
-                </li>
-                <li>
-                  Réduction mémoire de
-                  <strong> 50% </strong>
-                  (pas de doublon en RAM)
-                </li>
-                <li>
-                  Impact énergétique :
-                  <strong> -40% </strong>
-                  sur le sous-système mémoire
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="eco-rule" id="rule3">
-          <div class="rule-header">
-            <div class="rule-header-left">
-              <span class="rule-number"> 3 </span>
-              <div class="rule-title-section">
-                <h3 class="rule-title">Itérateurs idiomatiques</h3>
-                <div class="rule-tags">
-                  <span class="tag"> #rust </span>
-                  <span class="tag"> #écoconception </span>
-                </div>
-              </div>
-            </div>
-            <div class="rule-metrics">
-              <div class="metric-item">
-                <div class="metric-value">x1.2</div>
-                <div class="metric-label">Gain Perf</div>
-              </div>
-              <div class="metric-item">
-                <div class="metric-value">10%</div>
-                <div class="metric-label">Gain Énergie</div>
-              </div>
-              <span class="impact-badge impact-medium">⭐⭐⭐</span>
-              <i class="fas fa-chevron-down expand-icon"> </i>
-            </div>
-          </div>
-          <div class="rule-content">
-            <h4 style="color: var(--emergency-color); margin-top: 20px">
-              <i class="fas fa-times-circle"> </i>
-              Code inefficace :
-            </h4>
-            <div class="code-block bad">
-              <pre><code><span class="comment">// Moins performant : force une vérification de borne à chaque tour</span>
-<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">0</span>..<span class="variable">scores</span>.<span class="function">len</span>() {
-    <span class="function">faire_quelque_chose</span>(<span class="variable">scores</span>[<span class="variable">i</span>]);
-}</code></pre>
-            </div>
-            <div class="explanation-box">
-              <h4>
-                <i class="fas fa-info-circle"> </i>
-                Pourquoi c'est inefficace ?
-              </h4>
-              <ul style="text-align: left">
-                L'indexation directe force le CPU à vérifier si
-                <code> i </code>
-                est inférieur à
-                <code> len </code>
-                à chaque itération pour éviter un débordement. Cela crée des
-                branchements conditionnels (branching) qui nuisent à la
-                prédiction de branche du CPU et empêchent l'auto-vectorisation
-                (SIMD).
-              </ul>
-            </div>
-            <h4 style="color: var(--success-color); margin-top: 20px">
-              <i class="fas fa-check-circle"> </i>
-              Code optimisé :
-            </h4>
-            <div class="code-block good">
-              <pre><code><span class="comment">// Le compilateur retire les vérifications de bornes</span>
-<span class="keyword">let</span> <span class="variable">scores</span> = <span class="variable">vec!</span>[<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>];
-<span class="keyword">let</span> <span class="variable">doubles</span>: <span class="type">Vec</span><_> = <span class="variable">scores</span>.<span class="function">iter</span>().<span class="function">map</span>(|<span class="variable">x</span>| <span class="variable">x</span> * <span class="number">2</span>).<span class="function">collect</span>();</code></pre>
-            </div>
-            <div class="gain-box">
-              <h4>
-                <i class="fas fa-chart-line"> </i>
-                Gains mesurés :
-              </h4>
-              <ul style="text-align: left">
-                <li>
-                  <strong> ×1.2 plus rapide </strong>
-                </li>
-                <li>
-                  Meilleure utilisation des instructions SIMD (traitement de
-                  plusieurs nombres par cycle)
-                </li>
-                <li>
-                  Économie d'énergie de
-                  <strong> 10% </strong>
-                  (optimisation CPU)
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="eco-rule" id="rule4">
-          <div class="rule-header">
-            <div class="rule-header-left">
-              <span class="rule-number"> 4 </span>
-              <div class="rule-title-section">
-                <h3 class="rule-title">Structures de données adaptées</h3>
-                <div class="rule-tags">
-                  <span class="tag"> #rust </span>
-                  <span class="tag"> #écoconception </span>
-                </div>
-              </div>
-            </div>
-            <div class="rule-metrics">
-              <div class="metric-item">
-                <div class="metric-value">Variable</div>
-                <div class="metric-label">Gain Perf</div>
-              </div>
-              <div class="metric-item">
-                <div class="metric-value">Variable</div>
-                <div class="metric-label">Gain Énergie</div>
-              </div>
-              <span class="impact-badge impact-medium">⭐⭐⭐</span>
-              <i class="fas fa-chevron-down expand-icon"> </i>
-            </div>
-          </div>
-          <div class="rule-content">
-            <h4 style="color: var(--emergency-color); margin-top: 20px">
-              <i class="fas fa-times-circle"> </i>
-              Code inefficace :
-            </h4>
-            <div class="code-block bad">
-              <pre><code><span class="comment">// Mauvais pour le cache : chaque élément est n'importe où en RAM</span>
-<span class="keyword">let</span> <span class="keyword">mut</span> <span class="variable">liste</span>: <span class="type">LinkedList</span><span class="operator"><</span><span class="type">Point</span><span class="operator">></span> = <span class="type">LinkedList</span>::<span class="function">new</span>();</code></pre>
-            </div>
-            <div class="explanation-box">
-              <h4>
-                <i class="fas fa-info-circle"> </i>
-                Pourquoi c'est important ?
-              </h4>
-              <ul style="text-align: left">
-                Le processeur ne lit pas la RAM octet par octet, mais par blocs
-                appelés lignes de cache. En utilisant un
-                <code> Vec </code>
-                , toutes vos données (comme les coordonnées de points) sont
-                physiquement collées en mémoire. Cela permet au CPU de prédire
-                et de charger les données suivantes avant même que le programme
-                ne les demande, évitant ainsi des millisecondes d'attente
-                énergivores (Cache Miss).
-              </ul>
-            </div>
-            <h4 style="color: var(--success-color); margin-top: 20px">
-              <i class="fas fa-check-circle"> </i>
-              Code optimisé :
-            </h4>
-            <div class="code-block good">
-              <pre><code><span class="comment">// Les données sont collées en mémoire pour le processeur</span>
-<span class="keyword">struct</span> <span class="type">Point</span> { <span class="variable">x</span>: <span class="type">f32</span>, <span class="variable">y</span>: <span class="type">f32</span> }
-<span class="keyword">let</span> <span class="variable">nuage_points</span>: <span class="type">Vec</span><span class="operator"><</span><span class="type">Point</span><span class="operator">></span> = <span class="type">Vec</span>::<span class="function">new</span>();</code></pre>
-            </div>
-            <div class="gain-box">
-              <h4>
-                <i class="fas fa-chart-line"> </i>
-                Gains mesurés (Petits datasets) :
-              </h4>
-              <ul style="text-align: left">
-                <li>
-                  Réduction de l'empreinte mémoire de
-                  <strong> 60% </strong>
-                  par rapport à une HashMap vide
-                </li>
-                <li>
-                  <strong> Moins de "Cache Misses" </strong>
-                  : les données sont contiguës, le CPU les pré-charge plus
-                  efficacement
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="eco-rule" id="rule5">
-          <div class="rule-header">
-            <div class="rule-header-left">
-              <span class="rule-number"> 5 </span>
-              <div class="rule-title-section">
-                <h3 class="rule-title">Réutiliser les buffers en boucle</h3>
-                <div class="rule-tags">
-                  <span class="tag"> #buffer </span>
-                  <span class="tag"> #rust </span>
-                  <span class="tag"> #écoconception </span>
-                </div>
-              </div>
-            </div>
-            <div class="rule-metrics">
-              <div class="metric-item">
-                <div class="metric-value">x2</div>
-                <div class="metric-label">Gain Perf</div>
-              </div>
-              <div class="metric-item">
-                <div class="metric-value">25%</div>
-                <div class="metric-label">Gain Énergie</div>
-              </div>
-              <span class="impact-badge impact-high">⭐⭐⭐⭐</span>
-              <i class="fas fa-chevron-down expand-icon"> </i>
-            </div>
-          </div>
-          <div class="rule-content">
-            <h4 style="color: var(--emergency-color); margin-top: 20px">
-              <i class="fas fa-times-circle"> </i>
-              Code inefficace :
-            </h4>
-            <div class="code-block bad">
-              <pre><code><span class="comment">// Mauvais : recrée et détruit une String pour chaque ligne lue</span>
-<span class="keyword">for</span> <span class="variable">line</span> <span class="keyword">in</span> <span class="variable">reader</span>.<span class="function">lines</span>() {
-    <span class="function">process</span>(&<span class="variable">line</span>?); 
-}</code></pre>
-            </div>
-            <div class="explanation-box">
-              <h4>
-                <i class="fas fa-info-circle"> </i>
-                Pourquoi c'est important ?
-              </h4>
-              <ul>
-                Allouer de la mémoire (RAM) est une opération coûteuse pour le
-                système d'exploitation. Dans une boucle qui lit des milliers de
-                lignes, créer une nouvelle
-                <code> String </code>
-                à chaque fois force le processeur à chercher de l'espace libre
-                et à nettoyer l'ancien sans cesse. En utilisant
-                <code> .clear() </code>
-                sur un buffer existant, vous gardez la "capacité" mémoire déjà
-                acquise. Le programme travaille alors uniquement sur du texte,
-                sans jamais solliciter le gestionnaire de mémoire du système.
-              </ul>
-            </div>
-            <h4 style="color: var(--success-color); margin-top: 20px">
-              <i class="fas fa-check-circle"> </i>
-              Code optimisé :
-            </h4>
-            <div class="code-block good">
-              <pre><code><span class="keyword">let</span> <span class="keyword">mut</span> <span class="variable">buffer</span> = <span class="type">String</span>::<span class="function">new</span>();
-<span class="keyword">let</span> <span class="keyword">mut</span> <span class="variable">reader</span> = <span class="type">BufReader</span>::<span class="function">new</span>(<span class="variable">fichier</span>);
-
-<span class="keyword">while</span> <span class="variable">reader</span>.<span class="function">read_line</span>(&<span class="keyword">mut</span> <span class="variable">buffer</span>)? > <span class="number">0</span> {
-    <span class="function">process</span>(&<span class="variable">buffer</span>);
-    <span class="variable">buffer</span>.<span class="function">clear</span>(); <span class="comment">// Réutilise la RAM allouée</span>
-}</code></pre>
-            </div>
-            <div class="gain-box">
-              <h4>
-                <i class="fas fa-chart-line"> </i>
-                Gains mesurés :
-              </h4>
-              <ul style="text-align: left">
-                <li>
-                  <strong> ×2 plus rapide </strong>
-                  sur le traitement I/O
-                </li>
-                <li>Évite de nombreuses allocations/désallocations</li>
-                <li>
-                  Impact énergétique :
-                  <strong> -25% </strong>
-                  (moins de stress sur l'allocateur)
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="eco-rule" id="rule6">
-          <div class="rule-header">
-            <div class="rule-header-left">
-              <span class="rule-number"> 6 </span>
-              <div class="rule-title-section">
-                <h3 class="rule-title">Compilation en mode Release</h3>
-                <div class="rule-tags">
-                  <span class="tag"> #release </span>
-                  <span class="tag"> #rust </span>
-                  <span class="tag"> #écoconception </span>
-                </div>
-              </div>
-            </div>
-            <div class="rule-metrics">
-              <div class="metric-item">
-                <div class="metric-value">x10-100</div>
-                <div class="metric-label">Gain Perf</div>
-              </div>
-              <div class="metric-item">
-                <div class="metric-value">90%+</div>
-                <div class="metric-label">Gain Énergie</div>
-              </div>
-              <span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span>
-              <i class="fas fa-chevron-down expand-icon"> </i>
-            </div>
-          </div>
-          <div class="rule-content">
-            <div class="explanation-box">
-              <h4>
-                <i class="fas fa-info-circle"> </i>
-                L'impact du compilateur
-              </h4>
-              <ul style="text-align: left">
-                Le mode
-                <code> debug </code>
-                (par défaut) conserve des vérifications de sécurité coûteuses et
-                n'optimise pas le code machine. Le mode
-                <code> --release </code>
-                active les optimisations LLVM qui transforment radicalement
-                l'efficacité du code.
-              </ul>
-            </div>
-            <h4 style="color: var(--primary-color)">Commande de build :</h4>
-            <div class="code-block good">
-              <pre><code><span class="comment"># Commande à utiliser pour la production (optimisations maximales)</span>
-cargo build --release</code></pre>
-            </div>
-            <div class="gain-box">
-              <h4>
-                <i class="fas fa-chart-line"> </i>
-                Gains mesurés :
-              </h4>
-              <ul style="text-align: left">
-                <li>
-                  <strong> ×10 à ×100 plus rapide </strong>
-                  (selon l'algorithme)
-                </li>
-                <li>
-                  Consommation d'énergie réduite de
-                  <strong> 90% à 99% </strong>
-                </li>
-                <li>
-                  Source :
-                  <em>
-                    "Energy Efficiency of Programming Languages" (Pereira et
-                    al.)
-                  </em>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="eco-rule" id="rule7">
-          <div class="rule-header">
-            <div class="rule-header-left">
-              <span class="rule-number"> 7 </span>
-              <div class="rule-title-section">
-                <h3 class="rule-title">Parallélisation (Race to Sleep)</h3>
-                <div class="rule-tags">
-                  <span class="tag"> #rust </span>
-                  <span class="tag"> #écoconception </span>
-                </div>
-              </div>
-            </div>
-            <div class="rule-metrics">
-              <div class="metric-item">
-                <div class="metric-value">Optimisé</div>
-                <div class="metric-label">Gain Perf</div>
-              </div>
-              <div class="metric-item">
-                <div class="metric-value">15%</div>
-                <div class="metric-label">Gain Énergie</div>
-              </div>
-              <span class="impact-badge impact-medium">⭐⭐⭐</span>
-              <i class="fas fa-chevron-down expand-icon"> </i>
-            </div>
-          </div>
-          <div class="rule-content">
-            <h4 style="color: var(--emergency-color); margin-top: 20px">
-              <i class="fas fa-times-circle"> </i>
-              Code inefficace :
-            </h4>
-            <div class="code-block bad">
-              <pre><code><span class="comment">// N'utilise qu'un cœur : le CPU reste éveillé beaucoup plus longtemps</span>
-<span class="variable">mes_images</span>.<span class="function">iter</span>().<span class="function">for_each</span>(|<span class="variable">img</span>| <span class="variable">img</span>.<span class="function">compress</span>());</code></pre>
-            </div>
-            <div class="explanation-box">
-              <h4>
-                <i class="fas fa-info-circle"> </i>
-                Pourquoi c'est important ?
-              </h4>
-              <ul style="text-align: left">
-                Sur un CPU multi-cœurs, paralléliser une tâche CPU-bound (via la
-                crate
-                <code> Rayon </code>
-                ) permet de finir le travail beaucoup plus vite pour remettre
-                les cœurs en état de veille (C-states) à basse consommation.
-              </ul>
-            </div>
-            <h4 style="color: var(--success-color); margin-top: 20px">
-              <i class="fas fa-check-circle"> </i>
-              Code optimisé :
-            </h4>
-            <div class="code-block good">
-              <pre><code><span class="keyword">use</span> <span class="variable">rayon</span>::<span class="variable">prelude</span>::*;
-
-<span class="comment">// Divise le travail pour libérer les cœurs plus vite</span>
-<span class="variable">mes_images</span>.<span class="function">par_iter</span>().<span class="function">for_each</span>(|<span class="variable">img</span>| <span class="variable">img</span>.<span class="function">compress</span>());</code></pre>
-            </div>
-            <div class="gain-box">
-              <h4>
-                <i class="fas fa-chart-line"> </i>
-                Gains mesurés :
-              </h4>
-              <ul style="text-align: left">
-                <li>
-                  Performance :
-                  <strong> Scalabilité quasi-linéaire </strong>
-                  avec le nombre de cœurs
-                </li>
-                <li>
-                  Réduction de l'énergie totale (Joules) de
-                  <strong> 10-15% </strong>
-                  malgré une puissance (Watts) plus élevée à l'instant T.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="eco-rule" id="rule8">
-          <div class="rule-header">
-            <div class="rule-header-left">
-              <span class="rule-number"> 8 </span>
-              <div class="rule-title-section">
-                <h3 class="rule-title">
-                  Activer le Link Time Optimization (LTO)
-                </h3>
-                <div class="rule-tags">
-                  <span class="tag"> #rust </span>
-                  <span class="tag"> #écoconception </span>
-                </div>
-              </div>
-            </div>
-            <div class="rule-metrics">
-              <div class="metric-item">
-                <div class="metric-value">x1.1</div>
-                <div class="metric-label">Gain Perf</div>
-              </div>
-              <div class="metric-item">
-                <div class="metric-value">5%</div>
-                <div class="metric-label">Gain Énergie</div>
-              </div>
-              <span class="impact-badge impact-medium">⭐⭐</span>
-              <i class="fas fa-chevron-down expand-icon"> </i>
-            </div>
-          </div>
-          <div class="rule-content">
-            <div class="explanation-box">
-              <h4>
-                <i class="fas fa-info-circle"> </i>
-                L'impact du Link Time Optimization
-              </h4>
-              <p>
-                Par défaut, Rust compile chaque "crate" (bibliothèque)
-                séparément. Le LTO permet au compilateur d'analyser l'ensemble
-                du programme final pour supprimer le code mort et mieux
-                optimiser les appels de fonctions entre les modules.
-              </p>
-            </div>
-            <h4 style="color: var(--primary-color)">
-              Configuration dans Cargo.toml :
-            </h4>
-            <div class="code-block good">
-              <pre><code><span class="comment"># Dans Cargo.toml</span>
-<span class="operator">[</span>profile.release<span class="operator">]</span>
-<span class="variable">lto</span> = <span class="keyword">true</span> <span class="comment">// Supprime le code mort inter-modules</span></code></pre>
-            </div>
-            <div class="gain-box">
-              <h4>
-                <i class="fas fa-chart-line"> </i>
-                Gains mesurés :
-              </h4>
-              <ul style="text-align: left">
-                <li>
-                  <strong> Énergie : </strong>
-                  Réduction de la consommation CPU de
-                  <strong> 5 à 8% </strong>
-                  sur les calculs intensifs.
-                </li>
-                <li>
-                  <strong> Stockage : </strong>
-                  Diminution de la taille du binaire final jusqu'à
-                  <strong> 15% </strong>
-                  (moins de code mort transféré sur le réseau).
-                </li>
-                <li>
-                  <strong> Vitesse : </strong>
-                  Gain de performance global d'environ
-                  <strong> 10% </strong>
-                  grâce à l'inlining inter-crates.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="eco-rule" id="rule9">
-          <div class="rule-header">
-            <div class="rule-header-left">
-              <span class="rule-number"> 9 </span>
-              <div class="rule-title-section">
-                <h3 class="rule-title">Désérialisation Zero-copy</h3>
-                <div class="rule-tags">
-                  <span class="tag"> #rust </span>
-                  <span class="tag"> #écoconception </span>
-                </div>
-              </div>
-            </div>
-            <div class="rule-metrics">
-              <div class="metric-item">
-                <div class="metric-value">Significatif</div>
-                <div class="metric-label">Gain Perf</div>
-              </div>
-              <div class="metric-item">
-                <div class="metric-value">Haut</div>
-                <div class="metric-label">Gain Énergie</div>
-              </div>
-              <span class="impact-badge impact-high">⭐⭐⭐⭐</span>
-              <i class="fas fa-chevron-down expand-icon"> </i>
-            </div>
-          </div>
-          <div class="rule-content">
-            <h4 style="color: var(--emergency-color); margin-top: 20px">
-              <i class="fas fa-times-circle"> </i>
-              Code inefficace :
-            </h4>
-            <div class="code-block bad">
-              <pre><code><span class="comment">// Mauvais : alloue une nouvelle String pour chaque message reçu</span>
-<span class="operator">#</span><span class="operator">[</span>derive(Deserialize)<span class="operator">]</span>
-<span class="keyword">struct</span> <span class="type">Message</span> {
-    <span class="variable">contenu</span>: <span class="type">String</span>,
-}</code></pre>
-            </div>
-            <div class="explanation-box">
-              <p>
-                C'est l'une des forces de Rust. Au lieu de copier une chaîne de
-                caractères issue d'un fichier JSON vers une nouvelle variable,
-                on crée une référence qui pointe directement vers le buffer
-                source.
-              </p>
-            </div>
-            <h4 style="color: var(--success-color); margin-top: 20px">
-              <i class="fas fa-check-circle"> </i>
-              Code optimisé :
-            </h4>
-            <div class="code-block good">
-              <pre><code><span class="comment">// Ne crée pas de nouvelle String, pointe le buffer source</span>
-<span class="operator">#</span><span class="operator">[</span>derive(Deserialize)<span class="operator">]</span>
-<span class="keyword">struct</span> <span class="type">Message</span><span class="operator"><</span><span class="variable">'a</span><span class="operator">></span> {
-    <span class="variable">contenu</span>: &<span class="variable">'a</span> <span class="type">str</span>,
-}</code></pre>
-            </div>
-            <div class="gain-box">
-              <h4>
-                <i class="fas fa-chart-line"> </i>
-                Gains mesurés :
-              </h4>
-              <ul style="text-align: left">
-                <li>
-                  <strong> Énergie : </strong>
-                  Gain de
-                  <strong> 30% </strong>
-                  d'efficacité lors du traitement de gros volumes de données
-                  (JSON/Protobuf).
-                </li>
-                <li>
-                  <strong> Mémoire : </strong>
-                  Division par
-                  <strong> 4 </strong>
-                  de la mémoire vive (RAM) utilisée, car on ne duplique plus les
-                  données sources.
-                </li>
-                <li>
-                  <strong> Stabilité : </strong>
-                  Suppression des pics de latence liés aux allocations massives.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="eco-rule" id="rule10">
-          <div class="rule-header">
-            <div class="rule-header-left">
-              <span class="rule-number"> 10 </span>
-              <div class="rule-title-section">
-                <h3 class="rule-title">
-                  Privilégier le Static Dispatch (Génériques)
-                </h3>
-                <div class="rule-tags">
-                  <span class="tag"> #rust </span>
-                  <span class="tag"> #écoconception </span>
-                </div>
-              </div>
-            </div>
-            <div class="rule-metrics">
-              <div class="metric-item">
-                <div class="metric-value">Marginal</div>
-                <div class="metric-label">Gain Perf</div>
-              </div>
-              <div class="metric-item">
-                <div class="metric-value">Bas</div>
-                <div class="metric-label">Gain Énergie</div>
-              </div>
-              <span class="impact-badge impact-low">⭐</span>
-              <i class="fas fa-chevron-down expand-icon"> </i>
-            </div>
-          </div>
-          <div class="rule-content">
-            <h4 style="color: var(--emergency-color); margin-top: 20px">
-              <i class="fas fa-times-circle"> </i>
-              Code inefficace :
-            </h4>
-            <div class="code-block bad">
-              <pre><code><span class="comment">// Utilise une table de saut (vtable) : impossible à inliner pour le CPU</span>
-<span class="keyword">fn</span> <span class="function">traiter</span>(<span class="variable">element</span>: &<span class="keyword">dyn</span> <span class="type">Ordre</span>) {
-    <span class="variable">element</span>.<span class="function">executer</span>();
-}</code></pre>
-            </div>
-            <div class="explanation-box">
-              <p>
-                Le
-                <strong> Dynamic Dispatch </strong>
-                (
-                <code> dyn </code>
-                ) utilise des pointeurs de fonctions résolus à l'exécution. Le
-                <strong> Static Dispatch </strong>
-                génère du code spécifique à la compilation, permettant au CPU de
-                prédire les branchements beaucoup plus efficacement.
-              </p>
-            </div>
-            <h4 style="color: var(--success-color); margin-top: 20px">
-              <i class="fas fa-check-circle"> </i>
-              Code optimisé :
-            </h4>
-            <div class="code-block good">
-              <pre><code><span class="comment">// Génère du code spécifique optimisé par le CPU</span>
-<span class="keyword">fn</span> <span class="function">traiter</span><span class="operator"><</span><span class="type">T</span>: <span class="type">Ordre</span><span class="operator">></span>(<span class="variable">element</span>: <span class="type">T</span>) {
-    <span class="variable">element</span>.<span class="function">executer</span>();
-}</code></pre>
-            </div>
-            <div class="gain-box">
-              <h4>
-                <i class="fas fa-chart-line"> </i>
-                Gains mesurés :
-              </h4>
-              <ul style="text-align: left">
-                <li>
-                  <strong> Énergie : </strong>
-                  Réduction marginale mais constante (environ
-                  <strong> 2-3% </strong>
-                  ) par la suppression des sauts de vtable.
-                </li>
-                <li>
-                  <strong> CPU : </strong>
-                  Permet au processeur de prédire parfaitement les branchements,
-                  évitant les cycles perdus.
-                </li>
-                <li>
-                  <strong> Optimisation : </strong>
-                  Rend possible l'inlining, l'une des optimisations les plus
-                  puissantes pour la sobriété numérique.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <section class="bibliography" style="margin-top: 60px">
-          <h2>Sources & Références</h2>
-          <ul
-            class="bibliography-list"
-            style="text-align: left; max-width: 900px; margin: 0 auto"
-          >
-            <li id="source1">
-              <strong> [1] </strong>
-              Pereira, R., Couto, M., Ribeiro, F., Rua, R., Cunha, J.,
-              Fernandes, J. P., & Saraiva, J. (2017).
-              <em> Energy efficiency across programming languages. </em>
-              <a
-                href="https://repositorium.uminho.pt/bitstream/1822/69044/1/paper.pdf"
-                target="_blank"
-              >
-                [PDF]
-              </a>
-            </li>
-            <li id="source2">
-              <strong> [2] </strong>
-              AWS Open Source Blog.
-              <em>
-                Sustainability with Rust: 50% reduction in energy consumption.
-              </em>
-              <a
-                href="https://aws.amazon.com/blogs/opensource/sustainability-with-rust/"
-                target="_blank"
-              >
-                [Lien]
-              </a>
-            </li>
-            <li id="source3">
-              <strong> [3] </strong>
-              Navveen Balani.
-              <em>
-                Rust and Sustainability: Programming for a Greener Future.
-              </em>
-              <a
-                href="https://navveenbalani.medium.com/rust-and-sustainability-programming-for-a-greener-future-e01a3255ded5"
-                target="_blank"
-              >
-                [Lien]
-              </a>
-            </li>
-            <li id="source4">
-              <strong> [4] </strong>
-              Washington Technology.
-              <em>
-                Rust never sleeps: How a programming language enables green tech
-                initiatives.
-              </em>
-              <a
-                href="https://www.washingtontechnology.com/opinion/2022/08/rust-never-sleeps-how-programming-language-enables-green-tech-initiatives/375908/"
-                target="_blank"
-              >
-                [Lien]
-              </a>
-            </li>
-            <li id="source5">
-              <strong> [5] </strong>
-              Rust Foundation.
-              <em>
-                2025 Technology Report: Focus on Security and Sustainability.
-              </em>
-              <a
-                href="https://rustfoundation.org/media/rust-foundations-2025-technology-report-showcases-year-of-rust-security-advancements-ecosystem-resilience-strategic-partnerships/"
-                target="_blank"
-              >
-                [Lien]
-              </a>
-            </li>
-            <li id="source6">
-              <strong> [6] </strong>
-              Softjourn Insights.
-              <em>
-                The Most Efficient and Environmentally Friendly Programming
-                Languages.
-              </em>
-              <a
-                href="https://softjourn.com/insights/environmentally-friendly-programming-languages"
-                target="_blank"
-              >
-                [Lien]
-              </a>
-            </li>
-            <li id="source7">
-              <strong> [7] </strong>
-              Daniellaochade.
-              <em>
-                Eco-Code: Powering Sustainability With Rust through Zero-Cost
-                Abstractions.
-              </em>
-              <a
-                href="https://daniellaochade17.medium.com/eco-code-powering-sustainability-with-rust-cea2b6173675"
-                target="_blank"
-              >
-                [Lien]
-              </a>
-            </li>
-            <li id="source8">
-              <strong> [8] </strong>
-              Kalu, Wisdom (2025).
-              <em>
-                Green Coding in Practice: A Developer's Handbook for
-                Energy-Efficient Software Development.
-              </em>
-              <a
-                href="https://lutpub.lut.fi/bitstream/10024/170300/1/Mastersthesis_Kalu_Wisdom.pdf"
-                target="_blank"
-              >
-                [PDF]
-              </a>
-            </li>
-            <li id="source9">
-              <strong> [9] </strong>
-              Klabnik, S., & Nichols, J.
-              <em> The Rust Programming Language (The Book). </em>
-              <a href="https://doc.rust-lang.org/book/" target="_blank">
-                [Documentation Officielle]
-              </a>
-            </li>
-          </ul>
-        </section>
-        <!-- Navigation -->
-        <div
-          class="button-container"
-          style="
-            margin-top: 60px;
-            gap: 15px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-          "
-        >
-          <a class="button" href="../langages.html">
-            <i class="fas fa-arrow-left"> </i>
-            Retour aux langages
-          </a>
-          <a
-            class="button"
-            href="../../index.html"
-            style="background-color: var(--info-color)"
-          >
-            <i class="fas fa-home"> </i>
-            Accueil
-          </a>
-          <a
-            class="button"
-            href="../en-pratique.html"
-            style="background-color: var(--success-color)"
-          >
-            <i class="fas fa-code"> </i>
-            Ateliers pratiques
-          </a>
-        </div>
-        <footer>
-          <p class="mg-0">
-            © 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de
-            La Réunion -
-            <a href="./a-propos.html"> À propos </a>
-          </p>
-        </footer>
-        <script>
-          function openRule(ruleId) {
-            const rule = document.getElementById(ruleId);
-
-            if (!rule) {
-              return;
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <meta content="Règles d'éco-conception pour PHP - Optimisations environnementales" name="description"/>
+        <meta content="PHP, écoconception, optimisation, performance, empreinte carbone, green coding" name="keywords"/>
+        <meta content="Youssouf ONIAN" name="author"/>
+        <title>
+            Rust - Éco-conception & Optimisations
+        </title>
+        <link href="../../assets/img/favicon.ico" rel="icon" type="image/x-icon"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com" rel="preconnect"/>
+        <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+        <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet"/>
+        <link href="../../assets/styles/styles.css" rel="stylesheet"/>
+        <link href="../../assets/styles/print.css" media="print" rel="stylesheet"/>
+        <script defer="" src="../../assets/scripts/scripts-tp.js">
+        </script>
+        <style>
+            /* Styles spécifiques pour les code blocks */
+            .code-block {
+                    background-color: #2d2d2d;
+                    border-left: 4px solid var(--primary-color);
+                    padding: 15px 20px;
+                    border-radius: 5px;
+                    margin: 15px 0;
+                    overflow-x: auto;
+                    font-family: "Courier New", Courier, monospace;
+                    font-size: 0.9rem;
+                    line-height: 1.6;
             }
 
-            rule.classList.add("active");
-            rule.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }
+            .code-block.bad {
+                    border-left-color: var(--emergency-color);
+                    background-color: rgba(253, 99, 99, 0.1);
+            }
 
-          document
-            .querySelectorAll(".eco-rule .rule-header")
-            .forEach((header) => {
-              header.addEventListener("click", function () {
-                this.parentElement.classList.toggle("active");
-              });
-            });
-        </script>
-      </section>
-    </div>
-  </body>
+            .code-block.good {
+                    border-left-color: var(--success-color);
+                    background-color: rgba(105, 240, 109, 0.1);
+            }
+
+            .code-block pre {
+                    margin: 0;
+                    color: #e8e8e8;
+            }
+
+            .code-block code {
+                    color: #e8e8e8;
+            }
+
+            .keyword {
+                    color: #569cd6;
+            }
+            .string {
+                    color: #ce9178;
+            }
+            .function {
+                    color: #dcdcaa;
+            }
+            .variable {
+                    color: #9cdcfe;
+            }
+            .comment {
+                    color: #6a9955;
+                    font-style: italic;
+            }
+            .operator {
+                    color: #d4d4d4;
+            }
+
+            .eco-rule {
+                    margin: 40px 0;
+                    padding: 25px;
+                    background: linear-gradient(
+                            135deg,
+                            rgba(47, 223, 173, 0.05) 0%,
+                            rgba(47, 223, 173, 0.01) 100%
+                    );
+                    border-radius: 10px;
+                    border: 1px solid rgba(47, 223, 173, 0.3);
+            }
+
+            .eco-rule h3 {
+                    color: var(--primary-color);
+                    font-size: 1.6rem;
+                    margin-bottom: 15px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+            }
+
+            .eco-rule .rule-number {
+                    background-color: var(--primary-color);
+                    color: var(--background-color);
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    font-size: 1.1rem;
+            }
+
+            .impact-badge {
+                    display: inline-block;
+                    padding: 5px 15px;
+                    border-radius: 15px;
+                    font-size: 0.85rem;
+                    font-weight: bold;
+                    margin: 5px;
+            }
+
+            .impact-high {
+                    background-color: var(--success-color);
+                    color: var(--background-color);
+            }
+
+            .impact-medium {
+                    background-color: var(--warning-color);
+                    color: var(--background-color);
+            }
+
+            .impact-low {
+                    background-color: var(--info-color);
+                    color: white;
+            }
+
+            .explanation-box {
+                    background-color: rgba(255, 255, 255, 0.05);
+                    padding: 15px;
+                    border-radius: 8px;
+                    margin: 15px 0;
+                    border-left: 3px solid var(--info-color);
+            }
+
+            .gain-box {
+                    background-color: rgba(105, 240, 109, 0.1);
+                    padding: 15px;
+                    border-radius: 8px;
+                    margin: 15px 0;
+                    border-left: 3px solid var(--success-color);
+            }
+
+            .nav-languages {
+                    display: flex;
+                    gap: 10px;
+                    justify-content: center;
+                    margin: 20px 0;
+                    flex-wrap: wrap;
+            }
+
+            .nav-languages a {
+                    padding: 10px 20px;
+                    background-color: rgba(255, 255, 255, 0.1);
+                    border-radius: 20px;
+                    text-decoration: none;
+                    color: var(--text-color);
+                    transition: all 0.3s;
+                    border: 2px solid transparent;
+            }
+
+            .nav-languages a:hover {
+                    background-color: rgba(47, 223, 173, 0.2);
+                    border-color: var(--primary-color);
+            }
+
+            .nav-languages a.active {
+                    background-color: #f06529;
+                    color: white;
+                    border-color: #aaa;
+            }
+
+            .summary-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 25px 0;
+                    background-color: rgba(255, 255, 255, 0.05);
+                    border-radius: 8px;
+                    overflow: hidden;
+            }
+
+            .summary-table th,
+            .summary-table td {
+                    padding: 12px 15px;
+                    text-align: left;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .summary-table th {
+                    background-color: rgba(47, 223, 173, 0.2);
+                    color: var(--primary-color);
+                    font-weight: bold;
+            }
+
+            .summary-table tr:hover {
+                    background-color: rgba(255, 255, 255, 0.05);
+            }
+
+            @media (max-width: 768px) {
+                    .eco-rule h3 {
+                            font-size: 1.3rem;
+                    }
+
+                    .code-block {
+                            font-size: 0.8rem;
+                    }
+            }
+
+            /* Cartes dépliables */
+            .eco-rule {
+                    margin: 20px 0;
+                    padding: 0;
+                    background: linear-gradient(
+                            135deg,
+                            rgba(47, 223, 173, 0.05) 0%,
+                            rgba(47, 223, 173, 0.01) 100%
+                    );
+                    border-radius: 10px;
+                    border: 1px solid rgba(47, 223, 173, 0.3);
+                    overflow: hidden;
+            }
+
+            .rule-header {
+                    padding: 20px 25px;
+                    cursor: pointer;
+                    transition: background-color 0.3s;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 15px;
+            }
+
+            .rule-header:hover {
+                    background-color: rgba(47, 223, 173, 0.1);
+            }
+
+            .rule-header-left {
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                    flex: 1;
+            }
+
+            .rule-number {
+                    background-color: var(--primary-color);
+                    color: var(--background-color);
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    font-size: 1.1rem;
+                    flex-shrink: 0;
+            }
+
+            .rule-title-section {
+                    flex: 1;
+            }
+
+            .eco-rule .rule-title {
+                    color: var(--primary-color);
+                    font-size: 1.4rem;
+                    margin: 0 0 5px 0;
+                    display: block;
+            }
+
+            .rule-tags {
+                    display: flex;
+                    gap: 8px;
+                    flex-wrap: wrap;
+                    margin-top: 8px;
+            }
+
+            .tag {
+                    background-color: rgba(255, 255, 255, 0.1);
+                    padding: 4px 10px;
+                    border-radius: 12px;
+                    font-size: 0.75rem;
+                    color: var(--text-color);
+            }
+
+            .rule-metrics {
+                    display: flex;
+                    gap: 15px;
+                    align-items: center;
+                    flex-wrap: wrap;
+            }
+
+            .metric-item {
+                    text-align: center;
+                    min-width: 80px;
+            }
+
+            .metric-value {
+                    font-size: 1.3rem;
+                    font-weight: bold;
+                    color: var(--success-color);
+            }
+
+            .metric-label {
+                    font-size: 0.75rem;
+                    color: var(--text-color-light);
+                    margin-top: 2px;
+            }
+
+            .expand-icon {
+                    font-size: 1.5rem;
+                    color: var(--primary-color);
+                    transition: transform 0.3s;
+            }
+
+            .eco-rule.active .expand-icon {
+                    transform: rotate(180deg);
+            }
+
+            .rule-content {
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: max-height 0.4s ease-out;
+                    padding: 0 25px;
+            }
+
+            .eco-rule.active .rule-content {
+                    max-height: 9000px;
+                    padding: 0 25px 25px 25px;
+            }
+
+            @media (max-width: 768px) {
+                    .rule-header {
+                            flex-direction: column;
+                            align-items: flex-start;
+                    }
+
+                    .rule-metrics {
+                            width: 100%;
+                            justify-content: space-around;
+                    }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li class="mg-0">
+                        <a href="../../index.html">
+                            Home
+                        </a>
+                    </li>
+                    <li class="mg-0">
+                        <a href="../quelques-chiffres.html">
+                            Chiffres
+                        </a>
+                    </li>
+                    <li class="mg-0">
+                        <a href="../quizV1.html">
+                            Quiz
+                        </a>
+                    </li>
+                    <li class="mg-0">
+                        <a href="../en-pratique.html">
+                            Ateliers
+                        </a>
+                    </li>
+                    <li class="mg-0">
+                        <a href="../outils.html">
+                            Outils
+                        </a>
+                    </li>
+                    <li class="mg-0">
+                        <a class="active" href="../langages.html">
+                            Langages
+                        </a>
+                    </li>
+                    <li class="mg-0">
+                        <a href="../ressources.html">
+                            Ressources
+                        </a>
+                    </li>
+                    <li class="mg-0">
+                        <a href="../terminologie.html">
+                            Terminologie
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <!-- Navigation entre langages -->
+        <div class="main">
+            <h1>
+                <i class="fab fa-rust">
+                </i>
+                Rust - Éco-conception & Green Coding
+            </h1>
+            <div class="nav-languages">
+                <a href="./php.html">
+                    <i class="fab fa-php">
+                    </i>
+                    PHP
+                </a>
+                <a class="active" href="./rust.html">
+                    <i class="fab fa-rust">
+                    </i>
+                    Rust
+                </a>
+                <a href="python.html">
+                    <i class="fab fa-python">
+                    </i>
+                    Python
+                </a>
+                <a href="c.html">
+                    <i class="fas fa-code">
+                    </i>
+                    C/C++
+                </a>
+                <a href="java.html">
+                    <i class="fab fa-java">
+                    </i>
+                    Java
+                </a>
+                <a href="dart.html">
+                    <i class="fas fa-cog">
+                    </i>
+                    Dart
+                </a>
+                <a href="#" style="opacity: 0.5; cursor: not-allowed">
+                    <i class="fab fa-js">
+                    </i>
+                    JavaScript (bientôt)
+                </a>
+            </div>
+            <!-- Introduction -->
+            <section class="intro-text">
+                <p>
+                    Rust est un langage de programmation compilé moderne et
+                                        multi-paradigme, qui a fait ses preuves en devenant le langage de
+                                        nombreux systèmes critique . Créer en 2006 par Mozilla, il est conçu
+                                        pour les applications nécessitant de hautes performance comme les
+                                        moteurs de bases de données, les outils en ligne de commande (CLI),
+                                        les services web, les outils DevOps, les systèmes embarqués ou encore
+                                        les systèmes d'exploitations.
+                </p>
+                <br/>
+                <p>
+                    Cette page présente les spécificités du langage, ses performance ainsi
+                                        que
+                    <strong>
+                        10 règles d'éco-conception
+                    </strong>
+                    concrètes pour réduire l'empreinte environnementale de vos
+                                        applications Rust.
+                </p>
+            </section>
+            <!-- Statistiques clés -->
+            <section class="services-container">
+                <section class="stats-icons">
+                    <div class="stat-item">
+                        <i class="fas fa-bolt">
+                        </i>
+                        <h2>
+                            2ᵉ / 27
+                        </h2>
+                        <p>
+                            Classement énergétique des langages
+                            <sup>
+                                <a href="#source1">
+                                    [1]
+                                </a>
+                            </sup>
+                        </p>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-globe">
+                        </i>
+                        <h2>
+                            Top 13
+                        </h2>
+                        <p>
+                            Des langages populaire selon l'index TIOBE
+                            <sup>
+                                <a href="#source2">
+                                    [2]
+                                </a>
+                            </sup>
+                        </p>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-fire">
+                        </i>
+                        <h2>
+                            x1.03 vs C
+                        </h2>
+                        <p>
+                            Consommation énergétique relative
+                            <sup>
+                                <a href="#source1">
+                                    [1]
+                                </a>
+                            </sup>
+                        </p>
+                    </div>
+                </section>
+            </section>
+            <!-- Tableau récapitulatif -->
+            <section style="margin-top: 50px">
+                <h2>
+                    Récapitulatif des 10 éco-rules Rust
+                </h2>
+                <p>
+                    Cliquez sur une règle pour accéder directement aux détails et exemples
+                                        de code.
+                </p>
+                <table class="summary-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                Règle
+                            </th>
+                            <th>
+                                Gain Perf
+                            </th>
+                            <th>
+                                Gain Énergie
+                            </th>
+                            <th>
+                                Impact
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr onclick="openRule('rule1')" style="cursor: pointer">
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                Réduire les allocations (with_capacity)
+                            </td>
+                            <td>
+                                x1.4
+                            </td>
+                            <td>
+                                15%
+                            </td>
+                            <td>
+                                <span class="impact-badge impact-high">
+                                    ⭐⭐⭐⭐
+                                </span>
+                            </td>
+                        </tr>
+                        <tr onclick="openRule('rule2')" style="cursor: pointer">
+                            <td>
+                                2
+                            </td>
+                            <td>
+                                Éviter les .clone() inutiles
+                            </td>
+                            <td>
+                                x10+
+                            </td>
+                            <td>
+                                40%
+                            </td>
+                            <td>
+                                <span class="impact-badge impact-high">
+                                    ⭐⭐⭐⭐⭐
+                                </span>
+                            </td>
+                        </tr>
+                        <tr onclick="openRule('rule3')" style="cursor: pointer">
+                            <td>
+                                3
+                            </td>
+                            <td>
+                                Itérateurs idiomatiques
+                            </td>
+                            <td>
+                                x1.2
+                            </td>
+                            <td>
+                                10%
+                            </td>
+                            <td>
+                                <span class="impact-badge impact-medium">
+                                    ⭐⭐⭐
+                                </span>
+                            </td>
+                        </tr>
+                        <tr onclick="openRule('rule4')" style="cursor: pointer">
+                            <td>
+                                4
+                            </td>
+                            <td>
+                                Structures de données adaptées
+                            </td>
+                            <td>
+                                Variable
+                            </td>
+                            <td>
+                                Variable
+                            </td>
+                            <td>
+                                <span class="impact-badge impact-medium">
+                                    ⭐⭐⭐
+                                </span>
+                            </td>
+                        </tr>
+                        <tr onclick="openRule('rule5')" style="cursor: pointer">
+                            <td>
+                                5
+                            </td>
+                            <td>
+                                Réutiliser les buffers en boucle
+                            </td>
+                            <td>
+                                x2
+                            </td>
+                            <td>
+                                25%
+                            </td>
+                            <td>
+                                <span class="impact-badge impact-high">
+                                    ⭐⭐⭐⭐
+                                </span>
+                            </td>
+                        </tr>
+                        <tr onclick="openRule('rule6')" style="cursor: pointer">
+                            <td>
+                                6
+                            </td>
+                            <td>
+                                Compilation en mode Release
+                            </td>
+                            <td>
+                                x10-100
+                            </td>
+                            <td>
+                                90%+
+                            </td>
+                            <td>
+                                <span class="impact-badge impact-high">
+                                    ⭐⭐⭐⭐⭐
+                                </span>
+                            </td>
+                        </tr>
+                        <tr onclick="openRule('rule7')" style="cursor: pointer">
+                            <td>
+                                7
+                            </td>
+                            <td>
+                                Parallélisation (Race to Sleep)
+                            </td>
+                            <td>
+                                Optimisé
+                            </td>
+                            <td>
+                                15%
+                            </td>
+                            <td>
+                                <span class="impact-badge impact-medium">
+                                    ⭐⭐⭐
+                                </span>
+                            </td>
+                        </tr>
+                        <tr onclick="openRule('rule8')" style="cursor: pointer">
+                            <td>
+                                8
+                            </td>
+                            <td>
+                                Link Time Optimization (LTO)
+                            </td>
+                            <td>
+                                x1.1
+                            </td>
+                            <td>
+                                5%
+                            </td>
+                            <td>
+                                <span class="impact-badge impact-low">
+                                    ⭐⭐
+                                </span>
+                            </td>
+                        </tr>
+                        <tr onclick="openRule('rule9')" style="cursor: pointer">
+                            <td>
+                                9
+                            </td>
+                            <td>
+                                Désérialisation sans copie
+                            </td>
+                            <td>
+                                Significatif
+                            </td>
+                            <td>
+                                Haut
+                            </td>
+                            <td>
+                                <span class="impact-badge impact-high">
+                                    ⭐⭐⭐⭐
+                                </span>
+                            </td>
+                        </tr>
+                        <tr onclick="openRule('rule10')" style="cursor: pointer">
+                            <td>
+                                10
+                            </td>
+                            <td>
+                                Static Dispatch (Génériques)
+                            </td>
+                            <td>
+                                Marginal
+                            </td>
+                            <td>
+                                Bas
+                            </td>
+                            <td>
+                                <span class="impact-badge impact-low">
+                                    ⭐
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <!-- LES 10 ÉCO-RULES -->
+            <section style="margin-top: 60px">
+                <h2 style="
+                                                text-align: center;
+                                                font-size: 2rem;
+                                                color: var(--primary-color);
+                                                margin-bottom: 40px;
+                                        ">
+                    <i class="fas fa-leaf">
+                    </i>
+                    Les 10 Éco-Rules Rust
+                </h2>
+                <div class="eco-rule" id="rule1">
+                    <div class="rule-header">
+                        <div class="rule-header-left">
+                            <span class="rule-number">
+                                1
+                            </span>
+                            <div class="rule-title-section">
+                                <h3 class="rule-title">
+                                    Réduire les allocations mémoire (Pre-allocation)
+                                </h3>
+                                <div class="rule-tags">
+                                    <span class="tag">
+                                        #mémoire
+                                    </span>
+                                    <span class="tag">
+                                        #allocation
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rule-metrics">
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    x1.4
+                                </div>
+                                <div class="metric-label">
+                                    Gain Perf
+                                </div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    15%
+                                </div>
+                                <div class="metric-label">
+                                    Gain Énergie
+                                </div>
+                            </div>
+                            <span class="impact-badge impact-high">
+                                ⭐⭐⭐⭐
+                            </span>
+                            <i class="fas fa-chevron-down expand-icon">
+                            </i>
+                        </div>
+                    </div>
+                    <div aria-live="polite" class="rule-content" data-loaded="false">
+                    </div>
+                </div>
+                <div class="eco-rule" id="rule2">
+                    <div class="rule-header">
+                        <div class="rule-header-left">
+                            <span class="rule-number">
+                                2
+                            </span>
+                            <div class="rule-title-section">
+                                <h3 class="rule-title">
+                                    Éviter les clones inutiles
+                                </h3>
+                                <div class="rule-tags">
+                                    <span class="tag">
+                                        #clone
+                                    </span>
+                                    <span class="tag">
+                                        #rust
+                                    </span>
+                                    <span class="tag">
+                                        #écoconception
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rule-metrics">
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    x10+
+                                </div>
+                                <div class="metric-label">
+                                    Gain Perf
+                                </div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    40%
+                                </div>
+                                <div class="metric-label">
+                                    Gain Énergie
+                                </div>
+                            </div>
+                            <span class="impact-badge impact-high">
+                                ⭐⭐⭐⭐⭐
+                            </span>
+                            <i class="fas fa-chevron-down expand-icon">
+                            </i>
+                        </div>
+                    </div>
+                    <div aria-live="polite" class="rule-content" data-loaded="false">
+                    </div>
+                </div>
+                <div class="eco-rule" id="rule3">
+                    <div class="rule-header">
+                        <div class="rule-header-left">
+                            <span class="rule-number">
+                                3
+                            </span>
+                            <div class="rule-title-section">
+                                <h3 class="rule-title">
+                                    Itérateurs idiomatiques
+                                </h3>
+                                <div class="rule-tags">
+                                    <span class="tag">
+                                        #rust
+                                    </span>
+                                    <span class="tag">
+                                        #écoconception
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rule-metrics">
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    x1.2
+                                </div>
+                                <div class="metric-label">
+                                    Gain Perf
+                                </div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    10%
+                                </div>
+                                <div class="metric-label">
+                                    Gain Énergie
+                                </div>
+                            </div>
+                            <span class="impact-badge impact-medium">
+                                ⭐⭐⭐
+                            </span>
+                            <i class="fas fa-chevron-down expand-icon">
+                            </i>
+                        </div>
+                    </div>
+                    <div aria-live="polite" class="rule-content" data-loaded="false">
+                    </div>
+                </div>
+                <div class="eco-rule" id="rule4">
+                    <div class="rule-header">
+                        <div class="rule-header-left">
+                            <span class="rule-number">
+                                4
+                            </span>
+                            <div class="rule-title-section">
+                                <h3 class="rule-title">
+                                    Structures de données adaptées
+                                </h3>
+                                <div class="rule-tags">
+                                    <span class="tag">
+                                        #rust
+                                    </span>
+                                    <span class="tag">
+                                        #écoconception
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rule-metrics">
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    Variable
+                                </div>
+                                <div class="metric-label">
+                                    Gain Perf
+                                </div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    Variable
+                                </div>
+                                <div class="metric-label">
+                                    Gain Énergie
+                                </div>
+                            </div>
+                            <span class="impact-badge impact-medium">
+                                ⭐⭐⭐
+                            </span>
+                            <i class="fas fa-chevron-down expand-icon">
+                            </i>
+                        </div>
+                    </div>
+                    <div aria-live="polite" class="rule-content" data-loaded="false">
+                    </div>
+                </div>
+                <div class="eco-rule" id="rule5">
+                    <div class="rule-header">
+                        <div class="rule-header-left">
+                            <span class="rule-number">
+                                5
+                            </span>
+                            <div class="rule-title-section">
+                                <h3 class="rule-title">
+                                    Réutiliser les buffers en boucle
+                                </h3>
+                                <div class="rule-tags">
+                                    <span class="tag">
+                                        #buffer
+                                    </span>
+                                    <span class="tag">
+                                        #rust
+                                    </span>
+                                    <span class="tag">
+                                        #écoconception
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rule-metrics">
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    x2
+                                </div>
+                                <div class="metric-label">
+                                    Gain Perf
+                                </div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    25%
+                                </div>
+                                <div class="metric-label">
+                                    Gain Énergie
+                                </div>
+                            </div>
+                            <span class="impact-badge impact-high">
+                                ⭐⭐⭐⭐
+                            </span>
+                            <i class="fas fa-chevron-down expand-icon">
+                            </i>
+                        </div>
+                    </div>
+                    <div aria-live="polite" class="rule-content" data-loaded="false">
+                    </div>
+                </div>
+                <div class="eco-rule" id="rule6">
+                    <div class="rule-header">
+                        <div class="rule-header-left">
+                            <span class="rule-number">
+                                6
+                            </span>
+                            <div class="rule-title-section">
+                                <h3 class="rule-title">
+                                    Compilation en mode Release
+                                </h3>
+                                <div class="rule-tags">
+                                    <span class="tag">
+                                        #release
+                                    </span>
+                                    <span class="tag">
+                                        #rust
+                                    </span>
+                                    <span class="tag">
+                                        #écoconception
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rule-metrics">
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    x10-100
+                                </div>
+                                <div class="metric-label">
+                                    Gain Perf
+                                </div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    90%+
+                                </div>
+                                <div class="metric-label">
+                                    Gain Énergie
+                                </div>
+                            </div>
+                            <span class="impact-badge impact-high">
+                                ⭐⭐⭐⭐⭐
+                            </span>
+                            <i class="fas fa-chevron-down expand-icon">
+                            </i>
+                        </div>
+                    </div>
+                    <div aria-live="polite" class="rule-content" data-loaded="false">
+                    </div>
+                </div>
+                <div class="eco-rule" id="rule7">
+                    <div class="rule-header">
+                        <div class="rule-header-left">
+                            <span class="rule-number">
+                                7
+                            </span>
+                            <div class="rule-title-section">
+                                <h3 class="rule-title">
+                                    Parallélisation (Race to Sleep)
+                                </h3>
+                                <div class="rule-tags">
+                                    <span class="tag">
+                                        #rust
+                                    </span>
+                                    <span class="tag">
+                                        #écoconception
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rule-metrics">
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    Optimisé
+                                </div>
+                                <div class="metric-label">
+                                    Gain Perf
+                                </div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    15%
+                                </div>
+                                <div class="metric-label">
+                                    Gain Énergie
+                                </div>
+                            </div>
+                            <span class="impact-badge impact-medium">
+                                ⭐⭐⭐
+                            </span>
+                            <i class="fas fa-chevron-down expand-icon">
+                            </i>
+                        </div>
+                    </div>
+                    <div aria-live="polite" class="rule-content" data-loaded="false">
+                    </div>
+                </div>
+                <div class="eco-rule" id="rule8">
+                    <div class="rule-header">
+                        <div class="rule-header-left">
+                            <span class="rule-number">
+                                8
+                            </span>
+                            <div class="rule-title-section">
+                                <h3 class="rule-title">
+                                    Activer le Link Time Optimization (LTO)
+                                </h3>
+                                <div class="rule-tags">
+                                    <span class="tag">
+                                        #rust
+                                    </span>
+                                    <span class="tag">
+                                        #écoconception
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rule-metrics">
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    x1.1
+                                </div>
+                                <div class="metric-label">
+                                    Gain Perf
+                                </div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    5%
+                                </div>
+                                <div class="metric-label">
+                                    Gain Énergie
+                                </div>
+                            </div>
+                            <span class="impact-badge impact-medium">
+                                ⭐⭐
+                            </span>
+                            <i class="fas fa-chevron-down expand-icon">
+                            </i>
+                        </div>
+                    </div>
+                    <div aria-live="polite" class="rule-content" data-loaded="false">
+                    </div>
+                </div>
+                <div class="eco-rule" id="rule9">
+                    <div class="rule-header">
+                        <div class="rule-header-left">
+                            <span class="rule-number">
+                                9
+                            </span>
+                            <div class="rule-title-section">
+                                <h3 class="rule-title">
+                                    Désérialisation Zero-copy
+                                </h3>
+                                <div class="rule-tags">
+                                    <span class="tag">
+                                        #rust
+                                    </span>
+                                    <span class="tag">
+                                        #écoconception
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rule-metrics">
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    Significatif
+                                </div>
+                                <div class="metric-label">
+                                    Gain Perf
+                                </div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    Haut
+                                </div>
+                                <div class="metric-label">
+                                    Gain Énergie
+                                </div>
+                            </div>
+                            <span class="impact-badge impact-high">
+                                ⭐⭐⭐⭐
+                            </span>
+                            <i class="fas fa-chevron-down expand-icon">
+                            </i>
+                        </div>
+                    </div>
+                    <div aria-live="polite" class="rule-content" data-loaded="false">
+                    </div>
+                </div>
+                <div class="eco-rule" id="rule10">
+                    <div class="rule-header">
+                        <div class="rule-header-left">
+                            <span class="rule-number">
+                                10
+                            </span>
+                            <div class="rule-title-section">
+                                <h3 class="rule-title">
+                                    Privilégier le Static Dispatch (Génériques)
+                                </h3>
+                                <div class="rule-tags">
+                                    <span class="tag">
+                                        #rust
+                                    </span>
+                                    <span class="tag">
+                                        #écoconception
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rule-metrics">
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    Marginal
+                                </div>
+                                <div class="metric-label">
+                                    Gain Perf
+                                </div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">
+                                    Bas
+                                </div>
+                                <div class="metric-label">
+                                    Gain Énergie
+                                </div>
+                            </div>
+                            <span class="impact-badge impact-low">
+                                ⭐
+                            </span>
+                            <i class="fas fa-chevron-down expand-icon">
+                            </i>
+                        </div>
+                    </div>
+                    <div aria-live="polite" class="rule-content" data-loaded="false">
+                    </div>
+                </div>
+                <section class="bibliography" style="margin-top: 60px">
+                    <h2>
+                        Sources & Références
+                    </h2>
+                    <ul class="bibliography-list" style="text-align: left; max-width: 900px; margin: 0 auto">
+                        <li id="source1">
+                            <strong>
+                                [1]
+                            </strong>
+                            Pereira, R., Couto, M., Ribeiro, F., Rua, R., Cunha, J.,
+                                                        Fernandes, J. P., & Saraiva, J. (2017).
+                            <em>
+                                Energy efficiency across programming languages.
+                            </em>
+                            <a href="https://repositorium.uminho.pt/bitstream/1822/69044/1/paper.pdf" target="_blank">
+                                [PDF]
+                            </a>
+                        </li>
+                        <li id="source2">
+                            <strong>
+                                [2]
+                            </strong>
+                            AWS Open Source Blog.
+                            <em>
+                                Sustainability with Rust: 50% reduction in energy consumption.
+                            </em>
+                            <a href="https://aws.amazon.com/blogs/opensource/sustainability-with-rust/" target="_blank">
+                                [Lien]
+                            </a>
+                        </li>
+                        <li id="source3">
+                            <strong>
+                                [3]
+                            </strong>
+                            Navveen Balani.
+                            <em>
+                                Rust and Sustainability: Programming for a Greener Future.
+                            </em>
+                            <a href="https://navveenbalani.medium.com/rust-and-sustainability-programming-for-a-greener-future-e01a3255ded5" target="_blank">
+                                [Lien]
+                            </a>
+                        </li>
+                        <li id="source4">
+                            <strong>
+                                [4]
+                            </strong>
+                            Washington Technology.
+                            <em>
+                                Rust never sleeps: How a programming language enables green tech
+                                                                initiatives.
+                            </em>
+                            <a href="https://www.washingtontechnology.com/opinion/2022/08/rust-never-sleeps-how-programming-language-enables-green-tech-initiatives/375908/" target="_blank">
+                                [Lien]
+                            </a>
+                        </li>
+                        <li id="source5">
+                            <strong>
+                                [5]
+                            </strong>
+                            Rust Foundation.
+                            <em>
+                                2025 Technology Report: Focus on Security and Sustainability.
+                            </em>
+                            <a href="https://rustfoundation.org/media/rust-foundations-2025-technology-report-showcases-year-of-rust-security-advancements-ecosystem-resilience-strategic-partnerships/" target="_blank">
+                                [Lien]
+                            </a>
+                        </li>
+                        <li id="source6">
+                            <strong>
+                                [6]
+                            </strong>
+                            Softjourn Insights.
+                            <em>
+                                The Most Efficient and Environmentally Friendly Programming
+                                                                Languages.
+                            </em>
+                            <a href="https://softjourn.com/insights/environmentally-friendly-programming-languages" target="_blank">
+                                [Lien]
+                            </a>
+                        </li>
+                        <li id="source7">
+                            <strong>
+                                [7]
+                            </strong>
+                            Daniellaochade.
+                            <em>
+                                Eco-Code: Powering Sustainability With Rust through Zero-Cost
+                                                                Abstractions.
+                            </em>
+                            <a href="https://daniellaochade17.medium.com/eco-code-powering-sustainability-with-rust-cea2b6173675" target="_blank">
+                                [Lien]
+                            </a>
+                        </li>
+                        <li id="source8">
+                            <strong>
+                                [8]
+                            </strong>
+                            Kalu, Wisdom (2025).
+                            <em>
+                                Green Coding in Practice: A Developer's Handbook for
+                                                                Energy-Efficient Software Development.
+                            </em>
+                            <a href="https://lutpub.lut.fi/bitstream/10024/170300/1/Mastersthesis_Kalu_Wisdom.pdf" target="_blank">
+                                [PDF]
+                            </a>
+                        </li>
+                        <li id="source9">
+                            <strong>
+                                [9]
+                            </strong>
+                            Klabnik, S., & Nichols, J.
+                            <em>
+                                The Rust Programming Language (The Book).
+                            </em>
+                            <a href="https://doc.rust-lang.org/book/" target="_blank">
+                                [Documentation Officielle]
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                <!-- Navigation -->
+                <div class="button-container" style="
+                                                margin-top: 60px;
+                                                gap: 15px;
+                                                display: flex;
+                                                flex-wrap: wrap;
+                                                justify-content: center;
+                                        ">
+                    <a class="button" href="../langages.html">
+                        <i class="fas fa-arrow-left">
+                        </i>
+                        Retour aux langages
+                    </a>
+                    <a class="button" href="../../index.html" style="background-color: var(--info-color)">
+                        <i class="fas fa-home">
+                        </i>
+                        Accueil
+                    </a>
+                    <a class="button" href="../en-pratique.html" style="background-color: var(--success-color)">
+                        <i class="fas fa-code">
+                        </i>
+                        Ateliers pratiques
+                    </a>
+                </div>
+                <footer>
+                    <p class="mg-0">
+                        © 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de
+                                                La Réunion -
+                        <a href="./a-propos.html">
+                            À propos
+                        </a>
+                    </p>
+                </footer>
+                <script>
+                    const ruleContents = {"rule1": "<h4 style=\"color: var(--emergency-color); margin-top: 20px\">\n<i class=\"fas fa-times-circle\"> </i>\n              Code inefficace :\n            </h4>\n<div class=\"code-block bad\">\n<pre><code><span class=\"comment\">// Mauvais : provoque de multiples réallocations et copies en RAM</span>\n<span class=\"keyword\">let</span> <span class=\"keyword\">mut</span> <span class=\"variable\">users</span> = <span class=\"type\">Vec</span>::<span class=\"function\">new</span>(); \n\n<span class=\"keyword\">for</span> <span class=\"variable\">i</span> <span class=\"keyword\">in</span> <span class=\"number\">0</span>..<span class=\"number\">500</span> {\n    <span class=\"variable\">users</span>.<span class=\"function\">push</span>(<span class=\"type\">User</span>::<span class=\"function\">new</span>(<span class=\"variable\">i</span>)); \n}</code></pre>\n</div>\n<div class=\"explanation-box\">\n<h4>\n<i class=\"fas fa-info-circle\"> </i>\n                Pourquoi c'est inefficace ?\n              </h4>\n<ul style=\"text-align: left\">\n                Sans capacité définie, le\n                <code> Vec </code>\n                doit se réallouer plusieurs fois. Chaque réallocation nécessite\n                un appel système (syscall), la recherche d'un bloc libre sur la\n                Heap, et la copie des données existantes. Cela sature le bus\n                mémoire et consomme des cycles CPU en gestion.\n              </ul>\n</div>\n<h4 style=\"color: var(--success-color); margin-top: 20px\">\n<i class=\"fas fa-check-circle\"> </i>\n              Code optimisé :\n            </h4>\n<div class=\"code-block good\">\n<pre><code><span class=\"comment\">// Alloue la mémoire une seule fois pour 1000 éléments</span>\n<span class=\"keyword\">let</span> <span class=\"keyword\">mut</span> <span class=\"variable\">v</span> = <span class=\"type\">Vec</span>::<span class=\"function\">with_capacity</span>(<span class=\"number\">1000</span>);\n<span class=\"keyword\">for</span> <span class=\"variable\">i</span> <span class=\"keyword\">in</span> <span class=\"number\">0</span><span class=\"operator\">..</span><span class=\"number\">10_000_000</span> <span class=\"operator\">{</span>\n    <span class=\"variable\">v</span>.<span class=\"function\">push</span>(<span class=\"variable\">i</span>)<span class=\"operator\">;</span>\n<span class=\"operator\">}</span>\n</code></pre>\n</div>\n<div class=\"gain-box\">\n<h4>\n<i class=\"fas fa-chart-line\"> </i>\n                Gains mesurés (Dataset 10M d'éléments) :\n              </h4>\n<ul style=\"text-align: left\">\n<li>\n<strong> ×1.4 plus rapide </strong>\n                  (Benchmark synthétique Criterion)\n                </li>\n<li>\n                  Réduction de l'impact énergétique de\n                  <strong> 15% </strong>\n                  (moins de cycles CPU en mode Kernel)\n                </li>\n<li>\n                  Suppression des pics de courant liés aux copies RAM massives\n                </li>\n</ul>\n</div>", "rule2": "<h4 style=\"color: var(--emergency-color); margin-top: 20px\">\n<i class=\"fas fa-times-circle\"> </i>\n              Code inefficace :\n            </h4>\n<div class=\"code-block bad\">\n<pre><code><span class=\"comment\">// Mauvais : oblige à copier toute la String en mémoire</span>\n<span class=\"keyword\">fn</span> <span class=\"function\">calculer_longueur</span>(<span class=\"variable\">texte</span>: <span class=\"type\">String</span>) -> <span class=\"type\">usize</span> {\n    <span class=\"variable\">texte</span>.<span class=\"function\">len</span>()\n}\n\n<span class=\"keyword\">let</span> <span class=\"variable\">leguide</span> = <span class=\"type\">String</span>::<span class=\"function\">from</span>(<span class=\"string\">\"un texte très long\"</span>);\n<span class=\"function\">calculer_longueur</span>(<span class=\"variable\">leguide</span>.<span class=\"function\">clone</span>());</code></pre>\n</div>\n<div class=\"explanation-box\">\n<h4>\n<i class=\"fas fa-info-circle\"> </i>\n                Pourquoi c'est inefficace ?\n              </h4>\n<ul style=\"text-align: left\">\n                Le\n                <code> .clone() </code>\n                effectue une \"deep copy\" sur la Heap. Si votre dataset fait\n                100MB, vous forcez le hardware à lire 100MB et écrire 100MB. La\n                consommation électrique de la DRAM est directement\n                proportionnelle au volume de données transitant sur le bus\n                mémoire.\n              </ul>\n</div>\n<h4 style=\"color: var(--success-color); margin-top: 20px\">\n<i class=\"fas fa-check-circle\"> </i>\n              Code optimisé :\n            </h4>\n<div class=\"code-block good\">\n<pre><code><span class=\"comment\">// On passe une référence (&str) au lieu de copier la donnée</span>\n<span class=\"keyword\">fn</span> <span class=\"function\">calculer_longueur</span>(<span class=\"variable\">texte</span>: &<span class=\"type\">str</span>) -> <span class=\"type\">usize</span> {\n    <span class=\"variable\">texte</span>.<span class=\"function\">len</span>()\n}\n\n<span class=\"keyword\">let</span> <span class=\"variable\">leguide</span> = <span class=\"type\">String</span>::<span class=\"function\">from</span>(<span class=\"string\">\"Un texte très long...\"</span>);\n<span class=\"function\">calculer_longueur</span>(&<span class=\"variable\">leguide</span>); <span class=\"comment\">// 0 copie en RAM</span></code></pre>\n</div>\n<div class=\"gain-box\">\n<h4>\n<i class=\"fas fa-chart-line\"> </i>\n                Gains mesurés (Dataset 100MB) :\n              </h4>\n<ul style=\"text-align: left\">\n<li>\n<strong> ×10+ plus rapide </strong>\n</li>\n<li>\n                  Réduction mémoire de\n                  <strong> 50% </strong>\n                  (pas de doublon en RAM)\n                </li>\n<li>\n                  Impact énergétique :\n                  <strong> -40% </strong>\n                  sur le sous-système mémoire\n                </li>\n</ul>\n</div>", "rule3": "<h4 style=\"color: var(--emergency-color); margin-top: 20px\">\n<i class=\"fas fa-times-circle\"> </i>\n              Code inefficace :\n            </h4>\n<div class=\"code-block bad\">\n<pre><code><span class=\"comment\">// Moins performant : force une vérification de borne à chaque tour</span>\n<span class=\"keyword\">for</span> <span class=\"variable\">i</span> <span class=\"keyword\">in</span> <span class=\"number\">0</span>..<span class=\"variable\">scores</span>.<span class=\"function\">len</span>() {\n    <span class=\"function\">faire_quelque_chose</span>(<span class=\"variable\">scores</span>[<span class=\"variable\">i</span>]);\n}</code></pre>\n</div>\n<div class=\"explanation-box\">\n<h4>\n<i class=\"fas fa-info-circle\"> </i>\n                Pourquoi c'est inefficace ?\n              </h4>\n<ul style=\"text-align: left\">\n                L'indexation directe force le CPU à vérifier si\n                <code> i </code>\n                est inférieur à\n                <code> len </code>\n                à chaque itération pour éviter un débordement. Cela crée des\n                branchements conditionnels (branching) qui nuisent à la\n                prédiction de branche du CPU et empêchent l'auto-vectorisation\n                (SIMD).\n              </ul>\n</div>\n<h4 style=\"color: var(--success-color); margin-top: 20px\">\n<i class=\"fas fa-check-circle\"> </i>\n              Code optimisé :\n            </h4>\n<div class=\"code-block good\">\n<pre><code><span class=\"comment\">// Le compilateur retire les vérifications de bornes</span>\n<span class=\"keyword\">let</span> <span class=\"variable\">scores</span> = <span class=\"variable\">vec!</span>[<span class=\"number\">10</span>, <span class=\"number\">20</span>, <span class=\"number\">30</span>, <span class=\"number\">40</span>];\n<span class=\"keyword\">let</span> <span class=\"variable\">doubles</span>: <span class=\"type\">Vec</span><_> = <span class=\"variable\">scores</span>.<span class=\"function\">iter</span>().<span class=\"function\">map</span>(|<span class=\"variable\">x</span>| <span class=\"variable\">x</span> * <span class=\"number\">2</span>).<span class=\"function\">collect</span>();</code></pre>\n</div>\n<div class=\"gain-box\">\n<h4>\n<i class=\"fas fa-chart-line\"> </i>\n                Gains mesurés :\n              </h4>\n<ul style=\"text-align: left\">\n<li>\n<strong> ×1.2 plus rapide </strong>\n</li>\n<li>\n                  Meilleure utilisation des instructions SIMD (traitement de\n                  plusieurs nombres par cycle)\n                </li>\n<li>\n                  Économie d'énergie de\n                  <strong> 10% </strong>\n                  (optimisation CPU)\n                </li>\n</ul>\n</div>", "rule4": "<h4 style=\"color: var(--emergency-color); margin-top: 20px\">\n<i class=\"fas fa-times-circle\"> </i>\n              Code inefficace :\n            </h4>\n<div class=\"code-block bad\">\n<pre><code><span class=\"comment\">// Mauvais pour le cache : chaque élément est n'importe où en RAM</span>\n<span class=\"keyword\">let</span> <span class=\"keyword\">mut</span> <span class=\"variable\">liste</span>: <span class=\"type\">LinkedList</span><span class=\"operator\"><</span><span class=\"type\">Point</span><span class=\"operator\">></span> = <span class=\"type\">LinkedList</span>::<span class=\"function\">new</span>();</code></pre>\n</div>\n<div class=\"explanation-box\">\n<h4>\n<i class=\"fas fa-info-circle\"> </i>\n                Pourquoi c'est important ?\n              </h4>\n<ul style=\"text-align: left\">\n                Le processeur ne lit pas la RAM octet par octet, mais par blocs\n                appelés lignes de cache. En utilisant un\n                <code> Vec </code>\n                , toutes vos données (comme les coordonnées de points) sont\n                physiquement collées en mémoire. Cela permet au CPU de prédire\n                et de charger les données suivantes avant même que le programme\n                ne les demande, évitant ainsi des millisecondes d'attente\n                énergivores (Cache Miss).\n              </ul>\n</div>\n<h4 style=\"color: var(--success-color); margin-top: 20px\">\n<i class=\"fas fa-check-circle\"> </i>\n              Code optimisé :\n            </h4>\n<div class=\"code-block good\">\n<pre><code><span class=\"comment\">// Les données sont collées en mémoire pour le processeur</span>\n<span class=\"keyword\">struct</span> <span class=\"type\">Point</span> { <span class=\"variable\">x</span>: <span class=\"type\">f32</span>, <span class=\"variable\">y</span>: <span class=\"type\">f32</span> }\n<span class=\"keyword\">let</span> <span class=\"variable\">nuage_points</span>: <span class=\"type\">Vec</span><span class=\"operator\"><</span><span class=\"type\">Point</span><span class=\"operator\">></span> = <span class=\"type\">Vec</span>::<span class=\"function\">new</span>();</code></pre>\n</div>\n<div class=\"gain-box\">\n<h4>\n<i class=\"fas fa-chart-line\"> </i>\n                Gains mesurés (Petits datasets) :\n              </h4>\n<ul style=\"text-align: left\">\n<li>\n                  Réduction de l'empreinte mémoire de\n                  <strong> 60% </strong>\n                  par rapport à une HashMap vide\n                </li>\n<li>\n<strong> Moins de \"Cache Misses\" </strong>\n                  : les données sont contiguës, le CPU les pré-charge plus\n                  efficacement\n                </li>\n</ul>\n</div>", "rule5": "<h4 style=\"color: var(--emergency-color); margin-top: 20px\">\n<i class=\"fas fa-times-circle\"> </i>\n              Code inefficace :\n            </h4>\n<div class=\"code-block bad\">\n<pre><code><span class=\"comment\">// Mauvais : recrée et détruit une String pour chaque ligne lue</span>\n<span class=\"keyword\">for</span> <span class=\"variable\">line</span> <span class=\"keyword\">in</span> <span class=\"variable\">reader</span>.<span class=\"function\">lines</span>() {\n    <span class=\"function\">process</span>(&<span class=\"variable\">line</span>?); \n}</code></pre>\n</div>\n<div class=\"explanation-box\">\n<h4>\n<i class=\"fas fa-info-circle\"> </i>\n                Pourquoi c'est important ?\n              </h4>\n<ul>\n                Allouer de la mémoire (RAM) est une opération coûteuse pour le\n                système d'exploitation. Dans une boucle qui lit des milliers de\n                lignes, créer une nouvelle\n                <code> String </code>\n                à chaque fois force le processeur à chercher de l'espace libre\n                et à nettoyer l'ancien sans cesse. En utilisant\n                <code> .clear() </code>\n                sur un buffer existant, vous gardez la \"capacité\" mémoire déjà\n                acquise. Le programme travaille alors uniquement sur du texte,\n                sans jamais solliciter le gestionnaire de mémoire du système.\n              </ul>\n</div>\n<h4 style=\"color: var(--success-color); margin-top: 20px\">\n<i class=\"fas fa-check-circle\"> </i>\n              Code optimisé :\n            </h4>\n<div class=\"code-block good\">\n<pre><code><span class=\"keyword\">let</span> <span class=\"keyword\">mut</span> <span class=\"variable\">buffer</span> = <span class=\"type\">String</span>::<span class=\"function\">new</span>();\n<span class=\"keyword\">let</span> <span class=\"keyword\">mut</span> <span class=\"variable\">reader</span> = <span class=\"type\">BufReader</span>::<span class=\"function\">new</span>(<span class=\"variable\">fichier</span>);\n\n<span class=\"keyword\">while</span> <span class=\"variable\">reader</span>.<span class=\"function\">read_line</span>(&<span class=\"keyword\">mut</span> <span class=\"variable\">buffer</span>)? > <span class=\"number\">0</span> {\n    <span class=\"function\">process</span>(&<span class=\"variable\">buffer</span>);\n    <span class=\"variable\">buffer</span>.<span class=\"function\">clear</span>(); <span class=\"comment\">// Réutilise la RAM allouée</span>\n}</code></pre>\n</div>\n<div class=\"gain-box\">\n<h4>\n<i class=\"fas fa-chart-line\"> </i>\n                Gains mesurés :\n              </h4>\n<ul style=\"text-align: left\">\n<li>\n<strong> ×2 plus rapide </strong>\n                  sur le traitement I/O\n                </li>\n<li>Évite de nombreuses allocations/désallocations</li>\n<li>\n                  Impact énergétique :\n                  <strong> -25% </strong>\n                  (moins de stress sur l'allocateur)\n                </li>\n</ul>\n</div>", "rule6": "<div class=\"explanation-box\">\n<h4>\n<i class=\"fas fa-info-circle\"> </i>\n                L'impact du compilateur\n              </h4>\n<ul style=\"text-align: left\">\n                Le mode\n                <code> debug </code>\n                (par défaut) conserve des vérifications de sécurité coûteuses et\n                n'optimise pas le code machine. Le mode\n                <code> --release </code>\n                active les optimisations LLVM qui transforment radicalement\n                l'efficacité du code.\n              </ul>\n</div>\n<h4 style=\"color: var(--primary-color)\">Commande de build :</h4>\n<div class=\"code-block good\">\n<pre><code><span class=\"comment\"># Commande à utiliser pour la production (optimisations maximales)</span>\ncargo build --release</code></pre>\n</div>\n<div class=\"gain-box\">\n<h4>\n<i class=\"fas fa-chart-line\"> </i>\n                Gains mesurés :\n              </h4>\n<ul style=\"text-align: left\">\n<li>\n<strong> ×10 à ×100 plus rapide </strong>\n                  (selon l'algorithme)\n                </li>\n<li>\n                  Consommation d'énergie réduite de\n                  <strong> 90% à 99% </strong>\n</li>\n<li>\n                  Source :\n                  <em>\n                    \"Energy Efficiency of Programming Languages\" (Pereira et\n                    al.)\n                  </em>\n</li>\n</ul>\n</div>", "rule7": "<h4 style=\"color: var(--emergency-color); margin-top: 20px\">\n<i class=\"fas fa-times-circle\"> </i>\n              Code inefficace :\n            </h4>\n<div class=\"code-block bad\">\n<pre><code><span class=\"comment\">// N'utilise qu'un cœur : le CPU reste éveillé beaucoup plus longtemps</span>\n<span class=\"variable\">mes_images</span>.<span class=\"function\">iter</span>().<span class=\"function\">for_each</span>(|<span class=\"variable\">img</span>| <span class=\"variable\">img</span>.<span class=\"function\">compress</span>());</code></pre>\n</div>\n<div class=\"explanation-box\">\n<h4>\n<i class=\"fas fa-info-circle\"> </i>\n                Pourquoi c'est important ?\n              </h4>\n<ul style=\"text-align: left\">\n                Sur un CPU multi-cœurs, paralléliser une tâche CPU-bound (via la\n                crate\n                <code> Rayon </code>\n                ) permet de finir le travail beaucoup plus vite pour remettre\n                les cœurs en état de veille (C-states) à basse consommation.\n              </ul>\n</div>\n<h4 style=\"color: var(--success-color); margin-top: 20px\">\n<i class=\"fas fa-check-circle\"> </i>\n              Code optimisé :\n            </h4>\n<div class=\"code-block good\">\n<pre><code><span class=\"keyword\">use</span> <span class=\"variable\">rayon</span>::<span class=\"variable\">prelude</span>::*;\n\n<span class=\"comment\">// Divise le travail pour libérer les cœurs plus vite</span>\n<span class=\"variable\">mes_images</span>.<span class=\"function\">par_iter</span>().<span class=\"function\">for_each</span>(|<span class=\"variable\">img</span>| <span class=\"variable\">img</span>.<span class=\"function\">compress</span>());</code></pre>\n</div>\n<div class=\"gain-box\">\n<h4>\n<i class=\"fas fa-chart-line\"> </i>\n                Gains mesurés :\n              </h4>\n<ul style=\"text-align: left\">\n<li>\n                  Performance :\n                  <strong> Scalabilité quasi-linéaire </strong>\n                  avec le nombre de cœurs\n                </li>\n<li>\n                  Réduction de l'énergie totale (Joules) de\n                  <strong> 10-15% </strong>\n                  malgré une puissance (Watts) plus élevée à l'instant T.\n                </li>\n</ul>\n</div>", "rule8": "<div class=\"explanation-box\">\n<h4>\n<i class=\"fas fa-info-circle\"> </i>\n                L'impact du Link Time Optimization\n              </h4>\n<p>\n                Par défaut, Rust compile chaque \"crate\" (bibliothèque)\n                séparément. Le LTO permet au compilateur d'analyser l'ensemble\n                du programme final pour supprimer le code mort et mieux\n                optimiser les appels de fonctions entre les modules.\n              </p>\n</div>\n<h4 style=\"color: var(--primary-color)\">\n              Configuration dans Cargo.toml :\n            </h4>\n<div class=\"code-block good\">\n<pre><code><span class=\"comment\"># Dans Cargo.toml</span>\n<span class=\"operator\">[</span>profile.release<span class=\"operator\">]</span>\n<span class=\"variable\">lto</span> = <span class=\"keyword\">true</span> <span class=\"comment\">// Supprime le code mort inter-modules</span></code></pre>\n</div>\n<div class=\"gain-box\">\n<h4>\n<i class=\"fas fa-chart-line\"> </i>\n                Gains mesurés :\n              </h4>\n<ul style=\"text-align: left\">\n<li>\n<strong> Énergie : </strong>\n                  Réduction de la consommation CPU de\n                  <strong> 5 à 8% </strong>\n                  sur les calculs intensifs.\n                </li>\n<li>\n<strong> Stockage : </strong>\n                  Diminution de la taille du binaire final jusqu'à\n                  <strong> 15% </strong>\n                  (moins de code mort transféré sur le réseau).\n                </li>\n<li>\n<strong> Vitesse : </strong>\n                  Gain de performance global d'environ\n                  <strong> 10% </strong>\n                  grâce à l'inlining inter-crates.\n                </li>\n</ul>\n</div>", "rule9": "<h4 style=\"color: var(--emergency-color); margin-top: 20px\">\n<i class=\"fas fa-times-circle\"> </i>\n              Code inefficace :\n            </h4>\n<div class=\"code-block bad\">\n<pre><code><span class=\"comment\">// Mauvais : alloue une nouvelle String pour chaque message reçu</span>\n<span class=\"operator\">#</span><span class=\"operator\">[</span>derive(Deserialize)<span class=\"operator\">]</span>\n<span class=\"keyword\">struct</span> <span class=\"type\">Message</span> {\n    <span class=\"variable\">contenu</span>: <span class=\"type\">String</span>,\n}</code></pre>\n</div>\n<div class=\"explanation-box\">\n<p>\n                C'est l'une des forces de Rust. Au lieu de copier une chaîne de\n                caractères issue d'un fichier JSON vers une nouvelle variable,\n                on crée une référence qui pointe directement vers le buffer\n                source.\n              </p>\n</div>\n<h4 style=\"color: var(--success-color); margin-top: 20px\">\n<i class=\"fas fa-check-circle\"> </i>\n              Code optimisé :\n            </h4>\n<div class=\"code-block good\">\n<pre><code><span class=\"comment\">// Ne crée pas de nouvelle String, pointe le buffer source</span>\n<span class=\"operator\">#</span><span class=\"operator\">[</span>derive(Deserialize)<span class=\"operator\">]</span>\n<span class=\"keyword\">struct</span> <span class=\"type\">Message</span><span class=\"operator\"><</span><span class=\"variable\">'a</span><span class=\"operator\">></span> {\n    <span class=\"variable\">contenu</span>: &<span class=\"variable\">'a</span> <span class=\"type\">str</span>,\n}</code></pre>\n</div>\n<div class=\"gain-box\">\n<h4>\n<i class=\"fas fa-chart-line\"> </i>\n                Gains mesurés :\n              </h4>\n<ul style=\"text-align: left\">\n<li>\n<strong> Énergie : </strong>\n                  Gain de\n                  <strong> 30% </strong>\n                  d'efficacité lors du traitement de gros volumes de données\n                  (JSON/Protobuf).\n                </li>\n<li>\n<strong> Mémoire : </strong>\n                  Division par\n                  <strong> 4 </strong>\n                  de la mémoire vive (RAM) utilisée, car on ne duplique plus les\n                  données sources.\n                </li>\n<li>\n<strong> Stabilité : </strong>\n                  Suppression des pics de latence liés aux allocations massives.\n                </li>\n</ul>\n</div>", "rule10": "<h4 style=\"color: var(--emergency-color); margin-top: 20px\">\n<i class=\"fas fa-times-circle\"> </i>\n              Code inefficace :\n            </h4>\n<div class=\"code-block bad\">\n<pre><code><span class=\"comment\">// Utilise une table de saut (vtable) : impossible à inliner pour le CPU</span>\n<span class=\"keyword\">fn</span> <span class=\"function\">traiter</span>(<span class=\"variable\">element</span>: &<span class=\"keyword\">dyn</span> <span class=\"type\">Ordre</span>) {\n    <span class=\"variable\">element</span>.<span class=\"function\">executer</span>();\n}</code></pre>\n</div>\n<div class=\"explanation-box\">\n<p>\n                Le\n                <strong> Dynamic Dispatch </strong>\n                (\n                <code> dyn </code>\n                ) utilise des pointeurs de fonctions résolus à l'exécution. Le\n                <strong> Static Dispatch </strong>\n                génère du code spécifique à la compilation, permettant au CPU de\n                prédire les branchements beaucoup plus efficacement.\n              </p>\n</div>\n<h4 style=\"color: var(--success-color); margin-top: 20px\">\n<i class=\"fas fa-check-circle\"> </i>\n              Code optimisé :\n            </h4>\n<div class=\"code-block good\">\n<pre><code><span class=\"comment\">// Génère du code spécifique optimisé par le CPU</span>\n<span class=\"keyword\">fn</span> <span class=\"function\">traiter</span><span class=\"operator\"><</span><span class=\"type\">T</span>: <span class=\"type\">Ordre</span><span class=\"operator\">></span>(<span class=\"variable\">element</span>: <span class=\"type\">T</span>) {\n    <span class=\"variable\">element</span>.<span class=\"function\">executer</span>();\n}</code></pre>\n</div>\n<div class=\"gain-box\">\n<h4>\n<i class=\"fas fa-chart-line\"> </i>\n                Gains mesurés :\n              </h4>\n<ul style=\"text-align: left\">\n<li>\n<strong> Énergie : </strong>\n                  Réduction marginale mais constante (environ\n                  <strong> 2-3% </strong>\n                  ) par la suppression des sauts de vtable.\n                </li>\n<li>\n<strong> CPU : </strong>\n                  Permet au processeur de prédire parfaitement les branchements,\n                  évitant les cycles perdus.\n                </li>\n<li>\n<strong> Optimisation : </strong>\n                  Rend possible l'inlining, l'une des optimisations les plus\n                  puissantes pour la sobriété numérique.\n                </li>\n</ul>\n</div>"};
+
+                                function closeRule(rule) {
+                                        const content = rule.querySelector(".rule-content");
+
+                                        rule.classList.remove("active");
+                                        content.innerHTML = "";
+                                        content.dataset.loaded = "false";
+                                }
+
+                                function activateRule(rule, shouldScroll = false) {
+                                        const content = rule.querySelector(".rule-content");
+                                        const ruleId = rule.id;
+
+                                        document.querySelectorAll(".eco-rule.active").forEach((openRuleCard) => {
+                                                if (openRuleCard !== rule) {
+                                                        closeRule(openRuleCard);
+                                                }
+                                        });
+
+                                        if (content.dataset.loaded !== "true") {
+                                                content.innerHTML = ruleContents[ruleId] || "";
+                                                content.dataset.loaded = "true";
+                                        }
+
+                                        rule.classList.add("active");
+
+                                        if (shouldScroll) {
+                                                rule.scrollIntoView({
+                                                        behavior: "smooth",
+                                                        block: "start",
+                                                });
+                                        }
+                                }
+
+                                function toggleRule(ruleId) {
+                                        const rule = document.getElementById(ruleId);
+
+                                        if (!rule) {
+                                                return;
+                                        }
+
+                                        if (rule.classList.contains("active")) {
+                                                closeRule(rule);
+                                        } else {
+                                                activateRule(rule, false);
+                                        }
+                                }
+
+                                function openRule(ruleId) {
+                                        const rule = document.getElementById(ruleId);
+
+                                        if (!rule) {
+                                                return;
+                                        }
+
+                                        if (!rule.classList.contains("active")) {
+                                                activateRule(rule, true);
+                                        } else {
+                                                rule.scrollIntoView({
+                                                        behavior: "smooth",
+                                                        block: "start",
+                                                });
+                                        }
+                                }
+
+                                document.querySelectorAll(".eco-rule .rule-header").forEach((header) => {
+                                        header.addEventListener("click", function () {
+                                                toggleRule(this.parentElement.id);
+                                        });
+                                });
+                </script>
+            </section>
+        </div>
+    </body>
 </html>

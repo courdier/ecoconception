@@ -4,86 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Règles d'éco-conception pour PHP - Optimisations environnementales">
-    <meta name="keywords" content="PHP, écoconception, optimisation, performance, empreinte carbone, green coding">
+    <meta
+        name="description"
+        content="Règles d'éco-conception pour PHP - Optimisations environnementales"
+    >
+    <meta
+        name="keywords"
+        content="PHP, écoconception, optimisation, performance, empreinte carbone, green coding"
+    >
     <meta name="author" content="Youssouf ONIAN">
 
     <title>PHP - Éco-conception & Optimisations</title>
 
     <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap"
         rel="stylesheet"
     >
-
     <link rel="stylesheet" href="../../assets/styles/styles.css">
     <link rel="stylesheet" href="../../assets/styles/print.css" media="print">
 
     <script defer src="../../assets/scripts/scripts-tp.js"></script>
 
     <style>
-        /* Styles spécifiques pour les code blocks */
-        .code-block {
-            background-color: #2d2d2d;
-            border-left: 4px solid var(--primary-color);
-            padding: 15px 20px;
-            border-radius: 5px;
-            margin: 15px 0;
-            overflow-x: auto;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .code-block.bad {
-            border-left-color: var(--emergency-color);
-            background-color: rgba(253, 99, 99, 0.1);
-        }
-
-        .code-block.good {
-            border-left-color: var(--success-color);
-            background-color: rgba(105, 240, 109, 0.1);
-        }
-
-        .code-block pre {
-            margin: 0;
-            color: #e8e8e8;
-        }
-
-        .code-block code {
-            color: #e8e8e8;
-        }
-
-        .keyword {
-            color: #569cd6;
-        }
-
-        .string {
-            color: #ce9178;
-        }
-
-        .function {
-            color: #dcdcaa;
-        }
-
-        .variable {
-            color: #9cdcfe;
-        }
-
-        .comment {
-            color: #6a9955;
-            font-style: italic;
-        }
-
-        .operator {
-            color: #d4d4d4;
-        }
-
-        /* Navigation entre langages */
         .nav-languages {
             display: flex;
             gap: 10px;
@@ -113,7 +62,6 @@
             border-color: #aaa;
         }
 
-        /* Tableau récapitulatif */
         .summary-table {
             width: 100%;
             border-collapse: collapse;
@@ -136,11 +84,15 @@
             font-weight: bold;
         }
 
-        .summary-table tr:hover {
+        .summary-table tbody tr {
+            cursor: pointer;
+            transition: background-color 0.25s ease;
+        }
+
+        .summary-table tbody tr:hover {
             background-color: rgba(255, 255, 255, 0.05);
         }
 
-        /* Cartes dépliables */
         .eco-rule {
             margin: 20px 0;
             background: linear-gradient(
@@ -154,13 +106,18 @@
         }
 
         .rule-header {
+            width: 100%;
+            border: none;
             padding: 20px 25px;
             cursor: pointer;
+            background: transparent;
+            color: inherit;
             transition: background-color 0.3s;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 15px;
+            text-align: left;
         }
 
         .rule-header:hover {
@@ -237,29 +194,6 @@
             margin-top: 2px;
         }
 
-        .expand-icon {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            transition: transform 0.3s;
-        }
-
-        .eco-rule.active .expand-icon {
-            transform: rotate(180deg);
-        }
-
-        .rule-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out;
-            padding: 0 25px;
-        }
-
-        .eco-rule.active .rule-content {
-            max-height: 8000px;
-            padding: 0 25px 25px 25px;
-        }
-
-        /* Badges */
         .impact-badge {
             display: inline-block;
             padding: 5px 15px;
@@ -284,6 +218,57 @@
             color: white;
         }
 
+        .expand-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .eco-rule.active .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .rule-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 25px;
+            transition:
+                max-height 0.4s ease,
+                padding 0.4s ease;
+        }
+
+        .eco-rule.active .rule-content {
+            padding: 0 25px 25px 25px;
+        }
+
+        .code-block {
+            background-color: #2d2d2d;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block.bad {
+            border-left-color: var(--emergency-color);
+            background-color: rgba(253, 99, 99, 0.1);
+        }
+
+        .code-block.good {
+            border-left-color: var(--success-color);
+            background-color: rgba(105, 240, 109, 0.1);
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #e8e8e8;
+            white-space: pre-wrap;
+        }
+
         .explanation-box {
             background-color: rgba(255, 255, 255, 0.05);
             padding: 15px;
@@ -300,28 +285,13 @@
             border-left: 3px solid var(--success-color);
         }
 
-        .bibliography {
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .bibliography h2 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
         .bibliography-list {
-            list-style: none;
-            padding: 0;
+            text-align: left;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .bibliography-list li {
-            margin-bottom: 12px;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .rule-header {
                 flex-direction: column;
                 align-items: flex-start;
@@ -329,15 +299,26 @@
 
             .rule-metrics {
                 width: 100%;
-                justify-content: space-around;
+                justify-content: flex-start;
             }
+        }
 
+        @media (max-width: 768px) {
             .rule-title {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
             }
 
             .code-block {
                 font-size: 0.8rem;
+            }
+
+            .summary-table {
+                font-size: 0.85rem;
+            }
+
+            .summary-table th,
+            .summary-table td {
+                padding: 10px 8px;
             }
         }
     </style>
@@ -362,7 +343,6 @@
     <div class="main">
         <h1><i class="fab fa-php"></i> PHP - Éco-conception & Green Coding</h1>
 
-        <!-- Navigation entre langages -->
         <div class="nav-languages">
             <a href="./php.html" class="active"><i class="fab fa-php"></i> PHP</a>
             <a href="./rust.html"><i class="fab fa-rust"></i> Rust</a>
@@ -375,88 +355,88 @@
             </a>
         </div>
 
-        <!-- Introduction -->
         <section class="intro-text">
             <p>
-                PHP se classe <strong>21ᵉ sur 27</strong> en termes d'efficacité énergétique, consommant
-                environ <strong>28× plus d'énergie</strong> que C++ pour exécuter les mêmes programmes.
-                Cependant, avec <strong>40-50% des sites web</strong> utilisant PHP
-                (WordPress, Drupal, Laravel...), même de petites optimisations ont un
-                <strong>impact global significatif</strong>.
+                PHP se classe <strong>21ᵉ sur 27</strong> en termes d'efficacité énergétique,
+                consommant environ <strong>28× plus d'énergie</strong> que C++ pour exécuter
+                les mêmes programmes. Comme PHP est utilisé sur une très grande part du web,
+                même de petites optimisations peuvent avoir un impact global significatif.
             </p>
+
             <br>
+
             <p>
-                Cette page présente <strong>10 règles d'éco-conception</strong> concrètes pour réduire
-                l'empreinte environnementale de vos applications PHP, avec des exemples de code
-                avant/après et des mesures de gains réels.
+                Cette page présente <strong>10 règles d'éco-conception</strong> concrètes pour
+                réduire l'empreinte environnementale de vos applications PHP, avec des exemples
+                accessibles, consultables à la demande.
             </p>
         </section>
 
-        <!-- Statistiques clés -->
         <section class="services-container">
             <section class="stats-icons">
                 <div class="stat-item">
                     <i class="fas fa-bolt"></i>
                     <h2>21ᵉ / 27</h2>
-                    <p>Classement énergétique des langages <sup><a href="#source1">[1]</a></sup></p>
+                    <p>Classement énergétique des langages</p>
                 </div>
 
                 <div class="stat-item">
                     <i class="fas fa-globe"></i>
                     <h2>40-50%</h2>
-                    <p>Des sites web utilisent PHP <sup><a href="#source2">[2]</a></sup></p>
+                    <p>Des sites web utilisent PHP</p>
                 </div>
 
                 <div class="stat-item">
                     <i class="fas fa-fire"></i>
-                    <h2>28x vs C++</h2>
-                    <p>Consommation énergétique relative <sup><a href="#source1">[1]</a></sup></p>
+                    <h2>28× vs C++</h2>
+                    <p>Consommation énergétique relative</p>
                 </div>
             </section>
         </section>
 
-        <!-- Tableau récapitulatif -->
         <section style="margin-top: 50px;">
             <h2>Récapitulatif des 10 éco-rules PHP</h2>
-            <p>Cliquez sur une règle pour afficher les détails et exemples de code.</p>
+            <p>
+                Cliquez sur une règle pour ouvrir directement sa carte et afficher les détails.
+            </p>
 
             <table class="summary-table">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Règle</th>
-                        <th>Gain Performance</th>
-                        <th>Gain Mémoire</th>
+                        <th>Gain performance</th>
+                        <th>Gain mémoire</th>
                         <th>Impact</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr onclick="openRule('rule1')" style="cursor: pointer;">
+                    <tr onclick="openRule('rule1')">
                         <td>1</td>
                         <td><strong>concat2implode</strong> - Concaténation en boucle</td>
                         <td>×4 plus rapide</td>
-                        <td>-60-80%</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐</span></td>
+                        <td>-60 à -80%</td>
+                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
                     </tr>
 
-                    <tr onclick="openRule('rule2')" style="cursor: pointer;">
+                    <tr onclick="openRule('rule2')">
                         <td>2</td>
                         <td><strong>echo_concat2comma</strong> - Affichages optimisés</td>
                         <td>Modéré</td>
-                        <td>-30-50%</td>
+                        <td>-30 à -50%</td>
                         <td><span class="impact-badge impact-medium">⭐⭐</span></td>
                     </tr>
 
-                    <tr onclick="openRule('rule3')" style="cursor: pointer;">
+                    <tr onclick="openRule('rule3')">
                         <td>3</td>
                         <td><strong>sprintf2direct</strong> - Éviter sprintf()</td>
                         <td>×3 plus rapide</td>
                         <td>-40%</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐</span></td>
+                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
                     </tr>
 
-                    <tr onclick="openRule('rule4')" style="cursor: pointer;">
+                    <tr onclick="openRule('rule4')">
                         <td>4</td>
                         <td><strong>in_array2isset</strong> - Recherche efficace</td>
                         <td>×1000 plus rapide</td>
@@ -464,7 +444,7 @@
                         <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
                     </tr>
 
-                    <tr onclick="openRule('rule5')" style="cursor: pointer;">
+                    <tr onclick="openRule('rule5')">
                         <td>5</td>
                         <td><strong>array_push2direct</strong> - Ajout direct</td>
                         <td>10-20%</td>
@@ -472,7 +452,7 @@
                         <td><span class="impact-badge impact-low">⭐</span></td>
                     </tr>
 
-                    <tr onclick="openRule('rule6')" style="cursor: pointer;">
+                    <tr onclick="openRule('rule6')">
                         <td>6</td>
                         <td><strong>array_merge_loop</strong> - Fusion unique</td>
                         <td>O(n²) → O(n)</td>
@@ -480,15 +460,15 @@
                         <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
                     </tr>
 
-                    <tr onclick="openRule('rule7')" style="cursor: pointer;">
+                    <tr onclick="openRule('rule7')">
                         <td>7</td>
                         <td><strong>opcache_enabled</strong> - Activer OPcache</td>
-                        <td>×3-5 plus rapide</td>
+                        <td>×3 à ×5</td>
                         <td>Cache</td>
                         <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
                     </tr>
 
-                    <tr onclick="openRule('rule8')" style="cursor: pointer;">
+                    <tr onclick="openRule('rule8')">
                         <td>8</td>
                         <td><strong>foreach_reference_cleanup</strong> - Nettoyage refs</td>
                         <td>Évite bugs</td>
@@ -496,7 +476,7 @@
                         <td><span class="impact-badge impact-medium">⭐⭐</span></td>
                     </tr>
 
-                    <tr onclick="openRule('rule9')" style="cursor: pointer;">
+                    <tr onclick="openRule('rule9')">
                         <td>9</td>
                         <td><strong>empty2isset_check</strong> - Vérifications ciblées</td>
                         <td>8-10%</td>
@@ -504,7 +484,7 @@
                         <td><span class="impact-badge impact-low">⭐</span></td>
                     </tr>
 
-                    <tr onclick="openRule('rule10')" style="cursor: pointer;">
+                    <tr onclick="openRule('rule10')">
                         <td>10</td>
                         <td><strong>require2autoload</strong> - Autoloading PSR-4</td>
                         <td>Variable</td>
@@ -515,933 +495,360 @@
             </table>
         </section>
 
-        <!-- LES 10 ÉCO-RULES -->
         <section style="margin-top: 60px;">
             <h2 style="text-align: center; font-size: 2rem; color: var(--primary-color); margin-bottom: 40px;">
                 <i class="fas fa-leaf"></i> Les 10 Éco-Rules PHP
             </h2>
 
-            <!-- RÈGLE 1 -->
-            <div class="eco-rule" id="rule1">
-                <div class="rule-header">
-                    <div class="rule-header-left">
+            <article class="eco-rule" id="rule1">
+                <button class="rule-header" type="button" onclick="toggleRule('rule1')">
+                    <span class="rule-header-left">
                         <span class="rule-number">1</span>
 
-                        <div class="rule-title-section">
-                            <h3 class="rule-title">concat2implode - Concaténation de chaînes en boucle</h3>
+                        <span class="rule-title-section">
+                            <span class="rule-title">concat2implode - Concaténation de chaînes en boucle</span>
 
-                            <div class="rule-tags">
+                            <span class="rule-tags">
                                 <span class="tag">#strings</span>
                                 <span class="tag">#mémoire</span>
                                 <span class="tag">#performance</span>
-                            </div>
-                        </div>
-                    </div>
+                            </span>
+                        </span>
+                    </span>
 
-                    <div class="rule-metrics">
-                        <div class="metric-item">
-                            <div class="metric-value">×4</div>
-                            <div class="metric-label">Plus rapide</div>
-                        </div>
+                    <span class="rule-metrics">
+                        <span class="metric-item">
+                            <span class="metric-value">×4</span>
+                            <span class="metric-label">Plus rapide</span>
+                        </span>
 
-                        <div class="metric-item">
-                            <div class="metric-value">-60%</div>
-                            <div class="metric-label">Mémoire</div>
-                        </div>
+                        <span class="metric-item">
+                            <span class="metric-value">-60%</span>
+                            <span class="metric-label">Mémoire</span>
+                        </span>
 
-                        <span class="impact-badge impact-high">⭐⭐⭐</span>
+                        <span class="impact-badge impact-medium">⭐⭐⭐</span>
                         <i class="fas fa-chevron-down expand-icon"></i>
-                    </div>
-                </div>
+                    </span>
+                </button>
 
-                <div class="rule-content">
-                    <h4 style="color: var(--emergency-color); margin-top: 20px;">
-                        <i class="fas fa-times-circle"></i> Code inefficace :
-                    </h4>
+                <div class="rule-content" aria-live="polite"></div>
+            </article>
 
-                    <div class="code-block bad">
-<pre><code><span class="variable">$result</span> <span class="operator">=</span> <span class="string">''</span><span class="operator">;</span>
-<span class="keyword">foreach</span> <span class="operator">(</span><span class="variable">$items</span> <span class="keyword">as</span> <span class="variable">$item</span><span class="operator">)</span> <span class="operator">{</span>
-    <span class="variable">$result</span> <span class="operator">.=</span> <span class="variable">$item</span> <span class="operator">.</span> <span class="string">', '</span><span class="operator">;</span>
-<span class="operator">}</span>
-<span class="variable">$result</span> <span class="operator">=</span> <span class="function">rtrim</span><span class="operator">(</span><span class="variable">$result</span><span class="operator">,</span> <span class="string">', '</span><span class="operator">);</span></code></pre>
-                    </div>
-
-                    <div class="explanation-box">
-                        <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
-                        <ul style="text-align: left;">
-                            <li>Chaque concaténation <code>$result .= ...</code> crée une nouvelle chaîne en mémoire.</li>
-                            <li>Pour 1000 éléments, cela peut provoquer 1000 allocations mémoire.</li>
-                            <li>Le CPU et la mémoire sont davantage sollicités.</li>
-                        </ul>
-                    </div>
-
-                    <h4 style="color: var(--success-color); margin-top: 20px;">
-                        <i class="fas fa-check-circle"></i> Code optimisé :
-                    </h4>
-
-                    <div class="code-block good">
-<pre><code><span class="variable">$result</span> <span class="operator">=</span> <span class="function">implode</span><span class="operator">(</span><span class="string">', '</span><span class="operator">,</span> <span class="variable">$items</span><span class="operator">);</span></code></pre>
-                    </div>
-
-                    <div class="gain-box">
-                        <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
-                        <ul style="text-align: left;">
-                            <li><strong>×4 plus rapide</strong> pour les grandes listes.</li>
-                            <li>Réduit la consommation mémoire de <strong>60 à 80%</strong>.</li>
-                            <li>Une seule allocation mémoire au lieu de nombreuses concaténations.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RÈGLE 2 -->
-            <div class="eco-rule" id="rule2">
-                <div class="rule-header">
-                    <div class="rule-header-left">
+            <article class="eco-rule" id="rule2">
+                <button class="rule-header" type="button" onclick="toggleRule('rule2')">
+                    <span class="rule-header-left">
                         <span class="rule-number">2</span>
 
-                        <div class="rule-title-section">
-                            <h3 class="rule-title">echo_concat2comma - Affichages avec virgules</h3>
+                        <span class="rule-title-section">
+                            <span class="rule-title">echo_concat2comma - Affichages avec virgules</span>
 
-                            <div class="rule-tags">
+                            <span class="rule-tags">
                                 <span class="tag">#echo</span>
                                 <span class="tag">#sortie</span>
                                 <span class="tag">#mémoire</span>
-                            </div>
-                        </div>
-                    </div>
+                            </span>
+                        </span>
+                    </span>
 
-                    <div class="rule-metrics">
-                        <div class="metric-item">
-                            <div class="metric-value">Modéré</div>
-                            <div class="metric-label">Performance</div>
-                        </div>
+                    <span class="rule-metrics">
+                        <span class="metric-item">
+                            <span class="metric-value">Modéré</span>
+                            <span class="metric-label">Performance</span>
+                        </span>
 
-                        <div class="metric-item">
-                            <div class="metric-value">-30%</div>
-                            <div class="metric-label">Mémoire</div>
-                        </div>
+                        <span class="metric-item">
+                            <span class="metric-value">-30%</span>
+                            <span class="metric-label">Mémoire</span>
+                        </span>
 
                         <span class="impact-badge impact-medium">⭐⭐</span>
                         <i class="fas fa-chevron-down expand-icon"></i>
-                    </div>
-                </div>
+                    </span>
+                </button>
 
-                <div class="rule-content">
-                    <h4 style="color: var(--emergency-color); margin-top: 20px;">
-                        <i class="fas fa-times-circle"></i> Code inefficace :
-                    </h4>
+                <div class="rule-content" aria-live="polite"></div>
+            </article>
 
-                    <div class="code-block bad">
-<pre><code><span class="keyword">echo</span> <span class="string">'Bonjour '</span> <span class="operator">.</span> <span class="variable">$nom</span> <span class="operator">.</span> <span class="string">', vous avez '</span> <span class="operator">.</span> <span class="variable">$age</span> <span class="operator">.</span> <span class="string">' ans.'</span><span class="operator">;</span></code></pre>
-                    </div>
-
-                    <div class="explanation-box">
-                        <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
-                        <ul style="text-align: left;">
-                            <li>La concaténation avec <code>.</code> crée une chaîne temporaire complète.</li>
-                            <li>Cette chaîne temporaire consomme de la mémoire inutilement.</li>
-                        </ul>
-                    </div>
-
-                    <h4 style="color: var(--success-color); margin-top: 20px;">
-                        <i class="fas fa-check-circle"></i> Code optimisé :
-                    </h4>
-
-                    <div class="code-block good">
-<pre><code><span class="keyword">echo</span> <span class="string">'Bonjour '</span><span class="operator">,</span> <span class="variable">$nom</span><span class="operator">,</span> <span class="string">', vous avez '</span><span class="operator">,</span> <span class="variable">$age</span><span class="operator">,</span> <span class="string">' ans.'</span><span class="operator">;</span></code></pre>
-                    </div>
-
-                    <div class="gain-box">
-                        <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
-                        <ul style="text-align: left;">
-                            <li>Réduit l'utilisation mémoire.</li>
-                            <li><code>echo</code> avec virgules envoie directement les morceaux au buffer de sortie.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RÈGLE 3 -->
-            <div class="eco-rule" id="rule3">
-                <div class="rule-header">
-                    <div class="rule-header-left">
+            <article class="eco-rule" id="rule3">
+                <button class="rule-header" type="button" onclick="toggleRule('rule3')">
+                    <span class="rule-header-left">
                         <span class="rule-number">3</span>
 
-                        <div class="rule-title-section">
-                            <h3 class="rule-title">sprintf2direct - Éviter sprintf() inutile</h3>
+                        <span class="rule-title-section">
+                            <span class="rule-title">sprintf2direct - Éviter sprintf() inutile</span>
 
-                            <div class="rule-tags">
-                                <span class="tag">#sprintf</span>
+                            <span class="rule-tags">
                                 <span class="tag">#formatage</span>
                                 <span class="tag">#cpu</span>
-                            </div>
-                        </div>
-                    </div>
+                                <span class="tag">#strings</span>
+                            </span>
+                        </span>
+                    </span>
 
-                    <div class="rule-metrics">
-                        <div class="metric-item">
-                            <div class="metric-value">×3</div>
-                            <div class="metric-label">Plus rapide</div>
-                        </div>
+                    <span class="rule-metrics">
+                        <span class="metric-item">
+                            <span class="metric-value">×3</span>
+                            <span class="metric-label">Plus rapide</span>
+                        </span>
 
-                        <div class="metric-item">
-                            <div class="metric-value">-40%</div>
-                            <div class="metric-label">Mémoire</div>
-                        </div>
+                        <span class="metric-item">
+                            <span class="metric-value">-40%</span>
+                            <span class="metric-label">Mémoire</span>
+                        </span>
 
-                        <span class="impact-badge impact-high">⭐⭐⭐</span>
+                        <span class="impact-badge impact-medium">⭐⭐⭐</span>
                         <i class="fas fa-chevron-down expand-icon"></i>
-                    </div>
-                </div>
+                    </span>
+                </button>
 
-                <div class="rule-content">
-                    <h4 style="color: var(--emergency-color); margin-top: 20px;">
-                        <i class="fas fa-times-circle"></i> Code inefficace :
-                    </h4>
+                <div class="rule-content" aria-live="polite"></div>
+            </article>
 
-                    <div class="code-block bad">
-<pre><code><span class="variable">$message</span> <span class="operator">=</span> <span class="function">sprintf</span><span class="operator">(</span><span class="string">'Utilisateur %s a %d points'</span><span class="operator">,</span> <span class="variable">$nom</span><span class="operator">,</span> <span class="variable">$points</span><span class="operator">);</span>
-<span class="keyword">echo</span> <span class="variable">$message</span><span class="operator">;</span></code></pre>
-                    </div>
-
-                    <div class="explanation-box">
-                        <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
-                        <ul style="text-align: left;">
-                            <li><code>sprintf()</code> ajoute un coût de parsing du format.</li>
-                            <li>Il crée une chaîne temporaire.</li>
-                            <li>Pour les cas simples, c'est un surcoût inutile.</li>
-                        </ul>
-                    </div>
-
-                    <h4 style="color: var(--success-color); margin-top: 20px;">
-                        <i class="fas fa-check-circle"></i> Code optimisé :
-                    </h4>
-
-                    <div class="code-block good">
-<pre><code><span class="comment">// Pour affichage direct :</span>
-<span class="keyword">echo</span> <span class="string">"Utilisateur <span class="variable">$nom</span> a <span class="variable">$points</span> points"</span><span class="operator">;</span>
-
-<span class="comment">// Ou avec printf() pour éviter l'allocation temporaire :</span>
-<span class="function">printf</span><span class="operator">(</span><span class="string">'Utilisateur %s a %d points'</span><span class="operator">,</span> <span class="variable">$nom</span><span class="operator">,</span> <span class="variable">$points</span><span class="operator">);</span></code></pre>
-                    </div>
-
-                    <div class="gain-box">
-                        <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
-                        <ul style="text-align: left;">
-                            <li>Temps d'exécution réduit pour les appels répétés.</li>
-                            <li>Moins de mémoire utilisée.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RÈGLE 4 -->
-            <div class="eco-rule" id="rule4">
-                <div class="rule-header">
-                    <div class="rule-header-left">
+            <article class="eco-rule" id="rule4">
+                <button class="rule-header" type="button" onclick="toggleRule('rule4')">
+                    <span class="rule-header-left">
                         <span class="rule-number">4</span>
 
-                        <div class="rule-title-section">
-                            <h3 class="rule-title">in_array2isset - Recherche dans tableaux</h3>
+                        <span class="rule-title-section">
+                            <span class="rule-title">in_array2isset - Recherche efficace</span>
 
-                            <div class="rule-tags">
+                            <span class="rule-tags">
                                 <span class="tag">#tableaux</span>
                                 <span class="tag">#recherche</span>
                                 <span class="tag">#complexité</span>
-                            </div>
-                        </div>
-                    </div>
+                            </span>
+                        </span>
+                    </span>
 
-                    <div class="rule-metrics">
-                        <div class="metric-item">
-                            <div class="metric-value">×1000</div>
-                            <div class="metric-label">Plus rapide</div>
-                        </div>
+                    <span class="rule-metrics">
+                        <span class="metric-item">
+                            <span class="metric-value">×1000</span>
+                            <span class="metric-label">Plus rapide</span>
+                        </span>
 
-                        <div class="metric-item">
-                            <div class="metric-value">O(1)</div>
-                            <div class="metric-label">Recherche</div>
-                        </div>
+                        <span class="metric-item">
+                            <span class="metric-value">O(1)</span>
+                            <span class="metric-label">Recherche</span>
+                        </span>
 
                         <span class="impact-badge impact-high">⭐⭐⭐⭐</span>
                         <i class="fas fa-chevron-down expand-icon"></i>
-                    </div>
-                </div>
+                    </span>
+                </button>
 
-                <div class="rule-content">
-                    <h4 style="color: var(--emergency-color); margin-top: 20px;">
-                        <i class="fas fa-times-circle"></i> Code inefficace :
-                    </h4>
+                <div class="rule-content" aria-live="polite"></div>
+            </article>
 
-                    <div class="code-block bad">
-<pre><code><span class="variable">$allowed_roles</span> <span class="operator">=</span> <span class="operator">[</span><span class="string">'admin'</span><span class="operator">,</span> <span class="string">'editor'</span><span class="operator">,</span> <span class="string">'author'</span><span class="operator">,</span> <span class="string">'subscriber'</span><span class="operator">];</span>
-
-<span class="keyword">if</span> <span class="operator">(</span><span class="function">in_array</span><span class="operator">(</span><span class="variable">$user_role</span><span class="operator">,</span> <span class="variable">$allowed_roles</span><span class="operator">))</span> <span class="operator">{</span>
-    <span class="comment">// Accès autorisé</span>
-<span class="operator">}</span></code></pre>
-                    </div>
-
-                    <div class="explanation-box">
-                        <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
-                        <ul style="text-align: left;">
-                            <li><code>in_array()</code> parcourt le tableau séquentiellement.</li>
-                            <li>La complexité est en O(n).</li>
-                            <li>Sur de grandes listes, cela consomme beaucoup de CPU.</li>
-                        </ul>
-                    </div>
-
-                    <h4 style="color: var(--success-color); margin-top: 20px;">
-                        <i class="fas fa-check-circle"></i> Code optimisé :
-                    </h4>
-
-                    <div class="code-block good">
-<pre><code><span class="variable">$allowed_roles</span> <span class="operator">=</span> <span class="operator">[</span>
-    <span class="string">'admin'</span> <span class="operator">=></span> <span class="keyword">true</span><span class="operator">,</span>
-    <span class="string">'editor'</span> <span class="operator">=></span> <span class="keyword">true</span><span class="operator">,</span>
-    <span class="string">'author'</span> <span class="operator">=></span> <span class="keyword">true</span><span class="operator">,</span>
-    <span class="string">'subscriber'</span> <span class="operator">=></span> <span class="keyword">true</span>
-<span class="operator">];</span>
-
-<span class="keyword">if</span> <span class="operator">(</span><span class="function">isset</span><span class="operator">(</span><span class="variable">$allowed_roles</span><span class="operator">[</span><span class="variable">$user_role</span><span class="operator">]))</span> <span class="operator">{</span>
-    <span class="comment">// Accès autorisé</span>
-<span class="operator">}</span></code></pre>
-                    </div>
-
-                    <div class="gain-box">
-                        <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
-                        <ul style="text-align: left;">
-                            <li><code>isset()</code> permet un accès direct.</li>
-                            <li>Complexité O(1) au lieu de O(n).</li>
-                            <li>Économie CPU importante sur les grandes listes.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RÈGLE 5 -->
-            <div class="eco-rule" id="rule5">
-                <div class="rule-header">
-                    <div class="rule-header-left">
+            <article class="eco-rule" id="rule5">
+                <button class="rule-header" type="button" onclick="toggleRule('rule5')">
+                    <span class="rule-header-left">
                         <span class="rule-number">5</span>
 
-                        <div class="rule-title-section">
-                            <h3 class="rule-title">array_push2direct - Ajout direct aux tableaux</h3>
+                        <span class="rule-title-section">
+                            <span class="rule-title">array_push2direct - Ajout direct aux tableaux</span>
 
-                            <div class="rule-tags">
+                            <span class="rule-tags">
                                 <span class="tag">#array</span>
-                                <span class="tag">#boucle</span>
+                                <span class="tag">#boucles</span>
                                 <span class="tag">#micro-optimisation</span>
-                            </div>
-                        </div>
-                    </div>
+                            </span>
+                        </span>
+                    </span>
 
-                    <div class="rule-metrics">
-                        <div class="metric-item">
-                            <div class="metric-value">10-20%</div>
-                            <div class="metric-label">Performance</div>
-                        </div>
+                    <span class="rule-metrics">
+                        <span class="metric-item">
+                            <span class="metric-value">10-20%</span>
+                            <span class="metric-label">Performance</span>
+                        </span>
 
-                        <div class="metric-item">
-                            <div class="metric-value">Faible</div>
-                            <div class="metric-label">Mémoire</div>
-                        </div>
+                        <span class="metric-item">
+                            <span class="metric-value">Faible</span>
+                            <span class="metric-label">Mémoire</span>
+                        </span>
 
                         <span class="impact-badge impact-low">⭐</span>
                         <i class="fas fa-chevron-down expand-icon"></i>
-                    </div>
-                </div>
+                    </span>
+                </button>
 
-                <div class="rule-content">
-                    <h4 style="color: var(--emergency-color); margin-top: 20px;">
-                        <i class="fas fa-times-circle"></i> Code inefficace :
-                    </h4>
+                <div class="rule-content" aria-live="polite"></div>
+            </article>
 
-                    <div class="code-block bad">
-<pre><code><span class="variable">$results</span> <span class="operator">=</span> <span class="operator">[];</span>
-<span class="keyword">foreach</span> <span class="operator">(</span><span class="variable">$items</span> <span class="keyword">as</span> <span class="variable">$item</span><span class="operator">)</span> <span class="operator">{</span>
-    <span class="function">array_push</span><span class="operator">(</span><span class="variable">$results</span><span class="operator">,</span> <span class="function">process</span><span class="operator">(</span><span class="variable">$item</span><span class="operator">));</span>
-<span class="operator">}</span></code></pre>
-                    </div>
-
-                    <div class="explanation-box">
-                        <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
-                        <ul style="text-align: left;">
-                            <li><code>array_push()</code> est un appel de fonction.</li>
-                            <li>Dans une boucle, cet overhead se répète à chaque itération.</li>
-                        </ul>
-                    </div>
-
-                    <h4 style="color: var(--success-color); margin-top: 20px;">
-                        <i class="fas fa-check-circle"></i> Code optimisé :
-                    </h4>
-
-                    <div class="code-block good">
-<pre><code><span class="variable">$results</span> <span class="operator">=</span> <span class="operator">[];</span>
-<span class="keyword">foreach</span> <span class="operator">(</span><span class="variable">$items</span> <span class="keyword">as</span> <span class="variable">$item</span><span class="operator">)</span> <span class="operator">{</span>
-    <span class="variable">$results</span><span class="operator">[]</span> <span class="operator">=</span> <span class="function">process</span><span class="operator">(</span><span class="variable">$item</span><span class="operator">);</span>
-<span class="operator">}</span></code></pre>
-                    </div>
-
-                    <div class="gain-box">
-                        <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
-                        <ul style="text-align: left;">
-                            <li>Évite l'overhead de l'appel de fonction.</li>
-                            <li>Code plus lisible et plus idiomatique en PHP.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RÈGLE 6 -->
-            <div class="eco-rule" id="rule6">
-                <div class="rule-header">
-                    <div class="rule-header-left">
+            <article class="eco-rule" id="rule6">
+                <button class="rule-header" type="button" onclick="toggleRule('rule6')">
+                    <span class="rule-header-left">
                         <span class="rule-number">6</span>
 
-                        <div class="rule-title-section">
-                            <h3 class="rule-title">array_merge_loop - Fusion unique de tableaux</h3>
+                        <span class="rule-title-section">
+                            <span class="rule-title">array_merge_loop - Fusion unique de tableaux</span>
 
-                            <div class="rule-tags">
+                            <span class="rule-tags">
                                 <span class="tag">#array_merge</span>
                                 <span class="tag">#mémoire</span>
                                 <span class="tag">#complexité</span>
-                            </div>
-                        </div>
-                    </div>
+                            </span>
+                        </span>
+                    </span>
 
-                    <div class="rule-metrics">
-                        <div class="metric-item">
-                            <div class="metric-value">O(n)</div>
-                            <div class="metric-label">Optimisé</div>
-                        </div>
+                    <span class="rule-metrics">
+                        <span class="metric-item">
+                            <span class="metric-value">O(n)</span>
+                            <span class="metric-label">Optimisé</span>
+                        </span>
 
-                        <div class="metric-item">
-                            <div class="metric-value">Très élevé</div>
-                            <div class="metric-label">Mémoire</div>
-                        </div>
+                        <span class="metric-item">
+                            <span class="metric-value">Élevé</span>
+                            <span class="metric-label">Mémoire</span>
+                        </span>
 
                         <span class="impact-badge impact-high">⭐⭐⭐⭐</span>
                         <i class="fas fa-chevron-down expand-icon"></i>
-                    </div>
-                </div>
+                    </span>
+                </button>
 
-                <div class="rule-content">
-                    <h4 style="color: var(--emergency-color); margin-top: 20px;">
-                        <i class="fas fa-times-circle"></i> Code inefficace :
-                    </h4>
+                <div class="rule-content" aria-live="polite"></div>
+            </article>
 
-                    <div class="code-block bad">
-<pre><code><span class="variable">$all_data</span> <span class="operator">=</span> <span class="operator">[];</span>
-<span class="keyword">foreach</span> <span class="operator">(</span><span class="variable">$sources</span> <span class="keyword">as</span> <span class="variable">$source</span><span class="operator">)</span> <span class="operator">{</span>
-    <span class="variable">$all_data</span> <span class="operator">=</span> <span class="function">array_merge</span><span class="operator">(</span><span class="variable">$all_data</span><span class="operator">,</span> <span class="function">fetch_data</span><span class="operator">(</span><span class="variable">$source</span><span class="operator">));</span>
-<span class="operator">}</span></code></pre>
-                    </div>
-
-                    <div class="explanation-box">
-                        <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
-                        <ul style="text-align: left;">
-                            <li><code>array_merge()</code> recrée un nouveau tableau à chaque itération.</li>
-                            <li>La complexité peut devenir O(n²).</li>
-                            <li>La mémoire est fortement sollicitée.</li>
-                        </ul>
-                    </div>
-
-                    <h4 style="color: var(--success-color); margin-top: 20px;">
-                        <i class="fas fa-check-circle"></i> Code optimisé :
-                    </h4>
-
-                    <div class="code-block good">
-<pre><code><span class="comment">// PHP 7.4+ avec spread operator :</span>
-<span class="variable">$arrays_to_merge</span> <span class="operator">=</span> <span class="operator">[];</span>
-
-<span class="keyword">foreach</span> <span class="operator">(</span><span class="variable">$sources</span> <span class="keyword">as</span> <span class="variable">$source</span><span class="operator">)</span> <span class="operator">{</span>
-    <span class="variable">$arrays_to_merge</span><span class="operator">[]</span> <span class="operator">=</span> <span class="function">fetch_data</span><span class="operator">(</span><span class="variable">$source</span><span class="operator">);</span>
-<span class="operator">}</span>
-
-<span class="variable">$all_data</span> <span class="operator">=</span> <span class="function">array_merge</span><span class="operator">(...</span><span class="variable">$arrays_to_merge</span><span class="operator">);</span>
-
-<span class="comment">// Alternative PHP &lt; 7.4 :</span>
-<span class="variable">$all_data</span> <span class="operator">=</span> <span class="operator">[];</span>
-
-<span class="keyword">foreach</span> <span class="operator">(</span><span class="variable">$sources</span> <span class="keyword">as</span> <span class="variable">$source</span><span class="operator">)</span> <span class="operator">{</span>
-    <span class="keyword">foreach</span> <span class="operator">(</span><span class="function">fetch_data</span><span class="operator">(</span><span class="variable">$source</span><span class="operator">)</span> <span class="keyword">as</span> <span class="variable">$item</span><span class="operator">)</span> <span class="operator">{</span>
-        <span class="variable">$all_data</span><span class="operator">[]</span> <span class="operator">=</span> <span class="variable">$item</span><span class="operator">;</span>
-    <span class="operator">}</span>
-<span class="operator">}</span></code></pre>
-                    </div>
-
-                    <div class="gain-box">
-                        <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
-                        <ul style="text-align: left;">
-                            <li>Complexité O(n²) → O(n).</li>
-                            <li>Évite les copies répétées en mémoire.</li>
-                            <li>Réduit fortement les opérations CPU.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RÈGLE 7 -->
-            <div class="eco-rule" id="rule7">
-                <div class="rule-header">
-                    <div class="rule-header-left">
+            <article class="eco-rule" id="rule7">
+                <button class="rule-header" type="button" onclick="toggleRule('rule7')">
+                    <span class="rule-header-left">
                         <span class="rule-number">7</span>
 
-                        <div class="rule-title-section">
-                            <h3 class="rule-title">opcache_enabled - Activer OPcache en production</h3>
+                        <span class="rule-title-section">
+                            <span class="rule-title">opcache_enabled - Activer OPcache en production</span>
 
-                            <div class="rule-tags">
-                                <span class="tag">#opcache</span>
-                                <span class="tag">#production</span>
+                            <span class="rule-tags">
                                 <span class="tag">#serveur</span>
-                            </div>
-                        </div>
-                    </div>
+                                <span class="tag">#cache</span>
+                                <span class="tag">#production</span>
+                            </span>
+                        </span>
+                    </span>
 
-                    <div class="rule-metrics">
-                        <div class="metric-item">
-                            <div class="metric-value">×3-5</div>
-                            <div class="metric-label">Plus rapide</div>
-                        </div>
+                    <span class="rule-metrics">
+                        <span class="metric-item">
+                            <span class="metric-value">×3-5</span>
+                            <span class="metric-label">Plus rapide</span>
+                        </span>
 
-                        <div class="metric-item">
-                            <div class="metric-value">Cache</div>
-                            <div class="metric-label">Mémoire</div>
-                        </div>
+                        <span class="metric-item">
+                            <span class="metric-value">Cache</span>
+                            <span class="metric-label">Opcode</span>
+                        </span>
 
                         <span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span>
                         <i class="fas fa-chevron-down expand-icon"></i>
-                    </div>
-                </div>
+                    </span>
+                </button>
 
-                <div class="rule-content">
-                    <h4 style="color: var(--emergency-color); margin-top: 20px;">
-                        <i class="fas fa-times-circle"></i> Configuration inefficace :
-                    </h4>
+                <div class="rule-content" aria-live="polite"></div>
+            </article>
 
-                    <div class="code-block bad">
-<pre><code><span class="comment">; php.ini</span>
-<span class="keyword">opcache.enable</span><span class="operator">=</span><span class="string">0</span></code></pre>
-                    </div>
-
-                    <div class="explanation-box">
-                        <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
-                        <ul style="text-align: left;">
-                            <li>Sans OPcache, PHP recompile les scripts à chaque requête.</li>
-                            <li>Le parsing et la compilation sont répétés inutilement.</li>
-                            <li>Cela augmente la charge CPU du serveur.</li>
-                        </ul>
-                    </div>
-
-                    <h4 style="color: var(--success-color); margin-top: 20px;">
-                        <i class="fas fa-check-circle"></i> Configuration optimisée :
-                    </h4>
-
-                    <div class="code-block good">
-<pre><code><span class="comment">; php.ini</span>
-<span class="keyword">opcache.enable</span><span class="operator">=</span><span class="string">1</span>
-<span class="keyword">opcache.memory_consumption</span><span class="operator">=</span><span class="string">128</span>
-<span class="keyword">opcache.interned_strings_buffer</span><span class="operator">=</span><span class="string">8</span>
-<span class="keyword">opcache.max_accelerated_files</span><span class="operator">=</span><span class="string">10000</span>
-<span class="keyword">opcache.revalidate_freq</span><span class="operator">=</span><span class="string">60</span>
-<span class="keyword">opcache.validate_timestamps</span><span class="operator">=</span><span class="string">1</span>  <span class="comment">; 0 en production stricte</span></code></pre>
-                    </div>
-
-                    <div class="gain-box">
-                        <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
-                        <ul style="text-align: left;">
-                            <li>Performance souvent multipliée par 3 à 5 selon les projets.</li>
-                            <li>Réduit fortement la charge processeur.</li>
-                            <li>Moins de cycles CPU = moins de consommation électrique.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RÈGLE 8 -->
-            <div class="eco-rule" id="rule8">
-                <div class="rule-header">
-                    <div class="rule-header-left">
+            <article class="eco-rule" id="rule8">
+                <button class="rule-header" type="button" onclick="toggleRule('rule8')">
+                    <span class="rule-header-left">
                         <span class="rule-number">8</span>
 
-                        <div class="rule-title-section">
-                            <h3 class="rule-title">foreach_reference_cleanup - Nettoyage des références</h3>
+                        <span class="rule-title-section">
+                            <span class="rule-title">foreach_reference_cleanup - Nettoyage des références</span>
 
-                            <div class="rule-tags">
+                            <span class="rule-tags">
                                 <span class="tag">#foreach</span>
                                 <span class="tag">#références</span>
                                 <span class="tag">#fiabilité</span>
-                            </div>
-                        </div>
-                    </div>
+                            </span>
+                        </span>
+                    </span>
 
-                    <div class="rule-metrics">
-                        <div class="metric-item">
-                            <div class="metric-value">Évite bugs</div>
-                            <div class="metric-label">Fiabilité</div>
-                        </div>
+                    <span class="rule-metrics">
+                        <span class="metric-item">
+                            <span class="metric-value">Évite</span>
+                            <span class="metric-label">Les bugs</span>
+                        </span>
 
-                        <div class="metric-item">
-                            <div class="metric-value">Refs</div>
-                            <div class="metric-label">Libérées</div>
-                        </div>
+                        <span class="metric-item">
+                            <span class="metric-value">Refs</span>
+                            <span class="metric-label">Libérées</span>
+                        </span>
 
                         <span class="impact-badge impact-medium">⭐⭐</span>
                         <i class="fas fa-chevron-down expand-icon"></i>
-                    </div>
-                </div>
+                    </span>
+                </button>
 
-                <div class="rule-content">
-                    <h4 style="color: var(--emergency-color); margin-top: 20px;">
-                        <i class="fas fa-times-circle"></i> Code dangereux :
-                    </h4>
+                <div class="rule-content" aria-live="polite"></div>
+            </article>
 
-                    <div class="code-block bad">
-<pre><code><span class="variable">$items</span> <span class="operator">=</span> <span class="operator">[</span><span class="string">1</span><span class="operator">,</span> <span class="string">2</span><span class="operator">,</span> <span class="string">3</span><span class="operator">,</span> <span class="string">4</span><span class="operator">,</span> <span class="string">5</span><span class="operator">];</span>
-
-<span class="keyword">foreach</span> <span class="operator">(</span><span class="variable">$items</span> <span class="keyword">as</span> <span class="operator">&</span><span class="variable">$item</span><span class="operator">)</span> <span class="operator">{</span>
-    <span class="variable">$item</span> <span class="operator">*=</span> <span class="string">2</span><span class="operator">;</span>
-<span class="operator">}</span>
-
-<span class="comment">// ⚠️ La référence $item persiste !</span>
-<span class="keyword">foreach</span> <span class="operator">(</span><span class="variable">$items</span> <span class="keyword">as</span> <span class="variable">$item</span><span class="operator">)</span> <span class="operator">{</span>
-    <span class="keyword">echo</span> <span class="variable">$item</span><span class="operator">;</span>
-<span class="operator">}</span></code></pre>
-                    </div>
-
-                    <div class="explanation-box">
-                        <h4><i class="fas fa-info-circle"></i> Pourquoi c'est dangereux ?</h4>
-                        <ul style="text-align: left;">
-                            <li>La référence <code>&$item</code> persiste après le <code>foreach</code>.</li>
-                            <li>Elle peut provoquer des modifications inattendues.</li>
-                            <li>Cela peut créer des bugs difficiles à repérer.</li>
-                        </ul>
-                    </div>
-
-                    <h4 style="color: var(--success-color); margin-top: 20px;">
-                        <i class="fas fa-check-circle"></i> Code optimisé :
-                    </h4>
-
-                    <div class="code-block good">
-<pre><code><span class="variable">$items</span> <span class="operator">=</span> <span class="operator">[</span><span class="string">1</span><span class="operator">,</span> <span class="string">2</span><span class="operator">,</span> <span class="string">3</span><span class="operator">,</span> <span class="string">4</span><span class="operator">,</span> <span class="string">5</span><span class="operator">];</span>
-
-<span class="keyword">foreach</span> <span class="operator">(</span><span class="variable">$items</span> <span class="keyword">as</span> <span class="operator">&</span><span class="variable">$item</span><span class="operator">)</span> <span class="operator">{</span>
-    <span class="variable">$item</span> <span class="operator">*=</span> <span class="string">2</span><span class="operator">;</span>
-<span class="operator">}</span>
-
-<span class="function">unset</span><span class="operator">(</span><span class="variable">$item</span><span class="operator">);</span>  <span class="comment">// ✅ Libère la référence</span>
-
-<span class="keyword">foreach</span> <span class="operator">(</span><span class="variable">$items</span> <span class="keyword">as</span> <span class="variable">$item</span><span class="operator">)</span> <span class="operator">{</span>
-    <span class="keyword">echo</span> <span class="variable">$item</span><span class="operator">;</span>
-<span class="operator">}</span></code></pre>
-                    </div>
-
-                    <div class="gain-box">
-                        <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
-                        <ul style="text-align: left;">
-                            <li>Évite les bugs de mutation involontaire.</li>
-                            <li>Libère la référence orpheline.</li>
-                            <li>Rend le comportement du code plus prévisible.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RÈGLE 9 -->
-            <div class="eco-rule" id="rule9">
-                <div class="rule-header">
-                    <div class="rule-header-left">
+            <article class="eco-rule" id="rule9">
+                <button class="rule-header" type="button" onclick="toggleRule('rule9')">
+                    <span class="rule-header-left">
                         <span class="rule-number">9</span>
 
-                        <div class="rule-title-section">
-                            <h3 class="rule-title">empty2isset_check - Vérifications ciblées</h3>
+                        <span class="rule-title-section">
+                            <span class="rule-title">empty2isset_check - Vérifications ciblées</span>
 
-                            <div class="rule-tags">
+                            <span class="rule-tags">
                                 <span class="tag">#isset</span>
                                 <span class="tag">#empty</span>
                                 <span class="tag">#conditions</span>
-                            </div>
-                        </div>
-                    </div>
+                            </span>
+                        </span>
+                    </span>
 
-                    <div class="rule-metrics">
-                        <div class="metric-item">
-                            <div class="metric-value">8-10%</div>
-                            <div class="metric-label">Performance</div>
-                        </div>
+                    <span class="rule-metrics">
+                        <span class="metric-item">
+                            <span class="metric-value">8-10%</span>
+                            <span class="metric-label">Performance</span>
+                        </span>
 
-                        <div class="metric-item">
-                            <div class="metric-value">Faible</div>
-                            <div class="metric-label">Mémoire</div>
-                        </div>
+                        <span class="metric-item">
+                            <span class="metric-value">Faible</span>
+                            <span class="metric-label">Mémoire</span>
+                        </span>
 
                         <span class="impact-badge impact-low">⭐</span>
                         <i class="fas fa-chevron-down expand-icon"></i>
-                    </div>
-                </div>
+                    </span>
+                </button>
 
-                <div class="rule-content">
-                    <h4 style="color: var(--emergency-color); margin-top: 20px;">
-                        <i class="fas fa-times-circle"></i> Code inefficace :
-                    </h4>
+                <div class="rule-content" aria-live="polite"></div>
+            </article>
 
-                    <div class="code-block bad">
-<pre><code><span class="variable">$config</span> <span class="operator">=</span> <span class="function">load_config</span><span class="operator">();</span>
-
-<span class="keyword">if</span> <span class="operator">(!</span><span class="function">empty</span><span class="operator">(</span><span class="variable">$config</span><span class="operator">[</span><span class="string">'database'</span><span class="operator">][</span><span class="string">'host'</span><span class="operator">]))</span> <span class="operator">{</span>
-    <span class="function">connect</span><span class="operator">(</span><span class="variable">$config</span><span class="operator">[</span><span class="string">'database'</span><span class="operator">][</span><span class="string">'host'</span><span class="operator">]);</span>
-<span class="operator">}</span></code></pre>
-                    </div>
-
-                    <div class="explanation-box">
-                        <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
-                        <ul style="text-align: left;">
-                            <li><code>empty()</code> effectue plusieurs vérifications.</li>
-                            <li>Si la variable existe déjà, une vérification plus ciblée peut suffire.</li>
-                        </ul>
-                    </div>
-
-                    <h4 style="color: var(--success-color); margin-top: 20px;">
-                        <i class="fas fa-check-circle"></i> Code optimisé :
-                    </h4>
-
-                    <div class="code-block good">
-<pre><code><span class="variable">$config</span> <span class="operator">=</span> <span class="function">load_config</span><span class="operator">();</span>
-
-<span class="keyword">if</span> <span class="operator">(</span><span class="function">isset</span><span class="operator">(</span><span class="variable">$config</span><span class="operator">[</span><span class="string">'database'</span><span class="operator">][</span><span class="string">'host'</span><span class="operator">])</span> <span class="operator">&&</span> <span class="variable">$config</span><span class="operator">[</span><span class="string">'database'</span><span class="operator">][</span><span class="string">'host'</span><span class="operator">])</span> <span class="operator">{</span>
-    <span class="function">connect</span><span class="operator">(</span><span class="variable">$config</span><span class="operator">[</span><span class="string">'database'</span><span class="operator">][</span><span class="string">'host'</span><span class="operator">]);</span>
-<span class="operator">}</span></code></pre>
-                    </div>
-
-                    <div class="gain-box">
-                        <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
-                        <ul style="text-align: left;">
-                            <li>Moins d'overhead de vérification.</li>
-                            <li>Gain surtout visible dans les boucles ou fonctions très appelées.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RÈGLE 10 -->
-            <div class="eco-rule" id="rule10">
-                <div class="rule-header">
-                    <div class="rule-header-left">
+            <article class="eco-rule" id="rule10">
+                <button class="rule-header" type="button" onclick="toggleRule('rule10')">
+                    <span class="rule-header-left">
                         <span class="rule-number">10</span>
 
-                        <div class="rule-title-section">
-                            <h3 class="rule-title">require2autoload - Autoloading PSR-4</h3>
+                        <span class="rule-title-section">
+                            <span class="rule-title">require2autoload - Autoloading PSR-4</span>
 
-                            <div class="rule-tags">
+                            <span class="rule-tags">
                                 <span class="tag">#autoload</span>
-                                <span class="tag">#composer</span>
                                 <span class="tag">#architecture</span>
-                            </div>
-                        </div>
-                    </div>
+                                <span class="tag">#composer</span>
+                            </span>
+                        </span>
+                    </span>
 
-                    <div class="rule-metrics">
-                        <div class="metric-item">
-                            <div class="metric-value">Variable</div>
-                            <div class="metric-label">Performance</div>
-                        </div>
+                    <span class="rule-metrics">
+                        <span class="metric-item">
+                            <span class="metric-value">Variable</span>
+                            <span class="metric-label">Performance</span>
+                        </span>
 
-                        <div class="metric-item">
-                            <div class="metric-value">Signif.</div>
-                            <div class="metric-label">Mémoire</div>
-                        </div>
+                        <span class="metric-item">
+                            <span class="metric-value">Signif.</span>
+                            <span class="metric-label">Mémoire</span>
+                        </span>
 
                         <span class="impact-badge impact-medium">⭐⭐</span>
                         <i class="fas fa-chevron-down expand-icon"></i>
-                    </div>
-                </div>
+                    </span>
+                </button>
 
-                <div class="rule-content">
-                    <h4 style="color: var(--emergency-color); margin-top: 20px;">
-                        <i class="fas fa-times-circle"></i> Code inefficace :
-                    </h4>
-
-                    <div class="code-block bad">
-<pre><code><span class="comment">// Chargement manuel de toutes les classes</span>
-<span class="keyword">require_once</span> <span class="string">'models/User.php'</span><span class="operator">;</span>
-<span class="keyword">require_once</span> <span class="string">'models/Product.php'</span><span class="operator">;</span>
-<span class="keyword">require_once</span> <span class="string">'models/Order.php'</span><span class="operator">;</span>
-<span class="keyword">require_once</span> <span class="string">'controllers/UserController.php'</span><span class="operator">;</span>
-<span class="comment">// ... 50 autres fichiers</span></code></pre>
-                    </div>
-
-                    <div class="explanation-box">
-                        <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
-                        <ul style="text-align: left;">
-                            <li>Charge tous les fichiers même s'ils ne sont pas utilisés.</li>
-                            <li>Augmente le temps de parsing et la mémoire utilisée.</li>
-                            <li>Rend la maintenance plus difficile.</li>
-                        </ul>
-                    </div>
-
-                    <h4 style="color: var(--success-color); margin-top: 20px;">
-                        <i class="fas fa-check-circle"></i> Code optimisé :
-                    </h4>
-
-                    <div class="code-block good">
-<pre><code><span class="comment">// Autoloader PSR-4 ou Composer</span>
-<span class="function">spl_autoload_register</span><span class="operator">(</span><span class="keyword">function</span> <span class="operator">(</span><span class="variable">$class</span><span class="operator">)</span> <span class="operator">{</span>
-    <span class="variable">$file</span> <span class="operator">=</span> <span class="function">str_replace</span><span class="operator">(</span><span class="string">'\\'</span><span class="operator">,</span> <span class="string">DIRECTORY_SEPARATOR</span><span class="operator">,</span> <span class="variable">$class</span><span class="operator">)</span> <span class="operator">.</span> <span class="string">'.php'</span><span class="operator">;</span>
-
-    <span class="keyword">if</span> <span class="operator">(</span><span class="function">file_exists</span><span class="operator">(</span><span class="variable">$file</span><span class="operator">))</span> <span class="operator">{</span>
-        <span class="keyword">require</span> <span class="variable">$file</span><span class="operator">;</span>
-    <span class="operator">}</span>
-<span class="operator">});</span>
-
-<span class="comment">// Les classes sont chargées automatiquement à la demande</span>
-<span class="variable">$user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="function">User</span><span class="operator">();</span></code></pre>
-                    </div>
-
-                    <div class="gain-box">
-                        <h4><i class="fas fa-chart-line"></i> Gains mesurés :</h4>
-                        <ul style="text-align: left;">
-                            <li>Chargement à la demande.</li>
-                            <li>Moins de fichiers inutiles en mémoire.</li>
-                            <li>Architecture plus propre et maintenable.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Bonnes pratiques complémentaires -->
-        <section
-            style="
-                margin-top: 60px;
-                padding: 30px;
-                background: linear-gradient(135deg, rgba(47, 223, 173, 0.1) 0%, rgba(47, 223, 173, 0.02) 100%);
-                border-radius: 10px;
-            "
-        >
-            <h2 style="color: var(--primary-color); margin-bottom: 30px;">
-                <i class="fas fa-leaf"></i> Bonnes pratiques complémentaires
-            </h2>
-
-            <div class="container">
-                <div class="column">
-                    <h3><i class="fas fa-check-circle"></i> Types stricts</h3>
-
-                    <div class="code-block" style="font-size: 0.85rem;">
-<pre><code><span class="keyword">declare</span><span class="operator">(</span><span class="string">strict_types</span><span class="operator">=</span><span class="string">1</span><span class="operator">);</span>
-
-<span class="keyword">function</span> <span class="function">calculateTotal</span><span class="operator">(</span><span class="keyword">float</span> <span class="variable">$price</span><span class="operator">,</span> <span class="keyword">int</span> <span class="variable">$qty</span><span class="operator">):</span> <span class="keyword">float</span> <span class="operator">{</span>
-    <span class="keyword">return</span> <span class="variable">$price</span> <span class="operator">*</span> <span class="variable">$qty</span><span class="operator">;</span>
-<span class="operator">}</span></code></pre>
-                    </div>
-
-                    <p style="font-size: 0.9rem; color: var(--text-color-light);">
-                        Évite les conversions de types implicites → économie CPU.
-                    </p>
-                </div>
-
-                <div class="column">
-                    <h3><i class="fas fa-database"></i> Requêtes SQL</h3>
-
-                    <div class="code-block good" style="font-size: 0.85rem;">
-<pre><code><span class="comment">// ✅ Une seule requête</span>
-<span class="variable">$ids</span> <span class="operator">=</span> <span class="function">implode</span><span class="operator">(</span><span class="string">','</span><span class="operator">,</span> <span class="variable">$user_ids</span><span class="operator">);</span>
-
-<span class="variable">$users</span> <span class="operator">=</span> <span class="variable">$db</span><span class="operator">-&gt;</span><span class="function">query</span><span class="operator">(</span>
-    <span class="string">"SELECT * FROM users WHERE id IN ($ids)"</span>
-<span class="operator">);</span></code></pre>
-                    </div>
-
-                    <p style="font-size: 0.9rem; color: var(--text-color-light);">
-                        Évite le problème N+1 → moins de connexions réseau.
-                    </p>
-                </div>
-
-                <div class="column">
-                    <h3><i class="fas fa-memory"></i> Générateurs</h3>
-
-                    <div class="code-block good" style="font-size: 0.85rem;">
-<pre><code><span class="keyword">function</span> <span class="function">getAllRecords</span><span class="operator">(</span><span class="variable">$pdo</span><span class="operator">)</span> <span class="operator">{</span>
-    <span class="variable">$stmt</span> <span class="operator">=</span> <span class="variable">$pdo</span><span class="operator">-&gt;</span><span class="function">query</span><span class="operator">(</span><span class="string">"SELECT * ..."</span><span class="operator">);</span>
-
-    <span class="keyword">while</span> <span class="operator">(</span><span class="variable">$row</span> <span class="operator">=</span> <span class="variable">$stmt</span><span class="operator">-&gt;</span><span class="function">fetch</span><span class="operator">())</span> <span class="operator">{</span>
-        <span class="keyword">yield</span> <span class="variable">$row</span><span class="operator">;</span>
-    <span class="operator">}</span>
-<span class="operator">}</span></code></pre>
-                    </div>
-
-                    <p style="font-size: 0.9rem; color: var(--text-color-light);">
-                        Mémoire constante au lieu de charger 100 000 lignes.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Outils recommandés -->
-        <section style="margin-top: 50px;">
-            <h2><i class="fas fa-tools"></i> Outils pour mesurer et améliorer</h2>
-
-            <div
-                class="services-grid"
-                style="
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                    gap: 20px;
-                    margin-top: 30px;
-                "
-            >
-                <div class="service-card">
-                    <i class="fas fa-code" style="font-size: 2.5rem; color: var(--primary-color);"></i>
-                    <h3>ecoCode PHP</h3>
-                    <p>
-                        Plugin SonarQube dédié à l'analyse statique PHP pour identifier les structures
-                        de code ayant un impact écologique négatif.
-                    </p>
-                    <a
-                        href="https://github.com/green-code-initiative/creedengo-php"
-                        target="_blank"
-                        class="button"
-                        style="margin-top: 15px; font-size: 0.9rem;"
-                    >
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                </div>
-
-                <div class="service-card">
-                    <i class="fas fa-chart-bar" style="font-size: 2.5rem; color: var(--info-color);"></i>
-                    <h3>Blackfire.io</h3>
-                    <p>
-                        Profileur PHP pour mesurer la consommation mémoire, le temps d'exécution
-                        et identifier les goulots d'étranglement.
-                    </p>
-                    <a
-                        href="https://www.blackfire.io/"
-                        target="_blank"
-                        class="button"
-                        style="margin-top: 15px; font-size: 0.9rem; background-color: var(--info-color);"
-                    >
-                        <i class="fas fa-external-link-alt"></i> Visiter
-                    </a>
-                </div>
-
-                <div class="service-card">
-                    <i class="fas fa-bug" style="font-size: 2.5rem; color: var(--warning-color);"></i>
-                    <h3>PHPStan</h3>
-                    <p>
-                        Analyse statique pour détecter les erreurs, optimiser le code
-                        et améliorer la qualité globale de vos applications PHP.
-                    </p>
-                    <a
-                        href="https://phpstan.org/"
-                        target="_blank"
-                        class="button"
-                        style="margin-top: 15px; font-size: 0.9rem; background-color: var(--warning-color);"
-                    >
-                        <i class="fas fa-external-link-alt"></i> Visiter
-                    </a>
-                </div>
-            </div>
+                <div class="rule-content" aria-live="polite"></div>
+            </article>
         </section>
 
         <!-- Sources -->
@@ -1530,16 +937,9 @@
             </ul>
         </section>
 
-        <!-- Navigation -->
         <div
             class="button-container"
-            style="
-                margin-top: 60px;
-                gap: 15px;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-            "
+            style="margin-top: 60px; gap: 15px; display: flex; flex-wrap: wrap; justify-content: center;"
         >
             <a href="../langages.html" class="button">
                 <i class="fas fa-arrow-left"></i> Retour aux langages
@@ -1563,6 +963,487 @@
     </footer>
 
     <script>
+        const ruleContents = {
+            rule1: `
+                <h4 style="color: var(--emergency-color); margin-top: 20px;">
+                    <i class="fas fa-times-circle"></i> Code inefficace :
+                </h4>
+
+                <div class="code-block bad">
+                    <pre><code>$result = '';
+
+foreach ($items as $item) {
+    $result .= $item . ', ';
+}
+
+$result = rtrim($result, ', ');</code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul>
+                        <li>Chaque concaténation recrée une chaîne.</li>
+                        <li>Plus la liste grandit, plus les copies mémoire se multiplient.</li>
+                        <li>Le processeur et la mémoire sont davantage sollicités.</li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;">
+                    <i class="fas fa-check-circle"></i> Code optimisé :
+                </h4>
+
+                <div class="code-block good">
+                    <pre><code>$result = implode(', ', $items);</code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains attendus :</h4>
+                    <ul>
+                        <li>Moins d'allocations mémoire.</li>
+                        <li>Code plus court et plus lisible.</li>
+                        <li>Gain important sur les grandes listes.</li>
+                    </ul>
+                </div>
+            `,
+
+            rule2: `
+                <h4 style="color: var(--emergency-color); margin-top: 20px;">
+                    <i class="fas fa-times-circle"></i> Code inefficace :
+                </h4>
+
+                <div class="code-block bad">
+                    <pre><code>echo 'Bonjour ' . $nom . ', vous avez ' . $age . ' ans.';</code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul>
+                        <li>La concaténation construit une chaîne temporaire complète.</li>
+                        <li>Cette chaîne peut être évitée lors d'un simple affichage.</li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;">
+                    <i class="fas fa-check-circle"></i> Code optimisé :
+                </h4>
+
+                <div class="code-block good">
+                    <pre><code>echo 'Bonjour ', $nom, ', vous avez ', $age, ' ans.';</code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains attendus :</h4>
+                    <ul>
+                        <li>Moins d'objets temporaires.</li>
+                        <li>Affichage plus direct.</li>
+                        <li>Réduction légère mais facile à appliquer.</li>
+                    </ul>
+                </div>
+            `,
+
+            rule3: `
+                <h4 style="color: var(--emergency-color); margin-top: 20px;">
+                    <i class="fas fa-times-circle"></i> Code inefficace :
+                </h4>
+
+                <div class="code-block bad">
+                    <pre><code>$message = sprintf(
+    'Utilisateur %s a %d points',
+    $nom,
+    $points
+);
+
+echo $message;</code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul>
+                        <li><code>sprintf()</code> ajoute un coût de formatage.</li>
+                        <li>Il crée une chaîne temporaire supplémentaire.</li>
+                        <li>Pour un affichage simple, ce coût peut être évité.</li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;">
+                    <i class="fas fa-check-circle"></i> Code optimisé :
+                </h4>
+
+                <div class="code-block good">
+                    <pre><code>echo "Utilisateur $nom a $points points";</code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains attendus :</h4>
+                    <ul>
+                        <li>Moins de parsing.</li>
+                        <li>Moins d'allocations.</li>
+                        <li>Code plus direct.</li>
+                    </ul>
+                </div>
+            `,
+
+            rule4: `
+                <h4 style="color: var(--emergency-color); margin-top: 20px;">
+                    <i class="fas fa-times-circle"></i> Code inefficace :
+                </h4>
+
+                <div class="code-block bad">
+                    <pre><code>$allowedRoles = ['admin', 'editor', 'author'];
+
+if (in_array($userRole, $allowedRoles)) {
+    // Accès autorisé
+}</code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul>
+                        <li><code>in_array()</code> parcourt le tableau.</li>
+                        <li>La complexité est linéaire.</li>
+                        <li>Sur de longues listes, le coût CPU augmente fortement.</li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;">
+                    <i class="fas fa-check-circle"></i> Code optimisé :
+                </h4>
+
+                <div class="code-block good">
+                    <pre><code>$allowedRoles = [
+    'admin' => true,
+    'editor' => true,
+    'author' => true
+];
+
+if (isset($allowedRoles[$userRole])) {
+    // Accès autorisé
+}</code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains attendus :</h4>
+                    <ul>
+                        <li>Recherche plus rapide.</li>
+                        <li>Accès direct par clé.</li>
+                        <li>Très utile pour les vérifications fréquentes.</li>
+                    </ul>
+                </div>
+            `,
+
+            rule5: `
+                <h4 style="color: var(--emergency-color); margin-top: 20px;">
+                    <i class="fas fa-times-circle"></i> Code inefficace :
+                </h4>
+
+                <div class="code-block bad">
+                    <pre><code>$results = [];
+
+foreach ($items as $item) {
+    array_push($results, process($item));
+}</code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul>
+                        <li><code>array_push()</code> est un appel de fonction.</li>
+                        <li>Dans une boucle, cet overhead se répète.</li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;">
+                    <i class="fas fa-check-circle"></i> Code optimisé :
+                </h4>
+
+                <div class="code-block good">
+                    <pre><code>$results = [];
+
+foreach ($items as $item) {
+    $results[] = process($item);
+}</code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains attendus :</h4>
+                    <ul>
+                        <li>Syntaxe plus directe.</li>
+                        <li>Moins de surcharge dans les boucles.</li>
+                        <li>Micro-optimisation simple.</li>
+                    </ul>
+                </div>
+            `,
+
+            rule6: `
+                <h4 style="color: var(--emergency-color); margin-top: 20px;">
+                    <i class="fas fa-times-circle"></i> Code inefficace :
+                </h4>
+
+                <div class="code-block bad">
+                    <pre><code>$allData = [];
+
+foreach ($sources as $source) {
+    $allData = array_merge($allData, fetchData($source));
+}</code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul>
+                        <li><code>array_merge()</code> recrée un tableau à chaque passage.</li>
+                        <li>Les copies mémoire se multiplient.</li>
+                        <li>La complexité peut devenir très coûteuse.</li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;">
+                    <i class="fas fa-check-circle"></i> Code optimisé :
+                </h4>
+
+                <div class="code-block good">
+                    <pre><code>$arraysToMerge = [];
+
+foreach ($sources as $source) {
+    $arraysToMerge[] = fetchData($source);
+}
+
+$allData = array_merge(...$arraysToMerge);</code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains attendus :</h4>
+                    <ul>
+                        <li>Moins de copies inutiles.</li>
+                        <li>Consommation mémoire réduite.</li>
+                        <li>Meilleur passage à l'échelle.</li>
+                    </ul>
+                </div>
+            `,
+
+            rule7: `
+                <h4 style="color: var(--emergency-color); margin-top: 20px;">
+                    <i class="fas fa-times-circle"></i> Configuration inefficace :
+                </h4>
+
+                <div class="code-block bad">
+                    <pre><code>; php.ini
+opcache.enable=0</code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul>
+                        <li>PHP recompilera les scripts à chaque requête.</li>
+                        <li>Le serveur effectue du travail répétitif inutile.</li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;">
+                    <i class="fas fa-check-circle"></i> Configuration optimisée :
+                </h4>
+
+                <div class="code-block good">
+                    <pre><code>; php.ini
+opcache.enable=1
+opcache.memory_consumption=128
+opcache.max_accelerated_files=10000
+opcache.revalidate_freq=60</code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains attendus :</h4>
+                    <ul>
+                        <li>Scripts déjà compilés en mémoire.</li>
+                        <li>Réduction de la charge CPU.</li>
+                        <li>Gain très important en production.</li>
+                    </ul>
+                </div>
+            `,
+
+            rule8: `
+                <h4 style="color: var(--emergency-color); margin-top: 20px;">
+                    <i class="fas fa-times-circle"></i> Code dangereux :
+                </h4>
+
+                <div class="code-block bad">
+                    <pre><code>$items = [1, 2, 3, 4, 5];
+
+foreach ($items as &$item) {
+    $item *= 2;
+}
+
+// La référence $item persiste ici</code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est problématique ?</h4>
+                    <ul>
+                        <li>La référence reste active après la boucle.</li>
+                        <li>Elle peut produire des effets de bord inattendus.</li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;">
+                    <i class="fas fa-check-circle"></i> Code optimisé :
+                </h4>
+
+                <div class="code-block good">
+                    <pre><code>$items = [1, 2, 3, 4, 5];
+
+foreach ($items as &$item) {
+    $item *= 2;
+}
+
+unset($item);</code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains attendus :</h4>
+                    <ul>
+                        <li>Comportement plus fiable.</li>
+                        <li>Moins de bugs difficiles à détecter.</li>
+                    </ul>
+                </div>
+            `,
+
+            rule9: `
+                <h4 style="color: var(--emergency-color); margin-top: 20px;">
+                    <i class="fas fa-times-circle"></i> Code moins ciblé :
+                </h4>
+
+                <div class="code-block bad">
+                    <pre><code>if (!empty($config['database']['host'])) {
+    connect($config['database']['host']);
+}</code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi optimiser ?</h4>
+                    <ul>
+                        <li><code>empty()</code> vérifie plusieurs choses à la fois.</li>
+                        <li>Dans certains cas, une vérification plus précise suffit.</li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;">
+                    <i class="fas fa-check-circle"></i> Code optimisé :
+                </h4>
+
+                <div class="code-block good">
+                    <pre><code>if (
+    isset($config['database']['host'])
+    && $config['database']['host']
+) {
+    connect($config['database']['host']);
+}</code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains attendus :</h4>
+                    <ul>
+                        <li>Conditions plus explicites.</li>
+                        <li>Moins d'overhead dans les traitements très fréquents.</li>
+                    </ul>
+                </div>
+            `,
+
+            rule10: `
+                <h4 style="color: var(--emergency-color); margin-top: 20px;">
+                    <i class="fas fa-times-circle"></i> Code inefficace :
+                </h4>
+
+                <div class="code-block bad">
+                    <pre><code>require_once 'models/User.php';
+require_once 'models/Product.php';
+require_once 'models/Order.php';
+require_once 'controllers/UserController.php';</code></pre>
+                </div>
+
+                <div class="explanation-box">
+                    <h4><i class="fas fa-info-circle"></i> Pourquoi c'est inefficace ?</h4>
+                    <ul>
+                        <li>Des fichiers peuvent être chargés alors qu'ils ne servent pas.</li>
+                        <li>Le démarrage devient plus lourd.</li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--success-color); margin-top: 20px;">
+                    <i class="fas fa-check-circle"></i> Code optimisé :
+                </h4>
+
+                <div class="code-block good">
+                    <pre><code>spl_autoload_register(function ($class) {
+    $file = str_replace('\\\\', DIRECTORY_SEPARATOR, $class) . '.php';
+
+    if (file_exists($file)) {
+        require $file;
+    }
+});</code></pre>
+                </div>
+
+                <div class="gain-box">
+                    <h4><i class="fas fa-chart-line"></i> Gains attendus :</h4>
+                    <ul>
+                        <li>Chargement à la demande.</li>
+                        <li>Moins de code inutile en mémoire.</li>
+                        <li>Architecture plus propre.</li>
+                    </ul>
+                </div>
+            `
+        };
+
+        function closeRule(rule) {
+            const content = rule.querySelector('.rule-content');
+
+            rule.classList.remove('active');
+            content.style.maxHeight = '0px';
+            content.innerHTML = '';
+            content.dataset.loaded = 'false';
+        }
+
+        function activateRule(rule, shouldScroll) {
+            const content = rule.querySelector('.rule-content');
+            const ruleId = rule.id;
+
+            document.querySelectorAll('.eco-rule.active').forEach(openRuleCard => {
+                if (openRuleCard !== rule) {
+                    closeRule(openRuleCard);
+                }
+            });
+
+            if (content.dataset.loaded !== 'true') {
+                content.innerHTML = ruleContents[ruleId];
+                content.dataset.loaded = 'true';
+            }
+
+            rule.classList.add('active');
+
+            requestAnimationFrame(() => {
+                content.style.maxHeight = content.scrollHeight + 'px';
+
+                if (shouldScroll) {
+                    rule.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        }
+
+        function toggleRule(ruleId) {
+            const rule = document.getElementById(ruleId);
+
+            if (!rule) {
+                return;
+            }
+
+            if (rule.classList.contains('active')) {
+                closeRule(rule);
+            } else {
+                activateRule(rule, false);
+            }
+        }
+
         function openRule(ruleId) {
             const rule = document.getElementById(ruleId);
 
@@ -1570,19 +1451,24 @@
                 return;
             }
 
-            rule.classList.add('active');
-            rule.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            if (!rule.classList.contains('active')) {
+                activateRule(rule, true);
+            } else {
+                rule.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         }
 
-        document.querySelectorAll('.eco-rule .rule-header').forEach(header => {
-            header.addEventListener('click', function () {
-                this.parentElement.classList.toggle('active');
+        window.addEventListener('resize', () => {
+            document.querySelectorAll('.eco-rule.active').forEach(rule => {
+                const content = rule.querySelector('.rule-content');
+                content.style.maxHeight = content.scrollHeight + 'px';
             });
         });
     </script>
 </body>
 
 </html>
+
