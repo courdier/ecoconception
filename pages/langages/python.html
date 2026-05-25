@@ -140,37 +140,6 @@
             border-radius: 8px;
         }
 
-        .summary-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .summary-table th,
-        .summary-table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .summary-table th {
-            background-color: rgba(47, 223, 173, 0.2);
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        .summary-table tbody tr {
-            cursor: pointer;
-            transition: background-color 0.25s ease;
-        }
-
-        .summary-table tbody tr:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-
         .eco-rule {
             margin: 20px 0;
             background: linear-gradient(
@@ -376,26 +345,27 @@
             .code-block {
                 font-size: 0.8rem;
             }
-
-            .summary-table {
-                font-size: 0.85rem;
-            }
-
-            .summary-table th,
-            .summary-table td {
-                padding: 10px 8px;
-            }
         }
     </style>
 </head>
 
 <body>
     <header>
-        <nav>
+        <a href="../langages.html" class="back-link">
+            <span class="back-arrow">🠔</span>
+            <span class="back-text">Retour</span>
+        </a>
+
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
                 <li class="mg-0"><a href="../quelques-chiffres.html">Chiffres</a></li>
-                <li class="mg-0"><a href="../quizV1.html">Quiz</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
                 <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
                 <li class="mg-0"><a href="../langages.html" class="active">Langages</a></li>
@@ -415,9 +385,7 @@
             <a href="c.html"><i class="fas fa-code"></i> C/C++</a>
             <a href="java.html"><i class="fab fa-java"></i> Java</a>
             <a href="dart.html"><i class="fas fa-cog"></i> Dart</a>
-            <a href="#" style="opacity: 0.5; cursor: not-allowed;">
-                <i class="fab fa-js"></i> JavaScript (bientôt)
-            </a>
+            <a href="javascript.html"><i class="fab fa-js"></i> JavaScript</a>
         </div>
 
         <section class="intro-text">
@@ -463,119 +431,9 @@
             </div>
         </section>
 
-        <section style="margin-top: 50px;">
-            <h2>Récapitulatif des 10 éco-rules Python</h2>
-            <p>Cliquez sur une règle pour ouvrir directement sa carte.</p>
-
-            <table class="summary-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Règle</th>
-                        <th>Gain CO₂</th>
-                        <th>Gain temps</th>
-                        <th>Gain mémoire / énergie</th>
-                        <th>Impact</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr onclick="openRule('rule1')">
-                        <td>1</td>
-                        <td><strong>Set vs List</strong> - Recherche O(1)</td>
-                        <td>97.0%</td>
-                        <td>2 207×</td>
-                        <td>97.0% énergie</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule2')">
-                        <td>2</td>
-                        <td><strong>Générateurs</strong> - Flux massifs</td>
-                        <td>41.1%</td>
-                        <td>1.5×</td>
-                        <td>100.0% mémoire</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule3')">
-                        <td>3</td>
-                        <td><strong>NumPy</strong> - Calcul vectorisé</td>
-                        <td>97.0%</td>
-                        <td>594×</td>
-                        <td>75.7% mémoire</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule4')">
-                        <td>4</td>
-                        <td><strong>join()</strong> - Concaténation O(n)</td>
-                        <td>93.9%</td>
-                        <td>58.3×</td>
-                        <td>93.9% énergie</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule5')">
-                        <td>5</td>
-                        <td><strong>Buffers I/O</strong> - 64 KB chunks</td>
-                        <td>98.4%</td>
-                        <td>235.3×</td>
-                        <td>98.4% énergie</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule6')">
-                        <td>6</td>
-                        <td><strong>Multiprocessing</strong> - Parallélisme CPU</td>
-                        <td>52.5%</td>
-                        <td>2.5×</td>
-                        <td>52.5% énergie</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule7')">
-                        <td>7</td>
-                        <td><strong>deque</strong> - Files FIFO O(1)</td>
-                        <td>79.3%</td>
-                        <td>23.6×</td>
-                        <td>79.3% énergie</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule8')">
-                        <td>8</td>
-                        <td><strong>lru_cache</strong> - Mémoïsation</td>
-                        <td>97.9%</td>
-                        <td>204 872×</td>
-                        <td>97.9% énergie</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule9')">
-                        <td>9</td>
-                        <td><strong>any()/all()</strong> - Court-circuit</td>
-                        <td>98.6%</td>
-                        <td>2.7 M×</td>
-                        <td>99.9% mémoire</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule10')">
-                        <td>10</td>
-                        <td><strong>Bonnes pratiques</strong> - PEP8, lisibilité, micro-optimisations</td>
-                        <td>Variable</td>
-                        <td>Variable</td>
-                        <td>Variable</td>
-                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
         <section style="margin-top: 60px;">
             <h2 style="text-align: center; font-size: 2rem; color: var(--primary-color); margin-bottom: 40px;">
-                <i class="fas fa-leaf"></i> Les 10 Éco-Rules Python
+                <i class="fas fa-leaf"></i> Exemple de 10 Éco-Rules Python
             </h2>
 
             <article class="eco-rule" id="rule1">
@@ -1803,23 +1661,6 @@ def process_data(data):
                 closeRule(rule);
             } else {
                 activateRule(rule, false);
-            }
-        }
-
-        function openRule(ruleId) {
-            const rule = document.getElementById(ruleId);
-
-            if (!rule) {
-                return;
-            }
-
-            if (!rule.classList.contains('active')) {
-                activateRule(rule, true);
-            } else {
-                rule.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
             }
         }
 

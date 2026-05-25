@@ -125,38 +125,6 @@
             border-color: #aaa;
         }
 
-        /* Tableau récapitulatif */
-        .summary-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .summary-table th,
-        .summary-table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .summary-table th {
-            background-color: rgba(47, 223, 173, 0.2);
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        .summary-table tbody tr {
-            cursor: pointer;
-            transition: background-color 0.25s ease;
-        }
-
-        .summary-table tbody tr:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-
         /* Cartes des règles */
         .eco-rule {
             margin: 20px 0;
@@ -347,26 +315,27 @@
             .code-block {
                 font-size: 0.8rem;
             }
-
-            .summary-table {
-                font-size: 0.85rem;
-            }
-
-            .summary-table th,
-            .summary-table td {
-                padding: 10px 8px;
-            }
         }
     </style>
 </head>
 
 <body>
     <header>
-        <nav>
+        <a href="../langages.html" class="back-link">
+            <span class="back-arrow">🠔</span>
+            <span class="back-text">Retour</span>
+        </a>
+
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
                 <li class="mg-0"><a href="../quelques-chiffres.html">Chiffres</a></li>
-                <li class="mg-0"><a href="../quizV1.html">Quiz</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
                 <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
                 <li class="mg-0"><a href="../langages.html" class="active">Langages</a></li>
@@ -387,9 +356,7 @@
             <a href="c.html"><i class="fas fa-code"></i> C/C++</a>
             <a href="java.html"><i class="fab fa-java"></i> Java</a>
             <a href="dart.html" class="active"><i class="fas fa-cog"></i> Dart</a>
-            <a href="#" style="opacity: 0.5; cursor: not-allowed;">
-                <i class="fab fa-js"></i> JavaScript (bientôt)
-            </a>
+            <a href="javascript.html"><i class="fab fa-js"></i> JavaScript</a>
         </div>
 
         <!-- Introduction -->
@@ -438,110 +405,10 @@
             </section>
         </section>
 
-        <!-- Tableau récapitulatif -->
-        <section style="margin-top: 50px;">
-            <h2>Récapitulatif des 10 éco-rules Dart/Flutter</h2>
-            <p>Cliquez sur une règle pour ouvrir directement sa carte.</p>
-
-            <table class="summary-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Règle</th>
-                        <th>Gain Performance</th>
-                        <th>Gain Mémoire</th>
-                        <th>Impact</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr onclick="openRule('rule1')">
-                        <td>1</td>
-                        <td><strong>const_widgets</strong> - Utiliser const systématiquement</td>
-                        <td>Réduction rebuilds</td>
-                        <td>Moins d'objets recréés</td>
-                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule2')">
-                        <td>2</td>
-                        <td><strong>listview_builder</strong> - Lazy loading avec ListView.builder</td>
-                        <td>×10 plus rapide</td>
-                        <td>Réduction importante</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule3')">
-                        <td>3</td>
-                        <td><strong>stringbuffer</strong> - StringBuffer pour concaténations</td>
-                        <td>×280 plus rapide</td>
-                        <td>Réduction importante</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule4')">
-                        <td>4</td>
-                        <td><strong>aot_compilation</strong> - Activer la compilation AOT</td>
-                        <td>+30% vitesse</td>
-                        <td>Runtime réduit</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule5')">
-                        <td>5</td>
-                        <td><strong>async_programming</strong> - Programmation asynchrone efficace</td>
-                        <td>Fluidité UI</td>
-                        <td>Moins de blocages</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule6')">
-                        <td>6</td>
-                        <td><strong>build_method_pure</strong> - Méthode build() pure</td>
-                        <td>Évite calculs</td>
-                        <td>Réduit GC</td>
-                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule7')">
-                        <td>7</td>
-                        <td><strong>image_optimization</strong> - Optimisation des images</td>
-                        <td>Chargement rapide</td>
-                        <td>-60 à -80%</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule8')">
-                        <td>8</td>
-                        <td><strong>tree_shaking</strong> - Tree-shaking et code splitting</td>
-                        <td>Startup rapide</td>
-                        <td>-40 à -50%</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule9')">
-                        <td>9</td>
-                        <td><strong>stateless_first</strong> - Préférer StatelessWidget</td>
-                        <td>Moins de surcharge</td>
-                        <td>Moins d'état</td>
-                        <td><span class="impact-badge impact-medium">⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule10')">
-                        <td>10</td>
-                        <td><strong>dispose_resources</strong> - Libérer les ressources</td>
-                        <td>Évite fuites</td>
-                        <td>Nettoie mémoire</td>
-                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
         <!-- LES 10 ÉCO-RULES -->
         <section style="margin-top: 60px;">
             <h2 style="text-align: center; font-size: 2rem; color: var(--primary-color); margin-bottom: 40px;">
-                <i class="fas fa-leaf"></i> Les 10 Éco-Rules Dart/Flutter
+                <i class="fas fa-leaf"></i> Exemple de 10 Éco-Rules Dart/Flutter
             </h2>
 
             <article class="eco-rule" id="rule1">
@@ -1604,23 +1471,6 @@ flutter build apk <span class="operator">--</span>release <span class="operator"
                 closeRule(rule);
             } else {
                 activateRule(rule, false);
-            }
-        }
-
-        function openRule(ruleId) {
-            const rule = document.getElementById(ruleId);
-
-            if (!rule) {
-                return;
-            }
-
-            if (!rule.classList.contains('active')) {
-                activateRule(rule, true);
-            } else {
-                rule.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
             }
         }
 

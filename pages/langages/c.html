@@ -273,33 +273,6 @@
             border-color: #aaa;
         }
 
-        /* ── Summary table ── */
-        .summary-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .summary-table th,
-        .summary-table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .summary-table th {
-            background-color: rgba(47, 223, 173, 0.2);
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        .summary-table tr:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-
         /* ── Bibliography ── */
         .bibliography {
             text-align: center;
@@ -338,11 +311,21 @@
 
 <body>
     <header>
-        <nav>
+        <a href="../langages.html" class="back-link">
+            <span class="back-arrow">🠔</span>
+            <span class="back-text">Retour</span>
+        </a>
+
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
                 <li class="mg-0"><a href="../quelques-chiffres.html">Chiffres</a></li>
-                <li class="mg-0"><a href="../quizV1.html">Quiz</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
                 <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
                 <li class="mg-0"><a href="../langages.html" class="active">Langages</a></li>
@@ -362,9 +345,7 @@
             <a href="c.html" class="active"><i class="fas fa-code"></i> C/C++</a>
             <a href="java.html"><i class="fab fa-java"></i> Java</a>
             <a href="dart.html"><i class="fas fa-cog"></i> Dart</a>
-            <a href="#" style="opacity: 0.5; cursor: not-allowed;">
-                <i class="fab fa-js"></i> JavaScript (bientôt)
-            </a>
+            <a href="javascript.html"><i class="fab fa-js"></i> JavaScript</a>
         </div>
 
         <section class="intro-text">
@@ -428,129 +409,9 @@
             </p>
         </section>
 
-        <section style="margin-top: 50px;">
-            <h2>Récapitulatif des 10 éco-rules C/C++ IoT</h2>
-            <p>Cliquez sur une règle pour afficher les détails et les exemples de code.</p>
-
-            <table class="summary-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Règle</th>
-                        <th>Courant économisé</th>
-                        <th>CO₂ économisé/an</th>
-                        <th>Équiv. voiture</th>
-                        <th>Impact</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr onclick="openRule('rule1')" style="cursor: pointer;">
-                        <td>1</td>
-                        <td><strong>Deep Sleep &amp; Luminosité</strong></td>
-                        <td>~140 mA</td>
-                        <td>~2,62 kg</td>
-                        <td>~23 km</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule2')" style="cursor: pointer;">
-                        <td>2</td>
-                        <td><strong>Optimisation des boucles</strong></td>
-                        <td>~15 mA</td>
-                        <td>~0,17 kg</td>
-                        <td>~1,5 km</td>
-                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule3')" style="cursor: pointer;">
-                        <td>3</td>
-                        <td><strong>Interruptions vs Polling</strong></td>
-                        <td>~95 mA</td>
-                        <td>~1,76 kg</td>
-                        <td>~16 km</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule4')" style="cursor: pointer;">
-                        <td>4</td>
-                        <td><strong>Limiter Serial &amp; Logs</strong></td>
-                        <td>~80 mA</td>
-                        <td>~1,48 kg</td>
-                        <td>~13 km</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule5')" style="cursor: pointer;">
-                        <td>5</td>
-                        <td><strong>Gestion mémoire Stack/Heap</strong></td>
-                        <td>~40 mA</td>
-                        <td>~0,74 kg</td>
-                        <td>~7 km</td>
-                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule6')" style="cursor: pointer;">
-                        <td>6</td>
-                        <td><strong>Désactiver Wi-Fi/BT/ADC</strong></td>
-                        <td>~130 mA</td>
-                        <td>~2,41 kg</td>
-                        <td>~22 km</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule7')" style="cursor: pointer;">
-                        <td>7</td>
-                        <td><strong>constexpr &amp; const (ROM vs RAM)</strong></td>
-                        <td>~10 mA</td>
-                        <td>~0,18 kg</td>
-                        <td>~1,6 km</td>
-                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule8')" style="cursor: pointer;">
-                        <td>8</td>
-                        <td><strong>Adapter la fréquence CPU</strong></td>
-                        <td>~70 mA</td>
-                        <td>~1,30 kg</td>
-                        <td>~12 km</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule9')" style="cursor: pointer;">
-                        <td>9</td>
-                        <td><strong>Minimiser accès Flash (cache RAM)</strong></td>
-                        <td>~130 mA</td>
-                        <td>~2,41 kg</td>
-                        <td>~22 km</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule10')" style="cursor: pointer;">
-                        <td>10</td>
-                        <td><strong>Types de données adaptés</strong></td>
-                        <td>~15 mA</td>
-                        <td>~0,28 kg</td>
-                        <td>~2,5 km</td>
-                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
-                    </tr>
-                </tbody>
-
-                <tfoot>
-                    <tr>
-                        <td colspan="6" style="font-size: 0.8rem; color: var(--text-color-light); padding-top: 15px;">
-                            <strong>Note :</strong> Mesures réalisées à l'ampèremètre sur M5Stack Core
-                            (ESP32, 3,7 V LiPo). Conversion CO₂ : mix La Réunion ≈ 573 g/kWh.
-                            Base annuelle : 8 760 h/an. Les résultats varient selon le cas d'usage réel.
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
-        </section>
-
         <section style="margin-top: 60px;">
             <h2 style="text-align: center; font-size: 2rem; color: var(--primary-color); margin-bottom: 40px;">
-                <i class="fas fa-leaf"></i> Les 10 Éco-Rules C/C++ IoT
+                <i class="fas fa-leaf"></i> Exemple de 10 Éco-Rules C/C++ IoT
             </h2>
 
             <div class="eco-rule" id="rule1">
@@ -1438,23 +1299,6 @@
                 closeRule(rule);
             } else {
                 activateRule(rule, false);
-            }
-        }
-
-        function openRule(ruleId) {
-            const rule = document.getElementById(ruleId);
-
-            if (!rule) {
-                return;
-            }
-
-            if (!rule.classList.contains('active')) {
-                activateRule(rule, true);
-            } else {
-                rule.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
             }
         }
 

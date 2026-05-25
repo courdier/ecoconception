@@ -261,17 +261,148 @@
   .recommendation-text{
     color: aliceblue;
   }
-  
-  @media (max-width: 640px) {
-    body {
-      padding: 12px;
-    }
-  
-    .card-header {
-      padding: 16px;
-    }
-  
-    .card-content {
-      padding: 16px;
+
+  .quiz-v2-page main {
+    width: 100%;
+  }
+
+  .quiz-v2-page .card_ {
+    width: min(100%, 800px);
+  }
+
+  .quiz-v2-page .card_.question-mode {
+    max-width: 740px;
+  }
+
+  @media (hover: none) {
+    .quiz-v2-page .card_:hover {
+      transform: none;
+      box-shadow: none;
     }
   }
+  
+  @media (max-width: 640px) {
+    .quiz-v2-page {
+      justify-content: flex-start;
+      align-items: center;
+      padding: calc(var(--nav-height) + 16px) 12px 90px;
+    }
+
+    .quiz-v2-page main {
+      width: 100%;
+    }
+
+    .quiz-v2-page .card_ {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .quiz-v2-page .card_:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .quiz-v2-page .card-header {
+      padding: 18px 14px;
+    }
+
+    .quiz-v2-page .card-title {
+      font-size: 2rem;
+      line-height: 1.3;
+      margin: 0;
+      text-align: center;
+    }
+
+    .quiz-v2-page .card-content {
+      padding: 16px 14px;
+    }
+
+    .quiz-v2-page .welcome-container {
+      padding: 8px 0 4px;
+    }
+
+    .quiz-v2-page .quiz-title {
+      font-size: 1.25rem;
+      line-height: 1.45;
+      margin-bottom: 14px;
+      text-align: center;
+      white-space: normal;
+      overflow: visible;
+      width: auto;
+      animation: none;
+    }
+
+    .quiz-v2-page .text {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 18px;
+      text-align: center;
+      white-space: normal;
+      overflow: visible;
+      visibility: visible;
+      width: auto;
+      animation: none;
+    }
+
+    .quiz-v2-page .question-title {
+      font-size: 1.15rem;
+      line-height: 1.5;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .quiz-v2-page .progress-container {
+      margin: 16px 0;
+    }
+
+    .quiz-v2-page .question-count {
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+
+    .quiz-v2-page .options {
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .quiz-v2-page .option-button {
+      padding: 14px 12px;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .quiz-v2-page .option-icon {
+      font-size: 1.25rem;
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+
+    .quiz-v2-page .option-button span:last-child {
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    .quiz-v2-page .button {
+      padding: 14px 12px;
+      font-size: 0.95rem;
+    }
+
+    .quiz-v2-page .info-box {
+      padding: 14px;
+      font-size: 0.95rem;
+    }
+
+    .quiz-v2-page .impact-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .quiz-v2-page .impact-card {
+      padding: 18px;
+    }
+
+    .quiz-v2-page .recommendations {
+      padding: 16px;
+    }
+    }

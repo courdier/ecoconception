@@ -62,37 +62,6 @@
             border-color: #aaa;
         }
 
-        .summary-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .summary-table th,
-        .summary-table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .summary-table th {
-            background-color: rgba(47, 223, 173, 0.2);
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        .summary-table tbody tr {
-            cursor: pointer;
-            transition: background-color 0.25s ease;
-        }
-
-        .summary-table tbody tr:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-
         .eco-rule {
             margin: 20px 0;
             background: linear-gradient(
@@ -311,26 +280,27 @@
             .code-block {
                 font-size: 0.8rem;
             }
-
-            .summary-table {
-                font-size: 0.85rem;
-            }
-
-            .summary-table th,
-            .summary-table td {
-                padding: 10px 8px;
-            }
         }
     </style>
 </head>
 
 <body>
     <header>
-        <nav>
+        <a href="../langages.html" class="back-link">
+            <span class="back-arrow">🠔</span>
+            <span class="back-text">Retour</span>
+        </a>
+
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
                 <li class="mg-0"><a href="../quelques-chiffres.html">Chiffres</a></li>
-                <li class="mg-0"><a href="../quizV1.html">Quiz</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
                 <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
                 <li class="mg-0"><a href="../langages.html" class="active">Langages</a></li>
@@ -350,9 +320,7 @@
             <a href="c.html"><i class="fas fa-code"></i> C/C++</a>
             <a href="java.html"><i class="fab fa-java"></i> Java</a>
             <a href="dart.html"><i class="fas fa-cog"></i> Dart</a>
-            <a href="#" style="opacity: 0.5; cursor: not-allowed;">
-                <i class="fab fa-js"></i> JavaScript (bientôt)
-            </a>
+            <a href="javascript.html"><i class="fab fa-js"></i> JavaScript</a>
         </div>
 
         <section class="intro-text">
@@ -394,110 +362,9 @@
             </section>
         </section>
 
-        <section style="margin-top: 50px;">
-            <h2>Récapitulatif des 10 éco-rules PHP</h2>
-            <p>
-                Cliquez sur une règle pour ouvrir directement sa carte et afficher les détails.
-            </p>
-
-            <table class="summary-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Règle</th>
-                        <th>Gain performance</th>
-                        <th>Gain mémoire</th>
-                        <th>Impact</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr onclick="openRule('rule1')">
-                        <td>1</td>
-                        <td><strong>concat2implode</strong> - Concaténation en boucle</td>
-                        <td>×4 plus rapide</td>
-                        <td>-60 à -80%</td>
-                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule2')">
-                        <td>2</td>
-                        <td><strong>echo_concat2comma</strong> - Affichages optimisés</td>
-                        <td>Modéré</td>
-                        <td>-30 à -50%</td>
-                        <td><span class="impact-badge impact-medium">⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule3')">
-                        <td>3</td>
-                        <td><strong>sprintf2direct</strong> - Éviter sprintf()</td>
-                        <td>×3 plus rapide</td>
-                        <td>-40%</td>
-                        <td><span class="impact-badge impact-medium">⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule4')">
-                        <td>4</td>
-                        <td><strong>in_array2isset</strong> - Recherche efficace</td>
-                        <td>×1000 plus rapide</td>
-                        <td>Faible</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule5')">
-                        <td>5</td>
-                        <td><strong>array_push2direct</strong> - Ajout direct</td>
-                        <td>10-20%</td>
-                        <td>Faible</td>
-                        <td><span class="impact-badge impact-low">⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule6')">
-                        <td>6</td>
-                        <td><strong>array_merge_loop</strong> - Fusion unique</td>
-                        <td>O(n²) → O(n)</td>
-                        <td>Très élevé</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule7')">
-                        <td>7</td>
-                        <td><strong>opcache_enabled</strong> - Activer OPcache</td>
-                        <td>×3 à ×5</td>
-                        <td>Cache</td>
-                        <td><span class="impact-badge impact-high">⭐⭐⭐⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule8')">
-                        <td>8</td>
-                        <td><strong>foreach_reference_cleanup</strong> - Nettoyage refs</td>
-                        <td>Évite bugs</td>
-                        <td>Libère refs</td>
-                        <td><span class="impact-badge impact-medium">⭐⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule9')">
-                        <td>9</td>
-                        <td><strong>empty2isset_check</strong> - Vérifications ciblées</td>
-                        <td>8-10%</td>
-                        <td>Faible</td>
-                        <td><span class="impact-badge impact-low">⭐</span></td>
-                    </tr>
-
-                    <tr onclick="openRule('rule10')">
-                        <td>10</td>
-                        <td><strong>require2autoload</strong> - Autoloading PSR-4</td>
-                        <td>Variable</td>
-                        <td>Significatif</td>
-                        <td><span class="impact-badge impact-medium">⭐⭐</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
         <section style="margin-top: 60px;">
             <h2 style="text-align: center; font-size: 2rem; color: var(--primary-color); margin-bottom: 40px;">
-                <i class="fas fa-leaf"></i> Les 10 Éco-Rules PHP
+                <i class="fas fa-leaf"></i> Exemple de 10 Éco-Rules PHP
             </h2>
 
             <article class="eco-rule" id="rule1">
@@ -1441,23 +1308,6 @@ require_once 'controllers/UserController.php';</code></pre>
                 closeRule(rule);
             } else {
                 activateRule(rule, false);
-            }
-        }
-
-        function openRule(ruleId) {
-            const rule = document.getElementById(ruleId);
-
-            if (!rule) {
-                return;
-            }
-
-            if (!rule.classList.contains('active')) {
-                activateRule(rule, true);
-            } else {
-                rule.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
             }
         }
 

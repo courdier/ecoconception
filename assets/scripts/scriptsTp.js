@@ -504,77 +504,152 @@ let currentQuestionIndex = 0;
 let correctAnswers = 0;
 let userAnswers = [];
 
+const questionContainer = document.getElementById("question-container");
+const nextButton = document.getElementById("next-btn");
+const progressBar = document.getElementById("progress-bar");
+const progressText = document.getElementById("quiz-progress-text");
+
+nextButton.addEventListener("click", handleNextQuestion);
+
 function showQuestion(index) {
     const question = questions[index];
-    const questionContainer = document.getElementById('question-container');
+
+    updateProgress(index);
+
     questionContainer.innerHTML = `
         <h2>${question.question}</h2>
-        <ul>
-            ${question.answers.map((answer, i) => `
-                <li>
-                    <label>
-                        <input type="radio" name="answer" value="${i}">
-                        ${answer}
-                    </label>
-                </li>
-            `).join('')}
-        </ul>
+
+        <div class="answers-list">
+            ${question.answers.map((answer, answerIndex) => `
+                <label class="answer-option">
+                    <input type="radio" name="answer" value="${answerIndex}">
+                    <span>${answer}</span>
+                </label>
+            `).join("")}
+        </div>
     `;
+
+    nextButton.textContent =
+        index === questions.length - 1
+            ? "Voir le résultat"
+            : "Suivant";
 }
 
-document.getElementById('next-btn').addEventListener('click', () => {
+function handleNextQuestion() {
     const selectedAnswer = document.querySelector('input[name="answer"]:checked');
-    if (selectedAnswer) {
-        userAnswers[currentQuestionIndex] = parseInt(selectedAnswer.value);
-        if (parseInt(selectedAnswer.value) === questions[currentQuestionIndex].correctAnswer) {
-            correctAnswers++;
-        }
-        currentQuestionIndex++;
-        if (currentQuestionIndex < questions.length) {
-            showQuestion(currentQuestionIndex);
-        } else {
-            showResults();
-        }
-    } else {
+
+    if (!selectedAnswer) {
         alert("Veuillez sélectionner une réponse avant de passer à la question suivante.");
+        return;
     }
-});
+
+    const answerIndex = Number(selectedAnswer.value);
+    userAnswers[currentQuestionIndex] = answerIndex;
+
+    if (answerIndex === questions[currentQuestionIndex].correctAnswer) {
+        correctAnswers++;
+    }
+
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < questions.length) {
+        showQuestion(currentQuestionIndex);
+    } else {
+        showResults();
+    }
+}
+
+function updateProgress(index) {
+    const currentQuestionNumber = index + 1;
+    const totalQuestions = questions.length;
+    const progressPercentage = (currentQuestionNumber / totalQuestions) * 100;
+
+    progressText.textContent = `Question ${currentQuestionNumber} sur ${totalQuestions}`;
+    progressBar.style.width = `${progressPercentage}%`;
+}
+
+function getScoreMessage(score, total) {
+    const percentage = (score / total) * 100;
+
+    if (percentage >= 80) {
+        return "Très bon résultat ! Vous maîtrisez déjà bien les notions d’écoconception web.";
+    }
+
+    if (percentage >= 60) {
+        return "Bon résultat ! Les bases sont acquises, avec encore quelques notions à consolider.";
+    }
+
+    if (percentage >= 40) {
+        return "Résultat encourageant. Les ateliers vous aideront à approfondir les concepts essentiels.";
+    }
+
+    return "Ce QCM constitue un bon point de départ. Les ateliers vous permettront de construire les bases pas à pas.";
+}
 
 function showResults() {
-    document.getElementById("next-btn").style.display = "none";
-    const quizContainer = document.getElementById('quiz-container');
     const totalQuestions = questions.length;
+    const percentage = Math.round((correctAnswers / totalQuestions) * 100);
 
-    let resultsHTML = `
-        <h2>Résultats du Quiz : <strong>${correctAnswers}</strong> sur ${totalQuestions} questions.</h2>
-        <div id="detailed-results">
-    `;
+    progressText.textContent = "QCM terminé";
+    progressBar.style.width = "100%";
+    nextButton.style.display = "none";
 
-    questions.forEach((question, index) => {
-        const userAnswer = userAnswers[index];
-        const isCorrect = userAnswer === question.correctAnswer;
-        const answerClass = isCorrect ? 'correct' : 'incorrect';
-        const icon = isCorrect ? '✔️' : '❌';
+    const detailedResultsHTML = questions.map((question, index) => {
+        const userAnswerIndex = userAnswers[index];
+        const correctAnswerIndex = question.correctAnswer;
+        const isCorrect = userAnswerIndex === correctAnswerIndex;
 
-        resultsHTML += `
-            <div class="question ${answerClass}">
-                <h3>${icon} ${question.question}</h3>
-                <p>Votre réponse : ${question.answers[userAnswer]}</p>
-                ${!isCorrect ? `<p><strong>Réponse correcte : </strong> ${question.answers[question.correctAnswer]}</p>` : ''}
-                ${!isCorrect ? `<p class="explanation">Pensez à revoir ce concept pour mieux comprendre l'importance de ${question.answers[question.correctAnswer].toLowerCase()}.</p><br><br>` : ''}
-                <br>
-            </div>
+        return `
+            <article class="qcm-result-item ${isCorrect ? "correct" : "incorrect"}">
+                <h3>
+                    ${isCorrect ? "✔️" : "❌"}
+                    ${question.question}
+                </h3>
+
+                <p class="qcm-answer-user">
+                    <strong>Votre réponse :</strong>
+                    ${question.answers[userAnswerIndex]}
+                </p>
+
+                ${!isCorrect ? `
+                    <p class="qcm-answer-correct">
+                        <strong>Réponse correcte :</strong>
+                        ${question.answers[correctAnswerIndex]}
+                    </p>
+                ` : ""}
+            </article>
         `;
-    });
+    }).join("");
 
-    resultsHTML += `
+    questionContainer.innerHTML = `
+        <h2 class="quiz-results-title">
+            Résultat du QCM :
+            <strong>${correctAnswers}</strong> / ${totalQuestions}
+        </h2>
+
+        <div class="qcm-score-card">
+            <p class="qcm-score-value">${percentage}%</p>
+            <p class="qcm-score-message">
+                ${getScoreMessage(correctAnswers, totalQuestions)}
+            </p>
         </div>
-        <div class="button-container">
-            <button onclick="location.href='../../pages/quelques-chiffres.html'" class="button">Quelques Chiffres</button>
-            <button onclick="location.href='../../pages/en-pratique.html'" class="button-secondary">En Pratique</button>
+
+        <details class="quiz-calculations">
+            <summary>Voir le détail des réponses</summary>
+
+            <div class="qcm-results-list">
+                ${detailedResultsHTML}
+            </div>
+        </details>
+
+        <div class="button-container quiz-results-actions">
+            <a href="../en-pratique.html" class="button">Retour aux ateliers</a>
+            <a href="../outils.html" class="button-secondary">Outils</a>
+            <a href="../langages.html" class="button-secondary">Langages</a>
         </div>
     `;
-
-    quizContainer.innerHTML = resultsHTML;
 }
-showQuestion(currentQuestionIndex);
+
+window.addEventListener("load", () => {
+    showQuestion(currentQuestionIndex);
+});

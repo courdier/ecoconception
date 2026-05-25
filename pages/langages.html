@@ -16,15 +16,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles/styles.css">
     <script defer src="../assets/scripts/scripts-tp.js"></script>
+    <script defer src="../assets/scripts/hamburger.js"></script>
 </head>
 
 <body>
     <header>
-        <nav>
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../index.html">Home</a></li>
                 <li class="mg-0"><a href="./quelques-chiffres.html">Chiffres</a></li>
-                <li class="mg-0"><a href="./quizV1.html">Quiz</a></li>
+                <li class="mg-0"><a href="./quizz-access.html">Quiz</a></li>
                 <li class="mg-0"><a href="./en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="./outils.html">Outils</a></li>
                 <li class="mg-0"><a href="./langages.html" class="active">Langages</a></li>
@@ -37,7 +43,7 @@
     <div class="main">
         <h1>Langages de Programmation & Éco-conception</h1>
 
-        <section id="intro">
+        <section class="intro-text">
             <p>
                 Tous les langages de programmation ne se valent pas en termes d'<strong>efficacité énergétique</strong>.
                 Le choix d'un langage peut avoir un <strong>impact significatif</strong> sur la consommation d'énergie,
@@ -58,65 +64,76 @@
                 <strong>significativement plus économes</strong> que les langages interprétés :
             </p>
 
-            <div class="container" style="margin-top: 30px;">
-                <!-- Colonne 1 : Langages efficaces -->
-                <div class="column">
-                    <h3 style="color: var(--success-color);">
-                        <i class="fas fa-leaf"></i> Très efficaces
+            <div class="language-ranking">
+                <article class="ranking-card efficient">
+                    <h3>
+                        <i class="fas fa-leaf" aria-hidden="true"></i>
+                        Très efficaces
                     </h3>
-                    <ul style="text-align: left;">
+
+                    <ul>
                         <li><strong>C</strong> (77 joules)</li>
                         <li><strong>C++</strong> (79 joules)</li>
                         <li><strong>Rust</strong> (80 joules)</li>
                         <li><strong>Ada</strong> (98 joules)</li>
                         <li><strong>Java</strong> (114 joules)</li>
                     </ul>
-                    <p style="font-size: 0.9rem; color: var(--text-color-light); margin-top: 10px;">
-                        Langages compilés natifs avec excellent rapport performance/énergie
-                    </p>
-                </div>
 
-                <!-- Colonne 2 : Langages intermédiaires -->
-                <div class="column">
-                    <h3 style="color: var(--warning-color);">
-                        <i class="fas fa-bolt"></i> Intermédiaires
+                    <p>
+                        Langages compilés natifs avec un excellent rapport
+                        performance / consommation énergétique.
+                    </p>
+                </article>
+
+                <article class="ranking-card intermediate">
+                    <h3>
+                        <i class="fas fa-bolt" aria-hidden="true"></i>
+                        Intermédiaires
                     </h3>
-                    <ul style="text-align: left;">
+
+                    <ul>
                         <li><strong>C#</strong> (555 joules)</li>
                         <li><strong>Go</strong> (650 joules)</li>
                         <li><strong>JavaScript</strong> (1817 joules)</li>
                         <li><strong>PHP</strong> (2213 joules) - 21ᵉ/27</li>
                     </ul>
-                    <p style="font-size: 0.9rem; color: var(--text-color-light); margin-top: 10px;">
-                        Langages interprétés ou JIT avec optimisations possibles
-                    </p>
-                </div>
 
-                <!-- Colonne 3 : Langages gourmands -->
-                <div class="column">
-                    <h3 style="color: var(--emergency-color);">
-                        <i class="fas fa-fire"></i> Moins efficaces
+                    <p>
+                        Langages interprétés ou reposant sur une machine virtuelle,
+                        avec des optimisations possibles selon les usages.
+                    </p>
+                </article>
+
+                <article class="ranking-card demanding">
+                    <h3>
+                        <i class="fas fa-fire" aria-hidden="true"></i>
+                        Moins efficaces
                     </h3>
-                    <ul style="text-align: left;">
+
+                    <ul>
                         <li><strong>Python</strong> (4390 joules) - 26ᵉ/27</li>
                         <li><strong>Ruby</strong> (4267 joules)</li>
                         <li><strong>Perl</strong> (4541 joules)</li>
                         <li><strong>Lua</strong> (2892 joules)</li>
                     </ul>
-                    <p style="font-size: 0.9rem; color: var(--text-color-light); margin-top: 10px;">
-                        Langages interprétés avec forte consommation énergétique
+
+                    <p>
+                        Langages interprétés pouvant être plus coûteux énergétiquement
+                        pour des calculs équivalents.
                     </p>
-                </div>
+                </article>
             </div>
 
-            <div style="margin-top: 20px; padding: 15px; background-color: rgba(47, 223, 173, 0.1); border-left: 4px solid var(--primary-color);">
-                <p style="margin: 0;">
-                    <i class="fas fa-info-circle"></i>
-                    <strong>À retenir :</strong> Python consomme <strong>45× plus d'énergie</strong> que C++
-                    pour exécuter les mêmes programmes !
-                    <strong>28× supérieure</strong> à C++.
+            <aside class="language-takeaway">
+                <i class="fas fa-info-circle" aria-hidden="true"></i>
+
+                <p>
+                    <strong>À retenir :</strong>
+                    Python peut consommer jusqu’à
+                    <strong>45× plus d’énergie</strong> que C++
+                    pour exécuter les mêmes programmes.
                 </p>
-            </div>
+            </aside>
         </section>
 
         <section style="margin-top: 50px;">
@@ -213,7 +230,7 @@
                             <i class="fas fa-fire"></i> 45× vs C++
                         </span>
                     </div>
-                    <a href="./langages/python.html" class="button" style="margin-top: 25px; display: inline-block; background-color: #ffd43b; color: white; padding: 12px 25px; text-decoration: none; border-radius: 25px; font-weight: bold; transition: all 0.3s;">
+                    <a href="./langages/python.html" class="button" style="margin-top: 25px; display: inline-block; background-color: #ffd43b; color: black; padding: 12px 25px; text-decoration: none; border-radius: 25px; font-weight: bold; transition: all 0.3s;">
                         Explorer Python <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -307,9 +324,9 @@
                 </div>
 
                 <!-- Card JavaScript (placeholder) -->
-                <div class="service-card" style="background: linear-gradient(135deg, rgba(247, 223, 30, 0.15) 0%, rgba(247, 223, 30, 0.05) 100%); border: 2px solid #f7df1e; position: relative; opacity: 0.7; padding: 10px;">
-                    <div style="position: absolute; top: 10px; right: 10px; background-color: var(--becoming-color); color: var(--background-color); padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: bold;">
-                        BIENTÔT
+                <div class="service-card" style="background: linear-gradient(135deg, rgba(247, 223, 30, 0.15) 0%, rgba(247, 223, 30, 0.05) 100%); border: 2px solid #f7df1e; position: relative; overflow: hidden; padding: 10px;">
+                    <div style="position: absolute; top: 10px; right: 10px; background-color: var(--success-color); color: var(--background-color); padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: bold;">
+                        DISPONIBLE
                     </div>
                     <i class="fab fa-js" style="font-size: 4rem; color: #f7df1e; margin-bottom: 20px;"></i>
                     <h3 style="color: #f7df1e; font-size: 1.8rem; margin-bottom: 10px;">JavaScript</h3>
@@ -317,8 +334,9 @@
                         18ᵉ/27 en efficacité énergétique
                     </p>
                     <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">
-                        Optimisations V8/SpiderMonkey, async/await efficace, tree-shaking,
-                        code splitting, et réduction du bundle size pour le web.
+                        Découvrez <strong>10 règles d'optimisation</strong> pour JavaScript :
+                        réduction du bundle, lazy loading, tree-shaking, manipulation DOM plus sobre,
+                        événements optimisés, Web Workers et build de production.
                     </p>
                     <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
                         <span style="background-color: rgba(247, 223, 30, 0.2); padding: 5px 10px; border-radius: 12px; font-size: 0.85rem; color: var(--text-color);">
@@ -328,40 +346,64 @@
                             <i class="fas fa-server"></i> Node.js
                         </span>
                     </div>
-                    <button disabled class="button" style="margin-top: 25px; background-color: #555; color: #999; padding: 12px 25px; border-radius: 25px; border: none; cursor: not-allowed;">
-                        En construction...
-                    </button>
+                    <a href="./langages/javascript.html" class="button" style="margin-top: 25px; display: inline-block; background-color: #f7df1e; color: black; padding: 12px 25px; text-decoration: none; border-radius: 25px; font-weight: bold; transition: all 0.3s;">
+                        Explorer JavaScript <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
 
             </div>
         </section>
 
-        <section style="margin-top: 60px; padding: 25px; background: linear-gradient(135deg, rgba(47, 223, 173, 0.1) 0%, rgba(47, 223, 173, 0.02) 100%); border-radius: 10px; border: 2px solid var(--primary-color);">
-            <h2 style="margin-bottom: 20px;">
-                <i class="fas fa-lightbulb"></i> Pourquoi cette section ?
+        <section class="language-why">
+            <h2>
+                <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                Pourquoi cette section ?
             </h2>
-            <div class="container">
-                <div class="column">
-                    <h3><i class="fas fa-chart-line"></i> Impact global</h3>
+
+            <div class="language-why-grid">
+
+                <article class="language-why-card">
+                    <h3>
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        Impact global
+                    </h3>
+
                     <p>
-                        Les data centers consomment <strong>2% de l'électricité mondiale</strong>,
-                        et d'ici 2040, le secteur TIC pourrait représenter <strong>14% du carbone mondial</strong>.
+                        Les data centers consomment
+                        <strong>2% de l’électricité mondiale</strong>,
+                        et d’ici 2040, le secteur TIC pourrait représenter
+                        <strong>14% du carbone mondial</strong>.
                     </p>
-                </div>
-                <div class="column">
-                    <h3><i class="fas fa-code-branch"></i> Choix techniques</h3>
+                </article>
+
+                <article class="language-why-card">
+                    <h3>
+                        <i class="fas fa-code-branch" aria-hidden="true"></i>
+                        Choix techniques
+                    </h3>
+
                     <p>
-                        Un même algorithme en Python peut consommer <strong>45× plus d'énergie</strong>
-                        qu'en C++. Le choix du langage n'est pas neutre écologiquement.
+                        Un même algorithme en Python peut consommer
+                        <strong>45× plus d’énergie</strong>
+                        qu’en C++. Le choix du langage n’est donc pas neutre
+                        d’un point de vue environnemental.
                     </p>
-                </div>
-                <div class="column">
-                    <h3><i class="fas fa-tools"></i> Solutions concrètes</h3>
+                </article>
+
+                <article class="language-why-card">
+                    <h3>
+                        <i class="fas fa-tools" aria-hidden="true"></i>
+                        Solutions concrètes
+                    </h3>
+
                     <p>
-                        Chaque langage dispose d'<strong>optimisations spécifiques</strong> permettant
-                        de réduire drastiquement son empreinte sans changer de technologie.
+                        Chaque langage dispose d’
+                        <strong>optimisations spécifiques</strong>
+                        permettant de réduire son empreinte sans nécessairement
+                        changer de technologie.
                     </p>
-                </div>
+                </article>
+
             </div>
         </section>
 
@@ -396,12 +438,6 @@
                 </li>
             </ul>
         </section>
-
-        <div class="button-container">
-            <a href="./quizz-access.html" class="button">Quiz</a>
-            <a href="./quelques-chiffres.html" class="button-secondary">Quelques Chiffres</a>
-            <a href="./en-pratique.html" class="button-secondary">En Pratique</a>
-        </div>
     </div>
 
     <footer>
