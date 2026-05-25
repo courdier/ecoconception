@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Découvrez les outils essentiels pour l'éco-conception de services numériques.">
-    <meta name="keywords" content="écoconception, outils, développement durable, web, environnement">
-    <meta name="author" content="Rémy Courdier, Rochat Lise">
+        content="Découvrez l'impact du numérique sur l'environnement et les moyens de réduire notre empreinte carbone.">
+    <meta name="keywords" content="écoconception, numérique, empreinte carbone, développement durable, environnement">
+    <meta name="author" content="Rémy Courdier, Aïfèze Simba">
     <meta http-equiv="cache-control" content="max-age=31536000, must-revalidate">
     <meta http-equiv="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
     <title>Outils - Écoconception Numérique</title>
@@ -17,14 +17,502 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles/styles.css">
+    <script defer src="../assets/scripts/hamburger.js"></script>
+
+    <style>
+        /* Explorateur principal */
+        .tools-explorer {
+            border: 1px solid rgba(47, 223, 173, 0.35);
+            border-radius: 18px;
+            background:
+                radial-gradient(180px 80px at 10% 0%, rgba(47, 223, 173, .07), transparent),
+                linear-gradient(180deg, rgba(47, 223, 173, .05), rgba(47, 223, 173, .02));
+            padding: 28px;
+        }
+
+        .explorer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .explorer-header h2 {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 8px;
+        }
+
+        .explorer-header p {
+            max-width: 780px;
+            margin-bottom: 0;
+        }
+
+        .tool-count {
+            min-width: 125px;
+            padding: 14px 18px;
+            border-radius: 16px;
+            border: 1px solid rgba(47, 223, 173, 0.4);
+            background: rgba(0, 0, 0, 0.18);
+            text-align: center;
+        }
+
+        .tool-count strong {
+            display: block;
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .tool-count span {
+            font-size: 0.9rem;
+        }
+
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .filter-btn {
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 1px solid var(--highlight-color);
+            background: transparent;
+            color: var(--text-color);
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn:focus-visible {
+            background-color: rgba(47, 223, 173, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background-color: var(--highlight-color);
+            color: var(--background-color);
+        }
+
+        .tools-layout {
+            display: grid;
+            grid-template-columns: 1.35fr 0.85fr;
+            gap: 25px;
+        }
+
+        .tool-map {
+            position: relative;
+            min-height: 525px;
+            border-radius: 18px;
+            border: 1px solid rgba(47, 223, 173, 0.18);
+            background:
+                radial-gradient(circle at center, rgba(47, 223, 173, 0.10), transparent 46%),
+                rgba(0, 0, 0, 0.14);
+            overflow: hidden;
+        }
+
+        .tool-map::before,
+        .tool-map::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px dashed rgba(47, 223, 173, 0.18);
+            pointer-events: none;
+        }
+
+        .tool-map::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .tool-map::after {
+            width: 455px;
+            height: 455px;
+        }
+
+        .map-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 175px;
+            height: 175px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px solid rgba(47, 223, 173, 0.55);
+            background:
+                linear-gradient(180deg, rgba(47, 223, 173, 0.22), rgba(47, 223, 173, 0.06)),
+                var(--background-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .map-center i {
+            font-size: 1.8rem;
+            color: var(--highlight-color);
+            margin-bottom: 8px;
+        }
+
+        .map-center strong {
+            font-size: 1.05rem;
+            line-height: 1.3;
+        }
+
+        .map-center span {
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+
+        .tool-node {
+            position: absolute;
+            z-index: 3;
+            width: 140px;
+            min-height: 58px;
+            padding: 12px 14px;
+            transform: translate(-50%, -50%);
+            border-radius: 16px;
+            border: 1px solid var(--highlight-color);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-size: 0.92rem;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.25;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .tool-node:hover,
+        .tool-node:focus-visible {
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+        }
+
+        .tool-node.active {
+            background-color: var(--highlight-color);
+            color: var(--background-color);
+        }
+
+        .tool-node.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Positions */
+        .node-ecoindex {
+            left: 24%;
+            top: 19%;
+        }
+        .node-websitecarbon {
+            left: 50%;
+            top: 13%;
+        }
+        .node-lighthouse {
+            left: 76%;
+            top: 22%;
+        }
+        .node-pagespeed {
+            left: 86%;
+            top: 45%;
+        }
+        .node-gtmetrix {
+            left: 77%;
+            top: 73%;
+        }
+        .node-webpagetest {
+            left: 51%;
+            top: 87%;
+        }
+        .node-sonarqube {
+            left: 24%;
+            top: 78%;
+        }
+        .node-greenframe {
+            left: 13%;
+            top: 52%;
+        }
+        .node-co2js {
+            left: 38%;
+            top: 48%;
+        }
+        .node-codecarbon {
+            left: 64%;
+            top: 55%;
+        }
+        .node-fresque {
+            left: 19%;
+            top: 33%;
+        }
+
+        .tool-detail {
+            min-height: 525px;
+            border: 1px solid rgba(47, 223, 173, 0.35);
+            border-radius: 18px;
+            background: rgba(0, 0, 0, 0.14);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .detail-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 999px;
+            padding: 7px 12px;
+            margin-bottom: 16px;
+            background-color: rgba(47, 223, 173, 0.10);
+            color: var(--highlight-color);
+            font-size: 0.88rem;
+            font-weight: bold;
+        }
+
+        .tool-detail h3 {
+            color: var(--highlight-color);
+            font-size: 2rem;
+            line-height: 1.2;
+            text-align: left;
+            margin-bottom: 12px;
+        }
+
+        .detail-description {
+            margin-bottom: 22px;
+            line-height: 1.7;
+        }
+
+        .detail-section {
+            margin-bottom: 18px;
+        }
+
+        .detail-section > strong {
+            display: block;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .tool-tag {
+            padding: 7px 11px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: rgba(255, 255, 255, 0.04);
+            font-size: 0.88rem;
+        }
+
+        .detail-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .meta-item {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            text-align: left;
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .meta-item i {
+            min-width: 18px;
+            margin-top: 3px;
+            color: var(--highlight-color);
+        }
+
+        .detail-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            margin: 22px 0 0;
+            text-decoration: none;
+        }
+
+        .tools-bottom {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 25px;
+        }
+
+        .tools-bottom .intro-card {
+            width: 100%;
+            margin: 0;
+        }
+
+        .tools-bottom h2 {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 12px;
+        }
+
+        .tools-bottom .button {
+            display: inline-block;
+            margin-top: 14px;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 1100px) {
+            .tools-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .tool-detail {
+                min-height: auto;
+            }
+        }
+
+        @media screen and (max-width: 850px) {
+            .explorer-header {
+                flex-direction: column;
+            }
+
+            .tool-map {
+                min-height: 650px;
+            }
+
+            .tool-map::before {
+                width: 260px;
+                height: 260px;
+            }
+
+            .tool-map::after {
+                width: 405px;
+                height: 405px;
+            }
+
+            .map-center {
+                width: 155px;
+                height: 155px;
+            }
+
+            .tool-node {
+                width: 130px;
+                font-size: 0.87rem;
+            }
+
+            .node-ecoindex {
+                left: 24%;
+                top: 16%;
+            }
+            .node-websitecarbon {
+                left: 50%;
+                top: 9%;
+            }
+            .node-lighthouse {
+                left: 76%;
+                top: 16%;
+            }
+            .node-pagespeed {
+                left: 86%;
+                top: 36%;
+            }
+            .node-gtmetrix {
+                left: 81%;
+                top: 61%;
+            }
+            .node-webpagetest {
+                left: 55%;
+                top: 84%;
+            }
+            .node-sonarqube {
+                left: 25%;
+                top: 81%;
+            }
+            .node-greenframe {
+                left: 13%;
+                top: 57%;
+            }
+            .node-co2js {
+                left: 28%;
+                top: 42%;
+            }
+            .node-codecarbon {
+                left: 72%;
+                top: 46%;
+            }
+            .node-fresque {
+                left: 16%;
+                top: 31%;
+            }
+
+            .tools-bottom {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .tools-explorer {
+                padding: 20px 15px;
+            }
+
+            .filter-btn {
+                width: 100%;
+            }
+
+            .tool-map {
+                min-height: auto;
+                padding: 18px;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .tool-map::before,
+            .tool-map::after,
+            .map-center {
+                display: none;
+            }
+
+            .tool-node {
+                position: static;
+                width: 100%;
+                min-height: auto;
+                transform: none;
+            }
+
+            .tool-node:hover,
+            .tool-node:focus-visible {
+                transform: none;
+            }
+
+            .tool-detail h3 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <header>
-        <nav>
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../index.html">Home</a></li>
                 <li class="mg-0"><a href="./quelques-chiffres.html">Chiffres</a></li>
-                <li class="mg-0"><a href="./quizV1.html">Quiz</a></li>
+                <li class="mg-0"><a href="./quizz-access.html">Quiz</a></li>
                 <li class="mg-0"><a href="./en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="./outils.html" class="active">Outils</a></li>
                 <li class="mg-0"><a href="./langages.html">Langages</a></li>
@@ -33,90 +521,405 @@
             </ul>
         </nav>
     </header>
+
     <div class="main">
-        <section id="cards">
-            <h1>Outils pour d'analyse de code</h1>
-            <div class="card">
-                <a href="https://docs.sonarsource.com/sonarqube/9.9/try-out-sonarqube/" target="_blank">
-                    <h2>SonarQube</h2>
-                    <p>Analysez la qualité du code et identifiez les opportunités d'amélioration en éco-conception.</p>
-                    <p><a href="https://docs.sonarsource.com/sonarqube/9.9/try-out-sonarqube/" target="_blank">Voir la documentation</a></p>
-                </a>
-            </div>
-            <div class="card">
-                <a href="http://codecarbon.io" target="_blank">
-                    <h2>CodeCarbon</h2>
-                    <p>Outil léger qui estime les émissions de CO₂ générées par vos ressources informatiques en intégrant directement un code Python.</p>
-                    <p><a href="http://codecarbon.io" target="_blank">Voir la documentation</a></p>
-                </a>
+        <!-- TITRE -->
+        <h1>Outils pour l’Écoconception Numérique</h1>
+
+        <!-- INTRODUCTION -->
+        <section class="intro-card">
+            <div class="intro-content">
+                <i class="fa-solid fa-leaf intro-icon" aria-hidden="true"></i>
+                <p>
+                    Explorez rapidement les outils utiles pour diagnostiquer un site,
+                    améliorer ses performances, mesurer son impact environnemental
+                    ou sensibiliser une équipe.
+                </p>
             </div>
         </section>
-        <section id="cards">
-            <h1>Outils pour l'Écoconception web</h1>
-            <div class="card">
-                <a href="https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=fr" target="_blank">
-                    <h2>Lighthouse</h2>
-                    <p>Un outil open-source de Google pour améliorer la qualité des pages web en termes de performance, accessibilité, et éco-conception.</p>
-                    <p><a href="https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=fr" target="_blank">Voir la documentation</a></p>
-                </a>
+
+        <!-- EXPLORATEUR INTERACTIF -->
+        <section class="tools-explorer" aria-labelledby="explorer-title">
+
+            <div class="explorer-header">
+                <div>
+                    <h2 id="explorer-title">Trouver l’outil adapté à votre besoin</h2>
+                    <p id="filter-description">
+                        Tous les outils sont affichés. Sélectionnez un besoin pour repérer
+                        immédiatement ceux qui correspondent à votre objectif.
+                    </p>
+                </div>
+
+                <div class="tool-count" aria-live="polite">
+                    <strong id="visible-count">11</strong>
+                    <span>outils affichés</span>
+                </div>
             </div>
-            <div class="card">
-                <a href="https://www.websitecarbon.com/" target="_blank">
-                    <h2>Website Carbon Calculator</h2>
-                    <p>Calculez l'empreinte carbone de votre site web et découvrez des moyens de la réduire.</p>
-                    <p><a href="https://www.websitecarbon.com/" target="_blank">Voir la documentation</a></p>
-                </a>
+
+            <!-- FILTRES -->
+            <div class="filter-bar" role="group" aria-label="Filtrer les outils par usage">
+                <button class="filter-btn active" data-filter="all" type="button">Tous</button>
+                <button class="filter-btn" data-filter="diagnostic" type="button">Diagnostic rapide</button>
+                <button class="filter-btn" data-filter="performance" type="button">Performance web</button>
+                <button class="filter-btn" data-filter="impact" type="button">Impact carbone</button>
+                <button class="filter-btn" data-filter="integration" type="button">Code & CI/CD</button>
+                <button class="filter-btn" data-filter="sensibilisation" type="button">Sensibilisation</button>
             </div>
-            <div class="card">
-                <a href="https://ecoindex.fr/" target="_blank">
-                    <h2>EcoIndex</h2>
-                    <p>Un indicateur qui mesure l'efficacité écologique d'un site web et propose des améliorations.</p>
-                    <p><a href="https://www.ecoindex.fr/" target="_blank">Voir la documentation</a></p>
-                </a>
+
+            <div class="tools-layout">
+
+                <!-- CARTE INTERACTIVE -->
+                <div class="tool-map" aria-label="Carte interactive des outils d'écoconception">
+
+                    <div class="map-center" aria-hidden="true">
+                        <i class="fa-solid fa-leaf"></i>
+                        <strong>Écoconception</strong>
+                        <span>Choisissez un outil</span>
+                    </div>
+
+                    <button class="tool-node node-ecoindex active" type="button"
+                        data-tool="ecoindex"
+                        data-categories="diagnostic performance impact">
+                        EcoIndex
+                    </button>
+
+                    <button class="tool-node node-websitecarbon" type="button"
+                        data-tool="websitecarbon"
+                        data-categories="diagnostic impact">
+                        Website Carbon
+                    </button>
+
+                    <button class="tool-node node-lighthouse" type="button"
+                        data-tool="lighthouse"
+                        data-categories="diagnostic performance">
+                        Lighthouse
+                    </button>
+
+                    <button class="tool-node node-pagespeed" type="button"
+                        data-tool="pagespeed"
+                        data-categories="performance">
+                        PageSpeed Insights
+                    </button>
+
+                    <button class="tool-node node-gtmetrix" type="button"
+                        data-tool="gtmetrix"
+                        data-categories="performance">
+                        GTmetrix
+                    </button>
+
+                    <button class="tool-node node-webpagetest" type="button"
+                        data-tool="webpagetest"
+                        data-categories="performance">
+                        WebPageTest
+                    </button>
+
+                    <button class="tool-node node-greenframe" type="button"
+                        data-tool="greenframe"
+                        data-categories="impact integration">
+                        GreenFrame
+                    </button>
+
+                    <button class="tool-node node-co2js" type="button"
+                        data-tool="co2js"
+                        data-categories="impact integration">
+                        CO2.js
+                    </button>
+
+                    <button class="tool-node node-sonarqube" type="button"
+                        data-tool="sonarqube"
+                        data-categories="integration">
+                        SonarQube
+                    </button>
+
+                    <button class="tool-node node-codecarbon" type="button"
+                        data-tool="codecarbon"
+                        data-categories="impact integration">
+                        CodeCarbon
+                    </button>
+
+                    <button class="tool-node node-fresque" type="button"
+                        data-tool="fresque"
+                        data-categories="sensibilisation">
+                        Fresque du Numérique
+                    </button>
+                </div>
+
+                <!-- FICHE DÉTAILLÉE -->
+                <aside class="tool-detail" aria-live="polite">
+
+                    <div>
+                        <span class="detail-label">
+                            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                            Outil sélectionné
+                        </span>
+
+                        <h3 id="detail-name">EcoIndex</h3>
+
+                        <p class="detail-description" id="detail-description">
+                            Mesure la performance environnementale d’une page web à partir de plusieurs critères
+                            comme son poids, le nombre de requêtes et la complexité du DOM.
+                        </p>
+
+                        <div class="detail-section">
+                            <strong>Usages associés</strong>
+
+                            <div class="tag-list" id="detail-tags">
+                                <span class="tool-tag">Diagnostic rapide</span>
+                                <span class="tool-tag">Performance web</span>
+                                <span class="tool-tag">Impact carbone</span>
+                            </div>
+                        </div>
+
+                        <div class="detail-meta">
+                            <div class="meta-item">
+                                <i class="fa-solid fa-ticket"></i>
+                                <span id="detail-licence">
+                                    <strong>Licence :</strong> Gratuit
+                                </span>
+                            </div>
+
+                            <div class="meta-item">
+                                <i class="fa-solid fa-bullseye"></i>
+                                <span id="detail-ideal">
+                                    <strong>Idéal pour :</strong> Obtenir une première vue d’ensemble d’un site.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a id="detail-link"
+                        class="button detail-link"
+                        href="https://ecoindex.fr/"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Accéder à l’outil
+                        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
+
+                </aside>
             </div>
-            <div class="card">
-                <a href="https://www.sustainablewebdesign.org/" target="_blank">
-                    <h2>Sustainable Web Design</h2>
-                    <p>Principes et outils pour créer des sites web durables et réduire leur empreinte écologique.</p>
-                    <p><a href="https://www.sustainablewebdesign.org/" target="_blank">Voir la documentation</a></p>
+        </section>
+
+        <!-- BAS DE PAGE -->
+        <section class="tools-bottom">
+            <article class="intro-card">
+                <h2>💡 Par où commencer ?</h2>
+                <p>
+                    Pour un premier diagnostic, commencez par
+                    <strong>EcoIndex</strong>, <strong>Website Carbon</strong> ou <strong>Lighthouse</strong>.
+                    Ces outils donnent rapidement une vision générale avant d’aller vers des analyses plus avancées.
+                </p>
+            </article>
+
+            <article class="intro-card">
+                <h2>Un outil manquant ?</h2>
+                <p>
+                    Vous connaissez un outil utile pour l’écoconception numérique ?
+                    Nous aimerions le découvrir.
+                </p>
+                <a href="mailto:remy.courdier@univ-reunion.fr" class="button">
+                    Nous le signaler
                 </a>
-            </div>
-            <div class="card">
-                <a href="https://gtmetrix.com/" target="_blank">
-                    <h2>GTmetrix</h2>
-                    <p>Analysez la vitesse de votre site et obtenez des recommandations pour améliorer les performances.</p>
-                    <p><a href="https://gtmetrix.com/" target="_blank">Voir la documentation</a></p>
-                </a>
-            </div>
-            <div class="card">
-                <a href="https://www.webpagetest.org/" target="_blank">
-                    <h2>WebPageTest</h2>
-                    <p>Testez la performance de vos pages web depuis différents endroits dans le monde.</p>
-                    <p><a href="https://www.webpagetest.org/" target="_blank">Voir la documentation</a></p>
-                </a>
-            </div>
-            <div class="card">
-                <a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank">
-                    <h2>PageSpeed Insights</h2>
-                    <p>Un outil de Google qui fournit des rapports sur la performance des pages et des suggestions d'amélioration.</p>
-                    <p><a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank">Voir la documentation</a></p>
-                </a>
-            </div>
-            <div class="card">
-                <a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank">
-                    <h2>Une proposition ?</h2>
-                    <p>Si vous connaissez un autre outil intéressant à partager, dites nous le...</p>
-                    <p><a href="mailto:remy.courdier@univ-reunion.fr" target="_blank">communiquer avec nous</a></p>
-                </a>
-            </div>
+            </article>
         </section>
     </div>
+
     <footer>
-        <p class="mg-0">
-            &copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion -
-            <a href="./a-propos.html">À propos</a>
-        </p>
+        <p class="mg-0">&copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion - <a href="./a-propos.html">À propos</a> </p>
     </footer>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <script>
+        const toolsData = {
+            ecoindex: {
+                name: "EcoIndex",
+                description: "Mesure la performance environnementale d’une page web à partir de plusieurs critères comme son poids, le nombre de requêtes et la complexité du DOM.",
+                tags: ["Diagnostic rapide", "Performance web", "Impact carbone"],
+                licence: "Gratuit",
+                ideal: "Obtenir une première vue d’ensemble d’un site.",
+                link: "https://ecoindex.fr/"
+            },
+
+            websitecarbon: {
+                name: "Website Carbon",
+                description: "Estime l’empreinte carbone d’une page web et donne une estimation simple des émissions générées lors de son affichage.",
+                tags: ["Diagnostic rapide", "Impact carbone"],
+                licence: "Gratuit",
+                ideal: "Évaluer rapidement l’impact d’une page vitrine ou d’un site public.",
+                link: "https://www.websitecarbon.com/"
+            },
+
+            lighthouse: {
+                name: "Lighthouse",
+                description: "Outil intégré à Chrome qui analyse les performances, l’accessibilité et les bonnes pratiques d’une page web.",
+                tags: ["Diagnostic rapide", "Performance web"],
+                licence: "Gratuit / Open-source",
+                ideal: "Faire un premier audit technique directement depuis le navigateur.",
+                link: "https://developer.chrome.com/docs/lighthouse/overview/"
+            },
+
+            pagespeed: {
+                name: "PageSpeed Insights",
+                description: "Analyse les performances d’une page sur mobile et ordinateur, puis propose des recommandations d’optimisation.",
+                tags: ["Performance web"],
+                licence: "Gratuit",
+                ideal: "Identifier des améliorations concrètes sur le chargement d’une page.",
+                link: "https://developers.google.com/speed/pagespeed/insights/"
+            },
+
+            gtmetrix: {
+                name: "GTmetrix",
+                description: "Fournit un rapport détaillé sur la vitesse de chargement, les ressources lourdes et les pistes d’optimisation avancées.",
+                tags: ["Performance web"],
+                licence: "Freemium",
+                ideal: "Analyser plus finement les performances d’un site complexe.",
+                link: "https://gtmetrix.com/"
+            },
+
+            webpagetest: {
+                name: "WebPageTest",
+                description: "Permet de tester une page depuis plusieurs lieux, navigateurs et conditions réseau afin d’obtenir une analyse poussée.",
+                tags: ["Performance web"],
+                licence: "Gratuit / Services avancés",
+                ideal: "Comparer le comportement réel d’un site dans différents contextes.",
+                link: "https://www.webpagetest.org/"
+            },
+
+            greenframe: {
+                name: "GreenFrame",
+                description: "Mesure la consommation énergétique d’un scénario utilisateur côté client et serveur, avec une approche adaptée aux applications web.",
+                tags: ["Impact carbone", "Code & CI/CD"],
+                licence: "Freemium / Pro",
+                ideal: "Tester l’impact environnemental d’applications plus complexes.",
+                link: "https://greenframe.io/"
+            },
+
+            co2js: {
+                name: "CO2.js",
+                description: "Bibliothèque JavaScript qui permet d’estimer les émissions liées au transfert de données et de les intégrer dans des outils ou workflows.",
+                tags: ["Impact carbone", "Code & CI/CD"],
+                licence: "Open-source",
+                ideal: "Automatiser des estimations carbone dans un projet web.",
+                link: "https://www.thegreenwebfoundation.org/co2js/"
+            },
+
+            sonarqube: {
+                name: "SonarQube",
+                description: "Analyse la qualité du code pour repérer duplications, dette technique et problèmes pouvant nuire à la maintenabilité.",
+                tags: ["Code & CI/CD"],
+                licence: "Open-source / Pro",
+                ideal: "Améliorer la qualité d’un projet sur la durée.",
+                link: "https://www.sonarsource.com/products/sonarqube/"
+            },
+
+            codecarbon: {
+                name: "CodeCarbon",
+                description: "Estime les émissions de CO₂ liées à l’exécution de code, notamment dans les environnements de calcul ou de machine learning.",
+                tags: ["Impact carbone", "Code & CI/CD"],
+                licence: "Open-source",
+                ideal: "Mesurer l’impact d’algorithmes ou de traitements informatiques.",
+                link: "https://codecarbon.io/"
+            },
+
+            fresque: {
+                name: "Fresque du Numérique",
+                description: "Atelier collaboratif permettant de comprendre les impacts environnementaux du numérique et de sensibiliser un groupe.",
+                tags: ["Sensibilisation"],
+                licence: "Atelier animé",
+                ideal: "Former une équipe ou sensibiliser un public aux enjeux du numérique responsable.",
+                link: "https://www.fresquedunumerique.org/"
+            }
+        };
+
+        const filterDescriptions = {
+            all: "Tous les outils sont affichés. Sélectionnez un besoin pour repérer immédiatement ceux qui correspondent à votre objectif.",
+            diagnostic: "Ces outils permettent d’obtenir rapidement un premier diagnostic environnemental ou technique d’un site.",
+            performance: "Ces outils aident à analyser la vitesse, le poids et les performances globales d’une page web.",
+            impact: "Ces outils servent à estimer ou mesurer l’empreinte environnementale d’un site, d’un transfert de données ou d’un code.",
+            integration: "Ces outils s’intègrent davantage dans une démarche projet, du suivi de code à l’automatisation en CI/CD.",
+            sensibilisation: "Ces outils sont utiles pour comprendre les enjeux et sensibiliser une équipe ou un public."
+        };
+
+        const toolNodes = document.querySelectorAll(".tool-node");
+        const filterButtons = document.querySelectorAll(".filter-btn");
+
+        const detailName = document.getElementById("detail-name");
+        const detailDescription = document.getElementById("detail-description");
+        const detailTags = document.getElementById("detail-tags");
+        const detailLicence = document.getElementById("detail-licence");
+        const detailIdeal = document.getElementById("detail-ideal");
+        const detailLink = document.getElementById("detail-link");
+        const filterDescription = document.getElementById("filter-description");
+        const visibleCount = document.getElementById("visible-count");
+
+        function updateDetail(toolKey) {
+            const tool = toolsData[toolKey];
+
+            detailName.textContent = tool.name;
+            detailDescription.textContent = tool.description;
+
+            detailTags.innerHTML = "";
+
+            tool.tags.forEach(tag => {
+                const span = document.createElement("span");
+                span.className = "tool-tag";
+                span.textContent = tag;
+                detailTags.appendChild(span);
+            });
+
+            detailLicence.innerHTML = `<strong>Licence :</strong> ${tool.licence}`;
+            detailIdeal.innerHTML = `<strong>Idéal pour :</strong> ${tool.ideal}`;
+            detailLink.href = tool.link;
+
+            toolNodes.forEach(node => {
+                node.classList.toggle("active", node.dataset.tool === toolKey);
+            });
+        }
+
+        function applyFilter(filter) {
+            let count = 0;
+            let firstVisibleTool = null;
+
+            toolNodes.forEach(node => {
+                const categories = node.dataset.categories.split(" ");
+                const matches = filter === "all" || categories.includes(filter);
+
+                node.classList.toggle("hidden", !matches);
+
+                if (matches) {
+                    count++;
+
+                    if (!firstVisibleTool) {
+                        firstVisibleTool = node.dataset.tool;
+                    }
+                }
+            });
+
+            visibleCount.textContent = count;
+            filterDescription.textContent = filterDescriptions[filter];
+
+            filterButtons.forEach(button => {
+                button.classList.toggle("active", button.dataset.filter === filter);
+            });
+
+            if (firstVisibleTool) {
+                updateDetail(firstVisibleTool);
+            }
+        }
+
+        toolNodes.forEach(node => {
+            node.addEventListener("click", () => {
+                updateDetail(node.dataset.tool);
+            });
+        });
+
+        filterButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                applyFilter(button.dataset.filter);
+            });
+        });
+
+        updateDetail("ecoindex");
+    </script>
 </body>
+
 </html>

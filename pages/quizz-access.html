@@ -5,20 +5,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Découvrez l'impact du numérique sur l'environnement et les moyens de réduire notre empreinte carbone.">
-    <meta name="keywords" content="écoconception, numérique, empreinte carbone, développement durable, environnement">
-    <meta name="author" content="Rémy Courdier, Rochat Lise">
+        content="Choisissez un quiz autour de l'écoconception numérique, de vos usages et de l'impact écologique du numérique.">
+    <meta name="keywords" content="écoconception, numérique, quiz, empreinte carbone, environnement">
+    <meta name="author" content="Rémy Courdier, Aïfèze Simba">
     <meta http-equiv="cache-control" content="max-age=31536000, must-revalidate">
     <meta http-equiv="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
+
     <title>Quiz - Écoconception Numérique</title>
+
     <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles/styles.css">
+
     <script defer src="../assets/scripts/scripts.js"></script>
     <script defer src="../assets/scripts/hamburger.js"></script>
+
+    <style>
+        .quiz-selection {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px;
+        }
+
+        .quiz-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 360px;
+            padding: 30px;
+            border: 1px solid rgba(47, 223, 173, 0.5);
+            border-radius: 20px;
+            background:
+                radial-gradient(180px 90px at 10% 0%, rgba(47, 223, 173, 0.08), transparent),
+                rgba(0, 0, 0, 0.12);
+            text-align: left;
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--highlight-color);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+        }
+
+        .quiz-kicker {
+            display: inline-block;
+            margin-bottom: 12px;
+            color: var(--highlight-color);
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .quiz-card h2 {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 16px;
+            color: var(--text-color);
+            font-size: 1.9rem;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        .quiz-description {
+            color: var(--text-color-light);
+            font-size: 1.05rem;
+            line-height: 1.75;
+            margin-bottom: 22px;
+        }
+
+        .quiz-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .quiz-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 13px;
+            border-radius: 999px;
+            border: 1px solid rgba(47, 223, 173, 0.35);
+            background-color: rgba(47, 223, 173, 0.07);
+            color: var(--text-color);
+            font-size: 0.92rem;
+            line-height: 1;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            width: fit-content;
+            margin: 0;
+        }
+
+        @media screen and (max-width: 900px) {
+            .quiz-selection {
+                grid-template-columns: 1fr;
+            }
+
+            .quiz-card {
+                min-height: auto;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .quiz-access-main {
+                gap: 34px;
+            }
+
+            .quiz-card {
+                padding: 22px 18px;
+            }
+
+            .quiz-card h2 {
+                font-size: 1.45rem;
+            }
+
+            .quiz-description {
+                font-size: 1rem;
+            }
+
+            .quiz-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -28,6 +148,7 @@
             <span></span>
             <span></span>
         </button>
+
         <nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../index.html">Home</a></li>
@@ -42,19 +163,76 @@
         </nav>
     </header>
 
-    <div class="main">
-        <h1>Quiz N°1 : Êtes-vous un(e) surfeur(se) responsable ou un(e) accro au pixel ?</h1>
-        <div class="button-container">
-            <button id="validate-btn" onclick="window.location.href='./quizV1.html'" class="button">Accéder</button>
-        </div>
-        <h1>Quiz N°2 : Testez vos connaissances et découvrez l'impact écologique de vos habitudes numériques.</h1>
-        <div class="button-container">
-            <button id="validate-btn" onclick="window.location.href='./quizV2.html'" class="button">Accéder</button>
-        </div>
+    <div class="main quiz-access-main">
+        <h1>Quiz</h1>
+
+        <section class="intro-card">
+            <div class="intro-content">
+                <i class="fa-solid fa-circle-question intro-icon" aria-hidden="true"></i>
+                <p>
+                    Testez vos habitudes et vos connaissances autour du numérique responsable.
+                    Choisissez un des quiz et découvrez votre rapport aux usages numériques.
+                </p>
+            </div>
+        </section>
+
+        <section class="quiz-selection" aria-label="Choix des quiz">
+            <article class="quiz-card">
+                <div>
+                    <span class="quiz-kicker">Quiz n°1</span>
+
+                    <h2>
+                        Êtes-vous un(e) surfeur(se) responsable ou un(e) accro au pixel ?
+                    </h2>
+
+                    <p class="quiz-description">
+                        Un quiz ludique pour découvrir votre profil d’utilisateur
+                        et mieux comprendre vos habitudes numériques au quotidien.
+                    </p>
+
+                    <div class="quiz-tags">
+                        <span class="quiz-tag">Profil</span>
+                        <span class="quiz-tag">Habitudes numériques</span>
+                        <span class="quiz-tag">Ludique</span>
+                    </div>
+                </div>
+
+                <a href="./quizV1.html" class="button quiz-button">
+                    Accéder au quiz
+                </a>
+            </article>
+
+            <article class="quiz-card">
+                <div>
+                    <span class="quiz-kicker">Quiz n°2</span>
+
+                    <h2>
+                        Testez vos connaissances et découvrez l’impact écologique de vos habitudes numériques.
+                    </h2>
+
+                    <p class="quiz-description">
+                        Un quiz pédagogique pour mieux comprendre les conséquences environnementales du numérique.
+                    </p>
+
+                    <div class="quiz-tags">
+                        <span class="quiz-tag">Connaissances</span>
+                        <span class="quiz-tag">Impact écologique</span>
+                        <span class="quiz-tag">Pédagogique</span>
+                    </div>
+                </div>
+
+                <a href="./quizV2.html" class="button quiz-button">
+                    Accéder au quiz
+                </a>
+            </article>
+        </section>
     </div>
 
     <footer>
-        <p class="mg-0">&copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion - <a href="./a-propos.html">À propos</a> </p>
+        <p class="mg-0">
+            &copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion -
+            <a href="./a-propos.html">À propos</a>
+        </p>
     </footer>
 </body>
 

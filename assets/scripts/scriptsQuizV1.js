@@ -135,168 +135,198 @@ const questions = [
     }
 ];
 
-document.getElementById("validate-btn").addEventListener("click", function () {
+const validateButton = document.getElementById("validate-btn");
+const nextButton = document.getElementById("next-btn");
+const questionContainer = document.getElementById("question-container");
+const infoWrapper = document.getElementById("info");
+const extraInfoWrapper = document.getElementById("extra-info");
+const infoText = document.getElementById("info-text");
+const extraInfoText = document.getElementById("extra-info-text");
+const sourceText = document.getElementById("source-text");
+const progressBar = document.getElementById("progress-bar");
+const progressText = document.getElementById("quiz-progress-text");
+
+validateButton.addEventListener("click", validateAnswer);
+nextButton.addEventListener("click", loadNextQuestion);
+
+function validateAnswer() {
     const selectedAnswer = document.querySelector('input[name="answer"]:checked');
-    if (selectedAnswer) {
-        const answerIndex = parseInt(selectedAnswer.value);
-        userAnswers.push(answerIndex);
 
-        // Ajouter le CO2 de la réponse sélectionnée au total
-        totalCO2 += questions[currentQuestionIndex].answers[answerIndex].co2Impact;
-
-        // Afficher l'information, l'extra info, et la source après validation de la réponse
-        showInformation(currentQuestionIndex, answerIndex);
-
-        // Désactiver les boutons de réponse après validation
-        document.querySelectorAll('input[name="answer"]').forEach(input => input.disabled = true);
-
-        // Cacher le bouton de validation et montrer le bouton suivant
-        document.getElementById("validate-btn").style.display = "none";
-        document.getElementById("next-btn").style.display = "block";
-    } else {
+    if (!selectedAnswer) {
         alert("Veuillez sélectionner une réponse avant de valider.");
+        return;
     }
-});
 
-document.getElementById("next-btn").addEventListener("click", function () {
-    loadNextQuestion();
-});
+    const answerIndex = Number(selectedAnswer.value);
+    userAnswers.push(answerIndex);
 
-function showInformation(questionIndex, answerIndex) {
-    const infoContainer = document.getElementById("info-text");
-    const extraInfoContainer = document.getElementById("extra-info-text");
+    totalCO2 += questions[currentQuestionIndex].answers[answerIndex].co2Impact;
+
+    showInformation(currentQuestionIndex);
+
+    document.querySelectorAll('input[name="answer"]').forEach(input => {
+        input.disabled = true;
+    });
+
+    validateButton.style.display = "none";
+    nextButton.style.display = "inline-block";
+}
+
+function showInformation(questionIndex) {
     const question = questions[questionIndex];
 
-    // Afficher l'information
-    infoContainer.innerHTML = `<p><strong>Information :</strong> ${question.info}</p>`;
-    document.getElementById("info").style.display = "block";
+    infoText.innerHTML = `
+        <p>
+            <strong>Information :</strong>
+            ${question.info}
+        </p>
+    `;
 
-    // Afficher la comparaison
-    extraInfoContainer.innerHTML = `<p><strong class="strong-yellow">Comparaison :</strong> ${question.extra}</p>`;
-    document.getElementById("extra-info").style.display = "block";
+    extraInfoText.innerHTML = `
+        <p>
+            <strong class="strong-yellow">Comparaison :</strong>
+            ${question.extra}
+        </p>
+    `;
 
-    // Créer l'élément pour la source
-    const sourceContainer = document.createElement("p");
-    sourceContainer.innerHTML = `<em>Source :</em> ${question.source}`;
-    sourceContainer.style.marginTop = "10px"; // Ajout d'un espace au-dessus de la source
+    sourceText.innerHTML = `
+        <em>Source :</em> ${question.source}
+    `;
 
-    // Ajouter la source après la comparaison et avant le bouton "Suivant"
-    const quizContainer = document.getElementById("quiz-container");
-    quizContainer.appendChild(sourceContainer);
-
-    // Afficher le bouton "Suivant"
-    const nextButton = document.getElementById("next-btn");
-    nextButton.style.display = "inline-block";
+    infoWrapper.style.display = "block";
+    extraInfoWrapper.style.display = "block";
 }
 
 function loadNextQuestion() {
     currentQuestionIndex++;
+
     if (currentQuestionIndex < questions.length) {
-        // Charger la question suivante
         loadQuestion(currentQuestionIndex);
     } else {
-        // Effacer les éléments d'information restants
-        document.getElementById("info").style.display = "none";
-        document.getElementById("extra-info").style.display = "none";
-        document.getElementById("info-text").innerHTML = "";
-        document.getElementById("extra-info-text").innerHTML = "";
-
-        // Effacer les anciennes sources
-        const sourceElement = document.querySelector("#quiz-container p em");
-        if (sourceElement) {
-            sourceElement.parentElement.remove();
-        }
-
-        // Afficher les résultats
         showResults();
     }
 }
 
 function loadQuestion(index) {
     const questionData = questions[index];
-    const questionContainer = document.getElementById("question-container");
-    questionContainer.innerHTML = `<h2>${questionData.question}</h2>`;
 
-    questionData.answers.forEach((answer, i) => {
-        questionContainer.innerHTML += `
-            <label>
-                <input type="radio" name="answer" value="${i}">
-                ${answer.text}
-            </label><br>
-        `;
-    });
+    updateProgress(index);
 
-    // Effacer les informations affichées précédemment
-    document.getElementById("info").style.display = "none";
-    document.getElementById("extra-info").style.display = "none";
-    document.getElementById("info-text").innerHTML = "";
-    document.getElementById("extra-info-text").innerHTML = "";
+    questionContainer.innerHTML = `
+        <h2>${questionData.question}</h2>
+        <div class="answers-list">
+            ${questionData.answers.map((answer, answerIndex) => `
+                <label class="answer-option">
+                    <input type="radio" name="answer" value="${answerIndex}">
+                    <span>${answer.text}</span>
+                </label>
+            `).join("")}
+        </div>
+    `;
 
-    // Réinitialiser l'affichage des boutons
-    document.getElementById("validate-btn").style.display = "block";
-    document.getElementById("next-btn").style.display = "none";
+    infoWrapper.style.display = "none";
+    extraInfoWrapper.style.display = "none";
 
-    // Effacer les anciennes sources
-    const sourceElement = document.querySelector("#quiz-container p em");
-    if (sourceElement) {
-        sourceElement.parentElement.remove();
-    }
+    infoText.innerHTML = "";
+    extraInfoText.innerHTML = "";
+    sourceText.innerHTML = "";
+
+    validateButton.style.display = "inline-block";
+    nextButton.style.display = "none";
+}
+
+function updateProgress(index) {
+    const currentQuestionNumber = index + 1;
+    const totalQuestions = questions.length;
+    const progressPercentage = (currentQuestionNumber / totalQuestions) * 100;
+
+    progressText.textContent = `Question ${currentQuestionNumber} sur ${totalQuestions}`;
+    progressBar.style.width = `${progressPercentage}%`;
 }
 
 function showResults() {
-    // Masquer les éléments de la question précédente
-    document.getElementById("info").style.display = "none";
-    document.getElementById("extra-info").style.display = "none";
-    document.getElementById("next-btn").style.display = "none";
-    document.getElementById("next-btn").style.display = "none";
+    infoWrapper.style.display = "none";
+    extraInfoWrapper.style.display = "none";
+    sourceText.innerHTML = "";
+
+    validateButton.style.display = "none";
+    nextButton.style.display = "none";
+
+    progressText.textContent = "Quiz terminé";
+    progressBar.style.width = "100%";
 
     const smartphonesUsed = totalCO2 / 70;
-    const tripsSaintPierreSaintDenis = totalCO2 / (78 * 0.24); 
+    const tripsSaintPierreSaintDenis = totalCO2 / (78 * 0.24);
     const tripsReunionParis = totalCO2 / 1500;
     const computersManufactured = totalCO2 / 120;
-    const annualFrenchCO2Percentage = (totalCO2 / 9900) * 100;
 
-    const resultContainer = document.getElementById("question-container");
-    resultContainer.innerHTML = `
-        <h2>Résultats du Quiz : <strong>${totalCO2.toFixed(2)} kg</strong></h2>
-        <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-around; margin: 50px 0;">
-            <div style="border: 2px solid #FF5733; padding: 10px; border-radius: 5px; flex: 1 1 45%; margin-bottom: 10px;">
-                <p style="font-size: 2em; font-weight: bold; text-align:center;">${smartphonesUsed.toFixed(2)}</p>
-                <p style="text-align:center;">smartphones utilisés pendant un an</p>
+    questionContainer.innerHTML = `
+        <h2 class="quiz-results-title">
+            Résultat du quiz :
+            <strong>${totalCO2.toFixed(2)} kg de CO₂e estimés</strong>
+        </h2>
+
+        <div class="result-grid">
+            <div class="result-card">
+                <p class="result-value">${smartphonesUsed.toFixed(2)}</p>
+                <p class="result-label">smartphones utilisés pendant un an</p>
             </div>
-            <div style="border: 2px solid #33FF57; padding: 10px; border-radius: 5px; flex: 1 1 45%; margin-bottom: 10px;">
-                <p style="font-size: 2em; font-weight: bold; text-align:center;">${tripsSaintPierreSaintDenis.toFixed(2)}</p>
-                <p style="text-align:center;">trajets Saint-Pierre à Saint-Denis en voiture</p>
+
+            <div class="result-card">
+                <p class="result-value">${tripsSaintPierreSaintDenis.toFixed(2)}</p>
+                <p class="result-label">trajets Saint-Pierre → Saint-Denis en voiture</p>
             </div>
-            <div style="border: 2px solid #3357FF; padding: 10px; border-radius: 5px; flex: 1 1 45%; margin-bottom: 10px;">
-                <p style="font-size: 2em; font-weight: bold; text-align:center;">${tripsReunionParis.toFixed(2)}</p>
-                <p style="text-align:center;">aller-retour Réunion-Paris en avion</p>
+
+            <div class="result-card">
+                <p class="result-value">${tripsReunionParis.toFixed(2)}</p>
+                <p class="result-label">aller-retour Réunion → Paris en avion</p>
             </div>
-            <div style="border: 2px solid #FF33A1; padding: 10px; border-radius: 5px; flex: 1 1 45%; margin-bottom: 10px;">
-                <p style="font-size: 2em; font-weight: bold; text-align:center;">${computersManufactured.toFixed(2)}</p>
-                <p style="text-align:center;">ordinateurs fabriqués sur un an</p>
+
+            <div class="result-card">
+                <p class="result-value">${computersManufactured.toFixed(2)}</p>
+                <p class="result-label">ordinateurs fabriqués sur un an</p>
             </div>
         </div>
-        <p>Merci d'avoir participé !</p>
-        <hr style="margin: 50px 0;">
-        <h3>Explications des Calculs :</h3>
-        <ul style="list-style-type: disc; margin-left: 20px;">
-            <li>La quantité moyenne de CO2 émise par la fabrication et l'utilisation d'un smartphone sur un an est de 70kg. <strong>Source</strong> : A. Agogué, "Guide pratique des impacts des smartphones," ADEME, 2017. Disponible en ligne : <a href="https://presse.ademe.fr/wp-content/uploads/2017/09/guide-pratique-impacts-smartphone.pdf" target="_blank">https://presse.ademe.fr/wp-content/uploads/2017/09/guide-pratique-impacts-smartphone.pdf</a></li>
 
-            <li>Les trajets Saint-Pierre à Saint-Denis en voiture sont calculés en divisant le total des émissions de CO2 par 18.72 kg, représentant les émissions moyennes d'un trajet de 78 km en voiture.<strong> Source</strong> : ADEME, "Calculateur d'empreinte carbone," 2023. Disponible en ligne : <a href="https://www.ademe.fr/" target="_blank">https://www.ademe.fr/</a></li>
+        <p class="quiz-end-copy">
+            Merci d’avoir participé ! Ces équivalences donnent un ordre de grandeur
+            de l’impact associé aux réponses sélectionnées.
+        </p>
 
-            <li>1500 kg est l'émission moyenne de CO2 pour un vol aller-retour Réunion-Paris.<strong> Source</strong> : "Calculateur de l'impact environnemental d'un trajet en avion," Bioaddict, 2023. Disponible en ligne : <a href="https://www.bioaddict.fr/calculez-l-impact-environnemental-de-votre-trajet-en-avion/#:~:text=Et%20si%20vous%20effectuez%20un,soit%20265%20litres%20de%20k%C3%A9ros%C3%A8ne." target="_blank">https://www.bioaddict.fr</a></li>
-            <li>L'émission moyenne de CO2 associée à la fabrication d'un ordinateur est 120kg. <strong> Source</strong> : ADEME, "Calculateur d'empreinte carbone," 2023. Disponible en ligne : <a href="https://www.ademe.fr/" target="_blank">https://www.ademe.fr/</a></li>
-        </ul>
-        <br>
-        <div class="button-container">
-            <button onclick="location.href='../../ecoconception/pages/quizV2.html'" class="button">Encore un Quiz...</button>
-            <button onclick="location.href='../../pages/quelques-chiffres.html'" class="button">Quelques Chiffres</button>
-            <button onclick="location.href='../../pages/en-pratique.html'" class="button-secondary">En Pratique</button>
+        <details class="quiz-calculations">
+            <summary>Voir les explications des calculs</summary>
+
+            <ul>
+                <li>
+                    La quantité moyenne de CO₂ associée à la fabrication et à l’utilisation
+                    d’un smartphone sur un an est de 70 kg.
+                    <strong>Source :</strong>
+                    A. Agogué, « Guide pratique des impacts des smartphones », ADEME, 2017.
+                </li>
+
+                <li>
+                    Les trajets Saint-Pierre à Saint-Denis sont calculés à partir d’un trajet
+                    de 78 km et d’une estimation de 0,24 kg de CO₂ par kilomètre.
+                </li>
+
+                <li>
+                    Un aller-retour Réunion–Paris est ici estimé à 1500 kg de CO₂.
+                </li>
+
+                <li>
+                    L’émission moyenne associée à la fabrication d’un ordinateur est ici estimée à 120 kg de CO₂.
+                </li>
+            </ul>
+        </details>
+
+        <div class="button-container quiz-results-actions">
+            <a href="./quizV2.html" class="button">Encore un quiz</a>
+            <a href="./quelques-chiffres.html" class="button">Quelques chiffres</a>
+            <a href="./en-pratique.html" class="button-secondary">En pratique</a>
         </div>
     `;
 }
 
-window.onload = function () {
+window.addEventListener("load", () => {
     loadQuestion(currentQuestionIndex);
-};
+});

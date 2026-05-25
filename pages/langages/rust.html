@@ -174,32 +174,6 @@
                     border-color: #aaa;
             }
 
-            .summary-table {
-                    width: 100%;
-                    border-collapse: collapse;
-                    margin: 25px 0;
-                    background-color: rgba(255, 255, 255, 0.05);
-                    border-radius: 8px;
-                    overflow: hidden;
-            }
-
-            .summary-table th,
-            .summary-table td {
-                    padding: 12px 15px;
-                    text-align: left;
-                    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-            .summary-table th {
-                    background-color: rgba(47, 223, 173, 0.2);
-                    color: var(--primary-color);
-                    font-weight: bold;
-            }
-
-            .summary-table tr:hover {
-                    background-color: rgba(255, 255, 255, 0.05);
-            }
-
             @media (max-width: 768px) {
                     .eco-rule h3 {
                             font-size: 1.3rem;
@@ -346,51 +320,29 @@
     </head>
     <body>
         <header>
-            <nav>
-                <ul>
-                    <li class="mg-0">
-                        <a href="../../index.html">
-                            Home
-                        </a>
-                    </li>
-                    <li class="mg-0">
-                        <a href="../quelques-chiffres.html">
-                            Chiffres
-                        </a>
-                    </li>
-                    <li class="mg-0">
-                        <a href="../quizV1.html">
-                            Quiz
-                        </a>
-                    </li>
-                    <li class="mg-0">
-                        <a href="../en-pratique.html">
-                            Ateliers
-                        </a>
-                    </li>
-                    <li class="mg-0">
-                        <a href="../outils.html">
-                            Outils
-                        </a>
-                    </li>
-                    <li class="mg-0">
-                        <a class="active" href="../langages.html">
-                            Langages
-                        </a>
-                    </li>
-                    <li class="mg-0">
-                        <a href="../ressources.html">
-                            Ressources
-                        </a>
-                    </li>
-                    <li class="mg-0">
-                        <a href="../terminologie.html">
-                            Terminologie
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+        <a href="../langages.html" class="back-link">
+            <span class="back-arrow">🠔</span>
+            <span class="back-text">Retour</span>
+        </a>
+
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+<nav id="navbar">
+            <ul>
+                <li class="mg-0"><a href="../../index.html">Home</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html">Chiffres</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="../en-pratique.html">Ateliers</a></li>
+                <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../langages.html" class="active">Langages</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
+            </ul>
+        </nav>
+    </header>
         <!-- Navigation entre langages -->
         <div class="main">
             <h1>
@@ -429,11 +381,7 @@
                     </i>
                     Dart
                 </a>
-                <a href="#" style="opacity: 0.5; cursor: not-allowed">
-                    <i class="fab fa-js">
-                    </i>
-                    JavaScript (bientôt)
-                </a>
+                <a href="javascript.html"><i class="fab fa-js"></i> JavaScript</a>
             </div>
             <!-- Introduction -->
             <section class="intro-text">
@@ -507,229 +455,7 @@
                     </div>
                 </section>
             </section>
-            <!-- Tableau récapitulatif -->
-            <section style="margin-top: 50px">
-                <h2>
-                    Récapitulatif des 10 éco-rules Rust
-                </h2>
-                <p>
-                    Cliquez sur une règle pour accéder directement aux détails et exemples
-                                        de code.
-                </p>
-                <table class="summary-table">
-                    <thead>
-                        <tr>
-                            <th>
-                                #
-                            </th>
-                            <th>
-                                Règle
-                            </th>
-                            <th>
-                                Gain Perf
-                            </th>
-                            <th>
-                                Gain Énergie
-                            </th>
-                            <th>
-                                Impact
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr onclick="openRule('rule1')" style="cursor: pointer">
-                            <td>
-                                1
-                            </td>
-                            <td>
-                                Réduire les allocations (with_capacity)
-                            </td>
-                            <td>
-                                x1.4
-                            </td>
-                            <td>
-                                15%
-                            </td>
-                            <td>
-                                <span class="impact-badge impact-high">
-                                    ⭐⭐⭐⭐
-                                </span>
-                            </td>
-                        </tr>
-                        <tr onclick="openRule('rule2')" style="cursor: pointer">
-                            <td>
-                                2
-                            </td>
-                            <td>
-                                Éviter les .clone() inutiles
-                            </td>
-                            <td>
-                                x10+
-                            </td>
-                            <td>
-                                40%
-                            </td>
-                            <td>
-                                <span class="impact-badge impact-high">
-                                    ⭐⭐⭐⭐⭐
-                                </span>
-                            </td>
-                        </tr>
-                        <tr onclick="openRule('rule3')" style="cursor: pointer">
-                            <td>
-                                3
-                            </td>
-                            <td>
-                                Itérateurs idiomatiques
-                            </td>
-                            <td>
-                                x1.2
-                            </td>
-                            <td>
-                                10%
-                            </td>
-                            <td>
-                                <span class="impact-badge impact-medium">
-                                    ⭐⭐⭐
-                                </span>
-                            </td>
-                        </tr>
-                        <tr onclick="openRule('rule4')" style="cursor: pointer">
-                            <td>
-                                4
-                            </td>
-                            <td>
-                                Structures de données adaptées
-                            </td>
-                            <td>
-                                Variable
-                            </td>
-                            <td>
-                                Variable
-                            </td>
-                            <td>
-                                <span class="impact-badge impact-medium">
-                                    ⭐⭐⭐
-                                </span>
-                            </td>
-                        </tr>
-                        <tr onclick="openRule('rule5')" style="cursor: pointer">
-                            <td>
-                                5
-                            </td>
-                            <td>
-                                Réutiliser les buffers en boucle
-                            </td>
-                            <td>
-                                x2
-                            </td>
-                            <td>
-                                25%
-                            </td>
-                            <td>
-                                <span class="impact-badge impact-high">
-                                    ⭐⭐⭐⭐
-                                </span>
-                            </td>
-                        </tr>
-                        <tr onclick="openRule('rule6')" style="cursor: pointer">
-                            <td>
-                                6
-                            </td>
-                            <td>
-                                Compilation en mode Release
-                            </td>
-                            <td>
-                                x10-100
-                            </td>
-                            <td>
-                                90%+
-                            </td>
-                            <td>
-                                <span class="impact-badge impact-high">
-                                    ⭐⭐⭐⭐⭐
-                                </span>
-                            </td>
-                        </tr>
-                        <tr onclick="openRule('rule7')" style="cursor: pointer">
-                            <td>
-                                7
-                            </td>
-                            <td>
-                                Parallélisation (Race to Sleep)
-                            </td>
-                            <td>
-                                Optimisé
-                            </td>
-                            <td>
-                                15%
-                            </td>
-                            <td>
-                                <span class="impact-badge impact-medium">
-                                    ⭐⭐⭐
-                                </span>
-                            </td>
-                        </tr>
-                        <tr onclick="openRule('rule8')" style="cursor: pointer">
-                            <td>
-                                8
-                            </td>
-                            <td>
-                                Link Time Optimization (LTO)
-                            </td>
-                            <td>
-                                x1.1
-                            </td>
-                            <td>
-                                5%
-                            </td>
-                            <td>
-                                <span class="impact-badge impact-low">
-                                    ⭐⭐
-                                </span>
-                            </td>
-                        </tr>
-                        <tr onclick="openRule('rule9')" style="cursor: pointer">
-                            <td>
-                                9
-                            </td>
-                            <td>
-                                Désérialisation sans copie
-                            </td>
-                            <td>
-                                Significatif
-                            </td>
-                            <td>
-                                Haut
-                            </td>
-                            <td>
-                                <span class="impact-badge impact-high">
-                                    ⭐⭐⭐⭐
-                                </span>
-                            </td>
-                        </tr>
-                        <tr onclick="openRule('rule10')" style="cursor: pointer">
-                            <td>
-                                10
-                            </td>
-                            <td>
-                                Static Dispatch (Génériques)
-                            </td>
-                            <td>
-                                Marginal
-                            </td>
-                            <td>
-                                Bas
-                            </td>
-                            <td>
-                                <span class="impact-badge impact-low">
-                                    ⭐
-                                </span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+            
             <!-- LES 10 ÉCO-RULES -->
             <section style="margin-top: 60px">
                 <h2 style="
@@ -740,7 +466,7 @@
                                         ">
                     <i class="fas fa-leaf">
                     </i>
-                    Les 10 Éco-Rules Rust
+                    Exemple de 10 Éco-Rules Rust
                 </h2>
                 <div class="eco-rule" id="rule1">
                     <div class="rule-header">
@@ -1421,23 +1147,6 @@
                                                 closeRule(rule);
                                         } else {
                                                 activateRule(rule, false);
-                                        }
-                                }
-
-                                function openRule(ruleId) {
-                                        const rule = document.getElementById(ruleId);
-
-                                        if (!rule) {
-                                                return;
-                                        }
-
-                                        if (!rule.classList.contains("active")) {
-                                                activateRule(rule, true);
-                                        } else {
-                                                rule.scrollIntoView({
-                                                        behavior: "smooth",
-                                                        block: "start",
-                                                });
                                         }
                                 }
 

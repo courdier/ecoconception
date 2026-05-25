@@ -4,253 +4,371 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Introduction à SonarQube et Eco Code">
-    <meta name="keywords" content="SonarQube, Eco Code, TP, écoconception, développement durable">
+    <meta name="description" content="Optimisation de l'Utilisation des Polices Web">
+    <meta name="keywords" content="Optimisation, Polices Web, TP, écoconception, développement durable">
     <meta name="author" content="Rochat Lise">
     <meta http-equiv="cache-control" content="max-age=31536000, must-revalidate">
     <meta http-equiv="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
-    <title>TP 01 - Introduction à SonarQube et Eco Code</title>
+
+    <title>TP 01 - Optimisation de l'Utilisation des Polices Web</title>
+
     <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/styles/styles.css">
+
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script defer src="../../assets/scripts/hamburger.js"></script>
 </head>
 
 <body>
     <header>
-                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+        <a href="../en-pratique.html" class="back-link">
+            <span class="back-arrow">🠔</span>
+            <span class="back-text">Retour</span>
+        </a>
+
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
-<nav id="navbar">
+
+        <nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../../index.html">Home</a></li>
-                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html">Chiffres</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="../en-pratique.html" class="active">Ateliers</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../langages.html">Langages</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
-
             </ul>
         </nav>
     </header>
-    <div class="main">
-        <h1>TP 01 : Introduction à SonarQube et Eco Code</h1>
-        <section>
-            <section class="collapsible">
-                <h2>Objectif <span class="toggle-icon">+</span></h2>
-                <div class="content">
-                    <p>Installer et configurer SonarQube avec les plugins Eco Code pour analyser un projet de base, et
-                        interpréter les résultats pour identifier les points d'amélioration en termes de performance et
-                        d'éco-conception.</p>
-                    <p><strong>Temps imparti</strong> : 1 heure</p>
-                    <p><strong>Date et lieu de dépôt</strong> : À déterminer</p>
+
+    <div class="main tp-main">
+
+        <!-- TITRE + RÉSUMÉ -->
+        <section class="tp-header">
+            <h1>TP 01 : Optimisation de l'Utilisation des Polices Web</h1>
+
+            <div class="tp-summary" aria-label="Informations principales du TP">
+                <div class="tp-summary-item">
+                    <i class="fas fa-clock" aria-hidden="true"></i>
+                    <span>Durée : 1h30</span>
+                </div>
+
+                <span class="tp-summary-separator">•</span>
+
+                <div class="tp-summary-item">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <span>Difficulté : ⭐</span>
+                </div>
+
+                <span class="tp-summary-separator">•</span>
+
+                <div class="tp-summary-item">
+                    <i class="fas fa-font" aria-hidden="true"></i>
+                    <span>Thème : Polices web & performance</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTENU DU TP -->
+        <section class="tp-content">
+
+            <!-- Objectif -->
+            <section class="collapsible is-open">
+                <h2>
+                    Objectif
+                    <span class="toggle-icon">-</span>
+                </h2>
+
+                <div class="content" style="display: block;">
+                    <p>
+                        Dans ce TP, vous allez optimiser l’utilisation des polices web sur le site du Bureau
+                        des Étudiants de l’ESIROI. L’objectif est de réduire la charge des ressources liées aux polices,
+                        d’améliorer les performances du site et de limiter son empreinte écologique.
+                    </p>
+
+                    <div class="tp-note">
+                        <p><strong>Temps imparti :</strong> 1 heure et 30 minutes</p>
+                        <p><strong>Date et lieu de dépôt :</strong> À déterminer</p>
+                    </div>
                 </div>
             </section>
+
+            <!-- Informations -->
             <section class="collapsible">
-                <h2>Informations <span class="toggle-icon">+</span></h2>
+                <h2>
+                    Informations
+                    <span class="toggle-icon">+</span>
+                </h2>
+
                 <div class="content">
-                    <div class="info-block">
-                        <h3><i class="fas fa-cogs"></i> SonarQube</h3>
-                        <p>SonarQube est une plateforme open-source utilisée pour l'inspection continue de la qualité du
-                            code. Elle permet de détecter des bugs, des vulnérabilités et des mauvaises pratiques de
-                            code en analysant automatiquement les projets.</p>
-                    </div>
-                    <div class="info-block">
-                        <h3><i class="fas fa-leaf"></i> Eco Code</h3>
-                        <p>Eco Code est un ensemble de règles pour SonarQube visant à réduire l'empreinte écologique du
-                            développement logiciel. Il fournit des recommandations spécifiques pour optimiser
-                            l'utilisation des ressources et minimiser la consommation d'énergie.</p>
-                    </div>
+                    <p>
+                        Une utilisation inefficace des polices web peut ralentir le chargement des pages,
+                        augmenter le poids des ressources téléchargées et dégrader les performances globales du site.
+                    </p>
+
+                    <p>
+                        Ce TP vous apprendra à mieux sélectionner les polices utilisées, à réduire les fichiers chargés,
+                        à privilégier des formats plus légers et à améliorer leur intégration dans une démarche
+                        d’écoconception numérique.
+                    </p>
                 </div>
             </section>
+
+            <!-- Prérequis -->
             <section class="collapsible">
-                <h2>Prérequis nécessaires <span class="toggle-icon">+</span></h2>
+                <h2>
+                    Prérequis nécessaires
+                    <span class="toggle-icon">+</span>
+                </h2>
+
                 <div class="content">
                     <ul>
-                        <li>Connaissances de base en HTML, CSS, et JavaScript</li>
+                        <li>Connaissances de base en HTML, CSS et JavaScript</li>
                         <li>Docker et Docker Compose installés sur votre machine</li>
-                        <li>Accès à une machine avec Ubuntu, Windows, ou macOS</li>
+                        <li>Accès à une machine avec Ubuntu, Windows ou macOS</li>
+                        <li>Installation de SonarQube et SonarScanner , réalisée dans le TP 04 (optionnel)</li>
                     </ul>
                 </div>
             </section>
+
+            <!-- Ressources utiles -->
             <section class="collapsible">
-                <h2>Livrable <span class="toggle-icon">+</span></h2>
+                <h2>
+                    Ressources utiles
+                    <span class="toggle-icon">+</span>
+                </h2>
+
                 <div class="content">
-                    <p>À la fin de ce TP, vous devrez compléter une section de votre rapport individuel décrivant les
-                        optimisations effectuées, les résultats avant et après optimisation, et une évaluation de
-                        l'impact des optimisations sur les performances et l'empreinte écologique du site.</p>
-                    <p>Rappel critère du rapport</p>
+                    <ul>
+                        <li>
+                            <a href="https://fonts.google.com/" target="_blank">
+                                Google Fonts
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://docs.fileformat.com/font/woff2/#:~:text=WOFF2%20Header-,What%20is%20a%20WOFF2%20file%3F,faster%20and%20use%20less%20bandwidth."
+                                target="_blank">
+                                Format WOFF2
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://developers.google.com/fonts/docs/webfont_loader" target="_blank">
+                                Webfont Loader
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://fonts.google.com/knowledge/glossary/subsetting" target="_blank">
+                                Google Fonts Subsetting
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Livrable -->
+            <section class="collapsible">
+                <h2>
+                    Livrable
+                    <span class="toggle-icon">+</span>
+                </h2>
+
+                <div class="content">
+                    <p>
+                        À la fin de ce TP, vous devrez compléter une section de votre rapport individuel décrivant
+                        les optimisations effectuées, les résultats avant et après optimisation,
+                        ainsi qu’une évaluation de leur impact sur les performances et l’empreinte écologique du site.
+                    </p>
+
+                    <p><strong>Rappel des critères du rapport :</strong></p>
+
                     <ul>
                         <li>Longueur : 10 pages maximum</li>
-                        <li>Organisation du rapport :
+                        <li>
+                            Organisation du rapport :
                             <ul>
-                                <li><strong>Introduction</strong> : Présentation générale du projet et de ses objectifs.
+                                <li>
+                                    <strong>Introduction</strong> :
+                                    Présentation générale du projet et de ses objectifs
                                 </li>
-                                <li><strong>Section 1</strong> : Installation et Configuration de SonarQube et Eco Code
+                                <li>
+                                    <strong>Section 1</strong> :
+                                    Optimisation de l’utilisation des polices web
                                 </li>
-                                <li><strong>Section 2</strong> : Optimisation des Ressources Web</li>
-                                <li><strong>Section 3</strong> : Détection et Réduction des Scripts Inutilisés</li>
-                                <li><strong>Section 4</strong> : Optimisation de l'Utilisation des Polices Web</li>
-                                <li><strong>Conclusion</strong> : Résumez les apprentissages et les recommandations
-                                    principales</li>
+                                <li>
+                                    <strong>Section 2</strong> :
+                                    Détection et réduction des scripts inutilisés
+                                </li>
+                                <li>
+                                    <strong>Section 3</strong> :
+                                    Optimisation des ressources web
+                                </li>
+                                <li>
+                                    <strong>Conclusion</strong> :
+                                    Résumé des apprentissages et recommandations principales
+                                </li>
                             </ul>
                         </li>
                     </ul>
                 </div>
             </section>
-            <section class="collapsible">
-                <h2>Mise en place de l'environnement de travail <span class="toggle-icon">+</span></h2>
-                <div class="content">
-                    <ol>
-                        <li class="step">
-                            <h3>Étape 1 : Installation de SonarQube avec Docker Compose</h3>
-                            <p>Créer un dossier <code class="inline-code">tp-sonarqube</code> :</p>
-                            <pre><code class="bash">mkdir tp-sonarqube</code></pre>
 
-                            <p>Déplacez-vous dans votre dossier <code class="inline-code">tp-sonarqube</code> et créez
-                                un fichier <code class="inline-code">docker-compose.yml</code> :</p>
-                            <pre><code class="bash">cd tp-sonarqube <br>touch docker-compose.yml</code></pre>
-
-                            <p>Éditez et enregistrez votre fichier <code class="inline-code">docker-compose.yml</code> :
-                            </p>
-                            <pre><code class="yaml">version: "3"
-                                    services:
-                                    sonarqube:
-                                        image: sonarqube:latest
-                                        container_name: sonarqube
-                                        ports:
-                                        - "9000:9000"
-                                        volumes:
-                                        - sonarqube_conf:/opt/sonarqube/conf
-                                        - sonarqube_data:/opt/sonarqube/data
-                                        - sonarqube_logs:/opt/sonarqube/logs
-                                        - sonarqube_extensions:/opt/sonarqube/extensions
-                                    volumes:
-                                    sonarqube_conf:
-                                    sonarqube_data:
-                                    sonarqube_logs:
-                                    sonarqube_extensions:</code></pre>
-                            <p>Lancez SonarQube avec Docker Compose :</p>
-                            <pre><code class="bash">docker-compose up -d</code></pre>
-                            <p>Accédez à SonarQube à l'adresse suivante : <a
-                                    href="http://localhost:9000">http://localhost:9000</a></p>
-                            <p>Connectez-vous avec les identifiants par défaut
-                                (<strong>admin</strong>/<strong>admin</strong>) et modifiez le mot de passe lors de la
-                                première connexion.</p>
-                        </li>
-                        <li class="step">
-                            <h3>Étape 2 : Installation de Plugin Eco Code</h3>
-                            <p>Téléchargez le plugin <a href="https://www.sonarplugins.com/ecocodejavascript">ecoCode
-                                    Javascript</a> :</p>
-                            <p>Copiez le fichier du plugin dans le répertoire des extensions de SonarQube :</p>
-                            <pre><code class="bash">docker cp ecocode-javascript-plugin-1.4.0.jar container_sonarqube:/opt/sonarqube/extensions/plugins</code></pre>
-                            <p>redémarrez SonarQube pour appliquer les changements :</p>
-                            <pre><code class="bash">docker-compose restart sonarqube</code></pre>
-                        </li>
-                        <li class="step">
-                            <h3>Étape 3 : Configuration du profil qualité sur SonarQube</h3>
-                            <ol>
-                                <li>Accédez à l'interface SonarQube à <a
-                                        href="http://localhost:9000">http://localhost:9000</a>.</li>
-                                <li>Allez dans Administration > Quality Profiles.</li>
-                                <li>Cliquez sur "Create" pour créer un nouveau profil de qualité.</li>
-                                <li>Ajoutez des règles du plugin Eco Code à ce profil en recherchant les règles et en
-                                    les activant.</li>
-                                <li>Assurez-vous d'associer ce profil à votre projet.</li>
-                            </ol>
-                        </li>
-                        <li class="step step-btm">
-                            <h3>Étape 4 : Installation de SonarScanner</h3>
-                            <p><strong>Ubuntu :</strong></p>
-                            <pre><code class="bash">sudo apt-get update
-                            sudo apt-get install sonar-scanner</code></pre>
-                            <p><strong>macOS :</strong> Installez avec Homebrew :</p>
-                            <pre><code class="bash">brew install sonar-scanner</code></pre>
-                            <p><strong>Windows :</strong></p>
-                            <ol>
-                                <li>Téléchargez <a
-                                        href="https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/sonarscanner/">SonarScanner</a>
-                                </li>
-                                <li>Décompressez le fichier téléchargé.</li>
-                                <li>Ajoutez le chemin de SonarScanner au PATH de votre système.</li>
-                            </ol>
-                        </li>
-                    </ol>
-                </div>
-            </section>
-            <section class="collapsible">
-                <h2>Etude de cas : Site vitrine du bureau des etudiants de l'esiroi <span class="toggle-icon">+</span>
+            <!-- Étapes du TP -->
+            <section class="collapsible practical-section">
+                <h2>
+                    Étapes du TP
+                    <span class="toggle-icon">+</span>
                 </h2>
+
                 <div class="content">
-                    <p>Pour cette étude de cas, vous allez analyser un projet réel représentant le site vitrine du
-                        bureau des étudiants de l'ESIROI. Ce site contient plusieurs pages simples en HTML, CSS, et
-                        JavaScript. Votre objectif est de l'analyser avec SonarQube et le plugin Eco Code pour
-                        identifier des pistes d'amélioration en termes de performance et d'éco-conception.</p>
                     <ol>
-                        <li class="step">
-                            <h4>Étape 1: Clonage du dépôt GitHub</h4>
-                            <p>Clonez le dépôt contenant le site vitrine :</p>
-                            <pre><code class="bash">git clone https://github.com/username/bde-esiroi.git</code></pre>
 
-                            <p>Déplacez-vous dans le répertoire du projet :</p>
-                            <pre><code class="bash">cd bde-esiroi</code></pre>
-                        </li>
                         <li class="step">
-                            <h4>Étape 2: Configuration du projet dans SonarQube</h4>
-                            <p>Créez un fichier <code class="inline-code">sonar-project.properties</code> dans le
-                                répertoire racine du projet avec le contenu suivant :</p>
-                            <pre><code class="yaml">sonar.projectKey=bde_esiroi <br>sonar.sources=. <br>sonar.host.url=http://localhost:9000 <br>sonar.login=your_sonarqube_token</code></pre>
+                            <h3>Étape 1 : Analyse initiale de l’utilisation des polices web</h3>
+
+                            <ol>
+                                <li>
+                                    Si ce n’est pas déjà fait, clonez le dépôt contenant
+                                    le site vitrine du BDE :
+                                </li>
+                            </ol>
+
+                            <pre><code class="bash">git clone https://github.com/courdier/ecoconception.git</code></pre>
+
+                            <ol start="2">
+                                <li>Déplacez-vous dans le répertoire du projet :</li>
+                            </ol>
+
+                            <pre><code class="bash">cd pages/en-pratique/bde-esiroi</code></pre>
+
+                            <ol start="3">
+                                <li>
+                                    Inspectez les fichiers CSS et HTML afin d’identifier
+                                    les polices web utilisées sur le site.
+                                </li>
+                                <li>
+                                    Notez les polices importées depuis des services externes
+                                    comme Google Fonts et celles chargées localement.
+                                </li>
+                                <li>
+                                    Utilisez Lighthouse ou WebPageTest pour analyser l’impact
+                                    des polices sur les performances du site :
+                                    temps de chargement, poids des fichiers et affichage des textes.
+                                </li>
+                                <li>
+                                    Prenez des captures d’écran des résultats afin de les intégrer à votre rapport.
+                                </li>
+                            </ol>
                         </li>
+
                         <li class="step">
-                            <h4>Étape 3: Analyse du projet avec SonarScanner</h4>
-                            <p>Lancez l'analyse du projet avec SonarScanner :</p>
-                            <pre><code class="bash">sonar-scanner</code></pre>
+                            <h3>Étape 2 : Optimisation des polices web</h3>
+
+                            <ol>
+                                <li>
+                                    Analysez les polices utilisées pour déterminer
+                                    si elles sont toutes réellement nécessaires.
+                                </li>
+                                <li>
+                                    Supprimez les polices superflues ou redondantes.
+                                </li>
+                                <li>
+                                    Si plusieurs styles ou graisses d’une même police sont chargés,
+                                    réduisez leur nombre lorsque cela est possible.
+                                </li>
+                                <li>
+                                    Créez un sous-ensemble de police afin de conserver uniquement
+                                    les caractères nécessaires au site.
+                                </li>
+                                <li>
+                                    Utilisez un format optimisé comme <strong>WOFF2</strong>,
+                                    plus léger que des formats tels que TTF ou OTF.
+                                </li>
+                                <li>
+                                    Vérifiez que les fichiers WOFF2 sont bien servis en priorité.
+                                </li>
+                                <li>
+                                    Configurez la mise en cache des polices sur une durée adaptée
+                                    afin d’éviter des téléchargements répétés.
+                                </li>
+                            </ol>
                         </li>
+
                         <li class="step step-btm">
-                            <h4>Étape 4: Interprétation des résultats</h4>
-                            <p>Une fois l'analyse terminée, consultez les résultats sur l'interface SonarQube.
-                                Identifiez les points faibles en termes de performance et d'éco-conception.</p>
-                            <p>Recherchez les recommandations faites par Eco Code pour améliorer l'efficacité du code et
-                                réduire son empreinte écologique.</p>
+                            <h3>Étape 3 : Analyse post-optimisation</h3>
 
+                            <ol>
+                                <li>
+                                    Refaites une analyse avec Google Lighthouse après les optimisations réalisées.
+                                </li>
+                                <li>
+                                    Comparez les nouveaux résultats avec ceux obtenus avant modification.
+                                </li>
+                                <li>
+                                    Effectuez une nouvelle analyse SonarQube pour vérifier
+                                    qu’aucun nouveau problème n’a été introduit.
+                                </li>
+                                <li>
+                                    Documentez les gains obtenus et les recommandations supplémentaires éventuelles.
+                                </li>
+                            </ol>
                         </li>
+
                     </ol>
                 </div>
             </section>
-            <section class="collapsible">
-                <h2>Conclusion: Rédaction du rapport <span class="toggle-icon">+</span></h2>
+
+            <!-- Conclusion -->
+            <section class="collapsible practical-section">
+                <h2>
+                    Conclusion : rédaction du rapport
+                    <span class="toggle-icon">+</span>
+                </h2>
+
                 <div class="content">
-                    <p>Documentez les résultats de l'analyse et proposez des recommandations spécifiques pour améliorer
-                        le site. Estimez l'impact de ces améliorations sur les performances du site et sur son empreinte
-                        écologique.</p>
+                    <p>
+                        Documentez les résultats de votre analyse et proposez des recommandations précises
+                        pour améliorer l’utilisation des polices sur le site.
+                        Estimez l’impact de ces optimisations sur les performances générales
+                        et sur l’empreinte écologique.
+                    </p>
                 </div>
             </section>
+
         </section>
-        <div class="button-container ">
-            <button class="button-secondary" onclick="window.open('../en-pratique.html')">Découvrir les autres
-                sujets</button>
-        </div>
     </div>
+
     <footer>
-        <p class="mg-0">&copy; 2024 - ROCHAT Lise & COURDIER Remy - <a href="../a-propos.html">A propos</a> </p>
+        <p class="mg-0">
+            &copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion -
+            <a href="../a-propos.html">À propos</a>
+        </p>
     </footer>
+
     <script>
         document.querySelectorAll('.collapsible h2').forEach(h2 => {
             h2.addEventListener('click', () => {
+                const section = h2.closest('.collapsible');
                 const content = h2.nextElementSibling;
                 const icon = h2.querySelector('.toggle-icon');
-                content.style.display = content.style.display === 'none' ? 'block' : 'none';
-                icon.textContent = icon.textContent === '+' ? '−' : '+';
-            });
-        });
+                const isOpen = content.style.display === 'block';
 
-        // Initialize all sections as collapsed
-        document.querySelectorAll('.collapsible .content').forEach(content => {
-            content.style.display = 'none';
+                content.style.display = isOpen ? 'none' : 'block';
+                icon.textContent = isOpen ? '+' : '−';
+                section.classList.toggle('is-open', !isOpen);
+            });
         });
     </script>
 </body>
+
 </html>

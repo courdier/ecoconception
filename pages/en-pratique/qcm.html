@@ -1,55 +1,95 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Introduction à SonarQube et Eco Code">
-    <meta name="keywords" content="SonarQube, Eco Code, TP, écoconception, développement durable">
+    <meta name="description"
+        content="Évaluez vos connaissances en écoconception web avant de commencer les ateliers pratiques.">
+    <meta name="keywords"
+        content="QCM, écoconception web, informatique responsable, quiz, ateliers">
     <meta name="author" content="Rémy Courdier, Rochat Lise">
     <meta http-equiv="cache-control" content="max-age=31536000, must-revalidate">
     <meta http-equiv="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
-    <title>QCM - Introduction à SonarQube et Eco Code</title>
+
+    <title>QCM - Connaissances en écoconception web</title>
+
     <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/styles/styles.css">
+
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script defer src="../../assets/scripts/scriptsTp.js"></script>
     <script defer src="../../assets/scripts/hamburger.js"></script>
 </head>
+
 <body>
     <header>
-                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+        <a href="../en-pratique.html" class="back-link">
+            <span class="back-arrow">🠔</span>
+            <span class="back-text">Retour</span>
+        </a>
+
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
-<nav id="navbar">
+
+        <nav id="navbar">
             <ul>
-                <li><a href="../../index.html">Home</a></li>
-                <li><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../../index.html">Home</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html">Chiffres</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="../en-pratique.html" class="active">Ateliers</a></li>
                 <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../langages.html">Langages</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
                 <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
             </ul>
         </nav>
     </header>
-    <div class="main">
-        <h1>Quels sont vos connaissances dans le domaines de l'éco-concption web ?</h1>
-        <section id="quiz">
+
+    <div class="main qcm-main">
+
+        <!-- En-tête -->
+        <section class="qcm-hero">
+            <h1>Évaluez vos connaissances en écoconception web</h1>
+        </section>
+
+        <!-- QCM -->
+        <section id="quiz" class="quiz-panel qcm-panel">
             <div id="quiz-container">
-                <div id="progress-bar"></div>
-                <div id="question-container">
+
+                <div class="quiz-progress-header">
+                    <p id="quiz-progress-text">Question 1</p>
+                </div>
+
+                <div class="quiz-progress-track" aria-hidden="true">
+                    <div id="progress-bar"></div>
+                </div>
+
+                <div id="question-container"></div>
+
+                <div class="button-container quiz-actions qcm-actions">
+                    <button id="next-btn" class="button">
+                        Suivant
+                    </button>
                 </div>
 
             </div>
-            <div id="buttons">
-                <button id="next-btn" class="button">Suivant</button>
-            </div>
         </section>
+
     </div>
+
     <footer>
-        <p class="mg-0">&copy; 2024 - COURDIER Remy & ROCHAT Lise - <a href="../a-propos.html">A propos</a> </p>
+        <p class="mg-0">
+            &copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion -
+            <a href="../a-propos.html">À propos</a>
+        </p>
     </footer>
 </body>
+
 </html>

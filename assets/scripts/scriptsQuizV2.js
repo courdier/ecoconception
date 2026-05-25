@@ -239,6 +239,7 @@
         const startQuizButton = document.querySelector('.start-quiz-button');
         const welcomeContainer = document.querySelector('.welcome-container');
         const quizContainer = document.querySelector('.quiz-container');
+        const quizCard = document.querySelector('.card_');
         
         // Met à jour la question actuelle
         function updateQuestion() {
@@ -343,6 +344,7 @@
 
             document.querySelector('.quiz-container').style.display = 'none';
             document.querySelector('.results').classList.add('visible');
+            quizCard.classList.remove('question-mode');
 
             // Met à jour les valeurs d'impact
             document.getElementById('co2-impact').textContent = co2Impact.toFixed(1);
@@ -363,14 +365,13 @@
 
         // Fonction pour démarrer le quiz
         function startQuiz() {
-            // Masquer l'accueil et afficher le quiz
             welcomeContainer.style.display = 'none';
             quizContainer.style.display = 'block';
 
-            // Charger la première question
+            quizCard.classList.add('question-mode');
+
             updateQuestion();
         }
-
 
         // Redémarre le quiz
         function restartQuiz() {
@@ -378,6 +379,7 @@
             userAnswers = {};
             quizContainer.style.display = 'block';
             document.querySelector('.results').classList.remove('visible');
+            quizCard.classList.add('question-mode');
             updateQuestion();
         }
 
