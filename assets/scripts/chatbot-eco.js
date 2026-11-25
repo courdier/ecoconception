@@ -390,16 +390,12 @@
         panneau.hidden = true;
         panneau.setAttribute('role', 'dialog');
         panneau.setAttribute('aria-labelledby', 'chatbot-titre');
-        panneau.setAttribute('aria-describedby', 'chatbot-description');
 
         var entete = el('div', 'chatbot__entete');
         var titres = el('div', 'chatbot__titres');
         var titre = el('h2', 'chatbot__titre', 'Assistant du site');
         titre.id = 'chatbot-titre';
-        var description = el('p', 'chatbot__description', 'IA frugale : tout se passe dans votre navigateur');
-        description.id = 'chatbot-description';
         titres.appendChild(titre);
-        titres.appendChild(description);
 
         var recommencer = el('button', 'chatbot__icone');
         recommencer.type = 'button';
@@ -508,6 +504,12 @@
                 fermerPanneau();
             }
         });
+
+        // Clic (ou toucher) hors de l'assistant : le panneau se réduit.
+        // « pointerdown » et non « click » : le clic qui ouvre le panneau ne doit pas le refermer aussitôt.
+        document.addEventListener('pointerdown', function (e) {
+            if (!panneau.hidden && !panneau.contains(e.target)) fermerPanneau(false);
+        }, true);
 
         document.body.appendChild(panneau);
         lanceur.setAttribute('aria-controls', 'chatbot');
@@ -735,11 +737,12 @@
         (invitation.hidden ? champ : decouvrir).focus();
     }
 
-    function fermerPanneau() {
+    // rendreFocus : false après un clic hors du panneau, pour laisser le focus là où l'on a cliqué
+    function fermerPanneau(rendreFocus) {
         panneau.hidden = true;
         lanceur.hidden = false;
         lanceur.setAttribute('aria-expanded', 'false');
-        lanceur.focus();
+        if (rendreFocus !== false) lanceur.focus();
     }
 
     // Échec du téléchargement : un bouton relance le chargement sans recharger la page
