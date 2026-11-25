@@ -331,3 +331,8 @@
         padding: 18px 16px;
     }
 }
+
+/* Lien vers le simulateur, sous « À retenir » */
+.chiffres-main .chiffres-cta {
+    margin-top: 16px;
+}
