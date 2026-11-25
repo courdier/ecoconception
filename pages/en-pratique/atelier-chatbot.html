@@ -79,9 +79,12 @@
             font-size: 0.95em;
         }
 
+        /* Les longues commandes passent à la ligne au lieu d'élargir la page sur mobile */
         .labo pre {
             margin: 10px 0 0;
             background-color: #1c1c1e;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
         }
 
         .labo pre code {
@@ -818,8 +821,9 @@
                 display: none;
             }
 
+            /* minmax(0, …) : la colonne peut devenir plus étroite qu'une longue commande */
             .missions {
-                grid-template-columns: 1fr;
+                grid-template-columns: minmax(0, 1fr);
             }
 
             .etapes-cascade {
@@ -1209,7 +1213,7 @@
                 </li>
                 <li>
                     <b>Installez le site.</b>
-                    <pre><code>git clone https://github.com/courdier/ecoconception.git
+                    <pre><code>git clone https://github.com/<wbr>courdier/<wbr>ecoconception.git
 cd ecoconception
 python -m http.server 8000</code></pre>
                 </li>
