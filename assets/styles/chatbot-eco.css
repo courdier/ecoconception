@@ -52,7 +52,7 @@
 /* En-tête */
 .chatbot__entete {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 2px;
     padding: 12px 8px 12px 16px;
     border-bottom: 1px solid var(--chatbot-separation);
@@ -70,12 +70,6 @@
     border: 0;
     font-size: 1rem;
     line-height: 1.4;
-}
-
-.chatbot .chatbot__description {
-    margin-top: 2px;
-    font-size: 0.8rem;
-    color: var(--chatbot-texte-2);
 }
 
 .chatbot__icone {

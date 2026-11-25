@@ -384,16 +384,12 @@
         panneau.hidden = true;
         panneau.setAttribute('role', 'dialog');
         panneau.setAttribute('aria-labelledby', 'chatbot-titre');
-        panneau.setAttribute('aria-describedby', 'chatbot-description');
 
         var entete = el('div', 'chatbot__entete');
         var titres = el('div', 'chatbot__titres');
         var titre = el('h2', 'chatbot__titre', 'Assistant du site');
         titre.id = 'chatbot-titre';
-        var description = el('p', 'chatbot__description', 'IA frugale : tout se passe dans votre navigateur');
-        description.id = 'chatbot-description';
         titres.appendChild(titre);
-        titres.appendChild(description);
 
         var recommencer = el('button', 'chatbot__icone');
         recommencer.type = 'button';
