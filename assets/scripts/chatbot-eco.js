@@ -462,6 +462,12 @@
             }
         });
 
+        // Clic (ou toucher) hors de l'assistant : le panneau se réduit.
+        // « pointerdown » et non « click » : le clic qui ouvre le panneau ne doit pas le refermer aussitôt.
+        document.addEventListener('pointerdown', function (e) {
+            if (!panneau.hidden && !panneau.contains(e.target)) fermerPanneau(false);
+        }, true);
+
         document.body.appendChild(panneau);
         lanceur.setAttribute('aria-controls', 'chatbot');
     }
@@ -688,11 +694,12 @@
         champ.focus();
     }
 
-    function fermerPanneau() {
+    // rendreFocus : false après un clic hors du panneau, pour laisser le focus là où l'on a cliqué
+    function fermerPanneau(rendreFocus) {
         panneau.hidden = true;
         lanceur.hidden = false;
         lanceur.setAttribute('aria-expanded', 'false');
-        lanceur.focus();
+        if (rendreFocus !== false) lanceur.focus();
     }
 
     // Échec du téléchargement : un bouton relance le chargement sans recharger la page
