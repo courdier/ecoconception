@@ -608,13 +608,11 @@
             border-radius: 3px;
         }
 
-        /* Règles */
+        /* Règles : une seule colonne, une seule carte ouverte à la fois (attribut name des details) */
         .regles {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 12px;
             padding: 0;
-            align-items: start;
             list-style: none;
             counter-reset: regle;
         }
@@ -820,7 +818,6 @@
                 display: none;
             }
 
-            .regles,
             .missions {
                 grid-template-columns: 1fr;
             }
@@ -1088,43 +1085,43 @@
             <p class="chapeau">Ouvrez une carte : pourquoi la règle aide l’environnement, et comment ce chatbot l’applique.</p>
 
             <ol class="regles">
-                <li><details><summary>Se demander d’abord si l’IA est utile</summary><div class="contenu">
+                <li><details name="regles"><summary>Se demander d’abord si l’IA est utile</summary><div class="contenu">
                     <p><b>Pourquoi :</b> le calcul le plus sobre est celui qu’on ne fait pas. C’est le point de départ du référentiel AFNOR pour l’IA frugale.</p>
                     <p>Ici : les boutons de suggestion répondent sans aucun calcul.</p>
                 </div></details></li>
-                <li><details><summary>Choisir le plus petit modèle qui suffit</summary><div class="contenu">
+                <li><details name="regles"><summary>Choisir le plus petit modèle qui suffit</summary><div class="contenu">
                     <p><b>Pourquoi :</b> classer un texte demande environ 20 fois moins d’énergie que générer une réponse.</p>
                     <p>Ici : une régression logistique, l’un des modèles les plus simples. Les paires de mots, testées, le rendaient 3 fois plus lourd sans gain : retirées.</p>
                 </div></details></li>
-                <li><details><summary>Rédiger une fois, servir mille fois</summary><div class="contenu">
+                <li><details name="regles"><summary>Rédiger une fois, servir mille fois</summary><div class="contenu">
                     <p><b>Pourquoi :</b> une réponse générée coûte à chaque question ; une réponse rédigée, quelques centaines d’octets. Et elle ne peut rien inventer.</p>
                     <p>Ici : 75 réponses écrites à partir des pages du site, avec leurs liens.</p>
                 </div></details></li>
-                <li><details><summary>Calculer chez l’utilisateur, si le modèle est minuscule</summary><div class="contenu">
+                <li><details name="regles"><summary>Calculer chez l’utilisateur, si le modèle est minuscule</summary><div class="contenu">
                     <p><b>Pourquoi :</b> pas de serveur ni d’aller-retour réseau. Mais un gros modèle local pousserait à changer d’appareil.</p>
                     <p>Ici : 23 Ko, moins d’1 ms, sans carte graphique, et rien n’est envoyé.</p>
                 </div></details></li>
-                <li><details><summary>Ne rien charger avant la demande</summary><div class="contenu">
+                <li><details name="regles"><summary>Ne rien charger avant la demande</summary><div class="contenu">
                     <p><b>Pourquoi :</b> la plupart des visiteurs n’ouvrent jamais le chatbot.</p>
                     <p>Ici : 0 octet avant le clic, 35 Ko compressés ensuite. Les phrases du site (34 Ko) seulement si le modèle hésite.</p>
                 </div></details></li>
-                <li><details><summary>Guider plutôt que laisser deviner</summary><div class="contenu">
+                <li><details name="regles"><summary>Guider plutôt que laisser deviner</summary><div class="contenu">
                     <p><b>Pourquoi :</b> chaque question mal comprise entraîne une relance, donc du calcul et du temps d’écran.</p>
                     <p>Ici : suggestions adaptées à la page consultée et sujets « Pour aller plus loin ».</p>
                 </div></details></li>
-                <li><details><summary>Avouer quand on n’est pas sûr</summary><div class="contenu">
+                <li><details name="regles"><summary>Avouer quand on n’est pas sûr</summary><div class="contenu">
                     <p><b>Pourquoi :</b> une réponse fausse pousse à chercher ailleurs et fait perdre confiance.</p>
                     <p>Ici : seuil de 75 %, choisi en comptant une erreur comme 3 fois plus grave qu’une question de précision.</p>
                 </div></details></li>
-                <li><details><summary>Garder des échanges courts</summary><div class="contenu">
+                <li><details name="regles"><summary>Garder des échanges courts</summary><div class="contenu">
                     <p><b>Pourquoi :</b> pour un LLM, le coût grandit avec la longueur de la conversation.</p>
                     <p>Ici : 2 à 4 phrases et un lien, aucun historique envoyé, un bouton « Nouvelle conversation ».</p>
                 </div></details></li>
-                <li><details><summary>Compresser le modèle</summary><div class="contenu">
+                <li><details name="regles"><summary>Compresser le modèle</summary><div class="contenu">
                     <p><b>Pourquoi :</b> moins d’octets à stocker, transférer et calculer.</p>
                     <p>Ici : élagage, ré-entraînement et quantification, voir l’étape 6.</p>
                 </div></details></li>
-                <li><details><summary>Mesurer, et le montrer</summary><div class="contenu">
+                <li><details name="regles"><summary>Mesurer, et le montrer</summary><div class="contenu">
                     <p><b>Pourquoi :</b> sans mesure, aucune preuve de sobriété.</p>
                     <p>Ici : tests sur des questions jamais vues, et « Pourquoi cette réponse ? » sous chaque réponse.</p>
                 </div></details></li>
