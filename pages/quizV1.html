@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Découvrez l'impact de vos habitudes numériques et estimez votre empreinte carbone grâce à ce quiz.">
+        content="Explorez vos habitudes numériques et choisissez des actions concrètes grâce à ce quiz.">
     <meta name="keywords"
         content="écoconception, numérique, empreinte carbone, quiz, environnement">
     <meta name="author" content="Rémy Courdier, Rochat Lise">
@@ -21,7 +21,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles/styles.css">
 
+    <link rel="stylesheet" href="../assets/styles/quiz.css">
     <script defer src="../assets/scripts/scriptsQuizV1.js"></script>
+    <script defer src="../assets/scripts/quiz.js"></script>
     <script defer src="../assets/scripts/hamburger.js"></script>
 </head>
 
@@ -53,7 +55,7 @@
         </nav>
     </header>
 
-    <div class="main quiz-v1-main">
+    <main class="main quiz-v1-main">
 
         <!-- En-tête du quiz -->
         <section class="quiz-v1-hero">
@@ -61,38 +63,71 @@
         </section>
 
         <!-- Zone principale du quiz -->
-        <section id="quiz" class="quiz-panel">
-            <div id="quiz-container">
-
-                <div class="quiz-progress-header">
-                    <p id="quiz-progress-text">Question 1 sur 11</p>
-                </div>
-
+        <section id="quiz" class="quiz-panel" data-quiz>
+            <div id="quiz-container" data-questions-view hidden>
+                <p id="quiz-progress-text" data-progress-text></p>
                 <div class="quiz-progress-track" aria-hidden="true">
-                    <div id="progress-bar"></div>
+                    <div id="progress-bar" data-progress-bar></div>
                 </div>
-
-                <div id="question-container"></div>
-
+                <div id="question-container">
+                    <h2 class="question-title" id="question-title" tabindex="-1"></h2>
+                    <div class="answers-list" role="radiogroup" aria-labelledby="question-title" data-options></div>
+                </div>
+                <div class="quiz-feedback quiz-info-box" data-feedback hidden tabindex="-1" role="group" aria-labelledby="validated-answer">
+                    <p><strong id="validated-answer" data-answer></strong></p>
+                    <p data-info></p>
+                    <p><strong>Une action à essayer</strong></p>
+                    <p data-recommendation></p>
+                    <p class="quiz-source">
+                        Source du conseil — <a data-source-link target="_blank" rel="noopener noreferrer"></a>
+                        <span data-source-date></span>
+                    </p>
+                    <p class="quiz-source" data-glossary hidden>
+                        Dans le glossaire — <a></a>
+                    </p>
+                </div>
                 <div class="button-container quiz-actions">
-                    <button id="validate-btn" class="button">Valider</button>
-                    <button id="next-btn" class="button" style="display:none;">Suivant</button>
+                    <button type="button" class="button" data-previous hidden>Précédente</button>
+                    <button type="button" class="button" data-validate>Valider</button>
+                    <button type="button" class="button" data-next hidden>Question suivante</button>
                 </div>
-
-                <div id="info" class="quiz-feedback quiz-info-box" style="display:none;">
-                    <div id="info-text"></div>
-                </div>
-
-                <div id="extra-info" class="quiz-feedback quiz-comparison-box" style="display:none;">
-                    <div id="extra-info-text"></div>
-                </div>
-
-                <p id="source-text" class="quiz-source"></p>
-
+                <p data-answer-message role="status"></p>
             </div>
+
+            <section class="quiz-summary" data-results hidden>
+                <h2 id="results-title" tabindex="-1">Votre bilan</h2>
+                <p>Choisissez les actions que vous souhaitez essayer.</p>
+                <details class="quiz-calculations">
+                    <summary>Voir le résultat carbone historique</summary>
+                    <p>Barème historique à vérifier. Les références des conseils documentent les gestes proposés.</p>
+                    <h3 data-legacy-title></h3>
+                    <p data-legacy-total></p>
+                    <p data-legacy-coverage></p>
+                    <ul data-legacy-comparisons></ul>
+                    <ul data-legacy-blockers></ul>
+                </details>
+                <p id="actions-count" aria-live="polite"></p>
+                <ul id="recommendations-list"></ul>
+                <button type="button" class="button" id="show-plan-button">Voir mon plan d’action</button>
+                <p id="action-plan-message" role="status"></p>
+                <section id="action-plan" hidden>
+                    <h3 id="action-plan-title" tabindex="-1">Mon plan d’action</h3>
+                    <ol id="action-plan-list" class="action-plan-items"></ol>
+                    <button type="button" class="button" id="print-plan-button">Imprimer ou enregistrer en PDF</button>
+                </section>
+                <div class="button-container quiz-actions">
+                    <button type="button" class="button" data-review>Revoir les réponses</button>
+                    <button type="button" class="button" data-restart>Recommencer le quiz</button>
+                </div>
+                <div class="button-container quiz-results-actions">
+                    <a href="./quizV2.html" class="button">Encore un quiz</a>
+                    <a href="./quelques-chiffres.html" class="button">Quelques chiffres</a>
+                    <a href="./en-pratique.html" class="button-secondary">En pratique</a>
+                </div>
+            </section>
         </section>
 
-    </div>
+    </main>
 
     <footer>
         <p class="mg-0">

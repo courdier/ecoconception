@@ -1,389 +1,755 @@
-
-        const questions = [
+const questions = [
+    {
+        id: "streaming",
+        question: "Combien d’heures de vidéo en streaming regardez-vous par jour ?",
+        icon: "📺",
+        source: {
+            label: "ADEME — Modérer le streaming vidéo",
+            url: "https://agirpourlatransition.ademe.fr/particuliers/agir-bureau/teletravailler/bons-gestes-teletravail#:~:text=Mod%C3%A9rer%20le%20streaming%20vid%C3%A9o",
+            consultedAt: "24/11/2026"
+        },
+        options: [
             {
-                id: 'streaming',
-                question: "Combien d'heures passez-vous à regarder des vidéos en streaming par jour ?",
-                icon: '📺',
-                options: [
-                    { value: 1, label: "Moins d'1h", impact: 10 , info: "Un film HD émet environ 1 kg de CO2.", recommendation: "Limitez votre consommation de streaming." },
-                    { value: 2, label: "1-3h", impact: 30 , info: "Le streaming est très énergivore.", recommendation: "Réduisez votre temps de streaming à moins de 2h par jour." },
-                    { value: 3, label: "3-5h", impact: 50 , info: "Le streaming représente 34% de l'empreinte numérique.", recommendation: "Essayez de réduire votre temps de streaming." },
-                    { value: 4, label: "Plus de 5h", impact: 80 , info: "Le streaming vidéo est l'activité la plus polluante du numérique.", recommendation: "Réduisez significativement votre temps de streaming." }
-                ]
+                label: "Moins de 1 h",
+                info: "La résolution influence le volume de données transférées. La lecture automatique peut lancer des vidéos supplémentaires.",
+                recommendation: "Si vous regardez une vidéo, essayez une résolution inférieure qui reste lisible."
             },
             {
-                id: 'email_storage',
-                question: "Combien d'emails conservez-vous dans votre boîte mail ?",
-                icon: '📧',
-                options: [
-                    { value: 1, label: "Moins de 1000", impact: 5 , info: "Chaque email conservé émet 10g de CO2 par an.", recommendation: "Nettoyez votre boîte mail régulièrement." },
-                    { value: 2, label: "1000-5000", impact: 20 , info: "Les emails inutiles augmentent l'empreinte carbone.", recommendation: "Pensez à archiver ou supprimer les anciens emails." },
-                    { value: 3, label: "5000-10000", impact: 40 , info: "Une boîte mail encombrée équivaut à 100 kg de CO2.", recommendation: "Faites un tri régulier de vos emails." },
-                    { value: 4, label: "Plus de 10000", impact: 60 , info: "Une boîte mail surchargée a un impact important.", recommendation: "Effectuez un grand nettoyage de votre boîte mail." }
-                ]
+                label: "De 1 h à moins de 3 h",
+                info: "La résolution influence le volume de données transférées. La lecture automatique peut lancer des vidéos supplémentaires.",
+                recommendation: "Dans votre plateforme vidéo, désactivez la lecture automatique des vidéos ou de l’épisode suivant."
             },
             {
-                id: 'cloud_storage',
-                question: "Combien de fichiers stockez-vous sur des services de cloud (Google Drive, Dropbox, etc.) ?",
-                icon: '☁️',
-                options: [
-                    { value: 1, label: "Moins de 100 fichiers", impact: 5 , info: "Chaque fichier stocké consomme de l'énergie pour les serveurs.", recommendation: "Supprimez les fichiers inutiles." },
-                    { value: 2, label: "100-500 fichiers", impact: 20 , info: "Le cloud a un impact énergétique important.", recommendation: "Limitez le stockage en ligne." },
-                    { value: 3, label: "500-1000 fichiers", impact: 50 , info: "Un grand nombre de fichiers augmente votre empreinte carbone.", recommendation: "Stockez localement si possible." },
-                    { value: 4, label: "Plus de 1000 fichiers", impact: 100 , info: "Le stockage massif dans le cloud consomme beaucoup d'énergie.", recommendation: "Réduisez les fichiers non essentiels." }
-                ]
+                label: "De 3 h à 5 h",
+                info: "La résolution influence le volume de données transférées. La lecture automatique peut lancer des vidéos supplémentaires.",
+                recommendation: "Si vous lancez une vidéo uniquement pour écouter de la musique, essayez sa version audio."
             },
             {
-                id: 'gaming',
-                question: "Combien d'heures par semaine passez-vous à jouer à des jeux vidéo ?",
-                icon: '🎮',
-                options: [
-                    { value: 1, label: "Moins de 5h", impact: 20 , info: "Les consoles consomment beaucoup d'énergie.", recommendation: "Continuez à limiter vos sessions de jeu." },
-                    { value: 2, label: "5-10h", impact: 50 , info: "Un temps de jeu modéré est plus respectueux de l'environnement.", recommendation: "Réduisez légèrement votre temps de jeu." },
-                    { value: 3, label: "10-20h", impact: 100 , info: "Les longues sessions augmentent l'empreinte carbone.", recommendation: "Essayez de réduire vos sessions de jeu." },
-                    { value: 4, label: "Plus de 20h", impact: 150 , info: "Les jeux vidéo sont très énergivores.", recommendation: "Réduisez significativement votre temps de jeu." }
-                ]
+                label: "Plus de 5 h",
+                info: "La résolution influence le volume de données transférées. La lecture automatique peut lancer des vidéos supplémentaires.",
+                recommendation: "Choisissez les vidéos à regarder avant votre session et coupez l’enchaînement automatique."
+            },
+        ]
+    },
+    {
+        id: "email_storage",
+        question: "Combien d’e-mails conservez-vous dans votre boîte mail ?",
+        icon: "📧",
+        source: {
+            label: "ADEME — Faire le ménage dans sa boîte mail",
+            url: "https://agirpourlatransition.ademe.fr/particuliers/agir-bureau/teletravailler/bons-gestes-teletravail#:~:text=Faire%20le%20m%C3%A9nage%20dans%20sa%20bo%C3%AEte%20mail",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "De 0 à 999",
+                info: "Le nombre de messages ne renseigne pas sur la taille de leurs pièces jointes.",
+                recommendation: "Si vous recevez une newsletter fiable que vous ne lisez jamais, désabonnez-vous."
             },
             {
-                id: 'dark_mode',
-                question: "Utilisez-vous régulièrement le mode sombre sur vos appareils ?",
-                icon: '🌑',
-                options: [
-                    { value: 1, label: "Toujours", impact: -5 , info: "Le mode sombre réduit la consommation énergétique sur les écrans OLED.", recommendation: "Continuez à utiliser le mode sombre." },
-                    { value: 2, label: "Parfois", impact: 0, info: "Une utilisation occasionnelle est utile, mais peut être optimisée.", recommendation: "Activez plus souvent le mode sombre." },
-                    { value: 3, label: "Rarement", impact: 10 , info: "Ne pas utiliser le mode sombre consomme plus d'énergie.", recommendation: "Essayez le mode sombre pour réduire votre impact." },
-                    { value: 4, label: "Jamais", impact: 20 , info: "Les écrans lumineux consomment davantage d'énergie.", recommendation: "Utilisez le mode sombre pour économiser l'énergie." }
-                ]
+                label: "De 1 000 à 4 999",
+                info: "Le nombre de messages ne renseigne pas sur la taille de leurs pièces jointes.",
+                recommendation: "Recherchez les messages d’un expéditeur connu et supprimez ceux devenus inutiles après vérification."
             },
             {
-                id: 'updates',
-                question: "À quelle fréquence mettez-vous à jour vos logiciels et applications ?",
-                icon: '🔄',
-                options: [
-                    { value: 1, label: "Dès qu'une mise à jour est disponible", impact: 5 , info: "Des mises à jour fréquentes consomment de la bande passante et de l'énergie.", recommendation: "Évitez les mises à jour non essentielles si possible." },
-                    { value: 2, label: "Une fois par mois", impact: 3 , info: "Des mises à jour régulières mais modérées réduisent l'impact.", recommendation: "Conservez cette bonne habitude." },
-                    { value: 3, label: "Moins souvent", impact: 2 , info: "Moins de mises à jour peuvent réduire votre impact mais poser des problèmes de sécurité.", recommendation: "Équilibrez entre sécurité et <a href='./terminologie.html#impact_environnemental'>impact environnemental</a>." }
-                ]
+                label: "De 5 000 à 10 000",
+                info: "Le nombre de messages ne renseigne pas sur la taille de leurs pièces jointes.",
+                recommendation: "Utilisez le filtre des messages volumineux et vérifiez les pièces jointes avant de supprimer les messages inutiles."
             },
             {
-                id: 'data_downloads',
-                question: "Combien de données téléchargez-vous par mois (jeux, films, etc.) ?",
-                icon: '⬇️',
-                options: [
-                    { value: 1, label: "Moins de 10 Go", impact: 10 , info: "Chaque Go téléchargé émet environ 5g de CO2.", recommendation: "Continuez à limiter vos téléchargements." },
-                    { value: 2, label: "10-50 Go", impact: 50 , info: "Les téléchargements fréquents augmentent votre impact.", recommendation: "Réduisez le téléchargement de fichiers volumineux." },
-                    { value: 3, label: "50-100 Go", impact: 100 , info: "Une grande quantité de données téléchargées alourdit votre empreinte.", recommendation: "Limitez les téléchargements inutiles." },
-                    { value: 4, label: "Plus de 100 Go", impact: 200 , info: "Les téléchargements massifs consomment beaucoup de bande passante et d'énergie.", recommendation: "Réduisez vos téléchargements pour l'environnement." }
-                ]
+                label: "Plus de 10 000",
+                info: "Le nombre de messages ne renseigne pas sur la taille de leurs pièces jointes.",
+                recommendation: "Triez une catégorie à la fois, par exemple les anciennes newsletters, et gardez les justificatifs dont vous avez besoin."
             },
             {
-                id: 'device_usage',
-                question: "Combien de temps passez-vous sur votre smartphone chaque jour ?",
-                icon: '📱',
-                options: [
-                    { value: 1, label: "Moins d'une heure", impact: 10, info: "Un usage limité réduit l'impact énergétique.", recommendation: "Continuez à modérer votre usage." },
-                    { value: 2, label: "1-3 heures", impact: 30, info: "Une utilisation modérée consomme plus d'énergie.", recommendation: "Réduisez légèrement votre usage." },
-                    { value: 3, label: "3-5 heures", impact: 50, info: "Les longues sessions sur smartphone augmentent l'empreinte carbone.", recommendation: "Essayez de diminuer votre temps d'écran." },
-                    { value: 4, label: "Plus de 5 heures", impact: 80, info: "Une utilisation excessive consomme beaucoup d'énergie.", recommendation: "Réduisez votre temps d'écran quotidien." }
-                ]
+                label: "Je ne sais pas",
+                info: "Le nombre de messages ne renseigne pas sur la taille de leurs pièces jointes.",
+                recommendation: "Consultez le compteur de votre boîte ou l’espace occupé avant de choisir une catégorie à trier."
+            },
+        ]
+    },
+    {
+        id: "cloud_storage",
+        question: "Combien de fichiers stockez-vous dans le cloud ?",
+        icon: "☁️",
+        source: {
+            label: "ADEME — Faire le ménage dans le Cloud",
+            url: "https://agirpourlatransition.ademe.fr/particuliers/agir-bureau/teletravailler/bons-gestes-teletravail#:~:text=Faire%20le%20m%C3%A9nage%20dans%20le%20Cloud",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "De 0 à 99",
+                info: "Le nombre de fichiers ne dit pas quel volume ils occupent. Avant un tri, distinguez les doublons inutiles des sauvegardes.",
+                recommendation: "Si vous stockez des fichiers, repérez les doublons et conservez les copies nécessaires à vos sauvegardes."
             },
             {
-                id: 'video_calls',
-                question: "Combien d'heures de visioconférence réalisez-vous par semaine ?",
-                icon: '💻',
-                options: [
-                    { value: 1, label: "Moins d'une heure", impact: 10, info: "Les appels vidéo consomment environ 1 kg de CO2 par heure.", recommendation: "Utilisez les appels audio si possible." },
-                    { value: 2, label: "1-5 heures", impact: 30, info: "Les appels vidéo réguliers augmentent l'empreinte numérique.", recommendation: "Essayez de réduire le nombre d'appels vidéo." },
-                    { value: 3, label: "5-10 heures", impact: 60, info: "Les longues visioconférences consomment beaucoup d'énergie.", recommendation: "Préférez les réunions physiques lorsque c'est possible." },
-                    { value: 4, label: "Plus de 10 heures", impact: 100, info: "Un usage excessif des visioconférences a un impact élevé.", recommendation: "Réduisez vos heures de visioconférence." }
-                ]
+                label: "De 100 à 499",
+                info: "Le nombre de fichiers ne dit pas quel volume ils occupent. Avant un tri, distinguez les doublons inutiles des sauvegardes.",
+                recommendation: "Triez les fichiers par taille et examinez les fichiers les plus volumineux avant toute suppression."
             },
             {
-                id: 'browser_tabs',
-                question: "Combien d'onglets de navigateur laissez-vous ouverts en moyenne ?",
-                icon: '🌐',
-                options: [
-                    { value: 1, label: "1-5", impact: 5, info: "Moins d'onglets consomment moins de ressources.", recommendation: "Continuez à limiter les onglets ouverts." },
-                    { value: 2, label: "5-10", impact: 15, info: "Un nombre modéré d'onglets augmente l'utilisation des ressources.", recommendation: "Essayez de réduire le nombre d'onglets." },
-                    { value: 3, label: "10-20", impact: 30, info: "Beaucoup d'onglets augmentent l'empreinte énergétique.", recommendation: "Fermez les onglets inutiles régulièrement." },
-                    { value: 4, label: "Plus de 20", impact: 50, info: "Les onglets ouverts consomment des ressources système importantes.", recommendation: "Réduisez drastiquement les onglets ouverts." }
-                ]
+                label: "De 500 à 1 000",
+                info: "Le nombre de fichiers ne dit pas quel volume ils occupent. Avant un tri, distinguez les doublons inutiles des sauvegardes.",
+                recommendation: "Commencez par un dossier et vérifiez si sa suppression se répercuterait sur les autres appareils synchronisés."
             },
             {
-                id: 'wifi_on',
-                question: "Laissez-vous votre Wi-Fi activé lorsque vous ne l'utilisez pas ?",
-                icon: '📶',
-                options: [
-                    { value: 1, label: "Jamais", impact: 0, info: "Désactiver le Wi-Fi réduit l'énergie consommée en veille.", recommendation: "Continuez à éteindre le Wi-Fi inutilisé." },
-                    { value: 2, label: "Parfois", impact: 10, info: "Un Wi-Fi actif en permanence consomme de l'énergie.", recommendation: "Pensez à désactiver le Wi-Fi la nuit." },
-                    { value: 3, label: "Souvent", impact: 20, info: "Un Wi-Fi allumé tout le temps augmente l'empreinte énergétique.", recommendation: "Réduisez la consommation en désactivant le Wi-Fi." },
-                    { value: 4, label: "Toujours", impact: 30, info: "Un Wi-Fi constamment actif consomme inutilement de l'énergie.", recommendation: "Éteignez le Wi-Fi lorsque vous ne l'utilisez pas." }
-                ]
+                label: "Plus de 1 000",
+                info: "Le nombre de fichiers ne dit pas quel volume ils occupent. Avant un tri, distinguez les doublons inutiles des sauvegardes.",
+                recommendation: "Consultez les volumes par dossier et faites un premier tri là où vous voyez des fichiers devenus inutiles."
             },
             {
-                id: 'device_replacement',
-                question: "À quelle fréquence remplacez-vous vos appareils électroniques (smartphone, ordinateur, etc.) ?",
-                icon: '🔄',
-                options: [
-                    { value: 1, label: "Tous les 5 ans ou plus", impact: 10, info: "Prolonger la durée de vie réduit l'impact de fabrication.", recommendation: "Continuez à conserver vos appareils longtemps." },
-                    { value: 2, label: "Tous les 3-5 ans", impact: 30, info: "Des remplacements modérés limitent l'empreinte écologique.", recommendation: "Essayez d'allonger encore leur durée de vie." },
-                    { value: 3, label: "Tous les 2-3 ans", impact: 50, info: "Changer souvent augmente l'impact environnemental.", recommendation: "Conservez vos appareils plus longtemps." },
-                    { value: 4, label: "Tous les 1-2 ans", impact: 80, info: "Des remplacements fréquents alourdissent l'empreinte carbone.", recommendation: "Réduisez la fréquence de remplacement." }
-                ]
+                label: "Je ne sais pas",
+                info: "Le nombre de fichiers ne dit pas quel volume ils occupent. Avant un tri, distinguez les doublons inutiles des sauvegardes.",
+                recommendation: "Utilisez le gestionnaire d’espace du service pour repérer un dossier à examiner."
+            },
+        ]
+    },
+    {
+        id: "gaming",
+        question: "Combien d’heures par semaine jouez-vous à des jeux vidéo ?",
+        icon: "🎮",
+        source: {
+            label: "ADEME — Jeux sur console, jeux sur ordinateur ou via le Cloud",
+            url: "https://agirpourlatransition.ademe.fr/particuliers/mieux-consommer/numerique/impacts-lecture-musique-films-jeux-ligne?backtosearch=true#:~:text=Jeux%20sur%20console%2C%20jeux%20sur%20ordinateur%20ou%20via%20le%20Cloud",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "Moins de 5 h",
+                info: "La durée ne renseigne ni sur l’équipement ni sur le mode de jeu. La taille d’un jeu et le temps passé sur ce titre comptent dans la comparaison entre téléchargement et jeu à distance.",
+                recommendation: "Si vous jouez occasionnellement, essayez d’abord un titre déjà installé sur un appareil que vous possédez."
             },
             {
-                id: 'file_backup',
-                question: "Combien de fois sauvegardez-vous vos données (photos, vidéos, etc.) par mois ?",
-                icon: '💾',
-                options: [
-                    { value: 1, label: "Moins de 1 fois", impact: 5, info: "Une fréquence de sauvegarde modérée est optimale.", recommendation: "Continuez à sauvegarder raisonnablement." },
-                    { value: 2, label: "1-3 fois", impact: 20, info: "Des sauvegardes fréquentes consomment plus d'énergie.", recommendation: "Évitez les sauvegardes non nécessaires." },
-                    { value: 3, label: "4-10 fois", impact: 50, info: "Les sauvegardes intensives consomment des ressources.", recommendation: "Réduisez la fréquence si possible." },
-                    { value: 4, label: "Plus de 10 fois", impact: 100, info: "Un excès de sauvegardes alourdit l'empreinte carbone.", recommendation: "Limitez vos sauvegardes." }
-                ]
+                label: "De 5 h à moins de 10 h",
+                info: "La durée ne renseigne ni sur l’équipement ni sur le mode de jeu. La taille d’un jeu et le temps passé sur ce titre comptent dans la comparaison entre téléchargement et jeu à distance.",
+                recommendation: "Si vous envisagez un jeu en format physique, recherchez une copie d’occasion adaptée à votre équipement."
             },
             {
-                id: 'online_shopping',
-                question: "Combien d'achats en ligne réalisez-vous chaque mois ?",
-                icon: '🛒',
-                options: [
-                    { value: 1, label: "Moins de 5", impact: 10, info: "Chaque achat nécessite un transport énergivore.", recommendation: "Continuez à limiter vos achats en ligne." },
-                    { value: 2, label: "5-10", impact: 30, info: "Des achats fréquents augmentent les émissions de CO2.", recommendation: "Essayez de regrouper vos commandes." },
-                    { value: 3, label: "10-20", impact: 60, info: "Les commandes multiples augmentent l'empreinte carbone.", recommendation: "Limitez vos achats." },
-                    { value: 4, label: "Plus de 20", impact: 100, info: "Les achats intensifs en ligne ont un impact élevé.", recommendation: "Réduisez significativement vos commandes." }
-                ]
+                label: "De 10 h à 20 h",
+                info: "La durée ne renseigne ni sur l’équipement ni sur le mode de jeu. La taille d’un jeu et le temps passé sur ce titre comptent dans la comparaison entre téléchargement et jeu à distance.",
+                recommendation: "Si vous rejouez souvent au même titre en cloud gaming et qu’il fonctionne déjà sur votre appareil, comparez avec une installation locale."
             },
             {
-                id: 'vpn_usage',
-                question: "Utilisez-vous un VPN pour naviguer sur Internet ?",
-                icon: '🔒',
-                options: [
-                    { value: 1, label: "Jamais", impact: 0, info: "Ne pas utiliser de VPN réduit la consommation énergétique.", recommendation: "Activez un VPN uniquement si nécessaire." },
-                    { value: 2, label: "Parfois", impact: 10, info: "Les VPN augmentent légèrement la consommation de bande passante.", recommendation: "Utilisez un VPN lorsque c'est indispensable." },
-                    { value: 3, label: "Souvent", impact: 30, info: "Une utilisation fréquente du VPN consomme davantage de ressources.", recommendation: "Réduisez l'usage du VPN lorsque ce n'est pas nécessaire." },
-                    { value: 4, label: "Toujours", impact: 50, info: "Un VPN actif en permanence consomme beaucoup d'énergie.", recommendation: "Désactivez le VPN quand il n'est pas indispensable." }
-                ]
+                label: "Plus de 20 h",
+                info: "La durée ne renseigne ni sur l’équipement ni sur le mode de jeu. La taille d’un jeu et le temps passé sur ce titre comptent dans la comparaison entre téléchargement et jeu à distance.",
+                recommendation: "Avant d’acheter du matériel pour jouer, vérifiez si l’équipement existant peut faire tourner vos titres habituels."
+            },
+        ]
+    },
+    {
+        id: "dark_mode",
+        question: "À quelle fréquence utilisez-vous le mode sombre ?",
+        icon: "🌑",
+        source: {
+            label: "Purdue University — Étude sur le mode sombre",
+            url: "https://engineering.purdue.edu/ECE/News/2022/shedding-light-on-dark-mode-to-save-energy#:~:text=Shedding%20light%20on%20dark%20mode%20to%20save%20energy",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "Jamais",
+                info: "Sur OLED, les pixels sombres peuvent consommer moins selon la luminosité. Sur un LCD rétroéclairé, changer le thème ne donne pas le même effet.",
+                recommendation: "Si le thème clair vous convient, gardez-le et adaptez la luminosité à votre confort."
             },
             {
-                id: 'search_engine',
-                question: "Combien de recherches en ligne effectuez-vous par jour ?",
-                icon: '🔍',
-                options: [
-                    { value: 1, label: "Moins de 10", impact: 5, info: "Chaque recherche génère environ 0,2 g de CO2.", recommendation: "Utilisez des moteurs de recherche écoresponsables." },
-                    { value: 2, label: "10-30", impact: 15, info: "Un usage modéré augmente légèrement l'empreinte numérique.", recommendation: "Limitez les recherches répétitives." },
-                    { value: 3, label: "30-50", impact: 30, info: "De nombreuses recherches consomment plus de ressources.", recommendation: "Réduisez les recherches non essentielles." },
-                    { value: 4, label: "Plus de 50", impact: 50, info: "Un usage excessif des moteurs de recherche alourdit l'empreinte carbone.", recommendation: "Favorisez des recherches optimisées." }
-                ]
+                label: "Rarement",
+                info: "Sur OLED, les pixels sombres peuvent consommer moins selon la luminosité. Sur un LCD rétroéclairé, changer le thème ne donne pas le même effet.",
+                recommendation: "Vérifiez dans la fiche de l’appareil s’il est équipé d’une dalle OLED ou AMOLED avant de compter sur ce réglage."
             },
             {
-                id: 'e-waste_disposal',
-                question: "Que faites-vous de vos appareils électroniques usagés ?",
-                icon: '♻️',
-                options: [
-                    { value: 1, label: "Recyclés ou donnés", impact: 0, info: "Le recyclage permet de réduire l'empreinte écologique.", recommendation: "Continuez à recycler vos appareils." },
-                    { value: 2, label: "Stockés à la maison", impact: 20, info: "Les appareils inutilisés continuent d'impacter l'environnement.", recommendation: "Recyclez ou donnez les appareils inutiles." },
-                    { value: 3, label: "Jetés à la poubelle", impact: 50, info: "Jeter des appareils électroniques pollue énormément.", recommendation: "Recyclez toujours vos appareils usagés." },
-                    { value: 4, label: "Je ne sais pas", impact: 30, info: "Ne pas gérer correctement les déchets électroniques a un impact élevé.", recommendation: "Informez-vous sur les points de recyclage." }
-                ]
+                label: "Parfois",
+                info: "Sur OLED, les pixels sombres peuvent consommer moins selon la luminosité. Sur un LCD rétroéclairé, changer le thème ne donne pas le même effet.",
+                recommendation: "Si vous avez un écran OLED, essayez le thème sombre dans une application et gardez-le si le texte reste confortable à lire."
             },
             {
-                id: 'ad_blockers',
-                question: "Utilisez-vous un bloqueur de publicités dans votre navigateur ?",
-                icon: '🚫',
-                options: [
-                    { value: 1, label: "Toujours", impact: -5, info: "Les bloqueurs réduisent le téléchargement de contenus inutiles.", recommendation: "Continuez à utiliser un bloqueur de publicités." },
-                    { value: 2, label: "Parfois", impact: 10, info: "Bloquer certaines publicités réduit l'empreinte numérique.", recommendation: "Essayez d'activer un bloqueur plus souvent." },
-                    { value: 3, label: "Rarement", impact: 20, info: "Un usage limité ne limite pas suffisamment les requêtes inutiles.", recommendation: "Installez un bloqueur pour réduire l'impact." },
-                    { value: 4, label: "Jamais", impact: 30, info: "Les publicités consomment beaucoup de bande passante.", recommendation: "Utilisez un bloqueur de publicités pour limiter l'impact." }
-                ]
+                label: "Toujours",
+                info: "Sur OLED, les pixels sombres peuvent consommer moins selon la luminosité. Sur un LCD rétroéclairé, changer le thème ne donne pas le même effet.",
+                recommendation: "Si vous augmentez la luminosité pour lire en mode sombre, comparez les deux thèmes et privilégiez la lisibilité."
+            },
+        ]
+    },
+    {
+        id: "updates",
+        glossary: "impact_environnemental",
+        question: "Quand installez-vous les mises à jour de sécurité ?",
+        icon: "🔄",
+        source: {
+            label: "ANSSI — Règles de sécurité numérique",
+            url: "https://cyber.gouv.fr/securisation/10-regles-or-securite-numerique/#:~:text=Activez%20l%E2%80%99option%20de%20t%C3%A9l%C3%A9chargement%20et%20d%E2%80%99installation%20automatique%20des%20mises%20%C3%A0%20jour",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "Dès qu’elles sont proposées, automatiquement ou manuellement",
+                info: "Les correctifs de sécurité corrigent des failles. Attendre pour limiter les téléchargements peut laisser l’appareil exposé.",
+                recommendation: "Vérifiez que le système et les applications installent bien les correctifs et redémarrez si le système le demande."
             },
             {
-                id: 'smart_home',
-                question: "Utilisez-vous des appareils connectés dans votre maison (ampoules, thermostats, etc.) ?",
-                icon: '🏠',
-                options: [
-                    { value: 1, label: "Pas du tout", impact: 0, info: "Ne pas utiliser d'appareils connectés réduit la consommation énergétique.", recommendation: "Continuez à limiter l'usage des appareils connectés." },
-                    { value: 2, label: "Quelques-uns", impact: 15, info: "Les appareils connectés consomment de l'énergie même en veille.", recommendation: "Désactivez les appareils inutilisés." },
-                    { value: 3, label: "Plusieurs", impact: 30, info: "Un grand nombre d'appareils connectés augmente l'empreinte énergétique.", recommendation: "Limitez le nombre d'appareils connectés utilisés." },
-                    { value: 4, label: "Beaucoup", impact: 50, info: "Les maisons connectées peuvent consommer beaucoup d'énergie.", recommendation: "Débranchez les appareils inutilisés ou utilisez des prises intelligentes." }
-                ]
+                label: "À un contrôle mensuel",
+                info: "Les correctifs de sécurité corrigent des failles. Attendre pour limiter les téléchargements peut laisser l’appareil exposé.",
+                recommendation: "Activez les correctifs automatiques si votre appareil le permet, sans attendre votre contrôle mensuel."
             },
             {
-                id: 'auto_backup',
-                question: "Activez-vous la sauvegarde automatique sur vos appareils (photos, vidéos, etc.) ?",
-                icon: '📂',
-                options: [
-                    { value: 1, label: "Non", impact: 0, info: "Ne pas activer la sauvegarde automatique réduit l'usage des serveurs.", recommendation: "Continuez à sauvegarder manuellement." },
-                    { value: 2, label: "Oui, sur un seul appareil", impact: 10, info: "Une sauvegarde modérée limite l'impact.", recommendation: "Assurez-vous de n'activer la sauvegarde que sur l'essentiel." },
-                    { value: 3, label: "Oui, sur plusieurs appareils", impact: 30, info: "Des sauvegardes automatiques multiples augmentent la consommation.", recommendation: "Désactivez la sauvegarde sur les appareils secondaires." },
-                    { value: 4, label: "Oui, sur tous les appareils", impact: 50, info: "Des sauvegardes fréquentes sur tous les appareils consomment beaucoup d'énergie.", recommendation: "Réduisez le nombre d'appareils sauvegardant automatiquement." }
-                ]
+                label: "Moins souvent ou jamais",
+                info: "Les correctifs de sécurité corrigent des failles. Attendre pour limiter les téléchargements peut laisser l’appareil exposé.",
+                recommendation: "Ouvrez les réglages système et installez les correctifs proposés. Pour un appareil géré, suivez les consignes du service informatique."
             },
             {
-                id: 'music_streaming',
-                question: "Streamez-vous régulièrement de la musique ?",
-                icon: '🎶',
-                options: [
-                    { value: 1, label: "Pas du tout, je télécharge toutes mes playlists.", impact: 0, info: "Télécharger ses musiques préférée, c'est réduire son impact de 3%.", recommendation: "Continuez à télécharger les morceaux que vous écoutez régulièrement." },
-                    { value: 2, label: "De temps en temps sur les trajets", impact: 10, info: "Télécharger ses musiques préférée, c'est réduire son impact de 3%.", recommendation: "Si vous écoutez les mêmes morceaux en boucles, vous devriez les télécharger." },
-                    { value: 3, label: "Oui, régulièrement.", impact: 20, info: "En moyenne, chaque utilisateur laisse derrière lui 276 grammes de CO2 chaque année.", recommendation: "Si possible, envisagez de télécharger les morceaux que vous écoutez régulièrement." },
-                    { value: 4, label: "Oui, je streame Spotify en permanence !", impact: 30, info: "L'empreinte carbone du streaming musical est d'environ 1,04 grammes de CO2 par heure d'écoute.", recommendation: "Si vous ne souhaitez pas réduire votre temps d'écoute, envisagez de télécharger les morceaux que vous écoutez régulièrement." }
-                ]
-            }
-        ];
+                label: "Je ne sais pas",
+                info: "Les correctifs de sécurité corrigent des failles. Attendre pour limiter les téléchargements peut laisser l’appareil exposé.",
+                recommendation: "Vérifiez la date du dernier correctif et si votre modèle reçoit encore des mises à jour."
+            },
+        ]
+    },
+    {
+        id: "data_downloads",
+        question: "Quel volume de fichiers téléchargez-vous par mois ?",
+        icon: "📥",
+        source: {
+            label: "ADEME — Modérer les transferts automatiques de données des téléphones portables",
+            url: "https://agirpourlatransition.ademe.fr/particuliers/agir-bureau/teletravailler/bons-gestes-teletravail#:~:text=Mod%C3%A9rer%20les%20transferts%20automatiques%20de%20donn%C3%A9es%20des%20t%C3%A9l%C3%A9phones%20portables",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "Moins de 10 Go",
+                info: "Le volume seul ne permet pas de connaître le réseau utilisé, le contenu ni la nécessité du téléchargement.",
+                recommendation: "Pour un prochain gros téléchargement non urgent sur téléphone, privilégiez un Wi-Fi de confiance si disponible."
+            },
+            {
+                label: "De 10 à moins de 50 Go",
+                info: "Le volume seul ne permet pas de connaître le réseau utilisé, le contenu ni la nécessité du téléchargement.",
+                recommendation: "Vérifiez si une application télécharge automatiquement du contenu que vous ne consultez pas."
+            },
+            {
+                label: "De 50 à 100 Go",
+                info: "Le volume seul ne permet pas de connaître le réseau utilisé, le contenu ni la nécessité du téléchargement.",
+                recommendation: "Si un service propose des téléchargements en données mobiles par défaut, configurez-le sur un Wi-Fi de confiance quand c’est possible."
+            },
+            {
+                label: "Plus de 100 Go",
+                info: "Le volume seul ne permet pas de connaître le réseau utilisé, le contenu ni la nécessité du téléchargement.",
+                recommendation: "Repérez les transferts volumineux que vous pouvez programmer sur un accès fixe, tout en installant rapidement les correctifs de sécurité."
+            },
+            {
+                label: "Je ne sais pas",
+                info: "Le volume seul ne permet pas de connaître le réseau utilisé, le contenu ni la nécessité du téléchargement.",
+                recommendation: "Consultez les statistiques par application de votre appareil. Elles peuvent inclure d’autres échanges que les téléchargements."
+            },
+        ]
+    },
+    {
+        id: "device_usage",
+        question: "Combien de temps utilisez-vous votre smartphone par jour, en ligne ou hors ligne ?",
+        icon: "📱",
+        source: {
+            label: "ADEME — Résister au renouvellement des appareils qui fonctionnent encore",
+            url: "https://agirpourlatransition.ademe.fr/particuliers/mieux-consommer/numerique/bons-conseils-achats-numeriques#:~:text=R%C3%A9sister%20au%20renouvellement%20des%20appareils%20qui%20fonctionnent%20encore",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "Moins de 1 h",
+                info: "La durée d’écran ne suffit pas à estimer une empreinte. Garder un appareil en état de marche évite un remplacement prématuré.",
+                recommendation: "Si le téléphone vous sert peu, gardez-le tant qu’il répond à vos besoins et reste suivi côté sécurité."
+            },
+            {
+                label: "De 1 h à moins de 3 h",
+                info: "La durée d’écran ne suffit pas à estimer une empreinte. Garder un appareil en état de marche évite un remplacement prématuré.",
+                recommendation: "Repérez dans les réglages la date du dernier correctif pour préparer une utilisation durable."
+            },
+            {
+                label: "De 3 h à 5 h",
+                info: "La durée d’écran ne suffit pas à estimer une empreinte. Garder un appareil en état de marche évite un remplacement prématuré.",
+                recommendation: "Si l’autonomie se dégrade, examinez l’état de la batterie avant d’envisager un nouvel appareil."
+            },
+            {
+                label: "Plus de 5 h",
+                info: "La durée d’écran ne suffit pas à estimer une empreinte. Garder un appareil en état de marche évite un remplacement prématuré.",
+                recommendation: "Si un problème gêne votre usage quotidien, demandez un diagnostic de réparation avant de remplacer le téléphone."
+            },
+        ]
+    },
+    {
+        id: "video_calls",
+        question: "Combien d’heures de visioconférence faites-vous par semaine ?",
+        icon: "🎥",
+        source: {
+            label: "ADEME — Limiter le poids des réunions en ligne",
+            url: "https://agirpourlatransition.ademe.fr/particuliers/agir-bureau/teletravailler/bons-gestes-teletravail#:~:text=Limiter%20le%20poids%20des%20r%C3%A9unions%20en%20ligne",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "Moins de 1 h",
+                info: "Désactiver sa caméra réduit les données vidéo envoyées. La vidéo reste utile, notamment pour certains besoins d’accessibilité.",
+                recommendation: "Si votre prochain échange ne nécessite pas d’image, proposez un appel audio."
+            },
+            {
+                label: "De 1 h à moins de 5 h",
+                info: "Désactiver sa caméra réduit les données vidéo envoyées. La vidéo reste utile, notamment pour certains besoins d’accessibilité.",
+                recommendation: "Coupez votre caméra pour une partie de la réunion où elle n’est pas nécessaire, si cela convient à tout le monde."
+            },
+            {
+                label: "De 5 h à 10 h",
+                info: "Désactiver sa caméra réduit les données vidéo envoyées. La vidéo reste utile, notamment pour certains besoins d’accessibilité.",
+                recommendation: "Si vous animez une réunion récurrente, demandez quand la vidéo est utile et convenez de moments en audio."
+            },
+            {
+                label: "Plus de 10 h",
+                info: "Désactiver sa caméra réduit les données vidéo envoyées. La vidéo reste utile, notamment pour certains besoins d’accessibilité.",
+                recommendation: "Passez en revue vos réunions récurrentes et identifiez-en une où l’audio convient aux participants."
+            },
+        ]
+    },
+    {
+        id: "browser_tabs",
+        question: "Combien d’onglets de navigateur gardez-vous généralement ouverts ?",
+        icon: "🗂️",
+        source: {
+            label: "Google Chrome — Réglages de performances",
+            url: "https://support.google.com/chrome/answer/12929150?hl=fr#:~:text=Activer%20ou%20d%C3%A9sactiver%20l%27%C3%A9conomiseur%20de%20m%C3%A9moire",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "Aucun",
+                info: "Le navigateur peut mettre certains onglets en veille. Le nombre affiché ne dit pas combien restent actifs.",
+                recommendation: "Si vous souhaitez retrouver une page lors de votre prochaine navigation, utilisez un favori."
+            },
+            {
+                label: "De 1 à 4",
+                info: "Le navigateur peut mettre certains onglets en veille. Le nombre affiché ne dit pas combien restent actifs.",
+                recommendation: "Si un onglet a fini de servir, fermez-le après avoir enregistré votre travail."
+            },
+            {
+                label: "De 5 à 9",
+                info: "Le navigateur peut mettre certains onglets en veille. Le nombre affiché ne dit pas combien restent actifs.",
+                recommendation: "Mettez en favori une page à retrouver plus tard avant de fermer son onglet."
+            },
+            {
+                label: "De 10 à 20",
+                info: "Le navigateur peut mettre certains onglets en veille. Le nombre affiché ne dit pas combien restent actifs.",
+                recommendation: "Si vous utilisez Chrome sur ordinateur, vérifiez le réglage Économiseur de mémoire dans Performances."
+            },
+            {
+                label: "Plus de 20",
+                info: "Le navigateur peut mettre certains onglets en veille. Le nombre affiché ne dit pas combien restent actifs.",
+                recommendation: "Fermez un groupe d’onglets inutiles et, si votre navigateur le permet, réservez les exceptions à la mise en veille aux sites indispensables."
+            },
+        ]
+    },
+    {
+        id: "wifi_on",
+        question: "Laissez-vous le Wi-Fi de votre box activé pendant les périodes où personne n’en a besoin ?",
+        icon: "📶",
+        source: {
+            label: "Arcep — Consommation des box, désactivation du Wi-Fi",
+            url: "https://www.arcep.fr/fileadmin/user_upload/observatoire/enquete-pns/edition-2026/enquete-annuelle-pour-un-numerique-soutenable_edition2026_mai2026.pdf#page=44",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "Jamais",
+                info: "Une box consomme même sans trafic. Couper le Wi-Fi et éteindre la box sont deux actions différentes.",
+                recommendation: "Vérifiez que vos horaires de coupure laissent disponibles les services essentiels qui dépendent de la box."
+            },
+            {
+                label: "Parfois",
+                info: "Une box consomme même sans trafic. Couper le Wi-Fi et éteindre la box sont deux actions différentes.",
+                recommendation: "Repérez un créneau sans usage et vérifiez si l’interface de la box permet de programmer une coupure du Wi-Fi."
+            },
+            {
+                label: "Souvent",
+                info: "Une box consomme même sans trafic. Couper le Wi-Fi et éteindre la box sont deux actions différentes.",
+                recommendation: "Avant un essai de coupure, vérifiez si une alarme, un appareil de santé ou un autre service dépend du réseau."
+            },
+            {
+                label: "Toujours",
+                info: "Une box consomme même sans trafic. Couper le Wi-Fi et éteindre la box sont deux actions différentes.",
+                recommendation: "Si vous avez des plages sans usage et sans service dépendant du Wi-Fi, essayez une coupure programmée."
+            },
+            {
+                label: "Sans box ou je ne sais pas",
+                info: "Une box consomme même sans trafic. Couper le Wi-Fi et éteindre la box sont deux actions différentes.",
+                recommendation: "Si vous gérez une box, ouvrez ses réglages pour distinguer la fonction Wi-Fi de l’arrêt complet."
+            },
+        ]
+    },
+    {
+        id: "device_replacement",
+        question: "En moyenne, combien de temps gardez-vous un appareil électronique avant de le remplacer ?",
+        icon: "💻",
+        source: {
+            label: "ADEME — Résister au renouvellement des appareils qui fonctionnent encore",
+            url: "https://agirpourlatransition.ademe.fr/particuliers/mieux-consommer/numerique/bons-conseils-achats-numeriques#:~:text=R%C3%A9sister%20au%20renouvellement%20des%20appareils%20qui%20fonctionnent%20encore",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "5 ans ou plus, ou jamais remplacé",
+                info: "La fabrication mobilise des ressources. L’entretien et la réparation peuvent prolonger l’usage d’un appareil encore adapté.",
+                recommendation: "Notez où obtenir les pièces ou le service de réparation des appareils que vous gardez."
+            },
+            {
+                label: "De 3 ans à moins de 5 ans",
+                info: "La fabrication mobilise des ressources. L’entretien et la réparation peuvent prolonger l’usage d’un appareil encore adapté.",
+                recommendation: "Avant un remplacement, faites vérifier si le composant défaillant peut être remplacé."
+            },
+            {
+                label: "De 2 ans à moins de 3 ans",
+                info: "La fabrication mobilise des ressources. L’entretien et la réparation peuvent prolonger l’usage d’un appareil encore adapté.",
+                recommendation: "Si un appareil vous semble lent, faites diagnostiquer le problème avant de le remplacer."
+            },
+            {
+                label: "De 1 an à moins de 2 ans",
+                info: "La fabrication mobilise des ressources. L’entretien et la réparation peuvent prolonger l’usage d’un appareil encore adapté.",
+                recommendation: "Pour le prochain remplacement envisagé, vérifiez d’abord le besoin, la réparabilité et le suivi logiciel."
+            },
+            {
+                label: "Moins de 1 an",
+                info: "La fabrication mobilise des ressources. L’entretien et la réparation peuvent prolonger l’usage d’un appareil encore adapté.",
+                recommendation: "Pour le prochain remplacement envisagé, vérifiez d’abord le besoin, la réparabilité et le suivi logiciel."
+            },
+            {
+                label: "Je ne sais pas",
+                info: "La fabrication mobilise des ressources. L’entretien et la réparation peuvent prolonger l’usage d’un appareil encore adapté.",
+                recommendation: "Repérez la date d’achat d’un appareil pour estimer sa durée d’usage."
+            },
+        ]
+    },
+    {
+        id: "file_backup",
+        question: "À quelle fréquence sauvegardez-vous vos données, manuellement ou automatiquement ?",
+        icon: "💾",
+        source: {
+            label: "Cybermalveillance.gouv.fr — Bien gérer ses sauvegardes",
+            url: "https://www.cybermalveillance.gouv.fr/tous-nos-contenus/bonnes-pratiques/sauvegardes#:~:text=Effectuez%20des%20sauvegardes%20r%C3%A9guli%C3%A8res%20de%20vos%20donn%C3%A9es",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "Jamais ou moins d’une fois par mois",
+                info: "La fréquence dépend des changements et de ce que vous accepteriez de perdre. Une restauration testée permet de vérifier la copie.",
+                recommendation: "Effectuez une première sauvegarde des fichiers irremplaçables puis programmez des copies régulières."
+            },
+            {
+                label: "De 1 à 3 fois par mois",
+                info: "La fréquence dépend des changements et de ce que vous accepteriez de perdre. Une restauration testée permet de vérifier la copie.",
+                recommendation: "Si vous ne pouvez pas vous permettre de perdre les fichiers créés entre deux sauvegardes, rapprochez les copies."
+            },
+            {
+                label: "De 4 à 10 fois par mois",
+                info: "La fréquence dépend des changements et de ce que vous accepteriez de perdre. Une restauration testée permet de vérifier la copie.",
+                recommendation: "Restaurez un fichier d’essai pour vérifier qu’il peut être relu et conservez une copie déconnectée."
+            },
+            {
+                label: "Plus de 10 fois par mois",
+                info: "La fréquence dépend des changements et de ce que vous accepteriez de perdre. Une restauration testée permet de vérifier la copie.",
+                recommendation: "Vérifiez que vos sauvegardes récentes sont utilisables et que vous disposez d’une copie séparée et déconnectée."
+            },
+            {
+                label: "Je ne sais pas",
+                info: "La fréquence dépend des changements et de ce que vous accepteriez de perdre. Une restauration testée permet de vérifier la copie.",
+                recommendation: "Ouvrez votre outil de sauvegarde et vérifiez la date de la dernière copie réussie."
+            },
+        ]
+    },
+    {
+        id: "online_shopping",
+        question: "Combien de commandes de biens physiques passez-vous en ligne par mois ?",
+        icon: "📦",
+        source: {
+            label: "ADEME — Comment utiliser le calculateur",
+            url: "https://agirpourlatransition.ademe.fr/particuliers/evaluer-son-impact/calculer-impact-achats/calculez-impact-livraison-colis#:~:text=Comment%20utiliser%20le%20calculateur",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "De 0 à 4",
+                info: "Le mode de livraison, les déplacements pour retirer un colis et les retours comptent dans l’impact logistique.",
+                recommendation: "Pour votre prochaine commande, vérifiez si un point de retrait se trouve sur un trajet déjà prévu."
+            },
+            {
+                label: "De 5 à 9",
+                info: "Le mode de livraison, les déplacements pour retirer un colis et les retours comptent dans l’impact logistique.",
+                recommendation: "Si plusieurs achats sont prévus chez le même vendeur, vérifiez si une expédition groupée est proposée."
+            },
+            {
+                label: "De 10 à 20",
+                info: "Le mode de livraison, les déplacements pour retirer un colis et les retours comptent dans l’impact logistique.",
+                recommendation: "Quand le délai le permet, comparez l’option standard et les modes de retrait avant de valider."
+            },
+            {
+                label: "Plus de 20",
+                info: "Le mode de livraison, les déplacements pour retirer un colis et les retours comptent dans l’impact logistique.",
+                recommendation: "Identifiez un type de commande qui génère des retours et vérifiez tailles ou compatibilité avant le prochain achat."
+            },
+        ]
+    },
+    {
+        id: "vpn_usage",
+        question: "À quelle fréquence utilisez-vous un réseau privé virtuel (VPN) ?",
+        icon: "🔒",
+        source: {
+            label: "Cybermalveillance.gouv.fr — Sécuriser les accès à distance",
+            url: "https://www.cybermalveillance.gouv.fr/tous-nos-contenus/bonnes-pratiques/securisation-du-teletravail#:~:text=S%C3%A9curisez%20vos%20acc%C3%A8s%20ext%C3%A9rieurs",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "Jamais",
+                info: "Un VPN peut sécuriser un accès distant à une organisation. La fréquence d’utilisation ne suffit pas à évaluer son impact environnemental.",
+                recommendation: "Si votre organisation vous donne un accès distant, vérifiez avec elle si un VPN est requis et lequel utiliser."
+            },
+            {
+                label: "Parfois",
+                info: "Un VPN peut sécuriser un accès distant à une organisation. La fréquence d’utilisation ne suffit pas à évaluer son impact environnemental.",
+                recommendation: "Identifiez les accès pour lesquels le VPN est requis et suivez les consignes de connexion."
+            },
+            {
+                label: "Souvent",
+                info: "Un VPN peut sécuriser un accès distant à une organisation. La fréquence d’utilisation ne suffit pas à évaluer son impact environnemental.",
+                recommendation: "Pour un VPN professionnel, activez l’authentification multifacteur si votre organisation la propose."
+            },
+            {
+                label: "Toujours",
+                info: "Un VPN peut sécuriser un accès distant à une organisation. La fréquence d’utilisation ne suffit pas à évaluer son impact environnemental.",
+                recommendation: "Gardez le VPN actif quand sa configuration ou vos besoins de sécurité l’exigent. Vérifiez les paramètres avec le service chargé de le gérer."
+            },
+            {
+                label: "Je ne sais pas",
+                info: "Un VPN peut sécuriser un accès distant à une organisation. La fréquence d’utilisation ne suffit pas à évaluer son impact environnemental.",
+                recommendation: "Vérifiez les réglages réseau et demandez au service informatique s’il s’agit d’un appareil géré."
+            },
+        ]
+    },
+    {
+        id: "search_engine",
+        question: "Combien de recherches en ligne faites-vous par jour ?",
+        icon: "🔎",
+        source: {
+            label: "ADEME — Mettre les adresses web fréquemment consultées en favoris",
+            url: "https://agirpourlatransition.ademe.fr/particuliers/agir-bureau/teletravailler/bons-gestes-teletravail#:~:text=Mettre%20les%20adresses%20web%20fr%C3%A9quemment%20consult%C3%A9es%20en%20favoris",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "De 0 à 9",
+                info: "Une recherche peut mener à plusieurs pages. Un favori donne directement accès à une page déjà connue.",
+                recommendation: "Ajoutez en favori un site dont vous recherchez souvent le nom."
+            },
+            {
+                label: "De 10 à 29",
+                info: "Une recherche peut mener à plusieurs pages. Un favori donne directement accès à une page déjà connue.",
+                recommendation: "Si vous retrouvez régulièrement les mêmes sites via un moteur, regroupez-les dans un dossier de favoris."
+            },
+            {
+                label: "De 30 à 50",
+                info: "Une recherche peut mener à plusieurs pages. Un favori donne directement accès à une page déjà connue.",
+                recommendation: "Pour une recherche nouvelle, précisez vos mots-clés, par exemple en ajoutant le nom de l’organisme recherché."
+            },
+            {
+                label: "Plus de 50",
+                info: "Une recherche peut mener à plusieurs pages. Un favori donne directement accès à une page déjà connue.",
+                recommendation: "Repérez une recherche répétitive et épinglez la page utile dans vos favoris."
+            },
+        ]
+    },
+    {
+        id: "e-waste_disposal",
+        question: "Que faites-vous le plus souvent de vos appareils électroniques usagés ?",
+        icon: "♻️",
+        source: {
+            label: "ecosystem — Don et recyclage de matériel de téléphonie",
+            url: "https://www.ecosystem.eco/donner-recycler/equipement/telephonie#:~:text=Que%20faire%20de%20mes%20autres%20%C3%A9quipements%20et%20accessoires%20de%20t%C3%A9l%C3%A9phonie",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "Je les donne ou les dépose en collecte",
+                info: "Un appareil réutilisable peut être donné. Un appareil hors d’usage peut être déposé dans une filière dédiée.",
+                recommendation: "Avant de céder un appareil qui contient vos données, sauvegardez-les et faites effacer l’appareil de façon sûre."
+            },
+            {
+                label: "Je les garde chez moi",
+                info: "Un appareil réutilisable peut être donné. Un appareil hors d’usage peut être déposé dans une filière dédiée.",
+                recommendation: "Choisissez un appareil inutilisé, puis recherchez une structure de réemploi s’il fonctionne encore."
+            },
+            {
+                label: "Je les jette avec les ordures ménagères",
+                info: "Un appareil réutilisable peut être donné. Un appareil hors d’usage peut être déposé dans une filière dédiée.",
+                recommendation: "Repérez un point de collecte d’équipements électriques et utilisez-le pour le prochain appareil hors d’usage."
+            },
+            {
+                label: "Je ne sais pas",
+                info: "Un appareil réutilisable peut être donné. Un appareil hors d’usage peut être déposé dans une filière dédiée.",
+                recommendation: "Recherchez un point de collecte ou une association de réemploi près de chez vous."
+            },
+            {
+                label: "Je n’en ai pas encore",
+                info: "Un appareil réutilisable peut être donné. Un appareil hors d’usage peut être déposé dans une filière dédiée.",
+                recommendation: "Recherchez un point de collecte ou une association de réemploi près de chez vous."
+            },
+        ]
+    },
+    {
+        id: "ad_blockers",
+        question: "À quelle fréquence utilisez-vous un bloqueur de publicités dans votre navigateur ?",
+        icon: "🛡️",
+        source: {
+            label: "Mozilla — Protection renforcée contre le pistage dans Firefox",
+            url: "https://support.mozilla.org/fr/kb/protection-renforcee-contre-pistage-firefox-ordinateur?redirectlocale=fr&redirectslug=activer-desactiver-cookies-preferences#:~:text=Ce%20que%20bloque%20la%20protection%20renforc%C3%A9e%20contre%20le%20pistage",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "Jamais",
+                info: "Un bloqueur de publicités et une protection contre le pistage ont des rôles distincts. Certains traqueurs se trouvent dans des publicités.",
+                recommendation: "Vérifiez dans les réglages de confidentialité de votre navigateur les protections déjà actives."
+            },
+            {
+                label: "Rarement",
+                info: "Un bloqueur de publicités et une protection contre le pistage ont des rôles distincts. Certains traqueurs se trouvent dans des publicités.",
+                recommendation: "Si vous utilisez Firefox, ouvrez le bouclier près de l’adresse pour voir les protections actives sur un site."
+            },
+            {
+                label: "Parfois",
+                info: "Un bloqueur de publicités et une protection contre le pistage ont des rôles distincts. Certains traqueurs se trouvent dans des publicités.",
+                recommendation: "Si vous souhaitez limiter le pistage, commencez par les réglages de confidentialité intégrés à votre navigateur."
+            },
+            {
+                label: "Toujours",
+                info: "Un bloqueur de publicités et une protection contre le pistage ont des rôles distincts. Certains traqueurs se trouvent dans des publicités.",
+                recommendation: "Vérifiez que votre navigateur active ses protections de base et consultez ce qu’elles filtrent."
+            },
+        ]
+    },
+    {
+        id: "smart_home",
+        question: "Comment décririez-vous le nombre d’objets connectés que vous utilisez à domicile, par exemple pour l’éclairage ou le chauffage ?",
+        icon: "🏠",
+        source: {
+            label: "ADEME — Les gestes pour les objets connectés",
+            url: "https://www.ademe.fr/wp-content/uploads/2024/12/DP_Numerique-responsable-190122.pdf#page=11",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "Aucun",
+                info: "Certains objets restent alimentés pour répondre à distance. L’utilité d’une veille dépend du service assuré.",
+                recommendation: "Avant d’acheter un objet connecté, vérifiez si une commande simple couvre le besoin."
+            },
+            {
+                label: "Quelques-uns",
+                info: "Certains objets restent alimentés pour répondre à distance. L’utilité d’une veille dépend du service assuré.",
+                recommendation: "Identifiez les fonctions dont vous avez besoin avant de couper l’alimentation d’un objet inutilisé."
+            },
+            {
+                label: "Plusieurs",
+                info: "Certains objets restent alimentés pour répondre à distance. L’utilité d’une veille dépend du service assuré.",
+                recommendation: "Faites l’inventaire des objets rarement utilisés et envisagez de donner ceux dont vous n’avez plus besoin."
+            },
+            {
+                label: "Beaucoup",
+                info: "Certains objets restent alimentés pour répondre à distance. L’utilité d’une veille dépend du service assuré.",
+                recommendation: "Repérez une catégorie d’objets inutilisés. Conservez les fonctions de sécurité et les automatismes nécessaires."
+            },
+        ]
+    },
+    {
+        id: "auto_backup",
+        question: "Sur combien de vos appareils utilisez-vous une sauvegarde automatique ?",
+        icon: "🔁",
+        source: {
+            label: "Cybermalveillance.gouv.fr — Bien gérer ses sauvegardes",
+            url: "https://www.cybermalveillance.gouv.fr/tous-nos-contenus/bonnes-pratiques/sauvegardes#:~:text=Effectuez%20des%20sauvegardes%20r%C3%A9guli%C3%A8res%20de%20vos%20donn%C3%A9es",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "Aucun",
+                info: "Une sauvegarde automatique évite certains oublis. La synchronisation peut répercuter une suppression et ne suffit pas toujours pour restaurer un fichier.",
+                recommendation: "Si vous sauvegardez à la main, programmez un rappel ou configurez une sauvegarde automatique adaptée."
+            },
+            {
+                label: "Un seul",
+                info: "Une sauvegarde automatique évite certains oublis. La synchronisation peut répercuter une suppression et ne suffit pas toujours pour restaurer un fichier.",
+                recommendation: "Vérifiez si vos autres appareils contiennent des données uniques à protéger et testez une restauration."
+            },
+            {
+                label: "Au moins deux, mais pas tous",
+                info: "Une sauvegarde automatique évite certains oublis. La synchronisation peut répercuter une suppression et ne suffit pas toujours pour restaurer un fichier.",
+                recommendation: "Vérifiez que chaque dossier important est couvert et conservez une copie déconnectée pour les données irremplaçables."
+            },
+            {
+                label: "Au moins deux, sur tous",
+                info: "Une sauvegarde automatique évite certains oublis. La synchronisation peut répercuter une suppression et ne suffit pas toujours pour restaurer un fichier.",
+                recommendation: "Testez la restauration d’un fichier et vérifiez que la copie de secours reste accessible même en cas de panne ou de perte d’un compte."
+            },
+            {
+                label: "Je ne sais pas",
+                info: "Une sauvegarde automatique évite certains oublis. La synchronisation peut répercuter une suppression et ne suffit pas toujours pour restaurer un fichier.",
+                recommendation: "Regardez si vos réglages indiquent une sauvegarde ou une synchronisation et vérifiez comment restaurer un fichier."
+            },
+        ]
+    },
+    {
+        id: "music_streaming",
+        question: "À quelle fréquence écoutez-vous de la musique en streaming ?",
+        icon: "🎵",
+        source: {
+            label: "Spotify — Écouter en mode hors connexion",
+            url: "https://support.spotify.com/fr/article/listen-offline/#:~:text=Instructions%20pour%20t%C3%A9l%C3%A9charger%20du%20contenu",
+            consultedAt: "24/11/2026"
+        },
+        options: [
+            {
+                label: "Jamais",
+                info: "Le mode hors connexion dépend du service et parfois de l’abonnement. Il permet de relire un fichier déjà téléchargé.",
+                recommendation: "Si vous écoutez déjà vos fichiers hors ligne, gardez disponibles les morceaux que vous utilisez."
+            },
+            {
+                label: "Moins d’un jour par semaine",
+                info: "Le mode hors connexion dépend du service et parfois de l’abonnement. Il permet de relire un fichier déjà téléchargé.",
+                recommendation: "Si vous réécoutez souvent une même sélection, vérifiez si votre service permet de la garder hors connexion."
+            },
+            {
+                label: "De 1 à 6 jours par semaine",
+                info: "Le mode hors connexion dépend du service et parfois de l’abonnement. Il permet de relire un fichier déjà téléchargé.",
+                recommendation: "Si votre service le permet, téléchargez sur le Wi-Fi une sélection écoutée régulièrement et vérifiez qu’elle se lit hors connexion."
+            },
+            {
+                label: "Tous les jours",
+                info: "Le mode hors connexion dépend du service et parfois de l’abonnement. Il permet de relire un fichier déjà téléchargé.",
+                recommendation: "Choisissez une playlist souvent réécoutée et téléchargez-la si votre abonnement le permet, puis testez sa lecture hors connexion."
+            },
+        ]
+    },
+];
 
-        let currentStep = 0;
-        let userAnswers = {};
-        let selectedOption = null;
-
-        const startQuizButton = document.querySelector('.start-quiz-button');
-        const welcomeContainer = document.querySelector('.welcome-container');
-        const quizContainer = document.querySelector('.quiz-container');
-        const quizCard = document.querySelector('.card_');
-        
-        // Met à jour la question actuelle
-        function updateQuestion() {
-            const question = questions[currentStep];
-            selectedOption = null;
-
-            // Mise à jour du titre, de la barre de progression et du compteur
-            document.querySelector('.question-title').textContent = question.question;
-            document.querySelector('.progress-bar').style.width = `${((currentStep + 1) / questions.length) * 100}%`;
-            document.querySelector('.question-count').textContent = `Question ${currentStep + 1} sur ${questions.length}`;
-
-            // Affichage des options
-            const optionsContainer = document.querySelector('.options');
-            optionsContainer.innerHTML = '';
-
-            question.options.forEach(option => {
-                const button = document.createElement('button');
-                button.className = 'option-button';
-                button.innerHTML = `
-                    <span class="option-icon">${question.icon}</span>
-                    <span>${option.label}</span>
-                `;
-                button.addEventListener('click', () => handleAnswer(option, button));
-                optionsContainer.appendChild(button);
-            });
-
-            // Réinitialisation des informations et des boutons
-            document.querySelector('.info-box').classList.remove('visible');
-            document.querySelector('.validate-button').style.display = 'block';
-            document.querySelector('.next-button').style.display = 'none';
-        }
-
-        // Sélectionne une option
-        function selectOption(option) {
-            selectedOption = option;
-
-            // Réinitialise la sélection visuelle
-            document.querySelectorAll('.option-button').forEach(button => button.classList.remove('selected'));
-
-            // Ajoute la classe `selected` au bouton correspondant
-            const selectedButton = Array.from(document.querySelectorAll('.option-button')).find(btn => {
-                return btn.querySelector('span:last-child').textContent.trim() === option.label;
-            });
-
-            if (selectedButton) {
-                selectedButton.classList.add('selected');
-            } else {
-                console.error("Bouton correspondant introuvable pour l'option :", option);
-            }
-        }
-
-        // Gère la réponse sélectionnée
-        function handleAnswer(option, button) {
-            selectOption(option); // Met à jour `selectedOption`
-            console.log("Option sélectionnée :", option); // Pour débogage
-        }
-
-        // Valide la réponse sélectionnée
-        function validateAnswer() {
-            if (!selectedOption) {
-                alert("Veuillez sélectionner une réponse !");
-                return;
-            }
-
-            // Stocke la réponse
-            userAnswers[questions[currentStep].id] = selectedOption.value;
-
-            // Affiche les informations associées à l'option sélectionnée
-            document.querySelector('.info-text').textContent = `Impact : ${selectedOption.impact} kg CO2`;
-            document.querySelector('.recommendation-text').innerHTML = `Recommandation : ${selectedOption.recommendation}`;
-            document.querySelector('.info-box').classList.add('visible');
-
-            // Met à jour l'affichage des boutons
-            document.querySelector('.validate-button').style.display = 'none';
-            document.querySelector('.next-button').style.display = 'block';
-        }
-
-        // Passe à la question suivante
-        function goToNextQuestion() {
-            currentStep++;
-            if (currentStep >= questions.length) {
-                showResults();
-            } else {
-                updateQuestion();
-            }
-        }
-
-        // Calcule l'impact total
-        function calculateTotalImpact() {
-            return Object.entries(userAnswers).reduce((total, [questionId, answerValue]) => {
-                const question = questions.find(q => q.id === questionId);
-                const option = question.options.find(opt => opt.value === answerValue);
-                return total + option.impact;
-            }, 0);
-        }
-
-        // Affiche les résultats
-        function showResults() {
-            const impact = calculateTotalImpact();
-            const co2Impact = impact * 10; // Conversion en kg CO2
-            const FRENCH_AVERAGE = 9900; // 9.9 tonnes en kg
-
-            document.querySelector('.quiz-container').style.display = 'none';
-            document.querySelector('.results').classList.add('visible');
-            quizCard.classList.remove('question-mode');
-
-            // Met à jour les valeurs d'impact
-            document.getElementById('co2-impact').textContent = co2Impact.toFixed(1);
-            document.getElementById('french-average').textContent = `${((co2Impact / FRENCH_AVERAGE) * 100).toFixed(1)}%`;
-
-            // Affiche les recommandations
-            const recommendationsList = document.getElementById('recommendations-list');
-            recommendationsList.innerHTML = '';
-            
-            Object.entries(userAnswers).forEach(([questionId, answerValue]) => {
-                const question = questions.find(q => q.id === questionId);
-                const option = question.options.find(opt => opt.value === answerValue);
-                const li = document.createElement('li');
-                li.innerHTML = option.recommendation;
-                recommendationsList.appendChild(li);
-            });
-        }
-
-        // Fonction pour démarrer le quiz
-        function startQuiz() {
-            welcomeContainer.style.display = 'none';
-            quizContainer.style.display = 'block';
-
-            quizCard.classList.add('question-mode');
-
-            updateQuestion();
-        }
-
-        // Redémarre le quiz
-        function restartQuiz() {
-            currentStep = 0;
-            userAnswers = {};
-            quizContainer.style.display = 'block';
-            document.querySelector('.results').classList.remove('visible');
-            quizCard.classList.add('question-mode');
-            updateQuestion();
-        }
-
-        // Gestionnaires de boutons
-        startQuizButton.addEventListener('click', startQuiz);
-        document.querySelector('.validate-button').addEventListener('click', validateAnswer);
-        document.querySelector('.next-button').addEventListener('click', goToNextQuestion);
+// Barème historique conservé pour examen. Voir QUIZ-CARBONE.md.
+const legacyCarbon = {
+    "streaming": [10, 30, 50, 80],
+    "email_storage": [5, 20, 40, 60, null],
+    "cloud_storage": [5, 20, 50, 100, null],
+    "gaming": [20, 50, 100, 150],
+    "dark_mode": [20, 10, 0, -5],
+    "updates": [5, 3, 2, null],
+    "data_downloads": [10, 50, 100, 200, null],
+    "device_usage": [10, 30, 50, 80],
+    "video_calls": [10, 30, 60, 100],
+    "browser_tabs": [null, 5, 15, 30, 50],
+    "wifi_on": [0, 10, 20, 30, null],
+    "device_replacement": [10, 30, 50, 80, null, null],
+    "file_backup": [5, 20, 50, 100, null],
+    "online_shopping": [10, 30, 60, 100],
+    "vpn_usage": [0, 10, 30, 50, null],
+    "search_engine": [5, 15, 30, 50],
+    "e-waste_disposal": [0, 20, 50, 30, null],
+    "ad_blockers": [30, 20, 10, -5],
+    "smart_home": [0, 15, 30, 50],
+    "auto_backup": [0, 10, 30, 50, null],
+    "music_streaming": [0, 10, 20, 30],
+};

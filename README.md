@@ -54,6 +54,15 @@ Les contributions sont les bienvenues pour améliorer ce projet et enrichir son 
 4. Poussez vos modifications sur GitHub (`git push origin feature/NouvelleFonctionnalite`).
 5. Ouvrez une pull request pour soumettre vos changements.
 
+### Amélioration des quiz — Aya MEZIANI
+
+- Les quiz 1 et 2 proposent des conseils adaptés aux réponses, avec des sources et leurs dates de consultation.
+- La navigation permet de revenir aux questions précédentes, de retrouver les réponses validées et de les modifier.
+- Le bilan permet de sélectionner des conseils pour créer un plan d’action imprimable ou enregistrable en PDF.
+- Le résultat carbone historique peut être partiel lorsque certaines réponses sont sans coefficient. Sa méthode et ses limites sont détaillées dans [QUIZ-CARBONE.md](./QUIZ-CARBONE.md).
+
+[Pull request n° 49](https://github.com/courdier/ecoconception/pull/49)
+
 ## Licence
 
 Ce projet est sous licence MIT. Consultez le fichier [LICENSE](LICENSE) pour plus de détails.

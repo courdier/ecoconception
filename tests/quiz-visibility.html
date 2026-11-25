@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8">
+<title>Vérification de la visibilité des quiz</title>
+<pre id="result" role="status">Tests en cours…</pre>
+<iframe title="Quiz en cours de vérification" width="390" height="700"></iframe>
+<script>
+    const frame = document.querySelector('iframe');
+    const output = document.querySelector('#result');
+
+    function loadQuiz(version) {
+        return new Promise(resolve => {
+            frame.addEventListener('load', () => resolve(frame.contentDocument), { once: true });
+            frame.src = `../pages/quizV${version}.html`;
+        });
+    }
+
+    async function verifyQuiz(version, questionCount) {
+        const doc = await loadQuiz(version);
+        const get = selector => doc.querySelector(selector);
+        const click = selector => get(selector).click();
+
+        function visible(selector, expected, stage) {
+            const element = get(selector);
+            // A child of a display:none ancestor has no layout rectangle.
+            const rendered = element && element.getClientRects().length > 0
+                && frame.contentWindow.getComputedStyle(element).visibility === 'visible';
+            if (Boolean(rendered) !== expected) {
+                throw new Error(`Quiz ${version}, ${stage} : ${selector} doit être ${expected ? 'visible' : 'masqué'}.`);
+            }
+        }
+
+        function views(stage, welcome, questions, results) {
+            visible('[data-welcome]', welcome, stage);
+            visible('[data-questions-view]', questions, stage);
+            visible('[data-results]', results, stage);
+            visible('#results-title', results, stage);
+            visible('.quiz-calculations summary', results, stage);
+            visible('#show-plan-button', results, stage);
+            visible('[data-review]', results, stage);
+            visible('[data-restart]', results, stage);
+        }
+
+        views('chargement initial', version === 2, version === 1, false);
+        visible('[data-start]', version === 2, 'chargement initial');
+        if (version === 2) click('[data-start]');
+
+        const glossaryByQuestion = version === 1
+            ? { 5: 'impact_environnemental', 9: 'empreinte_carbone', 10: 'impact_environnemental' }
+            : { 5: 'impact_environnemental' };
+        for (let index = 0; index < questionCount; index++) {
+            const stage = `question ${index + 1}`;
+            views(stage, false, true, false);
+            visible('#question-title', true, stage);
+            visible('input[type="radio"]', true, stage);
+            visible('[data-feedback]', false, stage);
+            visible('[data-validate]', true, stage);
+            visible('[data-previous]', index > 0, stage);
+            visible('[data-next]', false, stage);
+            // Exercise one valid answer without a historical coefficient per quiz.
+            const radios = doc.querySelectorAll('input[type="radio"]');
+            const unknownQuestion = version === 1 ? 2 : 1;
+            radios[index === unknownQuestion ? radios.length - 1 : 1].click();
+            click('[data-validate]');
+
+            views(`${stage} validée`, false, true, false);
+            visible('[data-feedback]', true, stage);
+            const term = glossaryByQuestion[index];
+            visible('[data-glossary]', Boolean(term), stage);
+            if (term && get('[data-glossary] a').getAttribute('href') !== `./terminologie.html#${term}`) {
+                throw new Error(`Quiz ${version}, ${stage} : lien vers le glossaire incorrect.`);
+            }
+            visible('[data-validate]', false, stage);
+            visible('[data-next]', true, stage);
+            if (get('[data-feedback] details')) {
+                throw new Error(`Quiz ${version}, ${stage} : volet carbone dans le retour.`);
+            }
+            if (index === 1) {
+                click('[data-previous]');
+                views('retour à une réponse validée', false, true, false);
+                visible('[data-feedback]', true, 'retour à une réponse validée');
+                click('[data-next]');
+            }
+            click('[data-next]');
+        }
+
+        views('bilan', false, false, true);
+        visible('[data-feedback]', false, 'bilan');
+        visible('[data-legacy-total]', false, 'volet carbone fermé');
+        click('.quiz-calculations summary');
+        visible('[data-legacy-total]', true, 'volet carbone ouvert');
+        const partialAmount = version === 1 ? 386.25 : 4180;
+        const fullAmount = version === 1 ? 422.75 : 4380;
+        const amount = value => value.toLocaleString('fr-FR', {
+            minimumFractionDigits: version === 1 ? 2 : 1,
+            maximumFractionDigits: version === 1 ? 2 : 1
+        });
+        if (get('[data-legacy-title]').textContent !== 'Résultat carbone partiel' ||
+            !get('[data-legacy-total]').textContent.startsWith(amount(partialAmount)) ||
+            !get('[data-legacy-coverage]').textContent.includes(`Calculé sur ${questionCount - 1} réponses sur ${questionCount}`) ||
+            !get('[data-legacy-coverage]').textContent.includes('exclues du calcul')) {
+            throw new Error(`Quiz ${version} : résultat partiel, couverture ou montant incorrect.`);
+        }
+        visible('[data-legacy-blockers] button', true, 'coefficient inconnu');
+        if (!get('[data-legacy-blockers]').textContent.includes('Réponse validée') ||
+            get('[data-legacy-blockers]').textContent.includes('Aucune réponse validée')) {
+            throw new Error(`Quiz ${version} : la réponse valide sans coefficient doit être identifiée.`);
+        }
+        click('[data-legacy-blockers] button');
+        views('correction carbone', false, true, false);
+        if (get('[data-next]').textContent !== 'Retour au bilan' || !get('input[type="radio"]:checked')) {
+            throw new Error(`Quiz ${version} : retour direct ou réponse restaurée manquants.`);
+        }
+        doc.querySelectorAll('input[type="radio"]')[1].click();
+        visible('[data-next]', false, 'correction à valider');
+        click('[data-validate]');
+        click('[data-next]');
+        views('bilan recalculé', false, false, true);
+        visible('[data-legacy-total]', true, 'volet carbone rouvert');
+        if (get('[data-legacy-title]').textContent !== 'Résultat carbone historique complet' ||
+            !get('[data-legacy-total]').textContent.startsWith(amount(fullAmount)) ||
+            !get('[data-legacy-coverage]').textContent.includes(`Calculé sur ${questionCount} réponses sur ${questionCount}`) ||
+            get('[data-legacy-blockers] li')) {
+            throw new Error(`Quiz ${version} : le total doit être recalculé après correction.`);
+        }
+        visible(version === 2 ? '[data-legacy-values] li' : '[data-legacy-comparisons] li', true, 'calcul disponible');
+
+        visible('#print-plan-button', false, 'plan vide');
+        click('#recommendations-list input');
+        click('#show-plan-button');
+        visible('#print-plan-button', true, 'plan rempli');
+
+        click('[data-review]');
+        views('relecture', false, true, false);
+        visible('[data-feedback]', true, 'relecture');
+        visible('[data-next]', true, 'relecture');
+        visible('#print-plan-button', false, 'relecture');
+
+        click('[data-next]');
+        views('retour au bilan', false, false, true);
+        visible('#print-plan-button', false, 'retour au bilan');
+        click('[data-restart]');
+        views('redémarrage', version === 2, version === 1, false);
+        if (version === 2) click('[data-start]');
+        views('première question après redémarrage', false, true, false);
+        visible('input[type="radio"]:checked', false, 'redémarrage');
+        visible('[data-feedback]', false, 'redémarrage');
+        visible('[data-validate]', true, 'redémarrage');
+        visible('[data-next]', false, 'redémarrage');
+        if (get('#recommendations-list input:checked') || get('#action-plan-list').children.length ||
+            get('#actions-count').textContent !== 'Aucune action sélectionnée.' ||
+            get('[data-progress-text]').textContent !== `Question 1 sur ${questionCount}`) {
+            throw new Error(`Quiz ${version} : réinitialisation incomplète.`);
+        }
+
+        // Exercise the empty defensive state by bypassing the usual validation gate.
+        for (let index = 0; index < questionCount; index++) click('[data-next]');
+        click('.quiz-calculations summary');
+        const unanswered = doc.querySelectorAll('[data-legacy-blockers] button');
+        if (get('[data-legacy-title]').textContent !== 'Estimation carbone indisponible' ||
+            !get('[data-legacy-total]').textContent.includes('Aucune réponse') ||
+            unanswered.length !== questionCount ||
+            !get('[data-legacy-blockers]').textContent.includes('Aucune réponse validée') ||
+            unanswered[0].textContent !== 'Répondre à la question') {
+            throw new Error(`Quiz ${version} : estimation indisponible ou questions sans réponse mal identifiées.`);
+        }
+
+        const zeroQuestion = version === 1 ? 5 : 4;
+        const zeroOption = version === 1 ? 0 : 2;
+        unanswered[zeroQuestion].click();
+        visible('[data-validate]', true, 'question sans réponse');
+        visible('[data-next]', false, 'question sans réponse');
+        doc.querySelectorAll('input[type="radio"]')[zeroOption].click();
+        click('[data-validate]');
+        click('[data-next]');
+        if (get('[data-legacy-title]').textContent !== 'Résultat carbone partiel' ||
+            !get('[data-legacy-total]').textContent.startsWith(amount(0) + ' kg de CO₂e') ||
+            !get('[data-legacy-coverage]').textContent.includes(`Calculé sur 1 réponse sur ${questionCount}`) ||
+            doc.querySelectorAll('[data-legacy-blockers] button').length !== questionCount - 1) {
+            throw new Error(`Quiz ${version} : un coefficient nul doit compter comme une réponse calculable.`);
+        }
+    }
+
+    (async () => {
+        try {
+            await verifyQuiz(1, 11);
+            await verifyQuiz(2, 21);
+            output.textContent = 'OK — visibilité, redémarrage et résultats carbone vérifiés sur les deux quiz.';
+            output.dataset.status = 'passed';
+        } catch (error) {
+            output.textContent = error.message;
+            output.dataset.status = 'failed';
+        }
+    })();
+</script>
+</html>
