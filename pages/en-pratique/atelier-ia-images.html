@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Atelier interactif : comprendre l'impact de la résolution, du nombre d'étapes et du modèle sur les ressources nécessaires à la génération d'images par IA.">
+    <meta name="keywords"
+        content="écoconception, IA générative, génération d'images, diffusion, GPU, sobriété numérique, atelier">
+    <meta name="author" content="Rémy Courdier, Étudiants M2 Informatique 2026-2027">
+
+    <title>Atelier - Génération d'images par IA et écoconception</title>
+
+    <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/styles/styles.css">
+    <link rel="stylesheet" href="../../assets/styles/atelierIaImages.css">
+
+    <script defer src="../../assets/scripts/hamburger.js"></script>
+    <!-- Données (modifiables sans toucher à l'interface), puis interface -->
+    <script defer src="../../assets/scripts/atelierIaImagesData.js"></script>
+    <script defer src="../../assets/scripts/atelierIaImages.js"></script>
+</head>
+
+<body>
+    <header>
+        <a href="../en-pratique.html" class="back-link">
+            <span class="back-arrow">🠔</span>
+            <span class="back-text">Retour</span>
+        </a>
+
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav id="navbar">
+            <ul>
+                <li class="mg-0"><a href="../../index.html">Home</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html">Chiffres</a></li>
+                <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../langages.html">Langages</a></li>
+                <li class="mg-0"><a href="../en-pratique.html" class="active">Ateliers</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../debat.html">Débat</a></li>
+                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main tp-main ia-main ia-steps">
+
+        <!-- 1. PRÉSENTATION -->
+        <section class="tp-header" aria-labelledby="ia-title">
+            <h1 id="ia-title">Générer une image par IA : à quel coût ?</h1>
+
+            <div class="tp-summary" aria-label="Informations principales de l'atelier">
+                <div class="tp-summary-item">⏱ ≈ 30 min</div>
+                <span class="tp-summary-separator" aria-hidden="true">•</span>
+                <div class="tp-summary-item">Niveau : débutant</div>
+                <span class="tp-summary-separator" aria-hidden="true">•</span>
+                <div class="tp-summary-item">Interactif, sans prérequis</div>
+            </div>
+        </section>
+
+        <section class="intro-card" aria-label="Présentation de l'atelier">
+            <p class="ia-lead">
+                Une image générée par intelligence artificielle apparaît en quelques secondes, mais elle
+                résulte de <strong>milliards d'opérations de calcul</strong> réalisées par une carte graphique (GPU)
+                qui consomme de l'électricité. Dans cet atelier, vous allez découvrir comment fonctionne cette
+                génération, puis comparer <strong>trois configurations</strong> pour comprendre quels paramètres
+                influencent les ressources nécessaires, et à quel prix pour la qualité de l'image.
+            </p>
+
+            <h2 class="sr-only">Comment lire les données de cet atelier</h2>
+            <p class="ia-lead">
+                <strong>Transparence :</strong> les trois images comparées et leurs mesures proviennent de
+                <strong>vraies générations</strong>, réalisées en amont sur une carte graphique (votre navigateur n'en
+                lance aucune). Le schéma du débruitage est une illustration. Chaque valeur est accompagnée de son statut :
+            </p>
+            <ul class="ia-legend">
+                <li><span class="ia-badge ia-badge--mesure">Mesuré</span> obtenu lors d'une expérience</li>
+                <li><span class="ia-badge ia-badge--estime">Estimation théorique</span> calculé à partir d'une hypothèse</li>
+                <li><span class="ia-badge ia-badge--simule">Valeur simulée</span> fictive, pour illustrer</li>
+                <li><span class="ia-badge ia-badge--non-mesure">Donnée non mesurée</span> indisponible</li>
+            </ul>
+        </section>
+
+        <!-- 2. COMPRENDRE LA GÉNÉRATION -->
+        <section aria-labelledby="ia-s2">
+            <h2 id="ia-s2">Comprendre la génération d'images</h2>
+
+            <div class="ia-diffusion">
+                <div>
+                    <p class="ia-lead">
+                        La plupart des générateurs d'images actuels reposent sur des <strong>modèles de diffusion</strong>.
+                        Leur idée est surprenante : au lieu de dessiner l'image trait par trait, ils partent d'un
+                        <strong>bruit aléatoire</strong> et le « nettoient » progressivement.
+                    </p>
+                    <ol>
+                        <li>On part d'une image composée uniquement de bruit, comme la neige d'un vieux téléviseur.</li>
+                        <li>À chaque <strong>étape</strong>, le modèle estime quelle part de l'image est du bruit, guidé par la
+                            description demandée (le <em>prompt</em>), et en retire une partie.</li>
+                        <li>Les grandes formes apparaissent d'abord, puis les détails fins.</li>
+                        <li>Après le nombre d'étapes prévu, l'image est terminée.</li>
+                    </ol>
+                    <p>
+                        Chaque étape correspond à un passage complet de l'image dans un réseau de neurones comptant
+                        plusieurs centaines de millions, voire plusieurs milliards, de paramètres. Pour alléger ce travail,
+                        de nombreux modèles opèrent sur une version compressée de l'image (on parle d'« espace latent »),
+                        mais le principe reste le même.
+                    </p>
+                </div>
+
+                <figure class="ia-denoise">
+                    <img id="ia-denoise-img" src="../../assets/img/atelier-ia/debruitage-0.webp"
+                        alt="Schéma du débruitage, état 0 : un bruit aléatoire, sans aucune image."
+                        width="256" height="256" decoding="async">
+                    <div class="ia-denoise-controls">
+                        <label for="ia-denoise-range">
+                            <span>Faites avancer le débruitage</span>
+                            <span id="ia-denoise-state" aria-hidden="true">État 0 / 5</span>
+                        </label>
+                        <input id="ia-denoise-range" type="range" min="0" max="5" step="1" value="0">
+                        <div class="ia-denoise-scale" aria-hidden="true"><span>Bruit</span><span>Image finale</span></div>
+                    </div>
+                    <figcaption id="ia-denoise-caption" aria-live="polite">Départ : un bruit aléatoire, sans aucune image.</figcaption>
+                    <p class="ia-schema-note">Schéma illustratif : un vrai modèle effectue généralement bien plus d'étapes.</p>
+                </figure>
+            </div>
+
+            <div class="ia-grid-2" style="margin-top: 26px;">
+                <article class="ia-card">
+                    <h3>Le rôle du GPU</h3>
+                    <p>
+                        Le processeur graphique (GPU) contient des milliers d'unités de calcul capables de travailler
+                        en parallèle. Il exécute très rapidement les multiplications de matrices dont les réseaux de
+                        neurones sont faits. Sa consommation électrique dépend notamment de sa <strong>charge</strong> et de la
+                        <strong>durée</strong> pendant laquelle il travaille.
+                    </p>
+                </article>
+                <article class="ia-card">
+                    <h3>Pourquoi un coût énergétique ?</h3>
+                    <p>
+                        Plus il y a de calculs, plus le GPU travaille longtemps ou intensément, et plus il consomme.
+                        S'y ajoutent le reste de la machine (processeur, mémoire, refroidissement), le centre de données
+                        qui l'héberge, et l'impact de la <strong>fabrication</strong> du matériel. Une seule image coûte peu ;
+                        des millions de générations quotidiennes, beaucoup plus.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- 3. COMPRENDRE LES PARAMÈTRES -->
+        <section aria-labelledby="ia-s3">
+            <h2 id="ia-s3">Comprendre les paramètres</h2>
+            <p class="ia-lead">Quatre éléments influencent fortement la quantité de calcul nécessaire.</p>
+
+            <div class="ia-grid-4">
+                <article class="ia-card">
+                    <h3>Résolution</h3>
+                    <p>
+                        Les dimensions de l'image. Doubler le côté (512 → 1024 px) multiplie le nombre de pixels
+                        <strong>par quatre</strong>, et donc les calculs et la mémoire nécessaires, parfois plus encore.
+                    </p>
+                </article>
+                <article class="ia-card">
+                    <h3>Nombre d'étapes</h3>
+                    <p>
+                        Le nombre d'itérations de débruitage. Chaque étape ajoute un passage dans le modèle, donc du temps
+                        de calcul. Mais la qualité ne progresse pas proportionnellement : au-delà d'un certain seuil,
+                        les étapes supplémentaires apportent peu.
+                    </p>
+                </article>
+                <article class="ia-card">
+                    <h3>GPU</h3>
+                    <p>
+                        Il accélère les calculs. Deux GPU différents ne mettent ni le même temps ni la même puissance
+                        pour produire une image identique : le matériel fait partie de l'équation.
+                    </p>
+                </article>
+                <article class="ia-card">
+                    <h3>Modèle utilisé</h3>
+                    <p>
+                        Son architecture et ses optimisations modifient les ressources nécessaires. Tous les modèles
+                        ne fonctionnent pas avec les mêmes paramètres : certains sont conçus pour 1024 px, d'autres
+                        pour générer en très peu d'étapes.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- 4. EXPÉRIMENTER -->
+        <section aria-labelledby="ia-s4">
+            <h2 id="ia-s4">Expérimenter les configurations</h2>
+            <p class="ia-lead">
+                Sélectionnez une configuration pour consulter ses paramètres, son illustration et les données disponibles.
+            </p>
+
+            <noscript>
+                <p class="ia-vigilance">L'expérimentation interactive nécessite JavaScript. Les explications restent lisibles sans.</p>
+            </noscript>
+
+            <fieldset class="ia-selector" id="ia-config-selector">
+                <legend class="sr-only">Choisir une configuration de génération</legend>
+            </fieldset>
+
+            <div class="ia-card ia-detail" id="ia-config-detail" aria-live="polite"></div>
+        </section>
+
+        <!-- 5. COMPARER -->
+        <section aria-labelledby="ia-s5">
+            <h2 id="ia-s5">Comparer les résultats</h2>
+            <p class="ia-lead">
+                Les trois configurations côte à côte, avec la même demande (prompt) et la même graine aléatoire.
+                Notez que changer la résolution change aussi la composition. Passez en <strong>vue détail</strong>
+                pour observer la finesse des pixels.
+            </p>
+
+            <fieldset class="ia-toggle" id="ia-view-toggle">
+                <legend>Mode d'affichage des images</legend>
+                <label><input type="radio" name="ia-view" value="ensemble" checked><span class="ia-toggle-label">Vue d'ensemble</span></label>
+                <label><input type="radio" name="ia-view" value="detail"><span class="ia-toggle-label">Vue détail (pixels réels)</span></label>
+            </fieldset>
+
+            <p class="ia-view-legend" id="ia-view-legend" aria-live="polite">Vue d'ensemble : les trois images sont affichées à la même taille.</p>
+            <div class="ia-compare-grid" id="ia-compare-grid"></div>
+
+            <div class="ia-table-wrapper" tabindex="0" role="region" aria-labelledby="ia-table-caption">
+                <table class="ia-table">
+                    <caption id="ia-table-caption">Tableau récapitulatif des indicateurs</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Configuration</th>
+                            <th scope="col">Résolution</th>
+                            <th scope="col">Étapes</th>
+                            <th scope="col">Temps de génération</th>
+                            <th scope="col">Consommation énergétique</th>
+                            <th scope="col">Qualité visuelle</th>
+                            <th scope="col">Volume de calcul relatif (estimation théorique)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ia-compare-tbody"></tbody>
+                </table>
+            </div>
+
+            <p class="ia-note">
+                <strong>Comment est estimé le volume de calcul relatif ?</strong>
+                Hypothèse simplifiée : calcul ∝ nombre de pixels × nombre d'étapes, la configuration la plus coûteuse
+                valant 100. C'est un <strong>ordre de grandeur théorique, pas une mesure</strong> : en pratique, certaines
+                opérations (l'attention) croissent plus vite que le nombre de pixels, d'autres coûts restent fixes
+                (chargement du modèle, lecture du prompt, décodage final de l'image), et un modèle accéléré peut avoir
+                un coût par étape différent. Surtout, ce volume ne dit rien de la puissance réellement appelée par le
+                matériel : il ne remplace pas une mesure d'énergie. Ici, l'estimation (100 / 12,5 / 4,2) donne le bon
+                ordre de grandeur, mais l'énergie mesurée chute encore plus vite (100 / 10 / 3,8).
+            </p>
+            <p class="ia-note" id="ia-mesure-contexte"></p>
+        </section>
+
+        <!-- 6. MESURER -->
+        <section aria-labelledby="ia-s6">
+            <h2 id="ia-s6">Mesurer plutôt que supposer</h2>
+
+            <div class="ia-grid-2">
+                <article class="ia-card">
+                    <h3>Du temps à l'énergie</h3>
+                    <p>L'énergie consommée se calcule à partir de la puissance électrique et de la durée :</p>
+                    <p><span class="ia-formula">Énergie (Wh) = Puissance moyenne (W) × Durée (h)</span></p>
+                    <p>
+                        Le temps seul ne suffit donc pas : deux machines peuvent générer une image en 4 secondes,
+                        l'une à 150 W et l'autre à 400 W. Et la puissance varie pendant la génération : pour une
+                        mesure fiable, il faut relever la puissance <strong>tout au long</strong> de l'expérience
+                        (par exemple toutes les 100 ms) et l'intégrer, plutôt que de lire une valeur instantanée.
+                        Il faut aussi préciser ce qui est mesuré : le GPU seul, ou toute la machine avec un wattmètre.
+                    </p>
+                </article>
+
+                <article class="ia-card">
+                    <h3>Faites le calcul</h3>
+                    <p>Saisissez des valeurs (par exemple issues de vos propres relevés) pour obtenir l'énergie.</p>
+                    <form class="ia-calc" id="ia-calc" novalidate>
+                        <label for="ia-calc-power">Puissance moyenne (W)
+                            <input id="ia-calc-power" name="ia-calc-power" type="number" min="0" step="any" inputmode="decimal" placeholder="ex. 271">
+                        </label>
+                        <label for="ia-calc-duration">Durée par image (s)
+                            <input id="ia-calc-duration" name="ia-calc-duration" type="number" min="0" step="any" inputmode="decimal" placeholder="ex. 10,4">
+                        </label>
+                        <label for="ia-calc-count">Nombre d'images
+                            <input id="ia-calc-count" name="ia-calc-count" type="number" min="1" step="1" inputmode="numeric" value="1">
+                        </label>
+                    </form>
+                    <output class="ia-calc-output" id="ia-calc-result" for="ia-calc-power ia-calc-duration ia-calc-count" aria-live="polite"></output>
+                </article>
+            </div>
+            <p class="ia-vigilance" id="ia-lecon-mesure" role="note"></p>
+        </section>
+
+        <!-- 7. COMPROMIS -->
+        <section aria-labelledby="ia-s7">
+            <h2 id="ia-s7">Comprendre les compromis</h2>
+
+            <ul class="ia-why">
+                <li>
+                    <strong>Pourquoi réduire la résolution peut diminuer le coût de calcul ?</strong>
+                    Le modèle traite chaque zone de l'image à chaque étape : 512 × 512 représente quatre fois moins de
+                    pixels que 1024 × 1024, donc beaucoup moins d'opérations et de mémoire.
+                </li>
+                <li>
+                    <strong>Pourquoi réduire le nombre d'étapes peut accélérer la génération ?</strong>
+                    Chaque étape est un passage complet dans le modèle. Avec le même modèle et le même matériel,
+                    deux fois moins d'étapes signifie à peu près deux fois moins de temps de débruitage.
+                </li>
+                <li>
+                    <strong>Pourquoi les modèles accélérés impliquent des compromis ?</strong>
+                    Pour produire une image en 5 étapes, il faut un modèle spécialement entraîné (par « distillation »).
+                    Il peut perdre en finesse, en diversité ou en fidélité à la demande, et il faut parfois l'ajouter
+                    en plus du modèle principal.
+                </li>
+                <li>
+                    <strong>Pourquoi une image plus rapide n'est pas une image équivalente ?</strong>
+                    Moins de pixels et moins d'étapes signifient souvent moins de détails. Si l'image ne convient pas
+                    et qu'on la régénère trois fois, l'économie disparaît.
+                </li>
+                <li>
+                    <strong>Pourquoi la consommation doit être mesurée et non supposée ?</strong>
+                    Elle dépend du matériel, du modèle, des logiciels, de la charge réelle du GPU et du périmètre
+                    mesuré. Une estimation théorique donne une tendance, pas une valeur.
+                </li>
+            </ul>
+
+            <div class="ia-tradeoff">
+                <article class="ia-card">
+                    <h3>Performance</h3>
+                    <p>Moins de pixels et d'étapes : génération plus rapide, moins de mémoire.</p>
+                </article>
+                <article class="ia-card">
+                    <h3>Qualité visuelle</h3>
+                    <p>Elle peut baisser : le bon réglage est celui qui suffit à l'usage prévu.</p>
+                </article>
+                <article class="ia-card">
+                    <h3>Consommation</h3>
+                    <p>Elle tend à baisser avec le calcul, mais seule une mesure permet de le confirmer.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- 8. CONCLUSION -->
+        <section class="intro-card" aria-labelledby="ia-s8">
+            <h2 id="ia-s8">Conclusion</h2>
+            <p class="ia-lead">
+                Générer une image par IA n'est pas gratuit pour l'environnement, mais l'utilisateur dispose de leviers
+                concrets. L'objectif n'est pas la qualité minimale, mais la <strong>qualité suffisante</strong> pour le
+                besoin, obtenue avec le moins de calcul possible.
+            </p>
+            <ul class="ia-practices">
+                <li><strong>Générer seulement si c'est nécessaire</strong> : une image existante peut parfois suffire.</li>
+                <li><strong>Réutiliser</strong> un résultat pertinent plutôt que de relancer une génération.</li>
+                <li><strong>Adapter la résolution à l'usage</strong> : une vignette web n'a pas besoin de 1024 × 1024 px.</li>
+                <li><strong>Explorer en basse résolution</strong>, puis ne produire en haute définition que l'image retenue.</li>
+                <li><strong>Choisir un modèle adapté</strong> : un modèle accéléré peut réduire les ressources, dans certaines conditions.</li>
+                <li><strong>Mesurer</strong> avant d'affirmer un gain énergétique.</li>
+            </ul>
+            <div class="ia-cta">
+                <a href="../quizIA.html" class="button">Tester vos connaissances (quiz IA)</a>
+                <a href="../en-pratique.html" class="button-secondary">Retour aux ateliers</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="mg-0">
+            &copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion -
+            <a href="../a-propos.html">À propos</a>
+        </p>
+    </footer>
+</body>
+
+</html>

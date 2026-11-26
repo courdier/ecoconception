@@ -368,6 +368,25 @@ a {
     gap: 24px;
 }
 
+/* Variante à 4 cartes : Chiffres, Quiz, Simulateur, Ateliers */
+.home-main-links--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.home-main-links--4 .home-feature-card {
+    justify-content: flex-start;
+}
+
+.home-main-links--4 .home-card-button {
+    margin-top: auto;
+}
+
+@media screen and (max-width: 1280px) {
+    .home-main-links--4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
 .home-feature-card {
     display: flex;
     flex-direction: column;
@@ -993,6 +1012,9 @@ label {
 .app-chatgpt {
     --app-color: #2fdfad;
 }
+.app-claude {
+    --app-color: #d97757;
+}
 .app-facebook {
     --app-color: #1877f2;
 }
@@ -1233,8 +1255,12 @@ footer {
     justify-content: center;
     box-shadow: 0 -2px 4px var(--box-shadow);
     padding: 20px 0;
+    z-index: 10;
 }
 
+html {
+    scroll-padding-bottom: 64px;
+}
 footer p {
     font-size: 0.8rem;
     color: var(--text-color-light);
@@ -1339,6 +1365,9 @@ body:has(img[src*="Steam" i]) {
 }
 body:has(img[src*="ChatGPT" i]) {
     --service-color: #2fdfad;
+}
+body:has(img[src*="Anthropic" i]) {
+    --service-color: #d97757;
 }
 body:has(img[src*="Google" i]) {
     --service-color: #34a853;
@@ -2103,8 +2132,33 @@ sup a {
     width: 100%;
 }
 
-.collapsible.is-open h2 {
+.collapsible.is-open h2,
+details.collapsible[open] > summary h2 {
     color: var(--highlight-color);
+}
+
+/* Sections repliables natives des ateliers */
+details.collapsible > summary {
+    display: block;
+    list-style: none;
+    cursor: pointer;
+}
+
+details.collapsible > summary::-webkit-details-marker {
+    display: none;
+}
+
+details.collapsible[open] > .content {
+    display: block;
+    text-align: left;
+}
+
+details.collapsible > summary .toggle-icon::before {
+    content: '+';
+}
+
+details.collapsible[open] > summary .toggle-icon::before {
+    content: '−';
 }
 
 .practical-section h2 {
@@ -2146,6 +2200,132 @@ pre {
 pre code {
     display: block;
     line-height: 1.4em;
+}
+
+/* TP 05 — Éditeur et comparaison des résultats */
+.tp05 {
+    margin-inline: auto;
+}
+
+.tp05-page {
+    padding-bottom: 0;
+}
+
+.tp05-page footer {
+    position: relative;
+    height: auto;
+    padding: .75rem 1rem;
+}
+
+.tp05-page footer > p {
+    margin: 0;
+    text-align: center;
+}
+
+.tp05 [hidden],
+.tp05-feedback:empty {
+    display: none;
+}
+
+.tp05 .collapsible {
+    margin-bottom: 1.15rem;
+}
+
+.tp05 fieldset {
+    min-width: 0;
+    border: 0;
+}
+
+.tp05-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: .75rem 1.25rem;
+    margin: 1.5rem 0;
+}
+
+.tp05-filters > div {
+    flex: 1 1 12rem;
+    min-width: 0;
+}
+
+.tp05 label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: .25rem;
+}
+
+.tp05 select,
+.tp05 textarea {
+    width: 100%;
+    color: var(--text-color);
+    background: var(--background-color);
+    color-scheme: dark;
+    border: 1px solid var(--text-color-light);
+    border-radius: 5px;
+    padding: .65rem .75rem;
+    font: inherit;
+}
+
+.tp05 textarea {
+    resize: vertical;
+    font-family: ui-monospace, monospace;
+}
+
+.tp05 :is(summary, select, textarea, pre):focus-visible {
+    outline: 2px solid var(--highlight-color);
+    outline-offset: 3px;
+}
+
+.tp05-brief h3 {
+    margin-bottom: .5rem;
+}
+
+.tp05-workspace {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.tp05-workspace pre {
+    margin: .5rem 0 .75rem;
+    background: var(--background-color);
+}
+
+.tp05-workspace pre code {
+    padding: 0;
+    background: transparent;
+}
+
+.tp05-workspace summary {
+    cursor: pointer;
+    color: var(--highlight-color);
+    font-weight: bold;
+}
+
+.tp05-workspace .button {
+    min-height: 44px;
+    margin: .85rem 0 0;
+}
+
+.tp05-feedback:not([data-success="true"]) {
+    border-color: var(--warning-color);
+}
+
+.tp05-results table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: .75rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.tp05-results :is(th, td) {
+    border-bottom: 1px solid var(--text-color-light);
+    padding: .45rem;
+}
+
+.tp05-results :is(td, th:not(:first-child)) {
+    text-align: right;
 }
 
 /* --- Module "Personnaliser selon votre usage" --- */
@@ -2317,6 +2497,67 @@ pre code {
     font-size: 1.3rem;
     color: var(--highlight-color);
     opacity: .9;
+}
+
+/* Sommaire (page responsable_impact_numerique) */
+.toc {
+    width: 100%;
+}
+.toc ol {
+    list-style: none;
+    counter-reset: toc;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: .6rem 1.2rem;
+    text-align: left;
+}
+.toc li {
+    counter-increment: toc;
+}
+.toc a {
+    display: flex;
+    align-items: baseline;
+    gap: .7rem;
+    height: 100%;
+    padding: .6rem .9rem;
+    border: 1px solid rgba(47, 223, 173, .2);
+    border-radius: 10px;
+    font-size: 1.05rem;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: background-color .2s ease;
+}
+.toc a::before {
+    content: counter(toc, decimal-leading-zero);
+    opacity: .7;
+}
+.toc a:hover,
+.toc a:focus-visible {
+    background-color: rgba(47, 223, 173, .08);
+}
+
+/* Tableau récapitulatif (page responsable_impact_numerique) */
+.recap-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: .95rem;
+    line-height: 1.5;
+}
+.recap-table caption {
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: .5rem;
+}
+.recap-table th,
+.recap-table td {
+    border: 1px solid rgba(47, 223, 173, .35);
+    padding: .5rem .6rem;
+    text-align: left;
+    vertical-align: top;
+}
+.recap-table th {
+    color: var(--highlight-color);
 }
 
 /* Responsive Design */
@@ -2756,6 +2997,10 @@ pre code {
         display: none;
     }
 
+    .tp05-workspace {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
     /* Langages */
     .language-ranking,
     .language-why-grid {
@@ -2765,6 +3010,10 @@ pre code {
 
 /* Smartphones (Portrait) */
 @media screen and (max-width: 600px) {
+    .tp05-filters > div {
+        flex-basis: 100%;
+    }
+
     /* Structure globale */
     body {
         align-items: stretch;
@@ -3145,5 +3394,519 @@ pre code {
 
     .language-why {
         padding: 20px 16px;
+    }
+}
+
+/* COMPTEUR D'EMPREINTE ECOINDEX */
+
+/* Texte invisible à l'écran mais lu par les lecteurs d'écran (accessibilité) */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+/* Badge */
+.eco-badge {
+    --eco-surface: #242426;
+    --eco-bord: #6e6e73;
+    --eco-texte-2: #b0b0b0;
+    --eco-ease: cubic-bezier(0.23, 1, 0.32, 1);
+    margin-left: 12px;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--text-color-light);
+    font-variant-numeric: tabular-nums;
+}
+
+.eco-badge > summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 24px;
+    padding: 2px 10px 2px 6px;
+    border: 1px solid var(--eco-bord);
+    border-radius: 12px;
+    cursor: pointer;
+    list-style: none;
+    transition: border-color 150ms ease, transform 160ms var(--eco-ease);
+}
+
+.eco-badge > summary::-webkit-details-marker {
+    display: none;
+}
+
+.eco-badge[open] > summary {
+    border-color: var(--highlight-color);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .eco-badge > summary:hover {
+        border-color: var(--highlight-color);
+    }
+}
+
+.eco-badge > summary:active {
+    transform: scale(0.97);
+}
+
+.eco-badge > summary:focus-visible {
+    outline: 2px solid var(--highlight-color);
+    outline-offset: 3px;
+}
+
+.eco-badge__fleche {
+    flex: none;
+    width: 16px;
+    height: 11px;
+    background: var(--eco-note);
+    clip-path: polygon(0 0, 62% 0, 100% 50%, 62% 100%, 0 100%);
+}
+
+.eco-badge__chevron {
+    flex: none;
+    width: 6px;
+    height: 6px;
+    margin-left: 2px;
+    border-top: 1.5px solid currentColor;
+    border-left: 1.5px solid currentColor;
+    transform: translateY(2px) rotate(45deg);
+    transition: transform 160ms var(--eco-ease);
+}
+
+.eco-badge[open] .eco-badge__chevron {
+    transform: translateY(-2px) rotate(225deg);
+}
+
+.eco-badge strong {
+    color: inherit;
+}
+
+/* Panneau */
+.eco-badge__panel {
+    position: absolute;
+    inset: auto 16px 100% auto;
+    width: min(22rem, calc(100vw - 32px));
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    margin-bottom: 8px;
+    padding: 16px;
+    border: 1px solid var(--eco-bord);
+    border-radius: 12px;
+    background-color: var(--eco-surface);
+    color: var(--text-color);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    text-align: left;
+    transform-origin: bottom right;
+    transition: opacity 160ms var(--eco-ease), transform 160ms var(--eco-ease);
+}
+
+@starting-style {
+    .eco-badge__panel {
+        opacity: 0;
+        transform: translateY(4px) scale(0.98);
+    }
+}
+
+.eco-badge__panel p,
+.eco-badge__panel ol,
+.eco-badge__panel ul {
+    margin: 0 0 12px;
+    padding: 0;
+    list-style: none;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    text-align: left;
+}
+
+.eco-badge__panel p:last-child {
+    margin-bottom: 0;
+}
+
+.eco-badge__panel li {
+    margin: 0;
+}
+
+.eco-badge__panel a {
+    color: var(--highlight-color);
+    text-underline-offset: 3px;
+}
+
+.eco-badge__panel a:focus-visible {
+    outline: 2px solid var(--highlight-color);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+.eco-badge__panel ::selection {
+    background: rgba(47, 223, 173, 0.35);
+    color: var(--text-color);
+}
+
+.eco-badge__panel .eco-badge__titre {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.eco-badge__panel .eco-badge__sous-titre {
+    margin: 16px 0 8px;
+    font-weight: bold;
+}
+
+/* Textes secondaires */
+.eco-badge__panel .eco-badge__discret,
+.eco-badge__sous-titre span,
+.eco-impact span,
+.eco-jauge__bornes,
+.eco-mesure__libelle,
+.eco-mesure__objectif,
+.eco-lourds__poids {
+    color: var(--eco-texte-2);
+}
+
+.eco-badge__panel .eco-badge__discret,
+.eco-badge__sous-titre span,
+.eco-impact span {
+    font-size: 0.8rem;
+}
+
+.eco-badge__sous-titre span {
+    font-weight: normal;
+}
+
+/* Réglette de G à A */
+.eco-jauge {
+    margin: 0 0 16px;
+}
+
+.eco-jauge__piste {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-top: 28px;
+}
+
+.eco-jauge__zone {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 28px;
+    background: var(--eco-note);
+    color: #1c1c1e;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1;
+    /* séparation entre cases, sans occuper de place */
+    box-shadow: inset 2px 0 0 var(--eco-surface);
+}
+
+.eco-jauge__repere + .eco-jauge__zone {
+    border-radius: 4px 0 0 4px;
+    box-shadow: none;
+}
+
+.eco-jauge__zone:last-child {
+    border-radius: 0 4px 4px 0;
+}
+
+/* Case de la note */
+.eco-jauge__piste .eco-jauge__zone--ici {
+    position: relative;
+    z-index: 1;
+    min-height: 36px;
+    border-radius: 4px;
+    box-shadow: inset 0 0 0 2px var(--text-color), inset 0 0 0 4px #1c1c1e;
+}
+
+/* Pointe sous l'étiquette du score */
+.eco-jauge__piste::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    inset: 20px auto auto calc(var(--eco-position) * 1%);
+    width: 12px;
+    height: 6px;
+    margin-left: -6px;
+    background: var(--text-color);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.eco-jauge__repere {
+    position: absolute;
+    inset: 0 auto auto clamp(2rem, calc(var(--eco-position) * 1%), calc(100% - 2rem));
+    transform: translateX(-50%);
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--text-color);
+    color: #1c1c1e;
+    font-size: 0.8rem;
+    font-weight: bold;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.eco-jauge__bornes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 0.75rem;
+}
+
+/* CO2e et eau par visite */
+.eco-impact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 0 16px;
+    border: 1px solid #3a3a3c;
+    border-radius: 8px;
+}
+
+.eco-badge__panel .eco-impact p {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 8px 12px;
+}
+
+.eco-badge__panel .eco-impact p + p {
+    border-left: 1px solid #3a3a3c;
+}
+
+.eco-impact strong {
+    font-size: 1rem;
+    line-height: 1.3;
+}
+
+/* Mesures et fichiers les plus lourds */
+.eco-mesures {
+    display: grid;
+    gap: 10px;
+}
+
+.eco-lourds {
+    display: grid;
+    gap: 8px;
+}
+
+.eco-mesure,
+.eco-lourds li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 12px;
+}
+
+.eco-lourds__nom {
+    overflow-wrap: anywhere;
+}
+
+.eco-mesure__jauge,
+.eco-lourds__jauge {
+    grid-column: 1 / -1;
+    background: #3a3a3c;
+}
+
+.eco-mesure__jauge > span,
+.eco-lourds__jauge > span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+}
+
+/* Jauge des mesures */
+.eco-mesure__jauge {
+    position: relative;
+    height: 6px;
+    border-radius: 3px;
+}
+
+.eco-mesure__jauge::after {
+    content: "";
+    position: absolute;
+    inset: -3px auto -3px 50%;
+    width: 2px;
+    background: var(--eco-texte-2);
+}
+
+.eco-mesure__jauge > span {
+    background: var(--highlight-color);
+}
+
+.eco-mesure--depasse .eco-mesure__jauge > span {
+    background: #F99839;
+}
+
+/* Jauge des fichiers */
+.eco-lourds__jauge {
+    height: 4px;
+    border-radius: 2px;
+}
+
+.eco-lourds__jauge > span {
+    background: var(--light-color);
+}
+
+@media (forced-colors: active) {
+    .eco-badge__fleche,
+    .eco-jauge__piste,
+    .eco-mesure__jauge,
+    .eco-lourds__jauge {
+        forced-color-adjust: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .eco-badge > summary,
+    .eco-badge__chevron {
+        transition: none;
+    }
+
+    .eco-badge > summary:active {
+        transform: none;
+    }
+
+    .eco-badge__panel {
+        transition: opacity 120ms ease;
+    }
+}
+
+/* Mobile : badge sous le texte du footer, panneau dans le flux de la page */
+@media screen and (max-width: 768px) {
+    footer {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .eco-badge {
+        margin-left: 0;
+        font-size: 0.72rem;
+    }
+
+    .eco-badge__panel {
+        position: static;
+        width: 100%;
+        max-height: none;
+        margin: 8px 0 0;
+        transform-origin: top center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .eco-badge__ges {
+        display: none;
+    }
+}
+
+@media print {
+    .eco-badge {
+        display: none;
+    }
+}
+
+/* CHATBOT */
+
+/* Bouton d'ouverture (le reste du chatbot est dans chatbot-eco.css, chargé au premier clic) */
+.chatbot-lanceur {
+    position: fixed;
+    right: 16px;
+    bottom: var(--chatbot-bas, 76px);
+    z-index: 9;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 18px 0 14px;
+    border: 1px solid var(--highlight-color);
+    border-radius: 22px;
+    background-color: var(--background-color);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    color: var(--highlight-color);
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 150ms ease, color 150ms ease, transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.chatbot-lanceur svg {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linejoin: round;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .chatbot-lanceur:hover {
+        background-color: var(--highlight-color);
+        color: var(--background-color);
+    }
+}
+
+.chatbot-lanceur:active {
+    transform: scale(0.97);
+}
+
+.chatbot-lanceur:focus-visible {
+    outline: 2px solid var(--highlight-color);
+    outline-offset: 3px;
+}
+
+.chatbot-lanceur[aria-busy] {
+    opacity: 0.7;
+    cursor: progress;
+}
+
+.chatbot-lanceur[hidden] {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .chatbot-lanceur {
+        right: 12px;
+    }
+}
+
+/* Petit écran : seulement l'icône, le texte reste lu par les lecteurs d'écran */
+@media screen and (max-width: 600px) {
+    .chatbot-lanceur {
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        padding: 0;
+    }
+
+    .chatbot-lanceur span {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chatbot-lanceur {
+        transition: none;
+    }
+
+    .chatbot-lanceur:active {
+        transform: none;
+    }
+}
+
+@media print {
+    .chatbot-lanceur {
+        display: none;
     }
 }

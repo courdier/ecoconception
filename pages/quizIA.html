@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Estimez l'impact de vos habitudes de génération d'images par intelligence artificielle grâce à ce quiz.">
+    <meta name="keywords"
+        content="écoconception, numérique, intelligence artificielle, génération d'images, GPU, quiz, énergie">
+    <meta name="author" content="Rémy Courdier, Étudiants d'informatique de l'Université de La Réunion">
+    <meta http-equiv="cache-control" content="max-age=31536000, must-revalidate">
+    <meta http-equiv="expires" content="Thu, 31 Dec 2024 23:59:59 GMT">
+
+    <title>Quiz 3 - Génération d'images par IA : quel est votre impact ?</title>
+
+    <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/styles/styles.css">
+
+    <script defer src="../assets/scripts/scriptsQuizIA.js"></script>
+    <script defer src="../assets/scripts/hamburger.js"></script>
+
+    <style>
+        /* Espace entre la ligne sous la question et les réponses */
+        #question-container .answers-list {
+            margin-top: 28px;
+        }
+
+        #question-title:focus {
+            outline: none;
+        }
+
+        .quiz-actions .button:disabled,
+        .quiz-actions .button:disabled:hover {
+            opacity: 0.45;
+            background-color: var(--highlight-color);
+            color: var(--background-color);
+            cursor: not-allowed;
+        }
+
+        .quiz-recommendations h3 {
+            color: var(--highlight-color);
+            font-size: 1.1rem;
+            text-align: left;
+        }
+
+        .quiz-recommendations ul {
+            margin-top: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="./quizz-access.html" class="back-link">
+            <span class="back-arrow">🠔</span>
+            <span class="back-text">Retour</span>
+        </a>
+
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav id="navbar">
+            <ul>
+                <li class="mg-0"><a href="../index.html">Home</a></li>
+                <li class="mg-0"><a href="./quizz-access.html" class="active">Quiz</a></li>
+                <li class="mg-0"><a href="./quelques-chiffres.html">Chiffres</a></li>
+                <li class="mg-0"><a href="./outils.html">Outils</a></li>
+                <li class="mg-0"><a href="./langages.html">Langages</a></li>
+                <li class="mg-0"><a href="./en-pratique.html">Ateliers</a></li>
+                <li class="mg-0"><a href="./ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="./debat.html">Débat</a></li>
+                <li class="mg-0"><a href="./terminologie.html">Terminologie</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main quiz-v1-main">
+
+        <!-- En-tête du quiz -->
+        <section class="quiz-v1-hero">
+            <h1>Génération d'images par IA : quel est votre impact ?</h1>
+            <p>
+                Répondez à 10 questions sur vos habitudes, découvrez ce qui se passe derrière chaque image générée
+                et obtenez une estimation de l'énergie consommée par votre usage.
+            </p>
+        </section>
+
+        <!-- Zone principale du quiz -->
+        <section id="quiz" class="quiz-panel" aria-label="Quiz">
+            <div id="quiz-container">
+
+                <div class="quiz-progress-header">
+                    <p id="quiz-progress-text" aria-live="polite">Question 1 sur 10</p>
+                </div>
+
+                <div class="quiz-progress-track" aria-hidden="true">
+                    <div id="progress-bar"></div>
+                </div>
+
+                <div id="question-container">
+                    <noscript><p>Ce quiz nécessite JavaScript pour fonctionner.</p></noscript>
+                </div>
+
+                <div class="button-container quiz-actions">
+                    <button type="button" id="validate-btn" class="button">Valider</button>
+                    <button type="button" id="next-btn" class="button" style="display:none;">Suivant</button>
+                </div>
+
+                <div id="info" class="quiz-feedback quiz-info-box" style="display:none;" aria-live="polite">
+                    <div id="info-text"></div>
+                </div>
+
+                <div id="extra-info" class="quiz-feedback quiz-comparison-box" style="display:none;">
+                    <div id="extra-info-text"></div>
+                </div>
+
+                <p id="source-text" class="quiz-source"></p>
+
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p class="mg-0">
+            &copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion -
+            <a href="./a-propos.html">À propos</a>
+        </p>
+    </footer>
+</body>
+
+</html>

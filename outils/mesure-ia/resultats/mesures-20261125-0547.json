@@ -1,0 +1,597 @@
+{
+  "date": "2026-11-25T05:47:54",
+  "materiel": {
+    "gpu": "AMD Radeon RX 9070 XT",
+    "vram_mo": 16304,
+    "gpu_comfyui": "cuda:0 AMD Radeon RX 9070 XT : native",
+    "capteur": "AMD ADLX - GPUTotalBoardPower, intervalle 250 ms"
+  },
+  "logiciel": {
+    "comfyui": "0.45.5",
+    "pytorch": "2.12.0+rocm7.14.0"
+  },
+  "prompt": "scenery, mountain landscape at sunset, lake with reflection, tall grass in foreground, clouds, sun, no humans, detailed, masterpiece, best quality",
+  "negatif": "lowres, worst quality, bad quality, blurry, jpeg artifacts, text, watermark, signature",
+  "checkpoint": "Illustrious-XL-v1.0.safetensors",
+  "perimetre": "Carte graphique seule (puissance totale de la carte, capteur AMD ADLX). Hors processeur, mémoire, alimentation, écran.",
+  "puissance_repos_w": 60.01,
+  "configurations": {
+    "A": {
+      "parametres": {
+        "nom": "Standard",
+        "largeur": 1024,
+        "hauteur": 1024,
+        "etapes": 30,
+        "sampler": "euler",
+        "scheduler": "normal",
+        "cfg": 6.0,
+        "lora": null
+      },
+      "essais": [
+        {
+          "graine": 1000,
+          "duree_s": 10.806,
+          "energie_wh": 0.79039,
+          "puissance_moyenne_w": 263.3,
+          "energie_au_dessus_repos_wh": 0.61027,
+          "image": {
+            "filename": "20261125-0547-A_00001_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 1024,
+              "height": 1024
+            }
+          }
+        },
+        {
+          "graine": 1001,
+          "duree_s": 10.535,
+          "energie_wh": 0.7712,
+          "puissance_moyenne_w": 263.5,
+          "energie_au_dessus_repos_wh": 0.5956,
+          "image": {
+            "filename": "20261125-0547-A_00002_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 1024,
+              "height": 1024
+            }
+          }
+        },
+        {
+          "graine": 1002,
+          "duree_s": 10.362,
+          "energie_wh": 0.77922,
+          "puissance_moyenne_w": 270.7,
+          "energie_au_dessus_repos_wh": 0.6065,
+          "image": {
+            "filename": "20261125-0547-A_00003_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 1024,
+              "height": 1024
+            }
+          }
+        },
+        {
+          "graine": 1003,
+          "duree_s": 10.467,
+          "energie_wh": 0.77951,
+          "puissance_moyenne_w": 268.1,
+          "energie_au_dessus_repos_wh": 0.60504,
+          "image": {
+            "filename": "20261125-0547-A_00004_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 1024,
+              "height": 1024
+            }
+          }
+        },
+        {
+          "graine": 1004,
+          "duree_s": 10.352,
+          "energie_wh": 0.77869,
+          "puissance_moyenne_w": 270.8,
+          "energie_au_dessus_repos_wh": 0.60614,
+          "image": {
+            "filename": "20261125-0547-A_00005_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 1024,
+              "height": 1024
+            }
+          }
+        },
+        {
+          "graine": 1005,
+          "duree_s": 10.262,
+          "energie_wh": 0.77503,
+          "puissance_moyenne_w": 271.9,
+          "energie_au_dessus_repos_wh": 0.60398,
+          "image": {
+            "filename": "20261125-0547-A_00006_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 1024,
+              "height": 1024
+            }
+          }
+        },
+        {
+          "graine": 1006,
+          "duree_s": 10.206,
+          "energie_wh": 0.76982,
+          "puissance_moyenne_w": 271.5,
+          "energie_au_dessus_repos_wh": 0.5997,
+          "image": {
+            "filename": "20261125-0547-A_00007_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 1024,
+              "height": 1024
+            }
+          }
+        },
+        {
+          "graine": 1007,
+          "duree_s": 10.256,
+          "energie_wh": 0.78773,
+          "puissance_moyenne_w": 276.5,
+          "energie_au_dessus_repos_wh": 0.61678,
+          "image": {
+            "filename": "20261125-0547-A_00008_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 1024,
+              "height": 1024
+            }
+          }
+        },
+        {
+          "graine": 1008,
+          "duree_s": 10.25,
+          "energie_wh": 0.7855,
+          "puissance_moyenne_w": 275.9,
+          "energie_au_dessus_repos_wh": 0.61465,
+          "image": {
+            "filename": "20261125-0547-A_00009_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 1024,
+              "height": 1024
+            }
+          }
+        },
+        {
+          "graine": 1009,
+          "duree_s": 10.275,
+          "energie_wh": 0.78818,
+          "puissance_moyenne_w": 276.1,
+          "energie_au_dessus_repos_wh": 0.61691,
+          "image": {
+            "filename": "20261125-0547-A_00010_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 1024,
+              "height": 1024
+            }
+          }
+        }
+      ],
+      "resume": {
+        "duree_s_moyenne": 10.377,
+        "duree_s_ecart_type": 0.183,
+        "puissance_moyenne_w": 270.8,
+        "energie_wh_moyenne": 0.78053,
+        "energie_wh_ecart_type": 0.00723,
+        "energie_au_dessus_repos_wh_moyenne": 0.60756
+      }
+    },
+    "B": {
+      "parametres": {
+        "nom": "Optimisée",
+        "largeur": 512,
+        "hauteur": 512,
+        "etapes": 15,
+        "sampler": "euler",
+        "scheduler": "normal",
+        "cfg": 6.0,
+        "lora": null
+      },
+      "essais": [
+        {
+          "graine": 1000,
+          "duree_s": 2.492,
+          "energie_wh": 0.07622,
+          "puissance_moyenne_w": 110.1,
+          "energie_au_dessus_repos_wh": 0.03468,
+          "image": {
+            "filename": "20261125-0547-B_00001_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "graine": 1001,
+          "duree_s": 2.496,
+          "energie_wh": 0.07675,
+          "puissance_moyenne_w": 110.7,
+          "energie_au_dessus_repos_wh": 0.03515,
+          "image": {
+            "filename": "20261125-0547-B_00002_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "graine": 1002,
+          "duree_s": 2.473,
+          "energie_wh": 0.07571,
+          "puissance_moyenne_w": 110.2,
+          "energie_au_dessus_repos_wh": 0.03449,
+          "image": {
+            "filename": "20261125-0547-B_00003_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "graine": 1003,
+          "duree_s": 2.479,
+          "energie_wh": 0.07725,
+          "puissance_moyenne_w": 112.2,
+          "energie_au_dessus_repos_wh": 0.03593,
+          "image": {
+            "filename": "20261125-0547-B_00004_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "graine": 1004,
+          "duree_s": 2.6,
+          "energie_wh": 0.0809,
+          "puissance_moyenne_w": 112.0,
+          "energie_au_dessus_repos_wh": 0.03756,
+          "image": {
+            "filename": "20261125-0547-B_00005_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "graine": 1005,
+          "duree_s": 2.493,
+          "energie_wh": 0.07724,
+          "puissance_moyenne_w": 111.5,
+          "energie_au_dessus_repos_wh": 0.03568,
+          "image": {
+            "filename": "20261125-0547-B_00006_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "graine": 1006,
+          "duree_s": 2.398,
+          "energie_wh": 0.07696,
+          "puissance_moyenne_w": 115.5,
+          "energie_au_dessus_repos_wh": 0.03699,
+          "image": {
+            "filename": "20261125-0547-B_00007_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "graine": 1007,
+          "duree_s": 2.418,
+          "energie_wh": 0.08245,
+          "puissance_moyenne_w": 122.7,
+          "energie_au_dessus_repos_wh": 0.04214,
+          "image": {
+            "filename": "20261125-0547-B_00008_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "graine": 1008,
+          "duree_s": 2.471,
+          "energie_wh": 0.07983,
+          "puissance_moyenne_w": 116.3,
+          "energie_au_dessus_repos_wh": 0.03864,
+          "image": {
+            "filename": "20261125-0547-B_00009_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "graine": 1009,
+          "duree_s": 2.461,
+          "energie_wh": 0.07699,
+          "puissance_moyenne_w": 112.6,
+          "energie_au_dessus_repos_wh": 0.03597,
+          "image": {
+            "filename": "20261125-0547-B_00010_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        }
+      ],
+      "resume": {
+        "duree_s_moyenne": 2.478,
+        "duree_s_ecart_type": 0.054,
+        "puissance_moyenne_w": 113.4,
+        "energie_wh_moyenne": 0.07803,
+        "energie_wh_ecart_type": 0.00223,
+        "energie_au_dessus_repos_wh_moyenne": 0.03672
+      }
+    },
+    "C": {
+      "parametres": {
+        "nom": "Accélérée",
+        "largeur": 512,
+        "hauteur": 512,
+        "etapes": 5,
+        "sampler": "lcm",
+        "scheduler": "sgm_uniform",
+        "cfg": 1.5,
+        "lora": "lcm-lora-sdxl.safetensors"
+      },
+      "essais": [
+        {
+          "graine": 1000,
+          "duree_s": 1.158,
+          "energie_wh": 0.02983,
+          "puissance_moyenne_w": 92.7,
+          "energie_au_dessus_repos_wh": 0.01053,
+          "image": {
+            "filename": "20261125-0547-C_00002_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "graine": 1001,
+          "duree_s": 1.031,
+          "energie_wh": 0.02746,
+          "puissance_moyenne_w": 95.9,
+          "energie_au_dessus_repos_wh": 0.01027,
+          "image": {
+            "filename": "20261125-0547-C_00003_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "graine": 1002,
+          "duree_s": 1.102,
+          "energie_wh": 0.02803,
+          "puissance_moyenne_w": 91.6,
+          "energie_au_dessus_repos_wh": 0.00966,
+          "image": {
+            "filename": "20261125-0547-C_00004_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "graine": 1003,
+          "duree_s": 1.13,
+          "energie_wh": 0.02968,
+          "puissance_moyenne_w": 94.6,
+          "energie_au_dessus_repos_wh": 0.01085,
+          "image": {
+            "filename": "20261125-0547-C_00005_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "graine": 1004,
+          "duree_s": 1.084,
+          "energie_wh": 0.02886,
+          "puissance_moyenne_w": 95.9,
+          "energie_au_dessus_repos_wh": 0.0108,
+          "image": {
+            "filename": "20261125-0547-C_00006_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "graine": 1005,
+          "duree_s": 1.12,
+          "energie_wh": 0.02958,
+          "puissance_moyenne_w": 95.1,
+          "energie_au_dessus_repos_wh": 0.01091,
+          "image": {
+            "filename": "20261125-0547-C_00007_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "graine": 1006,
+          "duree_s": 1.164,
+          "energie_wh": 0.02998,
+          "puissance_moyenne_w": 92.7,
+          "energie_au_dessus_repos_wh": 0.01058,
+          "image": {
+            "filename": "20261125-0547-C_00008_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "graine": 1007,
+          "duree_s": 1.104,
+          "energie_wh": 0.02936,
+          "puissance_moyenne_w": 95.7,
+          "energie_au_dessus_repos_wh": 0.01096,
+          "image": {
+            "filename": "20261125-0547-C_00009_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "graine": 1008,
+          "duree_s": 1.122,
+          "energie_wh": 0.03256,
+          "puissance_moyenne_w": 104.5,
+          "energie_au_dessus_repos_wh": 0.01386,
+          "image": {
+            "filename": "20261125-0547-C_00010_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "graine": 1009,
+          "duree_s": 1.163,
+          "energie_wh": 0.03014,
+          "puissance_moyenne_w": 93.3,
+          "energie_au_dessus_repos_wh": 0.01075,
+          "image": {
+            "filename": "20261125-0547-C_00011_.png",
+            "subfolder": "atelier-ia",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            }
+          }
+        }
+      ],
+      "resume": {
+        "duree_s_moyenne": 1.118,
+        "duree_s_ecart_type": 0.041,
+        "puissance_moyenne_w": 95.2,
+        "energie_wh_moyenne": 0.02955,
+        "energie_wh_ecart_type": 0.00137,
+        "energie_au_dessus_repos_wh_moyenne": 0.01092
+      }
+    }
+  },
+  "periode_capteur_s": 0.254
+}

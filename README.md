@@ -20,12 +20,16 @@ Ce site a été développé dans le cadre de mon stage de recherche en éco-conc
 - **Ressources** : Liens vers des articles, livres, et outils pour approfondir vos connaissances.
 - **Quelques chiffres** : Infographies illustrant l'empreinte numérique des principaux services (ChatGPT, Netflix, Gmail).
 - **Quiz** : Un quiz interactif pour comprendre l'impact de nos usages quotidiens des services numériques.
+- **Quiz n°3** : génération d'images par IA 
 - **Travaux Pratiques (TP)** : Des exercices pratiques pour mettre en œuvre les principes d'éco-conception dans des projets concrets.
   - **TP 01** : Introduction à SonarQube et Eco Code
   - **TP 02** : Optimisation des Ressources Web
   - **TP 03** : Détection et Réduction des Scripts Inutilisés
   - **TP 04** : Optimisation de l'Utilisation des Polices Web
+  - **TP 05** : [Optimiser du code](./pages/en-pratique/tp05.html) dans sept langages et comparer les opérations et les copies.
+  - **Atelier interactif IA** : Génération d’images par IA : à quel coût ?
 - **Outils** : Présentation des outils recommandés pour l'analyse et l'optimisation écologique des services numériques.
+- **Terminologie** : Définitions des termes clés de l'éco-conception, classées en quatre thèmes.
 
 ## Technologies utilisées
 
@@ -51,6 +55,16 @@ Les contributions sont les bienvenues pour améliorer ce projet et enrichir son 
 3. Effectuez vos modifications et validez-les (`git commit -m 'Ajouter une nouvelle fonctionnalité'`).
 4. Poussez vos modifications sur GitHub (`git push origin feature/NouvelleFonctionnalite`).
 5. Ouvrez une pull request pour soumettre vos changements.
+
+### Amélioration des quiz — Aya MEZIANI
+
+- Les quiz 1 et 2 proposent des conseils adaptés aux réponses, avec des sources et leurs dates de consultation.
+- La navigation permet de revenir aux questions précédentes, de retrouver les réponses validées et de les modifier.
+- Le bilan permet de sélectionner des conseils pour créer un plan d’action imprimable ou enregistrable en PDF.
+- Le résultat carbone historique peut être partiel lorsque certaines réponses sont sans coefficient. Sa méthode et ses limites sont détaillées dans [QUIZ-CARBONE.md](./QUIZ-CARBONE.md).
+
+[Pull request n° 49](https://github.com/courdier/ecoconception/pull/49)
+
 
 ## Licence
 

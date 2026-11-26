@@ -54,6 +54,11 @@
             box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
         }
 
+        .quiz-card-wide {
+            grid-column: 1 / -1;
+            min-height: auto;
+        }
+
         .quiz-kicker {
             display: inline-block;
             margin-bottom: 12px;
@@ -152,12 +157,13 @@
         <nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../index.html">Home</a></li>
-                <li class="mg-0"><a href="./quelques-chiffres.html">Chiffres</a></li>
                 <li class="mg-0"><a href="./quizz-access.html" class="active">Quiz</a></li>
-                <li class="mg-0"><a href="./en-pratique.html">Ateliers</a></li>
+                <li class="mg-0"><a href="./quelques-chiffres.html">Chiffres</a></li>
                 <li class="mg-0"><a href="./outils.html">Outils</a></li>
                 <li class="mg-0"><a href="./langages.html">Langages</a></li>
+                <li class="mg-0"><a href="./en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="./ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="./debat.html">Débat</a></li>
                 <li class="mg-0"><a href="./terminologie.html">Terminologie</a></li>
             </ul>
         </nav>
@@ -222,6 +228,31 @@
                 </div>
 
                 <a href="./quizV2.html" class="button quiz-button">
+                    Accéder au quiz
+                </a>
+            </article>
+
+            <article class="quiz-card quiz-card-wide">
+                <div>
+                    <span class="quiz-kicker">Quiz n°3</span>
+
+                    <h2>
+                        Génération d'images par IA : quel est votre impact ?
+                    </h2>
+
+                    <p class="quiz-description">
+                        Un quiz sur vos habitudes de génération d'images par IA pour estimer l'énergie consommée
+                        et découvrir les bonnes pratiques pour la réduire.
+                    </p>
+
+                    <div class="quiz-tags">
+                        <span class="quiz-tag">Intelligence artificielle</span>
+                        <span class="quiz-tag">Habitudes numériques</span>
+                        <span class="quiz-tag">Recommandations</span>
+                    </div>
+                </div>
+
+                <a href="./quizIA.html" class="button quiz-button">
                     Accéder au quiz
                 </a>
             </article>

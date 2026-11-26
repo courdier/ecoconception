@@ -1,0 +1,117 @@
+/* A hidden quiz element stays hidden even when its layout sets display. */
+[data-quiz] [hidden] {
+    display: none !important;
+}
+
+#action-plan-print {
+    display: none;
+}
+
+[data-quiz] .quiz-calculations:not([open]) > :not(summary) {
+    display: none;
+}
+
+[data-questions-view] :focus-visible,
+[data-results] :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+[data-feedback] p + p {
+    margin-top: 0.6rem;
+}
+
+[data-feedback] a {
+    text-decoration: underline;
+}
+
+[data-feedback],
+#question-title,
+#results-title,
+#action-plan-title {
+    scroll-margin-top: calc(var(--nav-height, 64px) + 1rem);
+}
+
+.quiz-v2-page .option-button input {
+    flex-shrink: 0;
+    margin-right: 0.6rem;
+    accent-color: #95d5b2;
+}
+
+.quiz-v2-page .quiz-summary:not([hidden]),
+.quiz-v2-page .quiz-navigation {
+    display: grid;
+    gap: 0.8rem;
+}
+
+#recommendations-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+#recommendations-list li {
+    border-top: 1px solid currentColor;
+    padding: 1rem 0 0.4rem;
+}
+
+#recommendations-list label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.5rem 0;
+    cursor: pointer;
+}
+
+#recommendations-list input {
+    flex: 0 0 auto;
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-top: 0.15rem;
+}
+
+#action-plan {
+    margin: 1rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid currentColor;
+}
+
+.action-plan-items {
+    padding-inline-start: 1.5rem;
+    list-style: decimal;
+}
+
+.action-plan-items li {
+    margin: 0.6rem 0;
+}
+
+@media print {
+    body.printing-action-plan {
+        display: block !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        color: black !important;
+    }
+
+    body.printing-action-plan > :not(#action-plan-print) {
+        display: none !important;
+    }
+
+    body.printing-action-plan #action-plan-print {
+        display: block !important;
+        font: 12pt/1.5 sans-serif;
+        color: black;
+    }
+
+    #action-plan-print h1 {
+        margin-bottom: 1rem;
+        font-size: 20pt;
+        color: black;
+    }
+
+    #action-plan-print li {
+        color: black;
+        break-inside: avoid;
+    }
+}

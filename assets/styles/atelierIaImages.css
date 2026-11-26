@@ -1,0 +1,874 @@
+/*
+ * Styles de l'atelier « Génération d'images par IA et écoconception ».
+ * S'appuie sur les variables et composants de styles.css (couleurs, .button,
+ * .intro-card, .tp-header…). Pas d'animation décorative : seules de courtes
+ * transitions d'état, désactivées si l'utilisateur réduit les animations.
+ */
+
+.ia-main {
+    text-align: left;
+}
+
+.ia-main section > h2 {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+/* Numéros d'étape générés par un compteur CSS (aucun nœud DOM) */
+.ia-steps {
+    counter-reset: ia-etape;
+}
+
+.ia-steps section > h2[id]::before {
+    counter-increment: ia-etape;
+    content: counter(ia-etape);
+    flex: none;
+    display: inline-grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 1px solid var(--highlight-color);
+    color: var(--highlight-color);
+    font-family: var(--font-main);
+    font-size: 1rem;
+    transform: translateY(-2px);
+}
+
+.ia-step-number {
+    flex: none;
+    display: inline-grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 1px solid var(--highlight-color);
+    color: var(--highlight-color);
+    font-size: 1rem;
+    transform: translateY(-2px);
+}
+
+.ia-lead {
+    max-width: 900px;
+    color: var(--text-color-light);
+    font-size: 1.05rem;
+    line-height: 1.75;
+}
+
+.ia-main h3 {
+    color: var(--text-color);
+    font-size: 1.3rem;
+    line-height: 1.35;
+    margin-bottom: 10px;
+}
+
+.ia-main h4 {
+    color: var(--highlight-color);
+    font-size: 1rem;
+    margin: 18px 0 6px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus visible pour tous les éléments interactifs de l'atelier */
+.ia-main a:focus-visible,
+.ia-main input:focus-visible + .ia-choice-box,
+.ia-main input:focus-visible + .ia-toggle-label,
+.ia-main input[type="range"]:focus-visible,
+.ia-main input[type="number"]:focus-visible {
+    outline: 3px solid var(--highlight-color);
+    outline-offset: 3px;
+}
+
+/* ── Cartes génériques ─────────────────────────────────────────────── */
+.ia-card {
+    border: 1px solid rgba(47, 223, 173, 0.35);
+    border-radius: 18px;
+    background: rgba(0, 0, 0, 0.14);
+    padding: 22px;
+}
+
+.ia-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.ia-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.ia-card p:last-child,
+.ia-card ul:last-child {
+    margin-bottom: 0;
+}
+
+/* ── Légende des statuts de données ────────────────────────────────── */
+.ia-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 0;
+}
+
+.ia-legend li {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    color: var(--text-color-light);
+}
+
+.ia-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid currentColor;
+    font-size: 0.85rem;
+    font-weight: bold;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+/* Symbole du statut, ajouté sans nœud DOM supplémentaire */
+.ia-badge::before {
+    font-weight: bold;
+}
+
+.ia-badge--mesure::before { content: "\2713"; }
+.ia-badge--estime::before { content: "\2248"; }
+.ia-badge--simule::before { content: "\25C7"; }
+.ia-badge--non-mesure::before { content: "?"; }
+
+.ia-badge--mesure { color: var(--success-color); background: rgba(105, 240, 109, 0.08); }
+.ia-badge--estime { color: #8fb0ff; background: rgba(99, 143, 253, 0.1); }
+.ia-badge--simule { color: #d6a8ff; background: rgba(190, 130, 255, 0.1); }
+.ia-badge--non-mesure { color: var(--warning-color); background: rgba(247, 191, 88, 0.08); }
+
+/* ── Schéma du débruitage ──────────────────────────────────────────── */
+.ia-diffusion {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: 28px;
+    align-items: start;
+}
+
+.ia-diffusion ol {
+    padding-left: 22px;
+    text-align: left;
+}
+
+.ia-diffusion ol li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.ia-denoise {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.ia-denoise img {
+    width: 100%;
+    max-width: 256px;
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: 12px;
+    border: 1px solid rgba(47, 223, 173, 0.35);
+    background: #333;
+}
+
+.ia-denoise-controls {
+    width: 100%;
+    max-width: 320px;
+}
+
+.ia-denoise-controls label {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.ia-denoise input[type="range"] {
+    width: 100%;
+    min-height: 44px;
+    accent-color: var(--highlight-color);
+    cursor: pointer;
+}
+
+.ia-denoise-scale {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-color-light);
+}
+
+.ia-denoise figcaption {
+    min-height: 3.2em;
+    text-align: center;
+    color: var(--text-color);
+    font-size: 0.98rem;
+}
+
+.ia-schema-note {
+    font-size: 0.88rem;
+    color: var(--text-color-light);
+    text-align: center;
+}
+
+/* ── Sélecteur de configuration ────────────────────────────────────── */
+.ia-selector {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    border: 0;
+    margin: 0 0 22px;
+    padding: 0;
+}
+
+.ia-selector legend {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.ia-choice {
+    position: relative;
+    display: block;
+    cursor: pointer;
+}
+
+.ia-choice input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+.ia-choice-box {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 64px;
+    padding: 12px 16px;
+    border: 1px solid rgba(47, 223, 173, 0.35);
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.14);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.ia-choice:hover .ia-choice-box {
+    border-color: var(--highlight-color);
+}
+
+.ia-choice input:checked + .ia-choice-box {
+    border: 2px solid var(--highlight-color);
+    background: rgba(47, 223, 173, 0.1);
+}
+
+/* Indicateur non chromatique de la sélection */
+.ia-choice-box {
+    position: relative;
+}
+
+.ia-choice input:checked + .ia-choice-box::after {
+    content: "\2713";
+    position: absolute;
+    top: -9px;
+    right: -9px;
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--highlight-color);
+    color: var(--background-color);
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.ia-choice-box {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-content: center;
+    column-gap: 14px;
+    row-gap: 0;
+    color: var(--text-color-light);
+    font-size: 0.9rem;
+    line-height: 1.3;
+}
+
+.ia-choice-box strong {
+    grid-column: 2;
+    color: var(--text-color);
+    font-size: 1.05rem;
+}
+
+/* Pastille de lettre (A, B, C) générée depuis l'attribut data-lettre */
+.ia-choice-box::before {
+    content: attr(data-lettre);
+    grid-row: 1 / span 2;
+    display: inline-grid;
+    place-items: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 10px;
+    background: var(--highlight-color);
+    color: var(--background-color);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.ia-choice-letter {
+    flex: none;
+    display: inline-grid;
+    place-items: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 10px;
+    background: var(--highlight-color);
+    color: var(--background-color);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.ia-choice-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+}
+
+.ia-choice-name {
+    font-weight: bold;
+    font-size: 1.05rem;
+}
+
+.ia-choice-params {
+    color: var(--text-color-light);
+    font-size: 0.9rem;
+}
+
+/* ── Détail d'une configuration ────────────────────────────────────── */
+.ia-detail {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 28px;
+    align-items: start;
+}
+
+.ia-detail-media img {
+    display: block;
+    width: 100%;
+    max-width: 512px;
+    height: auto;
+    border-radius: 14px;
+}
+
+.ia-image-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0 4px;
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+}
+
+.ia-fullsize-link {
+    font-size: 0.92rem;
+}
+
+.ia-detail-kicker {
+    margin: 0;
+    color: var(--highlight-color);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.9rem;
+}
+
+.ia-detail-body h3 {
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+}
+
+.ia-detail-summary {
+    color: var(--text-color-light);
+}
+
+.ia-param-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 14px 0 18px;
+}
+
+.ia-param-card {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(47, 223, 173, 0.3);
+    background: rgba(47, 223, 173, 0.05);
+}
+
+.ia-param-card {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--text-color-light);
+}
+
+.ia-param-card strong {
+    font-size: 1.45rem;
+    color: var(--text-color);
+}
+
+.ia-measures,
+.ia-compare-measures,
+.ia-context {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 16px;
+    align-items: center;
+    margin: 0;
+}
+
+.ia-measures dt,
+.ia-compare-measures dt,
+.ia-context dt {
+    color: var(--text-color-light);
+    font-size: 0.95rem;
+}
+
+.ia-measures dd,
+.ia-compare-measures dd,
+.ia-context dd {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.ia-context {
+    margin-top: 12px;
+    font-size: 0.9rem;
+}
+
+.ia-vigilance {
+    display: block;
+    margin: 16px 0 12px;
+    padding: 12px 14px;
+    border-left: 3px solid var(--warning-color);
+    border-radius: 0 10px 10px 0;
+    background: rgba(247, 191, 88, 0.07);
+}
+
+.ia-vigilance strong {
+    color: var(--warning-color);
+}
+
+.ia-expected {
+    margin-bottom: 0;
+}
+
+/* ── Comparaison côte à côte ───────────────────────────────────────── */
+.ia-toggle {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border: 1px solid var(--highlight-color);
+    border-radius: 999px;
+    padding: 3px;
+    margin: 0 0 18px;
+}
+
+.ia-toggle legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+}
+
+.ia-toggle input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+.ia-toggle-label {
+    display: inline-block;
+    padding: 8px 16px;
+    min-height: 40px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.ia-toggle input:checked + .ia-toggle-label {
+    background: var(--highlight-color);
+    color: var(--background-color);
+}
+
+.ia-compare-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.ia-compare-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px;
+    border: 1px solid rgba(47, 223, 173, 0.35);
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.14);
+}
+
+.ia-compare-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.ia-compare-card .ia-choice-letter {
+    width: 1.9rem;
+    height: 1.9rem;
+    font-size: 1rem;
+}
+
+.ia-compare-params {
+    margin: 0;
+    color: var(--text-color-light);
+    font-size: 0.95rem;
+}
+
+.ia-compare-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: 12px;
+    background: #2a2a2c;
+}
+
+.ia-main [hidden] {
+    display: none !important;
+}
+
+/* Les recadrages sont agrandis sans lissage pour rendre visibles les pixels réels */
+.ia-compare-card img.ia-view-detail {
+    image-rendering: pixelated;
+}
+
+.ia-view-caption {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    color: var(--text-color-light);
+    text-align: center;
+}
+
+/* Barre du volume de calcul : dessinée en CSS à partir de --ia-part */
+.ia-meter {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--text-color-light);
+}
+
+.ia-meter::after {
+    content: "";
+    display: block;
+    height: 10px;
+    margin-top: 6px;
+    border-radius: 999px;
+    background:
+        linear-gradient(var(--ia-couleur, #8fb0ff), var(--ia-couleur, #8fb0ff)) left / var(--ia-part, 0%) 100% no-repeat,
+        rgba(255, 255, 255, 0.1);
+}
+
+/* Énergie mesurée : barre verte, pour la distinguer de l'estimation (bleue) */
+.ia-meter--mesure {
+    --ia-couleur: var(--success-color);
+    color: var(--text-color);
+}
+
+.ia-view-legend {
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+}
+
+/* Tableau récapitulatif */
+.ia-table-wrapper {
+    margin-top: 24px;
+    overflow-x: auto;
+    border: 1px solid rgba(47, 223, 173, 0.25);
+    border-radius: 14px;
+}
+
+.ia-table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.ia-table caption {
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.ia-table th,
+.ia-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    vertical-align: middle;
+}
+
+.ia-table thead th {
+    color: var(--highlight-color);
+    background: rgba(47, 223, 173, 0.05);
+}
+
+/* Cellules de statut du tableau : symbole + texte, jamais la couleur seule */
+.ia-table .ia-cell--non-mesure { color: var(--warning-color); }
+.ia-table .ia-cell--estime { color: #8fb0ff; }
+.ia-table .ia-cell--mesure { color: var(--success-color); }
+.ia-table .ia-cell--simule { color: #d6a8ff; }
+.ia-table .ia-cell--non-mesure::before { content: "? "; font-weight: bold; }
+.ia-table .ia-cell--estime::before { content: "\2248  "; font-weight: bold; }
+.ia-table .ia-cell--mesure::before { content: "\2713  "; font-weight: bold; }
+.ia-table .ia-cell--simule::before { content: "\25C7  "; font-weight: bold; }
+
+.ia-note {
+    margin-top: 14px;
+    font-size: 0.92rem;
+    color: var(--text-color-light);
+}
+
+/* ── Calculateur ───────────────────────────────────────────────────── */
+.ia-calc {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin: 14px 0;
+}
+
+.ia-calc label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.ia-calc input {
+    min-height: 44px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(47, 223, 173, 0.45);
+    background: rgba(0, 0, 0, 0.25);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.ia-calc-output {
+    display: block;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(47, 223, 173, 0.06);
+    border: 1px dashed rgba(47, 223, 173, 0.4);
+    line-height: 1.6;
+}
+
+.ia-calc-note {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.85rem;
+    color: var(--text-color-light);
+}
+
+.ia-formula {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.25);
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 1rem;
+}
+
+/* ── Compromis ─────────────────────────────────────────────────────── */
+.ia-tradeoff {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 22px;
+}
+
+.ia-why {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+}
+
+.ia-why li {
+    margin: 0;
+    padding: 14px 16px;
+    border-left: 3px solid var(--highlight-color);
+    background: rgba(0, 0, 0, 0.14);
+    border-radius: 0 12px 12px 0;
+}
+
+.ia-why li strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* ── Conclusion ────────────────────────────────────────────────────── */
+.ia-practices {
+    padding-left: 0;
+    list-style: none;
+}
+
+.ia-practices li {
+    position: relative;
+    padding-left: 28px;
+}
+
+.ia-practices li::before {
+    content: "\2713";
+    position: absolute;
+    left: 4px;
+    color: var(--highlight-color);
+    font-weight: bold;
+}
+
+.ia-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.ia-cta .button,
+.ia-cta .button-secondary {
+    margin: 0;
+    display: inline-block;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media screen and (max-width: 1100px) {
+    .ia-grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ia-diffusion,
+    .ia-detail {
+        grid-template-columns: 1fr;
+    }
+
+    .ia-detail-media img {
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .ia-selector,
+    .ia-compare-grid,
+    .ia-tradeoff,
+    .ia-grid-2,
+    .ia-calc {
+        grid-template-columns: 1fr;
+    }
+
+    /* Sur mobile, la comparaison reste lisible : 3 colonnes réduites cèdent la place
+       à une liste verticale où chaque image garde une taille confortable. */
+    .ia-compare-card {
+        max-width: 520px;
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .ia-grid-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .ia-card,
+    .ia-compare-card {
+        padding: 16px;
+    }
+
+    .ia-main section > h2 {
+        font-size: 1.4rem;
+    }
+
+    .ia-toggle {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        border-radius: 16px;
+    }
+
+    .ia-toggle-label {
+        display: block;
+        height: 100%;
+        border-radius: 12px;
+        text-align: center;
+        padding: 8px 10px;
+    }
+
+    .ia-param-card strong {
+        font-size: 1.2rem;
+    }
+
+    .ia-measures {
+        grid-template-columns: 1fr;
+        gap: 2px 0;
+    }
+
+    .ia-measures dd {
+        margin-bottom: 8px;
+    }
+
+    .ia-cta .button,
+    .ia-cta .button-secondary {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ia-main * {
+        transition: none !important;
+    }
+}

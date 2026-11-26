@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Découvrez l'impact environnemental des applications numériques du quotidien.">
+        content="Les chiffres clés de l'empreinte environnementale du numérique, du monde à l'utilisateur, puis application par application.">
     <meta name="keywords" content="écoconception, numérique, empreinte carbone, applications, environnement">
     <meta name="author" content="Rémy Courdier, Aïfèze Simba">
     <meta http-equiv="cache-control" content="max-age=31536000, must-revalidate">
@@ -17,6 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/styles/chiffres-cles.css">
     <link rel="stylesheet" href="../assets/styles/styles.css">
 
     <script defer src="../assets/scripts/hamburger.js"></script>
@@ -33,21 +34,22 @@
         <nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../index.html">Home</a></li>
-                <li class="mg-0"><a href="./quelques-chiffres.html" class="active">Chiffres</a></li>
                 <li class="mg-0"><a href="./quizz-access.html">Quiz</a></li>
-                <li class="mg-0"><a href="./en-pratique.html">Ateliers</a></li>
+                <li class="mg-0"><a href="./quelques-chiffres.html" class="active">Chiffres</a></li>
                 <li class="mg-0"><a href="./outils.html">Outils</a></li>
                 <li class="mg-0"><a href="./langages.html">Langages</a></li>
+                <li class="mg-0"><a href="./en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="./ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="./debat.html">Débat</a></li>
                 <li class="mg-0"><a href="./terminologie.html">Terminologie</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="main chiffres-main">
+    <main class="main chiffres-main">
 
         <section class="chiffres-hero">
-            <h1>Quelques chiffres sur nos applications du quotidien</h1>
+            <h1>Quelques chiffres sur l’empreinte du numérique</h1>
         </section>
 
         <section class="intro-card chiffres-intro">
@@ -69,12 +71,308 @@
             </div>
         </section>
 
+        <!-- ===== Données globales, du monde à l'utilisateur (HTML + CSS, sans JavaScript ni image) ===== -->
+        <section aria-labelledby="global-title">
+            <div class="chiffres-section-heading">
+                <h2 id="global-title">L’empreinte du numérique, du monde à l’utilisateur</h2>
+                <p>
+                    Avant de regarder une application en particulier, voici les ordres de grandeur du numérique
+                    dans son ensemble. Chaque chiffre est accompagné d’une <strong>équivalence concrète</strong>.
+                </p>
+            </div>
+
+            <div class="keyfig-grid">
+                <article class="keyfig-card">
+                    <h3>Dans le monde</h3>
+                    <p class="keyfig-scope">Tous les services numériques, sur un an <sup><a href="#src-1" aria-label="Source 1">[1]</a> <a href="#src-2" aria-label="Source 2">[2]</a></sup></p>
+                    <ul class="keyfig-list">
+                        <li>
+                            <span class="keyfig-value">1&nbsp;600&nbsp;millions de tonnes eq.&nbsp;CO₂<abbr title="Global Warming Potential&nbsp;: réchauffement global"><a href="terminologie.html#rechauffement_global">GWP</a></abbr></span>
+                            <span class="keyfig-equiv">Soit environ 400&nbsp;kg de gaz à effet de serre par utilisateur.</span>
+                        </li>
+                        <li>
+                            <span class="keyfig-value">7&nbsp;300&nbsp;TWh d’énergie primaire<abbr title="Primary Energy Depletion&nbsp;: consommation d’énergie primaire"><a href="terminologie.html#consommation_energie">PED</a></abbr></span>
+                            <span class="keyfig-equiv">Dont 1&nbsp;570&nbsp;TWh d’électricité, soit 380&nbsp;kWh par utilisateur.</span>
+                        </li>
+                        <li>
+                            <span class="keyfig-value">8&nbsp;milliards de m³ d’eau douce<abbr title="Water Depletion&nbsp;: consommation d’eau douce"><a href="terminologie.html#consommation_eau">WD</a></abbr></span>
+                            <span class="keyfig-equiv">Soit environ 1&nbsp;900&nbsp;litres par utilisateur.</span>
+                        </li>
+                    </ul>
+                </article>
+
+                <article class="keyfig-card">
+                    <h3>En Europe</h3>
+                    <p class="keyfig-scope">Union européenne à 28, sur un an <sup><a href="#src-3" aria-label="Source 3">[3]</a></sup></p>
+                    <ul class="keyfig-list">
+                        <li>
+                            <span class="keyfig-value">185&nbsp;millions de tonnes eq.&nbsp;CO₂<abbr title="Global Warming Potential&nbsp;: réchauffement global"><a href="terminologie.html#rechauffement_global">GWP</a></abbr></span>
+                            <span class="keyfig-equiv">4,2&nbsp;% des émissions européennes&nbsp;: autant que 370&nbsp;000&nbsp;allers-retours Paris – New York d’un avion de 500 passagers.</span>
+                        </li>
+                        <li>
+                            <span class="keyfig-value">283&nbsp;TWh d’électricité</span>
+                            <span class="keyfig-equiv">9,3&nbsp;% de la consommation européenne&nbsp;: 32&nbsp;millions de radiateurs de 1&nbsp;000&nbsp;W allumés toute l’année.</span>
+                        </li>
+                        <li>
+                            <span class="keyfig-value">571&nbsp;millions de tonnes de matières déplacées</span>
+                            <span class="keyfig-equiv">Le poids de 9,2&nbsp;milliards d’êtres humains, soit plus que la population mondiale.</span>
+                        </li>
+                    </ul>
+                </article>
+
+                <article class="keyfig-card">
+                    <h3>En France</h3>
+                    <p class="keyfig-scope">631&nbsp;millions d’équipements pour 58&nbsp;millions d’utilisateurs, sur un an <sup><a href="#src-4" aria-label="Source 4">[4]</a></sup></p>
+                    <ul class="keyfig-list">
+                        <li>
+                            <span class="keyfig-value">24&nbsp;millions de tonnes eq.&nbsp;CO₂<abbr title="Global Warming Potential&nbsp;: réchauffement global"><a href="terminologie.html#rechauffement_global">GWP</a></abbr></span>
+                            <span class="keyfig-equiv">3,2&nbsp;% des émissions de gaz à effet de serre du pays.</span>
+                        </li>
+                        <li>
+                            <span class="keyfig-value">180&nbsp;TWh d’énergie primaire<abbr title="Primary Energy Depletion&nbsp;: consommation d’énergie primaire"><a href="terminologie.html#consommation_energie">PED</a></abbr></span>
+                            <span class="keyfig-equiv">Dont 40&nbsp;TWh d’électricité, soit 8,3&nbsp;% de la consommation nationale.</span>
+                        </li>
+                        <li>
+                            <span class="keyfig-value">559&nbsp;millions de m³ d’eau douce<abbr title="Water Depletion&nbsp;: consommation d’eau douce"><a href="terminologie.html#consommation_eau">WD</a></abbr></span>
+                            <span class="keyfig-equiv">Environ 220&nbsp;000&nbsp;piscines olympiques de 2&nbsp;500&nbsp;m³.</span>
+                        </li>
+                        <li>
+                            <span class="keyfig-value">833&nbsp;tonnes eq.&nbsp;antimoine<abbr title="Abiotic Depletion Potential&nbsp;: épuisement des ressources abiotiques"><a href="terminologie.html#epuisement_des_ressources">ADP</a></abbr></span>
+                            <span class="keyfig-equiv">Métaux et minerais non renouvelables extraits du sol.</span>
+                        </li>
+                    </ul>
+                </article>
+
+                <article class="keyfig-card">
+                    <h3>Pour un utilisateur français</h3>
+                    <p class="keyfig-scope">Par personne et par an <sup><a href="#src-4" aria-label="Source 4">[4]</a></sup></p>
+                    <ul class="keyfig-list">
+                        <li>
+                            <span class="keyfig-value">420&nbsp;kg eq.&nbsp;CO₂<abbr title="Global Warming Potential&nbsp;: réchauffement global"><a href="terminologie.html#rechauffement_global">GWP</a></abbr></span>
+                            <span class="keyfig-equiv">Environ 3&nbsp;750&nbsp;km en voiture thermique, soit un quart du budget carbone soutenable d’une personne (1,7 tonne par an).</span>
+                        </li>
+                        <li>
+                            <span class="keyfig-value">3&nbsp;100&nbsp;kWh d’énergie primaire<abbr title="Primary Energy Depletion&nbsp;: consommation d’énergie primaire"><a href="terminologie.html#consommation_energie">PED</a></abbr></span>
+                            <span class="keyfig-equiv">Un radiateur de 1&nbsp;000&nbsp;W allumé jour et nuit pendant 130&nbsp;jours.</span>
+                        </li>
+                        <li>
+                            <span class="keyfig-value">9&nbsp;700&nbsp;litres d’eau douce<abbr title="Water Depletion&nbsp;: consommation d’eau douce"><a href="terminologie.html#consommation_eau">WD</a></abbr></span>
+                            <span class="keyfig-equiv">Environ 160&nbsp;douches de 60&nbsp;litres.</span>
+                        </li>
+                        <li>
+                            <span class="keyfig-value">14&nbsp;g eq.&nbsp;antimoine<abbr title="Abiotic Depletion Potential&nbsp;: épuisement des ressources abiotiques"><a href="terminologie.html#epuisement_des_ressources">ADP</a></abbr></span>
+                            <span class="keyfig-equiv">Pour environ 11&nbsp;équipements numériques par personne.</span>
+                        </li>
+                    </ul>
+                </article>
+            </div>
+
+            <p class="keyfig-note">
+                Ces valeurs sont des estimations issues d’<a href="terminologie.html#analyse_cycle_de_vie">analyses de cycle de vie</a>. Elles servent à comparer
+                et à fixer des priorités, pas à mesurer au gramme près.
+            </p>
+        </section>
+
+        <section aria-labelledby="indicators-title">
+            <div class="chiffres-section-heading">
+                <h2 id="indicators-title">Comment lire ces chiffres&nbsp;: les 4 indicateurs</h2>
+                <p>
+                    Le CO₂ ne dit pas tout. Les études d’impact du numérique retiennent <strong>quatre indicateurs</strong>,
+                    chacun avec son unité. Leurs définitions complètes sont dans la
+                    <a href="./terminologie.html">terminologie</a>.
+                </p>
+            </div>
+
+            <div class="indicator-grid">
+                <article class="indicator-card ind-gwp">
+                    <span class="indicator-code"><a href="terminologie.html#rechauffement_global">GWP</a></span>
+                    <h3><a href="terminologie.html#rechauffement_global">Réchauffement global</a></h3>
+                    <p>Gaz à effet de serre émis, qui dérèglent le climat.</p>
+                    <dl>
+                        <dt>Nom standard</dt>
+                        <dd>Global Warming Potential</dd>
+                        <dt>Unité</dt>
+                        <dd>kg équivalent CO₂ (kg eq.&nbsp;CO₂)</dd>
+                        <dt>Pour se repérer</dt>
+                        <dd>1&nbsp;km en voiture thermique ≈ 112&nbsp;g eq.&nbsp;CO₂ <sup><a href="#src-6" aria-label="Source 6">[6]</a></sup></dd>
+                    </dl>
+                </article>
+
+                <article class="indicator-card ind-ped">
+                    <span class="indicator-code"><a href="terminologie.html#consommation_energie">PED</a></span>
+                    <h3>Énergie primaire</h3>
+                    <p>Énergie brute puisée dans la nature (charbon, uranium, soleil…) pour produire l’énergie réellement utilisée.</p>
+                    <dl>
+                        <dt>Nom standard</dt>
+                        <dd>Primary Energy Depletion</dd>
+                        <dt>Unité</dt>
+                        <dd>Mégajoule (MJ) ou kWh d’énergie primaire</dd>
+                        <dt>Pour se repérer</dt>
+                        <dd>La consommation d’une ampoule de 25&nbsp;W ou d’un radiateur de 1&nbsp;000&nbsp;W</dd>
+                    </dl>
+                </article>
+
+                <article class="indicator-card ind-wd">
+                    <span class="indicator-code"><a href="terminologie.html#consommation_eau">WD</a></span>
+                    <h3>Eau douce</h3>
+                    <p>Eau «&nbsp;bleue&nbsp;», directement utilisable par l’être humain, consommée tout au long du <a href="terminologie.html#cycle_de_vie">cycle de vie</a>.</p>
+                    <dl>
+                        <dt>Nom standard</dt>
+                        <dd>Water Depletion</dd>
+                        <dt>Unité</dt>
+                        <dd>Litre ou m³ d’eau bleue</dd>
+                        <dt>Pour se repérer</dt>
+                        <dd>Une canette = 33&nbsp;cl, une douche = 60&nbsp;litres</dd>
+                    </dl>
+                </article>
+
+                <article class="indicator-card ind-adp">
+                    <span class="indicator-code"><a href="terminologie.html#epuisement_des_ressources">ADP</a></span>
+                    <h3>Ressources abiotiques</h3>
+                    <p>Épuisement des ressources non renouvelables&nbsp;: métaux, minerais et énergies fossiles.</p>
+                    <dl>
+                        <dt>Nom standard</dt>
+                        <dd>Abiotic Depletion Potential</dd>
+                        <dt>Unité</dt>
+                        <dd>kg équivalent antimoine (kg eq.&nbsp;Sb)</dd>
+                        <dt>Pour se repérer</dt>
+                        <dd>Des kilogrammes de terre excavée</dd>
+                    </dl>
+                </article>
+            </div>
+        </section>
+
+        <section aria-labelledby="where-title">
+            <div class="chiffres-section-heading">
+                <h2 id="where-title">Où se situe vraiment l’impact ?</h2>
+                <p>
+                    On pense d’abord à l’électricité consommée par les serveurs. Les <a href="terminologie.html#analyse_cycle_de_vie">analyses de cycle de vie</a> montrent
+                    pourtant que le premier poste est <strong>la fabrication de nos propres équipements</strong>.
+                </p>
+            </div>
+
+            <div class="impact-grid">
+                <article class="impact-card">
+                    <h3>Selon l’étape du <a href="terminologie.html#cycle_de_vie">cycle de vie</a></h3>
+                    <ul class="lifecycle-steps" aria-label="Les 5 étapes du cycle de vie selon la norme ISO 14040">
+                        <li>Conception</li>
+                        <li class="is-major">Fabrication</li>
+                        <li>Distribution</li>
+                        <li class="is-major">Utilisation</li>
+                        <li>Fin de vie</li>
+                    </ul>
+                    <p>
+                        La norme ISO 14040 découpe la vie d’un produit en 5 étapes. Pour le numérique, deux dominent :
+                        la <strong>fabrication</strong> (extraction des métaux, production des composants), puis
+                        l’<strong>utilisation</strong> (électricité).
+                        <sup><a href="#src-4" aria-label="Source 4">[4]</a></sup>
+                    </p>
+                </article>
+
+                <article class="impact-card">
+                    <h3>Selon le «&nbsp;tiers&nbsp;» technique</h3>
+                    <p>
+                        Le numérique repose sur 3 tiers&nbsp;: les équipements des utilisateurs, les réseaux
+                        et les centres de données. Part des équipements des utilisateurs, selon l’indicateur :
+                    </p>
+                    <div class="range-row">
+                        <span class="range-label"><span>Équipements des utilisateurs</span><strong>64&nbsp;% à 91&nbsp;%</strong></span>
+                        <span class="range-track" role="img" aria-label="De 64&nbsp;% à 91&nbsp;% des impacts">
+                            <span class="range-fill" style="--min: 64; --max: 91;"></span>
+                        </span>
+                    </div>
+                    <p>
+                        Les réseaux et les centres de données se partagent le reste.
+                        <sup><a href="#src-4" aria-label="Source 4">[4]</a></sup>
+                    </p>
+                </article>
+
+                <article class="impact-card">
+                    <h3>Selon le type d’équipement</h3>
+                    <div class="range-row">
+                        <span class="range-label"><span>Télévisions, box et décodeurs</span><strong>22&nbsp;% à 65&nbsp;%</strong></span>
+                        <span class="range-track" role="img" aria-label="De 22&nbsp;% à 65&nbsp;% des impacts">
+                            <span class="range-fill" style="--min: 22; --max: 65;"></span>
+                        </span>
+                    </div>
+                    <div class="range-row">
+                        <span class="range-label"><span>Ordinateurs et écrans</span><strong>15&nbsp;% à 24&nbsp;%</strong></span>
+                        <span class="range-track" role="img" aria-label="De 15&nbsp;% à 24&nbsp;% des impacts">
+                            <span class="range-fill" style="--min: 15; --max: 24;"></span>
+                        </span>
+                    </div>
+                    <div class="range-row">
+                        <span class="range-label"><span>Téléphones mobiles</span><strong>4&nbsp;% à 9&nbsp;%</strong></span>
+                        <span class="range-track" role="img" aria-label="De 4&nbsp;% à 9&nbsp;% des impacts">
+                            <span class="range-fill" style="--min: 4; --max: 9;"></span>
+                        </span>
+                    </div>
+                    <p>
+                        Fabriquer une télévision de 47&nbsp;pouces émet <strong>479&nbsp;kg eq.&nbsp;CO₂</strong> et nécessite
+                        <strong>26&nbsp;000&nbsp;litres d’eau</strong>.
+                        <sup><a href="#src-1" aria-label="Source 1">[1]</a></sup>
+                    </p>
+                </article>
+            </div>
+
+            <aside class="update-card" aria-labelledby="update-title">
+                <h3 id="update-title">Des chiffres qui évoluent&nbsp;: la mise à jour 2025</h3>
+                <p>
+                    La dernière évaluation ADEME / Arcep (janvier 2025, données 2022) estime l’<a href="terminologie.html#empreinte_carbone">empreinte carbone</a>
+                    du numérique en France à <strong>29,5&nbsp;millions de tonnes eq.&nbsp;CO₂</strong>, soit
+                    <strong>4,4&nbsp;% de l’<a href="terminologie.html#empreinte_carbone">empreinte carbone</a> du pays</strong>.
+                    <sup><a href="#src-5" aria-label="Source 5">[5]</a></sup>
+                </p>
+                <div class="share-bar" role="img" aria-label="Répartition de l’empreinte carbone&nbsp;: terminaux 50&nbsp;%, centres de données 46&nbsp;%, réseaux 4&nbsp;%">
+                    <span class="share-terminaux"></span>
+                    <span class="share-datacenters"></span>
+                    <span class="share-reseaux"></span>
+                </div>
+                <ul class="share-legend">
+                    <li style="--dot: var(--highlight-color);">Terminaux&nbsp;: <strong>50&nbsp;%</strong></li>
+                    <li style="--dot: var(--warning-color);">Centres de données&nbsp;: <strong>46&nbsp;%</strong></li>
+                    <li style="--dot: #7da2ff;">Réseaux&nbsp;: <strong>4&nbsp;%</strong></li>
+                </ul>
+                <p class="keyfig-equiv">
+                    L’évaluation précédente (données 2020) donnait 17,2&nbsp;millions de tonnes et 2,5&nbsp;% : elle ne comptait
+                    que les centres de données situés en France, alors qu’environ 53&nbsp;% des usages sont hébergés
+                    à l’étranger. Les terminaux restent le premier poste, mais le poids des centres de données
+                    augmente, notamment avec l’essor de l’IA. Ces études n’ont pas le même périmètre :
+                    leurs résultats ne se comparent pas directement.
+                </p>
+            </aside>
+
+            <div class="chiffres-takeaway">
+                <strong>À retenir</strong>
+                <ol>
+                    <li>Le numérique est très matériel&nbsp;: environ 11&nbsp;équipements par personne en France.</li>
+                    <li>Le CO₂ ne dit pas tout&nbsp;: l’eau, l’énergie primaire et les ressources minérales comptent aussi.</li>
+                    <li>Le premier levier est de faire durer ses équipements et d’en posséder moins, car c’est leur fabrication qui pèse le plus.</li>
+                </ol>
+                <p class="chiffres-cta">
+                    <a href="./simulateur-equipements.html" class="button">Faites le calcul avec le simulateur →</a>
+                </p>
+            </div>
+
+            <details class="chiffres-sources" open>
+                <summary>Sources des données globales</summary>
+                <ol>
+                    <li id="src-1">R. Courdier, <em>Eco-TIC&nbsp;: <a href="terminologie.html#ecoconception">écoconception</a> de services numériques, partie 1 – Comprendre les enjeux environnementaux du numérique</em>, Université de La Réunion, V2.03 (<a href="./ressources.html#supports">voir le cours dans la page Ressources</a>). Les chiffres mondiaux affichés sont ceux de ce cours (d’après France Stratégie, 2019, et GreenIT.fr).</li>
+                    <li id="src-2">GreenIT.fr, <a href="https://www.greenit.fr/empreinte-environnementale-du-numerique-mondial/" target="_blank" rel="noopener">Empreinte environnementale du numérique mondial</a>, octobre 2019. Pour l’année 2019, cette étude donne 1&nbsp;400&nbsp;millions de tonnes eq.&nbsp;CO₂ et 6&nbsp;800&nbsp;TWh d’énergie primaire.</li>
+                    <li id="src-3">GreenIT.fr pour le groupe Verts/ALE du Parlement européen, <a href="https://www.greenit.fr/wp-content/uploads/2021/12/EU-Study-ACV-7-DEC-FR.pdf" target="_blank" rel="noopener">Le numérique en Europe&nbsp;: une approche des impacts environnementaux par l’analyse du cycle de vie</a>, 7 décembre 2021 (données 2019).</li>
+                    <li id="src-4">GreenIT.fr, <a href="https://www.greenit.fr/wp-content/uploads/2021/02/2021-01-iNum-etude-impacts-numerique-France-rapport-0.8.pdf" target="_blank" rel="noopener">Impacts environnementaux du numérique en France</a> (étude iNum), version 0.8, 17 janvier 2021 (données 2020).</li>
+                    <li id="src-5">ADEME et Arcep, <a href="https://librairie.ademe.fr/changement-climatique/7880-evaluation-de-l-impact-environnemental-du-numerique-en-france.html" target="_blank" rel="noopener">Évaluation de l’impact environnemental du numérique en France – mise à jour de l’étude ADEME-Arcep</a>, janvier 2025 (données 2022).</li>
+                    <li id="src-6">GreenIT.fr, <em>Benchmark Green IT 2021</em>, version 0.2, août 2021 (équivalence voiture).</li>
+                </ol>
+            </details>
+        </section>
+
         <section aria-labelledby="apps-title">
             <div class="chiffres-section-heading">
                 <h2 id="apps-title">Applications analysées</h2>
                 <p>
                     Sélectionnez une application pour découvrir sa fiche détaillée, ses chiffres clés
-                    et les principaux facteurs qui influencent son impact environnemental.
+                    et les principaux facteurs qui influencent son <a href="terminologie.html#impact_environnemental">impact environnemental</a>.
                 </p>
             </div>
 
@@ -99,12 +397,11 @@
                     <span class="app-link-label">Voir la fiche →</span>
                 </a>
 
-                <a href="./fiches/claude.html" class="app-card app-chatgpt">
+                <a href="./fiches/claude.html" class="app-card app-claude">
                     <span class="app-category">IA</span>
                     <h3>Claude</h3>
                     <p>
-                        Découvrez l’impact environnemental de l’assistant conversationnel
-                        développé par Anthropic.
+                        Découvrez l’impact environnemental d’un assistant conversationnel développé par Anthropic.
                     </p>
                     <span class="app-link-label">Voir la fiche →</span>
                 </a>
@@ -201,7 +498,7 @@
             </div>
         </section>
 
-    </div>
+    </main>
 
     <footer>
         <p class="mg-0">

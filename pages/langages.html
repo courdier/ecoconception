@@ -15,7 +15,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles/styles.css">
-    <script defer src="../assets/scripts/scripts-tp.js"></script>
     <script defer src="../assets/scripts/hamburger.js"></script>
 </head>
 
@@ -29,19 +28,20 @@
         <nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../index.html">Home</a></li>
-                <li class="mg-0"><a href="./quelques-chiffres.html">Chiffres</a></li>
                 <li class="mg-0"><a href="./quizz-access.html">Quiz</a></li>
-                <li class="mg-0"><a href="./en-pratique.html">Ateliers</a></li>
+                <li class="mg-0"><a href="./quelques-chiffres.html">Chiffres</a></li>
                 <li class="mg-0"><a href="./outils.html">Outils</a></li>
                 <li class="mg-0"><a href="./langages.html" class="active">Langages</a></li>
+                <li class="mg-0"><a href="./en-pratique.html">Ateliers</a></li>
                 <li class="mg-0"><a href="./ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="./debat.html">Débat</a></li>
                 <li class="mg-0"><a href="./terminologie.html">Terminologie</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="main">
-        <h1>Langages de Programmation & Éco-conception</h1>
+        <h1>Langages de Programmation & <a href="terminologie.html#ecoconception">Éco-conception</a></h1>
 
         <section class="intro-text">
             <p>
@@ -52,7 +52,7 @@
             <br>
             <p>
                 Cette section présente une <strong>analyse comparative</strong> des langages de programmation
-                sous l'angle de l'écoconception, avec des <strong>règles d'optimisation concrètes</strong>
+                sous l'angle de l'<a href="terminologie.html#ecoconception">écoconception</a>, avec des <strong>règles d'optimisation concrètes</strong>
                 pour réduire l'<a href="terminologie.html#impact_environnemental">impact environnemental</a> de votre code.
             </p>
         </section>
@@ -143,17 +143,19 @@
                 d'autres facteurs (implémentation du langage, code du programme, nombre de cœurs utilisés, activité mémoire),
                 le langage n'a pas d'effet significatif sur l'énergie au-delà de son effet sur le <strong>temps d'exécution</strong>.
                 Autrement dit, c'est d'abord la rapidité du programme qui compte : le choix du langage a un impact, mais
-                <strong>bien coder compte tout autant</strong>. C'est l'objet des règles d'éco-conception ci-dessous.
+                <strong>bien coder compte tout autant</strong>. C'est l'objet des règles d'<a href="terminologie.html#ecoconception">éco-conception</a> ci-dessous.
             </p>
         </section>
 
         <section style="margin-top: 50px;">
             <h2>Langages analysés</h2>
             <p>
-                Sélectionnez un langage pour découvrir ses <strong>règles d'éco-conception</strong>,
+                Sélectionnez un langage pour découvrir ses <strong>règles d'<a href="terminologie.html#ecoconception">éco-conception</a></strong>,
                 des <strong>exemples de code optimisé</strong> et des <strong>bonnes pratiques</strong>
                 pour réduire son empreinte environnementale.
             </p>
+
+            <p><a href="./en-pratique/tp05.html" class="button">Pratiquer avec le TP 05</a></p>
 
             <!-- Grille de langages -->
             <div class="services-grid" style="margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">

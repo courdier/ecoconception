@@ -267,12 +267,13 @@
         <nav id="navbar">
             <ul>
                 <li class="mg-0"><a href="../index.html">Home</a></li>
-                <li class="mg-0"><a href="./quelques-chiffres.html">Chiffres</a></li>
                 <li class="mg-0"><a href="./quizz-access.html">Quiz</a></li>
-                <li class="mg-0"><a href="./en-pratique.html" class="active">Ateliers</a></li>
+                <li class="mg-0"><a href="./quelques-chiffres.html">Chiffres</a></li>
                 <li class="mg-0"><a href="./outils.html">Outils</a></li>
                 <li class="mg-0"><a href="./langages.html">Langages</a></li>
+                <li class="mg-0"><a href="./en-pratique.html" class="active">Ateliers</a></li>
                 <li class="mg-0"><a href="./ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="./debat.html">Débat</a></li>
                 <li class="mg-0"><a href="./terminologie.html">Terminologie</a></li>
             </ul>
         </nav>
@@ -289,8 +290,7 @@
                 <div class="intro-main">
                     <p>
                         Ces ateliers vous permettent d’appliquer les principes de
-                        <strong>l’écoconception numérique</strong> sur un
-                        <strong>cas réel</strong>.
+                        <strong>l’<a href="terminologie.html#ecoconception">écoconception</a> numérique</strong> à un site web et à des exercices de programmation.
                         L’objectif est d’apprendre à analyser un service numérique,
                         à identifier ses points d’amélioration, puis à réduire son impact
                         tout en conservant une bonne expérience utilisateur.
@@ -305,7 +305,7 @@
                             Prérequis
                         </h2>
                         <p>
-                            HTML, CSS, JavaScript, Git, Docker et Docker Compose.
+                            Pour les ateliers d’audit web : HTML, CSS, JavaScript, Git, Docker et Docker Compose.
                             Un environnement de développement sous Ubuntu, Windows ou macOS est nécessaire.
                         </p>
                     </article>
@@ -316,7 +316,7 @@
                             Cas d’étude
                         </h2>
                         <p>
-                            Les exercices s’appuient sur le site de l’Association Étudiante ESIROI,
+                            Les ateliers d’audit web s’appuient sur le site de l’Association Étudiante ESIROI,
                             utilisé comme support d’analyse et d’optimisation.
                         </p>
                         <a href="./en-pratique/bde-esiroi/index.html"
@@ -335,8 +335,9 @@
             <div class="parcours-header">
                 <h2 id="parcours-title">Parcours des ateliers</h2>
                 <p>
-                    Commencez par tester vos connaissances, puis progressez à travers quatre travaux pratiques
-                    complémentaires autour de l’analyse, de l’optimisation et de la sobriété web.
+                    Commencez par tester vos connaissances, puis progressez à travers cinq travaux pratiques
+                    autour de l’analyse, de la sobriété web et de l’optimisation du code.
+                    Un atelier interactif sur la génération d’images par IA complète le parcours.
                 </p>
             </div>
 
@@ -471,7 +472,7 @@
 
                         <p class="atelier-description">
                             Installez un environnement d’analyse de code, observez les métriques obtenues
-                            et repérez les premières pistes d’amélioration en écoconception.
+                            et repérez les premières pistes d’amélioration en <a href="terminologie.html#ecoconception">écoconception</a>.
                         </p>
 
                         <div class="atelier-tags">
@@ -484,6 +485,83 @@
                     <a href="./en-pratique/tp04.html" class="button atelier-link">
                         Voir l’atelier
                     </a>
+                </article>
+
+                <!-- TP 05 -->
+                <article class="atelier-card">
+                    <div>
+                        <span class="atelier-kicker">TP 05</span>
+                        <h3>Optimiser du <strong>code</strong></h3>
+                        <p class="atelier-description">
+                            Choisissez parmi sept langages, réécrivez des extraits inefficaces et comparez
+                            le nombre d’opérations et les copies évitées sur les mêmes données.
+                        </p>
+                        <div class="atelier-tags">
+                            <span class="atelier-tag">Algorithmique</span>
+                            <span class="atelier-tag">Mémoire</span>
+                            <span class="atelier-tag">Auto-évaluation</span>
+                        </div>
+                    </div>
+                    <a href="./en-pratique/tp05.html" class="button atelier-link">Faire l’atelier</a>
+                </article>
+
+                <!-- ATELIER CHATBOT -->
+                <article class="atelier-card">
+                    <div>
+                        <span class="atelier-kicker">Atelier IA</span>
+
+                        <h3>
+                            ChatBot <strong>éco-conçu</strong>
+                        </h3>
+
+                        <p class="atelier-meta">2h • ⭐⭐</p>
+
+                        <p class="atelier-description">
+                            Découvrez les règles d’<a href="terminologie.html#ecoconception">écoconception</a> d’une IA frugale, appliquées au chatbot du site,
+                            puis ajoutez-lui un sujet et mesurez l’effet sur sa taille et sa précision.
+                        </p>
+
+                        <div class="atelier-tags">
+                            <span class="atelier-tag">IA frugale</span>
+                            <span class="atelier-tag">Classification</span>
+                            <span class="atelier-tag">Mesure</span>
+                        </div>
+                    </div>
+
+                    <a href="./en-pratique/atelier-chatbot.html" class="button atelier-link">
+                        Voir l’atelier
+                    </a>
+                </article>
+
+                <!-- Atelier interactif : génération d'images par IA -->
+                <article class="atelier-card qcm-card">
+                    <div>
+                        <span class="atelier-kicker">Atelier interactif</span>
+
+                        <h3>
+                            Génération d’images par <strong>IA</strong> : à quel coût ?
+                        </h3>
+
+                        <p class="atelier-meta">30 min • ⭐</p>
+
+                        <div class="atelier-tags">
+                            <span class="atelier-tag">IA générative</span>
+                            <span class="atelier-tag">GPU</span>
+                            <span class="atelier-tag">Comparaison</span>
+                        </div>
+
+                        <a href="./en-pratique/atelier-ia-images.html" class="button atelier-link">
+                            Lancer l’atelier
+                        </a>
+                    </div>
+
+                    <div class="qcm-highlight">
+                        <p>
+                            Comprenez comment un modèle de diffusion produit une image, puis comparez trois
+                            configurations (résolution, nombre d’étapes, modèle accéléré) pour voir ce qui influence
+                            les ressources nécessaires, sans connaissance préalable en IA.
+                        </p>
+                    </div>
                 </article>
 
             </div>

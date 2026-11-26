@@ -1,0 +1,761 @@
+/* =========================================================
+   Simulateur d'empreinte des équipements
+   Feuille chargée uniquement par pages/simulateur-equipements.html.
+   Toutes les classes commencent par « sim- » : aucun conflit avec styles.css.
+   Les graphiques sont de simples éléments CSS (pas d'image, pas de bibliothèque) :
+   l'anneau est un dégradé conique piloté par une seule variable, --fab.
+   ========================================================= */
+
+/* Permet d'animer l'anneau : la part de fabrication change en douceur. */
+@property --fab {
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 0%;
+}
+
+.sim-main {
+    --sim-fab: var(--warning-color);
+    --sim-use: var(--info-color);
+    --sim-panel: #212124;
+    --sim-line: rgba(255, 255, 255, 0.1);
+    text-align: left;
+}
+
+.sim-sprite {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+/* ---------- Panneaux ---------- */
+
+.sim-panel,
+.sim-hero-viz {
+    padding: 26px;
+    border: 1px solid rgba(47, 223, 173, 0.3);
+    border-radius: 22px;
+    background:
+        radial-gradient(260px 120px at 8% 0%, rgba(47, 223, 173, 0.07), transparent),
+        var(--sim-panel);
+}
+
+.sim-panel h2 {
+    margin-bottom: 8px;
+    font-size: 1.45rem;
+}
+
+.sim-panel-hint {
+    margin-bottom: 6px;
+    color: var(--text-color-light);
+    font-size: 0.95rem;
+}
+
+.sim-dot {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    margin-right: 6px;
+    border-radius: 3px;
+    vertical-align: baseline;
+}
+
+.sim-dot-fab {
+    background-color: var(--sim-fab);
+}
+
+.sim-dot-use {
+    background-color: var(--sim-use);
+}
+
+/* ---------- Présentation ---------- */
+
+.sim-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 44px;
+    align-items: center;
+}
+
+.sim-title {
+    max-width: 1150px;
+    margin: 0 auto 28px;
+    text-align: center;
+}
+
+.sim-lead {
+    margin-bottom: 12px;
+    font-size: 1.15rem;
+}
+
+.sim-privacy {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    color: var(--text-color-light);
+    font-size: 0.92rem;
+}
+
+.sim-privacy svg {
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: var(--highlight-color);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.sim-hero-viz {
+    margin: 0;
+}
+
+.sim-hero-viz figcaption {
+    margin-bottom: 16px;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.sim-life {
+    display: flex;
+    height: 54px;
+    border-radius: 14px;
+    background-color: rgba(255, 255, 255, 0.07);
+    overflow: hidden;
+}
+
+.sim-life-fab {
+    display: flex;
+    flex: 0 0 98.9%;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px;
+    background-color: var(--sim-fab);
+    color: var(--background-color);
+    white-space: nowrap;
+}
+
+.sim-life-use {
+    flex: 1;
+    min-width: 3px;
+    background-color: var(--sim-use);
+}
+
+.sim-life-note {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 6px;
+    margin-top: 14px;
+    font-size: 0.95rem;
+}
+
+.sim-life-note .sim-dot-use {
+    margin-left: 12px;
+}
+
+.sim-life-source {
+    margin-top: 6px;
+    color: var(--text-color-light);
+    font-size: 0.85rem;
+}
+
+/* ---------- Mise en page du simulateur ---------- */
+
+.sim-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: 26px;
+    align-items: start;
+}
+
+.sim-extend {
+    grid-column: 1 / -1;
+}
+
+/* ---------- Saisie ---------- */
+
+.sim-device {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: end;
+    gap: 10px 16px;
+    padding: 18px 0 4px;
+}
+
+.sim-device + .sim-device {
+    margin-top: 6px;
+}
+
+.sim-device-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+}
+
+.sim-device-icon {
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+    padding: 10px;
+    border: 1px solid rgba(47, 223, 173, 0.35);
+    border-radius: 14px;
+    background-color: rgba(47, 223, 173, 0.08);
+    fill: none;
+    stroke: var(--highlight-color);
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.sim-device-name {
+    margin: 0;
+    font-weight: bold;
+    line-height: 1.3;
+}
+
+.sim-device-name small {
+    display: block;
+    color: var(--text-color-light);
+    font-size: 0.8rem;
+    font-weight: normal;
+}
+
+.sim-device-kg {
+    margin: 2px 0 0;
+    color: var(--text-color-light);
+    font-size: 0.88rem;
+}
+
+.sim-device-kg strong {
+    color: var(--highlight-color);
+    font-size: 1.05rem;
+}
+
+.sim-device.is-off .sim-device-head {
+    opacity: 0.65;
+}
+
+.sim-field {
+    display: grid;
+    gap: 5px;
+    color: var(--text-color-light);
+    font-size: 0.8rem;
+}
+
+.sim-stepper {
+    display: inline-flex;
+    align-items: stretch;
+    height: 42px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    background-color: rgba(0, 0, 0, 0.28);
+    overflow: hidden;
+}
+
+.sim-stepper:focus-within {
+    outline: 2px solid var(--highlight-color);
+    outline-offset: 2px;
+}
+
+.sim-stepper button {
+    display: grid;
+    flex: 0 0 40px;
+    place-items: center;
+    border: 0;
+    background-color: transparent;
+    color: var(--highlight-color);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.sim-stepper button:hover,
+.sim-stepper button:focus-visible {
+    background-color: rgba(47, 223, 173, 0.16);
+    outline: none;
+}
+
+.sim-stepper button:active {
+    background-color: rgba(47, 223, 173, 0.3);
+}
+
+.sim-stepper button svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+}
+
+.sim-stepper input {
+    width: 54px;
+    min-width: 0;
+    border: 0;
+    background-color: transparent;
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: bold;
+    text-align: center;
+    cursor: text;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.sim-stepper input:focus {
+    outline: none;
+}
+
+.sim-stepper input::-webkit-outer-spin-button,
+.sim-stepper input::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+}
+
+.sim-device-bar {
+    display: block;
+    grid-column: 1 / -1;
+    height: 6px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+
+.sim-device-bar span {
+    display: block;
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background-color: var(--highlight-color);
+    transition: width 0.45s ease;
+}
+
+.sim-reset {
+    display: inline-block;
+    margin: 22px 0 0;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.sim-reset:focus-visible,
+.sim-extend input:focus-visible,
+.sim-table-wrap:focus-visible {
+    outline: 2px solid var(--highlight-color);
+    outline-offset: 3px;
+}
+
+/* ---------- Résultat ---------- */
+
+.sim-results {
+    align-self: start;
+}
+
+.sim-ring {
+    --fab: 0%;
+
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: min(236px, 74%);
+    aspect-ratio: 1;
+    margin: 14px auto 20px;
+    border-radius: 50%;
+    background: conic-gradient(var(--sim-fab) 0 var(--fab), var(--sim-use) var(--fab) 100%);
+    transition: --fab 0.6s ease;
+}
+
+.sim-ring.is-empty {
+    background: rgba(255, 255, 255, 0.09);
+}
+
+/* Le « trou » de l'anneau */
+.sim-ring::before {
+    content: "";
+    position: absolute;
+    inset: 22px;
+    border-radius: 50%;
+    background-color: var(--sim-panel);
+}
+
+.sim-ring-center {
+    position: relative;
+    display: grid;
+    margin: 0;
+    line-height: 1.15;
+    text-align: center;
+}
+
+.sim-ring-center output {
+    color: var(--highlight-color);
+    font-family: var(--font-title);
+    font-size: 2.7rem;
+}
+
+.sim-ring-center span {
+    color: var(--text-color-light);
+    font-size: 0.82rem;
+}
+
+.sim-legend,
+.sim-equivs {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sim-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 18px;
+    margin-bottom: 18px;
+    font-size: 0.92rem;
+}
+
+.sim-legend li,
+.sim-equivs li {
+    margin: 0;
+}
+
+.sim-equivs li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid var(--sim-line);
+    color: var(--text-color-light);
+    font-size: 0.93rem;
+    line-height: 1.5;
+}
+
+.sim-equivs strong {
+    color: var(--text-color);
+}
+
+.sim-equivs svg {
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+    padding: 9px;
+    border-radius: 50%;
+    background-color: rgba(47, 223, 173, 0.1);
+    fill: none;
+    stroke: var(--highlight-color);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ---------- Et si je les gardais plus longtemps ? ---------- */
+
+.sim-extend-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 36px;
+    align-items: center;
+    margin-top: 14px;
+}
+
+.sim-extend-control label {
+    display: block;
+    margin-bottom: 14px;
+    font-size: 1.05rem;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.sim-extend-control label strong {
+    color: var(--highlight-color);
+}
+
+.sim-extend input[type="range"] {
+    display: block;
+    width: 100%;
+    height: 28px;
+    accent-color: var(--highlight-color);
+    cursor: pointer;
+}
+
+.sim-range-scale {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    color: var(--text-color-light);
+    font-size: 0.8rem;
+}
+
+.sim-gain-line {
+    margin: 16px 0 0;
+    font-size: 1.05rem;
+}
+
+.sim-gain {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.sim-compare {
+    display: grid;
+    gap: 16px;
+}
+
+.sim-compare-row {
+    display: grid;
+    grid-template-columns: 138px minmax(0, 1fr) 70px;
+    align-items: center;
+    gap: 12px;
+}
+
+.sim-compare-name {
+    color: var(--text-color-light);
+    font-size: 0.92rem;
+    line-height: 1.3;
+}
+
+.sim-compare-row strong {
+    text-align: right;
+}
+
+.sim-compare-bar {
+    display: block;
+    height: 28px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.07);
+    overflow: hidden;
+}
+
+.sim-compare-bar span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    transition: width 0.45s ease;
+}
+
+.sim-compare-now {
+    width: 100%;
+    background-color: rgba(232, 232, 232, 0.5);
+}
+
+.sim-compare-new {
+    width: 0;
+    background-color: var(--highlight-color);
+}
+
+/* ---------- Méthode ---------- */
+
+.sim-formula {
+    margin: 4px 0 14px;
+    padding: 14px 18px;
+    border-left: 4px solid var(--highlight-color);
+    border-radius: 0 12px 12px 0;
+    background-color: rgba(47, 223, 173, 0.08);
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 1.05rem;
+    font-weight: bold;
+}
+
+.sim-table-wrap {
+    margin-top: 18px;
+    border: 1px solid var(--sim-line);
+    border-radius: 16px;
+    overflow-x: auto;
+}
+
+.sim-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    text-align: left;
+}
+
+.sim-table caption {
+    padding: 12px 14px;
+    color: var(--text-color-light);
+    text-align: left;
+}
+
+.sim-table th,
+.sim-table td {
+    padding: 10px 14px;
+    border-top: 1px solid var(--sim-line);
+}
+
+.sim-table thead th {
+    color: var(--highlight-color);
+    background-color: rgba(47, 223, 173, 0.06);
+}
+
+.sim-table tbody th {
+    font-weight: normal;
+}
+
+.sim-table .num {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.sim-note {
+    margin-top: 14px;
+    color: var(--text-color-light);
+    font-size: 0.92rem;
+}
+
+/* ---------- Conseils ---------- */
+
+.sim-tips-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sim-tips-list li {
+    margin: 0;
+    padding: 16px 18px;
+    border-left: 3px solid var(--highlight-color);
+    border-radius: 0 14px 14px 0;
+    background-color: rgba(255, 255, 255, 0.04);
+    line-height: 1.6;
+}
+
+/* ---------- Pour aller plus loin ---------- */
+
+.sim-more {
+    margin-top: 56px;
+}
+
+.sim-more-intro {
+    margin-bottom: 20px;
+}
+
+.sim-more-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.sim-more-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid rgba(47, 223, 173, 0.3);
+    border-radius: 22px;
+    background-color: var(--sim-panel);
+}
+
+.sim-more-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.25rem;
+}
+
+.sim-more-card p {
+    line-height: 1.6;
+}
+
+.sim-more-source {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    opacity: 0.75;
+}
+
+.sim-more-card .button {
+    margin: auto 0 0;
+    align-self: flex-start;
+}
+
+.sim-more-source {
+    margin-bottom: 18px;
+}
+
+.sim-more-new {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* ---------- Animations : uniquement si l'utilisateur ne les refuse pas ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .sim-ring,
+    .sim-device-bar span,
+    .sim-compare-bar span,
+    .sim-stepper button {
+        transition: none;
+    }
+}
+
+/* ---------- Tablette et mobile ---------- */
+
+@media screen and (max-width: 1024px) {
+    .sim-hero,
+    .sim-layout,
+    .sim-more-grid,
+    .sim-extend-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sim-hero {
+        gap: 26px;
+    }
+
+    .sim-results {
+        position: static;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .sim-panel,
+    .sim-hero-viz {
+        padding: 20px 16px;
+    }
+
+    .sim-device {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .sim-device-head {
+        grid-column: 1 / -1;
+    }
+
+    .sim-stepper {
+        width: 100%;
+    }
+
+    .sim-stepper input {
+        flex: 1;
+        width: auto;
+    }
+
+    .sim-life-fab {
+        padding: 0 12px;
+        font-size: 0.9rem;
+    }
+
+    .sim-ring-center output {
+        font-size: 2.3rem;
+    }
+
+    .sim-compare-row {
+        grid-template-columns: 1fr 64px;
+        gap: 4px 10px;
+    }
+
+    .sim-compare-bar {
+        grid-column: 1 / -1;
+        order: 3;
+    }
+
+    .sim-reset {
+        width: 100%;
+    }
+}

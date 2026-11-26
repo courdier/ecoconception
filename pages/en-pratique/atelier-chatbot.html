@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Atelier ChatBot éco-conçu : découvrez en manipulant comment une IA frugale répond aux questions sans grand modèle de langage, puis modifiez-la.">
+    <meta name="keywords" content="chatbot, IA frugale, intelligence artificielle, écoconception, classification, LLM, sobriété">
+    <meta name="author" content="Aya, Teddy Greze, Faniry">
+
+    <title>Atelier ChatBot éco-conçu - Écoconception Numérique</title>
+
+    <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/styles/styles.css">
+
+    <script defer src="../../assets/scripts/hamburger.js"></script>
+    <script defer src="../../assets/scripts/atelier-chatbot.js"></script>
+
+    <style>
+        /* ATELIER CHATBOT */
+        .labo {
+            --surface: #242426;
+            --separation: #3a3a3c;
+            --texte-2: #b0b0b0;
+            --bon: var(--highlight-color);
+            --faux: #fd6363;
+            --attention: #f7bf58;
+            --ease: cubic-bezier(0.23, 1, 0.32, 1);
+            gap: 72px;
+        }
+
+        .labo > section {
+            width: 100%;
+            max-width: 920px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .labo h2 {
+            margin-bottom: 8px;
+        }
+
+        .labo p {
+            margin-bottom: 0;
+        }
+
+        .labo .chapeau {
+            margin-bottom: 24px;
+            color: var(--text-color-light);
+            font-size: 1.05rem;
+        }
+
+        .etiquette {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--highlight-color);
+            font-size: 0.85rem;
+            font-weight: bold;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .carte {
+            padding: 20px;
+            border: 1px solid var(--separation);
+            border-radius: 16px;
+            background-color: var(--surface);
+        }
+
+        .labo code {
+            padding: 2px 6px;
+            border-radius: 4px;
+            background-color: #333;
+            color: #f8f8f2;
+            font-family: monospace;
+            font-size: 0.95em;
+        }
+
+        /* Les longues commandes passent à la ligne au lieu d'élargir la page sur mobile */
+        .labo pre {
+            margin: 10px 0 0;
+            background-color: #1c1c1e;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .labo pre code {
+            padding: 0;
+            background: none;
+        }
+
+        .labo button,
+        .labo input {
+            font: inherit;
+        }
+
+        .labo :focus-visible {
+            outline: 2px solid var(--highlight-color);
+            outline-offset: 3px;
+        }
+
+        /* En-tête */
+        .accroche {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+            align-items: center;
+            gap: 32px;
+        }
+
+        .accroche h1 {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .accroche .chapeau {
+            font-size: 1.15rem;
+            line-height: 1.7;
+        }
+
+        .accroche svg {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            justify-self: center;
+        }
+
+        .chiffres {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .chiffres li {
+            margin: 0;
+            padding: 10px 16px;
+            border: 1px solid rgba(47, 223, 173, 0.4);
+            border-radius: 12px;
+            background-color: rgba(47, 223, 173, 0.06);
+            color: var(--text-color-light);
+            font-size: 0.9rem;
+        }
+
+        .chiffres strong {
+            display: block;
+            font-size: 1.4rem;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .sommaire-zone {
+            grid-column: 1 / -1;
+        }
+
+        .sommaire {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 28px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .sommaire li {
+            margin: 0;
+        }
+
+        .sommaire a {
+            display: inline-block;
+            padding: 6px 12px;
+            border: 1px solid var(--separation);
+            border-radius: 999px;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            font-weight: normal;
+            text-decoration: none;
+            transition: border-color 150ms ease, color 150ms ease;
+        }
+
+        .sommaire a span {
+            color: var(--highlight-color);
+            font-weight: bold;
+        }
+
+        /* Choix (quiz et escalier) */
+        .choix {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        .choix legend {
+            margin-bottom: 12px;
+            font-size: 1.15rem;
+            font-weight: bold;
+        }
+
+        .choix label {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            padding: 8px 16px;
+            border: 1px solid var(--separation);
+            border-radius: 12px;
+            background-color: var(--surface);
+            cursor: pointer;
+            transition: border-color 150ms ease, background-color 150ms ease, transform 160ms var(--ease);
+        }
+
+        .choix input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .choix label:has(input:focus-visible) {
+            outline: 2px solid var(--highlight-color);
+            outline-offset: 3px;
+        }
+
+        .choix label:active {
+            transform: scale(0.97);
+        }
+
+        .quiz[data-etat] label:has(input:checked) {
+            border-color: var(--faux);
+            background-color: rgba(253, 99, 99, 0.1);
+        }
+
+        .quiz[data-etat="bon"] label:has(input:checked) {
+            border-color: var(--bon);
+            background-color: rgba(47, 223, 173, 0.12);
+        }
+
+        .retour {
+            min-height: 1.6em;
+            margin-top: 14px;
+            padding-left: 12px;
+            border-left: 3px solid transparent;
+            line-height: 1.6;
+        }
+
+        .quiz[data-etat="bon"] .retour {
+            border-color: var(--bon);
+        }
+
+        .quiz[data-etat="faux"] .retour {
+            border-color: var(--faux);
+        }
+
+        .retour strong {
+            color: inherit;
+        }
+
+        /* Graphique de l'énergie */
+        .energie {
+            margin-top: 24px;
+        }
+
+        .energie[hidden] {
+            display: none;
+        }
+
+        .barres {
+            display: grid;
+            gap: 14px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .barres li {
+            display: grid;
+            grid-template-columns: 11rem minmax(0, 1fr);
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+        }
+
+        .barre {
+            position: relative;
+            height: 28px;
+            border-radius: 6px;
+            background-color: #2d2d2f;
+        }
+
+        .barre span {
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: var(--valeur);
+            border-radius: 6px;
+            background-color: var(--highlight-color);
+            transform-origin: left;
+            animation: pousser 600ms var(--ease) both;
+        }
+
+        .barre--generation span {
+            background-color: var(--attention);
+        }
+
+        .barre.barre--generation b {
+            left: auto;
+            right: calc(100% - var(--valeur) + 8px);
+            color: #1c1c1e;
+        }
+
+        .barre--image span {
+            width: 100%;
+            background: repeating-linear-gradient(135deg, var(--faux) 0 10px, #d94f4f 10px 20px);
+        }
+
+        .barre b {
+            position: absolute;
+            top: 50%;
+            left: calc(var(--valeur) + 8px);
+            transform: translateY(-50%);
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .barre--image b {
+            left: auto;
+            right: 8px;
+            color: #1c1c1e;
+        }
+
+        @keyframes pousser {
+            from {
+                transform: scaleX(0);
+            }
+        }
+
+        .note {
+            margin-top: 12px;
+            color: var(--texte-2);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* Escalier de l'IA */
+        .escalier {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            align-items: end;
+            gap: 8px;
+            height: 240px;
+        }
+
+        .escalier label {
+            height: var(--hauteur);
+            min-height: 72px;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            gap: 4px;
+            padding: 10px;
+            border-radius: 12px 12px 4px 4px;
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+
+        .escalier label b {
+            font-size: 1.3rem;
+            color: var(--texte-2);
+        }
+
+        .escalier label:has(input:checked) {
+            border-color: var(--highlight-color);
+            background-color: rgba(47, 223, 173, 0.14);
+        }
+
+        .escalier label:has(input:checked) b {
+            color: var(--highlight-color);
+        }
+
+        .escalier .ici {
+            z-index: 1;
+        }
+
+        .escalier .ici::after {
+            content: "Ce chatbot";
+            position: absolute;
+            top: -28px;
+            left: 0;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background-color: var(--highlight-color);
+            color: #1c1c1e;
+            font-size: 0.75rem;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .axe {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 6px;
+        }
+
+        .fiche-ia {
+            margin-top: 16px;
+        }
+
+        .fiche-ia h3 {
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            color: var(--text-color);
+        }
+
+        .fiche-ia dl {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin: 0;
+        }
+
+        .fiche-ia dt {
+            margin-bottom: 4px;
+            color: var(--texte-2);
+            font-size: 0.85rem;
+        }
+
+        .fiche-ia dd {
+            margin: 0;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        /* Cascade */
+        .essai {
+            display: flex;
+            gap: 8px;
+        }
+
+        .essai input {
+            flex: 1;
+            min-width: 0;
+            min-height: 48px;
+            padding: 0 16px;
+            border: 1px solid #6e6e73;
+            border-radius: 24px;
+            background-color: #1c1c1e;
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        .essai input:focus-visible {
+            outline-offset: 1px;
+            border-color: var(--highlight-color);
+        }
+
+        .exemples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .exemples li {
+            margin: 0;
+        }
+
+        .puce {
+            min-height: 32px;
+            padding: 4px 12px;
+            border: 1px solid rgba(47, 223, 173, 0.5);
+            border-radius: 16px;
+            background-color: rgba(47, 223, 173, 0.06);
+            color: var(--text-color);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: border-color 150ms ease, background-color 150ms ease, transform 160ms var(--ease);
+        }
+
+        .puce:active {
+            transform: scale(0.97);
+        }
+
+        .etapes-cascade {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 8px;
+            margin: 24px 0 0;
+            padding: 0;
+            list-style: none;
+            counter-reset: etape;
+        }
+
+        .etapes-cascade li {
+            position: relative;
+            margin: 0;
+            padding: 14px 12px;
+            border: 1px solid var(--separation);
+            border-radius: 12px;
+            background-color: var(--surface);
+            counter-increment: etape;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            transition: border-color 200ms ease, background-color 200ms ease, opacity 200ms ease;
+        }
+
+        .etapes-cascade li::before {
+            content: counter(etape);
+            display: grid;
+            place-items: center;
+            width: 26px;
+            height: 26px;
+            margin-bottom: 8px;
+            border-radius: 50%;
+            background-color: var(--separation);
+            font-weight: bold;
+        }
+
+        .etapes-cascade small {
+            display: block;
+            margin-top: 4px;
+            color: var(--texte-2);
+        }
+
+        .etapes-cascade .passee {
+            opacity: 0.45;
+        }
+
+        .etapes-cascade .repond {
+            border-color: var(--highlight-color);
+            background-color: rgba(47, 223, 173, 0.14);
+        }
+
+        .etapes-cascade .repond::before {
+            background-color: var(--highlight-color);
+            color: #1c1c1e;
+        }
+
+        .resultat {
+            min-height: 3.2em;
+            margin-top: 16px;
+            line-height: 1.6;
+        }
+
+        .resultat q {
+            display: block;
+            margin-top: 6px;
+            color: var(--text-color-light);
+            font-style: italic;
+        }
+
+        /* Seuil */
+        .seuil label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .seuil output {
+            color: var(--highlight-color);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .seuil input[type="range"] {
+            width: 100%;
+            accent-color: var(--highlight-color);
+        }
+
+        .empile {
+            display: flex;
+            height: 36px;
+            margin-top: 20px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .empile span {
+            flex: var(--part) 1 0;
+            min-width: 0;
+            transition: flex-grow 250ms var(--ease);
+        }
+
+        .empile .bonnes { background-color: var(--bon); }
+        .empile .precisions { background-color: #6e6e73; }
+        .empile .fausses { background-color: var(--faux); }
+
+        .legende {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+            margin-top: 12px;
+            padding: 0;
+            list-style: none;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .legende li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+        }
+
+        .legende i {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        /* Règles : une seule colonne, une seule carte ouverte à la fois (attribut name des details) */
+        .regles {
+            display: grid;
+            gap: 12px;
+            padding: 0;
+            list-style: none;
+            counter-reset: regle;
+        }
+
+        .regles > li {
+            margin: 0;
+            counter-increment: regle;
+        }
+
+        .regles details {
+            border: 1px solid var(--separation);
+            border-radius: 14px;
+            background-color: var(--surface);
+            transition: border-color 150ms ease;
+        }
+
+        .regles details[open] {
+            border-color: rgba(47, 223, 173, 0.6);
+        }
+
+        .regles summary {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-height: 64px;
+            padding: 14px 16px;
+            font-weight: bold;
+            line-height: 1.4;
+            cursor: pointer;
+            list-style: none;
+        }
+
+        .regles summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .regles summary::before {
+            content: counter(regle);
+            flex: none;
+            display: grid;
+            place-items: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: rgba(47, 223, 173, 0.14);
+            color: var(--highlight-color);
+        }
+
+        .regles summary::after {
+            content: "+";
+            margin-left: auto;
+            color: var(--highlight-color);
+            font-size: 1.4rem;
+            transition: transform 200ms var(--ease);
+        }
+
+        .regles details[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .regles .contenu {
+            display: grid;
+            gap: 10px;
+            padding: 0 16px 16px 60px;
+            line-height: 1.6;
+        }
+
+        .regles .contenu p:last-child {
+            color: var(--texte-2);
+        }
+
+        .regles .contenu b {
+            color: var(--text-color);
+        }
+
+        /* Compression */
+        .compression {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            align-items: center;
+            gap: 32px;
+        }
+
+        .compression svg {
+            width: 100%;
+            max-width: 360px;
+            height: auto;
+        }
+
+        .compression ol {
+            display: grid;
+            gap: 12px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            counter-reset: compression;
+        }
+
+        .compression li {
+            display: flex;
+            gap: 12px;
+            margin: 0;
+            line-height: 1.5;
+            counter-increment: compression;
+        }
+
+        .compression li::before {
+            content: counter(compression);
+            flex: none;
+            display: grid;
+            place-items: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: var(--highlight-color);
+            color: #1c1c1e;
+            font-weight: bold;
+        }
+
+        /* Quiz final */
+        .quiz-final {
+            display: grid;
+            gap: 28px;
+        }
+
+        .score {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        /* À vous de jouer */
+        .missions {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            padding: 0;
+            list-style: none;
+            counter-reset: mission;
+        }
+
+        .missions li {
+            margin: 0;
+            padding: 16px;
+            border: 1px solid var(--separation);
+            border-radius: 14px;
+            background-color: var(--surface);
+            line-height: 1.6;
+            counter-increment: mission;
+        }
+
+        .missions li::before {
+            content: "Mission " counter(mission);
+            display: block;
+            margin-bottom: 6px;
+            color: var(--highlight-color);
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .plus summary {
+            min-height: 44px;
+            padding: 10px 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .plus ul {
+            margin-top: 8px;
+        }
+
+        .plus li {
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .sommaire a:hover {
+                border-color: var(--highlight-color);
+                color: var(--highlight-color);
+            }
+
+            .choix label:hover,
+            .regles details:hover {
+                border-color: rgba(47, 223, 173, 0.6);
+            }
+
+            .puce:hover {
+                border-color: var(--highlight-color);
+                background-color: rgba(47, 223, 173, 0.14);
+            }
+        }
+
+        @media screen and (max-width: 850px) {
+            .accroche,
+            .compression {
+                grid-template-columns: 1fr;
+            }
+
+            .accroche svg {
+                display: none;
+            }
+
+            /* minmax(0, …) : la colonne peut devenir plus étroite qu'une longue commande */
+            .missions {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .etapes-cascade {
+                grid-template-columns: 1fr;
+            }
+
+            .etapes-cascade li {
+                display: grid;
+                grid-template-columns: 26px 1fr;
+                column-gap: 12px;
+                align-items: center;
+                padding: 10px 12px;
+            }
+
+            .etapes-cascade li::before {
+                grid-row: span 2;
+                margin: 0;
+            }
+
+            .fiche-ia dl {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .labo {
+                gap: 56px;
+            }
+
+            .escalier {
+                gap: 4px;
+                height: 200px;
+            }
+
+            .escalier label {
+                padding: 6px;
+                font-size: 0.7rem;
+            }
+
+            .escalier label span {
+                display: none;
+            }
+
+            .escalier .ici::after {
+                content: "Ici";
+            }
+
+            .barres li {
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+
+            .essai {
+                flex-direction: column;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .labo * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="../en-pratique.html" class="back-link">
+            <span class="back-arrow">🠔</span>
+            <span class="back-text">Retour</span>
+        </a>
+
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav id="navbar">
+            <ul>
+                <li class="mg-0"><a href="../../index.html">Home</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html">Chiffres</a></li>
+                <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../langages.html">Langages</a></li>
+                <li class="mg-0"><a href="../en-pratique.html" class="active">Ateliers</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../debat.html">Débat</a></li>
+                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main labo">
+
+        <!-- EN-TÊTE -->
+        <section class="accroche">
+            <div>
+                <span class="etiquette">Atelier IA · 2 h · ⭐⭐</span>
+                <h1>ChatBot éco-conçu</h1>
+                <p class="chapeau">
+                    Un chatbot sans grand modèle de langage, qui tient dans 23 Ko.
+                    Manipulez-le pour comprendre comment, puis modifiez-le.
+                </p>
+                <ul class="chiffres" aria-label="Le chatbot du site en chiffres">
+                    <li><strong>23 Ko</strong>de modèle</li>
+                    <li><strong>&lt; 1 ms</strong>par question</li>
+                    <li><strong>0 octet</strong>envoyé</li>
+                    <li><strong>85 %</strong>de bonnes réponses</li>
+                </ul>
+            </div>
+
+            <svg viewBox="0 0 280 240" role="img" aria-labelledby="illustration-titre">
+                <title id="illustration-titre">Une fenêtre de discussion : une question, une réponse marquée d’une feuille, et un fichier de 23 Ko</title>
+                <rect x="12" y="12" width="236" height="192" rx="20" fill="#242426" stroke="#3a3a3c" stroke-width="2" />
+                <path d="M12 46 H248" stroke="#3a3a3c" stroke-width="2" />
+                <circle cx="34" cy="29" r="5" fill="#fd6363" />
+                <circle cx="52" cy="29" r="5" fill="#f7bf58" />
+                <circle cx="70" cy="29" r="5" fill="#2fdfad" />
+                <rect x="118" y="62" width="112" height="32" rx="14" fill="#2fdfad" />
+                <rect x="134" y="74" width="62" height="8" rx="4" fill="#1c1c1e" opacity="0.5" />
+                <rect x="30" y="110" width="164" height="70" rx="14" fill="#1c1c1e" stroke="#2fdfad" stroke-width="2" />
+                <circle cx="58" cy="138" r="18" fill="#2fdfad" opacity="0.15" />
+                <!-- Icône « leaf » : Phosphor Icons (phosphoricons.com), licence MIT -->
+                <svg x="45" y="125" width="26" height="26" viewBox="0 0 256 256">
+                    <path fill="#2fdfad" d="M223.45,40.07a8,8,0,0,0-7.52-7.52C139.8,28.08,78.82,51,52.82,94a87.09,87.09,0,0,0-12.76,49A101.72,101.72,0,0,0,46.7,175.2a4,4,0,0,0,6.61,1.43l85-86.3a8,8,0,0,1,11.32,11.32L56.74,195.94,42.55,210.13a8.2,8.2,0,0,0-.6,11.1,8,8,0,0,0,11.71.43l16.79-16.79c14.14,6.84,28.41,10.57,42.56,11.07q1.67.06,3.33.06A86.93,86.93,0,0,0,162,203.18C205,177.18,227.93,116.21,223.45,40.07Z" />
+                </svg>
+                <rect x="84" y="126" width="92" height="8" rx="4" fill="#c2c2c2" opacity="0.6" />
+                <rect x="84" y="142" width="64" height="8" rx="4" fill="#c2c2c2" opacity="0.35" />
+                <rect x="46" y="162" width="110" height="6" rx="3" fill="#2fdfad" opacity="0.5" />
+                <rect x="180" y="188" width="88" height="40" rx="12" fill="#2fdfad" />
+                <text x="224" y="214" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="bold" fill="#1c1c1e">23 Ko</text>
+            </svg>
+
+            <div class="sommaire-zone">
+                <ul class="sommaire" aria-label="Étapes de l’atelier">
+                    <li><a href="#deviner"><span>1</span> Devinez</a></li>
+                    <li><a href="#echelle"><span>2</span> L’échelle de l’IA</a></li>
+                    <li><a href="#cascade"><span>3</span> Essayez</a></li>
+                    <li><a href="#seuil"><span>4</span> Le seuil</a></li>
+                    <li><a href="#regles"><span>5</span> 10 règles</a></li>
+                    <li><a href="#compresser"><span>6</span> Compresser</a></li>
+                    <li><a href="#verifier"><span>7</span> Quiz</a></li>
+                    <li><a href="#jouer"><span>8</span> À vous</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 1. DEVINER -->
+        <section id="deviner" aria-labelledby="deviner-titre">
+            <span class="etiquette">1 · Devinez d’abord</span>
+            <h2 id="deviner-titre">Générer un texte coûte combien de plus que le classer ?</h2>
+            <p class="chapeau">Pour 1 000 questions, comparez un modèle qui reconnaît le sujet d’un texte et un modèle qui écrit une réponse.</p>
+
+            <div class="quiz carte" data-revele="energie">
+                <fieldset class="choix">
+                    <legend>Générer consomme…</legend>
+                    <label><input type="radio" name="q-energie" data-explication="L’écart est bien plus grand : environ 20 fois.">2 fois plus</label>
+                    <label><input type="radio" name="q-energie" data-explication="C’est plus encore : environ 20 fois.">5 fois plus</label>
+                    <label><input type="radio" name="q-energie" data-bon data-explication="0,047 kWh contre 0,002 kWh, soit environ 23 fois plus. Et générer des images est encore 60 fois plus coûteux.">20 fois plus</label>
+                    <label><input type="radio" name="q-energie" data-explication="C’est moins : environ 20 fois. Mais pour des images, on dépasse 1 000 fois.">100 fois plus</label>
+                    <label><input type="radio" name="q-energie" data-explication="Voici la réponse : environ 20 fois plus.">Je ne sais pas</label>
+                </fieldset>
+                <p class="retour" role="status" aria-live="polite"></p>
+
+                <figure class="energie" id="energie" hidden>
+                    <ul class="barres" aria-label="Énergie pour 1 000 requêtes">
+                        <li><span>Classer un texte</span><span class="barre" style="--valeur: 4%;"><span></span><b>0,002 kWh</b></span></li>
+                        <li><span>Générer un texte</span><span class="barre barre--generation" style="--valeur: 94%;"><span></span><b>0,047 kWh</b></span></li>
+                        <li><span>Générer une image</span><span class="barre barre--image" style="--valeur: 100%;"><span></span><b>2,9 kWh, hors échelle</b></span></li>
+                    </ul>
+                    <figcaption class="note">Moyennes mesurées sur des modèles spécialisés et génératifs (Luccioni et al., 2024). La barre rayée dépasse le cadre : elle serait 60 fois plus longue que la barre orange.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- 2. ÉCHELLE -->
+        <section id="echelle" aria-labelledby="echelle-titre">
+            <span class="etiquette">2 · Explorez</span>
+            <h2 id="echelle-titre">Juste assez d’intelligence</h2>
+            <p class="chapeau">Six façons de répondre aux visiteurs, de la plus sobre à la plus coûteuse. Choisissez une marche.</p>
+
+            <fieldset class="choix escalier">
+                <legend class="visually-hidden">Choisir une technique</legend>
+                <label style="--hauteur: 40%;"><input type="radio" name="echelle" value="0"><b>1</b><span>Boutons</span></label>
+                <label style="--hauteur: 52%;"><input type="radio" name="echelle" value="1"><b>2</b><span>Mots-clés</span></label>
+                <label class="ici" style="--hauteur: 64%;"><input type="radio" name="echelle" value="2" checked><b>3</b><span>Classifieur</span></label>
+                <label style="--hauteur: 76%;"><input type="radio" name="echelle" value="3"><b>4</b><span>Sémantique</span></label>
+                <label style="--hauteur: 88%;"><input type="radio" name="echelle" value="4"><b>5</b><span>Petit LLM</span></label>
+                <label style="--hauteur: 100%;"><input type="radio" name="echelle" value="5"><b>6</b><span>Grand LLM</span></label>
+            </fieldset>
+            <p class="note axe" aria-hidden="true"><span>← plus sobre</span><span>plus coûteux →</span></p>
+
+            <div class="fiche-ia carte" aria-live="polite">
+                <h3 id="echelle-nom">Petit classifieur (ce chatbot)</h3>
+                <dl>
+                    <div><dt>Comprend une question libre ?</dt><dd id="echelle-libre">Oui, sur 75 sujets</dd></div>
+                    <div><dt>Ressources</dt><dd id="echelle-poids">23 Ko, moins d’1 ms par question</dd></div>
+                    <div><dt>Peut inventer ?</dt><dd id="echelle-invente">Non : les réponses sont rédigées</dd></div>
+                </dl>
+            </div>
+            <p class="note">Ordres de grandeur. Chiffres des grands modèles : Google 2025 (Gemini) et Mistral 2025 (Mistral Large 2).</p>
+        </section>
+
+        <!-- 3. CASCADE -->
+        <section id="cascade" aria-labelledby="cascade-titre">
+            <span class="etiquette">3 · Essayez</span>
+            <h2 id="cascade-titre">Du moins coûteux au plus coûteux</h2>
+            <p class="chapeau">Posez une question : voyez quelle étape du vrai chatbot y répond. Il se télécharge à votre premier essai.</p>
+
+            <div class="carte">
+                <form class="essai" id="essai">
+                    <label for="essai-question" class="visually-hidden">Votre question</label>
+                    <input id="essai-question" type="text" maxlength="200" autocomplete="off" placeholder="Par exemple : TikTok ou YouTube ?">
+                    <button type="submit" class="button">Analyser</button>
+                </form>
+                <ul class="exemples" aria-label="Exemples de questions">
+                    <li><button type="button" class="puce">TikTok ou YouTube ?</button></li>
+                    <li><button type="button" class="puce">Netflx ça pollue ?</button></li>
+                    <li><button type="button" class="puce">Qui est Herbert Simon ?</button></li>
+                    <li><button type="button" class="puce">Le bitcoin pollue-t-il ?</button></li>
+                </ul>
+
+                <ol class="etapes-cascade" id="etapes">
+                    <li data-etape="boutons">Boutons<small>Aucun calcul</small></li>
+                    <li data-etape="calcul">Règles de calcul<small>Chiffres des fiches</small></li>
+                    <li data-etape="modele">Classifieur<small>Reconnaît le sujet</small></li>
+                    <li data-etape="recherche">Recherche<small>Phrases du site</small></li>
+                    <li data-etape="aveu">« Je ne sais pas »<small>Plutôt qu’inventer</small></li>
+                </ol>
+                <div class="resultat" id="resultat" role="status" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <!-- 4. SEUIL -->
+        <section id="seuil" aria-labelledby="seuil-titre">
+            <span class="etiquette">4 · Réglez</span>
+            <h2 id="seuil-titre">Répondre vite ou répondre juste ?</h2>
+            <p class="chapeau">Le chatbot ne répond que s’il est assez sûr de lui. Déplacez le seuil et regardez les 60 questions de test.</p>
+
+            <div class="seuil carte">
+                <label for="seuil-curseur">Seuil de confiance <output id="seuil-valeur" for="seuil-curseur">75 %</output></label>
+                <input id="seuil-curseur" type="range" min="30" max="95" step="5" value="75" aria-valuetext="75 % : 51 bonnes réponses, 8 demandes de précision, 1 mauvaise réponse">
+                <div class="empile" aria-hidden="true">
+                    <span class="bonnes" style="--part: 51;"></span>
+                    <span class="precisions" style="--part: 8;"></span>
+                    <span class="fausses" style="--part: 1;"></span>
+                </div>
+                <ul class="legende">
+                    <li><i style="background-color: var(--bon);"></i><span><b id="seuil-bonnes">51</b> bonnes réponses</span></li>
+                    <li><i style="background-color: #6e6e73;"></i><span><b id="seuil-precisions">8</b> demandes de précision</span></li>
+                    <li><i style="background-color: var(--faux);"></i><span><b id="seuil-fausses">1</b> <span id="seuil-fausses-mot">mauvaise réponse</span></span></li>
+                </ul>
+                <p class="retour" id="seuil-message">75 % : le réglage choisi, une seule erreur sur 60.</p>
+            </div>
+        </section>
+
+        <!-- 5. RÈGLES -->
+        <section id="regles" aria-labelledby="regles-titre">
+            <span class="etiquette">5 · Retenez</span>
+            <h2 id="regles-titre">10 règles pour un chatbot sobre</h2>
+            <p class="chapeau">Ouvrez une carte : pourquoi la règle aide l’environnement, et comment ce chatbot l’applique.</p>
+
+            <ol class="regles">
+                <li><details name="regles"><summary>Se demander d’abord si l’IA est utile</summary><div class="contenu">
+                    <p><b>Pourquoi :</b> le calcul le plus sobre est celui qu’on ne fait pas. C’est le point de départ du référentiel AFNOR pour l’IA frugale.</p>
+                    <p>Ici : les boutons de suggestion répondent sans aucun calcul.</p>
+                </div></details></li>
+                <li><details name="regles"><summary>Choisir le plus petit modèle qui suffit</summary><div class="contenu">
+                    <p><b>Pourquoi :</b> classer un texte demande environ 20 fois moins d’énergie que générer une réponse.</p>
+                    <p>Ici : une régression logistique, l’un des modèles les plus simples. Les paires de mots, testées, le rendaient 3 fois plus lourd sans gain : retirées.</p>
+                </div></details></li>
+                <li><details name="regles"><summary>Rédiger une fois, servir mille fois</summary><div class="contenu">
+                    <p><b>Pourquoi :</b> une réponse générée coûte à chaque question ; une réponse rédigée, quelques centaines d’octets. Et elle ne peut rien inventer.</p>
+                    <p>Ici : 75 réponses écrites à partir des pages du site, avec leurs liens.</p>
+                </div></details></li>
+                <li><details name="regles"><summary>Calculer chez l’utilisateur, si le modèle est minuscule</summary><div class="contenu">
+                    <p><b>Pourquoi :</b> pas de serveur ni d’aller-retour réseau. Mais un gros modèle local pousserait à changer d’appareil.</p>
+                    <p>Ici : 23 Ko, moins d’1 ms, sans carte graphique, et rien n’est envoyé.</p>
+                </div></details></li>
+                <li><details name="regles"><summary>Ne rien charger avant la demande</summary><div class="contenu">
+                    <p><b>Pourquoi :</b> la plupart des visiteurs n’ouvrent jamais le chatbot.</p>
+                    <p>Ici : 0 octet avant le clic, 35 Ko compressés ensuite. Les phrases du site (34 Ko) seulement si le modèle hésite.</p>
+                </div></details></li>
+                <li><details name="regles"><summary>Guider plutôt que laisser deviner</summary><div class="contenu">
+                    <p><b>Pourquoi :</b> chaque question mal comprise entraîne une relance, donc du calcul et du temps d’écran.</p>
+                    <p>Ici : suggestions adaptées à la page consultée et sujets « Pour aller plus loin ».</p>
+                </div></details></li>
+                <li><details name="regles"><summary>Avouer quand on n’est pas sûr</summary><div class="contenu">
+                    <p><b>Pourquoi :</b> une réponse fausse pousse à chercher ailleurs et fait perdre confiance.</p>
+                    <p>Ici : seuil de 75 %, choisi en comptant une erreur comme 3 fois plus grave qu’une question de précision.</p>
+                </div></details></li>
+                <li><details name="regles"><summary>Garder des échanges courts</summary><div class="contenu">
+                    <p><b>Pourquoi :</b> pour un LLM, le coût grandit avec la longueur de la conversation.</p>
+                    <p>Ici : 2 à 4 phrases et un lien, aucun historique envoyé, un bouton « Nouvelle conversation ».</p>
+                </div></details></li>
+                <li><details name="regles"><summary>Compresser le modèle</summary><div class="contenu">
+                    <p><b>Pourquoi :</b> moins d’octets à stocker, transférer et calculer.</p>
+                    <p>Ici : élagage, ré-entraînement et quantification, voir l’étape 6.</p>
+                </div></details></li>
+                <li><details name="regles"><summary>Mesurer, et le montrer</summary><div class="contenu">
+                    <p><b>Pourquoi :</b> sans mesure, aucune preuve de sobriété.</p>
+                    <p>Ici : tests sur des questions jamais vues, et « Pourquoi cette réponse ? » sous chaque réponse.</p>
+                </div></details></li>
+            </ol>
+        </section>
+
+        <!-- 6. COMPRESSER -->
+        <section id="compresser" aria-labelledby="compresser-titre">
+            <span class="etiquette">6 · Observez</span>
+            <h2 id="compresser-titre">63 fois plus léger, aussi précis</h2>
+
+            <div class="compression">
+                <svg viewBox="0 0 320 250" role="img" aria-labelledby="compression-titre">
+                    <title id="compression-titre">Deux carrés dont la surface représente la taille du modèle : 1,4 Mo avant compression, 23 Ko après, soit 63 fois moins</title>
+                    <rect x="4" y="34" width="200" height="200" rx="6" fill="none" stroke="#6e6e73" stroke-width="2" stroke-dasharray="6 6" />
+                    <text x="104" y="24" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#c2c2c2">Avant : 1,4 Mo</text>
+                    <rect x="240" y="209" width="25" height="25" rx="3" fill="#2fdfad" />
+                    <text x="274" y="227" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="bold" fill="#2fdfad">23 Ko</text>
+                    <path d="M210 150 C236 150 250 172 252 200" fill="none" stroke="#2fdfad" stroke-width="2" marker-end="url(#fleche)" />
+                    <text x="262" y="132" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="bold" fill="#e8e8e8">÷ 63</text>
+                    <defs>
+                        <marker id="fleche" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                            <path d="M0 0 L10 5 L0 10 Z" fill="#2fdfad" />
+                        </marker>
+                    </defs>
+                </svg>
+
+                <ol>
+                    <li><span><b>Élaguer</b> : supprimer les poids trop faibles. 57 597 deviennent 2 439.</span></li>
+                    <li><span><b>Ré-entraîner</b> les poids gardés, pour retrouver la précision perdue.</span></li>
+                    <li><span><b>Quantifier</b> : chaque poids tient sur un entier de −127 à 127.</span></li>
+                </ol>
+            </div>
+            <p class="note">Surfaces proportionnelles aux tailles. Méthode inspirée de Han, Mao et Dally (2016).</p>
+        </section>
+
+        <!-- 7. QUIZ -->
+        <section id="verifier" aria-labelledby="verifier-titre">
+            <span class="etiquette">7 · Vérifiez</span>
+            <h2 id="verifier-titre">Trois questions pour finir</h2>
+            <p class="score" id="score" aria-live="polite">Score : 0 / 3</p>
+
+            <div class="quiz-final">
+                <div class="quiz carte" data-final>
+                    <fieldset class="choix">
+                        <legend>Le chatbot ne connaît pas la réponse. Que fait-il ?</legend>
+                        <label><input type="radio" name="q1" data-explication="Jamais : il n’a rien à inventer, ses réponses sont rédigées à l’avance.">Il invente une réponse plausible</label>
+                        <label><input type="radio" name="q1" data-explication="Non, il ne contacte aucun service : tout se passe dans votre navigateur.">Il demande à ChatGPT</label>
+                        <label><input type="radio" name="q1" data-bon data-explication="Il cherche une phrase du site qui y répond, sinon il dit qu’il ne sait pas.">Il cherche dans le site, puis l’avoue</label>
+                    </fieldset>
+                    <p class="retour" role="status" aria-live="polite"></p>
+                </div>
+
+                <div class="quiz carte" data-final>
+                    <fieldset class="choix">
+                        <legend>Quand le chatbot est-il téléchargé ?</legend>
+                        <label><input type="radio" name="q2" data-explication="Non : ce serait du gaspillage, la plupart des visiteurs ne l’ouvrent jamais.">À chaque page visitée</label>
+                        <label><input type="radio" name="q2" data-bon data-explication="Rien n’est chargé avant le clic sur « Une question ? », puis tout reste en cache.">Au premier clic sur « Une question ? »</label>
+                        <label><input type="radio" name="q2" data-explication="Non, il fonctionne dans votre navigateur, sans serveur.">Jamais, il tourne sur un serveur</label>
+                    </fieldset>
+                    <p class="retour" role="status" aria-live="polite"></p>
+                </div>
+
+                <div class="quiz carte" data-final>
+                    <fieldset class="choix">
+                        <legend>Monter le seuil de confiance à 95 %, c’est…</legend>
+                        <label><input type="radio" name="q3" data-explication="Il fait 0 erreur, mais ne répond directement qu’à 41 questions sur 60 au lieu de 51.">Mieux dans tous les cas</label>
+                        <label><input type="radio" name="q3" data-bon data-explication="0 erreur, mais 19 demandes de précision : plus de relances pour le visiteur. Tout est compromis.">Moins d’erreurs, mais plus de relances</label>
+                        <label><input type="radio" name="q3" data-explication="C’est l’inverse : il répond moins souvent, mais se trompe moins.">Plus d’erreurs</label>
+                    </fieldset>
+                    <p class="retour" role="status" aria-live="polite"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. À VOUS -->
+        <section id="jouer" aria-labelledby="jouer-titre">
+            <span class="etiquette">8 · À vous de jouer</span>
+            <h2 id="jouer-titre">Améliorez le chatbot</h2>
+            <p class="chapeau">Il vous faut Git, Node.js 18 ou plus et un navigateur. Aucune bibliothèque à installer.</p>
+
+            <ol class="missions">
+                <li>
+                    <b>Mesurez.</b> Outils de développement (F12), onglet Réseau : aucun fichier du chatbot avant le clic. Notez ce qui se charge ensuite.
+                </li>
+                <li>
+                    <b>Installez le site.</b>
+                    <pre><code>git clone https://github.com/<wbr>courdier/<wbr>ecoconception.git
+cd ecoconception
+python -m http.server 8000</code></pre>
+                </li>
+                <li>
+                    <b>Ajoutez un sujet.</b> Trouvez une question à laquelle le chatbot répond mal, puis ajoutez une intention dans <code>chatbot/intentions.mjs</code> (au moins 10 exemples).
+                </li>
+                <li>
+                    <b>Ré-entraînez</b> et comparez taille et précision :
+                    <pre><code>node chatbot/entrainer.mjs</code></pre>
+                </li>
+            </ol>
+            <p class="note"><b>Livrable :</b> une page de rapport avec le sujet ajouté, les résultats avant et après, et votre avis : dans quel cas un grand modèle de langage serait-il justifié ici ?</p>
+        </section>
+
+        <!-- LIMITES ET SOURCES -->
+        <section aria-label="Limites et sources">
+            <details class="plus">
+                <summary>Limites</summary>
+                <ul>
+                    <li>Les réponses sont fixes : si une page change, il faut mettre à jour sa réponse et ré-entraîner.</li>
+                    <li>Une seule intention par question ; les comparaisons ne portent que sur les services des fiches.</li>
+                    <li>Les chiffres des fiches viennent de sources différentes : ce sont des ordres de grandeur.</li>
+                    <li>Les 60 questions de test ont été écrites par l’équipe, pas par de vrais visiteurs.</li>
+                </ul>
+            </details>
+            <details class="plus">
+                <summary>Sources</summary>
+                <ul>
+                    <li>A. S. Luccioni, Y. Jernite et E. Strubell, « Power Hungry Processing: Watts Driving the Cost of AI Deployment? », ACM FAccT 2024, tableau 2. <a href="https://arxiv.org/abs/2311.16863" target="_blank" rel="noopener">arxiv.org/abs/2311.16863</a></li>
+                    <li>AFNOR Spec 2314, « Référentiel général pour l’IA frugale », juin 2024. <a href="https://www.ecologie.gouv.fr/presse/publication-du-referentiel-general-lia-frugale-sattaquer-limpact-environnemental-lia" target="_blank" rel="noopener">ecologie.gouv.fr</a></li>
+                    <li>Mistral AI, avec Carbone 4 et l’ADEME, <a href="../terminologie.html#analyse_cycle_de_vie">analyse du cycle de vie</a> de Mistral Large 2, juillet 2025. <a href="https://mistral.ai/fr/news/our-contribution-to-a-global-environmental-standard-for-ai" target="_blank" rel="noopener">mistral.ai</a></li>
+                    <li>Google, « Measuring the environmental impact of AI inference », août 2025. <a href="https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference" target="_blank" rel="noopener">cloud.google.com</a></li>
+                    <li>S. Han, H. Mao et W. J. Dally, « Deep Compression », ICLR 2016. <a href="https://arxiv.org/abs/1510.00149" target="_blank" rel="noopener">arxiv.org/abs/1510.00149</a></li>
+                    <li>R. Courdier, Eco-TIC, partie 5 : « <a href="../terminologie.html#ecoconception">Écoconception</a> et Intelligence Artificielle ». <a href="../ressources.html">Page Ressources</a></li>
+                </ul>
+            </details>
+        </section>
+
+        <div class="button-container">
+            <a href="../en-pratique.html" class="button-secondary">Retour aux ateliers</a>
+        </div>
+    </div>
+
+    <footer>
+        <p class="mg-0">
+            &copy; 2026 - COURDIER Rémy & Étudiants d'informatique de l'Université de La Réunion -
+            <a href="../a-propos.html">À propos</a>
+        </p>
+    </footer>
+</body>
+
+</html>

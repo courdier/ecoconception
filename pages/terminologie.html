@@ -16,6 +16,140 @@
   <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="../assets/styles/styles.css" />
   <script defer src="../assets/scripts/hamburger.js"></script>
+
+  <style>
+    .terminologie-main {
+      gap: 40px;
+    }
+
+    .terminologie-main .intro-card {
+      margin-bottom: 0;
+    }
+
+    /* Accès rapide aux thèmes */
+    .term-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .term-nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border: 1px solid var(--highlight-color);
+      border-radius: 999px;
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 0.95rem;
+      line-height: 1.2;
+      transition: background-color 0.25s ease;
+    }
+
+    .term-nav-link i {
+      color: var(--highlight-color);
+    }
+
+    .term-nav-link:hover,
+    .term-nav-link:focus-visible {
+      background-color: rgba(47, 223, 173, 0.12);
+    }
+
+    .term-count {
+      min-width: 1.6em;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background-color: rgba(47, 223, 173, 0.15);
+      color: var(--highlight-color);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    /* Thèmes */
+    .term-section,
+    .term-card h3 {
+      scroll-margin-top: calc(var(--nav-height) + 20px);
+    }
+
+    .term-section-header h2 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .term-section-header h2 i {
+      color: var(--highlight-color);
+      font-size: 1.3rem;
+    }
+
+    .term-section-header p {
+      margin-bottom: 22px;
+      color: var(--text-color-light);
+    }
+
+    .term-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+      gap: 18px;
+    }
+
+    .term-card {
+      padding: 20px 22px;
+      border: 1px solid rgba(47, 223, 173, 0.35);
+      border-radius: 16px;
+      background:
+        radial-gradient(160px 80px at 10% 0%, rgba(47, 223, 173, 0.06), transparent),
+        rgba(0, 0, 0, 0.12);
+      text-align: left;
+    }
+
+    .term-card h3 {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      color: var(--highlight-color);
+      font-size: 1.2rem;
+      line-height: 1.4;
+    }
+
+    .term-acronym {
+      padding: 3px 10px;
+      border: 1px solid rgba(47, 223, 173, 0.35);
+      border-radius: 999px;
+      background-color: rgba(47, 223, 173, 0.06);
+      color: var(--text-color);
+      font-size: 0.8rem;
+      text-decoration: none;
+    }
+
+    .term-card p {
+      margin-bottom: 0;
+      color: var(--text-color-light);
+      line-height: 1.7;
+    }
+
+    @media screen and (max-width: 600px) {
+      .terminologie-main {
+        gap: 34px;
+      }
+
+      .term-nav {
+        justify-content: flex-start;
+      }
+
+      .term-card {
+        padding: 18px 16px;
+      }
+
+      .term-card h3 {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -28,172 +162,151 @@
     <nav id="navbar">
       <ul>
         <li class="mg-0"><a href="../index.html">Home</a></li>
-        <li class="mg-0"><a href="./quelques-chiffres.html">Chiffres</a></li>
         <li class="mg-0"><a href="./quizz-access.html">Quiz</a></li>
-        <li class="mg-0"><a href="./en-pratique.html">Ateliers</a></li>
+        <li class="mg-0"><a href="./quelques-chiffres.html">Chiffres</a></li>
         <li class="mg-0"><a href="./outils.html">Outils</a></li>
         <li class="mg-0"><a href="./langages.html">Langages</a></li>
+        <li class="mg-0"><a href="./en-pratique.html">Ateliers</a></li>
         <li class="mg-0"><a href="./ressources.html">Ressources</a></li>
+        <li class="mg-0"><a href="./debat.html">Débat</a></li>
         <li class="mg-0"><a href="./terminologie.html" class="active">Terminologie</a></li>
       </ul>
     </nav>
   </header>
-  <div class="main">
-    <h1>Terminologie des Termes liés à l'Eco conception</h1>
-    <section class="terminology">
-      <div class="term">
-        <h3 id="ecoconception">Écoconception</h3>
-        <p>
-          L'écoconception est une approche qui consiste à intégrer des
-          critères environnementaux dès la phase de conception d'un produit ou
-          d'un service, dans le but de minimiser son impact sur
-          l'environnement tout au long de son cycle de vie.
-        </p>
-      </div>
+  <div class="main terminologie-main">
+        <h1>Terminologie</h1>
 
-      <div class="term">
-        <h3 id="empreinte_carbone">Empreinte Carbone</h3>
-        <p>
-          L'empreinte carbone est une mesure de la quantité de dioxyde de
-          carbone (CO2) émise par les activités humaines. Elle inclut les
-          émissions directes et indirectes de gaz à effet de serre tout au
-          long du cycle de vie d'un produit ou d'un service.
-        </p>
-      </div>
+        <section class="intro-card">
+            <div class="intro-content">
+                <i class="fa-solid fa-spell-check intro-icon" aria-hidden="true"></i>
+                <p>
+                    Les termes clés de l'écoconception et du numérique responsable,
+                    regroupés par thème pour retrouver rapidement une définition.
+                </p>
+            </div>
+        </section>
 
-      <div class="term">
-        <h3 id="consommation_energie">Consommation d’Énergie Primaire (PED)</h3>
-        <p>
-          La consommation d’énergie primaire (Primary Energy Demand - PED) est
-          la quantité totale d’énergie brute nécessaire pour produire une
-          unité de produit ou de service, y compris l'extraction, la
-          transformation, et la distribution.
-        </p>
-      </div>
+        <nav class="term-nav" aria-label="Thèmes de la terminologie">
+            <a href="#fondamentaux" class="term-nav-link"><i class="fa-solid fa-seedling" aria-hidden="true"></i> Notions fondamentales <span class="term-count">5</span></a>
+            <a href="#indicateurs" class="term-nav-link"><i class="fa-solid fa-chart-bar" aria-hidden="true"></i> Indicateurs environnementaux <span class="term-count">4</span></a>
+            <a href="#equipements" class="term-nav-link"><i class="fa-solid fa-recycle" aria-hidden="true"></i> Durée de vie des équipements <span class="term-count">4</span></a>
+            <a href="#transition" class="term-nav-link"><i class="fa-solid fa-leaf" aria-hidden="true"></i> Transition et sobriété <span class="term-count">3</span></a>
+        </nav>
 
-      <div class="term">
-        <h3 id="rechauffement_global">Réchauffement Global (GWP)</h3>
-        <p>
-          Le potentiel de réchauffement global (Global Warming Potential -
-          GWP) est une mesure de la contribution d'un gaz à effet de serre au
-          réchauffement climatique. Il est exprimé en équivalent CO2.
-        </p>
-      </div>
+        <section id="fondamentaux" class="term-section" aria-labelledby="fondamentaux-title">
+            <div class="term-section-header">
+                <h2 id="fondamentaux-title"><i class="fa-solid fa-seedling" aria-hidden="true"></i> Notions fondamentales</h2>
+                <p>Les concepts de base pour comprendre la démarche d'écoconception.</p>
+            </div>
 
-      <div class="term">
-        <h3 id="consommation_eau">Consommation d’Eau Douce (WD)</h3>
-        <p>
-          La consommation d'eau douce (Water Demand - WD) mesure la quantité
-          d'eau douce utilisée directement ou indirectement pour la production
-          d'un produit ou service.
-        </p>
-      </div>
+            <div class="term-grid">
+                <article class="term-card">
+                    <h3 id="ecoconception">Écoconception</h3>
+                    <p>L'écoconception est une approche qui consiste à intégrer des critères environnementaux dès la phase de conception d'un produit ou d'un service, dans le but de minimiser son impact sur l'environnement tout au long de son cycle de vie.</p>
+                </article>
+                <article class="term-card">
+                    <h3 id="cycle_de_vie">Cycle de Vie</h3>
+                    <p>Le cycle de vie désigne l’ensemble des étapes traversées par un produit ou un service : extraction des ressources, fabrication, transport, utilisation, maintenance, puis fin de vie. En écoconception, toutes ces phases doivent être prises en compte.</p>
+                </article>
+                <article class="term-card">
+                    <h3 id="analyse_cycle_de_vie">Analyse du Cycle de Vie
+                        <abbr class="term-acronym" title="Sigle">ACV</abbr></h3>
+                    <p>L’Analyse du Cycle de Vie (ACV) est une méthode d’évaluation qui permet de mesurer les impacts environnementaux d’un produit, d’un service ou d’un procédé sur l’ensemble de son cycle de vie, de l’extraction des matières premières jusqu’à la fin de vie.</p>
+                </article>
+                <article class="term-card">
+                    <h3 id="impact_environnemental">Impact Environnemental</h3>
+                    <p>L'impact environnemental est l'effet qu'une activité ou un processus a sur l'environnement, incluant les émissions de polluants, l'épuisement des ressources naturelles, la dégradation des écosystèmes et la contribution au changement climatique.</p>
+                </article>
+                <article class="term-card">
+                    <h3 id="empreinte_carbone">Empreinte Carbone</h3>
+                    <p>L'empreinte carbone est une mesure de la quantité de dioxyde de carbone (CO2) émise par les activités humaines. Elle inclut les émissions directes et indirectes de gaz à effet de serre tout au long du cycle de vie d'un produit ou d'un service.</p>
+                </article>
+            </div>
+        </section>
 
-      <div class="term">
-        <h3 id="epuisement_des_ressources">Épuisement des Ressources Abiotiques (ADP)</h3>
-        <p>
-          L'épuisement des ressources abiotiques (Abiotic Depletion Potential
-          - ADP) est une mesure de l'utilisation des ressources non
-          renouvelables comme les minéraux et les métaux, et son impact
-          potentiel sur la disponibilité future de ces ressources.
-        </p>
-      </div>
+        <section id="indicateurs" class="term-section" aria-labelledby="indicateurs-title">
+            <div class="term-section-header">
+                <h2 id="indicateurs-title"><i class="fa-solid fa-chart-bar" aria-hidden="true"></i> Indicateurs environnementaux</h2>
+                <p>Les indicateurs utilisés pour mesurer et comparer les impacts d'un produit ou d'un service.</p>
+            </div>
 
-      <div class="term">
-        <h3 id="analyse_cycle_de_vie">Analyse du Cycle de Vie (ACV)</h3>
-        <p>
-          L’Analyse du Cycle de Vie (ACV) est une méthode d’évaluation qui permet 
-          de mesurer les impacts environnementaux d’un produit, d’un service ou d’un 
-          procédé sur l’ensemble de son cycle de vie, de l’extraction des matières 
-          premières jusqu’à la fin de vie.
-        </p>
-      </div>
+            <div class="term-grid">
+                <article class="term-card">
+                    <h3 id="rechauffement_global">Réchauffement Global
+                        <abbr class="term-acronym" title="Sigle">GWP</abbr></h3>
+                    <p>Le potentiel de réchauffement global (Global Warming Potential - GWP) est une mesure de la contribution d'un gaz à effet de serre au réchauffement climatique. Il est exprimé en équivalent CO2.</p>
+                </article>
+                <article class="term-card">
+                    <h3 id="consommation_energie">Consommation d’Énergie Primaire
+                        <abbr class="term-acronym" title="Sigle">PED</abbr></h3>
+                    <p>La consommation d’énergie primaire (Primary Energy Demand - PED) est la quantité totale d’énergie brute nécessaire pour produire une unité de produit ou de service, y compris l'extraction, la transformation, et la distribution.</p>
+                </article>
+                <article class="term-card">
+                    <h3 id="consommation_eau">Consommation d’Eau Douce
+                        <abbr class="term-acronym" title="Sigle">WD</abbr></h3>
+                    <p>La consommation d'eau douce (Water Demand - WD) mesure la quantité d'eau douce utilisée directement ou indirectement pour la production d'un produit ou service.</p>
+                </article>
+                <article class="term-card">
+                    <h3 id="epuisement_des_ressources">Épuisement des Ressources Abiotiques
+                        <abbr class="term-acronym" title="Sigle">ADP</abbr></h3>
+                    <p>L'épuisement des ressources abiotiques (Abiotic Depletion Potential - ADP) est une mesure de l'utilisation des ressources non renouvelables comme les minéraux et les métaux, et son impact potentiel sur la disponibilité future de ces ressources.</p>
+                </article>
+            </div>
+        </section>
 
-      <div class="term">
-        <h3 id="cycle_de_vie"> Cycle de Vie</h3>
-        <p>
-          Le cycle de vie désigne l’ensemble des étapes traversées par un produit 
-          ou un service : extraction des ressources, fabrication, transport, 
-          utilisation, maintenance, puis fin de vie. En écoconception, toutes ces 
-          phases doivent être prises en compte.
-        </p>
-      </div>
+        <section id="equipements" class="term-section" aria-labelledby="equipements-title">
+            <div class="term-section-header">
+                <h2 id="equipements-title"><i class="fa-solid fa-recycle" aria-hidden="true"></i> Durée de vie des équipements</h2>
+                <p>Prolonger, réparer et valoriser le matériel plutôt que de le remplacer.</p>
+            </div>
 
-      <div class="term">
-        <h3 id="economie_circulaire">Économie Circulaire</h3>
-        <p>
-          L’économie circulaire est un modèle de production et de consommation qui 
-          vise à limiter le gaspillage des ressources en favorisant la réutilisation, 
-          la réparation, le reconditionnement et le recyclage des produits et matériaux.
-        </p>
-      </div>
+            <div class="term-grid">
+                <article class="term-card">
+                    <h3 id="economie_circulaire">Économie Circulaire</h3>
+                    <p>L’économie circulaire est un modèle de production et de consommation qui vise à limiter le gaspillage des ressources en favorisant la réutilisation, la réparation, le reconditionnement et le recyclage des produits et matériaux.</p>
+                </article>
+                <article class="term-card">
+                    <h3 id="reparabilite">Réparabilité</h3>
+                    <p>La réparabilité correspond à la capacité d’un produit à être réparé facilement en cas de panne ou d’usure. Elle dépend notamment de l’accessibilité des pièces, de la disponibilité des composants et de la facilité de démontage.</p>
+                </article>
+                <article class="term-card">
+                    <h3 id="recyclabilite">Recyclabilité</h3>
+                    <p>La recyclabilité désigne la capacité d’un produit ou d’un matériau à être collecté, trié et transformé afin d’être réutilisé sous une autre forme en fin de vie.</p>
+                </article>
+                <article class="term-card">
+                    <h3 id="technologie_zombie">Technologie Zombie</h3>
+                    <p>Une technologie zombie désigne une technologie obsolète qui continue d’être utilisée malgré l’existence de solutions plus modernes et plus efficaces, souvent en raison de coûts élevés de remplacement ou d'inertie organisationnelle.</p>
+                </article>
+            </div>
+        </section>
 
-      <div class="term">
-        <h3 id="reparabilite">Réparabilité</h3>
-        <p>
-          La réparabilité correspond à la capacité d’un produit à être réparé facilement 
-          en cas de panne ou d’usure. Elle dépend notamment de l’accessibilité des pièces, 
-          de la disponibilité des composants et de la facilité de démontage.
-        </p>
-      </div>
+        <section id="transition" class="term-section" aria-labelledby="transition-title">
+            <div class="term-section-header">
+                <h2 id="transition-title"><i class="fa-solid fa-leaf" aria-hidden="true"></i> Transition et sobriété</h2>
+                <p>Les orientations qui guident un numérique plus responsable.</p>
+            </div>
 
-      <div class="term">
-        <h3 id="recyclabilite">Recyclabilité</h3>
-        <p>
-          La recyclabilité désigne la capacité d’un produit ou d’un matériau à être collecté, 
-          trié et transformé afin d’être réutilisé sous une autre forme en fin de vie.
-        </p>
-      </div>
+            <div class="term-grid">
+                <article class="term-card">
+                    <h3 id="transition_ecologique">Transition Écologique</h3>
+                    <p>La transition écologique désigne le passage vers un modèle de développement économique durable, qui réduit les impacts négatifs sur l'environnement tout en répondant aux besoins actuels et futurs des sociétés.</p>
+                </article>
+                <article class="term-card">
+                    <h3 id="energie_renouvelable">Énergie Renouvelable</h3>
+                    <p>Les énergies renouvelables sont des sources d'énergie qui se régénèrent naturellement à une échelle humaine, comme le solaire, l'éolien, l'hydroélectricité et la biomasse.</p>
+                </article>
+                <article class="term-card">
+                    <h3 id="sobriete_numerique">Sobriété Numérique</h3>
+                    <p>La sobriété numérique consiste à réduire l'impact environnemental des technologies numériques, en limitant l'usage des ressources, l'énergie consommée et les déchets électroniques produits.</p>
+                </article>
+            </div>
+        </section>
 
-      <div class="term">
-        <h3 id="technologie zombie">Technologie Zombie</h3>
-        <p>
-          Une technologie zombie désigne une technologie obsolète qui continue
-          d’être utilisée malgré l’existence de solutions plus modernes et
-          plus efficaces, souvent en raison de coûts élevés de remplacement ou
-          d'inertie organisationnelle.
-        </p>
-      </div>
-
-      <div class="term">
-        <h3 id="transition_ecologique">Transition Écologique</h3>
-        <p>
-          La transition écologique désigne le passage vers un modèle de
-          développement économique durable, qui réduit les impacts négatifs
-          sur l'environnement tout en répondant aux besoins actuels et futurs
-          des sociétés.
-        </p>
-      </div>
-
-      <div class="term">
-        <h3 id="energie_renouvelable">Énergie Renouvelable</h3>
-        <p>
-          Les énergies renouvelables sont des sources d'énergie qui se
-          régénèrent naturellement à une échelle humaine, comme le solaire,
-          l'éolien, l'hydroélectricité et la biomasse.
-        </p>
-      </div>
-
-      <div class="term">
-        <h3 id="impact_environnemental">Impact Environnemental</h3>
-        <p>
-          L'impact environnemental est l'effet qu'une activité ou un processus
-          a sur l'environnement, incluant les émissions de polluants,
-          l'épuisement des ressources naturelles, la dégradation des
-          écosystèmes et la contribution au changement climatique.
-        </p>
-      </div>
-
-      <div class="term">
-        <h3 id="sobriete numerique">Sobriété Numérique</h3>
-        <p>
-          La sobriété numérique consiste à réduire l'impact environnemental
-          des technologies numériques, en limitant l'usage des ressources,
-          l'énergie consommée et les déchets électroniques produits.
-        </p>
-      </div>
-    </section>
-  </div>
+        <div class="button-container">
+            <a href="./ressources.html" class="button">Approfondir avec les ressources</a>
+            <a href="./quizz-access.html" class="button-secondary">Tester ses connaissances</a>
+        </div>
+    </div>
 
   <footer>
     <p class="mg-0">

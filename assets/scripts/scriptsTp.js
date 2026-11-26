@@ -10,7 +10,7 @@ const questions = [
         correctAnswer: 2
     },
     {
-        question: "Quel est l'objectif principal de l'éco-conception dans le développement web ?",
+        question: "Quel est l'objectif principal de l'<a href='../terminologie.html#ecoconception'>éco-conception</a> dans le développement web ?",
         answers: [
             "Augmenter le nombre de fonctionnalités d'un site web.",
             "Réduire le temps de développement des applications.",
@@ -40,7 +40,7 @@ const questions = [
         correctAnswer: 1
     },
     {
-        question: "Qu'est-ce que le RGESN (Référentiel Général d'Écoconception des Services Numériques) ?",
+        question: "Qu'est-ce que le RGESN (Référentiel Général d'<a href='../terminologie.html#ecoconception'>Écoconception</a> des Services Numériques) ?",
         answers: [
             "Un logiciel de gestion de projet.",
             "Un outil de développement web.",
@@ -50,7 +50,7 @@ const questions = [
         correctAnswer: 2
     },
     {
-        question: "Quel est le cycle de vie d'un service numérique ?",
+        question: "Quel est le <a href='../terminologie.html#cycle_de_vie'>cycle de vie</a> d'un service numérique ?",
         answers: [
             "Développement, Test, Lancement, Maintenance.",
             "Conception, Développement, Utilisation, Fin de vie.",
@@ -70,7 +70,7 @@ const questions = [
         correctAnswer: 1
     },
     {
-        question: "Pourquoi est-il important de prendre en compte le cycle de vie des équipements dans l'informatique responsable ?",
+        question: "Pourquoi est-il important de prendre en compte le <a href='../terminologie.html#cycle_de_vie'>cycle de vie</a> des équipements dans l'informatique responsable ?",
         answers: [
             "Pour maximiser les profits de l'entreprise.",
             "Pour réduire les coûts de maintenance.",
@@ -80,7 +80,7 @@ const questions = [
         correctAnswer: 2
     },
     {
-        question: "Quelle est la différence entre l'empreinte écologique et l'empreinte carbone ?",
+        question: "Quelle est la différence entre l'empreinte écologique et l'<a href='../terminologie.html#empreinte_carbone'>empreinte carbone</a> ?",
         answers: [
             "L'empreinte écologique se réfère uniquement aux émissions de CO2.",
             "L'empreinte carbone est une partie de l'empreinte écologique, qui inclut également l'utilisation des ressources naturelles.",
@@ -90,7 +90,7 @@ const questions = [
         correctAnswer: 2
     },
     {
-        question: "Quel outil permet de mesurer l'empreinte carbone d'un site web ?",
+        question: "Quel outil permet de mesurer l'<a href='../terminologie.html#empreinte_carbone'>empreinte carbone</a> d'un site web ?",
         answers: [
             "EcoIndex",
             "Google Lighthouse",
@@ -161,7 +161,7 @@ const questions = [
         correctAnswer: 3
     },
     {
-        question: "Qu'est-ce que la sobriété numérique ?",
+        question: "Qu'est-ce que la <a href='../terminologie.html#sobriete_numerique'>sobriété numérique</a> ?",
         answers: [
             "Réduire l'utilisation des appareils numériques pour minimiser l'impact environnemental.",
             "Utiliser des appareils numériques uniquement pendant les heures de travail.",
@@ -171,7 +171,7 @@ const questions = [
         correctAnswer: 0
     },
     {
-        question: "Quel est le principal défi lié à l'éco-conception dans le développement web ?",
+        question: "Quel est le principal défi lié à l'<a href='../terminologie.html#ecoconception'>éco-conception</a> dans le développement web ?",
         answers: [
             "Maintenir un équilibre entre performance et durabilité.",
             "Augmenter les coûts de développement.",
@@ -201,7 +201,7 @@ const questions = [
         correctAnswer: 1
     },
     {
-        question: "Quel est l'intérêt de l'audit d'un site web pour l'éco-conception ?",
+        question: "Quel est l'intérêt de l'audit d'un site web pour l'<a href='../terminologie.html#ecoconception'>éco-conception</a> ?",
         answers: [
             "Identifier les points forts du site.",
             "Détecter les points de non-conformité et proposer des améliorations pour réduire l'empreinte écologique. ",
@@ -211,7 +211,7 @@ const questions = [
         correctAnswer: 1
     },
     {
-        question: "Quelle stratégie peut réduire l'impact environnemental des serveurs web ?",
+        question: "Quelle stratégie peut réduire l'<a href='../terminologie.html#impact_environnemental'>impact environnemental</a> des serveurs web ?",
         answers: [
             "Augmenter la fréquence de sauvegarde des données.",
             "Utiliser des serveurs alimentés par des énergies renouvelables. ",
@@ -221,7 +221,7 @@ const questions = [
         correctAnswer: 1
     },
     {
-        question: "Pourquoi la gestion des dépendances est-elle importante en éco-conception ?",
+        question: "Pourquoi la gestion des dépendances est-elle importante en <a href='../terminologie.html#ecoconception'>éco-conception</a> ?",
         answers: [
             "Pour s'assurer que toutes les fonctionnalités sont présentes.",
             "Pour éviter l'utilisation excessive de bibliothèques inutilisées, réduisant ainsi la taille des fichiers et l'empreinte écologique. ",
@@ -231,7 +231,7 @@ const questions = [
         correctAnswer: 1
     },
     {
-        question: "Quel est le rôle de l'éco-conception dans le cycle de vie des produits numériques ?",
+        question: "Quel est le rôle de l'<a href='../terminologie.html#ecoconception'>éco-conception</a> dans le <a href='../terminologie.html#cycle_de_vie'>cycle de vie</a> des produits numériques ?",
         answers: [
             "Optimiser uniquement la phase de conception.",
             "Intégrer des pratiques durables à chaque étape, de la conception à la fin de vie, pour minimiser l'impact environnemental. ",
@@ -251,7 +251,7 @@ const questions = [
         correctAnswer: 1
     },
     {
-        question: "Quelle est la différence entre l'approvisionnement en énergie renouvelable et l'achat de crédits carbone pour les centres de données ?",
+        question: "Quelle est la différence entre l'approvisionnement en <a href='../terminologie.html#energie_renouvelable'>énergie renouvelable</a> et l'achat de crédits carbone pour les centres de données ?",
         answers: [
             "L'approvisionnement en énergie renouvelable implique l'utilisation directe d'énergie verte, tandis que les crédits carbone compensent les émissions sans changer la source d'énergie.",
             "Les crédits carbone sont plus coûteux.",
@@ -271,7 +271,7 @@ const questions = [
         correctAnswer: 1
     },
     {
-        question: "Comment l'économie circulaire peut-elle être appliquée aux produits numériques ?",
+        question: "Comment l'<a href='../terminologie.html#economie_circulaire'>économie circulaire</a> peut-elle être appliquée aux produits numériques ?",
         answers: [
             "En améliorant uniquement la phase de conception des produits.",
             "En intégrant des pratiques telles que le recyclage, la réutilisation et la réparation, prolongeant ainsi la durée de vie des produits numériques.",
@@ -301,7 +301,7 @@ const questions = [
         correctAnswer: 1
     },
     {
-        question: "Pourquoi l'accessibilité web est-elle importante dans le cadre de l'éco-conception ?",
+        question: "Pourquoi l'accessibilité web est-elle importante dans le cadre de l'<a href='../terminologie.html#ecoconception'>éco-conception</a> ?",
         answers: [
             "Elle permet de réduire les coûts de développement.",
             "Elle garantit que les services numériques sont utilisables par tous, réduisant ainsi le besoin de services alternatifs et l'empreinte numérique globale.",
@@ -323,7 +323,7 @@ const questions = [
         correctAnswer: 1
     },
     {
-        question: "Comment les plateformes de cloud computing peuvent-elles être optimisées pour l'éco-conception ?",
+        question: "Comment les plateformes de cloud computing peuvent-elles être optimisées pour l'<a href='../terminologie.html#ecoconception'>éco-conception</a> ?",
         answers: [
             "En augmentant la puissance de calcul pour chaque utilisateur.",
             "En utilisant des data centers alimentés par des énergies renouvelables et en optimisant l'utilisation des ressources pour minimiser le gaspillage.",
@@ -334,7 +334,7 @@ const questions = [
         correctAnswer: 1
     },
     {
-        question: "Quels sont les principes clés du RGPD (Règlement Général sur la Protection des Données) en lien avec l'éco-conception ?",
+        question: "Quels sont les principes clés du RGPD (Règlement Général sur la Protection des Données) en lien avec l'<a href='../terminologie.html#ecoconception'>éco-conception</a> ?",
         answers: [
             "Le RGPD se concentre uniquement sur la protection des données personnelles.",
             "Le RGPD encourage la minimisation des données collectées, ce qui peut réduire l'empreinte environnementale associée à la gestion et au stockage des données.",
@@ -345,7 +345,7 @@ const questions = [
         correctAnswer: 1
     },
     {
-        question: "Comment les réglementations européennes influencent-elles l'éco-conception des produits numériques ?",
+        question: "Comment les réglementations européennes influencent-elles l'<a href='../terminologie.html#ecoconception'>éco-conception</a> des produits numériques ?",
         answers: [
             "Elles imposent des normes strictes sur l'efficacité énergétique et les matériaux utilisés, encourageant ainsi des pratiques plus durables.",
             "Elles augmentent les coûts de production.",
@@ -378,7 +378,7 @@ const questions = [
         correctAnswer: 1
     },
     {
-        question: "Pourquoi les entreprises doivent-elles se conformer aux normes ISO en matière d'éco-conception ?",
+        question: "Pourquoi les entreprises doivent-elles se conformer aux normes ISO en matière d'<a href='../terminologie.html#ecoconception'>éco-conception</a> ?",
         answers: [
             "Pour réduire les coûts de production.",
             "Pour s'assurer que leurs produits et services répondent à des standards internationaux de durabilité, améliorant ainsi leur compétitivité et réduisant leur impact environnemental.",
@@ -389,7 +389,7 @@ const questions = [
         correctAnswer: 1
     },
     {
-        question: "Quel est l'impact des restrictions sur l'utilisation des substances dangereuses (RoHS) sur l'éco-conception ?",
+        question: "Quel est l'impact des restrictions sur l'utilisation des substances dangereuses (RoHS) sur l'<a href='../terminologie.html#ecoconception'>éco-conception</a> ?",
         answers: [
             "Elles augmentent les coûts de production.",
             "Elles limitent l'utilisation de matériaux toxiques dans les équipements électroniques, contribuant à la réduction de l'impact environnemental.",
@@ -400,7 +400,7 @@ const questions = [
         correctAnswer: 1
     },
     {
-        question: "Comment les principes de l'économie circulaire sont-ils appliqués dans l'éco-conception ?",
+        question: "Comment les principes de l'<a href='../terminologie.html#economie_circulaire'>économie circulaire</a> sont-ils appliqués dans l'<a href='../terminologie.html#ecoconception'>éco-conception</a> ?",
         answers: [
             "En réduisant la durée de vie des produits.",
             "En promouvant la réutilisation, la réparation, le recyclage, et l'utilisation de matériaux renouvelables, réduisant ainsi l'empreinte écologique globale des produits.",
@@ -411,7 +411,7 @@ const questions = [
         correctAnswer: 1
     },
     {
-        question: "Quelle est la différence entre la norme ISO 14001 et ISO 50001 dans le contexte de l'éco-conception ?",
+        question: "Quelle est la différence entre la norme ISO 14001 et ISO 50001 dans le contexte de l'<a href='../terminologie.html#ecoconception'>éco-conception</a> ?",
         answers: [
             "ISO 14001 concerne la gestion environnementale globale, tandis qu'ISO 50001 se concentre spécifiquement sur la gestion de l'énergie.",
             "ISO 50001 concerne la gestion des ressources humaines.",
@@ -422,7 +422,7 @@ const questions = [
         correctAnswer: 0
     },
     {
-        question: "Comment les lois sur le droit à la réparation influencent-elles l'éco-conception des produits numériques ?",
+        question: "Comment les lois sur le droit à la réparation influencent-elles l'<a href='../terminologie.html#ecoconception'>éco-conception</a> des produits numériques ?",
         answers: [
             "Elles encouragent les entreprises à rendre leurs produits plus facilement réparables, ce qui peut prolonger la durée de vie des produits et réduire les déchets électroniques.",
             "Elles augmentent le coût des réparations.",
@@ -572,7 +572,7 @@ function getScoreMessage(score, total) {
     const percentage = (score / total) * 100;
 
     if (percentage >= 80) {
-        return "Très bon résultat ! Vous maîtrisez déjà bien les notions d’écoconception web.";
+        return "Très bon résultat ! Vous maîtrisez déjà bien les notions d’<a href='../terminologie.html#ecoconception'>écoconception</a> web.";
     }
 
     if (percentage >= 60) {

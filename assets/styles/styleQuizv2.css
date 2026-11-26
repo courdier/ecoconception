@@ -62,44 +62,14 @@
     color: #d8f3dc;
     margin-bottom: 20px;
     text-align: center;
-    white-space: nowrap; 
-    overflow: hidden;
-    animation: typing-title 2s steps(34, end) forwards;
   }
   
   
   .text {
     font-size: 16px;
     color: #d8f3dc;
-    white-space: nowrap; 
-    overflow: hidden; 
-    visibility: hidden; 
-    animation: typing-text 3s steps(70, end) forwards; 
-    animation-delay: 2s; 
+    margin-bottom: 18px;
   }
-  
-  /* Animation for .quiz-title  */
-  @keyframes typing-title {
-    from {
-      width: 0; 
-    }
-    to {
-      width: 34ch; 
-    }
-  }
-  
-  /* Animation for .text  */
-  @keyframes typing-text {
-    0% {
-      visibility: visible; 
-      width: 0; 
-    }
-    100% {
-      width: 72ch; 
-      visibility: visible;
-    }
-  }
-  
   
   .question-title {
     font-size: 20px;
@@ -152,7 +122,7 @@
     background: #2c6e4f;
   }
   
-  .option-button.selected {
+  .option-button:has(input:checked) {
     background: #095c50;
     border-color: #2d6a4f;
   }
@@ -169,12 +139,7 @@
     border-radius: 8px;
     padding: 16px;
     margin: 20px 0;
-    display: none;
     color: white;
-  }
-  
-  .info-box.visible {
-    display: block;
   }
   
   .button {
@@ -193,75 +158,6 @@
     background: #2c6e4f;
   }
   
-  .results {
-    display: none;
-  }
-  
-  .results.visible {
-    display: block;
-  }
-  
-  .impact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin: 24px 0;
-  }
-  
-  .impact-card {
-    background: #2c6e4f;
-    border: 1px solid #2d6a4f;
-    border-radius: 12px;
-    padding: 24px;
-    text-align: center;
-  }
-  
-  .impact-value {
-    font-size: 36px;
-    font-weight: bold;
-    color: #d8f3dc;
-    margin-bottom: 8px;
-  }
-  
-  .impact-label {
-    color: white;
-    font-size: 14px;
-  }
-  
-  .recommendations {
-    background: #2c6e4f;
-    border: 1px solid #2d6a4f;
-    border-radius: 12px;
-    padding: 24px;
-    margin: 24px 0;
-  }
-  
-  .recommendations h3 {
-    color: #d8f3dc;
-    margin-bottom: 16px;
-  }
-  
-  .recommendations ul {
-    list-style-type: none;
-  }
-  
-  .recommendations li {
-    margin: 12px 0;
-    padding-left: 24px;
-    position: relative;
-    color: #d8f3dc;
-  }
-  
-  .recommendations li::before {
-    content: "→";
-    position: absolute;
-    left: 0;
-    color: white;
-  }
-  .recommendation-text{
-    color: aliceblue;
-  }
-
   .quiz-v2-page main {
     width: 100%;
   }
@@ -393,16 +289,4 @@
       font-size: 0.95rem;
     }
 
-    .quiz-v2-page .impact-grid {
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-
-    .quiz-v2-page .impact-card {
-      padding: 18px;
-    }
-
-    .quiz-v2-page .recommendations {
-      padding: 16px;
-    }
-    }
+  }

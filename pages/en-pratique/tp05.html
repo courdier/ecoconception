@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Trois exercices d’optimisation à résoudre dans chacun des sept langages du site.">
+    <title>TP 05 — Optimiser du code | Écoconception numérique</title>
+    <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/styles/styles.css?v=tp05">
+    <script defer src="../../assets/scripts/hamburger.js"></script>
+    <script defer src="../../assets/scripts/tp05-exercices.js?v=3"></script>
+    <script defer src="../../assets/scripts/tp05-expression.js?v=3"></script>
+    <script defer src="../../assets/scripts/tp05.js?v=6"></script>
+</head>
+<body class="tp05-page">
+    <header>
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav id="navbar" aria-label="Navigation principale">
+            <ul>
+                <li class="mg-0"><a href="../../index.html">Home</a></li>
+                <li class="mg-0"><a href="../quizz-access.html">Quiz</a></li>
+                <li class="mg-0"><a href="../quelques-chiffres.html">Chiffres</a></li>
+                <li class="mg-0"><a href="../outils.html">Outils</a></li>
+                <li class="mg-0"><a href="../langages.html">Langages</a></li>
+                <li class="mg-0"><a href="../en-pratique.html" class="active">Ateliers</a></li>
+                <li class="mg-0"><a href="../ressources.html">Ressources</a></li>
+                <li class="mg-0"><a href="../debat.html">Débat</a></li>
+                <li class="mg-0"><a href="../terminologie.html">Terminologie</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main tp-main tp05">
+        <section class="tp-header">
+            <h1>TP 05 : Optimisation du code</h1>
+            <div class="tp-summary" aria-label="Informations principales du TP">
+                <span class="tp-summary-item">Thème : Algorithmique et sobriété</span>
+                <span class="tp-summary-separator" aria-hidden="true">•</span>
+                <span class="tp-summary-item">7 langages au choix</span>
+            </div>
+        </section>
+
+        <div class="tp-content">
+            <details class="collapsible" open>
+                <summary><h2>Objectif <span class="toggle-icon" aria-hidden="true"></span></h2></summary>
+                <p>Réécrivez du code pour obtenir le même résultat avec moins de calculs ou moins de copies. Vous vérifierez chaque optimisation en comparant le travail effectué sur les mêmes données.</p>
+            </details>
+
+            <details class="collapsible">
+                <summary><h2>Prérequis et ressources <span class="toggle-icon" aria-hidden="true"></span></h2></summary>
+                <div class="content">
+                    <p>Il suffit de connaître les variables, opérateurs et tableaux d’un des <a href="../langages.html">langages du site</a>. Le correcteur fonctionne dans le navigateur.</p>
+                </div>
+            </details>
+
+            <details class="collapsible practical-section" open>
+                <summary><h2>Exercices pratiques <span class="toggle-icon" aria-hidden="true"></span></h2></summary>
+                <div class="content">
+                    <ol>
+                        <li>Choisissez un langage et un exercice.</li>
+                        <li>Repérez le travail inutile dans le code de départ.</li>
+                        <li>Écrivez une expression équivalente et validez-la pour afficher la comparaison.</li>
+                    </ol>
+
+                    <p id="atelier-status" class="tp-note">Si les champs restent désactivés, le correcteur n’a pas pu se charger. Vérifiez que JavaScript est activé et rechargez la page.</p>
+                    <form id="atelier" autocomplete="off">
+                        <fieldset id="atelier-controls" disabled aria-label="Éditeur et correcteur">
+                            <div class="tp05-filters">
+                                <div>
+                                    <label for="language">Langage</label>
+                                    <select id="language"><option value="javascript">JavaScript</option></select>
+                                </div>
+                                <div>
+                                    <label for="exercise">Exercice</label>
+                                    <select id="exercise"><option value="sum">Remplacer des additions répétées</option></select>
+                                </div>
+                                <a id="language-guide" href="../langages/javascript.html">Guide JavaScript</a>
+                            </div>
+
+                            <div class="tp05-brief">
+                                <h3 id="exercise-title">Remplacer des additions répétées</h3>
+                                <p id="exercise-description">Calculez la somme des entiers de 1 à n. Quand n vaut 0, la somme vaut 0.</p>
+                            </div>
+
+                            <div class="tp05-workspace">
+                                <div class="info-block">
+                                    <h4>Code de départ</h4>
+                                    <pre tabindex="0" aria-label="Code de départ"><code id="baseline">function somme(n) {
+    let total = 0;
+    for (let i = 1; i &lt;= n; i++) total += i;
+    return total;
+}</code></pre>
+                                    <p id="baseline-note">La boucle additionne un nombre à chaque tour, même lorsqu’un calcul direct suffit.</p>
+                                </div>
+                                <div class="info-block">
+                                    <h4>Votre optimisation</h4>
+                                    <label for="answer">Expression à renvoyer</label>
+                                    <p id="answer-format">Saisissez uniquement l’expression que la fonction doit renvoyer.</p>
+                                    <textarea id="answer" name="answer" rows="5" maxlength="240" required
+                                        spellcheck="false" autocapitalize="off" autocomplete="off"
+                                        aria-describedby="answer-format inputs syntax editor-keys"></textarea>
+                                    <p id="editor-keys">Tab pour indenter, Maj + Tab pour désindenter. Échap puis Tab pour quitter le champ.</p>
+                                    <p id="inputs">Variable : n, un entier de 0 à 20 000.</p>
+                                    <p id="syntax">Opérateur de division pour cet exercice : /.</p>
+                                    <details>
+                                        <summary>Afficher un indice</summary>
+                                        <p id="hint">Écrivez la suite dans les deux sens et additionnez les termes deux à deux. Quelle somme retrouve-t-on à chaque paire ?</p>
+                                    </details>
+                                    <button class="button" type="submit">Valider mon code</button>
+                                    <button class="button-secondary" id="reveal-solution" type="button"
+                                        aria-controls="solution-panel" aria-expanded="false" hidden>Sauve moi !</button>
+                                    <div class="tp-note" id="solution-panel" hidden>
+                                        <h5>Solution proposée</h5>
+                                        <pre tabindex="0"><code id="solution-code"></code></pre>
+                                        <p id="solution-explanation"></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+                        <div class="tp-note tp05-feedback" id="feedback" role="status" aria-atomic="true"></div>
+                        <section class="info-block tp05-results" id="results" aria-labelledby="compare-title" hidden>
+                            <h3 id="compare-title">Comparaison avant et après</h3>
+                            <p id="benchmark"></p>
+                            <table>
+                                <thead><tr><th scope="col">Indicateur</th><th scope="col">Avant</th><th scope="col">Après</th></tr></thead>
+                                <tbody>
+                                    <tr><th scope="row">Opérations comptées</th><td id="before-operations"></td><td id="after-operations"></td></tr>
+                                    <tr><th scope="row">Éléments dans un tableau temporaire</th><td id="before-memory"></td><td>0</td></tr>
+                                </tbody>
+                            </table>
+                            <p id="gain"></p>
+                        </section>
+                    </form>
+                </div>
+            </details>
+
+            <details class="collapsible practical-section">
+                <summary><h2>Conclusion : interpréter les résultats <span class="toggle-icon" aria-hidden="true"></span></h2></summary>
+                <div class="content">
+                    <p>Pour chaque exercice terminé, relevez la différence avant et après, puis expliquez quel parcours, calcul ou tableau temporaire votre expression a évité.</p>
+                    <p>Le correcteur évalue un sous-ensemble d’expressions du langage choisi. Il compte les opérations et les éléments temporaires sur les jeux de données de l’exercice. Un chronométrage ou une mesure de RAM demanderait une exécution native.</p>
+                    <p>Le badge <a href="https://www.ecoindex.fr/">EcoIndex</a> estime l’empreinte de la page à partir de la taille du DOM, du nombre de requêtes et du poids transféré.</p>
+                </div>
+            </details>
+        </div>
+
+        <div class="button-container">
+            <a class="button-secondary" href="../en-pratique.html">Découvrir les autres ateliers</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 - COURDIER Rémy &amp; Étudiants d’informatique de l’Université de La Réunion -
+            <a href="../a-propos.html">À propos</a>
+        </p>
+    </footer>
+</body>
+</html>
