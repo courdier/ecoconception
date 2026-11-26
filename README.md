@@ -19,8 +19,7 @@ Ce site a été développé dans le cadre de mon stage de recherche en éco-conc
 - **Accueil** : Introduction à l'éco-conception, ses enjeux, et son importance dans le développement de services numériques.
 - **Ressources** : Liens vers des articles, livres, et outils pour approfondir vos connaissances.
 - **Quelques chiffres** : Infographies illustrant l'empreinte numérique des principaux services (ChatGPT, Netflix, Gmail).
-- **Quiz** : quiz interactifs pour comprendre l'impact de nos usages quotidiens des services numériques. La méthode de calcul du résultat carbone et ses limites sont détaillées dans [QUIZ-CARBONE.md](./QUIZ-CARBONE.md).
-- **Quiz n°3** : génération d'images par IA 
+- **Quiz** : le site comprends 3 quiz interactifs pour comprendre l'impact de nos usages quotidiens des services numériques. La méthode de calcul du résultat carbone et ses limites utilisé dans un des quiz sont détaillées dans [QUIZ-CARBONE.md](./QUIZ-CARBONE.md). Paris ces 3v quiz, il y a également un quiz spécialisé sur le sujet de la génération d'images par IA.
 - **Travaux Pratiques (TP)** : Des exercices pratiques pour mettre en œuvre les principes d'éco-conception dans des projets concrets.
   - **TP 01** : Introduction à SonarQube et Eco Code
   - **TP 02** : Optimisation des Ressources Web
