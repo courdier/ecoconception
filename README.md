@@ -20,14 +20,16 @@ Ce site a été développé dans le cadre de mon stage de recherche en éco-conc
 - **Ressources** : Liens vers des articles, livres, et outils pour approfondir vos connaissances.
 - **Quelques chiffres** : Infographies illustrant l'empreinte numérique des principaux services (ChatGPT, Netflix, Gmail).
 - **Quiz** : Un quiz interactif pour comprendre l'impact de nos usages quotidiens des services numériques.
+- **Quiz n°3** : génération d'images par IA 
 - **Travaux Pratiques (TP)** : Des exercices pratiques pour mettre en œuvre les principes d'éco-conception dans des projets concrets.
   - **TP 01** : Introduction à SonarQube et Eco Code
   - **TP 02** : Optimisation des Ressources Web
   - **TP 03** : Détection et Réduction des Scripts Inutilisés
   - **TP 04** : Optimisation de l'Utilisation des Polices Web
   - **TP 05** : [Optimiser du code](./pages/en-pratique/tp05.html) dans sept langages et comparer les opérations et les copies.
-  - **Atelier interactif IA** : Génération d'images par IA et écoconception (`pages/en-pratique/atelier-ia-images.html`). Les données de l'atelier sont dans `assets/scripts/atelierIaImagesData.js`. Les images comparées et les mesures de temps et d'énergie proviennent de vraies générations (AMD Radeon RX 9070 XT, ComfyUI), reproductibles avec les scripts de `outils/mesure-ia/` (protocole dans son README).
+  - **Atelier interactif IA** : Génération d’images par IA : à quel coût ?
 - **Outils** : Présentation des outils recommandés pour l'analyse et l'optimisation écologique des services numériques.
+- **Terminologie** : Définitions des termes clés de l'éco-conception, classées en quatre thèmes.
 
 ## Technologies utilisées
 
@@ -62,6 +64,7 @@ Les contributions sont les bienvenues pour améliorer ce projet et enrichir son 
 - Le résultat carbone historique peut être partiel lorsque certaines réponses sont sans coefficient. Sa méthode et ses limites sont détaillées dans [QUIZ-CARBONE.md](./QUIZ-CARBONE.md).
 
 [Pull request n° 49](https://github.com/courdier/ecoconception/pull/49)
+
 
 ## Licence
 
