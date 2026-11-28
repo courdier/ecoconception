@@ -65,6 +65,20 @@ Les contributions sont les bienvenues pour améliorer ce projet et enrichir son 
 
 [Pull request n° 49](https://github.com/courdier/ecoconception/pull/49)
 
+### Page « Chiffres » : données globales et liens — Abdoul Fatao OUEDRAOGO
+
+- Chiffres mondiaux et français sourcés (ADEME, Arcep), section « À retenir » avec un lien vers le simulateur et lien du cours vers la page Ressources.
+- Documentation : [docs/contributions/chiffres-donnees-globales.md](./docs/contributions/chiffres-donnees-globales.md)
+
+[Pull request n° 43](https://github.com/courdier/ecoconception/pull/43) · [Pull request n° 54](https://github.com/courdier/ecoconception/pull/54)
+
+### Simulateur d'empreinte CO₂ des équipements — Abdoul Fatao OUEDRAOGO et Yanis VINGADASSAMY
+
+- Nouvelle page qui calcule l'empreinte annuelle de ses appareils et le gain obtenu en les gardant plus longtemps.
+- Documentation : [docs/contributions/simulateur-equipements.md](./docs/contributions/simulateur-equipements.md)
+
+[Pull request n° 46](https://github.com/courdier/ecoconception/pull/46)
+
 
 ## Licence
 

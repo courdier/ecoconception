@@ -13,12 +13,12 @@
 
 ### Ce que nous avons ajouté et pourquoi
 
-- **Nouvelle page** : `pages/simulateur-equipements.html`, accessible depuis la carte d'accueil « Et vous, combien pèse votre numérique ? », qui regroupe deux boutons côte à côte : « Faire un quiz » et « Simuler ». La page a été redessinée (anneau de répartition, boutons − / +, comparaison avant/après) sans bibliothèque ni requête supplémentaire.
+- **Nouvelle page** : `pages/simulateur-equipements.html`, accessible depuis une quatrième carte de la page d'accueil, placée entre « Quiz » et « Ateliers ».
 - **Pourquoi** : le cours montre que l'impact du numérique vient d'abord de la fabrication des équipements des utilisateurs. Pour un smartphone, la fabrication représente 99 % de l'empreinte carbone. Le site ne permettait pas de s'approprier ce constat : les quiz notent les usages en points et les fiches décrivent des applications. Aucun outil ne chiffrait le levier le plus efficace, qui est de garder ses appareils plus longtemps.
 - **Fonctionnement** :
     1. L'utilisateur indique, pour 5 types d'appareils (smartphone, ordinateur portable, tablette, télévision, ordinateur fixe), combien il en possède et combien d'années il les garde.
     2. Le résultat s'affiche à chaque saisie : empreinte annuelle en kg eq. CO₂, part de la fabrication, détail par appareil et trois repères (kilomètres en voiture, part du budget carbone soutenable, moyenne française).
-    3. Un curseur répond à la question « Et si je gardais chaque appareil N ans de plus ? » et affiche le gain en kg et en pourcentage.
+    3. Un curseur répond à la question « Et si je gardais chaque appareil N ans de plus ? » et affiche le gain en kg eq. CO₂, en pourcentage et en kilomètres parcourus en voiture thermique.
     4. La page explique la formule, les données de référence, les limites du calcul et donne des conseils pour faire durer ses appareils.
 - **Formule** : empreinte annuelle = nombre × (fabrication ÷ durée de vie + usage annuel).
 - **Références** : données par appareil d'Impact CO₂ (ADEME), d'après l'étude ADEME / Arcep (mise à jour 2025) et la Base Empreinte. Équivalence voiture : Benchmark Green IT 2021. Budget soutenable et moyenne française : cours Eco-TIC, d'après l'étude iNum de GreenIT.fr (2021). Les sources sont affichées sur la page.
@@ -37,7 +37,7 @@
 | 8 | Utiliser les composants natifs du navigateur | Champs `number` et `range`, bouton `reset`, balise `<output>` |
 | 9 | Garder la page utile sans JavaScript | Formulaire, données, méthode et conseils sont dans le HTML ; un message `<noscript>` prévient l'utilisateur |
 | 10 | Rendre l'outil accessible et utilisable partout | Étiquettes sur tous les champs, navigation au clavier, résultat annoncé aux lecteurs d'écran, mise en page adaptée au mobile |
-| 11 | Réutiliser les composants existants | La carte d'accueil reprend le composant des cartes existantes et fusionne Quiz et Simulateur (3 cartes au lieu de 4) ; aucune nouvelle requête sur la page d'accueil |
+| 11 | Réutiliser les composants existants | La carte d'accueil reprend le composant des 3 cartes existantes ; aucune nouvelle requête sur la page d'accueil |
 
 Ces règles s'inspirent du référentiel « 115 bonnes pratiques d'écoconception web » (GreenIT.fr et collectif Conception Numérique Responsable) et du RGESN (Arcep, Arcom et ADEME, 2024).
 
@@ -61,9 +61,9 @@ Ces règles s'inspirent du référentiel « 115 bonnes pratiques d'écoconceptio
 | Lighthouse : performance / accessibilité / bonnes pratiques / SEO | 99 / 100 / 100 / 100 | non mesuré |
 | Anomalies d'accessibilité (axe-core) | 0 | 2 (déjà présentes avant notre ajout) |
 
-Sur la page d'accueil, la fusion en une seule carte évite d'ajouter une quatrième carte (EcoIndex à re-mesurer).
+Sur la page d'accueil, l'EcoIndex passe de 89,3 à 89,1 après l'ajout de la carte.
 
-**Bénéfice pour l'utilisateur** : avec les valeurs moyennes (un smartphone, un ordinateur portable et une télévision), l'empreinte est de 117 kg eq. CO₂ par an, dont 93 % pour la fabrication. Garder chaque appareil 2 ans de plus la ramène à 84 kg, soit 28 % de moins. Le simulateur rend ce gain visible.
+**Bénéfice pour l'utilisateur** : avec les valeurs moyennes (un smartphone, un ordinateur portable et une télévision), l'empreinte est de 117 kg eq. CO₂ par an, dont 93 % pour la fabrication. Garder chaque appareil 2 ans de plus la ramène à 84 kg, soit 33 kg eq. CO₂ évités par an (28 % de moins), l'équivalent d'environ 292 km en voiture thermique. Le simulateur rend ce gain visible.
 
 ### Démarche et outils de mesure
 
@@ -73,6 +73,26 @@ Sur la page d'accueil, la fusion en une seule carte évite d'ajouter une quatri�
 - Vérification du calcul à la main : smartphone (79,3 + 0,89) ÷ 2,5 = 32,1 ; ordinateur portable (182 + 10,3) ÷ 5 = 38,5 ; télévision (328 + 41,5) ÷ 8 = 46,2 ; total 116,7, arrondi à 117 kg par an.
 - Limite : mesures locales. Le poids compressé est estimé avec gzip.
 
+### Répartition du travail dans le groupe
+
+Le simulateur demandait six tâches, que nous nous sommes réparties à deux :
+
+| Tâche | Réalisée par |
+|-------|--------------|
+| Choix du sujet et recherche des données (ADEME, cours) | Abdoul Fatao OUEDRAOGO |
+| Formule de calcul et script JavaScript | Abdoul Fatao OUEDRAOGO |
+| Page du simulateur : structure HTML et style CSS | Yanis VINGADASSAMY |
+| Carte « Simulateur » de l'accueil, section « Pour aller plus loin » | Yanis VINGADASSAMY |
+| Tests et mesures : 10 scénarios, EcoIndex, accessibilité | Yanis VINGADASSAMY |
+| Documentation (README) et dépôt GitHub | Abdoul Fatao OUEDRAOGO |
+
+**Ma part (Abdoul Fatao OUEDRAOGO)** :
+
+- **Sujet et données** : j'ai choisi le levier de la durée de vie des équipements, puis relevé les valeurs de fabrication et d'usage des 5 appareils dans Impact CO₂ (ADEME, étude ADEME / Arcep mise à jour en 2025) et les repères du cours Eco-TIC (budget soutenable, moyenne française, équivalence voiture).
+- **Calcul** : j'ai écrit la formule (nombre × (fabrication ÷ durée de vie + usage annuel)) et le script `simulateurEquipements.js` en JavaScript natif : calcul à chaque saisie, détail par appareil, curseur « N ans de plus » et gain en kg eq. CO₂, en pourcentage et en kilomètres en voiture.
+- **Documentation et dépôt** : j'ai rédigé ce README et la page `docs/contributions/simulateur-equipements.md`, puis préparé la branche et la pull request.
+
+Pour éviter tout conflit avec les autres contributions, nous n'avons pas modifié la barre de navigation (Faniry), le pied de page (Teddy) ni les pages de quiz (Aya). Le simulateur ne fait pas doublon avec le quiz : le quiz note des habitudes en points, le simulateur calcule l'empreinte des équipements en kg eq. CO₂.
 
 ### Suggestions pour le site
 
@@ -94,7 +114,14 @@ Sur la page d'accueil, la fusion en une seule carte évite d'ajouter une quatri�
 | `pages/simulateur-equipements.html` | Créé | Page du simulateur : formulaire, résultat, méthode, sources, conseils |
 | `assets/scripts/simulateurEquipements.js` | Créé | Calcul et affichage (JavaScript natif, 6 Ko) |
 | `assets/styles/simulateur.css` | Créé | Styles du simulateur (5,5 Ko) |
-| `index.html` | Modifié | Carte « Quiz » remplacée par « Et vous, combien pèse votre numérique ? » avec deux boutons (quiz / simulateur) ; phrase d'introduction mise à jour |
-| `assets/styles/styles.css` | Modifié | Grille d'accueil à 3 cartes et bloc à deux boutons (`.home-duo`) qui passe en colonne sur petit écran |
+| `index.html` | Modifié | Quatrième carte « Simulateur » entre « Quiz » et « Ateliers » ; phrase d'introduction mise à jour |
+| `assets/styles/styles.css` | Modifié | 20 lignes ajoutées : grille d'accueil à 4 cartes, titres et boutons alignés |
 | `docs/contributions/simulateur-equipements.md` | Créé | Documentation de la contribution |
-| `README.md` | Modifié | 1 phrase ajoutée dans la section « Contributions » : elle renvoie vers le dossier `docs/contributions/` |
+| `README.md` | Modifié | Courte section ajoutée dans « Contributions » : résumé, lien vers `docs/contributions/simulateur-equipements.md` et vers la pull request |
+
+## Dépôt sur GitHub
+
+- **Branche** : `feature/simulateur-equipements`
+- **Pull request** : https://github.com/courdier/ecoconception/pull/46
+- **Dépôts** : réalisés par Abdoul Fatao OUEDRAOGO, pour le groupe, à partir du travail des deux membres.
+- **Documentation dans le dépôt** : le `README.md` renvoie vers `docs/contributions/simulateur-equipements.md`, qui reprend ce document.
