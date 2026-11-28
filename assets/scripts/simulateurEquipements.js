@@ -48,7 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
         nouveauNom: parId('sim-new-label'),
         nouveauTotal: parId('sim-new-total'),
         nouveauBarre: parId('sim-bar-new'),
-        gain: parId('sim-gain')
+        gain: parId('sim-gain'),
+        gainKm: parId('sim-gain-km')
     };
 
     // Lit un champ numérique et borne la valeur : un champ vide ou invalide prend la valeur par défaut.
@@ -114,7 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
         sortie.maintenant.textContent = entier.format(total) + ' kg';
         sortie.nouveauTotal.textContent = entier.format(totalProlonge) + ' kg';
         sortie.nouveauBarre.style.width = (total > 0 ? totalProlonge / total * 100 : 0) + '%';
-        sortie.gain.textContent = entier.format(gain) + ' kg (' + entier.format(gainPourcent) + ' %)';
+        sortie.gain.textContent = entier.format(gain) + ' kg eq. CO₂ (' + entier.format(gainPourcent) + ' %)';
+        sortie.gainKm.textContent = entier.format(gain / KG_CO2_PAR_KM_VOITURE) + '\u00a0km';
     }
 
     // Boutons « − » et « + » : on s'appuie sur les méthodes natives stepDown() / stepUp() du champ,

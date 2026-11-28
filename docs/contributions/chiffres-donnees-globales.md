@@ -21,6 +21,9 @@ Travail individuel : **Abdoul Fatao OUEDRAOGO**.
 - **Mise à jour d'information** : un encadré présente la mise à jour ADEME / Arcep de janvier 2025 (29,5 Mt eq. CO₂, soit 4,4 % de l'empreinte carbone de la France ; terminaux 50 %, centres de données 46 %, réseaux 4 %). Il complète les chiffres du cours, qui datent de 2019 à 2021, et explique pourquoi les deux séries ne se comparent pas directement.
 - **Références** : 6 sources sont listées sur la page, avec un lien vers chaque étude. Chaque chiffre renvoie à sa source par un appel de note.
 - **Correction d'accessibilité** : le contenu de la page est placé dans une balise `<main>`.
+- **Liens vers le reste du site** (seconde pull request) :
+    - un bouton **« Faites le calcul avec le simulateur »**, sous l'encadré « À retenir ». La page explique que la fabrication des équipements est le premier poste d'impact ; le bouton permet ensuite de calculer l'empreinte de ses propres appareils. On passe de la lecture à l'action ;
+    - dans la source 1, un lien vers **le cours de R. Courdier** : il mène à la section « Supports pédagogiques » de la page Ressources, où se trouve le cours Eco-TIC (partie 1). Le lecteur peut vérifier les chiffres à leur source.
 
 ### Règles d'écoconception proposées
 
@@ -74,7 +77,7 @@ La page contient trois fois plus de contenu pour 5,8 Ko et 1 requête de plus. L
 
 Travail individuel : analyse de la page, recherche et vérification des sources, rédaction, intégration HTML et CSS, tests et documentation.
 
-Pour éviter tout conflit avec les autres contributions, je n'ai modifié ni `styles.css`, ni la page Terminologie (Thomas), ni la grille des applications (Mathieu et Yanis), ni l'en-tête et le pied de page (Faniry et Teddy).
+Pour éviter tout conflit avec les autres contributions, je n'ai modifié ni `styles.css`, ni la page Terminologie (Thomas), ni les liens vers la terminologie (Aïfeze), ni l'en-tête et le pied de page (Faniry et Teddy). La grille des applications est conservée : la carte « Claude » de Mathieu, retirée par erreur lors de la première pull request, a été rétablie.
 
 ### Suggestions pour le site
 
@@ -93,7 +96,18 @@ Pour éviter tout conflit avec les autres contributions, je n'ai modifié ni `st
 
 | Fichier | État | Détail |
 |---------|------|--------|
-| `pages/quelques-chiffres.html` | Modifié | 3 nouvelles sections, encadré 2025, sources, titre, description, balise `<main>` (environ 300 lignes ajoutées) |
-| `assets/styles/chiffres-cles.css` | Créé | Styles de la contribution (333 lignes, 7,5 Ko) |
+| `pages/quelques-chiffres.html` | Modifié | 3 nouvelles sections, encadré 2025, sources, titre, description, balise `<main>` (environ 300 lignes ajoutées) ; puis bouton vers le simulateur et lien vers le cours |
+| `assets/styles/chiffres-cles.css` | Créé | Styles de la contribution (333 lignes, 7,5 Ko), puis 3 lignes pour espacer le bouton |
 | `docs/contributions/chiffres-donnees-globales.md` | Créé | Documentation de la contribution |
-| `README.md` | Modifié | 1 phrase ajoutée dans la section « Contributions » : elle renvoie vers le dossier `docs/contributions/` |
+
+## Dépôt sur GitHub
+
+Dépôt réalisé **individuellement**, en deux pull requests vers la branche du cours `M2Info_26-27`.
+
+| Étape | Branche | Pull request |
+|-------|---------|--------------|
+| 1. Données globales, indicateurs et sources | `amelioration/chiffres-donnees-globales` | [https://github.com/courdier/ecoconception/pull/43](https://github.com/courdier/ecoconception/pull/43) (fusionnée) |
+| 2. Bouton vers le simulateur et lien vers le cours | `abdoul-amelioration/chiffres-liens-simulateur-cours` | [https://github.com/courdier/ecoconception/pull/54](https://github.com/courdier/ecoconception/pull/54) |
+
+- **Vérification de la seconde étape** : les deux liens ont été testés dans le navigateur ; ils mènent à `simulateur-equipements.html` et à `ressources.html#supports`. Aucun JavaScript, aucune image et aucune requête n'ont été ajoutés.
+- **Documentation dans le dépôt** : `docs/contributions/chiffres-donnees-globales.md`.
